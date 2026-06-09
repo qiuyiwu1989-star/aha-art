@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 世界观漂移 · 一千六百年的两条路</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--west:#b0673a;--east:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:26px 16px 80px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(20px,3.6vw,28px);font-weight:700;text-align:center;margin:7px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13px;line-height:1.7;max-width:780px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff;margin:16px auto 6px;justify-content:center}
+  .segwrap{text-align:center}
+  .seg button{border:none;background:#fff;font-family:var(--sans);font-size:12.5px;color:var(--ink-mute);padding:6px 13px;cursor:pointer;border-left:1px solid var(--line)}
+  .seg button:first-child{border-left:none}.seg button.on{color:#fff}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px;margin-top:12px}
+  .ph{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--ink-soft);margin:2px 4px 6px}
+  svg{width:100%;height:auto;display:block}
+  .tip{position:fixed;z-index:50;pointer-events:none;background:rgba(29,27,24,.95);color:#f4f1ea;font-size:12px;padding:6px 10px;border-radius:8px;opacity:0;transition:opacity .08s;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+  .tip .t{font-family:var(--serif);font-weight:600}.tip .s{font-family:var(--mono);font-size:10px;color:#c9bfae}
+  .legend{display:flex;gap:18px;justify-content:center;margin-top:10px;font-size:12.5px}
+  .legend .li{display:flex;align-items:center;gap:6px}.legend .dot{width:12px;height:12px;border-radius:50%}
+  .reading{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:16px;font-size:13.5px;line-height:1.9;color:var(--ink-soft)}.reading b{color:var(--accent)}.reading .hd{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--ink);margin-bottom:6px}
+  .reading .e{color:var(--east);font-weight:600}.reading .w{color:var(--west);font-weight:600}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .loading{text-align:center;color:var(--ink-faint);padding:40px}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="tip" id="tip"></div>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 时间轴</div>
+  <h1>世界观漂移 —— 一千六百年的两条路</h1>
+  <p class="lead">把每位艺术家按<b>盛年(生年+30)</b>放回时间轴,逐世纪算其<b>世界观重心</b>。于是"<b>再现 → 表现</b>"不再是口号,而是一条<b>可测量的历史漂移</b>。东西方分开看,会发现两条<b>完全不同</b>的通往"表现"的路。</p>
+  <div class="breadcrumb"><a href="kg-artist-atlas.html">全员星图</a> · <a href="kg-dynamics.html">关系动力学</a> · <a href="kg-provenance.html">数据可信度</a> · 当前:世界观漂移</div>
+  <div class="segwrap"><span class="seg" id="seg"><button data-v="both" class="on" style="background:#857d6f">东+西对照</button><button data-v="west">仅西方</button><button data-v="east">仅东方</button></span></div>
+
+  <div class="panel"><div class="ph">① 重心在世界观平面上的漂移轨迹(点=世纪,大小=人数,箭头=时间方向)</div>
+    <svg id="plane" viewBox="0 0 1000 640"></svg>
+    <div class="legend"><div class="li"><span class="dot" style="background:var(--west)"></span>西方</div><div class="li"><span class="dot" style="background:var(--east)"></span>东方</div><div class="li" style="color:var(--ink-faint)">○ 越大=该世纪样本越多</div></div>
+  </div>
+
+  <div class="panel"><div class="ph">② 再现 → 表现 随时间的曲线(纵轴↑=越表现)</div>
+    <svg id="line" viewBox="0 0 1000 420"></svg>
+  </div>
+
+  <div class="reading" id="reading"></div>
+</div>
+<script>
+const NS='http://www.w3.org/2000/svg',E=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+const tip=document.getElementById('tip');
+let DATA={west:[],east:[]},mode='both';
+fetch('data/kg_artists.json').then(r=>r.json()).then(Aj=>{
+  const rich=Object.values(Aj.artists).filter(v=>!v._stub&&v.wv&&v.wv.x!=null&&v.born);
+  ['west','east'].forEach(rg=>{
+    const bk={};
+    rich.filter(v=>v.region===rg).forEach(v=>{const c=Math.floor((v.born+30)/100)*100;(bk[c]=bk[c]||[]).push(v);});
+    DATA[rg]=Object.keys(bk).map(Number).sort((a,b)=>a-b).map(c=>{const g=bk[c];
+      return {c,n:g.length,x:g.reduce((s,v)=>s+v.wv.x,0)/g.length,y:g.reduce((s,v)=>s+v.wv.y,0)/g.length,
+        names:g.sort((a,b)=>b.wv.x-a.wv.x).slice(0,5).map(v=>v.cn)};}).filter(p=>p.n>=2);
+  });
+  document.getElementById('seg').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('#seg button').forEach(x=>{x.classList.remove('on');x.style.background='';});
+    b.classList.add('on');b.style.background=b.dataset.v==='both'?'#857d6f':(b.dataset.v==='west'?'#b0673a':'#5a7d6f');mode=b.dataset.v;draw();}));
+  draw();reading();
+}).catch(e=>{document.getElementById('reading').textContent='加载失败:'+e;});
+
+function regs(){return mode==='both'?['east','west']:[mode];}
+function drawPlane(){
+  const svg=document.getElementById('plane');svg.textContent='';
+  const W=1000,H=640,pad=70,sx=v=>pad+v*(W-2*pad),sy=v=>H-pad-v*(H-2*pad);
+  svg.appendChild(E('rect',{x:pad,y:pad,width:W-2*pad,height:H-2*pad,fill:'#fcfaf5',stroke:'#e8e0d0'}));
+  [.25,.5,.75].forEach(t=>{svg.appendChild(E('line',{x1:sx(t),y1:pad,x2:sx(t),y2:H-pad,stroke:'#efe9dc'}));svg.appendChild(E('line',{x1:pad,y1:sy(t),x2:W-pad,y2:sy(t),stroke:'#efe9dc'}));});
+  const T=(x,y,s,o={})=>{const e=E('text',{x,y,'font-family':o.f||'Noto Sans SC','font-size':o.fs||12,fill:o.fill||'#857d6f','text-anchor':o.a||'middle'});e.textContent=s;if(o.w)e.setAttribute('font-weight',o.w);if(o.st){e.setAttribute('paint-order','stroke');e.setAttribute('stroke',o.st);e.setAttribute('stroke-width',o.sw||3);}svg.appendChild(e);};
+  T(sx(.01),H-pad+24,'← 再现',{a:'start',fill:'#5a7d6f',w:600,fs:13});T(sx(.99),H-pad+24,'表现 →',{a:'end',fill:'#b0673a',w:600,fs:13});
+  T(pad-12,sy(.01),'结构',{a:'end',fill:'#5a7d6f',w:600,fs:13});T(pad-12,sy(.985),'感知',{a:'end',fill:'#b0673a',w:600,fs:13});
+  const defs=E('defs',{});[['west','#b0673a'],['east','#5a7d6f']].forEach(([k,c])=>{const m=E('marker',{id:'dm_'+k,viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:7,markerHeight:7,orient:'auto'});m.appendChild(E('path',{d:'M0 0 L10 5 L0 10 z',fill:c}));defs.appendChild(m);});svg.appendChild(defs);
+  regs().forEach(rg=>{const col=rg==='west'?'#b0673a':'#5a7d6f',P=DATA[rg];
+    for(let i=0;i<P.length-1;i++){const a=P[i],b=P[i+1];const dx=sx(b.x)-sx(a.x),dy=sy(b.y)-sy(a.y),L=Math.hypot(dx,dy)||1;
+      svg.appendChild(E('line',{x1:sx(a.x)+dx/L*9,y1:sy(a.y)+dy/L*9,x2:sx(b.x)-dx/L*13,y2:sy(b.y)-dy/L*13,stroke:col,'stroke-width':2,'stroke-opacity':.5,'marker-end':'url(#dm_'+rg+')'}));}
+    P.forEach(p=>{const r=5+Math.sqrt(p.n)*2.2;const c=E('circle',{cx:sx(p.x),cy:sy(p.y),r,fill:col,'fill-opacity':.82,stroke:'#fff','stroke-width':1.5});
+      c.style.cursor='pointer';c.addEventListener('mousemove',ev=>{tip.style.opacity=1;tip.style.left=(ev.clientX+12)+'px';tip.style.top=(ev.clientY+12)+'px';tip.innerHTML=`<div class="t">${p.c}s · ${rg==='west'?'西方':'东方'}</div><div class="s">x再现-表现 ${p.x.toFixed(2)} · n=${p.n} · ${p.names.join('、')}</div>`;});
+      c.addEventListener('mouseleave',()=>tip.style.opacity=0);svg.appendChild(c);
+      T(sx(p.x),sy(p.y)-r-3,(p.c/100|0)+'C',{fs:10.5,f:'JetBrains Mono',fill:col,w:600,st:'#fcfaf5',sw:3});});
+  });
+}
+function drawLine(){
+  const svg=document.getElementById('line');svg.textContent='';
+  const W=1000,H=420,L=70,R=24,Tp=22,B=46;
+  const yr0=200,yr1=2000, sx=y=>L+(y-yr0)/(yr1-yr0)*(W-L-R), sy=v=>H-B-v*(H-B-Tp);
+  svg.appendChild(E('rect',{x:L,y:Tp,width:W-L-R,height:H-B-Tp,fill:'#fcfaf5',stroke:'#e8e0d0'}));
+  const T=(x,y,s,o={})=>{const e=E('text',{x,y,'font-family':o.f||'JetBrains Mono','font-size':o.fs||11,fill:o.fill||'#a89f8f','text-anchor':o.a||'middle'});e.textContent=s;if(o.w)e.setAttribute('font-weight',o.w);svg.appendChild(e);};
+  [0,.25,.5,.75,1].forEach(v=>{svg.appendChild(E('line',{x1:L,y1:sy(v),x2:W-R,y2:sy(v),stroke:'#efe9dc'}));T(L-6,sy(v)+3,v.toFixed(2),{a:'end',fs:10});});
+  T(L-6,sy(0.98)+3,'',{});
+  for(let y=400;y<=2000;y+=200){svg.appendChild(E('line',{x1:sx(y),y1:Tp,x2:sx(y),y2:H-B,stroke:'#f0ebde'}));T(sx(y),H-B+16,y+'',{fs:10});}
+  // 0.5 中线
+  svg.appendChild(E('line',{x1:L,y1:sy(.5),x2:W-R,y2:sy(.5),stroke:'#d9cdb6','stroke-dasharray':'4 4'}));
+  T(W-R-2,sy(.5)-4,'再现 | 表现 分界',{a:'end',fs:9.5,fill:'#bcae93'});
+  regs().forEach(rg=>{const col=rg==='west'?'#b0673a':'#5a7d6f',P=DATA[rg];
+    let d='';P.forEach((p,i)=>{d+=(i?'L':'M')+sx(p.c+30)+' '+sy(p.x)+' ';});
+    svg.appendChild(E('path',{d,fill:'none',stroke:col,'stroke-width':2.6,'stroke-opacity':.85}));
+    P.forEach(p=>{const c=E('circle',{cx:sx(p.c+30),cy:sy(p.x),r:4+Math.sqrt(p.n)*0.9,fill:col,stroke:'#fff','stroke-width':1.2});
+      c.addEventListener('mousemove',ev=>{tip.style.opacity=1;tip.style.left=(ev.clientX+12)+'px';tip.style.top=(ev.clientY+12)+'px';tip.innerHTML=`<div class="t">${p.c}s</div><div class="s">再现-表现 ${p.x.toFixed(2)} · n=${p.n}</div>`;});
+      c.addEventListener('mouseleave',()=>tip.style.opacity=0);svg.appendChild(c);});
+    // 端点标注
+    const last=P[P.length-1];T(sx(last.c+30)+2,sy(last.x)-8,rg==='west'?'西':'东',{a:'start',fs:12,fill:col,w:700,f:'Noto Serif SC'});
+  });
+  T(L,Tp-8,'↑ 越表现',{a:'start',fs:10.5,fill:'#857d6f',w:600});
+}
+function draw(){drawPlane();drawLine();}
+function reading(){
+  document.getElementById('reading').innerHTML=`<div class="hd">两条通往"表现"的路</div>
+  这是一个<b>可证伪的历史命题</b>,数据给出的答案是:<br>
+  · <span class="w">西方</span>在文艺复兴(15–16C)扎进<b>最深的再现</b>(x≈0.27,忠实于眼睛),此后缓慢松动,直到<b>20 世纪爆发式冲向表现</b>(x≈0.78)——并一举<b>越过</b>了东方。现代主义不是渐变,是一次断裂式的摆荡。<br>
+  · <span class="e">东方</span>早在<b>宋元文人画(12–13C)</b>就抵达了"写意/表现"(x≈0.5),此后<b>几百年稳居于此</b>(0.47–0.58),没有西方那样的剧烈现代主义摆荡——它很早就不以"像不像"为目标。<br>
+  · 所以"再现→表现"<b>不是一条普世的单向进步</b>:它是西方近千年的一次迟来的剧变,而东方八百年前就已在那里。两种文明<b>用完全不同的节奏</b>抵达同一片"表现"的区域。<br>
+  <span style="color:var(--ink-faint);font-size:12px">说明:盛年=生年+30,逐世纪取重心,仅显 n≥2 的世纪;样本=已考究的 ${''}rich 艺术家,非全史普查,趋势可信、绝对值仅供参照(见 <a href="kg-provenance.html" style="color:var(--accent)">数据可信度</a>)。</span>`;
+}
+</script>
+</body></html>

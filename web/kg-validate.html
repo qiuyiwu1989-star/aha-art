@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 生成链 · 可证伪验证</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--red:#a8443a;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding:34px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(22px,4vw,32px);font-weight:700;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13px;line-height:1.75;max-width:720px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .caveat{background:#fbf3ec;border:1px solid #e6c9b0;border-left:4px solid var(--accent);border-radius:10px;padding:12px 15px;margin-top:20px;font-size:12.5px;color:var(--ink-soft);line-height:1.7}.caveat b{color:var(--accent)}
+  .sec{margin-top:32px}
+  .sec-h{font-family:var(--serif);font-size:18px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:6px}
+  .sec-d{font-size:12.5px;color:var(--ink-mute);margin:8px 0 12px;line-height:1.7}.sec-d b{color:var(--ink-soft)}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}
+  .rrow{display:flex;align-items:center;gap:10px;margin:6px 0;font-size:13px}
+  .rrow .rn{flex:1;color:var(--ink-soft)}
+  .rrow .rbar{width:140px;height:12px;background:var(--paper-2);border-radius:6px;position:relative;overflow:hidden}
+  .rrow .rf{position:absolute;top:0;height:100%;border-radius:6px}
+  .rrow .rv{width:64px;text-align:right;font-family:var(--mono);font-size:12px;font-weight:600}
+  .verdict{font-size:13px;line-height:1.7;border-radius:9px;padding:10px 13px;margin-top:10px}
+  .verdict.ok{background:#eef3f0;border:1px solid #bcd0c8;color:#3a5a4e}
+  .verdict.bad{background:#faeae8;border:1px solid #e3b6b0;color:#7a2f28}
+  .verdict.mid{background:#fbf6e8;border:1px solid #e6d6a8;color:#7a5e1a}
+  svg{display:block;width:100%;height:auto}
+  .qgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}@media(max-width:600px){.qgrid{grid-template-columns:1fr}}
+  .qc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+  .qc .qh{font-family:var(--serif);font-size:14px;font-weight:600}.qc .qm{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:5px;line-height:1.6}
+  .bars{display:flex;height:14px;border-radius:5px;overflow:hidden;margin-top:6px}
+  .chain{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+  .cn{border-radius:9px;padding:9px 12px;text-align:center;color:#fff;font-family:var(--serif);font-size:13px;font-weight:600}
+  .cn .s{display:block;font-family:var(--mono);font-size:9px;font-weight:400;margin-top:2px;opacity:.9}
+  .arrow{color:var(--ink-faint);font-size:18px}
+  .back{display:block;text-align:center;margin-top:40px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 经得起推敲</div>
+  <h1>生成链 · 可证伪验证</h1>
+  <p class="lead">世界观层已自检过(<a href="kg-worldview-science.html" style="color:var(--accent)">科学性自检</a>)。这一页把追问推到整条链:<b>风格的坐标,能预测画面被像素测到的样子吗?</b> 用 <b id="n">…</b> 件作品的<b>实测色彩/情绪</b>正面检验,并<b>如实分级</b>——哪段成立、哪段还不成立。</p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-apply">应用·工具</a> › <b style="color:var(--ink-soft)">链路验证</b></div>
+
+  <div class="caveat">⚠️ <b>前提</b>:样本=语料里挂了作品的 <b id="ns">…</b> 个风格 × 其 <b id="n2">…</b> 件作品;风格向量为本系统编码,而<b>颜色/情绪是从像素实测的</b>(独立于编码)。所以这是一次<b>真·跨来源</b>的检验——但样本偏小、偏西方,结论按强度诚实标注。</div>
+
+  <div class="sec">
+    <div class="sec-h">① 链条末端:感知效应可由像素测吗?<span style="font-family:var(--mono);font-size:11px;color:var(--green);margin-left:8px">作品层</span></div>
+    <div class="sec-d">先验最末端(L3 感知效应)。若情绪真能由画面测出,<b>唤醒应与饱和度、效价应与明度</b>强相关。</div>
+    <div class="card" id="A"></div>
+    <div class="scatter card" style="margin-top:10px"><svg id="scA" viewBox="0 0 600 320"></svg><div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);text-align:center;margin-top:4px">横轴 饱和度 · 纵轴 唤醒(注:此处"唤醒"系颜色派生,故此图相关属循环,仅作展示) · 颜色=世界观区</div></div>
+    <div class="verdict mid" id="vA"></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">② 链条中段:风格坐标能预测画面吗?<span style="font-family:var(--mono);font-size:11px;color:var(--gold);margin-left:8px">风格聚合层</span></div>
+    <div class="sec-d">把作品按风格聚合,看<b>风格的能量轴</b>能否预测<b>该风格作品的平均唤醒/饱和</b>。这是"风格=投影"最直接的跨源检验。</div>
+    <div class="card" id="B"></div>
+    <div class="verdict" id="vB"></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">③ 世界观区 → 作品情绪象限</div>
+    <div class="sec-d">每个区的作品,落在愉悦×唤起的哪个象限?有倾向但样本不足以定论。</div>
+    <div class="qgrid" id="C"></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">④ 分级结论 · 链条哪段经得起像素检验</div>
+    <div class="chain">
+      <div class="cn" style="background:var(--accent)">世界观·根<span class="s">结构自检 ✓</span></div>
+      <span class="arrow">→</span>
+      <div class="cn" style="background:var(--green)">位置→画面<span class="s">中等 ✓ · 再现-表现轴</span></div>
+      <span class="arrow">→</span>
+      <div class="cn" style="background:#9a6a62">饱和=情绪<span class="s">✗ 循环 · 已撤</span></div>
+    </div>
+    <div class="verdict mid" style="margin-top:14px"><b>诚实判定(已纠偏):</b>① 世界观层结构经 PCA/聚类自检站得住。② <b>真正非循环的发现</b>:像素特征<b>中等程度</b>携带风格的世界观位置信息——尤其<b>再现-表现轴</b>(暖色 −0.48 / 边缘 +0.43 / 明度 +0.40),且 <b>6 个区在像素上能分开</b>(边缘密度、暖色占比单调变化)。③ 但<b>两条捷径要撤</b>:旧引用的"饱和→唤起 r≈0.78"是<b>循环</b>(语料唤起=颜色派生),独立测只剩 ≈0.2;E 向量的能量轴(秩序-张力/节制-强度)像素里 <b>r≈0</b>;单风格→单幅画仍弱。<b>把循环的那条揪出来撤掉,正是经得起推敲。</b>完整拆解见 <a href="kg-affect.html" style="color:var(--accent);font-weight:600">L3 感知效应 →</a></div>
+  </div>
+
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const NS='http://www.w3.org/2000/svg',E=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+const WVC={WV1:'#b0673a',WV2:'#9a7b3a',WV3:'#5a7d6f',WV4:'#5b7596',WV5:'#8a5a7a',WV6:'#4a6a8a'};
+function rbar(o,host){const r=o.r==null?0:o.r;const abs=Math.abs(r);const col=abs>=0.5?'var(--green)':(abs>=0.3?'var(--gold)':'var(--red)');
+  const row=$(`<div class="rrow"><span class="rn">${o.name}</span><span class="rbar"><span class="rf" style="width:${abs*50}%;left:${r>=0?'50%':(50-abs*50)+'%'};background:${col}"></span><span style="position:absolute;left:50%;top:0;height:100%;width:1px;background:#cfc6b4"></span></span><span class="rv" style="color:${col}">r=${o.r==null?'–':o.r}</span></div>`);host.appendChild(row);}
+fetch('data/kg_validate.json').then(r=>r.json()).then(D=>{
+  document.getElementById('n').textContent=D.n;document.getElementById('n2').textContent=D.n;document.getElementById('ns').textContent=D.n_styles;
+  D.A.forEach(o=>rbar(o,document.getElementById('A')));
+  D.B.forEach(o=>rbar(o,document.getElementById('B')));
+  document.getElementById('vA').innerHTML='<b>判定:已纠偏 ⚠️</b> 旧结论引用"唤醒~饱和 r≈0.78"<b>站不住</b>:这批语料的"唤醒"本就是从主色算出来的(实测 唤醒×主色饱和 r=0.80),属<b>循环论证</b>。换成<b>独立的人工考据唤起</b>再测,饱和→唤起只剩 <b>r≈0.20(弱)</b>。"情绪可由饱和度测出"被高估——完整拆解与重测见 <a href="kg-affect.html" style="color:var(--accent);font-weight:600">L3 感知效应页 →</a>';
+  document.getElementById('vB').className='verdict bad';
+  document.getElementById('vB').innerHTML='<b>判定:当前不成立 / 弱。</b> 仅 9 个风格,能量→均唤醒 r≈0、→均饱和反号(n=9 不可靠)。诚实结论:<b>这个小样本下,风格向量预测不了画面的实测效应</b>——记为待更大语料验证,不粉饰。';
+  // scatter A
+  const svg=document.getElementById('scA'),W=600,H=320,pad=38;
+  const sx=v=>pad+v*(W-2*pad),sy=v=>H-pad-v*(H-2*pad);
+  svg.appendChild(E('rect',{x:pad,y:pad,width:W-2*pad,height:H-2*pad,fill:'#fcfaf5',stroke:'#e8e0d0'}));
+  [.25,.5,.75].forEach(t=>{svg.appendChild(E('line',{x1:sx(t),y1:pad,x2:sx(t),y2:H-pad,stroke:'#efe9dc'}));svg.appendChild(E('line',{x1:pad,y1:sy(t),x2:W-pad,y2:sy(t),stroke:'#efe9dc'}));});
+  D.scatter_A.forEach(p=>svg.appendChild(E('circle',{cx:sx(p.x),cy:sy(p.y),r:4.5,fill:WVC[p.wv]||'#999','fill-opacity':.6,stroke:'#fff','stroke-width':.6})));
+  // C quadrants
+  const cg=document.getElementById('C');const QC={'昂扬·欢腾':'#c98a1a','宁静·惬意':'#5a7d6f','紧张·悲怆':'#a8443a','忧郁·萧索':'#5b7596'};
+  const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+  Object.entries(D.C).forEach(([wv,q])=>{const tot=Object.values(q).reduce((a,b)=>a+b,0);
+    const bars=Object.entries(q).map(([k,v])=>`<span style="width:${v/tot*100}%;background:${QC[k]}" title="${k} ${v}"></span>`).join('');
+    cg.appendChild($(`<div class="qc" style="border-left:3px solid ${WVC[wv]}"><div class="qh">${wv} ${WVN[wv]}</div><div class="bars">${bars}</div><div class="qm">${Object.entries(q).sort((a,b)=>b[1]-a[1]).map(([k,v])=>k.split('·')[0]+' '+v).join(' · ')}</div></div>`));});
+});
+</script>
+</body></html>

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 风格对比 · 多风格,看清差异</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--blue:#5b7596;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:30px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(22px,4.4vw,32px);font-weight:700;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13px;line-height:1.7;max-width:700px;margin:8px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .picker{background:#fff;border:1px solid var(--line);border-radius:13px;padding:13px 15px;margin-top:18px}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:9px}
+  .schip{display:inline-flex;align-items:center;gap:6px;font-family:var(--serif);font-size:14px;font-weight:600;color:#fff;border-radius:999px;padding:5px 8px 5px 12px;cursor:default}
+  .schip .x{cursor:pointer;font-family:var(--mono);font-size:13px;opacity:.8;border:none;background:rgba(255,255,255,.25);border-radius:50%;width:18px;height:18px;color:#fff}
+  .schip .x:hover{opacity:1;background:rgba(0,0,0,.2)}
+  .pctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .pctl select{font-family:var(--sans);font-size:13px;padding:7px 10px;border:1px solid var(--line);border-radius:9px;background:var(--paper);color:var(--ink);cursor:pointer}
+  .pbtn{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);background:var(--paper-2);border:1px solid var(--line);border-radius:8px;padding:6px 11px;cursor:pointer}
+  .pbtn:hover{background:var(--accent-soft);color:var(--accent)}
+  .sec{margin-top:28px}
+  .sec-h{font-family:var(--serif);font-size:17px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:10px;display:flex;align-items:baseline;gap:8px}
+  .sec-h .en{font-family:var(--mono);font-size:10px;color:var(--ink-faint);font-weight:400}
+  .card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:14px}
+  svg{display:block;width:100%;height:auto}
+  .diff{display:flex;flex-direction:column;gap:7px}
+  .drow{display:flex;align-items:center;gap:10px;font-size:12.5px}
+  .drow .dn{width:74px;font-family:var(--serif);font-weight:600;color:var(--ink-soft)}
+  .drow .dt{flex:1;height:9px;background:var(--paper-2);border-radius:5px;overflow:hidden}
+  .drow .df{height:100%;border-radius:5px;background:var(--accent)}
+  .drow .dv{width:96px;text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink-mute)}
+  .sm{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+  .smc{border-radius:10px;padding:11px 13px;background:#fbf9f4;border:1px solid var(--line);border-top:3px solid var(--c)}
+  .smc .sn{font-family:var(--serif);font-size:14px;font-weight:600;color:var(--c)}
+  .smc .se{font-size:12px;color:var(--ink-soft);line-height:1.6;margin-top:5px}
+  .smc .sv{font-family:var(--serif);font-style:italic;color:var(--ink-mute);font-size:12px;line-height:1.6;margin-top:6px}
+  .rel{font-size:12.5px;color:var(--ink-soft);line-height:1.8}.rel .pair{background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 11px;margin:5px 0}.rel b{color:var(--accent)}
+  .focusable{transition:opacity .12s}
+  .back{display:block;text-align:center;margin-top:38px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 风格对比</div>
+  <h1>多风格,差异看得见</h1>
+  <p class="lead">加入<b>2–6 个风格</b>,在<b>世界观平面 + 11 维平行坐标</b>上并排比较——线在哪条轴上岔开,差异就在哪里。系统自动找出<b>这组风格分歧最大的维度</b>。<span style="font-size:12px">(看"多风格如何聚集"用 <a href="kg-projection.html" style="color:var(--accent)">投影对比</a>)</span></p>
+  <div class="breadcrumb"><a href="home.html">🏠 首页</a> › <a href="kg-v2.html">🧭 艺术图谱</a> › <a href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">风格对比</b></div>
+  <div style="text-align:center;margin-top:10px;font-family:var(--mono);font-size:11px"><span style="color:var(--ink-faint)">两种对比工具 · </span><span style="background:var(--accent);color:#fff;border-radius:999px;padding:3px 11px">⚖️ 看差异(本页)</span> <a href="kg-projection.html" style="color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 11px">🎯 看聚集 →</a></div>
+
+  <div class="picker">
+    <div class="chips" id="chips"></div>
+    <div class="pctl">
+      <select id="add"><option value="">+ 加入风格…</option></select>
+      <button class="pbtn" id="bFar">+ 加最不同的</button>
+      <button class="pbtn" id="bWv">+ 加同区一个</button>
+      <button class="pbtn" id="bClear">清空重选</button>
+      <span style="font-family:var(--mono);font-size:10.5px;color:var(--ink-faint)" id="hint"></span>
+    </div>
+  </div>
+
+  <div id="out"></div>
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const NS='http://www.w3.org/2000/svg';
+const PAL=['#b0673a','#5b7596','#5a7d6f','#9a7b3a','#8a5a7a','#4a6a8a'];
+const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+const WVC={WV1:'#b0673a',WV2:'#9a7b3a',WV3:'#5a7d6f',WV4:'#5b7596',WV5:'#8a5a7a',WV6:'#4a6a8a'};
+// 11 维签名:4 E向量 + 7 语言
+const AX=[
+ {k:'再现-表现',src:'v',lo:'再现',hi:'表现'},{k:'结构-感知',src:'v',lo:'结构',hi:'感知'},
+ {k:'秩序-张力',src:'v',lo:'秩序',hi:'张力'},{k:'节制-强度',src:'v',lo:'节制',hi:'强度'},
+ {k:'构图',src:'l'},{k:'空间',src:'l'},{k:'造型',src:'l'},{k:'光影',src:'l'},{k:'色彩',src:'l'},{k:'笔触',src:'l'},{k:'边缘',src:'l'}];
+let nodes,byId,L2,L2DIM,LIN,sel=[],hull;
+const qs=new URLSearchParams(location.search);
+function vecOf(id){const n=byId[id],v=(n.lore||{}).vector||{},l=(L2[id]||{}).vec||{};
+  return AX.map(a=>a.src==='v'?(v[a.k]):(l[a.k]));}
+hull=function(P){if(P.length<3)return P.slice();P=P.slice().sort((a,b)=>a[0]-b[0]||a[1]-b[1]);
+  const cr=(o,a,b)=>(a[0]-o[0])*(b[1]-o[1])-(a[1]-o[1])*(b[0]-o[0]);
+  const lo=[];for(const q of P){while(lo.length>=2&&cr(lo[lo.length-2],lo[lo.length-1],q)<=0)lo.pop();lo.push(q);}
+  const u=[];for(let i=P.length-1;i>=0;i--){const q=P[i];while(u.length>=2&&cr(u[u.length-2],u[u.length-1],q)<=0)u.pop();u.push(q);}
+  lo.pop();u.pop();return lo.concat(u);};
+Promise.all([
+  fetch('data/kg_style.json').then(r=>r.json()),
+  fetch('data/kg_language_vectors.json').then(r=>r.json()).catch(()=>({style_vectors:{},meta:{dims:[]}})),
+  fetch('data/kg_lineage.json').then(r=>r.json()).catch(()=>({edges:[]}))
+]).then(([sty,langv,lin])=>{
+  nodes=sty.nodes; byId={}; nodes.forEach(n=>byId[n.id]=n);
+  L2=langv.style_vectors||{}; L2DIM={}; (langv.meta&&langv.meta.dims||[]).forEach(d=>L2DIM[d.short]=d);
+  AX.forEach(a=>{if(a.src==='l'&&L2DIM[a.k]){a.lo=L2DIM[a.k].low;a.hi=L2DIM[a.k].high;}});
+  LIN=lin.edges||[];
+  const sorted=[...nodes].sort((a,b)=>a.cn.localeCompare(b.cn,'zh'));
+  const add=document.getElementById('add');
+  sorted.forEach(n=>add.appendChild(new Option(n.cn,n.id)));
+  // 初始选择
+  let ids=(qs.get('ids')||'').split(',').filter(Boolean);
+  if(!ids.length){const a=qs.get('a'),b=qs.get('b');ids=[a,b].filter(Boolean);}
+  if(!ids.length) ids=['印象派','新古典主义','浮世绘'].map(cn=>(nodes.find(n=>n.cn===cn)||{}).id).filter(Boolean);
+  sel=ids.filter(id=>byId[id]).slice(0,6);
+  if(sel.length<2) sel=[sorted[0].id,sorted[1].id];
+  add.onchange=e=>{if(e.target.value&&!sel.includes(e.target.value)&&sel.length<6){sel.push(e.target.value);render();}e.target.value='';};
+  document.getElementById('bClear').onclick=()=>{sel=sel.slice(0,1);render();};
+  document.getElementById('bWv').onclick=()=>{const wv=byId[sel[sel.length-1]].wv;const c=nodes.find(n=>n.wv===wv&&!sel.includes(n.id));if(c&&sel.length<6){sel.push(c.id);render();}};
+  document.getElementById('bFar').onclick=()=>{ // 加与当前集合签名距离最大的
+    const cur=sel.map(vecOf); let best=null,bd=-1;
+    nodes.forEach(n=>{if(sel.includes(n.id))return;const v=vecOf(n.id);
+      let d=0,c=0;cur.forEach(cv=>{let s=0,m=0;v.forEach((x,i)=>{if(x!=null&&cv[i]!=null){s+=(x-cv[i])**2;m++;}});if(m)d+=Math.sqrt(s/m);c++;});
+      d=c?d/c:0; if(d>bd){bd=d;best=n.id;}});
+    if(best&&sel.length<6){sel.push(best);render();}};
+  render();
+}).catch(e=>{document.getElementById('out').innerHTML='<div style="text-align:center;color:#a89f8f;padding:30px">加载失败(需服务器):'+e+'</div>';});
+
+function col(i){return PAL[i%PAL.length];}
+function focus(sid){document.querySelectorAll('.focusable').forEach(el=>{el.style.opacity=(!sid||el.dataset.sid===sid)?'':'0.12';});}
+function render(){
+  qs.delete('a');qs.delete('b');qs.set('ids',sel.join(','));history.replaceState(null,'','?'+qs.toString());
+  // chips
+  const ch=document.getElementById('chips');ch.innerHTML='';
+  sel.forEach((id,i)=>{const c=$(`<span class="schip" data-sid="${id}" style="background:${col(i)}">${byId[id].cn}<button class="x">✕</button></span>`);
+    c.querySelector('.x').onclick=()=>{if(sel.length>1){sel=sel.filter(x=>x!==id);render();}};
+    c.onmouseenter=()=>focus(id);c.onmouseleave=()=>focus(null);ch.appendChild(c);});
+  document.getElementById('hint').textContent=sel.length>=6?'最多 6 个':`已选 ${sel.length} 个`;
+  document.getElementById('add').disabled=sel.length>=6;
+  const o=document.getElementById('out');o.innerHTML='';
+  // ① 世界观平面
+  o.appendChild($(`<div class="sec"><div class="sec-h">① 世界观平面 <span class="en">worldview plane</span></div><div class="card">${planeSVG()}</div></div>`));
+  // ② 平行坐标
+  o.appendChild($(`<div class="sec"><div class="sec-h">② 11 维平行坐标 <span class="en">parallel coordinates · 线岔开处=差异</span></div><div class="card">${pcSVG()}</div></div>`));
+  // ③ 分歧最大的轴
+  const spreads=AX.map(a=>{const vs=sel.map(id=>vecOf(id)[AX.indexOf(a)]).filter(v=>v!=null);
+    return {a,spread:vs.length>1?Math.max(...vs)-Math.min(...vs):0};}).sort((x,y)=>y.spread-x.spread);
+  const dl=spreads.slice(0,6).map(s=>`<div class="drow"><span class="dn">${s.a.k}</span><span class="dt"><span class="df" style="width:${s.spread*100}%"></span></span><span class="dv">极差 ${s.spread.toFixed(2)}</span></div>`).join('');
+  o.appendChild($(`<div class="sec"><div class="sec-h">③ 这组风格 · 分歧最大的维度 <span class="en">most divergent axes</span></div><div class="card"><div class="diff">${dl}</div><div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:8px">极差=该轴上最大值−最小值,越大=这几个风格在此维上分得越开。</div></div></div>`));
+  // ④ 精髓/画外音 小卡
+  const sm=sel.map((id,i)=>{const lo=byId[id].lore||{};return `<div class="smc focusable" data-sid="${id}" style="--c:${col(i)}"><div class="sn">${byId[id].cn}</div><div class="se">${lo.essence||'—'}</div>${lo.voice?`<div class="sv">“${lo.voice}”</div>`:''}</div>`;}).join('');
+  o.appendChild($(`<div class="sec"><div class="sec-h">④ 精髓 · 画外音 <span class="en">essence · voiceover</span></div><div class="sm">${sm}</div></div>`));
+  // ⑤ 彼此关系(两两)
+  let pairs='';
+  for(let i=0;i<sel.length;i++)for(let j=i+1;j<sel.length;j++){const t=lineageBetween(sel[i],sel[j]);if(t)pairs+=`<div class="pair">${t}</div>`;}
+  o.appendChild($(`<div class="sec"><div class="sec-h">⑤ 彼此关系 <span class="en">lineage between</span></div><div class="card"><div class="rel">${pairs||'<span style="color:var(--ink-mute)">所选风格之间暂无直接的承自/影响/对抗关系。</span>'}</div></div></div>`));
+  // hover binding for small cards
+  document.querySelectorAll('.smc.focusable').forEach(el=>{el.onmouseenter=()=>focus(el.dataset.sid);el.onmouseleave=()=>focus(null);});
+}
+function planeSVG(){
+  const W=620,H=360,p=40,sx=v=>p+v*(W-2*p),sy=v=>H-p-v*(H-2*p);
+  let s=`<svg viewBox="0 0 ${W} ${H}">`;
+  s+=`<rect x="${sx(0)}" y="${sy(1)}" width="${sx(1)-sx(0)}" height="${sy(0)-sy(1)}" fill="#fcfaf5" stroke="#e8e0d0"/>`;
+  [.25,.5,.75].forEach(t=>{s+=`<line x1="${sx(t)}" y1="${sy(0)}" x2="${sx(t)}" y2="${sy(1)}" stroke="#efe9dc"/><line x1="${sx(0)}" y1="${sy(t)}" x2="${sx(1)}" y2="${sy(t)}" stroke="#efe9dc"/>`;});
+  // faint region hulls (标准)
+  ['WV1','WV2','WV3','WV4','WV5','WV6'].forEach(wv=>{const ps=nodes.filter(n=>n.wv===wv&&n.coord&&n.coord.rep_exp!=null).map(n=>[sx(n.coord.rep_exp),sy(n.coord.struct_perc)]);
+    if(ps.length<3)return;const c=[ps.reduce((a,q)=>a+q[0],0)/ps.length,ps.reduce((a,q)=>a+q[1],0)/ps.length];
+    const hl=hull(ps).map(pt=>{const dx=pt[0]-c[0],dy=pt[1]-c[1],d=Math.hypot(dx,dy)||1;return[pt[0]+dx/d*9,pt[1]+dy/d*9];});
+    s+=`<polygon points="${hl.map(pt=>pt.join(',')).join(' ')}" fill="${WVC[wv]}" fill-opacity="0.045" stroke="${WVC[wv]}" stroke-opacity="0.22" stroke-dasharray="4 4" stroke-width="1"/>`;});
+  nodes.forEach(n=>{if(n.coord&&n.coord.rep_exp!=null)s+=`<circle cx="${sx(n.coord.rep_exp)}" cy="${sy(n.coord.struct_perc)}" r="2" fill="${WVC[n.wv]||'#999'}" fill-opacity="0.14"/>`;});
+  sel.forEach((id,i)=>{const n=byId[id];if(!n.coord)return;const x=sx(n.coord.rep_exp),y=sy(n.coord.struct_perc);
+    s+=`<g class="focusable" data-sid="${id}"><circle cx="${x}" cy="${y}" r="7" fill="${col(i)}" stroke="#fff" stroke-width="2"/><text x="${x}" y="${y-11}" text-anchor="middle" font-family="Noto Serif SC" font-size="11" font-weight="600" fill="${col(i)}" paint-order="stroke" stroke="#fcfaf5" stroke-width="3">${n.cn.replace('风格','').slice(0,6)}</text></g>`;});
+  s+=`<text x="8" y="${sy(.5)+4}" font-family="Noto Serif SC" font-size="11" fill="#857d6f">再现</text><text x="${W-8}" y="${sy(.5)+4}" text-anchor="end" font-family="Noto Serif SC" font-size="11" fill="#857d6f">表现</text>`;
+  s+=`<text x="${sx(.5)}" y="${sy(1)-8}" text-anchor="middle" font-family="Noto Serif SC" font-size="11" fill="#857d6f">感知</text><text x="${sx(.5)}" y="${sy(0)+20}" text-anchor="middle" font-family="Noto Serif SC" font-size="11" fill="#857d6f">结构</text>`;
+  return s+'</svg>';
+}
+function pcSVG(){
+  const W=900,H=300,pL=46,pR=20,pT=26,pB=46;
+  const n=AX.length, ax=i=>pL+i*(W-pL-pR)/(n-1), yT=pT, yB=H-pB, sy=v=>yB-v*(yB-yT);
+  let s=`<svg viewBox="0 0 ${W} ${H}">`;
+  // axes
+  AX.forEach((a,i)=>{const x=ax(i);
+    s+=`<line x1="${x}" y1="${yT}" x2="${x}" y2="${yB}" stroke="#ddd5c6" stroke-width="1"/>`;
+    s+=`<text x="${x}" y="${yT-10}" text-anchor="middle" font-family="JetBrains Mono" font-size="8.5" fill="#a89f8f">${a.hi||''}</text>`;
+    s+=`<text x="${x}" y="${yB+14}" text-anchor="middle" font-family="JetBrains Mono" font-size="8.5" fill="#a89f8f">${a.lo||''}</text>`;
+    s+=`<text x="${x}" y="${yB+30}" text-anchor="middle" font-family="Noto Serif SC" font-size="11" font-weight="600" fill="#5a544a">${a.k.split('-').join('/')}</text>`;});
+  // polylines per style
+  sel.forEach((id,i)=>{const v=vecOf(id);const pts=[];
+    v.forEach((val,j)=>{if(val!=null)pts.push([ax(j),sy(val)]);});
+    if(pts.length<2)return;const c=col(i);
+    const d=pts.map((p,k)=>(k?'L':'M')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+    s+=`<g class="focusable" data-sid="${id}"><path d="${d}" fill="none" stroke="${c}" stroke-width="2" stroke-opacity="0.8" stroke-linejoin="round"/>`;
+    pts.forEach(p=>s+=`<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="${c}" stroke="#fff" stroke-width="1"/>`);
+    s+=`</g>`;});
+  return s+'</svg>';
+}
+function lineageBetween(a,b){
+  for(const e of LIN){const m=(e.s===a&&e.t===b)||(e.s===b&&e.t===a);if(!m)continue;const fwd=e.s===a;let t;
+    if(e.k==='parent') t=fwd?`<b>${byId[b].cn}</b> 承自 <b>${byId[a].cn}</b>`:`<b>${byId[a].cn}</b> 承自 <b>${byId[b].cn}</b>`;
+    else if(e.k==='influence') t=fwd?`<b>${byId[a].cn}</b> 影响了 <b>${byId[b].cn}</b>`:`<b>${byId[b].cn}</b> 影响了 <b>${byId[a].cn}</b>`;
+    else t=`<b>${byId[a].cn}</b> ⟷ <b>${byId[b].cn}</b> 对抗`;
+    return t+(e.why?` <span style="color:var(--ink-mute)">— ${e.why}</span>`:'');}
+  return null;
+}
+</script>
+</body></html>

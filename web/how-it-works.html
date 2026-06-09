@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 它是怎么算的 — 美学推荐算法科普</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/aha.css?v=3"/>
+<style>
+  body{background:var(--paper);overflow-y:auto}
+  .wrap{max-width:820px;margin:0 auto;padding:40px 20px 110px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(27px,5vw,42px);font-weight:600;text-align:center;margin:10px 0 6px;line-height:1.2}
+  .lead{text-align:center;color:var(--ink-soft);font-size:15px;line-height:1.8;max-width:600px;margin:6px auto 0}
+  .lead b{color:var(--accent)}
+  .step{margin-top:48px;border-top:1px solid var(--line);padding-top:26px}
+  .step .sn{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.1em}
+  .step h2{font-family:var(--serif);font-size:23px;font-weight:600;margin:6px 0 10px}
+  .step p{font-size:14.5px;line-height:1.85;color:var(--ink-soft);margin:10px 0}
+  .step p b{color:var(--ink)}
+  .formula{font-family:var(--mono);font-size:14px;color:var(--ink);background:#1d1b18;color:#e7ddc8;border-radius:10px;padding:14px 16px;margin:14px 0;overflow-x:auto;line-height:1.7}
+  .formula .hl{color:#e8b06a}
+  .note{font-size:12.5px;color:var(--ink-mute);line-height:1.7;background:var(--paper-2);border-radius:8px;padding:11px 14px;margin:12px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0}
+  .card .ct{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:12px}
+  /* 真实一幅画 → 数字 */
+  .ex{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+  .ex .exi{width:120px;height:120px;border-radius:8px;overflow:hidden;background:var(--paper-2);flex-shrink:0}
+  .ex .exi img{width:100%;height:100%;object-fit:cover}
+  .ex .exv{flex:1;min-width:200px}
+  .vrow{display:flex;align-items:center;gap:10px;margin:7px 0;font-size:13px}
+  .vrow .vl{width:78px;color:var(--ink-soft)}
+  .vrow .vt{flex:1;height:8px;background:var(--paper-2);border-radius:4px;overflow:hidden}
+  .vrow .vf{display:block;height:100%;background:var(--accent);border-radius:4px;width:0;transition:width 1s var(--ease)}
+  .vrow .vv{font-family:var(--mono);font-size:12px;color:var(--ink);width:38px;text-align:right}
+  .big{font-family:var(--mono);font-size:34px;color:var(--accent);font-weight:500}
+  /* 倒 U 装置 */
+  .uwrap{text-align:center}
+  #uplot{width:100%;max-width:560px;height:200px;background:linear-gradient(180deg,#fff,#faf7f0);border:1px solid var(--line);border-radius:10px}
+  .sliders{margin-top:14px}
+  .sld{display:flex;align-items:center;gap:10px;margin:9px 0;font-size:13px}
+  .sld .sl{width:120px;color:var(--ink-soft);text-align:right}
+  .sld input[type=range]{flex:1;accent-color:var(--accent)}
+  .sld .sv{font-family:var(--mono);font-size:12.5px;color:var(--accent);width:42px;text-align:right}
+  .out{text-align:center;margin-top:8px;font-size:13px;color:var(--ink-soft)}
+  .out .big{display:block;margin-top:2px}
+  /* 流水线 */
+  .pipe{display:flex;gap:8px;align-items:stretch;flex-wrap:wrap;margin:14px 0}
+  .pstep{flex:1;min-width:150px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pstep .pt{font-family:var(--serif);font-weight:600;font-size:15px}.pstep .pt b{color:var(--accent)}
+  .pstep .pd{font-size:12.5px;color:var(--ink-soft);line-height:1.6;margin-top:4px}
+  /* 奖励权重计算器 */
+  .rwout{display:flex;gap:8px;margin-top:14px}
+  .rwc{flex:1;text-align:center;background:var(--paper-2);border-radius:10px;padding:9px 4px}
+  .rwc .rv{font-family:var(--mono);font-size:15px;color:var(--ink-soft)}.rwc .rn{font-size:10.5px;color:var(--ink-mute);margin-top:2px}
+  .total{text-align:center;margin-top:14px;font-size:13px;color:var(--ink-soft)}
+  .ctarow{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:36px}
+  .cta{font-family:var(--sans);font-size:14px;text-decoration:none;border-radius:999px;padding:12px 24px;cursor:pointer}
+  .cta.p{background:var(--ink);color:var(--paper)}.cta.s{background:none;color:var(--ink-mute);border:1px solid var(--line)}
+  .back{display:block;text-align:center;margin-top:40px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .home-fab:hover{color:var(--accent)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 它是怎么算的</div>
+  <h1>把"懂你"摊开来给你看</h1>
+  <p class="lead">推荐算法不是魔法,是<b>可以看懂的计算</b>。这一页用大白话,把 aha 背后那套美学推荐一步步写出来——<b>每个能拨动的地方,数字都会当场重算</b>。</p>
+
+  <!-- 1 -->
+  <div class="step">
+    <div class="sn">STEP 01</div><h2>先把一幅画,变成一串数字</h2>
+    <p>计算机看不懂"美",但能看懂数字。所以第一步:把每幅画拆成几条可量化的<b>审美坐标</b>——明暗、冷暖、动静(由画面的饱和度、对比度、色彩丰富度算出)、年代,以及它的母题。下面是馆里一幅真实作品,被拆成的数字:</p>
+    <div class="card"><div class="ct">真实样本 · 实时读自数据</div>
+      <div class="ex">
+        <div class="exi"><img id="exImg" alt=""/></div>
+        <div class="exv" id="exVals"></div>
+      </div>
+    </div>
+    <p class="note">一幅画 = 审美空间里的<b>一个点</b>。119 幅画,就是 119 个点,铺成一张"审美地图"。</p>
+  </div>
+
+  <!-- 2 -->
+  <div class="step">
+    <div class="sn">STEP 02</div><h2>再把"你",也变成数字</h2>
+    <p>你每心动一幅画,系统就把那幅画的数字,<b>平均</b>进你的画像里——这串平均值,就是"你的审美质心"(你最常被什么样的画打动)。同时它记下你的<b>不确定度</b>(还没摸准的程度):看得越多、越一致,不确定度越低,"口味清晰度"越高。</p>
+    <div class="formula">你的质心 = 心动过的画的平均<br>口味清晰度 = 1 − 不确定度  <span class="hl">(看得越多越清楚)</span></div>
+    <p class="note">这就是为什么<b>越逛越准</b>——质心在动,清晰度在涨。你在「美学实验室」右边看到的那张地图,中间那颗发光的点,就是它。</p>
+  </div>
+
+  <!-- 3 核心 -->
+  <div class="step">
+    <div class="sn">STEP 03 · 核心</div><h2>关键一步:它不推"最像你的"</h2>
+    <p>大多数算法会推离你质心<b>最近</b>的画。但最近的 = 你早看腻的 = <b>不会有"原来如此"</b>。aha 优化的是另一个东西——一个写得出来的<b>奖励函数</b>:</p>
+    <div class="formula">推荐分 = <span class="hl">α·Aha</span> + γ·安静 + δ·信息 + β·成长 − 重复 − 疲劳</div>
+    <p>其中最关键的 <b>Aha(顿悟)</b> 来自一条"<b>倒 U 曲线</b>":一幅画离你太近=无聊,太远=无感,<b>不远不近、刚好在你"惊奇甜点"上的那一幅,顿悟值最高</b>。这是真实的审美心理学(Wundt 曲线)。拨一拨,看它怎么算:</p>
+    <div class="card"><div class="ct">倒 U 惊奇曲线 · 拖动即重算</div>
+      <div class="uwrap"><canvas id="uplot" width="560" height="200"></canvas></div>
+      <div class="sliders">
+        <div class="sld"><span class="sl">这幅画离你 d</span><input type="range" id="dVal" min="0" max="1" step="0.01" value="0.45"/><span class="sv" id="dValO">0.45</span></div>
+        <div class="sld"><span class="sl">你的惊奇带 d*</span><input type="range" id="dStar" min="0.1" max="0.8" step="0.01" value="0.42"/><span class="sv" id="dStarO">0.42</span></div>
+      </div>
+      <div class="out">这幅画的顿悟值 Aha =<span class="big" id="ahaOut">0.00</span></div>
+    </div>
+    <p class="note">另外三项也都好懂:<b>安静</b>=画面别太"吵"、节奏别忽起忽落;<b>信息</b>=专挑"还没摸准你"的方向去试探(所以越问越准);<b>成长</b>=偶尔带你去一个没去过、却挨着你的审美邻域。</p>
+  </div>
+
+  <!-- 4 流水线 -->
+  <div class="step">
+    <div class="sn">STEP 04</div><h2>每出一幅画,背后跑三步</h2>
+    <div class="pipe">
+      <div class="pstep"><div class="pt">① <b>召回</b></div><div class="pd">从 119 幅里,多路并行各捞一批:视觉相近 / 图谱邻居 / 同母题 / 惊奇带。几百缩到几十。</div></div>
+      <div class="pstep"><div class="pt">② <b>打分</b></div><div class="pd">给每一张算上面那个"推荐分",逐项算清楚(你在活体演示里看到的就是这些数)。</div></div>
+      <div class="pstep"><div class="pt">③ <b>重排</b></div><div class="pd">排好后再调:去掉太雷同的、压住太"吵"的、留一点惊喜,最后端给你。</div></div>
+    </div>
+    <p>这几个项各占多少,是可调的。拨一拨权重,看同一批画的"总分"怎么变:</p>
+    <div class="card"><div class="ct">奖励权重计算器 · 拖动即重算(样本画:Aha .72 / 安静 .90 / 信息 .30 / 成长 .55)</div>
+      <div class="sliders">
+        <div class="sld"><span class="sl">α 顿悟</span><input type="range" id="wA" min="0" max="2" step="0.05" value="1"/><span class="sv" id="wAO">1.00</span></div>
+        <div class="sld"><span class="sl">γ 安静</span><input type="range" id="wC" min="0" max="2" step="0.05" value="0.6"/><span class="sv" id="wCO">0.60</span></div>
+        <div class="sld"><span class="sl">δ 信息</span><input type="range" id="wI" min="0" max="2" step="0.05" value="0.5"/><span class="sv" id="wIO">0.50</span></div>
+        <div class="sld"><span class="sl">β 成长</span><input type="range" id="wG" min="0" max="2" step="0.05" value="0.35"/><span class="sv" id="wGO">0.35</span></div>
+      </div>
+      <div class="total">这张样本画的最终推荐分 =<span class="big" id="rwOut">0.00</span></div>
+    </div>
+  </div>
+
+  <!-- 5 测量 -->
+  <div class="step">
+    <div class="sn">STEP 05</div><h2>"测你"和"喂你",用的是两套逻辑</h2>
+    <p>逛的时候,目标是<b>顿悟</b>(上面那套)。但"<b>测评</b>"时,目标变成<b>最快把你测清楚</b>——所以它会专挑<b>最能区分你</b>的画来问、用<b>二选一</b>隔离单条轴、并且<b>测到清楚为止</b>(不是固定张数)。这就是为什么十几张就够,而且不会拿一堆雷同的画浪费你。</p>
+    <p class="note">同一个引擎,逛时最大化"顿悟",测时最大化"信息"。一体两面。</p>
+  </div>
+
+  <!-- 6 诚实 -->
+  <div class="step">
+    <div class="sn">STEP 06</div><h2>它现在还不够深的地方</h2>
+    <p>目前这些数字,是从<b>像素</b>(颜色、对比、构图)估出来的"代理"。真正的深度,要靠一套专业的<b>艺术知识图谱标注</b>——把"再现↔表现、世界模型、画外音"这些更高级的维度喂进来。通路已经留好,数据一进,这些曲线就会算得更准、更懂你。<b>诚实地说:这是它的天花板,也是它接下来要长的地方。</b></p>
+  </div>
+
+  <div class="ctarow">
+    <a class="cta p" href="arch-demo.html">看它实时计算(活体演示)→</a>
+    <a class="cta s" href="aesthetic-lab.html">测我的审美 DNA</a>
+    <a class="cta s" href="kg-map.html">背后的知识图谱</a>
+  </div>
+  <a class="back" href="home.html">← 回到全部体验导航</a>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+// 倒 U 装置(与 brain 同公式:Aha = exp(-((d-d*)^2)/(2σ²)) × 可消解0.7)
+const SIG = 0.22, ANCHOR = 0.7;
+const cv = $('#uplot'), cx = cv.getContext('2d');
+function ahaRaw(d, ds){ return Math.exp(-((d-ds)**2)/(2*SIG*SIG)); }
+function drawU(){
+  const d=+$('#dVal').value, ds=+$('#dStar').value;
+  $('#dValO').textContent=d.toFixed(2); $('#dStarO').textContent=ds.toFixed(2);
+  const W=cv.width,H=cv.height,pad=24;
+  cx.clearRect(0,0,W,H);
+  // 轴
+  cx.strokeStyle='#ddd5c6'; cx.lineWidth=1; cx.beginPath(); cx.moveTo(pad,H-pad); cx.lineTo(W-pad,H-pad); cx.stroke();
+  // 曲线
+  cx.strokeStyle='#b0673a'; cx.lineWidth=2.5; cx.beginPath();
+  for(let px=0;px<=W-2*pad;px++){ const dd=px/(W-2*pad); const v=ahaRaw(dd,ds); const x=pad+px, y=(H-pad)-v*(H-2*pad); px?cx.lineTo(x,y):cx.moveTo(x,y); }
+  cx.stroke();
+  // 峰(d*)
+  const px2=x=>pad+x*(W-2*pad);
+  cx.strokeStyle='#5a7d6f'; cx.setLineDash([4,4]); cx.beginPath(); cx.moveTo(px2(ds),pad-6); cx.lineTo(px2(ds),H-pad); cx.stroke(); cx.setLineDash([]);
+  cx.fillStyle='#5a7d6f'; cx.font="11px JetBrains Mono"; cx.textAlign='center'; cx.fillText('惊奇甜点 d*',px2(ds),pad-10);
+  // 当前 d 点
+  const v=ahaRaw(d,ds), y=(H-pad)-v*(H-2*pad);
+  cx.fillStyle='#1d1b18'; cx.beginPath(); cx.arc(px2(d),y,7,0,7); cx.fill();
+  cx.fillStyle='#fff'; cx.beginPath(); cx.arc(px2(d),y,3,0,7); cx.fill();
+  // x 轴标
+  cx.fillStyle='#a89f8f'; cx.font="10px JetBrains Mono"; cx.textAlign='left'; cx.fillText('太近(无聊)',pad,H-8); cx.textAlign='right'; cx.fillText('太远(无感)',W-pad,H-8);
+  $('#ahaOut').textContent=(v*(0.4+0.6*ANCHOR)).toFixed(2);
+}
+['dVal','dStar'].forEach(id=>$('#'+id).addEventListener('input',drawU));
+drawU();
+
+// 奖励权重计算器
+const SAMPLE={aha:0.72,calm:0.90,info:0.30,growth:0.55};
+function rw(){
+  const a=+$('#wA').value,c=+$('#wC').value,i=+$('#wI').value,g=+$('#wG').value;
+  $('#wAO').textContent=a.toFixed(2);$('#wCO').textContent=c.toFixed(2);$('#wIO').textContent=i.toFixed(2);$('#wGO').textContent=g.toFixed(2);
+  const den=a+c+i+g||1;
+  const tot=(a*SAMPLE.aha+c*SAMPLE.calm+i*SAMPLE.info+g*SAMPLE.growth)/den;
+  $('#rwOut').textContent=tot.toFixed(3);
+}
+['wA','wC','wI','wG'].forEach(id=>$('#'+id).addEventListener('input',rw));
+rw();
+
+// STEP01:读一幅真实作品,展示它的特征数字
+function feat(w){ const [h,s,l]=w.color.hsl; const warm=0.5+0.5*Math.cos((h-40)*Math.PI/180);
+  return {明暗:l, 冷暖:Math.max(0,Math.min(1,0.5*(warm*(0.35+0.65*s))+0.5*(w.mood.valence))), 动静:w.mood.arousal, 古今:Math.max(0,Math.min(1,((w.century||18)-15)/6))}; }
+fetch('data/artworks.json').then(r=>r.json()).then(ws=>{
+  const w = ws.find(x=>/iris|sunflower|wheat|starry|dance/i.test(x.title)) || ws.find(x=>(x.themes||[]).length>=3) || ws[0];
+  $('#exImg').src=w.thumb||w.image; $('#exImg').alt=w.title;
+  const f=feat(w);
+  const rows=Object.entries(f).map(([k,v])=>`<div class="vrow"><span class="vl">${k}</span><span class="vt"><span class="vf" data-w="${Math.round(v*100)}"></span></span><span class="vv">${v.toFixed(2)}</span></div>`).join('')
+    + `<div class="vrow"><span class="vl">母题</span><span class="vv" style="width:auto;color:var(--ink-soft);font-family:var(--sans)">${(w.themes||[]).slice(0,4).map(t=>'#'+t).join(' ')}</span></div>`;
+  $('#exVals').innerHTML=`<div style="font-family:var(--serif);font-size:15px;margin-bottom:8px">《${w.title}》<span style="font-size:12px;color:var(--ink-mute)"> ${w.artist||''}</span></div>`+rows;
+  requestAnimationFrame(()=>$('#exVals').querySelectorAll('.vf').forEach(el=>el.style.width=el.dataset.w+'%'));
+}).catch(()=>{ $('#exVals').innerHTML='<div style="font-size:13px;color:var(--ink-faint)">(样本加载中…)</div>'; });
+</script>
+</body></html>

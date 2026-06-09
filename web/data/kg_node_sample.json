@@ -1,0 +1,219 @@
+{
+ "id": "STYLE.west.029",
+ "cn": "印象派",
+ "en": "Impressionism",
+ "layer": "风格",
+ "definition": "1860–1880 年代兴起于法国的绘画运动,反学院派沙龙体系。主张走出画室、在户外直接面对光线作画,用纯色并置与破碎短笔触捕捉光与大气的瞬间变化,取消棕色调与黑色阴影。本质是把'世界如何被眼睛看见'本身当作主题。",
+ "coord_basis": {
+  "X1_再现表现": 0.55,
+  "X2_具象抽象": 0.3,
+  "X3_秩序张力": 0.62,
+  "X4_能量": 0.4,
+  "X5_卷入": 0.58
+ },
+ "world_model": {
+  "code": "W3",
+  "cn": "感知·经验世界模型"
+ },
+ "people": [
+  "莫奈 Monet",
+  "雷诺阿 Renoir",
+  "毕沙罗 Pissarro",
+  "德加 Degas",
+  "西斯莱 Sisley",
+  "莫里索 Morisot"
+ ],
+ "period": "1860s–1880s · 法国",
+ "edges": [
+  {
+   "type": "belong",
+   "label": "隶属·世界模型",
+   "cn": "感知·经验世界模型",
+   "to": "W3"
+  },
+  {
+   "type": "temporal_from",
+   "label": "时间·前驱",
+   "cn": "写实主义",
+   "to": "STYLE.east.092"
+  },
+  {
+   "type": "temporal_from",
+   "label": "时间·前驱",
+   "cn": "巴比松",
+   "to": null
+  },
+  {
+   "type": "temporal_to",
+   "label": "时间·后继",
+   "cn": "点彩派",
+   "to": "STYLE.west.031"
+  },
+  {
+   "type": "temporal_to",
+   "label": "时间·后继",
+   "cn": "后印象派",
+   "to": "STYLE.west.032"
+  },
+  {
+   "type": "against",
+   "label": "对抗",
+   "cn": "学院派写实",
+   "to": null
+  },
+  {
+   "type": "expresses",
+   "label": "常画题材·关联",
+   "cn": "风景",
+   "to": "SUBJECT.landscape.01"
+  },
+  {
+   "type": "expresses",
+   "label": "常画题材·关联",
+   "cn": "家庭场景",
+   "to": "SUBJECT.figure.42"
+  },
+  {
+   "type": "uses",
+   "label": "典型语言·关联",
+   "cn": "冷暖",
+   "to": "LANG.color.01"
+  },
+  {
+   "type": "uses",
+   "label": "典型语言·关联",
+   "cn": "对角构图",
+   "to": "LANG.composition.09"
+  },
+  {
+   "type": "uses",
+   "label": "典型语言·关联",
+   "cn": "厚涂",
+   "to": "LANG.texture.01"
+  },
+  {
+   "type": "evokes",
+   "label": "画外音·关联",
+   "cn": "瞬间",
+   "to": "VOICE.narrative.07"
+  },
+  {
+   "type": "evokes",
+   "label": "画外音·关联",
+   "cn": "温度",
+   "to": "PERC.sense.02"
+  }
+ ],
+ "works": [
+  {
+   "slug": "m436965",
+   "title": "The Monet Family in Their Garden at Argenteuil",
+   "artist": "Edouard Manet",
+   "thumb": "/aha/img/t/m436965.jpg",
+   "valence": 0.157,
+   "arousal": 0.386
+  },
+  {
+   "slug": "m671456",
+   "title": "Chrysanthemums in the Garden at Petit-Gennevilliers",
+   "artist": "Gustave Caillebotte",
+   "thumb": "/aha/img/t/m671456.jpg",
+   "valence": 0.599,
+   "arousal": 0.538
+  },
+  {
+   "slug": "m436947",
+   "title": "Boating",
+   "artist": "Edouard Manet",
+   "thumb": "/aha/img/t/m436947.jpg",
+   "valence": 0.142,
+   "arousal": 0.683
+  },
+  {
+   "slug": "m438817",
+   "title": "The Dance Class",
+   "artist": "Edgar Degas",
+   "thumb": "/aha/img/t/m438817.jpg",
+   "valence": 0.469,
+   "arousal": 0.355
+  },
+  {
+   "slug": "m436135",
+   "title": "Dancer with a Fan",
+   "artist": "Edgar Degas",
+   "thumb": "/aha/img/t/m436135.jpg",
+   "valence": 0.897,
+   "arousal": 0.225
+  },
+  {
+   "slug": "m436155",
+   "title": "The Rehearsal of the Ballet Onstage",
+   "artist": "Edgar Degas",
+   "thumb": "/aha/img/t/m436155.jpg",
+   "valence": 0.706,
+   "arousal": 0.569
+  },
+  {
+   "slug": "m436120",
+   "title": "The Old Italian Woman",
+   "artist": "Edgar Degas",
+   "thumb": "/aha/img/t/m436120.jpg",
+   "valence": 0.775,
+   "arousal": 0.858
+  },
+  {
+   "slug": "m436143",
+   "title": "Fan Mount: The Ballet",
+   "artist": "Edgar Degas",
+   "thumb": "/aha/img/t/m436143.jpg",
+   "valence": 0.721,
+   "arousal": 0.492
+  },
+  {
+   "slug": "m436142",
+   "title": "Fan Mount: Dancers",
+   "artist": "Edgar Degas",
+   "thumb": "/aha/img/t/m436142.jpg",
+   "valence": 0.508,
+   "arousal": 0.576
+  },
+  {
+   "slug": "m437315",
+   "title": "Fan Mount: The Cabbage Gatherers",
+   "artist": "Camille Pissarro",
+   "thumb": "/aha/img/t/m437315.jpg",
+   "valence": 0.729,
+   "arousal": 0.874
+  },
+  {
+   "slug": "m437310",
+   "title": "The Boulevard Montmartre on a Winter Morning",
+   "artist": "Camille Pissarro",
+   "thumb": "/aha/img/t/m437310.jpg",
+   "valence": 0.416,
+   "arousal": 0.187
+  },
+  {
+   "slug": "m437299",
+   "title": "Jalais Hill, Pontoise",
+   "artist": "Camille Pissarro",
+   "thumb": "/aha/img/t/m437299.jpg",
+   "valence": 0.653,
+   "arousal": 0.79
+  },
+  {
+   "slug": "m436950",
+   "title": "The Dead Christ with Angels",
+   "artist": "Edouard Manet",
+   "thumb": "/aha/img/t/m436950.jpg",
+   "valence": 0.302,
+   "arousal": 0.698
+  }
+ ],
+ "works_count": 13,
+ "sources": [
+  "MoMA / Met 展览叙述",
+  "贡布里希《艺术的故事》印象派章(待补精确页码)"
+ ],
+ "confidence": "high"
+}

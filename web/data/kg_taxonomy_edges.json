@@ -1,0 +1,9707 @@
+{
+"meta": {
+"note": "词汇层内部 is-a 边:原子 is-a 类目/轴/声部(真分类,非杜撰)。把扁平词典升为显式两级树。",
+"subject": "614原子→10类",
+"language": "401原子→7维",
+"subtext": "197原子→4声部",
+"total": 1212
+},
+"edges": [
+{
+"s": "SUBJECT.figure.01",
+"s_cn": "肖像",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.02",
+"s_cn": "自画像",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.03",
+"s_cn": "群像",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.04",
+"s_cn": "家族像",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.05",
+"s_cn": "宗教人物",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.06",
+"s_cn": "神话人物",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.07",
+"s_cn": "历史人物",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.08",
+"s_cn": "文人形象",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.09",
+"s_cn": "劳动者",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.10",
+"s_cn": "农民形象",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.11",
+"s_cn": "工人形象",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.12",
+"s_cn": "士兵形象",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.13",
+"s_cn": "母子形象",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.14",
+"s_cn": "少女形象",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.15",
+"s_cn": "儿童形象",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.16",
+"s_cn": "老年形象",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.17",
+"s_cn": "裸体",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.18",
+"s_cn": "舞者",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.19",
+"s_cn": "音乐家",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.20",
+"s_cn": "戏剧人物",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.21",
+"s_cn": "神官与僧侣",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.22",
+"s_cn": "战士与武士",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.23",
+"s_cn": "市井人物",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.24",
+"s_cn": "仕女",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.25",
+"s_cn": "美人",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.26",
+"s_cn": "学者",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.27",
+"s_cn": "武将",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.28",
+"s_cn": "帝王",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.29",
+"s_cn": "道士",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.30",
+"s_cn": "佛像",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.31",
+"s_cn": "仙人",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.32",
+"s_cn": "英雄",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.33",
+"s_cn": "革命者",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.34",
+"s_cn": "当代青年",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.35",
+"s_cn": "网络人物",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.36",
+"s_cn": "漫画人物",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.37",
+"s_cn": "虚拟偶像",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.38",
+"s_cn": "群体运动",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.39",
+"s_cn": "性别身份",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.40",
+"s_cn": "仿生人",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.41",
+"s_cn": "情侣",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.42",
+"s_cn": "家庭场景",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.43",
+"s_cn": "群体仪式",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.44",
+"s_cn": "自我映像",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.45",
+"s_cn": "行者",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.46",
+"s_cn": "异乡人",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.47",
+"s_cn": "病者",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.48",
+"s_cn": "梦中人",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.49",
+"s_cn": "幻象人物",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.50",
+"s_cn": "面具人物",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.x51",
+"s_cn": "人体",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.x52",
+"s_cn": "孤独者",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.x53",
+"s_cn": "女性",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.x54",
+"s_cn": "身体",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.x55",
+"s_cn": "供养人",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.x56",
+"s_cn": "高士",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.figure.x57",
+"s_cn": "影像",
+"k": "属于类目",
+"t": "SUBJECT.figure",
+"t_cn": "人物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.01",
+"s_cn": "山岳",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.02",
+"s_cn": "江河",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.03",
+"s_cn": "湖泊",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.04",
+"s_cn": "海洋",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.05",
+"s_cn": "峡谷",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.06",
+"s_cn": "瀑布",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.07",
+"s_cn": "云雾",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.08",
+"s_cn": "雪景",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.09",
+"s_cn": "竹林",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.10",
+"s_cn": "松林",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.11",
+"s_cn": "溪流",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.12",
+"s_cn": "岩石",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.13",
+"s_cn": "沙漠",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.14",
+"s_cn": "草原",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.15",
+"s_cn": "森林",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.16",
+"s_cn": "荒野",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.17",
+"s_cn": "岛屿",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.18",
+"s_cn": "天空",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.19",
+"s_cn": "日出",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.20",
+"s_cn": "黄昏",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.21",
+"s_cn": "夜色",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.22",
+"s_cn": "雨景",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.23",
+"s_cn": "风景小景",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.24",
+"s_cn": "远山",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.25",
+"s_cn": "近景",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.26",
+"s_cn": "峰峦叠嶂",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.27",
+"s_cn": "山居",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.28",
+"s_cn": "茅屋",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.29",
+"s_cn": "桥梁",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.30",
+"s_cn": "舟行",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.31",
+"s_cn": "行旅",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.32",
+"s_cn": "渔舟",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.33",
+"s_cn": "寒林",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.34",
+"s_cn": "春山",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.35",
+"s_cn": "秋山",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.36",
+"s_cn": "高远山水",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.37",
+"s_cn": "平远山水",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.38",
+"s_cn": "深远山水",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.39",
+"s_cn": "雾林",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.40",
+"s_cn": "峰顶",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.41",
+"s_cn": "洞穴",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.42",
+"s_cn": "观景者",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.43",
+"s_cn": "山寺",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.44",
+"s_cn": "雪岭",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.45",
+"s_cn": "云海",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.46",
+"s_cn": "浮光倒影",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.47",
+"s_cn": "山河故土",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.48",
+"s_cn": "幻境山水",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.49",
+"s_cn": "科幻山水",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.x50",
+"s_cn": "风景",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.x51",
+"s_cn": "户外风景",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.x52",
+"s_cn": "花园",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.x53",
+"s_cn": "楼阁",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.x54",
+"s_cn": "山水",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.x55",
+"s_cn": "云山",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.x56",
+"s_cn": "烟岚",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.x57",
+"s_cn": "平远",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.x58",
+"s_cn": "枯木竹石",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.x59",
+"s_cn": "黄山",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.landscape.x60",
+"s_cn": "青绿山川",
+"k": "属于类目",
+"t": "SUBJECT.landscape",
+"t_cn": "山水题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.01",
+"s_cn": "梅花",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.02",
+"s_cn": "兰花",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.03",
+"s_cn": "竹子",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.04",
+"s_cn": "菊花",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.05",
+"s_cn": "松树",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.06",
+"s_cn": "荷花",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.07",
+"s_cn": "桃花",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.08",
+"s_cn": "杏花",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.09",
+"s_cn": "牡丹",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.10",
+"s_cn": "芙蓉",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.11",
+"s_cn": "石榴",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.12",
+"s_cn": "荷塘",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.13",
+"s_cn": "梨花",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.14",
+"s_cn": "海棠",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.15",
+"s_cn": "芍药",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.16",
+"s_cn": "紫藤",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.17",
+"s_cn": "向日葵",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.18",
+"s_cn": "玫瑰",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.19",
+"s_cn": "鸡冠花",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.20",
+"s_cn": "秋菊",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.21",
+"s_cn": "莲蓬",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.22",
+"s_cn": "石头",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.23",
+"s_cn": "奇石",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.24",
+"s_cn": "兰竹石组合",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.25",
+"s_cn": "松鹤",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.26",
+"s_cn": "鹰隼",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.27",
+"s_cn": "鸡",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.28",
+"s_cn": "鸽子",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.29",
+"s_cn": "麻雀",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.30",
+"s_cn": "燕子",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.31",
+"s_cn": "鹦鹉",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.32",
+"s_cn": "鸳鸯",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.33",
+"s_cn": "白鹭",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.34",
+"s_cn": "鹤",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.35",
+"s_cn": "孔雀",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.36",
+"s_cn": "鹰",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.37",
+"s_cn": "喜鹊",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.38",
+"s_cn": "乌鸦",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.39",
+"s_cn": "蝴蝶",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.40",
+"s_cn": "蜻蜓",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.41",
+"s_cn": "蜜蜂",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.42",
+"s_cn": "瓢虫",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.43",
+"s_cn": "鱼",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.44",
+"s_cn": "虾蟹",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.45",
+"s_cn": "蛙",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.46",
+"s_cn": "猫",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.47",
+"s_cn": "狗",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.48",
+"s_cn": "花卉静物",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.49",
+"s_cn": "春意图",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.50",
+"s_cn": "四季花卉",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.51",
+"s_cn": "百花齐放",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.x52",
+"s_cn": "花卉",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.x53",
+"s_cn": "簪花",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.x54",
+"s_cn": "墨竹",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.x55",
+"s_cn": "梅兰",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.x56",
+"s_cn": "墨荷",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.x57",
+"s_cn": "藤葡",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.x58",
+"s_cn": "蔬果",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.x59",
+"s_cn": "枯枝",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.x60",
+"s_cn": "折枝",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.bird-flower.x61",
+"s_cn": "花鸟",
+"k": "属于类目",
+"t": "SUBJECT.bird-flower",
+"t_cn": "花鸟题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.01",
+"s_cn": "马",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.02",
+"s_cn": "牛",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.03",
+"s_cn": "羊",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.04",
+"s_cn": "虎",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.05",
+"s_cn": "龙",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.06",
+"s_cn": "凤",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.07",
+"s_cn": "狮",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.08",
+"s_cn": "鹿",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.09",
+"s_cn": "象",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.10",
+"s_cn": "猴",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.11",
+"s_cn": "鸡",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.12",
+"s_cn": "狗",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.13",
+"s_cn": "猫",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.14",
+"s_cn": "狼",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.15",
+"s_cn": "熊",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.16",
+"s_cn": "狐狸",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.17",
+"s_cn": "兔",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.18",
+"s_cn": "鱼",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.19",
+"s_cn": "虾",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.20",
+"s_cn": "蟹",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.21",
+"s_cn": "蝴蝶",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.22",
+"s_cn": "蜻蜓",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.23",
+"s_cn": "蜜蜂",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.24",
+"s_cn": "鸟",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.25",
+"s_cn": "鹤",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.26",
+"s_cn": "鹰",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.27",
+"s_cn": "猿",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.28",
+"s_cn": "蛇",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.29",
+"s_cn": "乌龟",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.30",
+"s_cn": "青蛙",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.31",
+"s_cn": "蝙蝠",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.32",
+"s_cn": "老鼠",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.33",
+"s_cn": "猪",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.34",
+"s_cn": "十二生肖",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.35",
+"s_cn": "凤凰",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.36",
+"s_cn": "麒麟",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.37",
+"s_cn": "神兽",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.38",
+"s_cn": "龙马",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.39",
+"s_cn": "鲲鹏",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.40",
+"s_cn": "白虎",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.41",
+"s_cn": "朱雀",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.42",
+"s_cn": "青龙",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.43",
+"s_cn": "玄武",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.44",
+"s_cn": "海洋生物",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.45",
+"s_cn": "热带动物",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.46",
+"s_cn": "家畜群",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.47",
+"s_cn": "野兽群像",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.48",
+"s_cn": "宠物",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.49",
+"s_cn": "实验动物",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.50",
+"s_cn": "机械动物",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.51",
+"s_cn": "虚构生物",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.52",
+"s_cn": "人兽混形",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.x53",
+"s_cn": "八哥",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.x54",
+"s_cn": "白眼鱼鸟",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.x55",
+"s_cn": "珍禽",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.animal.x56",
+"s_cn": "雄鹰",
+"k": "属于类目",
+"t": "SUBJECT.animal",
+"t_cn": "动物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.01",
+"s_cn": "花卉静物",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.02",
+"s_cn": "水果静物",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.03",
+"s_cn": "桌面摆设",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.04",
+"s_cn": "书本",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.05",
+"s_cn": "瓶罐",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.06",
+"s_cn": "乐器",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.07",
+"s_cn": "面包",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.08",
+"s_cn": "酒瓶",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.09",
+"s_cn": "水杯",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.10",
+"s_cn": "书信",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.11",
+"s_cn": "烛光",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.12",
+"s_cn": "镜子",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.13",
+"s_cn": "骷髅",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.14",
+"s_cn": "沙漏",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.15",
+"s_cn": "珠宝",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.16",
+"s_cn": "食物",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.17",
+"s_cn": "餐桌",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.18",
+"s_cn": "水果篮",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.19",
+"s_cn": "花瓶",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.20",
+"s_cn": "鸟笼",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.21",
+"s_cn": "书案",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.22",
+"s_cn": "墨砚",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.23",
+"s_cn": "古琴",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.24",
+"s_cn": "茶具",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.25",
+"s_cn": "瓷器",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.26",
+"s_cn": "铜器",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.27",
+"s_cn": "石雕",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.28",
+"s_cn": "布料",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.29",
+"s_cn": "水果切面",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.30",
+"s_cn": "植物标本",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.31",
+"s_cn": "标本动物",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.32",
+"s_cn": "仪器",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.33",
+"s_cn": "玩具",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.34",
+"s_cn": "人偶",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.35",
+"s_cn": "钟表",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.36",
+"s_cn": "照片",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.37",
+"s_cn": "纸张",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.38",
+"s_cn": "枯叶",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.39",
+"s_cn": "鸟羽",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.40",
+"s_cn": "水滴",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.41",
+"s_cn": "光影物件",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.42",
+"s_cn": "日用品",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.43",
+"s_cn": "包装物",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.44",
+"s_cn": "工业零件",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.45",
+"s_cn": "电子产品",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.46",
+"s_cn": "垃圾",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.47",
+"s_cn": "实验台",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.48",
+"s_cn": "桌面景象",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.49",
+"s_cn": "空盒",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.50",
+"s_cn": "破碎器物",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.51",
+"s_cn": "水面反射",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.x52",
+"s_cn": "宴饮",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.x53",
+"s_cn": "静物",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.still-life.x54",
+"s_cn": "人物",
+"k": "属于类目",
+"t": "SUBJECT.still-life",
+"t_cn": "静物题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.01",
+"s_cn": "佛陀",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.02",
+"s_cn": "菩萨",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.03",
+"s_cn": "罗汉",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.04",
+"s_cn": "弥勒佛",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.05",
+"s_cn": "地藏王",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.06",
+"s_cn": "观音",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.07",
+"s_cn": "达摩",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.08",
+"s_cn": "天王",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.09",
+"s_cn": "地藏",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.10",
+"s_cn": "神农",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.11",
+"s_cn": "女娲",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.12",
+"s_cn": "伏羲",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.13",
+"s_cn": "八仙",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.14",
+"s_cn": "太上老君",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.15",
+"s_cn": "玉皇大帝",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.16",
+"s_cn": "哪吒",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.17",
+"s_cn": "孙悟空",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.18",
+"s_cn": "二郎神",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.19",
+"s_cn": "白蛇",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.20",
+"s_cn": "牛魔王",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.21",
+"s_cn": "嫦娥",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.22",
+"s_cn": "后羿",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.23",
+"s_cn": "精卫",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.24",
+"s_cn": "天女散花",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.25",
+"s_cn": "雷公电母",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.26",
+"s_cn": "龙王",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.27",
+"s_cn": "风神雨师",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.28",
+"s_cn": "鬼神",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.29",
+"s_cn": "冥界",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.30",
+"s_cn": "天堂",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.31",
+"s_cn": "地狱",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.32",
+"s_cn": "天使",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.33",
+"s_cn": "圣母",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.34",
+"s_cn": "基督",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.35",
+"s_cn": "十字架",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.36",
+"s_cn": "亚当与夏娃",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.37",
+"s_cn": "诺亚方舟",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.38",
+"s_cn": "大天使",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.39",
+"s_cn": "撒旦",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.40",
+"s_cn": "圣徒",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.41",
+"s_cn": "天启",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.42",
+"s_cn": "命运三女神",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.43",
+"s_cn": "宙斯",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.44",
+"s_cn": "雅典娜",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.45",
+"s_cn": "阿波罗",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.46",
+"s_cn": "阿芙洛狄忒",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.47",
+"s_cn": "赫尔墨斯",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.48",
+"s_cn": "波塞冬",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.49",
+"s_cn": "哈迪斯",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.50",
+"s_cn": "奥丁",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.51",
+"s_cn": "托尔",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.52",
+"s_cn": "洛基",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.53",
+"s_cn": "芬里尔",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.54",
+"s_cn": "天照大神",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.55",
+"s_cn": "伊邪那美",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.56",
+"s_cn": "梵天",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.57",
+"s_cn": "毗湿奴",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.58",
+"s_cn": "湿婆",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.59",
+"s_cn": "迦梨",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.60",
+"s_cn": "迦尼萨",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.61",
+"s_cn": "天界众神",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.x62",
+"s_cn": "神祇",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.x63",
+"s_cn": "圣经",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.x64",
+"s_cn": "神话",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.x65",
+"s_cn": "宗教",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.x66",
+"s_cn": "宗教激情",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.x67",
+"s_cn": "殉道",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.x68",
+"s_cn": "仙境",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.x69",
+"s_cn": "梦",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.x70",
+"s_cn": "经变",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.x71",
+"s_cn": "升仙",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.x72",
+"s_cn": "飞天",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.x73",
+"s_cn": "瀛洲",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.x74",
+"s_cn": "佛",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.x75",
+"s_cn": "朝元",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.x76",
+"s_cn": "星君",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.x77",
+"s_cn": "仙官",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.x78",
+"s_cn": "仙山",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.x79",
+"s_cn": "高僧",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.x80",
+"s_cn": "敦煌",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.x81",
+"s_cn": "佛传",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.myth.x82",
+"s_cn": "护法",
+"k": "属于类目",
+"t": "SUBJECT.myth",
+"t_cn": "宗教与神话题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.01",
+"s_cn": "战争",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.02",
+"s_cn": "革命",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.03",
+"s_cn": "起义",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.04",
+"s_cn": "政治集会",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.05",
+"s_cn": "法庭",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.06",
+"s_cn": "宫廷",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.07",
+"s_cn": "皇帝",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.08",
+"s_cn": "朝会",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.09",
+"s_cn": "将军",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.10",
+"s_cn": "文臣",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.11",
+"s_cn": "历史事件",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.12",
+"s_cn": "英雄事迹",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.13",
+"s_cn": "开国场景",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.14",
+"s_cn": "战场遗迹",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.15",
+"s_cn": "民族融合",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.16",
+"s_cn": "移民",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.17",
+"s_cn": "劳动场景",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.18",
+"s_cn": "工业景象",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.19",
+"s_cn": "工厂",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.20",
+"s_cn": "矿山",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.21",
+"s_cn": "建筑工地",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.22",
+"s_cn": "城市街景",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.23",
+"s_cn": "车站",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.24",
+"s_cn": "火车",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.25",
+"s_cn": "飞机",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.26",
+"s_cn": "港口",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.27",
+"s_cn": "市场",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.28",
+"s_cn": "街头生活",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.29",
+"s_cn": "工人群像",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.30",
+"s_cn": "农民生活",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.31",
+"s_cn": "军人群像",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.32",
+"s_cn": "战俘",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.33",
+"s_cn": "灾难",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.34",
+"s_cn": "流亡",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.35",
+"s_cn": "囚禁",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.36",
+"s_cn": "抗争",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.37",
+"s_cn": "革命领袖",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.38",
+"s_cn": "群众运动",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.39",
+"s_cn": "社区生活",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.40",
+"s_cn": "家庭伦理",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.41",
+"s_cn": "教育场景",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.42",
+"s_cn": "医疗场景",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.43",
+"s_cn": "法律",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.44",
+"s_cn": "婚礼",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.45",
+"s_cn": "葬礼",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.46",
+"s_cn": "节庆",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.47",
+"s_cn": "庙会",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.48",
+"s_cn": "游行",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.49",
+"s_cn": "抗议",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.50",
+"s_cn": "审判",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.51",
+"s_cn": "新时代青年",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.52",
+"s_cn": "当代社会",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.x53",
+"s_cn": "权力",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.x54",
+"s_cn": "历史",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.x55",
+"s_cn": "劳动",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.x56",
+"s_cn": "帝后",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.history.x57",
+"s_cn": "工农兵",
+"k": "属于类目",
+"t": "SUBJECT.history",
+"t_cn": "历史与社会题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.01",
+"s_cn": "几何构成",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.02",
+"s_cn": "线条节奏",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.03",
+"s_cn": "色块关系",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.04",
+"s_cn": "形体解构",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.05",
+"s_cn": "空间张力",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.06",
+"s_cn": "对称",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.07",
+"s_cn": "不对称",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.08",
+"s_cn": "层叠",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.09",
+"s_cn": "透明叠加",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.10",
+"s_cn": "点阵",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.11",
+"s_cn": "模糊",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.12",
+"s_cn": "重复",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.13",
+"s_cn": "极简",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.14",
+"s_cn": "混沌",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.15",
+"s_cn": "光感",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.16",
+"s_cn": "能量流",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.17",
+"s_cn": "时间痕迹",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.18",
+"s_cn": "手势痕迹",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.19",
+"s_cn": "材料实验",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.20",
+"s_cn": "自然肌理",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.21",
+"s_cn": "视觉错觉",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.22",
+"s_cn": "数字图形",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.23",
+"s_cn": "光影结构",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.24",
+"s_cn": "对比",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.25",
+"s_cn": "重构",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.26",
+"s_cn": "流动",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.27",
+"s_cn": "符号",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.28",
+"s_cn": "数字",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.29",
+"s_cn": "语言文字",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.30",
+"s_cn": "概念文本",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.31",
+"s_cn": "图形代码",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.32",
+"s_cn": "结构网格",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.33",
+"s_cn": "模块化",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.34",
+"s_cn": "生成形态",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.35",
+"s_cn": "声音图像",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.36",
+"s_cn": "运动轨迹",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.37",
+"s_cn": "情绪场",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.38",
+"s_cn": "内视空间",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.39",
+"s_cn": "意识流",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.40",
+"s_cn": "冥想状态",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.41",
+"s_cn": "幻象结构",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.42",
+"s_cn": "时间循环",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.43",
+"s_cn": "空白",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.44",
+"s_cn": "坏画面",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.45",
+"s_cn": "破碎结构",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.46",
+"s_cn": "残迹",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.47",
+"s_cn": "数据可视",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.48",
+"s_cn": "心灵地图",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.49",
+"s_cn": "逻辑空间",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.50",
+"s_cn": "感官流",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.51",
+"s_cn": "模型构图",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x52",
+"s_cn": "崇高自然",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x53",
+"s_cn": "贫困",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x54",
+"s_cn": "光",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x55",
+"s_cn": "室内",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x56",
+"s_cn": "欲望",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x57",
+"s_cn": "空间",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x58",
+"s_cn": "纯抽象",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x59",
+"s_cn": "橱窗",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x60",
+"s_cn": "文字",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x61",
+"s_cn": "屏幕",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x62",
+"s_cn": "生成",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x63",
+"s_cn": "隐逸",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x64",
+"s_cn": "雅集",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x65",
+"s_cn": "笔墨",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x66",
+"s_cn": "虚空",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x67",
+"s_cn": "装饰",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x68",
+"s_cn": "写生",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x69",
+"s_cn": "肌理",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x70",
+"s_cn": "领袖",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x71",
+"s_cn": "吉祥",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x72",
+"s_cn": "白描稿",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x73",
+"s_cn": "文化批判",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x74",
+"s_cn": "装置",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x75",
+"s_cn": "材料",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x76",
+"s_cn": "拼贴",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.abstract.x77",
+"s_cn": "四季",
+"k": "属于类目",
+"t": "SUBJECT.abstract",
+"t_cn": "抽象与观念题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.01",
+"s_cn": "春节",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.02",
+"s_cn": "元宵节",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.03",
+"s_cn": "清明节",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.04",
+"s_cn": "端午节",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.05",
+"s_cn": "中秋节",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.06",
+"s_cn": "七夕节",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.07",
+"s_cn": "重阳节",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.08",
+"s_cn": "庙会",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.09",
+"s_cn": "拜年",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.10",
+"s_cn": "婚礼",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.11",
+"s_cn": "生辰",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.12",
+"s_cn": "寿宴",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.13",
+"s_cn": "丧礼",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.14",
+"s_cn": "农耕",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.15",
+"s_cn": "织布",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.16",
+"s_cn": "打铁",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.17",
+"s_cn": "制陶",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.18",
+"s_cn": "木匠",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.19",
+"s_cn": "剪纸",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.20",
+"s_cn": "刺绣",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.21",
+"s_cn": "赶集",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.22",
+"s_cn": "集市",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.23",
+"s_cn": "茶馆",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.24",
+"s_cn": "酒肆",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.25",
+"s_cn": "渔村",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.26",
+"s_cn": "田园",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.27",
+"s_cn": "家庭生活",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.28",
+"s_cn": "烹饪场景",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.29",
+"s_cn": "洗衣",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.30",
+"s_cn": "农家屋舍",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.31",
+"s_cn": "村落全景",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.32",
+"s_cn": "乡镇风俗",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.33",
+"s_cn": "舞龙舞狮",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.34",
+"s_cn": "放烟花",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.35",
+"s_cn": "吹糖人",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.36",
+"s_cn": "木偶戏",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.37",
+"s_cn": "皮影戏",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.38",
+"s_cn": "说书场景",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.39",
+"s_cn": "民间信仰",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.40",
+"s_cn": "祭祖",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.41",
+"s_cn": "祭天",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.42",
+"s_cn": "祈福",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.43",
+"s_cn": "驱邪",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.44",
+"s_cn": "占卜",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.45",
+"s_cn": "红灯笼",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.46",
+"s_cn": "喜字窗花",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.47",
+"s_cn": "风筝",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.48",
+"s_cn": "糖葫芦",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.49",
+"s_cn": "城市街景",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.50",
+"s_cn": "夜市",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.x51",
+"s_cn": "爱情",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.x52",
+"s_cn": "农民",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.x53",
+"s_cn": "农事",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.folk.x54",
+"s_cn": "渔隐",
+"k": "属于类目",
+"t": "SUBJECT.folk",
+"t_cn": "民俗与生活题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.01",
+"s_cn": "城市天际线",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.02",
+"s_cn": "摩天大楼",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.03",
+"s_cn": "地铁站",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.04",
+"s_cn": "十字路口",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.05",
+"s_cn": "高速公路",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.06",
+"s_cn": "霓虹街道",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.07",
+"s_cn": "夜景灯光",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.08",
+"s_cn": "商场",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.09",
+"s_cn": "广告牌",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.10",
+"s_cn": "居民楼",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.11",
+"s_cn": "城市天桥",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.12",
+"s_cn": "公共交通",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.13",
+"s_cn": "城市雨夜",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.14",
+"s_cn": "便利店",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.15",
+"s_cn": "城市垃圾",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.16",
+"s_cn": "工地",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.17",
+"s_cn": "城市天台",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.18",
+"s_cn": "电线与天线",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.19",
+"s_cn": "商务人群",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.20",
+"s_cn": "地铁人群",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.21",
+"s_cn": "城市广场",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.22",
+"s_cn": "城市雕塑",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.23",
+"s_cn": "数码屏幕",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.24",
+"s_cn": "手机屏幕",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.25",
+"s_cn": "监控摄像头",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.26",
+"s_cn": "虚拟城市",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.27",
+"s_cn": "元宇宙空间",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.28",
+"s_cn": "赛博街区",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.29",
+"s_cn": "机械都市",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.30",
+"s_cn": "AI角色",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.31",
+"s_cn": "仿生人",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.32",
+"s_cn": "数据流",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.33",
+"s_cn": "网络空间",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.34",
+"s_cn": "智能家居",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.35",
+"s_cn": "无人机视角",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.36",
+"s_cn": "科技植入",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.37",
+"s_cn": "未来建筑",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.38",
+"s_cn": "宇宙空间站",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.39",
+"s_cn": "星际城市",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.40",
+"s_cn": "火星基地",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.41",
+"s_cn": "虚拟化身",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.42",
+"s_cn": "时间隧道",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.43",
+"s_cn": "平行世界",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.44",
+"s_cn": "模拟人生",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.45",
+"s_cn": "未来战争",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.46",
+"s_cn": "灾后城市",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.47",
+"s_cn": "虚拟自然",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.48",
+"s_cn": "数字生命",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.49",
+"s_cn": "人工智能",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.50",
+"s_cn": "光之城市",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.51",
+"s_cn": "黑暗都市",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.x52",
+"s_cn": "市井",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.x53",
+"s_cn": "异域",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.x54",
+"s_cn": "都市生活",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.x55",
+"s_cn": "城市",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "SUBJECT.urban.x56",
+"s_cn": "都市",
+"k": "属于类目",
+"t": "SUBJECT.urban",
+"t_cn": "都市与未来题材",
+"layer": "题材"
+},
+{
+"s": "LANG.composition.01",
+"s_cn": "对称",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.02",
+"s_cn": "均衡",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.03",
+"s_cn": "聚焦",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.04",
+"s_cn": "留白",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.05",
+"s_cn": "分割",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.06",
+"s_cn": "黄金比例",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.07",
+"s_cn": "三角构图",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.08",
+"s_cn": "S形构图",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.09",
+"s_cn": "对角构图",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.10",
+"s_cn": "环形构图",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.11",
+"s_cn": "放射构图",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.12",
+"s_cn": "纵向构图",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.13",
+"s_cn": "横向构图",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.14",
+"s_cn": "斜向构图",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.15",
+"s_cn": "结构线",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.16",
+"s_cn": "视线引导",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.17",
+"s_cn": "重心",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.18",
+"s_cn": "节奏",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.19",
+"s_cn": "重复",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.20",
+"s_cn": "对比",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.21",
+"s_cn": "呼应",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.22",
+"s_cn": "统一",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.23",
+"s_cn": "变化",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.24",
+"s_cn": "张力",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.25",
+"s_cn": "密度",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.26",
+"s_cn": "疏朗",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.27",
+"s_cn": "比例",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.28",
+"s_cn": "尺度",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.29",
+"s_cn": "网格",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.30",
+"s_cn": "九宫格",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.31",
+"s_cn": "三分法",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.32",
+"s_cn": "错位",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.33",
+"s_cn": "偏置",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.34",
+"s_cn": "平行",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.35",
+"s_cn": "垂直",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.36",
+"s_cn": "前后关系",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.37",
+"s_cn": "框景",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.38",
+"s_cn": "出框",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.39",
+"s_cn": "入框",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.40",
+"s_cn": "连续",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.41",
+"s_cn": "断裂",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.42",
+"s_cn": "渐变",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.43",
+"s_cn": "突变",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.44",
+"s_cn": "群组",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.45",
+"s_cn": "多中心",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.46",
+"s_cn": "去中心",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.47",
+"s_cn": "视觉动线",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.48",
+"s_cn": "对称破坏",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.49",
+"s_cn": "节奏密度",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.50",
+"s_cn": "空间张力",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.51",
+"s_cn": "视觉层级",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.52",
+"s_cn": "对应",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.53",
+"s_cn": "分区",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.54",
+"s_cn": "打破中心",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.composition.55",
+"s_cn": "节奏组块",
+"k": "属于维度",
+"t": "LANG.composition",
+"t_cn": "构图与组织",
+"layer": "语言"
+},
+{
+"s": "LANG.space.01",
+"s_cn": "透视",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.02",
+"s_cn": "平行透视",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.03",
+"s_cn": "散点透视",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.04",
+"s_cn": "鸟瞰",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.05",
+"s_cn": "仰视",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.06",
+"s_cn": "空间层次",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.07",
+"s_cn": "大气透视",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.08",
+"s_cn": "空间压缩",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.09",
+"s_cn": "空间展开",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.10",
+"s_cn": "空间折叠",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.11",
+"s_cn": "空间漂浮",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.12",
+"s_cn": "空间断裂",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.13",
+"s_cn": "空间延展",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.14",
+"s_cn": "空间收缩",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.15",
+"s_cn": "空间重叠",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.16",
+"s_cn": "空间消解",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.17",
+"s_cn": "空间漂移",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.18",
+"s_cn": "空间透明",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.19",
+"s_cn": "空间封闭",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.20",
+"s_cn": "空间开放",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.21",
+"s_cn": "空间透叠",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.22",
+"s_cn": "空间漂白",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.23",
+"s_cn": "空间塌陷",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.24",
+"s_cn": "空间切割",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.25",
+"s_cn": "空间扭曲",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.26",
+"s_cn": "空间位移",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.27",
+"s_cn": "空间叠层",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.28",
+"s_cn": "空间悬浮",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.29",
+"s_cn": "空间界限",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.30",
+"s_cn": "空间虚化",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.31",
+"s_cn": "空间聚焦",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.32",
+"s_cn": "空间模糊",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.33",
+"s_cn": "空间呼吸",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.34",
+"s_cn": "空间比例",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.35",
+"s_cn": "空间重量",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.36",
+"s_cn": "空间轻盈",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.37",
+"s_cn": "空间静止",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.38",
+"s_cn": "空间动势",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.39",
+"s_cn": "空间纵深",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.40",
+"s_cn": "空间平面化",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.41",
+"s_cn": "空间碎裂",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.42",
+"s_cn": "空间连续",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.43",
+"s_cn": "空间中断",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.44",
+"s_cn": "空间虚构",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.45",
+"s_cn": "空间重构",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.46",
+"s_cn": "空间嵌套",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.47",
+"s_cn": "空间折射",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.48",
+"s_cn": "空间漂移",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.49",
+"s_cn": "空间扁平",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.50",
+"s_cn": "空间透明化",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.51",
+"s_cn": "空间隔离",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.52",
+"s_cn": "空间贯通",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.53",
+"s_cn": "空间叙事",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.54",
+"s_cn": "空间静默",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.55",
+"s_cn": "空间异化",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.56",
+"s_cn": "空间内凹",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.space.57",
+"s_cn": "空间外凸",
+"k": "属于维度",
+"t": "LANG.space",
+"t_cn": "透视与空间",
+"layer": "语言"
+},
+{
+"s": "LANG.form.01",
+"s_cn": "比例",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.02",
+"s_cn": "结构",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.03",
+"s_cn": "骨架",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.04",
+"s_cn": "体块",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.05",
+"s_cn": "外轮廓",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.06",
+"s_cn": "内结构",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.07",
+"s_cn": "解剖",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.08",
+"s_cn": "肌理体感",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.09",
+"s_cn": "光塑造",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.10",
+"s_cn": "塑形",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.11",
+"s_cn": "简化",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.12",
+"s_cn": "夸张",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.13",
+"s_cn": "扭曲",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.14",
+"s_cn": "解构",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.15",
+"s_cn": "重构",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.16",
+"s_cn": "线性造型",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.17",
+"s_cn": "面性造型",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.18",
+"s_cn": "块面造型",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.19",
+"s_cn": "体积感",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.20",
+"s_cn": "重量感",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.21",
+"s_cn": "张力线",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.22",
+"s_cn": "动势",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.23",
+"s_cn": "稳定形",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.24",
+"s_cn": "动态形",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.25",
+"s_cn": "扭动形",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.26",
+"s_cn": "延展形",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.27",
+"s_cn": "收缩形",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.28",
+"s_cn": "对称形",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.29",
+"s_cn": "非对称形",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.30",
+"s_cn": "几何形",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.31",
+"s_cn": "有机形",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.32",
+"s_cn": "抽象形",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.33",
+"s_cn": "具象形",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.34",
+"s_cn": "半具象",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.35",
+"s_cn": "变形",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.36",
+"s_cn": "压缩",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.37",
+"s_cn": "扩张",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.38",
+"s_cn": "断裂",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.39",
+"s_cn": "残缺",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.40",
+"s_cn": "塌陷",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.41",
+"s_cn": "叠加形",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.42",
+"s_cn": "透明形",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.43",
+"s_cn": "构造形",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.44",
+"s_cn": "分解形",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.45",
+"s_cn": "融合形",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.46",
+"s_cn": "扁平形",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.47",
+"s_cn": "塑造线",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.48",
+"s_cn": "力量线",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.49",
+"s_cn": "节奏形",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.50",
+"s_cn": "构成形",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.51",
+"s_cn": "视觉重心",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.52",
+"s_cn": "体块节奏",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.53",
+"s_cn": "形体延伸",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.54",
+"s_cn": "形体压缩",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.55",
+"s_cn": "形体穿插",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.56",
+"s_cn": "形体破碎",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.57",
+"s_cn": "形体溶解",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.58",
+"s_cn": "形体重组",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.59",
+"s_cn": "形体漂浮",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.60",
+"s_cn": "形体投影",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.form.61",
+"s_cn": "形体延展",
+"k": "属于维度",
+"t": "LANG.form",
+"t_cn": "形状与造型",
+"layer": "语言"
+},
+{
+"s": "LANG.light.01",
+"s_cn": "明暗对比",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.02",
+"s_cn": "逆光",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.03",
+"s_cn": "顺光",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.04",
+"s_cn": "侧光",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.05",
+"s_cn": "顶光",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.06",
+"s_cn": "底光",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.07",
+"s_cn": "散射光",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.08",
+"s_cn": "聚光",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.09",
+"s_cn": "光晕",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.10",
+"s_cn": "光泽",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.11",
+"s_cn": "光感",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.12",
+"s_cn": "反光",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.13",
+"s_cn": "投影",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.14",
+"s_cn": "半影",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.15",
+"s_cn": "光影层次",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.16",
+"s_cn": "光影节奏",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.17",
+"s_cn": "反差",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.18",
+"s_cn": "微光",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.19",
+"s_cn": "暗面",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.20",
+"s_cn": "亮面",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.21",
+"s_cn": "漫射",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.22",
+"s_cn": "穿透",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.23",
+"s_cn": "透光",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.24",
+"s_cn": "反光肌理",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.25",
+"s_cn": "光影交错",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.26",
+"s_cn": "光影对位",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.27",
+"s_cn": "暗区焦点",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.28",
+"s_cn": "光轴",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.29",
+"s_cn": "光衰",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.30",
+"s_cn": "亮点",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.31",
+"s_cn": "柔光",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.32",
+"s_cn": "强光",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.33",
+"s_cn": "硬影",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.34",
+"s_cn": "软影",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.35",
+"s_cn": "光影层叠",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.36",
+"s_cn": "光影断裂",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.37",
+"s_cn": "时间光",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.38",
+"s_cn": "人工光",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.39",
+"s_cn": "自然光",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.40",
+"s_cn": "室内光",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.41",
+"s_cn": "户外光",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.42",
+"s_cn": "光幕",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.43",
+"s_cn": "逆光轮廓",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.44",
+"s_cn": "高光反射",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.45",
+"s_cn": "光影节拍",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.46",
+"s_cn": "光晕扩散",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.47",
+"s_cn": "光线分割",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.48",
+"s_cn": "暗部延展",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.49",
+"s_cn": "亮部侵蚀",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.50",
+"s_cn": "局部照亮",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.51",
+"s_cn": "照度差",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.52",
+"s_cn": "空间光",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.53",
+"s_cn": "柔焦",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.54",
+"s_cn": "眩光",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.55",
+"s_cn": "光雾",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.56",
+"s_cn": "光线切割",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.light.57",
+"s_cn": "光影交融",
+"k": "属于维度",
+"t": "LANG.light",
+"t_cn": "光影与明暗",
+"layer": "语言"
+},
+{
+"s": "LANG.color.01",
+"s_cn": "冷暖",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.02",
+"s_cn": "互补",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.03",
+"s_cn": "饱和",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.04",
+"s_cn": "灰度",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.05",
+"s_cn": "明度",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.06",
+"s_cn": "透明",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.07",
+"s_cn": "厚重",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.08",
+"s_cn": "晕染",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.09",
+"s_cn": "渐层",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.10",
+"s_cn": "单色",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.11",
+"s_cn": "多色",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.12",
+"s_cn": "对比色",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.13",
+"s_cn": "类似色",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.14",
+"s_cn": "暗调",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.15",
+"s_cn": "高调",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.16",
+"s_cn": "暖色",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.17",
+"s_cn": "冷色",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.18",
+"s_cn": "中性色",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.19",
+"s_cn": "暖灰",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.20",
+"s_cn": "冷灰",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.21",
+"s_cn": "灰化",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.22",
+"s_cn": "对位",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.23",
+"s_cn": "撞色",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.24",
+"s_cn": "渐变",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.25",
+"s_cn": "光感色",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.26",
+"s_cn": "层叠色",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.27",
+"s_cn": "反射色",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.28",
+"s_cn": "投影色",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.29",
+"s_cn": "残色",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.30",
+"s_cn": "光色融合",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.31",
+"s_cn": "光色断裂",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.32",
+"s_cn": "空气色",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.33",
+"s_cn": "夜色",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.34",
+"s_cn": "晨光色",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.35",
+"s_cn": "暮光色",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.36",
+"s_cn": "月光色",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.37",
+"s_cn": "烛光色",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.38",
+"s_cn": "火焰色",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.39",
+"s_cn": "海蓝色",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.40",
+"s_cn": "草绿色",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.41",
+"s_cn": "紫调",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.42",
+"s_cn": "金调",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.color.43",
+"s_cn": "银调",
+"k": "属于维度",
+"t": "LANG.color",
+"t_cn": "色彩系统",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.01",
+"s_cn": "厚涂",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.02",
+"s_cn": "薄涂",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.03",
+"s_cn": "干擦",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.04",
+"s_cn": "湿画",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.05",
+"s_cn": "飞白",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.06",
+"s_cn": "泼墨",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.07",
+"s_cn": "点描",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.08",
+"s_cn": "刮擦",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.09",
+"s_cn": "拍打",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.10",
+"s_cn": "压印",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.11",
+"s_cn": "叠加",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.12",
+"s_cn": "扫笔",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.13",
+"s_cn": "渲染",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.14",
+"s_cn": "拾笔",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.15",
+"s_cn": "泼彩",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.16",
+"s_cn": "皴法",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.17",
+"s_cn": "干笔皴",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.18",
+"s_cn": "湿笔皴",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.19",
+"s_cn": "勾线",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.20",
+"s_cn": "破笔",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.21",
+"s_cn": "渐层笔触",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.22",
+"s_cn": "重笔",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.23",
+"s_cn": "轻笔",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.24",
+"s_cn": "笔锋转折",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.25",
+"s_cn": "疏密",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.26",
+"s_cn": "行笔节奏",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.27",
+"s_cn": "起笔",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.28",
+"s_cn": "收笔",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.29",
+"s_cn": "粗糙肌理",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.30",
+"s_cn": "光滑肌理",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.31",
+"s_cn": "裂纹肌理",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.32",
+"s_cn": "金属质感",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.33",
+"s_cn": "布面肌理",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.34",
+"s_cn": "石质感",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.35",
+"s_cn": "木质感",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.36",
+"s_cn": "水感肌理",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.37",
+"s_cn": "砂感肌理",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.38",
+"s_cn": "油脂感",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.39",
+"s_cn": "哑光肌理",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.40",
+"s_cn": "光亮肌理",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.41",
+"s_cn": "材料叠合",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.42",
+"s_cn": "触觉笔触",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.43",
+"s_cn": "手势笔触",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.44",
+"s_cn": "滴落",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.45",
+"s_cn": "飞溅",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.46",
+"s_cn": "刮刀痕",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.47",
+"s_cn": "压层",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.48",
+"s_cn": "溶解",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.49",
+"s_cn": "渗化",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.50",
+"s_cn": "摩擦感",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.51",
+"s_cn": "断裂肌理",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.52",
+"s_cn": "流痕",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.53",
+"s_cn": "涂层剥落",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.54",
+"s_cn": "数字笔触",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.55",
+"s_cn": "虚拟肌理",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.M56",
+"s_cn": "双勾填彩",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.M57",
+"s_cn": "叠墨",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.M58",
+"s_cn": "墨气",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.M59",
+"s_cn": "墨线写意",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.M60",
+"s_cn": "意笔",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.M61",
+"s_cn": "枯笔",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.M62",
+"s_cn": "没骨写意",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.M63",
+"s_cn": "没骨工笔",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.M64",
+"s_cn": "泼彩泼墨",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.M65",
+"s_cn": "混合笔法",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.M66",
+"s_cn": "渲染写意",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.M67",
+"s_cn": "渲染工笔",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.M68",
+"s_cn": "滴墨",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.M69",
+"s_cn": "独墨",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.M70",
+"s_cn": "破墨",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.M71",
+"s_cn": "篆籀笔法",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.M72",
+"s_cn": "米点皴",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.texture.M73",
+"s_cn": "行草笔法",
+"k": "属于维度",
+"t": "LANG.texture",
+"t_cn": "笔触与肌理",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.01",
+"s_cn": "虚实",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.02",
+"s_cn": "实边",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.03",
+"s_cn": "虚边",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.04",
+"s_cn": "锋利边",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.05",
+"s_cn": "模糊边",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.06",
+"s_cn": "消失边",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.07",
+"s_cn": "重叠边",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.08",
+"s_cn": "分离边",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.09",
+"s_cn": "相融边",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.10",
+"s_cn": "相切边",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.11",
+"s_cn": "相交边",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.12",
+"s_cn": "边界消解",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.13",
+"s_cn": "边界强化",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.14",
+"s_cn": "边缘流动",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.15",
+"s_cn": "边缘断裂",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.16",
+"s_cn": "边缘漂浮",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.17",
+"s_cn": "边缘模糊带",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.18",
+"s_cn": "边缘光",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.19",
+"s_cn": "边缘阴影",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.20",
+"s_cn": "线性边界",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.21",
+"s_cn": "色彩边界",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.22",
+"s_cn": "明暗边界",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.23",
+"s_cn": "空气边缘",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.24",
+"s_cn": "重叠过渡",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.25",
+"s_cn": "对比边",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.26",
+"s_cn": "软化边",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.27",
+"s_cn": "锯齿边",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.28",
+"s_cn": "断裂线",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.29",
+"s_cn": "连续线",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.30",
+"s_cn": "断续线",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.31",
+"s_cn": "淡化线",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.32",
+"s_cn": "强化线",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.33",
+"s_cn": "消融线",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.34",
+"s_cn": "空白线",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.35",
+"s_cn": "投影边",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.36",
+"s_cn": "光晕边",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.37",
+"s_cn": "边缘断层",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.38",
+"s_cn": "渐变边",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.39",
+"s_cn": "对照边",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.40",
+"s_cn": "消隐边",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.41",
+"s_cn": "断裂界面",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.42",
+"s_cn": "缓冲区",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.43",
+"s_cn": "边缘融合",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.44",
+"s_cn": "边缘干扰",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.45",
+"s_cn": "边缘漂白",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.46",
+"s_cn": "边缘硬化",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.47",
+"s_cn": "边缘对比",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.48",
+"s_cn": "反向边缘",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.49",
+"s_cn": "漂浮边界",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.50",
+"s_cn": "吞没边",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.51",
+"s_cn": "悬浮界面",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.52",
+"s_cn": "边缘共鸣",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.53",
+"s_cn": "视觉临界",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.54",
+"s_cn": "边缘呼吸",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "LANG.edge.55",
+"s_cn": "边缘共振",
+"k": "属于维度",
+"t": "LANG.edge",
+"t_cn": "边缘与节奏",
+"layer": "语言"
+},
+{
+"s": "VOICE.psyche.01",
+"s_cn": "宁静",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.02",
+"s_cn": "焦虑",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.03",
+"s_cn": "孤独",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.04",
+"s_cn": "怀旧",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.05",
+"s_cn": "冥想",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.06",
+"s_cn": "疲惫",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.07",
+"s_cn": "欣悦",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.08",
+"s_cn": "冷漠",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.09",
+"s_cn": "恐惧",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.10",
+"s_cn": "冲突",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.11",
+"s_cn": "混乱",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.12",
+"s_cn": "狂喜",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.13",
+"s_cn": "压抑",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.14",
+"s_cn": "平和",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.15",
+"s_cn": "冷静",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.16",
+"s_cn": "空虚",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.17",
+"s_cn": "欣慰",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.18",
+"s_cn": "希望",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.19",
+"s_cn": "绝望",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.20",
+"s_cn": "安全",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.21",
+"s_cn": "惊异",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.22",
+"s_cn": "迷茫",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.23",
+"s_cn": "平淡",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.24",
+"s_cn": "痴迷",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.25",
+"s_cn": "异化",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.26",
+"s_cn": "破碎",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.27",
+"s_cn": "淡然",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.28",
+"s_cn": "欲望",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.29",
+"s_cn": "幻觉",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.30",
+"s_cn": "接纳",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.31",
+"s_cn": "痛苦",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.32",
+"s_cn": "惊恐",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.33",
+"s_cn": "沉醉",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.34",
+"s_cn": "抑制",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.35",
+"s_cn": "觉醒",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.36",
+"s_cn": "解脱",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.37",
+"s_cn": "迷恋",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.38",
+"s_cn": "超脱",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.39",
+"s_cn": "焦灼",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.40",
+"s_cn": "安宁",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.41",
+"s_cn": "惆怅",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.42",
+"s_cn": "恍惚",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.43",
+"s_cn": "狂热",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.44",
+"s_cn": "麻木",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.45",
+"s_cn": "恬淡",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.46",
+"s_cn": "恐惧",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.47",
+"s_cn": "动荡",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.48",
+"s_cn": "茫然",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.49",
+"s_cn": "温情",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.50",
+"s_cn": "恐惧",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.psyche.51",
+"s_cn": "释怀",
+"k": "属于声部",
+"t": "VOICE.psyche",
+"t_cn": "心理语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.01",
+"s_cn": "光",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.02",
+"s_cn": "暗影",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.03",
+"s_cn": "门",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.04",
+"s_cn": "镜子",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.05",
+"s_cn": "鸟",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.06",
+"s_cn": "水",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.07",
+"s_cn": "火",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.08",
+"s_cn": "山",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.09",
+"s_cn": "月亮",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.10",
+"s_cn": "太阳",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.11",
+"s_cn": "树",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.12",
+"s_cn": "花",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.13",
+"s_cn": "蝴蝶",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.14",
+"s_cn": "血",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.15",
+"s_cn": "十字",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.16",
+"s_cn": "镣铐",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.17",
+"s_cn": "天空",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.18",
+"s_cn": "海",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.19",
+"s_cn": "沙漏",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.20",
+"s_cn": "面具",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.21",
+"s_cn": "天使",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.22",
+"s_cn": "魔鬼",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.23",
+"s_cn": "蛇",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.24",
+"s_cn": "鸽子",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.25",
+"s_cn": "骷髅",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.26",
+"s_cn": "眼睛",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.27",
+"s_cn": "门槛",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.28",
+"s_cn": "鸟笼",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.29",
+"s_cn": "城市",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.30",
+"s_cn": "荒野",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.31",
+"s_cn": "镜像",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.32",
+"s_cn": "剪影",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.33",
+"s_cn": "梦",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.34",
+"s_cn": "十字路口",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.35",
+"s_cn": "天梯",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.36",
+"s_cn": "面纱",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.37",
+"s_cn": "石头",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.38",
+"s_cn": "枯木",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.39",
+"s_cn": "河流",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.40",
+"s_cn": "桥",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.41",
+"s_cn": "阴影",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.42",
+"s_cn": "烛光",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.43",
+"s_cn": "鱼",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.44",
+"s_cn": "羽毛",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.45",
+"s_cn": "龟裂",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.46",
+"s_cn": "果实",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.47",
+"s_cn": "符号",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.48",
+"s_cn": "烟雾",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.49",
+"s_cn": "光环",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.symbol.50",
+"s_cn": "迷宫",
+"k": "属于声部",
+"t": "VOICE.symbol",
+"t_cn": "象征语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.01",
+"s_cn": "开端",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.02",
+"s_cn": "高潮",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.03",
+"s_cn": "结局",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.04",
+"s_cn": "转折",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.05",
+"s_cn": "片段",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.06",
+"s_cn": "重复",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.07",
+"s_cn": "瞬间",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.08",
+"s_cn": "回忆",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.09",
+"s_cn": "梦境",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.10",
+"s_cn": "幻觉",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.11",
+"s_cn": "对话",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.12",
+"s_cn": "独白",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.13",
+"s_cn": "冲突",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.14",
+"s_cn": "和解",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.15",
+"s_cn": "暗示",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.16",
+"s_cn": "并置",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.17",
+"s_cn": "片断性",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.18",
+"s_cn": "隐喻",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.19",
+"s_cn": "反转",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.20",
+"s_cn": "渐进",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.21",
+"s_cn": "断裂",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.22",
+"s_cn": "时间跳跃",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.23",
+"s_cn": "空间切换",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.24",
+"s_cn": "环形叙事",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.25",
+"s_cn": "线性叙事",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.26",
+"s_cn": "非线性叙事",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.27",
+"s_cn": "内视",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.28",
+"s_cn": "外视",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.29",
+"s_cn": "模糊叙事",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.30",
+"s_cn": "集体叙事",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.31",
+"s_cn": "私密叙事",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.32",
+"s_cn": "神话叙事",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.33",
+"s_cn": "史诗叙事",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.34",
+"s_cn": "断章叙事",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.35",
+"s_cn": "剧场性",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.36",
+"s_cn": "仪式感",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.37",
+"s_cn": "旁白",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.38",
+"s_cn": "寓言",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.39",
+"s_cn": "纪实",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.40",
+"s_cn": "诗性叙事",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.41",
+"s_cn": "象征叙事",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.42",
+"s_cn": "意识流",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.43",
+"s_cn": "对称叙事",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.44",
+"s_cn": "断片记忆",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.45",
+"s_cn": "空白叙事",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.narrative.46",
+"s_cn": "复调叙事",
+"k": "属于声部",
+"t": "VOICE.narrative",
+"t_cn": "叙事语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.01",
+"s_cn": "存在",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.02",
+"s_cn": "虚无",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.03",
+"s_cn": "自由",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.04",
+"s_cn": "宿命",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.05",
+"s_cn": "空",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.06",
+"s_cn": "时间",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.07",
+"s_cn": "对立",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.08",
+"s_cn": "无限",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.09",
+"s_cn": "秩序",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.10",
+"s_cn": "混沌",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.11",
+"s_cn": "真理",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.12",
+"s_cn": "假象",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.13",
+"s_cn": "自我",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.14",
+"s_cn": "他者",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.15",
+"s_cn": "平衡",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.16",
+"s_cn": "超越",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.17",
+"s_cn": "理性",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.18",
+"s_cn": "感性",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.19",
+"s_cn": "孤立",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.20",
+"s_cn": "自然",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.21",
+"s_cn": "超现实",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.22",
+"s_cn": "虚实",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.23",
+"s_cn": "寂静",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.24",
+"s_cn": "觉悟",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.25",
+"s_cn": "悖论",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.26",
+"s_cn": "重生",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.27",
+"s_cn": "对称",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.28",
+"s_cn": "混合",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.29",
+"s_cn": "模糊",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.30",
+"s_cn": "荒诞",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.31",
+"s_cn": "对称性破坏",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.32",
+"s_cn": "空间意识",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.33",
+"s_cn": "世界性",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.34",
+"s_cn": "存在焦虑",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.35",
+"s_cn": "真实",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.36",
+"s_cn": "虚构",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.37",
+"s_cn": "混沌秩序",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.38",
+"s_cn": "平衡破裂",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.39",
+"s_cn": "内观",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.40",
+"s_cn": "灵光",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.41",
+"s_cn": "空间虚无",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.42",
+"s_cn": "永恒",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.43",
+"s_cn": "生成",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.44",
+"s_cn": "退隐",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.45",
+"s_cn": "无常",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.46",
+"s_cn": "纯粹",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.47",
+"s_cn": "悟",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.48",
+"s_cn": "超越肉身",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.49",
+"s_cn": "破灭",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+},
+{
+"s": "VOICE.philosophy.50",
+"s_cn": "永恒瞬间",
+"k": "属于声部",
+"t": "VOICE.philosophy",
+"t_cn": "哲学语言",
+"layer": "画外音"
+}
+]
+}

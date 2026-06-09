@@ -1,0 +1,1442 @@
+{
+ "ARTIST.vangogh": {
+  "file": "img/portraits/vangogh.jpg",
+  "source": "The Met (PD)",
+  "title": "Self-Portrait with a Straw Hat (obverse: The Potato Peeler)",
+  "by": "Vincent van Gogh",
+  "score": 3,
+  "w": 2829,
+  "h": 3520
+ },
+ "ARTIST.cezanne": {
+  "file": "img/portraits/cezanne.jpg",
+  "source": "Cleveland (CC0)",
+  "title": "Portrait of Paul Cézanne",
+  "by": "Camille Pissarro (French, 1830–1903)",
+  "score": 2,
+  "w": 722,
+  "h": 893
+ },
+ "ARTIST.davinci": {
+  "file": "img/portraits/davinci.jpg",
+  "source": "The Met (PD)",
+  "title": "Portrait of Leonardo da Vinci, from \"Characaturas by Leonardo da Vinci, from Drawings by Wincelslaus Hollar, out of the Portland Museum\"",
+  "by": "Leonardo da Vinci",
+  "score": 2,
+  "w": 2753,
+  "h": 3468
+ },
+ "ARTIST.caravaggio": {
+  "file": "img/portraits/caravaggio.jpg",
+  "source": "The Met (PD)",
+  "title": "Portrait of Caravaggio, turned to the right and looking at his reflection in a mirror",
+  "by": "Henri Simon Thomassin",
+  "score": 2,
+  "w": 2126,
+  "h": 3465
+ },
+ "ARTIST.velazquez": {
+  "file": "img/portraits/velazquez.jpg",
+  "source": "The Met (PD)",
+  "title": "Portrait of a Man, Possibly a Self-Portrait",
+  "by": "Velázquez (Diego Rodríguez de Silva y Velázquez)",
+  "score": 3,
+  "w": 3077,
+  "h": 3863
+ },
+ "ARTIST.rembrandt": {
+  "file": "img/portraits/rembrandt.jpg",
+  "source": "The Met (PD)",
+  "title": "Self-Portrait",
+  "by": "Rembrandt (Rembrandt van Rijn)",
+  "score": 3,
+  "w": 3298,
+  "h": 4000
+ },
+ "ARTIST.raphael": {
+  "file": "img/portraits/raphael.jpg",
+  "source": "The Met (PD)",
+  "title": "Self-Portrait",
+  "by": "Anton Raphael Mengs",
+  "score": 3,
+  "w": 2819,
+  "h": 3870
+ },
+ "ARTIST.durer": {
+  "file": "img/portraits/durer.jpg",
+  "source": "Cleveland (CC0)",
+  "title": "Portrait of Albrecht Dürer, at the age of 26",
+  "by": "Wenceslaus Hollar (Bohemian, 1607–1677)",
+  "score": 2,
+  "w": 647,
+  "h": 893
+ },
+ "ARTIST.pissarro": {
+  "file": "img/portraits/pissarro.jpg",
+  "source": "Cleveland (CC0)",
+  "title": "Self-Portrait",
+  "by": "Camille Pissarro (French, 1830–1903)",
+  "score": 3,
+  "w": 715,
+  "h": 900
+ },
+ "ARTIST.degas": {
+  "file": "img/portraits/degas.jpg",
+  "source": "Cleveland (CC0)",
+  "title": "Self-Portrait",
+  "by": "Edgar Degas (French, 1834–1917)",
+  "score": 3,
+  "w": 525,
+  "h": 900
+ },
+ "ARTIST.michelangelo": {
+  "file": "img/portraits/michelangelo.jpg",
+  "source": "The Met (PD)",
+  "title": "Portrait of Michelangelo",
+  "by": "Giorgio Ghisi",
+  "score": 2,
+  "w": 2720,
+  "h": 3500
+ },
+ "ARTIST.zhaomengfu": {
+  "file": "img/portraits/zhaomengfu.jpg",
+  "source": "The Met (PD)",
+  "title": "Copy of a Portrait of Zhao Mengfu",
+  "by": "Unidentified artist",
+  "score": 2,
+  "w": 2111,
+  "h": 4000
+ },
+ "ARTIST.delacroix": {
+  "file": "img/portraits/delacroix.jpg",
+  "source": "The Met (PD)",
+  "title": "Portrait of Eugène Delacroix",
+  "by": "Marcellin Desboutin",
+  "score": 2,
+  "w": 1897,
+  "h": 2631
+ },
+ "ARTIST.friedrich": {
+  "file": "img/portraits/friedrich.jpg",
+  "source": "The Met (PD)",
+  "title": "Self-Portrait (Caspar David Friedrich)",
+  "by": "Christian Friedrich",
+  "score": 2,
+  "w": 2601,
+  "h": 4000
+ },
+ "ARTIST.daumier": {
+  "file": "img/portraits/daumier.jpg",
+  "source": "The Met (PD)",
+  "title": "Portrait of Honoré Daumier",
+  "by": "Etienne Carjat",
+  "score": 2,
+  "w": 2383,
+  "h": 3781
+ },
+ "ARTIST.schiele": {
+  "file": "img/portraits/schiele.jpg",
+  "source": "The Met (PD)",
+  "title": "Self-Portrait",
+  "by": "Egon Schiele",
+  "score": 3,
+  "w": 2735,
+  "h": 3868
+ },
+ "ARTIST.fragonard": {
+  "file": "img/portraits/fragonard.jpg",
+  "source": "The Met (PD)",
+  "title": "Portrait of Jean Honoré Fragonard",
+  "by": "Charles Louis François Le Carpentier",
+  "score": 2,
+  "w": 2309,
+  "h": 3597
+ },
+ "ARTIST.titian": {
+  "file": "img/portraits/titian.jpg",
+  "source": "Cleveland (CC0)",
+  "title": "Portrait of Titian",
+  "by": "Jan Thomas (Flemish, 1617–1678)",
+  "score": 2,
+  "w": 707,
+  "h": 893
+ },
+ "ARTIST.zola": {
+  "file": "img/portraits/zola.jpg",
+  "source": "The Met (PD)",
+  "title": "Portrait Relief of Émile Zola",
+  "by": "Alexandre-Louis-Marie Charpentier",
+  "score": 2,
+  "w": 1398,
+  "h": 1802
+ },
+ "ARTIST.chavannes": {
+  "file": "img/portraits/chavannes.jpg",
+  "source": "The Met (PD)",
+  "title": "Portrait of Pierre Puvis de Chavannes (1824–1898), greatest of French decorative painters",
+  "by": "Alexandre-Louis-Marie Charpentier",
+  "score": 2,
+  "w": 1424,
+  "h": 1780
+ },
+ "ARTIST.boccioni": {
+  "file": "img/portraits/boccioni.jpg",
+  "source": "The Met (PD)",
+  "title": "Self-Portrait",
+  "by": "Umberto Boccioni",
+  "score": 3,
+  "w": 4000,
+  "h": 3044
+ },
+ "ARTIST.zhaozhiqian": {
+  "file": "img/portraits/zhaozhiqian.jpg",
+  "source": "The Met (PD)",
+  "title": "Portrait of Zhao Zhiqian",
+  "by": "Wang Yuan",
+  "score": 2,
+  "w": 1744,
+  "h": 4000
+ },
+ "ARTIST.repin": {
+  "file": "img/portraits/repin.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 293,
+  "h": 400
+ },
+ "ARTIST.monet": {
+  "file": "img/portraits/monet.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 300,
+  "h": 400
+ },
+ "ARTIST.courbet": {
+  "file": "img/portraits/courbet.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 400,
+  "h": 327
+ },
+ "ARTIST.millet": {
+  "file": "img/portraits/millet.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 310,
+  "h": 400
+ },
+ "ARTIST.guoxi": {
+  "file": "img/portraits/guoxi.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 275,
+  "h": 400
+ },
+ "ARTIST.huizong": {
+  "file": "img/portraits/huizong.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 300,
+  "h": 400
+ },
+ "ARTIST.renoir": {
+  "file": "img/portraits/renoir.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 317,
+  "h": 400
+ },
+ "ARTIST.seurat": {
+  "file": "img/portraits/seurat.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 303,
+  "h": 400
+ },
+ "ARTIST.gauguin": {
+  "file": "img/portraits/gauguin.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 267,
+  "h": 400
+ },
+ "ARTIST.munch": {
+  "file": "img/portraits/munch.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 286,
+  "h": 400
+ },
+ "ARTIST.matisse": {
+  "file": "img/portraits/matisse.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 330,
+  "h": 400
+ },
+ "ARTIST.kandinsky": {
+  "file": "img/portraits/kandinsky.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 290,
+  "h": 400
+ },
+ "ARTIST.picasso": {
+  "file": "img/portraits/picasso.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 400,
+  "h": 400
+ },
+ "ARTIST.mondrian": {
+  "file": "img/portraits/mondrian.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 308,
+  "h": 400
+ },
+ "ARTIST.malevich": {
+  "file": "img/portraits/malevich.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 355,
+  "h": 400
+ },
+ "ARTIST.rothko": {
+  "file": "img/portraits/rothko.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 350,
+  "h": 400
+ },
+ "ARTIST.shenzhou": {
+  "file": "img/portraits/shenzhou.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 302,
+  "h": 400
+ },
+ "ARTIST.shitao": {
+  "file": "img/portraits/shitao.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 363,
+  "h": 400
+ },
+ "ARTIST.qibaishi": {
+  "file": "img/portraits/qibaishi.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 323,
+  "h": 400
+ },
+ "ARTIST.xuwei": {
+  "file": "img/portraits/xuwei.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 276,
+  "h": 400
+ },
+ "ARTIST.turner": {
+  "file": "img/portraits/turner.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 397,
+  "h": 400
+ },
+ "ARTIST.botticelli": {
+  "file": "img/portraits/botticelli.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 330,
+  "h": 400
+ },
+ "ARTIST.rubens": {
+  "file": "img/portraits/rubens.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 292,
+  "h": 400
+ },
+ "ARTIST.pollock": {
+  "file": "img/portraits/pollock.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 220,
+  "h": 275
+ },
+ "ARTIST.xubing": {
+  "file": "img/portraits/xubing.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 272,
+  "h": 400
+ },
+ "ARTIST.chenhongshou": {
+  "file": "img/portraits/chenhongshou.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 316,
+  "h": 400
+ },
+ "ARTIST.litang": {
+  "file": "img/portraits/litang.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 296,
+  "h": 400
+ },
+ "ARTIST.watteau": {
+  "file": "img/portraits/watteau.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 299,
+  "h": 400
+ },
+ "ARTIST.corot": {
+  "file": "img/portraits/corot.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 297,
+  "h": 400
+ },
+ "ARTIST.constable": {
+  "file": "img/portraits/constable.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 370,
+  "h": 400
+ },
+ "ARTIST.sisley": {
+  "file": "img/portraits/sisley.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 327,
+  "h": 400
+ },
+ "ARTIST.magritte": {
+  "file": "img/portraits/magritte.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 234,
+  "h": 400
+ },
+ "ARTIST.braque": {
+  "file": "img/portraits/braque.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 322,
+  "h": 400
+ },
+ "ARTIST.vaneyck": {
+  "file": "img/portraits/vaneyck.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 295,
+  "h": 400
+ },
+ "ARTIST.holbein": {
+  "file": "img/portraits/holbein.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 297,
+  "h": 400
+ },
+ "ARTIST.signac": {
+  "file": "img/portraits/signac.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 328,
+  "h": 400
+ },
+ "ARTIST.nolde": {
+  "file": "img/portraits/nolde.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 320,
+  "h": 400
+ },
+ "ARTIST.vlaminck": {
+  "file": "img/portraits/vlaminck.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 325,
+  "h": 400
+ },
+ "ARTIST.newman": {
+  "file": "img/portraits/newman.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 397,
+  "h": 400
+ },
+ "ARTIST.surikov": {
+  "file": "img/portraits/surikov.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 293,
+  "h": 400
+ },
+ "ARTIST.cimabue": {
+  "file": "img/portraits/cimabue.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 300,
+  "h": 400
+ },
+ "ARTIST.angelico": {
+  "file": "img/portraits/angelico.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 300,
+  "h": 400
+ },
+ "ARTIST.boucher": {
+  "file": "img/portraits/boucher.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 304,
+  "h": 400
+ },
+ "ARTIST.gris": {
+  "file": "img/portraits/gris.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 290,
+  "h": 400
+ },
+ "ARTIST.licheng": {
+  "file": "img/portraits/licheng.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 293,
+  "h": 400
+ },
+ "ARTIST.huangshen": {
+  "file": "img/portraits/huangshen.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 277,
+  "h": 400
+ },
+ "ARTIST.martini": {
+  "file": "img/portraits/martini.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 250,
+  "h": 273
+ },
+ "ARTIST.vandoesburg": {
+  "file": "img/portraits/vandoesburg.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 292,
+  "h": 400
+ },
+ "ARTIST.tangyin": {
+  "file": "img/portraits/tangyin.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 300,
+  "h": 400
+ },
+ "ARTIST.reinhardt": {
+  "file": "img/portraits/reinhardt.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 400,
+  "h": 305
+ },
+ "ARTIST.chuckclose": {
+  "file": "img/portraits/chuckclose.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 400,
+  "h": 400
+ },
+ "ARTIST.langshining": {
+  "file": "img/portraits/langshining.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 400,
+  "h": 225
+ },
+ "ARTIST.schnabel": {
+  "file": "img/portraits/schnabel.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 376,
+  "h": 400
+ },
+ "ARTIST.wuguanzhong": {
+  "file": "img/portraits/wuguanzhong.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 300,
+  "h": 400
+ },
+ "ARTIST.vermeer": {
+  "file": "img/portraits/vermeer.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 339,
+  "h": 400
+ },
+ "ARTIST.jldavid": {
+  "file": "img/portraits/jldavid.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 311,
+  "h": 400
+ },
+ "ARTIST.ingres": {
+  "file": "img/portraits/ingres.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 322,
+  "h": 400
+ },
+ "ARTIST.bruegel": {
+  "file": "img/portraits/bruegel.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 340,
+  "h": 400
+ },
+ "ARTIST.mucha": {
+  "file": "img/portraits/mucha.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 257,
+  "h": 400
+ },
+ "ARTIST.masaccio": {
+  "file": "img/portraits/masaccio.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 282,
+  "h": 400
+ },
+ "ARTIST.giorgione": {
+  "file": "img/portraits/giorgione.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 308,
+  "h": 400
+ },
+ "ARTIST.veronese": {
+  "file": "img/portraits/veronese.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 387,
+  "h": 400
+ },
+ "ARTIST.tintoretto": {
+  "file": "img/portraits/tintoretto.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 327,
+  "h": 400
+ },
+ "ARTIST.hals": {
+  "file": "img/portraits/hals.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 333,
+  "h": 400
+ },
+ "ARTIST.ruisdael": {
+  "file": "img/portraits/ruisdael.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 259,
+  "h": 400
+ },
+ "ARTIST.bastienlepage": {
+  "file": "img/portraits/bastienlepage.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 324,
+  "h": 400
+ },
+ "ARTIST.levitan": {
+  "file": "img/portraits/levitan.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 295,
+  "h": 400
+ },
+ "ARTIST.serov": {
+  "file": "img/portraits/serov.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 309,
+  "h": 400
+ },
+ "ARTIST.bonnard": {
+  "file": "img/portraits/bonnard.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 302,
+  "h": 400
+ },
+ "ARTIST.vuillard": {
+  "file": "img/portraits/vuillard.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 297,
+  "h": 400
+ },
+ "ARTIST.denis": {
+  "file": "img/portraits/denis.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 400,
+  "h": 332
+ },
+ "ARTIST.moreau": {
+  "file": "img/portraits/moreau.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 318,
+  "h": 400
+ },
+ "ARTIST.redon": {
+  "file": "img/portraits/redon.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 256,
+  "h": 400
+ },
+ "ARTIST.klimt": {
+  "file": "img/portraits/klimt.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 322,
+  "h": 400
+ },
+ "ARTIST.derain": {
+  "file": "img/portraits/derain.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 267,
+  "h": 400
+ },
+ "ARTIST.kirchner": {
+  "file": "img/portraits/kirchner.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 348,
+  "h": 400
+ },
+ "ARTIST.marc": {
+  "file": "img/portraits/marc.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 273,
+  "h": 400
+ },
+ "ARTIST.heckel": {
+  "file": "img/portraits/heckel.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 287,
+  "h": 400
+ },
+ "ARTIST.schmidtrottluff": {
+  "file": "img/portraits/schmidtrottluff.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 285,
+  "h": 400
+ },
+ "ARTIST.balla": {
+  "file": "img/portraits/balla.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 267,
+  "h": 400
+ },
+ "ARTIST.severini": {
+  "file": "img/portraits/severini.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 305,
+  "h": 400
+ },
+ "ARTIST.dechirico": {
+  "file": "img/portraits/dechirico.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 310,
+  "h": 400
+ },
+ "ARTIST.tatlin": {
+  "file": "img/portraits/tatlin.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 268,
+  "h": 400
+ },
+ "ARTIST.rodchenko": {
+  "file": "img/portraits/rodchenko.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 266,
+  "h": 400
+ },
+ "ARTIST.lissitzky": {
+  "file": "img/portraits/lissitzky.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 400,
+  "h": 372
+ },
+ "ARTIST.arp": {
+  "file": "img/portraits/arp.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 355,
+  "h": 400
+ },
+ "ARTIST.heartfield": {
+  "file": "img/portraits/heartfield.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 276,
+  "h": 400
+ },
+ "ARTIST.matta": {
+  "file": "img/portraits/matta.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 300,
+  "h": 271
+ },
+ "ARTIST.ernst": {
+  "file": "img/portraits/ernst.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 255,
+  "h": 400
+ },
+ "ARTIST.mathieu": {
+  "file": "img/portraits/mathieu.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 238,
+  "h": 309
+ },
+ "ARTIST.dubuffet": {
+  "file": "img/portraits/dubuffet.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 329,
+  "h": 400
+ },
+ "ARTIST.fautrier": {
+  "file": "img/portraits/fautrier.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 332,
+  "h": 400
+ },
+ "ARTIST.kline": {
+  "file": "img/portraits/kline.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 304,
+  "h": 400
+ },
+ "ARTIST.frankenthaler": {
+  "file": "img/portraits/frankenthaler.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 268,
+  "h": 400
+ },
+ "ARTIST.kelly": {
+  "file": "img/portraits/kelly.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 312,
+  "h": 400
+ },
+ "ARTIST.vasarely": {
+  "file": "img/portraits/vasarely.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 400,
+  "h": 392
+ },
+ "ARTIST.judd": {
+  "file": "img/portraits/judd.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 297,
+  "h": 400
+ },
+ "ARTIST.martin": {
+  "file": "img/portraits/martin.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 310,
+  "h": 400
+ },
+ "ARTIST.estes": {
+  "file": "img/portraits/estes.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 300,
+  "h": 319
+ },
+ "ARTIST.kosuth": {
+  "file": "img/portraits/kosuth.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 400,
+  "h": 399
+ },
+ "ARTIST.lewitt": {
+  "file": "img/portraits/lewitt.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 322,
+  "h": 399
+ },
+ "ARTIST.henrirousseau": {
+  "file": "img/portraits/henrirousseau.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 312,
+  "h": 400
+ },
+ "ARTIST.moses": {
+  "file": "img/portraits/moses.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 353,
+  "h": 400
+ },
+ "ARTIST.beuys": {
+  "file": "img/portraits/beuys.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 272,
+  "h": 400
+ },
+ "ARTIST.warhol": {
+  "file": "img/portraits/warhol.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 396,
+  "h": 400
+ },
+ "ARTIST.lichtenstein": {
+  "file": "img/portraits/lichtenstein.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 400,
+  "h": 340
+ },
+ "ARTIST.hamilton": {
+  "file": "img/portraits/hamilton.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 400,
+  "h": 400
+ },
+ "ARTIST.kiefer": {
+  "file": "img/portraits/kiefer.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 264,
+  "h": 400
+ },
+ "ARTIST.salle": {
+  "file": "img/portraits/salle.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 400,
+  "h": 300
+ },
+ "ARTIST.basquiat": {
+  "file": "img/portraits/basquiat.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 399,
+  "h": 400
+ },
+ "ARTIST.haring": {
+  "file": "img/portraits/haring.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 258,
+  "h": 400
+ },
+ "ARTIST.banksy": {
+  "file": "img/portraits/banksy.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 300,
+  "h": 369
+ },
+ "ARTIST.kusama": {
+  "file": "img/portraits/kusama.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 400,
+  "h": 400
+ },
+ "ARTIST.freud": {
+  "file": "img/portraits/freud.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 360,
+  "h": 400
+ },
+ "ARTIST.tuymans": {
+  "file": "img/portraits/tuymans.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 305,
+  "h": 400
+ },
+ "ARTIST.richter": {
+  "file": "img/portraits/richter.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 328,
+  "h": 400
+ },
+ "ARTIST.wangwei": {
+  "file": "img/portraits/wangwei.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 400,
+  "h": 366
+ },
+ "ARTIST.linfengmian": {
+  "file": "img/portraits/linfengmian.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 346,
+  "h": 400
+ },
+ "ARTIST.pontormo": {
+  "file": "img/portraits/pontormo.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 287,
+  "h": 400
+ },
+ "ARTIST.parmigianino": {
+  "file": "img/portraits/parmigianino.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 400,
+  "h": 398
+ },
+ "ARTIST.elgreco": {
+  "file": "img/portraits/elgreco.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 361,
+  "h": 400
+ },
+ "ARTIST.limbourg": {
+  "file": "img/portraits/limbourg.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 254,
+  "h": 400
+ },
+ "ARTIST.gentile": {
+  "file": "img/portraits/gentile.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 286,
+  "h": 400
+ },
+ "ARTIST.rossetti": {
+  "file": "img/portraits/rossetti.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 364,
+  "h": 400
+ },
+ "ARTIST.millais": {
+  "file": "img/portraits/millais.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 325,
+  "h": 400
+ },
+ "ARTIST.hunt": {
+  "file": "img/portraits/hunt.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 282,
+  "h": 400
+ },
+ "ARTIST.rousseau": {
+  "file": "img/portraits/rousseau.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 381,
+  "h": 400
+ },
+ "ARTIST.dix": {
+  "file": "img/portraits/dix.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 265,
+  "h": 400
+ },
+ "ARTIST.modigliani": {
+  "file": "img/portraits/modigliani.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 348,
+  "h": 400
+ },
+ "ARTIST.chagall": {
+  "file": "img/portraits/chagall.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 307,
+  "h": 400
+ },
+ "ARTIST.soutine": {
+  "file": "img/portraits/soutine.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 400,
+  "h": 289
+ },
+ "ARTIST.kounellis": {
+  "file": "img/portraits/kounellis.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 300,
+  "h": 400
+ },
+ "ARTIST.smithson": {
+  "file": "img/portraits/smithson.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 400,
+  "h": 328
+ },
+ "ARTIST.demaria": {
+  "file": "img/portraits/demaria.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 400,
+  "h": 265
+ },
+ "ARTIST.hokusai": {
+  "file": "img/portraits/hokusai.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 345,
+  "h": 400
+ },
+ "ARTIST.hiroshige": {
+  "file": "img/portraits/hiroshige.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 268,
+  "h": 400
+ },
+ "ARTIST.utamaro": {
+  "file": "img/portraits/utamaro.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 263,
+  "h": 400
+ },
+ "ARTIST.ikenotaiga": {
+  "file": "img/portraits/ikenotaiga.jpg",
+  "source": "WikiArt",
+  "title": "WikiArt 艺术家头像",
+  "by": "",
+  "score": 2,
+  "w": 290,
+  "h": 400
+ }
+}

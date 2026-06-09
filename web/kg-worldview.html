@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 世界观层 · V3(第一性原理)</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--green-soft:#eef3f0;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1000px;margin:0 auto;padding:36px 18px 96px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(22px,4vw,33px);font-weight:700;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.8;max-width:740px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .v3banner{max-width:780px;margin:16px auto 0;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:11px 15px;font-size:12.5px;color:var(--ink-soft);line-height:1.7}.v3banner b{color:var(--accent)}.v3banner a{color:var(--accent);text-decoration:none;font-weight:600}
+  .sec{margin-top:40px}
+  .sec-h{font-family:var(--serif);font-size:20px;font-weight:600;border-bottom:2px solid var(--accent);padding-bottom:8px;margin-bottom:6px}
+  .sec-h .en{font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-left:8px;font-weight:400}
+  .sec-d{font-size:13px;color:var(--ink-mute);margin:8px 0 16px;line-height:1.7}.sec-d b{color:var(--ink-soft)}
+  /* axes */
+  .ax2{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:640px){.ax2{grid-template-columns:1fr}}
+  .axc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;border-top:3px solid var(--accent)}
+  .axc .ah{display:flex;justify-content:space-between;font-family:var(--serif);font-size:17px;font-weight:600}
+  .axc .ah .lp{color:var(--green)}.axc .ah .rp{color:var(--accent)}
+  .axc .abar{height:5px;background:linear-gradient(90deg,var(--green),var(--accent));border-radius:3px;margin:8px 0}
+  .axc .aq{font-size:13px;color:var(--ink-soft);line-height:1.6}
+  .axc .as{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-top:7px;border-top:1px dashed var(--line);padding-top:6px}
+  /* plane */
+  .mapwrap{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px}
+  .legend{font-family:var(--mono);font-size:11px;color:var(--ink-mute);text-align:center;margin-top:8px}
+  .legend .w{color:var(--accent)}.legend .e{color:var(--green)}
+  /* region cards */
+  .regs{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:6px}@media(max-width:720px){.regs{grid-template-columns:1fr}}
+  .reg{background:#fff;border:1px solid var(--line);border-radius:13px;padding:15px 17px;border-left:5px solid var(--accent)}
+  .reg .rh{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+  .reg .code{font-family:var(--mono);font-size:12px;font-weight:600;color:#fff;background:var(--accent);border-radius:6px;padding:2px 9px}
+  .reg .rn{font-family:var(--serif);font-size:19px;font-weight:600}
+  .reg .alt{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
+  .reg .q{font-size:12.5px;color:var(--ink-mute);margin-top:8px;font-style:italic}.reg .q::before{content:"问 · ";font-style:normal;font-family:var(--mono);font-size:10px;color:var(--ink-faint)}
+  .reg .ess{font-size:13.5px;color:var(--ink-soft);line-height:1.7;margin-top:8px}
+  .reg .psy{display:inline-block;font-family:var(--mono);font-size:10.5px;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:2px 9px;margin-top:9px}
+  .reg .meta{display:flex;gap:10px;font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:9px;padding-top:8px;border-top:1px dashed var(--line);flex-wrap:wrap}
+  .reg .meta .w{color:var(--accent)}.reg .meta .e{color:var(--green)}
+  .reg .mem{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+  .reg .chip{font-size:11.5px;color:var(--ink-soft);background:var(--paper-2);border-radius:6px;padding:2px 9px;text-decoration:none}
+  .reg a.chip:hover{color:var(--accent)}
+  .reg .more{font-family:var(--mono);font-size:10px;color:var(--ink-faint);align-self:center}
+  .note{font-size:12.5px;color:var(--ink-mute);background:#fff;border:1px solid var(--line);border-left:3px solid var(--green);border-radius:8px;padding:11px 14px;line-height:1.75;margin-top:18px}.note b{color:var(--green)}
+  .back{display:block;text-align:center;margin-top:46px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .home-fab:hover{color:var(--accent)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 世界观层</div>
+  <h1>世界观层 · 把世界看成什么</h1>
+  <p class="lead">V3 的<b>根</b>:整条生成链的源头。世界观 = 由<b>两条经检验正交的真轴</b>张成的一片<b>所有传统共享的连续平面</b>;其上<b>数据发现 6 个区</b>(非先验、非东西镜像)。每个区 = 一种「把世界看成什么」的根本立场,下游的题材、语言、感知、意义都由它生。</p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-root">根·世界观</a> › <b style="color:var(--ink-soft)">世界观层</b></div>
+
+  <div style="max-width:740px;margin:14px auto 0;background:var(--accent-soft,#f0e4d8);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:11px 14px;font-size:12.5px;line-height:1.7;color:var(--ink-soft)">
+    <b>世界坐标 ≠ 风格轴向量。</b> 这片平面是<b>意义坐标</b>——回答"<b>把世界看成什么</b>"(本体论/认识论立场),是风格的<b>挂载点</b>(风格作为一个点落在某个区)。另一层 <a href="kg-style-vectors.html" style="color:var(--accent);text-decoration:none">E 风格轴向量→</a> 是<b>画面配方</b>,回答"<b>画面长什么样、该怎么生成</b>",挂在风格节点上。两层都含「再现↔表现」:在这里它是<b>对"真实可否被再现"的态度</b>(世界观);在风格向量层它是<b>画面有多客观/主观</b>(可生成的输出特征)。一个是坐标系(你在哪),一个是配方(你由什么构成)。
+  </div>
+  <div class="v3banner">🏛️ <b>V3 重构已确立</b>:旧版 3 轴 + 12 个东西镜像模型经实测崩塌(轴冗余、镜像 0/6),已<b>整体替换</b>为下面的 2 轴 + 6 区。推导见 <a href="kg-first-principles.html">第一性原理页 →</a>,证据见 <a href="kg-worldview-science.html">科学性自检 →</a></div>
+
+  <div class="sec">
+    <div class="sec-h">① 两条真轴<span class="en">2 validated orthogonal axes</span></div>
+    <div class="sec-d">只保留经数据检验<b>正交(r=0.10)</b>且<b>最能区分风格(F≈20)</b>的两条立场轴。其余如「秩序-张力/节制-强度」非世界观,已下放为语言参数 / 感知效应(且可由像素测)。</div>
+    <div class="ax2" id="axes"></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">② 一片共享的连续平面<span class="en">shared continuous plane</span></div>
+    <div class="sec-d">把已考究风格落到这两条轴上。<b>点的颜色 = 东西密度</b>(<span style="color:var(--accent)">赭=西</span>/<span style="color:var(--green)">绿=东</span>);<b>虚线色块 = 6 个数据发现的区</b>(同<a href="kg-worldview-map.html" style="color:var(--accent)">世界观地图</a>的分区法)。两层叠在一起:<b>东西不是对称两半,而是同一平面上的两种密度</b>——古典再现区东西对半、感知光色区几乎纯西、文人意象区偏东。</div>
+    <div class="mapwrap"><svg id="map" viewBox="0 0 660 470" style="width:100%;height:auto"></svg></div>
+    <div class="legend" id="wvlegend"><span class="w">● 西方</span>　<span class="e">● 东方</span>　· 虚线块=区(色见下) · 横轴 再现→表现 · 纵轴 结构→感知</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">③ 六大世界观区 · 各是一种「把世界看成什么」<span class="en">6 data-discovered regions</span></div>
+    <div class="sec-d">每个区回答一个根本问题、带核心心理与定义,底部 chips = 落在此区的代表风格(可点进风格志)。这<b>取代</b>了旧的 W1–6 / E1–6。</div>
+    <div class="regs" id="regs"></div>
+  </div>
+
+  <div class="note">⚓ <b>它是整条链的根</b>:V3 把五层重构为一条生成因果链 <b>世界观 →(题材+7大构成)→ 感知效应 → 画外音</b>,而「风格」不是层、是这条链上反复出现被命名的<b>涌现签名</b>。每个风格详情页顶部的「风格分解式」正是沿此链展开。全部 202 风格已归入上述 6 区(123 个按坐标、79 个按旧模型多数映射)。</div>
+
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const NS='http://www.w3.org/2000/svg';
+const E=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+const PAL=['#b0673a','#9a7b3a','#5a7d6f','#5b7596','#8a5a7a','#4a6a8a'];
+// 凸包(单调链)——移植自世界观地图,用于把每个区圈成色块
+function hull(P){if(P.length<3)return P.slice();P=P.slice().sort((a,b)=>a[0]-b[0]||a[1]-b[1]);
+  const cross=(o,a,b)=>(a[0]-o[0])*(b[1]-o[1])-(a[1]-o[1])*(b[0]-o[0]);
+  const lo=[];for(const p of P){while(lo.length>=2&&cross(lo[lo.length-2],lo[lo.length-1],p)<=0)lo.pop();lo.push(p);}
+  const up=[];for(let i=P.length-1;i>=0;i--){const p=P[i];while(up.length>=2&&cross(up[up.length-2],up[up.length-1],p)<=0)up.pop();up.push(p);}
+  lo.pop();up.pop();return lo.concat(up);}
+Promise.all([
+  fetch('data/kg_worldview_v3.json').then(r=>r.json()),
+  fetch('data/kg_style.json').then(r=>r.json()).catch(()=>({nodes:[]}))
+]).then(([D,sty])=>{
+  const idByCn={}; (sty.nodes||[]).forEach(n=>{idByCn[n.cn]=n.id;});
+  // axes
+  const axw=document.getElementById('axes');
+  D.axes.forEach(a=>{const[l,r]=a.cn.split('↔').map(s=>s.trim());
+    axw.appendChild($(`<div class="axc"><div class="ah"><span class="lp">${l}</span><span class="rp">${r}</span></div><div class="abar"></div><div class="aq">${a.q}</div><div class="as">${a.stat}</div></div>`));});
+  // plane
+  const svg=document.getElementById('map'),W=660,H=470,pad=48;
+  const sx=v=>pad+v*(W-2*pad), sy=v=>H-pad-v*(H-2*pad);
+  svg.appendChild(E('rect',{x:pad,y:pad,width:W-2*pad,height:H-2*pad,fill:'#fcfaf5',stroke:'#e8e0d0'}));
+  [0.25,0.5,0.75].forEach(t=>{svg.appendChild(E('line',{x1:sx(t),y1:pad,x2:sx(t),y2:H-pad,stroke:'#efe9dc'}));svg.appendChild(E('line',{x1:pad,y1:sy(t),x2:W-pad,y2:sy(t),stroke:'#efe9dc'}));});
+  const txt=(x,y,s,o={})=>{const t=E('text',{x,y,'font-family':o.f||'JetBrains Mono','font-size':o.fs||11,fill:o.fill||'#857d6f','text-anchor':o.a||'middle'});t.textContent=s;if(o.w)t.setAttribute('font-weight',o.w);if(o.st){t.setAttribute('paint-order','stroke');t.setAttribute('stroke','#f4f1ea');t.setAttribute('stroke-width','3');}svg.appendChild(t);};
+  txt(sx(0.02),H-pad+18,'再现',{a:'start',fill:'#5a7d6f',w:600});txt(sx(0.98),H-pad+18,'表现 →',{a:'end',fill:'#b0673a',w:600});
+  txt(pad-8,sy(0.02),'结构',{a:'end',fill:'#5a7d6f',w:600});txt(pad-8,sy(0.97),'感知',{a:'end',fill:'#b0673a',w:600});
+  txt(W/2,pad-14,'世界观平面 · 再现-表现 ⊥ 结构-感知',{fs:12,fill:'#4b463e',w:600});
+  // ① 先画 6 区的虚线色块(凸包),让连续平面也能一眼看清分区
+  const wvCol={}; D.regions.forEach((rg,i)=>wvCol[rg.id]=PAL[i%6]);
+  D.regions.forEach((rg,i)=>{const col=PAL[i%6];
+    const rp=D.points.filter(p=>p.wv===rg.id).map(p=>[sx(p.x),sy(p.y)]);
+    if(rp.length>=3){const c=[rp.reduce((s,p)=>s+p[0],0)/rp.length,rp.reduce((s,p)=>s+p[1],0)/rp.length];
+      const hl=hull(rp).map(p=>{const dx=p[0]-c[0],dy=p[1]-c[1],d=Math.hypot(dx,dy)||1;return [p[0]+dx/d*12,p[1]+dy/d*12];});
+      svg.appendChild(E('polygon',{points:hl.map(p=>p.join(',')).join(' '),fill:col,'fill-opacity':0.08,stroke:col,'stroke-opacity':0.42,'stroke-dasharray':'5 4','stroke-width':1.3,'stroke-linejoin':'round'}));
+      const ty=Math.min(...hl.map(p=>p[1]));
+      txt(c[0],ty-5,`${rg.id} ${rg.name}`,{f:'Noto Serif SC',fs:12,w:600,fill:col,st:1});
+    }});
+  // ② 点保持「赭=西 / 绿=东」配色(原密度叙事不变),区块只作叠加
+  D.points.forEach(p=>{const c=p.region==='west'?'#b0673a':'#5a7d6f';const ci=E('circle',{cx:sx(p.x),cy:sy(p.y),r:3.6,fill:c,'fill-opacity':0.5,stroke:'#fff','stroke-width':0.5});const ti=E('title',{});ti.textContent=p.cn+' · '+p.wv+(p.region==='east'?' · 东':' · 西');ci.appendChild(ti);svg.appendChild(ci);});
+  // region cards
+  const rw=document.getElementById('regs');
+  D.regions.forEach((rg,i)=>{
+    const chips=rg.members.slice(0,8).map(cn=>idByCn[cn]?`<a class="chip" href="kg-style-detail.html?id=${idByCn[cn]}">${cn}</a>`:`<span class="chip">${cn}</span>`).join('');
+    const more=rg.n>8?`<span class="more">+${rg.n-8}</span>`:'';
+    rw.appendChild($(`<div class="reg" style="border-left-color:${PAL[i%6]}">
+      <div class="rh"><span class="code" style="background:${PAL[i%6]}">${rg.id}</span><a class="rn" href="kg-worldview-region.html?id=${rg.id}" style="text-decoration:none;color:inherit">${rg.name} <span style="font-family:var(--mono);font-size:11px;color:${PAL[i%6]}">区志→</span></a><span class="alt">${rg.alt}</span></div>
+      <div class="q">${rg.q}</div>
+      <div class="ess">${rg.essence}</div>
+      <span class="psy">${rg.psy}</span>
+      <div class="meta"><span>坐标 (${rg.cx.toFixed(2)}, ${rg.cy.toFixed(2)})</span><span>风格 ${rg.n}</span><span><span class="w">西 ${rg.west}</span> / <span class="e">东 ${rg.east}</span></span></div>
+      <div class="mem">${chips}${more}</div>
+    </div>`));
+  });
+}).catch(e=>{document.getElementById('regs').innerHTML='<div style="padding:20px;color:#a89f8f">加载失败(需服务器):'+e+'</div>';});
+</script>
+</body></html>

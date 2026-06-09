@@ -1,0 +1,38 @@
+{
+ "meta":{
+  "title":"aha 艺术绘画知识图谱 · 权威本体(Ontology)",
+  "version":"V3.1",
+  "note":"这是图谱的'说明书':定义全部节点类型与边类型,每条边给定义域→值域、逆关系、有向/对称、基数、来源/置信约定。实时计数见 kg_v3_export.json。",
+  "thesis":"风格 = 世界观沿生成链的投影;节点=实体,边=可考关系。"
+ },
+ "node_types":[
+  {"key":"Style","cn":"风格","id_prefix":"STYLE.*","n":202,"props":["cn","en","wv","coord{rep_exp,struct_perc}","lore.vector(4轴E向量)","lore.lang7(7大构成)","essence","def","def_src","people","motifs","voice"],"desc":"涌现的命名区,生成链的投影。图谱的中心节点。"},
+  {"key":"WorldviewRegion","cn":"世界观区","id_prefix":"WV1–WV6","n":6,"props":["name","color","centroid","alt","essence"],"desc":"两条真轴(再现-表现⊥结构-感知)上数据发现的6个立场区=链条的根。"},
+  {"key":"Artist","cn":"艺术家","id_prefix":"ARTIST.*","n":276,"props":["wv点云","styles","trajectory","works(带xy)","affect(VAD)","lang(7数值)","teachers/students/peers"],"desc":"风格的实例/生成源;深度考究101,余者继承所属风格。"},
+  {"key":"SubjectAtom","cn":"题材原子","id_prefix":"SUBJECT.*","n":614,"props":["cn","category(10类)","desc"],"desc":"画什么——题材层,10类目614原子(含96风格母题扩充)。"},
+  {"key":"LanguageAxis","cn":"语言轴/原子","id_prefix":"LANG.*","n":"7轴+401原子","props":["axis(low/high极点)","atoms","psy"],"desc":"怎么画——7大构成,每维一条0→1连续轴。"},
+  {"key":"AffectAnchor","cn":"情绪锚点","id_prefix":"AFFECT.*","n":14,"props":["vad{valence,arousal,dominance}","examples"],"desc":"画外音的情绪坐标——VAD空间14锚点(开集)。"},
+  {"key":"SubtextAtom","cn":"画外音原子","id_prefix":"VOICE.*","n":197,"props":["cn","psy","voice_type(4声部)"],"desc":"意味着什么——画外音层的意义/象征/叙事/哲学原子。"},
+  {"key":"Artwork","cn":"作品","id_prefix":"m*(slug)","n":119,"props":["media","subject","style","reading","language7","affect(VAD)","voiceover","fused"],"desc":"人类公共领域真迹;VLM 6维系统读图的载体。"}
+ ],
+ "edge_types":[
+  {"key":"parent","cn":"承自","domain":"Style","range":"Style","directed":true,"inverse":"孕育(nurtures)","cardinality":"多对多","n":208,"provenance":"两风格在世界观四轴的实测位移(why)","conf":"high/mid/low"},
+  {"key":"influence","cn":"影响","domain":"Style","range":"Style","directed":true,"inverse":"受其影响","cardinality":"多对多","n":171,"provenance":"轴位移/共享语言论证(why)","conf":"high/mid/low"},
+  {"key":"against","cn":"对抗","domain":"Style","range":"Style","directed":false,"inverse":"对抗(对称)","cardinality":"多对多","n":95,"provenance":"在某轴上分居两端的对立论证","conf":"mid"},
+  {"key":"in_region","cn":"属于区","domain":"Style","range":"WorldviewRegion","directed":true,"inverse":"含风格","cardinality":"多对一","n":202,"provenance":"vector最近质心(k-means)","conf":"high(97%干净,6边界近平局)"},
+  {"key":"depicts","cn":"表现题材","domain":"Style","range":"SubjectAtom","directed":true,"inverse":"被表现于","cardinality":"多对多","n":392,"provenance":"风格 lore.motifs 干净匹配题材原子","conf":"168/202风格覆盖(余为题材词表外母题)"},
+  {"key":"language_vector","cn":"语言指纹","domain":"Style","range":"LanguageAxis(×7)","directed":true,"inverse":"—","cardinality":"一对七(数值)","n":202,"provenance":"lore.lang7散文按极点词表打分;5/7维经艺术家实测验证","conf":"造型/光影/色彩/笔触/构图 r0.33–0.60;空间/边缘标⚠"},
+  {"key":"evokes","cn":"意指画外音","domain":"Style","range":"AffectAnchor","directed":true,"inverse":"被意指于","cardinality":"多对一","n":92,"provenance":"风格VAD(代表艺术家/作品)最近邻∪人工原子styles","conf":"92/202(余无独立情绪源)"},
+  {"key":"practices","cn":"实践(居于/跨越/立区)","domain":"Artist","range":"Style","directed":true,"inverse":"代表人物","cardinality":"多对多","n":"—","provenance":"作者考据;三姿态居于/跨越/立区","conf":"high"},
+  {"key":"taught","cn":"师承","domain":"Artist","range":"Artist","directed":true,"inverse":"受教于","cardinality":"多对多","n":42,"provenance":"teachers/students消解到id,双向去重逆向补全","conf":"high(均指真实节点)"},
+  {"key":"peer","cn":"同侪","domain":"Artist","range":"Artist","directed":false,"inverse":"同侪(对称)","cardinality":"多对多","n":96,"provenance":"peers消解到id","conf":"high"},
+  {"key":"reads","cn":"读图(题材/语言/情绪)","domain":"Artwork","range":"Style|SubjectAtom|AffectAnchor","directed":true,"inverse":"—","cardinality":"一对多","n":119,"provenance":"VLM mimo-v2.5 6维系统读图","conf":"模型相关,带证据链,人工VAD校准r≈0.33>像素0.20"}
+ ],
+ "conventions":{
+  "ids":"每节点全局唯一id;名字→id经规范化索引(kg_artist_index.json)解析,深化后须重建。",
+  "bidirectional":"承自↔孕育、师承↔受教 互为逆;对抗/同侪 对称;一致性已校验。",
+  "provenance":"风格 def_src 202/202;关系边带 why 论证;VLM边带证据链。",
+  "confidence":"风格带conf;关系边c=high/mid/low;派生边注明覆盖率与验证r,不可靠处显式标⚠不强连。",
+  "falsifiability":"世界观2轴经PCA/聚类自检;旧'12东西镜像'被证伪撤回;L3'饱和→唤起r0.78'查出循环已撤。"
+ }
+}

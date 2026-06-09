@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 风格向量定位 · 以俄罗斯巡回画派为标杆</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:34px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(21px,4vw,30px);font-weight:600;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.7;max-width:720px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .sec{margin-top:32px}.sec-h{font-family:var(--serif);font-size:19px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:8px}
+  .sec-d{font-size:12.5px;color:var(--ink-mute);margin-bottom:12px;line-height:1.6}.sec-d b{color:var(--ink-soft)}
+  /* 4 轴方法论 */
+  .axdef{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 14px;margin-bottom:8px}
+  .axdef .an{font-family:var(--serif);font-size:14px;font-weight:600}
+  .axdef .poles{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin:5px 0}
+  .axdef .ad{font-size:12px;color:var(--ink-soft);line-height:1.6}
+  /* 标杆 8维 */
+  .ex{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;border-top:4px solid var(--accent)}
+  .ex .eh{font-family:var(--serif);font-size:20px;font-weight:600}.ex .een{font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-left:8px}
+  .dim{margin-top:10px}.dim .dl{font-family:var(--mono);font-size:10px;color:var(--accent);font-weight:600}
+  .dim .dv{font-size:12.5px;color:var(--ink-soft);line-height:1.65;margin-top:2px}.dim .dv b{color:var(--ink)}
+  .vec{margin-top:5px}
+  .vrow{display:flex;align-items:center;gap:9px;margin:5px 0;font-size:11.5px}
+  .vrow .vl{width:34px;text-align:right;color:var(--ink-soft);font-family:var(--mono);font-size:10px}
+  .vrow .vr{width:34px;color:var(--ink-soft);font-family:var(--mono);font-size:10px}
+  .vt{flex:1;height:7px;background:var(--paper-2);border-radius:4px;position:relative}
+  .vd{position:absolute;top:50%;width:13px;height:13px;border-radius:50%;background:var(--accent);transform:translate(-50%,-50%);border:2px solid #fff}
+  .vnum{width:30px;font-family:var(--mono);font-size:10px;color:var(--ink-mute)}
+  /* 散点 */
+  .plotwrap{background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px;overflow:hidden}
+  svg{display:block;width:100%;height:auto}
+  .axhint{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--ink-faint);padding:0 6px;margin-top:3px}
+  .legend{text-align:center;font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);margin-top:7px}
+  .legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin:0 3px -1px 10px}
+  .back{display:block;text-align:center;margin-top:40px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 风格向量定位</div>
+  <h1>每个风格定位在哪?以巡回画派为标杆</h1>
+  <p class="lead">沿用你 V2 原图<b>以俄罗斯巡回画派为例</b>的 8 维 schema,其中 <b>E 风格轴向量(4 轴)</b> 是最适合匹配与生成的部分。这页给出<b>定位方法</b>、巡回画派<b>标杆全维</b>、以及已考究风格的<b>向量散点</b>。</p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">E向量散点</b></div>
+
+  <div style="max-width:720px;margin:14px auto 0;background:var(--accent-soft);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:11px 14px;font-size:12.5px;line-height:1.7;color:var(--ink-soft)">
+    <b>E 风格轴向量 ≠ 世界坐标。</b> 这页的 4 条轴是<b>画面配方</b>——可观测、可生成、可检索的画面表层属性,挂在风格节点上。它回答"<b>画面长什么样、该怎么做</b>"。另一层 <a href="kg-worldview.html" style="color:var(--accent);text-decoration:none">世界观层(世界坐标)→</a> 是<b>意义坐标</b>,回答"<b>把世界看成什么</b>",是风格的挂载点。两层都有一条「再现↔表现」轴:在这里它指<b>画面有多客观/主观</b>(输出特征);在世界观层它指<b>对"真实可否被再现"的认识论立场</b>(世界观)。同词,不同海拔。
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">① 怎么定位:4 条轴的操作定义</div>
+    <div class="sec-d">每条轴 0→1,给两端可判别的锚点;定位时问自己这 4 个问题即可。</div>
+    <div id="axes"></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">② 标杆样例 · 俄罗斯巡回画派(完整 8 维)</div>
+    <div class="sec-d">这是"每个风格该怎么做"的范本——A 身份 / B 锚点 / C 家族 / D 世界模型 / <b>E 风格轴向量★</b> / F 主题叙事 / G 语言偏好 / H 画外音价值。</div>
+    <div class="ex" id="exemplar"></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">③ 向量散点 · 已考究风格落点</div>
+    <div class="sec-d">横轴 <b>再现↔表现</b>,纵轴 <b>秩序↔张力</b>,点大小 ∝ <b>节制↔强度</b>(越大越强烈);<b>按 6 个世界观区着色</b>(V3)。这是 4 维向量的二维投影,直观看"谁在哪、同区是否聚拢"。</div>
+    <div class="plotwrap"><svg id="plot" viewBox="0 0 640 520" preserveAspectRatio="xMidYMid meet"></svg></div>
+    <div class="axhint"><span>← 再现</span><span>再现 ↔ 表现</span><span>表现 →</span></div>
+    <div class="legend">纵:上=张力 / 下=秩序 · 点大小=强度 · 颜色=世界观区 <i style="background:#b0673a"></i>WV1 <i style="background:#9a7b3a"></i>WV2 <i style="background:#5a7d6f"></i>WV3 <i style="background:#5b7596"></i>WV4 <i style="background:#8a5a7a"></i>WV5 <i style="background:#4a6a8a"></i>WV6</div>
+  </div>
+
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const SVGNS="http://www.w3.org/2000/svg";
+const AXDEF=[
+ {n:"再现 ↔ 表现",l:"再现",r:"表现",d:"忠于眼睛所见(客观再现)↔ 忠于内心所感(主观/抽象)。问:画家是在'记录世界'还是在'改造世界'?"},
+ {n:"结构 ↔ 感知",l:"结构",r:"感知",d:"理性建构/几何骨架 ↔ 感官知觉/光色印象。问:画面靠'构造'还是靠'看见'成立?"},
+ {n:"秩序 ↔ 张力",l:"秩序",r:"张力",d:"平衡稳定规整 ↔ 动势冲突不安。问:画面让人'安定'还是'紧张'?"},
+ {n:"节制 ↔ 强度",l:"节制",r:"强度",d:"低饱和内敛克制 ↔ 高能量浓烈外放。问:色彩/对比/笔触是'压着'还是'放开'?"}
+];
+const ax=document.getElementById('axes');
+AXDEF.forEach(a=> ax.appendChild($(`<div class="axdef"><div class="an">${a.n}</div><div class="poles"><span>0 · ${a.l}</span><span>${a.r} · 1</span></div><div class="ad">${a.d}</div></div>`)));
+
+const EAST=new Set(["宋代山水","文人画","青绿山水","禅意绘画风格","敦煌壁画风格","浙派风格","吴派风格","八大山人风格","扬州八怪风格","海派风格","岭南画派风格","现代水墨风格"]);
+
+const WVC={WV1:'#b0673a',WV2:'#9a7b3a',WV3:'#5a7d6f',WV4:'#5b7596',WV5:'#8a5a7a',WV6:'#4a6a8a'};
+const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+Promise.all([
+  fetch('data/kg_style_exemplar.json').then(r=>r.json()),
+  fetch('data/kg_style_lore.json').then(r=>r.json()),
+  fetch('data/kg_style.json').then(r=>r.json()).catch(()=>({nodes:[]}))
+]).then(([ex,lore,sty])=>{
+  const wvByCn={}; (sty.nodes||[]).forEach(n=>{if(n.wv){wvByCn[n.cn]=n.wv; wvByCn[n.cn.replace('风格','')]=n.wv;}});
+  // exemplar
+  const E=document.getElementById('exemplar');
+  E.appendChild($(`<div><span class="eh">${ex.A_identity.cn}</span><span class="een">${ex.A_identity.en}</span></div>`));
+  const D=(l,v)=>E.appendChild($(`<div class="dim"><div class="dl">${l}</div><div class="dv">${v}</div></div>`));
+  D("A 身份",`${ex.A_identity.type} · ${ex.A_identity.level} · 别名 ${ex.A_identity.aka.join('、')}`);
+  D("B 历史锚点",`${ex.B_anchor.born}<br/>代表:<b>${ex.B_anchor.people.join(' · ')}</b> · 母题:${ex.B_anchor.motif} · 对抗:${ex.B_anchor.against}`);
+  D("C 风格家族",`${ex.C_family.big} · 邻:${ex.C_family.near.join('、')}`);
+  D("D 世界模型",`${ex.D_world_model.base} <span style="color:var(--ink-faint)">(倾向 ${ex.D_world_model.lean})</span>`);
+  // E vector bars
+  const ev=$(`<div class="dim"><div class="dl">E 风格轴向量 ★</div><div class="vec"></div></div>`);
+  const vc=ev.querySelector('.vec');
+  Object.entries(ex.E_vector).forEach(([k,v])=>{const [l,r]=k.split('-');vc.appendChild($(`<div class="vrow"><span class="vl">${l}</span><span class="vt"><span class="vd" style="left:${v*100}%"></span></span><span class="vr">${r}</span><span class="vnum">${v.toFixed(2)}</span></div>`));});
+  E.appendChild(ev);
+  D("F 主题与叙事",`${ex.F_theme.themes.join('、')} · 叙事:${ex.F_theme.narrative} · 不适合:${ex.F_theme.unfit.join('/')}`);
+  D("G 语言偏好",`色彩:${ex.G_language.color} · 用色:${ex.G_language.use} · 光影:${ex.G_language.light}`);
+  D("H 画外音·价值",`${ex.H_subtext.value}<br/><i style="color:var(--accent)">"${ex.H_subtext.voice}"</i>`);
+  D("代表作",ex.works_named.join(' · '));
+
+  // scatter
+  const items=(sty.nodes||[]).filter(n=>(n.lore||{}).vector).map(n=>({k:n.cn,v:n.lore.vector,wv:n.wv||null}));
+  const svg=document.getElementById('plot'),W=640,H=520,P=46;
+  const X=x=>P+x*(W-2*P), Y=y=>(H-P)-y*(H-2*P);
+  [0.25,0.5,0.75].forEach(g=>{
+    [['x',g],['y',g]].forEach(([t,gg])=>{const ln=document.createElementNS(SVGNS,'line');
+      if(t==='x'){ln.setAttribute('x1',X(gg));ln.setAttribute('y1',Y(0));ln.setAttribute('x2',X(gg));ln.setAttribute('y2',Y(1));}
+      else{ln.setAttribute('x1',X(0));ln.setAttribute('y1',Y(gg));ln.setAttribute('x2',X(1));ln.setAttribute('y2',Y(gg));}
+      ln.setAttribute('stroke','#ece7db');ln.setAttribute('stroke-width',1);svg.appendChild(ln);});
+  });
+  // 中线
+  items.forEach(it=>{
+    const x=X(it.v['再现-表现']), y=Y(it.v['秩序-张力']);
+    const r=5+it.v['节制-强度']*11;
+    const c=document.createElementNS(SVGNS,'circle');
+    c.setAttribute('cx',x);c.setAttribute('cy',y);c.setAttribute('r',r);
+    const col=it.wv?WVC[it.wv]:'#a89f8f';
+    c.setAttribute('fill',col);c.setAttribute('fill-opacity',0.42);c.setAttribute('stroke',col);c.setAttribute('stroke-width',1.3);
+    const tt=document.createElementNS(SVGNS,'title');tt.textContent=`${it.k}${it.wv?' · '+it.wv+' '+WVN[it.wv]:''} · 再现${it.v['再现-表现']} 结构${it.v['结构-感知']} 秩序张力${it.v['秩序-张力']} 强度${it.v['节制-强度']}`;c.appendChild(tt);
+    svg.appendChild(c);
+    const t=document.createElementNS(SVGNS,'text');t.setAttribute('x',x);t.setAttribute('y',y-r-2);t.setAttribute('text-anchor','middle');
+    t.setAttribute('font-family','Noto Serif SC,serif');t.setAttribute('font-size','9.5');t.setAttribute('fill','#4b463e');t.textContent=it.k.replace('风格','').replace('主义','');
+    svg.appendChild(t);
+  });
+}).catch(e=>{document.getElementById('exemplar').innerHTML='加载失败(需服务器):'+e;});
+</script>
+</body></html>

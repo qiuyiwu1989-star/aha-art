@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 我理解的知识图谱与标注(请确认)</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:40px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(23px,4vw,33px);font-weight:600;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:14px;line-height:1.7;max-width:700px;margin:6px auto}
+  .conf{text-align:center;font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);background:var(--accent-soft);border:1px solid #e5d3c2;border-radius:999px;padding:7px 16px;width:fit-content;margin:14px auto 0}
+  .q{color:#b06a3b;font-weight:600}
+  .sec{margin-top:44px}
+  .sec-h{font-family:var(--serif);font-size:21px;font-weight:500;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:6px}
+  .sec-h .en{font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-left:8px}
+  .sec-d{font-size:13px;color:var(--ink-mute);margin:6px 0 16px;line-height:1.6}
+  .fams{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  @media(max-width:860px){.fams{grid-template-columns:1fr 1fr}}
+  .fam{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;border-top:3px solid var(--accent)}
+  .fam .fn{font-family:var(--serif);font-size:17px;font-weight:600}
+  .fam .fq{font-size:11.5px;color:var(--ink-mute);margin:4px 0 9px;line-height:1.5}
+  .fam ul{list-style:none}.fam li{font-size:12px;color:var(--ink-soft);line-height:1.8}
+  .jsonbox{background:#1d1b18;border-radius:12px;padding:16px 18px;overflow:auto}
+  .jsonbox pre{font-family:var(--mono);font-size:12.5px;line-height:1.9;color:#e7ddc8;white-space:pre-wrap;word-break:break-word}
+  .jk{color:#d9a679}.jv{color:#bcd0c4}.jhi{color:#e8b06a;font-weight:500}
+  .twostage{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+  .stg{flex:1;min-width:220px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 13px;font-size:12.5px;color:var(--ink-soft)}
+  .stg b{color:var(--ink)}
+  .coord{max-width:720px;margin:0 auto}
+  .axis-x{text-align:center;font-family:var(--serif);font-size:14px;color:var(--ink-soft);margin-bottom:8px}.axis-x b{color:var(--accent)}
+  .colhead{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-bottom:6px}.colhead div{text-align:center;font-family:var(--mono);font-size:11px;color:#9a5a2f}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .quad{background:#fff;padding:16px;min-height:118px}.quad .qh{font-family:var(--serif);font-size:15px;font-weight:600}.quad .qk{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin:3px 0 9px}.quad .qe{font-size:12.5px;color:var(--ink-soft);line-height:1.8}
+  .wnode{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;padding:11px 14px}
+  .whead{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .wcode{font-family:var(--mono);font-size:12px;font-weight:600;color:#fff;background:var(--accent);border-radius:6px;padding:2px 8px}
+  .wname{font-family:var(--serif);font-size:15px;font-weight:500}.wq{font-size:12px;color:var(--ink-mute);margin-left:auto}
+  .wchild{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;padding-left:4px}
+  .atom{font-size:12.5px;color:var(--ink-soft);background:var(--paper-2);border-radius:6px;padding:3px 10px}
+  .schema{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:760px){.schema{grid-template-columns:1fr}}
+  .attr{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;border-top:3px solid #5a7d6f}
+  .attr .al{font-family:var(--mono);font-size:11px;color:#5a7d6f}.attr .an{font-family:var(--serif);font-size:15px;font-weight:600;margin:2px 0 7px}.attr .an .e{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);font-weight:400}
+  .attr ul{list-style:none}.attr li{font-size:12.5px;color:var(--ink-soft);line-height:1.7}
+  .vecrow{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px}.vecrow .vl{width:30px;text-align:right;color:var(--ink-soft)}.vecrow .vr{width:30px;color:var(--ink-soft)}
+  .vectrack{flex:1;height:6px;background:var(--paper-2);border-radius:3px;position:relative}.vecdot{position:absolute;top:50%;width:12px;height:12px;border-radius:50%;background:#5a7d6f;transform:translate(-50%,-50%);border:2px solid #fff}
+  .back{display:block;text-align:center;margin-top:40px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .home-fab:hover{color:var(--accent)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 我对你们 KG + 标注的理解</div>
+  <h1>我理解的「艺术知识图谱 + 标注方式」</h1>
+  <div class="breadcrumb" style="text-align:center;font-family:monospace;font-size:11px;color:#a89f8f;margin-top:8px"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-apply">应用·工具</a> › <b style="color:var(--ink-soft)">理解笔记</b></div>
+  <p class="lead">基于你给的三张总览图 + 一张规范图。<b>标 <span class="q">?</span> 的是我不确定、需你确认或补充的。</b>(此页纯静态,任何设备都能开)</p>
+  <div class="conf">⚠️ AI 理解草稿 · 请逐块核对</div>
+
+  <!-- 1 五大节点族 -->
+  <div class="sec">
+    <div class="sec-h">① 五大节点族(图谱顶层)<span class="en">5 node families</span></div>
+    <div class="sec-d">图谱顶层是 5 个"族",每族回答一个问题。一幅画 = 在这 5 个族里各自连到对应节点。</div>
+    <div class="fams">
+      <div class="fam"><div class="fn">画外音</div><div class="fq">意义与动机:我为什么这样画</div><ul><li>存在感知型</li><li>情绪表达型</li><li>叙事记忆型</li><li>价值判断批判型</li><li>元思想型</li></ul></div>
+      <div class="fam"><div class="fn">世界观</div><div class="fq">世界本体:世界在我看来是什么样</div><ul><li>再现 ↔ 表现</li><li>在场者(东)↔ 观察者(西)</li><li>稳定 ↔ 流动</li><li>(详见 ③)</li></ul></div>
+      <div class="fam"><div class="fn">风格/流派</div><div class="fq">表达策略:我用什么方法观察/组织世界</div><ul><li>世界模型 W1–W6</li><li>风格系统</li><li>风格原子流(④/⑤)</li></ul></div>
+      <div class="fam"><div class="fn">题材</div><div class="fq">切入点:我从世界哪一面进入</div><ul><li>人物与主体</li><li>自然与山水</li><li>日常与生活场景</li><li>社会与系统</li></ul></div>
+      <div class="fam"><div class="fn">绘画语言</div><div class="fq">表达工具:我具体如何画</div><ul><li>构图与组织</li><li>透视与空间</li><li>形状与空间</li><li>光影与明暗</li><li>色彩系统</li><li>笔触与肌理</li><li>边缘与节奏</li></ul></div>
+    </div>
+  </div>
+
+  <!-- 2 单幅 JSON -->
+  <div class="sec">
+    <div class="sec-h">② 单幅作品标注 · 6 字段 JSON<span class="en">你们的标注方式</span></div>
+    <div class="sec-d">VLM 按知识图谱生成的结构化标注,已从"标签法"升级为"专业描述法 + JSON"。下面是你给的真实案例(梵高式花园)。</div>
+    <div class="twostage">
+      <div class="stg"><b>第一阶段</b> · 基于知识图谱的标签法</div>
+      <div class="stg"><b>第二阶段(现行)</b> · 基于知识图谱的专业描述法 + JSON 标签</div>
+    </div>
+    <div class="jsonbox"><pre>{
+  <span class="jk">"绘画类型"</span>: <span class="jv">"油画"</span>,
+  <span class="jk">"画面题材"</span>: <span class="jv">"风景, 花园/田园风光"</span>,
+  <span class="jk">"绘画风格"</span>: <span class="jv">"后印象主义,表现主义倾向,粗犷笔触,浓烈色彩,主观情感"</span>,
+  <span class="jk">"具体画面描述"</span>: <span class="jv">"…一个充满生机的花园/山坡草甸。<span class="jhi">[远景]</span>浅蓝色天空或远山;<span class="jhi">[近景]</span>茂盛的草地与灌木丛;<span class="jhi">[左侧近景]</span>茶绿褐色的浓密灌木,边缘深紫勾勒;<span class="jhi">[画面中央偏左]</span>黄绿到赭石色的丰富渐变…对角线构图引导视线从左下到右上的繁茂景象。"</span>,
+  <span class="jk">"绘画语言"</span>: <span class="jv">"对角线构图,简化造型,色彩透视,对比色系,厚涂与勾笔触,破碎边缘与节奏,块面明暗对比"</span>,
+  <span class="jk">"画外音"</span>: <span class="jv">"阳光在笔触间跳跃,草木在色彩中低语,这生机勃勃的瞬间,是灵魂深处的回响。"</span>
+}</pre></div>
+    <div class="sec-d" style="margin-top:10px">💡 我注意到「具体画面描述」里把<b>空间区域(远景/近景/左侧/中央偏左)做了高亮</b>——等于带了"画面区域"信息。<span class="q">?这是有意的标注约定吗?</span></div>
+  </div>
+
+  <!-- 3 世界坐标 -->
+  <div class="sec">
+    <div class="sec-h">③ 「世界观」内核:风格世界坐标<span class="en">World Coordinate</span></div>
+    <div class="sec-d">横轴 <b>再现↔表现</b>,列 <b>在场者(东方)↔观察者(西方)</b>,纵轴 <b>稳定↔流动</b>。</div>
+    <div class="coord">
+      <div class="axis-x"><b>再现</b> ←——————→ <b>表现</b></div>
+      <div class="colhead"><div>在场者 · 东方</div><div>观察者 · 西方</div></div>
+      <div class="grid2">
+        <div class="quad"><div class="qh">象征 · 意象</div><div class="qk">稳定 × 在场者(东)</div><div class="qe">文人画 · 宗教壁画/经画</div></div>
+        <div class="quad"><div class="qh">古典 · 再现</div><div class="qk">稳定 × 观察者(西)</div><div class="qe">文艺复兴 · 新古典 · 写实主义</div></div>
+        <div class="quad"><div class="qh">强表现 · 抽象</div><div class="qk">流动 × 在场者(东)</div><div class="qe">表现主义 · 抽象表现 · 禅画</div></div>
+        <div class="quad"><div class="qh">感知 · 再现</div><div class="qk">流动 × 观察者(西)</div><div class="qe">印象派 · 后印象派</div></div>
+      </div>
+      <div style="text-align:center;font-family:var(--mono);font-size:11px;color:#9a5a2f;margin-top:6px">纵轴:上 稳定 / 下 流动</div>
+    </div>
+  </div>
+
+  <!-- 4 W树 -->
+  <div class="sec">
+    <div class="sec-h">④ 「风格/流派」:世界模型 → 风格系统<span class="en">W1–W6</span></div>
+    <div class="sec-d">西方 6 个一级世界模型(下属为风格系统)。东方谱系仍需你补全 <span class="q">?</span></div>
+    <div class="wnode"><div class="whead"><span class="wcode">W1</span><span class="wname">再现·理性世界模型</span><span class="wq">世界如何被准确再现</span></div><div class="wchild"><span class="atom">古希腊—古罗马传统</span><span class="atom">文艺复兴</span><span class="atom">北方文艺复兴</span><span class="atom">学院派写实</span><span class="atom">新古典主义</span><span class="atom">现实主义</span><span class="atom">照相/超写实</span></div></div>
+    <div class="wnode"><div class="whead"><span class="wcode">W2</span><span class="wname">戏剧·情感世界模型</span><span class="wq">世界如何被感受</span></div><div class="wchild"><span class="atom">巴洛克</span><span class="atom">洛可可</span><span class="atom">浪漫主义</span><span class="atom">象征主义</span><span class="atom">社会现实主义</span></div></div>
+    <div class="wnode"><div class="whead"><span class="wcode">W3</span><span class="wname">感知·经验世界模型</span><span class="wq">世界如何被"看见"</span></div><div class="wchild"><span class="atom">印象派</span><span class="atom">新印象派(点彩)</span><span class="atom">后印象派</span><span class="atom">纳比派</span><span class="atom">魔幻现实主义</span></div></div>
+    <div class="wnode"><div class="whead"><span class="wcode">W4</span><span class="wname">结构·形式世界模型</span><span class="wq">世界如何被"构成"</span></div><div class="wchild"><span class="atom">立体主义</span><span class="atom">构成主义</span><span class="atom">新造型主义</span><span class="atom">几何抽象</span><span class="atom">极简主义</span><span class="atom">硬边绘画</span><span class="atom">欧普艺术</span></div></div>
+    <div class="wnode"><div class="whead"><span class="wcode">W5</span><span class="wname">潜意识·观念世界模型</span><span class="wq">世界是否真实</span></div><div class="wchild"><span class="atom">达达主义</span><span class="atom">超现实主义</span><span class="atom">自动主义</span><span class="atom">抽象表现主义</span><span class="atom">色域绘画</span></div></div>
+    <div class="wnode"><div class="whead"><span class="wcode">W6</span><span class="wname">当代·系统世界模型</span><span class="wq">世界是否还可被"绘画"</span></div><div class="wchild"><span class="atom">波普艺术 ?</span><span class="atom">观念艺术 ?</span><span class="atom">(待补) ?</span></div></div>
+  </div>
+
+  <!-- 5 8维 -->
+  <div class="sec">
+    <div class="sec-h">⑤ 风格节点定义 · 8 维 schema<span class="en">以俄罗斯巡回画派为例</span></div>
+    <div class="sec-d">给"风格原子流"本身的定义(不同于上面给单幅作品的 6 字段)。其中 <b>E 风格轴向量</b> 是 4 条连续轴,最适合做匹配。</div>
+    <div class="schema">
+      <div class="attr"><div class="al">A</div><div class="an">基础身份 <span class="e">Identity</span></div><ul><li>原子流名 CN/EN</li><li>类型:风格原子流 Style Atom</li><li>层级:风格层</li><li>可组合性</li></ul></div>
+      <div class="attr"><div class="al">B</div><div class="an">历史锚点 <span class="e">Anchor</span></div><ul><li>历史身世</li><li>代表人物(列宾/苏里科夫…)</li><li>代表母题</li><li>对抗对象(学院派)</li></ul></div>
+      <div class="attr"><div class="al">C</div><div class="an">风格家族 <span class="e">Family</span></div><ul><li>大类:现实主义 → 社会/道德/叙事型</li><li>相邻绑定子流</li></ul></div>
+      <div class="attr"><div class="al">D</div><div class="an">世界模型 <span class="e">World Model</span></div><ul><li>归属 W 系(如 W1 再现·理性) <span class="q">?</span></li></ul></div>
+      <div class="attr"><div class="al">E</div><div class="an">风格轴向量 ★ <span class="e">Style Vector</span></div>
+        <div class="vecrow"><span class="vl">再现</span><span class="vectrack"><span class="vecdot" style="left:22%"></span></span><span class="vr">表现</span></div>
+        <div class="vecrow"><span class="vl">结构</span><span class="vectrack"><span class="vecdot" style="left:30%"></span></span><span class="vr">感知</span></div>
+        <div class="vecrow"><span class="vl">秩序</span><span class="vectrack"><span class="vecdot" style="left:62%"></span></span><span class="vr">张力</span></div>
+        <div class="vecrow"><span class="vl">节制</span><span class="vectrack"><span class="vecdot" style="left:28%"></span></span><span class="vr">强度</span></div>
+      </div>
+      <div class="attr"><div class="al">F</div><div class="an">主题与叙事 <span class="e">Theme &amp; Narrative</span></div><ul><li>主题:社会现实/人物群像/劳动/苦难</li><li>叙事模式:戏剧性/情绪性/道德指向</li><li>不适合主题</li></ul></div>
+      <div class="attr"><div class="al">G</div><div class="an">绘画语言偏好 <span class="e">Language Bias</span></div><ul><li>色彩:暗色调/泥土色域/低饱和</li><li>用色:写实自然/克制</li><li>光影:自然光/情境光</li></ul></div>
+      <div class="attr"><div class="al">H</div><div class="an">画外音·价值 <span class="e">Subtext &amp; Values</span></div><ul><li>价值取向/言外之意(社会良知…)</li></ul></div>
+    </div>
+  </div>
+
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+</body></html>

@@ -1,0 +1,64 @@
+{
+ "node_schema": {
+  "required": [
+   "id",
+   "cn",
+   "en",
+   "layer",
+   "definition"
+  ],
+  "graph": [
+   "coord_basis(5轴)",
+   "edges[]",
+   "aka[]"
+  ],
+  "detail_page": [
+   "definition",
+   "people",
+   "period",
+   "representative_works[]",
+   "sources[]"
+  ],
+  "classify": [
+   "works[](artwork_id 级归属边)"
+  ]
+ },
+ "edge_ontology": [
+  {
+   "t": "belong",
+   "cn": "隶属",
+   "desc": "→上位(风格→世界模型;原子→大类)。IS-A/层级"
+  },
+  {
+   "t": "temporal",
+   "cn": "时间·影响",
+   "desc": "风格→风格 的历史前驱/后继。数据支持:年代⊥视觉(可独立成边)"
+  },
+  {
+   "t": "against",
+   "cn": "对抗",
+   "desc": "美学对立/反动"
+  },
+  {
+   "t": "expresses/uses/evokes",
+   "cn": "跨层·关联",
+   "desc": "风格↔题材/语言/画外音(由 关联风格/心理感受 列规范化而来)"
+  },
+  {
+   "t": "aka",
+   "cn": "近义/变体",
+   "desc": "合并的同义节点"
+  },
+  {
+   "t": "cooccurs",
+   "cn": "共现(派生)",
+   "desc": "★从作品语料统计派生:两节点常同现→建边。这是让边'经得起推敲'的关键——边由数据长出,不靠手画"
+  },
+  {
+   "t": "instance_of",
+   "cn": "作品归属",
+   "desc": "画 →节点(归类点);反向=该节点的代表作集合"
+  }
+ ],
+ "principle": "专业 KG 的边应尽量从作品语料派生/验证(共现、影响链),而非全靠手工断言。这才经得起推敲。"
+}

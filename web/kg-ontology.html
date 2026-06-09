@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 知识图谱 · 权威本体(Ontology)</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1000px;margin:0 auto;padding:30px 16px 80px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(22px,4.4vw,32px);font-weight:700;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.75;max-width:720px;margin:8px auto}.lead b{color:var(--ink-soft)}.lead code{font-family:var(--mono);font-size:11px}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .sec{margin-top:30px}
+  .sec-h{font-family:var(--serif);font-size:18px;font-weight:600;border-bottom:2px solid var(--accent);padding-bottom:7px;margin-bottom:6px}
+  .sec-d{font-size:13px;color:var(--ink-mute);margin:8px 0 12px;line-height:1.7}
+  .ntgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}@media(max-width:640px){.ntgrid{grid-template-columns:1fr}}
+  .nt{background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 14px;border-left:3px solid var(--accent)}
+  .nt .nh{display:flex;align-items:baseline;gap:8px}
+  .nt .ncn{font-family:var(--serif);font-size:16px;font-weight:700}
+  .nt .nk{font-family:var(--mono);font-size:10px;color:#fff;background:var(--accent);border-radius:4px;padding:1px 6px}
+  .nt .nn{font-family:var(--mono);font-size:11px;color:var(--green);margin-left:auto;font-weight:600}
+  .nt .nid{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-top:3px}
+  .nt .nd{font-size:12px;color:var(--ink-soft);line-height:1.6;margin-top:6px}
+  .nt .np{font-size:10.5px;color:var(--ink-mute);margin-top:6px;line-height:1.5}.nt .np b{color:var(--ink-soft);font-family:var(--mono);font-size:10px}
+  .etwrap{overflow-x:auto}
+  table.et{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:10px;overflow:hidden;min-width:760px}
+  table.et th,table.et td{padding:8px 9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  table.et th{font-family:var(--mono);font-size:10px;color:var(--ink-mute);background:var(--paper-2)}
+  table.et .ek{font-family:var(--serif);font-weight:600;color:var(--ink)}
+  table.et .arrow{font-family:var(--mono);font-size:11px;color:var(--accent)}
+  table.et .n{font-family:var(--mono);font-weight:600;color:var(--green);text-align:right}
+  table.et small{color:var(--ink-faint)}
+  .conv{background:#fff;border:1px solid var(--line);border-left:4px solid var(--green);border-radius:10px;padding:12px 15px;font-size:12.5px;line-height:1.85;color:var(--ink-soft)}.conv b{color:var(--ink)}
+  .dl{display:inline-block;font-family:var(--mono);font-size:12px;color:var(--accent);border:1px solid var(--accent);border-radius:8px;padding:6px 12px;text-decoration:none;margin-top:8px}
+  .back{display:block;text-align:center;margin-top:38px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 本体</div>
+  <h1>图谱说明书 · 权威本体</h1>
+  <p class="lead">一张知识图谱 = <b>节点(实体)+ 边(关系)</b>。这页是它的<b>正式 schema</b>:全部 <b id="nn">…</b> 类节点 + <b id="en">…</b> 类边,每条边给清<b>定义域→值域、逆关系、有向/对称、基数、来源/置信</b>。单一事实源 <code>data/kg_ontology.json</code>。</p>
+  <div class="breadcrumb"><a href="home.html">🏠 首页</a> › <a href="kg-v2.html">🧭 艺术图谱</a> › <a href="kg-v2.html#g-apply">应用·工具</a> › <b style="color:var(--ink-soft)">权威本体</b></div>
+
+  <div class="sec"><div class="sec-h">① 总览图 · 节点类型 × 边类型</div>
+    <div class="sec-d">schema 级示意:每个方块=一类节点,每条箭头=一类关系(标在线上)。这是整张图谱的"骨架"。</div>
+    <div class="card" style="overflow-x:auto"><div id="schema"></div></div>
+  </div>
+
+  <div class="sec"><div class="sec-h">② 节点类型 · Node Types</div>
+    <div class="ntgrid" id="nodes"></div>
+  </div>
+
+  <div class="sec"><div class="sec-h">③ 边类型 · Edge Types(关系 schema)</div>
+    <div class="sec-d">域=起点类型,值域=终点类型;<b>逆</b>=反向关系名;<b>向</b>=有向/对称;<b>基数</b>=多对多/多对一等。</div>
+    <div class="etwrap"><table class="et" id="edges"></table></div>
+  </div>
+
+  <div class="sec"><div class="sec-h">④ 约定 · Conventions</div>
+    <div class="conv" id="conv"></div>
+    <a class="dl" href="data/kg_ontology.json" target="_blank">⬇ 下载本体 kg_ontology.json</a> · <a class="dl" href="kg-data.html">数据资产/实时计数 →</a>
+  </div>
+
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+fetch('data/kg_ontology.json').then(r=>r.json()).then(O=>{
+  document.getElementById('nn').textContent=O.node_types.length;
+  document.getElementById('en').textContent=O.edge_types.length;
+  // ① schema 总览图
+  drawSchema(O);
+  const ng=document.getElementById('nodes');
+  O.node_types.forEach(t=>ng.appendChild($(`<div class="nt"><div class="nh"><span class="ncn">${t.cn}</span><span class="nk">${t.key}</span><span class="nn">${t.n}</span></div><div class="nid">${t.id_prefix}</div><div class="nd">${t.desc}</div><div class="np"><b>属性</b> ${(t.props||[]).join(' · ')}</div></div>`)));
+  const et=document.getElementById('edges');
+  et.innerHTML='<thead><tr><th>关系</th><th>域 → 值域</th><th>向</th><th>逆关系</th><th>基数</th><th>n</th><th>来源 / 置信</th></tr></thead>';
+  const tb=document.createElement('tbody');
+  O.edge_types.forEach(e=>{tb.appendChild($(`<tr><td class="ek">${e.cn}<br><small>${e.key}</small></td><td><span class="arrow">${e.domain} → ${e.range}</span></td><td>${e.directed?'有向':'对称'}</td><td>${e.inverse||'—'}</td><td>${e.cardinality||'—'}</td><td class="n">${e.n||'—'}</td><td><small>${e.provenance||''}${e.conf?'<br>置信:'+e.conf:''}</small></td></tr>`));});
+  et.appendChild(tb);
+  const c=O.conventions;
+  document.getElementById('conv').innerHTML=Object.entries(c).map(([k,v])=>`<div>· <b>${({ids:'唯一ID',bidirectional:'双向一致',provenance:'来源',confidence:'置信',falsifiability:'可证伪'})[k]||k}</b>:${v}</div>`).join('');
+}).catch(e=>{document.getElementById('nodes').innerHTML='<div style="color:#a89f8f">需服务器加载</div>';});
+
+function drawSchema(O){
+  const W=760,H=470;
+  const POS={WorldviewRegion:[112,72],Style:[380,205],Artist:[132,340],SubjectAtom:[648,84],
+    LanguageAxis:[678,210],AffectAnchor:[648,336],SubtextAtom:[470,372],Artwork:[300,432]};
+  const COLR={Style:'#b0673a',WorldviewRegion:'#9a7b3a',Artist:'#5b7596',SubjectAtom:'#5a7d6f',
+    LanguageAxis:'#8a6a3a',AffectAnchor:'#8a5a7a',SubtextAtom:'#6a7a8a',Artwork:'#4a6a8a'};
+  const bw=104,bh=38, cnOf={}; O.node_types.forEach(t=>cnOf[t.key]=t.cn);
+  const cx=k=>POS[k][0], cy=k=>POS[k][1];
+  const norm=r=>r.replace(/\(.*?\)/,'').trim();
+  // 线:从盒边到盒边
+  function edgeXY(a,b){const x1=cx(a),y1=cy(a),x2=cx(b),y2=cy(b);const dx=x2-x1,dy=y2-y1,L=Math.hypot(dx,dy)||1;
+    return [x1+dx/L*(bw/2-4)*0.9, y1+dy/L*(bh/2+2)*1.2, x2-dx/L*(bw/2-4)*0.9, y2-dy/L*(bh/2+2)*1.4];}
+  let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block">`
+    +`<defs><marker id="am" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#9a8" stroke-width="1.3"/></marker></defs>`;
+  // 边(先画线)
+  O.edge_types.forEach(e=>{
+    const dom=norm(e.domain); const ranges=norm(e.range).split('|').map(x=>x.trim());
+    ranges.forEach(rg=>{
+      if(!POS[dom]||!POS[rg])return;
+      const lab=e.cn;
+      if(dom===rg){ // 自环:盒上方小弧
+        const x=cx(dom),y=cy(dom)-bh/2;
+        s+=`<path d="M${x-16},${y} C${x-30},${y-34} ${x+30},${y-34} ${x+16},${y}" fill="none" stroke="#bbae97" stroke-width="1.2" marker-end="url(#am)"/>`;
+        s+=`<text x="${x}" y="${y-30}" text-anchor="middle" font-family="JetBrains Mono" font-size="8.5" fill="#857d6f">${lab}</text>`;
+      } else {
+        const[x1,y1,x2,y2]=edgeXY(dom,rg);
+        s+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#cabfa8" stroke-width="1.2" marker-end="url(#am)"/>`;
+        const mx=(x1+x2)/2,my=(y1+y2)/2;
+        s+=`<text x="${mx}" y="${my-2}" text-anchor="middle" font-family="JetBrains Mono" font-size="8.5" fill="#7a7060" paint-order="stroke" stroke="#fff" stroke-width="2.5">${lab}</text>`;
+      }
+    });
+  });
+  // 节点盒(后画,压线上)
+  O.node_types.forEach(t=>{const x=cx(t.key),y=cy(t.key),col=COLR[t.key]||'#888';
+    s+=`<rect x="${x-bw/2}" y="${y-bh/2}" rx="9" width="${bw}" height="${bh}" fill="#fff" stroke="${col}" stroke-width="1.6"/>`
+      +`<rect x="${x-bw/2}" y="${y-bh/2}" rx="9" width="4" height="${bh}" fill="${col}"/>`
+      +`<text x="${x+2}" y="${y-1}" text-anchor="middle" font-family="Noto Serif SC" font-size="13" font-weight="700" fill="#1d1b18">${t.cn}</text>`
+      +`<text x="${x+2}" y="${y+11}" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="${col}">${t.key} · ${t.n}</text>`;});
+  document.getElementById('schema').innerHTML=s+'</svg>';
+}
+</script>
+</body></html>

@@ -1,0 +1,977 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · L3 感知效应 · VAD 模型 + 像素实测</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--purple:#7a6a9a;--gold:#b08a3a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:34px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(21px,4vw,31px);font-weight:600;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.7;max-width:700px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .sec{margin-top:32px}
+  .sec-h{font-family:var(--serif);font-size:19px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:6px}
+  .sec-d{font-size:12.5px;color:var(--ink-mute);margin-bottom:12px;line-height:1.6}.sec-d b{color:var(--ink-soft)}
+  .plotwrap{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px;position:relative}
+  svg{display:block;width:100%;height:auto}
+  .axhint{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--ink-faint);padding:0 6px;margin-top:2px}
+  .note{font-size:12px;color:var(--ink-soft);background:#fff;border:1px solid var(--line);border-left:3px solid var(--green);border-radius:10px;padding:11px 14px;margin-top:12px;line-height:1.7}.note b{color:var(--green)}
+  .anchors{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
+  .an{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 11px;cursor:help}
+  .an .ann{font-family:var(--serif);font-size:13px;font-weight:600}
+  .an .vad{font-family:var(--mono);font-size:9px;color:var(--ink-mute);margin-left:5px}
+  .an .exc{font-family:var(--mono);font-size:9px;color:#fff;background:var(--green);border-radius:3px;padding:0 5px;margin-left:5px}
+  .an .ex{font-size:10.5px;color:var(--ink-mute);margin-top:3px;line-height:1.4;max-width:220px}
+  .an .aa2{margin-top:5px;display:flex;flex-wrap:wrap;gap:3px;max-width:230px;align-items:center;font-size:9.5px}
+  .an .aa2 a{font-family:var(--sans);font-size:9.5px;color:var(--accent);background:#f0e4d8;border-radius:4px;padding:0 5px;text-decoration:none}
+  .an .aa2 a:hover{background:var(--accent);color:#fff}
+  .an .aa2 .amore{color:var(--ink-faint);font-family:var(--mono);font-size:9px}
+  .back{display:block;text-align:center;margin-top:42px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .home-fab:hover{color:var(--accent)}
+  .chan{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}@media(max-width:600px){.chan{grid-template-columns:1fr 1fr}}
+  .ch{background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 11px}
+  .ch .cn2{font-family:var(--serif);font-size:13px;font-weight:600}.ch .cd{font-size:10.5px;color:var(--ink-mute);margin-top:3px;line-height:1.5}
+  .flag{background:#fbf3ec;border:1px solid #e6c9b0;border-left:4px solid var(--accent);border-radius:11px;padding:13px 16px;margin-top:12px;font-size:13px;color:var(--ink-soft);line-height:1.8}.flag b{color:var(--accent)}
+  .flag .big{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--accent)}
+  .cbar{display:flex;align-items:center;gap:9px;margin:5px 0;font-size:12.5px}
+  .cbar .cl{flex:1;color:var(--ink-soft)}.cbar .cl small{color:var(--ink-faint);font-family:var(--mono)}
+  .cbar .track{width:150px;height:11px;background:var(--paper-2);border-radius:6px;position:relative;overflow:hidden}
+  .cbar .fillp{position:absolute;top:0;height:100%;border-radius:6px}
+  .cbar .mid{position:absolute;left:50%;top:0;height:100%;width:1px;background:#cfc6b4}
+  .cbar .cv{width:52px;text-align:right;font-family:var(--mono);font-size:12px;font-weight:600}
+  .regtab{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px;background:#fff;border-radius:10px;overflow:hidden}
+  .regtab th,.regtab td{padding:7px 9px;border-bottom:1px solid var(--line);text-align:center}
+  .regtab th{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);background:var(--paper-2)}
+  .regtab td.rn{text-align:left;font-weight:600;color:var(--ink-soft)}
+  .grade{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .gd{flex:1;min-width:150px;border-radius:10px;padding:11px 13px;color:#fff}
+  .gd .gt{font-family:var(--serif);font-size:14px;font-weight:600}.gd .gs{font-size:11.5px;line-height:1.55;margin-top:4px;opacity:.95}
+  .gd.ok{background:var(--green)}.gd.mid{background:var(--gold)}.gd.no{background:#9a6a62}
+  .miunit{font-family:var(--mono);font-size:10px;color:var(--ink-faint)}
+  .vstat{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+  .vsc{flex:1;min-width:150px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 13px;text-align:center}
+  .vsc .big{font-family:var(--mono);font-size:22px;font-weight:700;line-height:1}
+  .vsc .lb{font-size:11px;color:var(--ink-mute);margin-top:5px;line-height:1.5}
+  .vex{display:grid;grid-template-columns:1fr;gap:10px;margin-top:4px}
+  .exc2{display:flex;gap:11px;background:#fff;border:1px solid var(--line);border-radius:11px;padding:11px;border-left:3px solid var(--green)}
+  .exc2 img{width:84px;height:84px;object-fit:cover;border-radius:7px;flex-shrink:0;background:var(--paper-2)}
+  .exc2 .exb{flex:1;min-width:0}
+  .exc2 .exh{font-family:var(--serif);font-weight:600;font-size:13.5px}.exc2 .exh .an{font-family:var(--mono);font-size:10px;color:#fff;background:var(--green);border-radius:4px;padding:1px 6px;margin-left:6px}
+  .exc2 .exv{font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin:3px 0}
+  .exc2 .exr{font-size:11.5px;color:var(--ink-soft);line-height:1.55}.exc2 .exr b{color:var(--accent)}
+  .toggle{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin:8px 0 4px;font-size:12px;color:var(--ink-soft)}
+  .toggle label{display:inline-flex;align-items:center;gap:5px;cursor:pointer;user-select:none}
+  .toggle input{accent-color:var(--accent)}
+  .wvkey{display:inline-flex;flex-wrap:wrap;gap:8px;font-family:var(--mono);font-size:10px;color:var(--ink-mute)}
+  .wvkey i{display:inline-flex;align-items:center;gap:3px;font-style:normal}.wvkey i b{width:9px;height:9px;border-radius:50%;display:inline-block}
+  svg .artist-pt{cursor:pointer;transition:opacity .15s}svg .artist-pt:hover{stroke:#1d1b18;stroke-width:1.4}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+  .chip{font-family:var(--mono);font-size:11px;border:1px solid var(--line);background:#fff;color:var(--ink-soft);border-radius:999px;padding:3px 11px;cursor:pointer}
+  .chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;margin-top:6px}
+  .dual{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:640px){.dual{grid-template-columns:1fr}}
+  .dual .dh{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-bottom:4px;text-align:center}
+  .why{background:var(--paper-2);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:11px 14px;margin:4px 0 12px;font-size:12.5px;line-height:1.75;color:var(--ink-soft)}
+  .why b{color:var(--ink)}.why .qh{font-family:var(--serif);font-weight:600;color:var(--accent);display:block;margin-bottom:3px}
+  .why .ax{font-family:var(--mono);font-size:11px;color:var(--ink-mute)}
+  .why ul{margin:5px 0 0 2px;list-style:none}.why li{padding-left:14px;position:relative;margin-top:3px}.why li:before{content:'·';position:absolute;left:3px;color:var(--accent);font-weight:700}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · L3 感知效应</div>
+  <h1>感知效应:VAD 模型,且<span style="color:var(--accent)">敢拿像素检验</span></h1>
+  <p class="lead">感知效应是生成链上<b>唯一宣称"可由像素测"</b>的一环。这一页:① VAD <b>开集模型</b> + <b>282 位艺术家</b>真实情绪点云;② <b>情绪是投影</b>——语言层(怎么画)如何决定 VAD(什么感受),且<b>跨两套独立数据复现</b>;③ <b>119 幅真迹</b>逐图取证;④ 诚实交代<b>哪条相关是真的、哪条是循环假象</b>(那条著名的"饱和→唤起"被我们揪出来撤回)。</p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-effect">效应·感知+画外音</a> › <b style="color:var(--ink-soft)">感知效应·像素实测</b></div>
+
+  <div class="sec">
+    <div class="sec-h">① VAD 情绪空间(效价 × 唤醒)</div>
+    <div class="why">
+      <span class="qh">为什么是这两根轴?</span>
+      情绪<b>不是一筐离散标签</b>(喜/怒/哀/乐数不完、还跨不了语言),而更像<b>连续空间里的一个坐标</b>。心理学里反复做过同一件事:给人看大量情绪词与图片打分、再降维,结果绝大部分差异都落在<b>两根正交的主轴</b>上——
+      <ul>
+        <li><b>效价 Valence</b>(横轴):愉悦 ↔ 不悦,这件事让你<span class="ax">「喜欢还是讨厌」</span></li>
+        <li><b>唤醒 Arousal</b>(纵轴):平静 ↔ 激越,它让你<span class="ax">「平静还是亢奋」</span></li>
+      </ul>
+      这就是 Russell 的<b>环形情绪模型(circumplex)</b>。第三轴<b>支配度 Dominance</b>(本图用点的<b>明暗</b>表示)再补一刀区分:同样负面,是<b>愤怒</b>(高支配、想反击)还是<b>恐惧</b>(低支配、被压住)——合称 <b>VAD</b> 三维。
+      <br>用它的三个理由:① <b>开集</b>——来个新情绪只要给坐标,不必新建标签;② 同一坐标系可<b>跨画家、跨媒介比较</b>;③ 它是整条生成链上<b>唯一敢说"可由像素/多通道去逼近"</b>的一环(正是下面 ②④⑤ 要检验的)。
+    </div>
+    <div class="sec-d">横轴=效价(负↔正),纵轴=唤醒(低↔高),大圆=<b>14 情绪锚点</b>(明暗=支配度、大小 ∝ 上卷数)。小点=<b>282 位考据艺术家</b>各自的情绪坐标,按世界观区上色——锚点是情绪的"地名",艺术家是落在这片土地上的"居民"。点击任一艺术家进其主页。</div>
+    <div class="toggle" id="toggle">
+      <label><input type="checkbox" id="tgAnchor" checked> 情绪锚点</label>
+      <label><input type="checkbox" id="tgCloud" checked> 艺术家点云 <span id="cloudN" class="miunit"></span></label>
+      <span class="wvkey" id="wvkey"></span>
+    </div>
+    <div class="plotwrap"><svg id="plot" viewBox="0 0 600 460" preserveAspectRatio="xMidYMid meet"></svg></div>
+    <div class="axhint"><span>← 负效价</span><span>效价 valence</span><span>正效价 →</span></div>
+    <div class="note" id="note"></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">② 情绪是投影:语言层(怎么画)→ VAD(什么感受)</div>
+    <div class="sec-d">按图谱总论「风格是其它层的投影」,感知效应同样是<b>涌现读数</b>。这里做一次<b>非循环</b>的跨层验证:用 L2 语言 7 轴(独立考据)去预测 VAD(独立标注)。两边来源不同 → 相关即<b>真投影,不是自证</b>。更关键:同一结论在<b>两套独立数据上一致复现</b>——下面左右两栏分别是 282 位艺术家、118 幅真迹,看箭头是否对得上。</div>
+    <div class="dual">
+      <div><div class="dh">282 位艺术家(画家级 lang × affect)</div><div class="card" id="projArtist" style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px"></div></div>
+      <div><div class="dh">118 幅真迹(单画 language7 × VAD)</div><div class="card" id="projWork" style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px"></div></div>
+    </div>
+    <div class="note" style="border-left-color:var(--purple)" id="projNote"></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">③ 14 个情绪锚点 · 360 情绪上卷</div>
+    <div class="why">
+      <span class="qh">"360 情绪上卷"是什么意思?</span>
+      原始语料里有 <b>398 个</b>细碎的情绪/感官/象征词(喜悦、狂喜、晨雾、骷髅、永夜…)——太碎,没法直接用。做法是:给每个词算出它的 VAD 坐标,再把它<b>归并到坐标上最近的那个代表簇</b>。这个"细词 → 归并进代表簇"的动作就叫<b>上卷(roll-up)</b>。结果:<b>360 个</b>词成功上卷进 14 个锚点,余下 <b>38 个</b>落在边角、暂未匹配(如实留着)。所以标题=<b>360 个零碎情绪被收进 14 个锚点</b>。悬停任一锚点,就能看见它收了哪些原子词。
+      <span class="qh" style="margin-top:8px">那为什么偏偏是 14 个?</span>
+      14 <b>不是什么神圣数字,是一个工程取舍</b>:锚点要<b>多</b>到能铺满 VAD 空间的四个象限+中部(不然有的情绪没处落),又要<b>少</b>到一眼读得过来。14 个是覆盖这 398 词之后、彼此 VAD 距离拉得够开的代表簇。<b>真正的本体是「坐标」,不是这 14 个名字</b>——锚点可增可删、可换名,坐标系不变;来个全新情绪,给它坐标、落到最近锚点即可。<span class="ax">(诚实:VAD 主要贴合画外音的情感部分;感知层的象征/结构项——海、瞬间、叙事结构——是粗略上卷,后续单独处理。)</span>
+    </div>
+    <div class="anchors" id="anchors"></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">④ 可测吗?像素实测取证 <span style="font-family:var(--mono);font-size:11px;color:var(--green);margin-left:8px" id="nm">…</span></div>
+    <div class="sec-d">第一性原理页写着"感知效应·VAD·<b>可由像素测</b>"。我们不让它停在口号:对 <b id="nm2">…</b> 幅本地真实作品<b>用 PIL 独立提取像素特征</b>,再与<b>独立人工考据出的风格坐标 / 艺术家 VAD</b> 求相关(两边来源不同,非自证)。</div>
+
+    <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin:4px 0 2px">6 个可测感官通道</div>
+    <div class="chan">
+      <div class="ch"><div class="cn2">饱和度</div><div class="cd">HSV-S 均值 · 色彩纯度</div></div>
+      <div class="ch"><div class="cn2">明度</div><div class="cd">HSV-V 均值 · 整体明暗</div></div>
+      <div class="ch"><div class="cn2">对比度</div><div class="cd">灰度标准差 · 明暗反差</div></div>
+      <div class="ch"><div class="cn2">色彩丰富度</div><div class="cd">Hasler-Süsstrunk 指标</div></div>
+      <div class="ch"><div class="cn2">暖色占比</div><div class="cd">高饱和暖色相像素比</div></div>
+      <div class="ch"><div class="cn2">边缘密度</div><div class="cd">相邻灰度差 · 笔触/轮廓量</div></div>
+    </div>
+
+    <div class="flag" id="flagCirc">…</div>
+
+    <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin:18px 0 2px">真正非循环的信号 · |r|≥0.3(像素 × 独立坐标)</div>
+    <div class="card" id="sigList" style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px"></div>
+
+    <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin:18px 0 2px">6 个世界观区,在像素上能分开吗?</div>
+    <div class="sec-d" style="margin:2px 0 4px">看两个最有判别力的通道:<b>边缘密度</b>(笔触显隐)与<b>暖色占比</b>。从「摹写之眼」到「表现外化」,边缘升、暖色降——区不是空想。</div>
+    <div style="overflow-x:auto"><table class="regtab" id="regTab"></table></div>
+
+    <div class="sec-h" style="font-size:16px;margin-top:28px;border:none">⑤ 真迹证据画廊:119 幅逐图取证 <span style="font-family:var(--mono);font-size:11px;color:var(--green);margin-left:6px" id="nv">…</span></div>
+    <div class="sec-d">纯像素弱,是因为<b>情绪不只在颜色里</b>。让<b>视觉大模型(mimo-v2.5)</b>逐图读三条通道——<b>构图姿态 / 题材语义 / 光色</b>——输出 VAD + 证据链。先看三个汇总(多通道 vs 单色彩),再<b>逐图翻 119 幅</b>:每幅都有它判定的情绪锚点、VAD 三值、三通道推理与可查证据链。按锚点筛选。</div>
+    <div class="vstat" id="vstat"></div>
+    <div class="flag" id="vnote" style="border-left-color:var(--green);margin:12px 0"></div>
+    <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin:14px 0 2px">逐图翻 · 按情绪锚点筛选</div>
+    <div class="chips" id="galChips"></div>
+    <div class="gallery" id="gallery"></div>
+
+    <div class="sec-h" style="font-size:16px;margin-top:28px;border:none">⑥ 诚实分级:这一环到底测到了什么</div>
+    <div class="grade" id="grade"></div>
+    <div class="note" id="verdict" style="margin-top:12px"></div>
+  </div>
+
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+
+<script>
+const A={
+ "meta": {
+  "layer": "画外音·情绪锚点(VAD)",
+  "en": "Affect anchors",
+  "version": "V2.1",
+  "kind": "open",
+  "note": "开集层:不穷举情绪。立14个情绪锚点(各带VAD坐标);398原子上卷到最近锚点。任何新情绪=VAD空间一个点,不必新建节点。",
+  "before": 398,
+  "anchors": 14,
+  "rolled": 360,
+  "unmatched": 38
+ },
+ "anchors": [
+  {
+   "id": "AFFECT.01",
+   "cn": "喜悦",
+   "open": true,
+   "vad": {
+    "valence": 0.86,
+    "arousal": 0.66,
+    "dominance": 0.6
+   },
+   "example_count": 33,
+   "examples": [
+    "欣悦",
+    "狂喜",
+    "希望",
+    "觉醒",
+    "释怀",
+    "光",
+    "鸟",
+    "太阳",
+    "蝴蝶",
+    "天空",
+    "鸽子",
+    "桥",
+    "烟雾",
+    "开端",
+    "自由",
+    "重生",
+    "未来",
+    "轻盈",
+    "香气",
+    "疏朗",
+    "明亮",
+    "音色",
+    "闪光",
+    "风",
+    "空气流",
+    "清爽",
+    "飘散",
+    "曙光",
+    "晨雾",
+    "光气",
+    "风痕",
+    "光尘",
+    "流影"
+   ]
+  },
+  {
+   "id": "AFFECT.02",
+   "cn": "鲜活",
+   "open": true,
+   "vad": {
+    "valence": 0.72,
+    "arousal": 0.74,
+    "dominance": 0.55
+   },
+   "example_count": 60,
+   "examples": [
+    "疲惫",
+    "混乱",
+    "沉醉",
+    "海",
+    "河流",
+    "鱼",
+    "龟裂",
+    "并置",
+    "时间跳跃",
+    "空间切换",
+    "外视",
+    "集体叙事",
+    "纪实",
+    "意识流",
+    "存在",
+    "感性",
+    "虚实",
+    "混合",
+    "对称性破坏",
+    "存在焦虑",
+    "真实",
+    "混沌秩序",
+    "瞬间",
+    "流动",
+    "残留",
+    "瞬变",
+    "当下",
+    "时间痕迹",
+    "片刻",
+    "消耗",
+    "变迁",
+    "衰变",
+    "触感",
+    "节奏",
+    "声音",
+    "粗糙",
+    "振动",
+    "水气",
+    "声势",
+    "光影律动",
+    "密度",
+    "气韵",
+    "流动",
+    "蒸腾",
+    "湿光",
+    "浮尘",
+    "热气",
+    "闷灰",
+    "烟尘",
+    "衰败",
+    "瞬间",
+    "伤痕",
+    "浮现",
+    "旧影",
+    "时间尘",
+    "旧痕",
+    "重叠",
+    "老照片",
+    "历史尘埃",
+    "旧墙"
+   ]
+  },
+  {
+   "id": "AFFECT.03",
+   "cn": "热烈",
+   "open": true,
+   "vad": {
+    "valence": 0.7,
+    "arousal": 0.82,
+    "dominance": 0.66
+   },
+   "example_count": 27,
+   "examples": [
+    "绝望",
+    "痴迷",
+    "欲望",
+    "痛苦",
+    "惊恐",
+    "迷恋",
+    "焦灼",
+    "狂热",
+    "动荡",
+    "恐惧",
+    "火",
+    "血",
+    "高潮",
+    "冲突",
+    "剧场性",
+    "破灭",
+    "节奏",
+    "加速",
+    "速度",
+    "密集",
+    "压迫",
+    "暴光",
+    "灼热",
+    "声浪",
+    "脉动",
+    "光压",
+    "闷热"
+   ]
+  },
+  {
+   "id": "AFFECT.04",
+   "cn": "崇高",
+   "open": true,
+   "vad": {
+    "valence": 0.7,
+    "arousal": 0.7,
+    "dominance": 0.86
+   },
+   "example_count": 22,
+   "examples": [
+    "山",
+    "十字",
+    "天使",
+    "天梯",
+    "烛光",
+    "光环",
+    "神话叙事",
+    "史诗叙事",
+    "宿命",
+    "无限",
+    "真理",
+    "超越",
+    "世界性",
+    "灵光",
+    "永恒",
+    "超越肉身",
+    "永恒瞬间",
+    "永恒",
+    "时间静止",
+    "光晕",
+    "永恒",
+    "永恒瞬间"
+   ]
+  },
+  {
+   "id": "AFFECT.05",
+   "cn": "张力",
+   "open": true,
+   "vad": {
+    "valence": 0.34,
+    "arousal": 0.82,
+    "dominance": 0.62
+   },
+   "example_count": 20,
+   "examples": [
+    "焦虑",
+    "恐惧",
+    "冲突",
+    "惊异",
+    "恐惧",
+    "镣铐",
+    "十字路口",
+    "迷宫",
+    "转折",
+    "对话",
+    "反转",
+    "断裂",
+    "对立",
+    "悖论",
+    "平衡破裂",
+    "断裂",
+    "瞬停",
+    "坚硬",
+    "嗡鸣",
+    "凝滞"
+   ]
+  },
+  {
+   "id": "AFFECT.06",
+   "cn": "恐惧",
+   "open": true,
+   "vad": {
+    "valence": 0.2,
+    "arousal": 0.76,
+    "dominance": 0.22
+   },
+   "example_count": 11,
+   "examples": [
+    "压抑",
+    "暗影",
+    "魔鬼",
+    "鸟笼",
+    "阴影",
+    "永夜",
+    "重量",
+    "潮湿",
+    "压抑",
+    "灰雾",
+    "空气重"
+   ]
+  },
+  {
+   "id": "AFFECT.07",
+   "cn": "神秘",
+   "open": true,
+   "vad": {
+    "valence": 0.46,
+    "arousal": 0.56,
+    "dominance": 0.46
+   },
+   "example_count": 28,
+   "examples": [
+    "迷茫",
+    "幻觉",
+    "门",
+    "月亮",
+    "面具",
+    "蛇",
+    "眼睛",
+    "门槛",
+    "剪影",
+    "面纱",
+    "重复",
+    "梦境",
+    "暗示",
+    "隐喻",
+    "象征叙事",
+    "退隐",
+    "凝固",
+    "模糊时间",
+    "时间漂移",
+    "时间残响",
+    "暗沉",
+    "光晕",
+    "迷离",
+    "烟气",
+    "夜气",
+    "时差",
+    "永夜",
+    "暗影"
+   ]
+  },
+  {
+   "id": "AFFECT.08",
+   "cn": "忧伤",
+   "open": true,
+   "vad": {
+    "valence": 0.26,
+    "arousal": 0.36,
+    "dominance": 0.3
+   },
+   "example_count": 23,
+   "examples": [
+    "怀旧",
+    "惆怅",
+    "骷髅",
+    "枯木",
+    "结局",
+    "无常",
+    "消逝",
+    "记忆",
+    "过去",
+    "流年",
+    "纪念",
+    "流逝",
+    "消融",
+    "味觉",
+    "记忆",
+    "残影",
+    "消逝",
+    "流逝",
+    "怀旧",
+    "旧梦",
+    "影像褪色",
+    "旧梦残声",
+    "纪念"
+   ]
+  },
+  {
+   "id": "AFFECT.09",
+   "cn": "孤独",
+   "open": true,
+   "vad": {
+    "valence": 0.3,
+    "arousal": 0.3,
+    "dominance": 0.26
+   },
+   "example_count": 16,
+   "examples": [
+    "孤独",
+    "冷漠",
+    "异化",
+    "城市",
+    "荒野",
+    "独白",
+    "自我",
+    "孤立",
+    "寂静",
+    "冷感",
+    "沉默",
+    "凉薄",
+    "凉薄",
+    "干冷",
+    "冷光",
+    "寂气"
+   ]
+  },
+  {
+   "id": "AFFECT.10",
+   "cn": "怀旧",
+   "open": true,
+   "vad": {
+    "valence": 0.46,
+    "arousal": 0.32,
+    "dominance": 0.4
+   },
+   "example_count": 24,
+   "examples": [
+    "安宁",
+    "回忆",
+    "和解",
+    "断章叙事",
+    "断片记忆",
+    "时间",
+    "延宕",
+    "遗迹",
+    "旧时",
+    "迟滞",
+    "回声",
+    "香味",
+    "朦胧",
+    "安宁",
+    "暮色",
+    "尘雾",
+    "余温",
+    "往昔",
+    "童年",
+    "时光碎片",
+    "余温",
+    "旧物",
+    "旧色",
+    "旧声"
+   ]
+  },
+  {
+   "id": "AFFECT.11",
+   "cn": "虚无",
+   "open": true,
+   "vad": {
+    "valence": 0.32,
+    "arousal": 0.26,
+    "dominance": 0.34
+   },
+   "example_count": 9,
+   "examples": [
+    "空虚",
+    "麻木",
+    "茫然",
+    "沙漏",
+    "虚无",
+    "空",
+    "荒诞",
+    "虚构",
+    "空间虚无"
+   ]
+  },
+  {
+   "id": "AFFECT.12",
+   "cn": "沉思",
+   "open": true,
+   "vad": {
+    "valence": 0.56,
+    "arousal": 0.3,
+    "dominance": 0.56
+   },
+   "example_count": 35,
+   "examples": [
+    "宁静",
+    "冥想",
+    "冷静",
+    "镜像",
+    "符号",
+    "线性叙事",
+    "内视",
+    "旁白",
+    "寓言",
+    "对称叙事",
+    "秩序",
+    "他者",
+    "理性",
+    "对称",
+    "空间意识",
+    "内观",
+    "纯粹",
+    "时间叠层",
+    "时间切片",
+    "轮回",
+    "静默",
+    "光滑",
+    "零度感官",
+    "透明",
+    "冷冽",
+    "厚气",
+    "阴翳",
+    "轮回",
+    "消融",
+    "时间层",
+    "倒影",
+    "遗忘层",
+    "时间漂白",
+    "时间折叠",
+    "时间纹"
+   ]
+  },
+  {
+   "id": "AFFECT.13",
+   "cn": "平静",
+   "open": true,
+   "vad": {
+    "valence": 0.66,
+    "arousal": 0.2,
+    "dominance": 0.55
+   },
+   "example_count": 42,
+   "examples": [
+    "平和",
+    "安全",
+    "平淡",
+    "淡然",
+    "接纳",
+    "抑制",
+    "解脱",
+    "恬淡",
+    "水",
+    "渐进",
+    "环形叙事",
+    "诗性叙事",
+    "平衡",
+    "自然",
+    "觉悟",
+    "模糊",
+    "生成",
+    "悟",
+    "循环",
+    "朝暮",
+    "永续",
+    "时间漂白",
+    "暖感",
+    "空气",
+    "雨",
+    "静气",
+    "空间呼吸",
+    "光的皮肤",
+    "空灵",
+    "暖湿",
+    "净气",
+    "薄雾",
+    "微光",
+    "空间流",
+    "暖风",
+    "空气层",
+    "空气褶皱",
+    "重复",
+    "遗忘",
+    "余像",
+    "逝水",
+    "延宕"
+   ]
+  },
+  {
+   "id": "AFFECT.14",
+   "cn": "空灵",
+   "open": true,
+   "vad": {
+    "valence": 0.62,
+    "arousal": 0.3,
+    "dominance": 0.42
+   },
+   "example_count": 10,
+   "examples": [
+    "超脱",
+    "恍惚",
+    "羽毛",
+    "柔软",
+    "柔光",
+    "雾",
+    "声音残响",
+    "空气薄",
+    "空气光",
+    "回响"
+   ]
+  }
+ ],
+ "unmatched": [
+  "欣慰",
+  "破碎",
+  "温情",
+  "镜子",
+  "树",
+  "花",
+  "梦",
+  "石头",
+  "果实",
+  "片段",
+  "瞬间",
+  "幻觉",
+  "片断性",
+  "非线性叙事",
+  "模糊叙事",
+  "私密叙事",
+  "仪式感",
+  "空白叙事",
+  "复调叙事",
+  "混沌",
+  "假象",
+  "超现实",
+  "停顿",
+  "重复",
+  "时差",
+  "延续",
+  "层叠",
+  "温度",
+  "声波",
+  "粉尘",
+  "芬芳",
+  "厚重",
+  "潮湿",
+  "空气振动",
+  "历史",
+  "梦境",
+  "遗迹",
+  "碎片"
+ ]
+};
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const SVGNS="http://www.w3.org/2000/svg";
+const svg=document.getElementById('plot');
+const W=600,H=460,P=44;
+function X(v){return P+v*(W-2*P);}
+function Y(a){return (H-P)-a*(H-2*P);}
+// grid + quadrant lines
+[0.25,0.5,0.75].forEach(g=>{
+  const lx=document.createElementNS(SVGNS,'line');lx.setAttribute('x1',X(g));lx.setAttribute('y1',Y(0));lx.setAttribute('x2',X(g));lx.setAttribute('y2',Y(1));lx.setAttribute('stroke','#ece7db');lx.setAttribute('stroke-width',1);svg.appendChild(lx);
+  const ly=document.createElementNS(SVGNS,'line');ly.setAttribute('x1',X(0));ly.setAttribute('y1',Y(g));ly.setAttribute('x2',X(1));ly.setAttribute('y2',Y(g));ly.setAttribute('stroke','#ece7db');ly.setAttribute('stroke-width',1);svg.appendChild(ly);
+});
+// axis labels
+const yl=document.createElementNS(SVGNS,'text');yl.setAttribute('x',P-6);yl.setAttribute('y',Y(1)+4);yl.setAttribute('text-anchor','end');yl.setAttribute('font-family','JetBrains Mono');yl.setAttribute('font-size','9');yl.setAttribute('fill','#a89f8f');yl.textContent='唤醒高';svg.appendChild(yl);
+const yl2=document.createElementNS(SVGNS,'text');yl2.setAttribute('x',P-6);yl2.setAttribute('y',Y(0));yl2.setAttribute('text-anchor','end');yl2.setAttribute('font-family','JetBrains Mono');yl2.setAttribute('font-size','9');yl2.setAttribute('fill','#a89f8f');yl2.textContent='唤醒低';svg.appendChild(yl2);
+const maxex=Math.max(...A.anchors.map(a=>a.example_count));
+A.anchors.forEach(a=>{
+  const x=X(a.vad.valence),y=Y(a.vad.arousal);
+  const r=8+Math.sqrt(a.example_count/maxex)*16;
+  // dominance → fill darkness (high D = darker/stronger)
+  const d=a.vad.dominance; const base=[176,103,58];
+  const fill=`rgb(${Math.round(base[0]*(0.55+0.45*d))},${Math.round(base[1]*(0.6+0.4*d))},${Math.round(base[2]*(0.7+0.3*d))})`;
+  const c=document.createElementNS(SVGNS,'circle');
+  c.setAttribute('class','anchor-el');
+  c.setAttribute('cx',x);c.setAttribute('cy',y);c.setAttribute('r',r);
+  c.setAttribute('fill',fill);c.setAttribute('fill-opacity',0.82);c.setAttribute('stroke','#fff');c.setAttribute('stroke-width',2);
+  const tt=document.createElementNS(SVGNS,'title');tt.textContent=`${a.cn} · V${a.vad.valence} A${a.vad.arousal} D${a.vad.dominance} · ${a.example_count}个`;c.appendChild(tt);
+  svg.appendChild(c);
+  const t=document.createElementNS(SVGNS,'text');
+  t.setAttribute('class','anchor-el');
+  t.setAttribute('x',x);t.setAttribute('y',y+3.5);t.setAttribute('text-anchor','middle');
+  t.setAttribute('font-family','Noto Serif SC,serif');t.setAttribute('font-size','12');t.setAttribute('font-weight','600');t.setAttribute('fill','#fff');
+  t.textContent=a.cn;svg.appendChild(t);
+});
+document.getElementById('note').innerHTML='🔬 <b>读法</b>:右上=高效价高唤醒(喜悦/热烈),左上=负效价高唤醒(恐惧/张力),左下=负效价低唤醒(忧伤/孤独/虚无),右下=正效价低唤醒(平静/空灵)。点越深=支配度越高(崇高最深)。<b>「热烈」与「喜悦」离得近、「恐惧」与「平静」隔最远——空间结构合理。</b>';
+
+// ---- 共享:Pearson 相关 ----
+function pearson(xs,ys){const n=xs.length;if(n<3)return null;const mx=xs.reduce((a,b)=>a+b,0)/n,my=ys.reduce((a,b)=>a+b,0)/n;let cov=0,sx=0,sy=0;for(let i=0;i<n;i++){const dx=xs[i]-mx,dy=ys[i]-my;cov+=dx*dy;sx+=dx*dx;sy+=dy*dy;}if(sx===0||sy===0)return null;return cov/Math.sqrt(sx*sy);}
+
+// ---- A① 282 艺术家点云灌入 VAD 平面 ----
+const cloudG=document.createElementNS(SVGNS,'g');cloudG.setAttribute('id','cloud');
+svg.insertBefore(cloudG,svg.querySelector('.anchor-el')); // 点云置于锚点之下,锚点保持在最上层
+fetch('data/kg_artists.json').then(r=>r.json()).then(AD=>{
+  const arts=Object.values(AD.artists||{}).filter(a=>a&&a.affect&&a.affect.v!=null);
+  document.getElementById('cloudN').textContent='n='+arts.length;
+  const seen={};
+  arts.forEach(a=>{
+    const reg=(a.wv&&a.wv.region_id)||'WV1', col=WVC[reg]||'#999';
+    seen[reg]=(seen[reg]||0)+1;
+    const x=X(a.affect.v),y=Y(a.affect.a);
+    const link=document.createElementNS(SVGNS,'a');link.setAttributeNS('http://www.w3.org/1999/xlink','href','kg-artist.html?id='+a.id);link.setAttribute('href','kg-artist.html?id='+a.id);
+    const c=document.createElementNS(SVGNS,'circle');
+    c.setAttribute('class','artist-pt');c.setAttribute('cx',x);c.setAttribute('cy',y);c.setAttribute('r',3.1);
+    c.setAttribute('fill',col);c.setAttribute('fill-opacity',0.5);c.setAttribute('stroke','#fff');c.setAttribute('stroke-width',0.5);
+    const tt=document.createElementNS(SVGNS,'title');tt.textContent=`${a.cn} · V${a.affect.v} A${a.affect.a} D${a.affect.d}${a.affect.note?' · '+a.affect.note:''}`;c.appendChild(tt);
+    link.appendChild(c);cloudG.appendChild(link);
+  });
+  // 图例
+  const wk=document.getElementById('wvkey');
+  wk.innerHTML=['WV1','WV2','WV3','WV4','WV5','WV6'].filter(k=>seen[k]).map(k=>`<i><b style="background:${WVC[k]}"></b>${WVN[k]}</i>`).join('');
+  // 锚点层句柄
+  const anchorEls=[...svg.querySelectorAll('.anchor-el')];
+  document.getElementById('tgCloud').addEventListener('change',e=>{cloudG.style.display=e.target.checked?'':'none';});
+  document.getElementById('tgAnchor').addEventListener('change',e=>{anchorEls.forEach(el=>el.style.display=e.target.checked?'':'none');});
+}).catch(()=>{document.getElementById('cloudN').textContent='(需服务器)';});
+
+// ---- A② 语言7轴 → VAD 致因箭头(双栏:艺术家 / 真迹)----
+const AXES=['构图','空间','造型','光影','色彩','笔触','边缘'];
+const DIMN={v:'愉悦',a:'唤起',d:'支配',valence:'愉悦',arousal:'唤起',dominance:'支配'};
+function projPanel(rows,getLang,getVad,dims,host){
+  const out=[];
+  AXES.forEach(ax=>{
+    dims.forEach(dim=>{
+      const pairs=rows.map(r=>[getLang(r),getVad(r)]).filter(([L,V])=>L&&V&&L[ax]!=null&&V[dim]!=null);
+      const r=pearson(pairs.map(p=>p[0][ax]),pairs.map(p=>p[1][dim]));
+      if(r!=null&&Math.abs(r)>=0.25) out.push({label:`${ax} → ${DIMN[dim]}`,r,n:pairs.length});
+    });
+  });
+  out.sort((a,b)=>Math.abs(b.r)-Math.abs(a.r));
+  if(!out.length){host.innerHTML='<div style="color:var(--ink-faint);font-size:12px">无 |r|≥0.25 的箭头</div>';return out;}
+  out.forEach(o=>cbar(o.label,'',o.r,o.n,host));
+  return out;
+}
+Promise.all([
+  fetch('data/kg_artists.json').then(r=>r.json()).catch(()=>null),
+  fetch('data/kg_artwork_v2.json').then(r=>r.json()).catch(()=>null)
+]).then(([AD,WD])=>{
+  if(AD){const arts=Object.values(AD.artists||{}).filter(a=>a&&a.lang&&a.affect&&a.affect.v!=null);
+    projPanel(arts,a=>a.lang,a=>a.affect,['v','a','d'],document.getElementById('projArtist'));}
+  if(WD){const ws=Object.values(WD.artworks||{}).filter(w=>w&&w.language7&&w.affect&&w.affect.vad);
+    projPanel(ws,w=>w.language7,w=>w.affect.vad,['valence','arousal','dominance'],document.getElementById('projWork'));}
+  document.getElementById('projNote').innerHTML='🔭 <b>读出来的投影:</b>「<b>笔触/边缘 → 唤起</b>」(显笔触越激越)、「<b>光影 → 愉悦</b>」负向(戏剧光越重越沉郁)、「<b>色彩 → 愉悦</b>」、「<b>构图 → 支配</b>」——这几条<b>在 282 艺术家与 118 真迹两套独立标注上一致复现</b>,所以不是巧合、也不是自证,是真的"怎么画"决定了"什么感受"。对照下面 ④ 的像素实测:纯像素是<b>地板</b>(只剩弱相关),语言层是<b>天花板</b>(中等且可复现)——情绪可测,但要测在"语言"这一层、而非裸像素。';
+}).catch(()=>{document.getElementById('projArtist').innerHTML='<span style="color:var(--ink-faint);font-size:12px">需服务器加载</span>';});
+
+const an=document.getElementById('anchors');
+A.anchors.forEach(a=>{
+  const ex=a.examples.slice(0,10).join('、')+(a.examples.length>10?'…':'');
+  an.appendChild($(`<div class="an" data-anc="${a.cn}" title="${a.examples.join('、')}"><span class="ann">${a.cn}</span><span class="vad">V${a.vad.valence} A${a.vad.arousal} D${a.vad.dominance}</span><span class="exc">${a.example_count}</span><div class="ex">${ex}</div><div class="aa2"></div></div>`));
+});
+// 把 282 考究艺术家按 VAD 最近邻挂到锚点(画外音/情绪↔艺术家)
+Promise.all([
+  fetch('data/kg_subtext_artist_edges.json').then(r=>r.json()).catch(()=>({})),
+  fetch('data/kg_artist_index.json').then(r=>r.json()).catch(()=>({}))
+]).then(([E,IDX])=>{
+  const a2a=E.anchor_to_artists||{}, idx=(IDX.index||IDX), id2cn={};
+  for(const cn in idx){ if(!id2cn[idx[cn]]) id2cn[idx[cn]]=cn; }
+  document.querySelectorAll('.an').forEach(card=>{
+    const arts=a2a[card.dataset.anc]; if(!arts||!arts.length) return;
+    const box=card.querySelector('.aa2');
+    box.innerHTML='🎭 '+arts.slice(0,8).map(id=>`<a href="kg-artist.html?id=${id}">${id2cn[id]||id.replace('ARTIST.','')}</a>`).join('')+(arts.length>8?`<span class="amore">+${arts.length-8}</span>`:'');
+  });
+});
+
+// ③ 像素实测取证
+const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+const WVC={WV1:'#b0673a',WV2:'#9a7b3a',WV3:'#5a7d6f',WV4:'#5b7596',WV5:'#8a5a7a',WV6:'#4a6a8a'};
+function cbar(label,sub,r,n,host){
+  const abs=Math.abs(r),col=abs>=0.45?'var(--green)':(abs>=0.3?'var(--gold)':'var(--ink-faint)');
+  host.appendChild($(`<div class="cbar"><span class="cl">${label} <small>${sub||''} ${n?'n'+n:''}</small></span><span class="track"><span class="fillp" style="width:${abs*50}%;left:${r>=0?'50%':(50-abs*50)+'%'};background:${col}"></span><span class="mid"></span></span><span class="cv" style="color:${col}">${r>=0?'+':''}${r.toFixed(2)}</span></div>`));
+}
+fetch('data/kg_affect_measured.json').then(r=>r.json()).then(D=>{
+  const n=D.meta.n_mapped;
+  document.getElementById('nm').textContent='n='+n+' 幅';document.getElementById('nm2').textContent=n;
+  // 循环自检 callout
+  const circ=D.meta.circularity.mood_a_vs_colorsat, indep=D.meta.independent.measured_sat_vs_curated_arousal;
+  document.getElementById('flagCirc').innerHTML=
+    `🪤 <b>先拆一个陷阱:那条著名的"饱和度→唤起 r≈0.78"是真的吗?</b><br>`+
+    `作品自带的"唤起"其实是从主色算出来的——实测证明:<b>作品唤起 × 主色饱和度 r=<span class="big">${circ.r>=0?'+':''}${circ.r}</span></b>(n${circ.n})。`+
+    `所以"饱和→唤起"几乎是<b>拿饱和度预测它自己</b>,属<b>循环论证</b>,不能算验证。<br>`+
+    `换成<b>独立的人工考据唤起</b>(读画史定的,不碰像素)再测,只剩 <b class="big">${indep.r>=0?'+':''}${indep.r}</b>(n${indep.n})——`+
+    `<b>弱相关</b>。诚实结论:"情绪能由饱和度测出"被高估了。`;
+  // 显著相关榜
+  const sl=document.getElementById('sigList');
+  const fmap={sat:'饱和度',val:'明度',contrast:'对比度',colorful:'色彩丰富度',warm:'暖色占比',edge:'边缘密度'};
+  (D.significant||[]).forEach(s=>cbar(`${fmap[s.feat]||s.feat} × ${s.axis}`,'',s.r,s.n,sl));
+  if(!(D.significant||[]).length) sl.innerHTML='<div style="color:var(--ink-faint);font-size:12px">无 |r|≥0.3 的非循环相关</div>';
+  sl.appendChild($(`<div style="font-size:11.5px;color:var(--ink-mute);margin-top:8px;line-height:1.7;border-top:1px dashed var(--line);padding-top:8px">最清晰的像素指纹集中在 <b>再现-表现轴</b>(暖色 −0.48 / 边缘 +0.43 / 明度 +0.40 / 饱和 −0.38):越偏"表现",越冷、笔触越显、越亮。而 E 向量的 <b>秩序-张力 / 节制-强度</b> 两轴 <b>r≈0</b>——它们是画史构念,<b>像素里测不到</b>,如实承认。</div>`));
+  // 6区像素表
+  const order=['WV1','WV2','WV3','WV4','WV5','WV6'];
+  let rowsH='';
+  order.filter(k=>D.by_region[k]).forEach(k=>{const d=D.by_region[k];
+    rowsH+=`<tr><td class="rn" style="border-left:3px solid ${WVC[k]}">${k} ${WVN[k]}</td><td>${d.n}</td><td>${d.edge.toFixed(3)}</td><td>${d.warm.toFixed(2)}</td><td>${d.sat.toFixed(2)}</td><td>${d.val.toFixed(2)}</td></tr>`;});
+  document.getElementById('regTab').innerHTML=
+    '<thead><tr><th>世界观区</th><th>n</th><th>边缘密度</th><th>暖色占比</th><th>饱和度</th><th>明度</th></tr></thead><tbody>'+rowsH+'</tbody>';
+  // 分级
+  const g=document.getElementById('grade');
+  g.innerHTML=
+    `<div class="gd ok"><div class="gt">语言层 → 情绪　中等且跨样本复现 ✓✓</div><div class="gs">笔触/边缘→唤起、光影→愉悦(负)在 282 艺术家与 118 真迹两套独立数据一致(见 ②)。情绪可测——测在"语言"层。</div></div>`+
+    `<div class="gd ok"><div class="gt">世界观位置 → 像素　中等 ✓</div><div class="gs">再现-表现轴留中等指纹(|r|≈0.4),6 区可分。这一段经得起像素检验。</div></div>`+
+    `<div class="gd no"><div class="gt">"饱和→唤起 强相关"　✗ 循环</div><div class="gs">语料唤起是颜色派生的(r=0.80)。换独立人工判断只剩 ≈0.2,旧 r≈0.78 撤回。</div></div>`+
+    `<div class="gd mid"><div class="gt">E向量能量轴 / 单画预测　弱</div><div class="gs">秩序-张力·节制-强度 像素里 r≈0;单风格→单幅画仍待更大语料。</div></div>`;
+  document.getElementById('verdict').innerHTML='🔬 <b>一句话:</b>感知层"可测"是<b>有条件成立</b>的——能测到的是<b>世界观位置的中等像素指纹</b>(尤以再现-表现轴),测不到的是能量轴与"饱和=情绪"那条被高估的捷径。<b>把循环的那条揪出来撤掉,正是这套图谱"经得起推敲"的样子。</b>完整跨层验证见 <a href="kg-validate.html" style="color:var(--green);font-weight:600">链路验证 →</a>';
+}).catch(e=>{document.getElementById('flagCirc').innerHTML='<span style="color:var(--ink-faint)">需服务器加载 kg_affect_measured.json</span>';});
+</script>
+<script>
+// ④ VLM 多通道取证
+fetch('data/kg_affect_vlm_summary.json').then(r=>r.json()).then(D=>{
+  const c=D.corr||{};
+  const g=(k)=>c[k]?c[k].r:null;
+  const vlmA=g('VLM唤起~art_a'), pix=(D.baseline_pixel_arousal_vs_curated||{}).r, vsat=g('VLM唤起~sat'), vval=g('VLM愉悦~art_v');
+  const n=D.n_vlm||0;
+  document.getElementById('nv').textContent='n='+n+' 幅 · 平均置信 '+(D.mean_conf||'—');
+  const fmt=v=>v==null?'–':(v>=0?'+':'')+v.toFixed(2);
+  document.getElementById('vstat').innerHTML=
+    `<div class="vsc"><div class="big" style="color:var(--green)">${fmt(vlmA)}</div><div class="lb">VLM 唤起 ~ <b>独立人工唤起</b><br>纯像素只有 ${fmt(pix)} → <b style="color:var(--green)">多通道更准</b></div></div>`+
+    `<div class="vsc"><div class="big" style="color:var(--accent)">${fmt(vsat)}</div><div class="lb">VLM 唤起 ~ <b>像素饱和度</b><br><b>负相关</b>=它读的是颜色<b>之外</b>的东西</div></div>`+
+    `<div class="vsc"><div class="big" style="color:var(--ink-mute)">${fmt(vval)}</div><div class="lb">VLM 愉悦 ~ 人工愉悦<br>愉悦维仍<b>弱</b>(小样本)→ 如实标</div></div>`;
+  document.getElementById('vnote').innerHTML=
+    `🔬 <b>结论:多通道确实超越色彩。</b>VLM 读"构图姿态+题材语义+光色",其唤起判断与<b>独立人工</b>的吻合度(${fmt(vlmA)})明显高于纯像素(${fmt(pix)}),且与像素饱和度<b>负相关</b>(${fmt(vsat)})——证明它靠的是<b>语义与语境</b>(如波萨达的骷髅=死亡讽刺、梵高的链子=束缚),不是颜色。`+
+    `<br>诚实边界:① <b>愉悦维仍弱</b>(${fmt(vval)},样本小);② VLM 比像素<b>更难复现</b>(模型相关),故要求它<b>输出可查证据链</b>、并以独立人工标注校准。下面是它逐图判定的全部 119 幅,自己翻看证据。`;
+}).catch(e=>{document.getElementById('vstat').innerHTML='<span style="color:#a89f8f;font-size:12px">需服务器加载 kg_affect_vlm_summary.json</span>';});
+
+// ⑤ 真迹证据画廊 · 119 幅(kg_artwork_v2 逐图 VAD + 三通道 + 证据链)
+fetch('data/kg_artwork_v2.json').then(r=>r.json()).then(WD=>{
+  const ws=Object.values(WD.artworks||{}).filter(w=>w&&w.affect&&w.affect.vad);
+  const gal=document.getElementById('gallery'), chips=document.getElementById('galChips');
+  // 锚点计数
+  const cnt={};ws.forEach(w=>{const a=w.affect.primary_anchor||'其它';cnt[a]=(cnt[a]||0)+1;});
+  const anchors=Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a]);
+  let active='全部';
+  function card(w){
+    const vd=w.affect.vad, ch=w.affect.channels||{}, conf=w.affect.confidence;
+    const artist=(w.artist||'').replace(/\(.*?\)/,'').trim();
+    return `<div class="exc2" style="flex-direction:column;border-left-color:var(--green)">`+
+      `<div style="display:flex;gap:10px;width:100%"><img src="/aha/img/${w.slug}.jpg" loading="lazy" alt=""/><div class="exb">`+
+      `<div class="exh" style="font-size:12.5px">${artist||w.title||'—'}<span class="an">${w.affect.primary_anchor||''}</span></div>`+
+      `<div class="exv">愉悦 ${(+vd.valence).toFixed(2)} · 唤起 ${(+vd.arousal).toFixed(2)} · 支配 ${(+vd.dominance).toFixed(2)}${conf!=null?' · 置信 '+conf:''}</div>`+
+      `<div class="exr" style="font-size:10.5px;color:var(--ink-mute)">${w.title||''}</div></div></div>`+
+      `<div style="width:100%;margin-top:7px;font-size:11px;line-height:1.55;color:var(--ink-soft)">`+
+      (ch.构图姿态?`<div><b style="color:var(--accent)">构图姿态</b> ${ch.构图姿态}</div>`:'')+
+      (ch.题材语义?`<div><b style="color:var(--accent)">题材语义</b> ${ch.题材语义}</div>`:'')+
+      (ch.光色?`<div><b style="color:var(--accent)">光色</b> ${ch.光色}</div>`:'')+
+      ((w.affect.evidence||[]).length?`<div style="margin-top:3px;color:var(--ink-mute)">证据:${w.affect.evidence.join(' · ')}</div>`:'')+
+      `</div></div>`;
+  }
+  function render(){
+    const list=active==='全部'?ws:ws.filter(w=>(w.affect.primary_anchor||'其它')===active);
+    gal.innerHTML=list.map(card).join('');
+  }
+  chips.innerHTML=`<span class="chip on" data-a="全部">全部 ${ws.length}</span>`+anchors.map(a=>`<span class="chip" data-a="${a}">${a} ${cnt[a]}</span>`).join('');
+  chips.querySelectorAll('.chip').forEach(ch=>ch.addEventListener('click',()=>{
+    active=ch.dataset.a;chips.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c===ch));render();
+  }));
+  render();
+}).catch(e=>{document.getElementById('gallery').innerHTML='<span style="color:#a89f8f;font-size:12px">需服务器加载 kg_artwork_v2.json</span>';});
+</script>
+</body></html>

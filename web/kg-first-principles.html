@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 艺术绘画知识图谱 · 第一性原理重构</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--red:#a8443a;--blue:#5b7596;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:940px;margin:0 auto;padding:34px 18px 96px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(23px,4.4vw,34px);font-weight:700;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:14px;line-height:1.8;max-width:740px;margin:8px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:8px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .sec{margin-top:42px}
+  .sec-h{font-family:var(--serif);font-size:21px;font-weight:600;border-bottom:2px solid var(--accent);padding-bottom:8px;margin-bottom:4px}
+  .sec-h .nx{font-family:var(--mono);font-size:12px;color:var(--accent);margin-right:8px}
+  .sec-d{font-size:13.5px;color:var(--ink-mute);margin:10px 0 16px;line-height:1.8}.sec-d b{color:var(--ink-soft)}
+  .axiom{background:#fff;border:1px solid var(--line);border-left:4px solid var(--ink);border-radius:10px;padding:15px 18px;margin-top:14px}
+  .axiom .at{font-family:var(--serif);font-size:15px;font-weight:600;margin-bottom:6px}
+  .axiom p{font-size:13.5px;color:var(--ink-soft);line-height:1.85}
+  .parties{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:14px}@media(max-width:640px){.parties{grid-template-columns:1fr 1fr}}
+  .party{background:var(--paper-2);border-radius:10px;padding:11px 12px;text-align:center}
+  .party .pn{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--accent)}
+  .party .pd{font-size:11px;color:var(--ink-mute);margin-top:4px;line-height:1.45}
+  /* questions chain */
+  .qs{counter-reset:q}
+  .q{display:flex;gap:13px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 15px;margin-top:9px;align-items:flex-start}
+  .q::before{counter-increment:q;content:"Q"counter(q);font-family:var(--mono);font-size:12px;font-weight:600;color:#fff;background:var(--ink-soft);border-radius:6px;padding:3px 7px;flex-shrink:0}
+  .q.root::before{background:var(--accent)}.q.real::before{background:var(--green)}.q.eff::before{background:var(--blue)}.q.mean::before{background:var(--gold)}
+  .q .qt{font-size:13.5px;color:var(--ink);line-height:1.6}.q .qt b{font-family:var(--serif)}
+  .q .ql{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-top:3px}
+  .qlabel{display:inline-block;font-family:var(--mono);font-size:9.5px;color:#fff;border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+  .ql-root{background:var(--accent)}.ql-real{background:var(--green)}.ql-eff{background:var(--blue)}.ql-mean{background:var(--gold)}
+  /* worldview axes */
+  .ax2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}@media(max-width:640px){.ax2{grid-template-columns:1fr}}
+  .axc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;border-top:3px solid var(--accent)}
+  .axc .ah{display:flex;justify-content:space-between;font-family:var(--serif);font-size:17px;font-weight:600}
+  .axc .ah .lp{color:var(--green)}.axc .ah .rp{color:var(--accent)}
+  .axc .abar{height:5px;background:linear-gradient(90deg,var(--green),var(--accent));border-radius:3px;margin:8px 0}
+  .axc .aq{font-size:13px;color:var(--ink-soft);line-height:1.6}
+  .axc .as{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-top:7px;border-top:1px dashed var(--line);padding-top:6px}
+  /* map */
+  .mapwrap{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px}
+  .reglist{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}@media(max-width:640px){.reglist{grid-template-columns:1fr}}
+  .reg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 13px;border-left:4px solid var(--accent)}
+  .reg .rh{display:flex;align-items:baseline;gap:8px}
+  .reg .rn{font-family:var(--serif);font-size:15px;font-weight:600}
+  .reg .rc{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-left:auto}
+  .reg .rmix{font-family:var(--mono);font-size:10.5px;margin-top:4px}
+  .reg .rmix .w{color:var(--accent)}.reg .rmix .e{color:var(--green)}
+  .reg .rm{font-size:11.5px;color:var(--ink-mute);margin-top:5px;line-height:1.5}
+  /* chain */
+  .chain{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:8px}
+  .flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center}
+  .node{border-radius:10px;padding:10px 13px;text-align:center;min-width:96px}
+  .node .nn{font-family:var(--serif);font-size:14px;font-weight:600}
+  .node .nd{font-size:10px;margin-top:3px;opacity:.85}
+  .node.root{background:var(--accent);color:#fff}.node.real{background:var(--green);color:#fff}.node.eff{background:var(--blue);color:#fff}.node.mean{background:var(--gold);color:#fff}
+  .arrow{font-family:var(--serif);font-size:20px;color:var(--ink-faint)}
+  .emerge{margin-top:14px;text-align:center;font-size:13px;color:var(--ink-soft);background:var(--accent-soft);border:1px dashed var(--accent);border-radius:10px;padding:11px 14px;line-height:1.7}.emerge b{color:var(--accent)}
+  /* formula */
+  .formula{background:#fbf9f4;border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:10px;text-align:center}
+  .formula .ft{font-family:var(--serif);font-size:clamp(14px,2.6vw,18px);font-weight:600;line-height:1.9}
+  .formula .ft .v{color:var(--accent)}
+  .formula .fm{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:8px;line-height:1.7}
+  /* delta table */
+  table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top;line-height:1.6}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:11px;color:var(--ink-soft);font-weight:500}
+  td.old{color:var(--ink-mute)}td.new{color:var(--ink-soft)}td.new b{color:var(--accent)}
+  .pill{display:inline-block;font-family:var(--mono);font-size:11px;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:3px 12px;margin-top:4px}
+  .back{display:block;text-align:center;margin-top:46px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .home-fab:hover{color:var(--accent)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 第一性原理(方法论正式版)</div>
+  <h1>从「画是什么」重新结构整个体系</h1>
+  <p class="lead">旧 V2 把五层当作<b>并列的兄弟</b>来堆,而世界观层的轴又经不起推敲(实测冗余、镜像证伪)。这一页推倒重来:从<b>「一幅画到底是什么」</b>这个公理出发,推导出哪一层是<b>因</b>、哪些是<b>果</b>——<b>世界观先立,其余皆由它生</b>,而「风格」根本不是一层,是这条因果链上涌现出的签名。</p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-root">根·世界观</a> › <b style="color:var(--ink-soft)">第一性原理</b></div>
+
+  <!-- 公理 -->
+  <div class="sec">
+    <div class="sec-h"><span class="nx">公理 0</span>一幅画是什么</div>
+    <div class="axiom">
+      <div class="at">画 = 一组被刻意安排、供人观看、且对某个世界有所主张的二维痕迹。</div>
+      <p>这个定义里藏着<b>四个不可再分的参与方</b>。任何一幅画,无论东西古今,都必然在它们之间发生关系——这就是后面一切结构的来源:</p>
+    </div>
+    <div class="parties">
+      <div class="party"><div class="pn">世界</div><div class="pd">被指涉的对象(真实或想象)</div></div>
+      <div class="party"><div class="pn">作者</div><div class="pd">持有一种<b>面对世界的立场</b></div></div>
+      <div class="party"><div class="pn">痕迹</div><div class="pd">落在平面上的<b>可观测的笔与色</b></div></div>
+      <div class="party"><div class="pn">观者</div><div class="pd">感知痕迹、并<b>推断</b>其意义</div></div>
+    </div>
+  </div>
+
+  <!-- 推导:不可再分的问题 -->
+  <div class="sec">
+    <div class="sec-h"><span class="nx">推导</span>任何一幅画都必须回答的问题</div>
+    <div class="sec-d">从四方关系里,逼出一组<b>互不重复、缺一不可</b>的问题。它们天然分成四档——而第一档(立场)在因果上<b>先于</b>其余,因为它决定了后面所有选择。这就是「世界观先立」的依据。</div>
+    <div class="qs">
+      <div class="q root"><div><div class="qt"><b>痕迹与世界什么关系?</b>——忠于眼睛所见,还是忠于内心所感?<span class="qlabel ql-root">世界观·根</span></div><div class="ql">→ 再现 ↔ 表现</div></div></div>
+      <div class="q root"><div><div class="qt"><b>世界被如何把握?</b>——作为底层的结构与秩序,还是作为即时的感官经验?<span class="qlabel ql-root">世界观·根</span></div><div class="ql">→ 结构 ↔ 感知</div></div></div>
+      <div class="q root"><div><div class="qt"><b>观者站在哪里?</b>——被卷入画中,还是置身画外旁观?(视觉可观测)<span class="qlabel ql-root">世界观·根</span></div><div class="ql">→ 卷入 ↔ 抽离(第三轴,可选)</div></div></div>
+      <div class="q real"><div><div class="qt"><b>画什么?</b>——对世界的对象选择。<span class="qlabel ql-real">题材·实现</span></div><div class="ql">→ 题材层(开集,关键节点)</div></div></div>
+      <div class="q real"><div><div class="qt"><b>怎么落笔?</b>——构图/空间/造型/光影/色彩/笔触/边缘的参数设定。<span class="qlabel ql-real">语言·实现</span></div><div class="ql">→ 7 大构成(可观测,各带连续参数)</div></div></div>
+      <div class="q eff"><div><div class="qt"><b>痕迹对观者做了什么?</b>——唤起的情绪与感官效应。<span class="qlabel ql-eff">感知·效应</span></div><div class="ql">→ VAD 情绪 + 感官通道(可由像素测)</div></div></div>
+      <div class="q mean"><div><div class="qt"><b>它意味着什么?</b>——被推断出的意义与价值。<span class="qlabel ql-mean">画外音·意义</span></div><div class="ql">→ 画外音层(涌现,需推理)</div></div></div>
+    </div>
+  </div>
+
+  <!-- 世界观先立 -->
+  <div class="sec">
+    <div class="sec-h"><span class="nx">根 L0</span>世界观:只用两条经检验的真轴</div>
+    <div class="sec-d">立场(Q1–Q3)就是<b>世界观</b>。旧版把它定成 3 轴 + 12 个东西镜像模型,实测崩了(轴冗余、镜像 0/6)。重构后<b>只保留经数据检验为正交(r=0.10)且最能区分风格(F≈20)的两条 stance 轴</b>,张成一个<b>所有传统共享的连续平面</b>。其余像「秩序-张力」「节制-强度」不是世界观,它们是下游的<b>语言参数 / 感知效应</b>(且可由像素测),被请回它们该在的层。</div>
+    <div class="ax2" id="axes"></div>
+  </div>
+
+  <!-- 数据发现的区 -->
+  <div class="sec">
+    <div class="sec-h"><span class="nx">数据</span>这片平面上,自然浮现的区(非强加)</div>
+    <div class="sec-d">把 <b id="n">…</b> 个已考究风格落到这两条轴上,让 k-means <b>自己找</b>聚成几区。结果不是 12 个镜像模型,而是 <b>6 个数据发现的区</b>。<b style="color:var(--accent)">最关键:东(绿)/西(赭)不是对称两半,而是同一空间里的两种密度</b>——有的区东西对半(古典再现),有的几乎纯西(感知光色),有的偏东(文人意象)。这才是经得起推敲的样子。</div>
+    <div class="mapwrap"><svg id="map" viewBox="0 0 640 460" style="width:100%;height:auto"></svg></div>
+    <div class="reglist" id="regs"></div>
+  </div>
+
+  <!-- 风格是涌现 -->
+  <div class="sec">
+    <div class="sec-h"><span class="nx">关键</span>「风格」不是一层,是涌现的签名</div>
+    <div class="sec-d">注意:上面七个问题里<b>没有「风格」</b>。因为风格不是画要回答的问题,而是<b>我们给"一组反复出现的回答"起的名字</b>。印象派 = (再现偏表现 × 感知极 × 某组光色笔触)这块区域反复出现、被命名。所以——</div>
+    <div class="emerge">🎯 <b>风格 = 世界观坐标 × 题材倾向 × 语言参数,这条链上反复出现、被历史命名的一个区域。</b><br>它是投影、是坐标,<b>不是原子节点</b>。这正是 V2 最初的判断,现在被第一性原理与数据双重坐实。</div>
+  </div>
+
+  <!-- 生成链 -->
+  <div class="sec">
+    <div class="sec-h"><span class="nx">结构</span>新骨架 = 一条生成因果链</div>
+    <div class="sec-d">五层不再是并列兄弟,而是<b>一条有方向的因果链</b>:世界观(根)生出实现(题材+语言),实现被感知为效应,效应被推断为意义。风格横跨前两环、由数据投影而来。</div>
+    <div class="chain">
+      <div class="flow">
+        <div class="node root"><div class="nn">世界观</div><div class="nd">立场·根 L0</div></div>
+        <span class="arrow">→</span>
+        <div class="node real"><div class="nn">题材 + 7大构成</div><div class="nd">实现·可观测 L1·L2</div></div>
+        <span class="arrow">→</span>
+        <div class="node eff"><div class="nn">感知效应</div><div class="nd">VAD·可测 L3</div></div>
+        <span class="arrow">→</span>
+        <div class="node mean"><div class="nn">画外音</div><div class="nd">意义·涌现 L4</div></div>
+      </div>
+      <div class="emerge" style="margin-top:16px">风格 = 在 <b>世界观 × 题材 × 语言</b> 这段链上反复出现的被命名签名(投影,非独立层)</div>
+    </div>
+  </div>
+
+  <!-- 公式对齐 -->
+  <div class="sec">
+    <div class="sec-h"><span class="nx">对齐</span>你的核心公式 = 这条链从左读到右</div>
+    <div class="formula">
+      <div class="ft">风格 = <span class="v">世界模型</span> × <span class="v">感知策略</span> × <span class="v">造型方法</span> × <span class="v">语言参数</span> × <span class="v">意义指向</span></div>
+      <div class="fm">世界模型 = L0 世界观坐标　·　感知策略 = L0 结构↔感知轴　·　造型方法 = L2 形状与造型<br>语言参数 = L2 色彩/光影/笔触/边缘　·　意义指向 = L4 画外音</div>
+    </div>
+    <div class="sec-d" style="margin-top:12px">公式从左到右,正好是<b>从根到意义</b>走完整条生成链。它不是五个并列因子的乘法,而是<b>一条因果路径的展开</b>——这也是为什么它能既"理解"又"生成"。</div>
+  </div>
+
+  <!-- 重构 delta -->
+  <div class="sec">
+    <div class="sec-h"><span class="nx">变更</span>相对旧 V2,改了什么</div>
+    <table>
+      <thead><tr><th style="width:22%">维度</th><th style="width:39%">旧 V2</th><th style="width:39%">第一性原理 v0.4</th></tr></thead>
+      <tbody>
+        <tr><td>层间关系</td><td class="old">5 个并列层</td><td class="new"><b>1 条生成因果链</b>(根→实现→效应→意义)</td></tr>
+        <tr><td>世界观轴</td><td class="old">3 轴(混入秩序/张力等冗余)</td><td class="new"><b>2 条经检验正交轴</b>(再现-表现 ⊥ 结构-感知)</td></tr>
+        <tr><td>世界模型</td><td class="old">12 个东西 1:1 镜像(强加)</td><td class="new"><b>6 个数据发现的区</b>(东西=密度非镜像)</td></tr>
+        <tr><td>风格</td><td class="old">当作一层 / 原子节点</td><td class="new"><b>涌现的投影签名</b>(不是层)</td></tr>
+        <tr><td>秩序-张力 / 节制-强度</td><td class="old">当作世界观轴</td><td class="new">下放为<b>语言参数 / 感知效应</b>(可由像素测)</td></tr>
+        <tr><td>东 / 西</td><td class="old">结构性的对称两套</td><td class="new">共享空间上的<b>密度属性</b>(文化标签)</td></tr>
+      </tbody>
+    </table>
+    <div class="pill">✅ V3 已确立为方法论正式版 · 世界观层已迁移(2 轴 + 6 区、202 风格全归区)· 余项(3D 轴换正交基、风格按新基重投影、detail/stats 同步)逐步展开</div>
+  </div>
+
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const NS='http://www.w3.org/2000/svg';
+const E=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+fetch('data/kg_worldview_v3.json').then(r=>r.json()).then(D=>{
+  document.getElementById('n').textContent=D.n;
+  // axes cards
+  const axw=document.getElementById('axes');
+  D.axes.forEach(a=>{
+    const [l,r]=a.cn.split('↔').map(s=>s.trim());
+    axw.appendChild($(`<div class="axc"><div class="ah"><span class="lp">${l}</span><span class="rp">${r}</span></div><div class="abar"></div><div class="aq">${a.q}</div><div class="as">${a.stat}</div></div>`));
+  });
+  // region list
+  const PAL=['#b0673a','#5a7d6f','#c98a1a','#5b7596','#8a5a8a','#7a8a4a'];
+  const rw=document.getElementById('regs');
+  D.regions.forEach((rg,i)=>{
+    rw.appendChild($(`<div class="reg" style="border-left-color:${PAL[i%6]}"><div class="rh"><span class="rn">${rg.label}</span><span class="rc">(${rg.cx.toFixed(2)}, ${rg.cy.toFixed(2)})·n=${rg.n}</span></div><div class="rmix"><span class="w">西 ${rg.west}</span> · <span class="e">东 ${rg.east}</span></div><div class="rm">${rg.members.slice(0,7).join('、')}${rg.n>7?' …':''}</div></div>`));
+  });
+  // scatter map: x=再现-表现(0..1), y=结构-感知(0..1)
+  const svg=document.getElementById('map'), W=640,H=460,pad=46;
+  const sx=v=>pad+v*(W-2*pad), sy=v=>H-pad-v*(H-2*pad);
+  // grid + axis labels
+  svg.appendChild(E('rect',{x:pad,y:pad,width:W-2*pad,height:H-2*pad,fill:'#fcfaf5',stroke:'#e8e0d0'}));
+  [0.25,0.5,0.75].forEach(t=>{
+    svg.appendChild(E('line',{x1:sx(t),y1:pad,x2:sx(t),y2:H-pad,stroke:'#efe9dc'}));
+    svg.appendChild(E('line',{x1:pad,y1:sy(t),x2:W-pad,y2:sy(t),stroke:'#efe9dc'}));
+  });
+  const txt=(x,y,s,o={})=>{const t=E('text',{x,y,'font-family':'JetBrains Mono','font-size':o.fs||11,fill:o.fill||'#857d6f','text-anchor':o.a||'middle'});t.textContent=s;if(o.w)t.setAttribute('font-weight',o.w);svg.appendChild(t);};
+  txt(sx(0.02),H-pad+18,'再现',{a:'start',fill:'#5a7d6f',w:600});
+  txt(sx(0.98),H-pad+18,'表现 →',{a:'end',fill:'#b0673a',w:600});
+  txt(pad-8,sy(0.02),'结构',{a:'end',fill:'#5a7d6f',w:600});
+  txt(pad-8,sy(0.97),'感知',{a:'end',fill:'#b0673a',w:600});
+  txt(W/2,pad-14,'世界观平面 · 再现-表现 ⊥ 结构-感知',{fs:12,fill:'#4b463e',w:600});
+  // points
+  D.points.forEach(p=>{
+    const c=p.region==='west'?'#b0673a':'#5a7d6f';
+    const ci=E('circle',{cx:sx(p.x),cy:sy(p.y),r:4.2,fill:c,'fill-opacity':0.5,stroke:'#fff','stroke-width':0.6});
+    const ti=E('title',{});ti.textContent=p.cn;ci.appendChild(ti);svg.appendChild(ci);
+  });
+  // region centroids as labeled landmarks
+  D.regions.forEach((rg,i)=>{
+    svg.appendChild(E('circle',{cx:sx(rg.cx),cy:sy(rg.cy),r:9,fill:PAL[i%6],stroke:'#fff','stroke-width':2,'fill-opacity':0.95}));
+    const lb=E('text',{x:sx(rg.cx),y:sy(rg.cy)-13,'font-family':'Noto Serif SC','font-size':12.5,'font-weight':600,fill:'#1d1b18','text-anchor':'middle'});
+    lb.textContent=rg.label;
+    lb.setAttribute('paint-order','stroke');lb.setAttribute('stroke','#f4f1ea');lb.setAttribute('stroke-width','3');
+    svg.appendChild(lb);
+  });
+}).catch(e=>{document.getElementById('map').innerHTML='';});
+</script>
+</body></html>

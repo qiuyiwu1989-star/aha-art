@@ -1,0 +1,556 @@
+{
+ "title": "艺术家名单 · 世界观区 × 流派",
+ "intro": "风格是涌现的命名区,艺术家是落在区里的实例。所以名单按 V3 的 6 个世界观区 × 代表流派来排,东西方并置——有了风格区,就把代表艺术家挂上去,再据此逐步建主页。已建的可点进,未建的是接下来的清单。",
+ "regions": [
+  {
+   "id": "WV1",
+   "name": "摹写之眼",
+   "axis": "再现 · 写实 · 客观重建",
+   "movements": [
+    {
+     "m": "文艺复兴盛期",
+     "side": "西",
+     "artists": [
+      {
+       "cn": "达·芬奇",
+       "id": "ARTIST.davinci"
+      },
+      {
+       "cn": "拉斐尔",
+       "id": "ARTIST.raphael"
+      },
+      {
+       "cn": "米开朗基罗"
+      }
+     ]
+    },
+    {
+     "m": "北方文艺复兴",
+     "side": "西",
+     "artists": [
+      {
+       "cn": "凡·艾克"
+      },
+      {
+       "cn": "丢勒",
+       "id": "ARTIST.durer"
+      },
+      {
+       "cn": "荷尔拜因"
+      }
+     ]
+    },
+    {
+     "m": "巴洛克写实",
+     "side": "西",
+     "artists": [
+      {
+       "cn": "卡拉瓦乔",
+       "id": "ARTIST.caravaggio"
+      },
+      {
+       "cn": "委拉斯开兹",
+       "id": "ARTIST.velazquez"
+      },
+      {
+       "cn": "伦勃朗",
+       "id": "ARTIST.rembrandt"
+      }
+     ]
+    },
+    {
+     "m": "现实主义",
+     "side": "西",
+     "artists": [
+      {
+       "cn": "库尔贝",
+       "id": "ARTIST.courbet"
+      },
+      {
+       "cn": "米勒",
+       "id": "ARTIST.millet"
+      },
+      {
+       "cn": "杜米埃"
+      }
+     ]
+    },
+    {
+     "m": "巡回画派",
+     "side": "西",
+     "artists": [
+      {
+       "cn": "列宾",
+       "id": "ARTIST.repin"
+      },
+      {
+       "cn": "苏里科夫"
+      },
+      {
+       "cn": "克拉姆斯柯依"
+      }
+     ]
+    },
+    {
+     "m": "北宋山水",
+     "side": "东",
+     "artists": [
+      {
+       "cn": "范宽",
+       "id": "ARTIST.fankuan"
+      },
+      {
+       "cn": "郭熙",
+       "id": "ARTIST.guoxi"
+      },
+      {
+       "cn": "李成"
+      }
+     ]
+    },
+    {
+     "m": "宋院体",
+     "side": "东",
+     "artists": [
+      {
+       "cn": "宋徽宗赵佶",
+       "id": "ARTIST.huizong"
+      },
+      {
+       "cn": "崔白"
+      }
+     ]
+    },
+    {
+     "m": "工笔写实",
+     "side": "东",
+     "artists": [
+      {
+       "cn": "仇英",
+       "id": "ARTIST.qiuying"
+      },
+      {
+       "cn": "郎世宁"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "WV2",
+   "name": "礼制图式",
+   "axis": "象征 · 秩序 · 神圣",
+   "movements": [
+    {
+     "m": "中世纪/拜占庭",
+     "side": "西",
+     "artists": [
+      {
+       "cn": "契马布埃"
+      },
+      {
+       "cn": "拜占庭圣像"
+      }
+     ]
+    },
+    {
+     "m": "早期文艺复兴",
+     "side": "西",
+     "artists": [
+      {
+       "cn": "乔托",
+       "id": "ARTIST.giotto"
+      },
+      {
+       "cn": "波提切利",
+       "id": "ARTIST.botticelli"
+      },
+      {
+       "cn": "弗拉·安杰利科"
+      }
+     ]
+    },
+    {
+     "m": "人物画祖",
+     "side": "东",
+     "artists": [
+      {
+       "cn": "顾恺之"
+      },
+      {
+       "cn": "阎立本",
+       "id": "ARTIST.yanliben"
+      },
+      {
+       "cn": "吴道子",
+       "id": "ARTIST.wudaozi"
+      }
+     ]
+    },
+    {
+     "m": "宫廷院体",
+     "side": "东",
+     "artists": [
+      {
+       "cn": "张萱",
+       "id": "ARTIST.zhangxuan"
+      },
+      {
+       "cn": "周昉",
+       "id": "ARTIST.zhoufang"
+      },
+      {
+       "cn": "乾隆院体"
+      }
+     ]
+    },
+    {
+     "m": "壁画",
+     "side": "东",
+     "artists": [
+      {
+       "cn": "敦煌莫高窟"
+      },
+      {
+       "cn": "永乐宫"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "WV3",
+   "name": "写意寄情",
+   "axis": "文人 · 意象 · 气韵(东方密度最高)",
+   "movements": [
+    {
+     "m": "元四家",
+     "side": "东",
+     "artists": [
+      {
+       "cn": "黄公望",
+       "id": "ARTIST.huanggongwang"
+      },
+      {
+       "cn": "吴镇"
+      },
+      {
+       "cn": "王蒙",
+       "id": "ARTIST.wangmeng"
+      },
+      {
+       "cn": "倪瓒",
+       "id": "ARTIST.nizan"
+      }
+     ]
+    },
+    {
+     "m": "明吴门",
+     "side": "东",
+     "artists": [
+      {
+       "cn": "沈周",
+       "id": "ARTIST.shenzhou"
+      },
+      {
+       "cn": "文徵明",
+       "id": "ARTIST.wenzhengming"
+      },
+      {
+       "cn": "唐寅"
+      }
+     ]
+    },
+    {
+     "m": "晚明南宗",
+     "side": "东",
+     "artists": [
+      {
+       "cn": "董其昌"
+      },
+      {
+       "cn": "陈洪绶"
+      }
+     ]
+    },
+    {
+     "m": "清初四僧",
+     "side": "东",
+     "artists": [
+      {
+       "cn": "石涛",
+       "id": "ARTIST.shitao"
+      },
+      {
+       "cn": "髡残"
+      },
+      {
+       "cn": "弘仁"
+      }
+     ]
+    },
+    {
+     "m": "扬州八怪",
+     "side": "东",
+     "artists": [
+      {
+       "cn": "郑燮"
+      },
+      {
+       "cn": "金农"
+      },
+      {
+       "cn": "黄慎"
+      }
+     ]
+    },
+    {
+     "m": "近现代文人",
+     "side": "东",
+     "artists": [
+      {
+       "cn": "吴昌硕",
+       "id": "ARTIST.wuchangshuo"
+      },
+      {
+       "cn": "齐白石",
+       "id": "ARTIST.qibaishi"
+      },
+      {
+       "cn": "黄宾虹",
+       "id": "ARTIST.huangbinhong"
+      },
+      {
+       "cn": "潘天寿"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "WV4",
+   "name": "经验之光",
+   "axis": "感知 · 外光 · 瞬间(几乎纯西)",
+   "movements": [
+    {
+     "m": "先声",
+     "side": "西",
+     "artists": [
+      {
+       "cn": "透纳"
+      },
+      {
+       "cn": "柯罗"
+      },
+      {
+       "cn": "康斯太勃尔"
+      }
+     ]
+    },
+    {
+     "m": "印象派",
+     "side": "西",
+     "artists": [
+      {
+       "cn": "莫奈",
+       "id": "ARTIST.monet"
+      },
+      {
+       "cn": "雷诺阿",
+       "id": "ARTIST.renoir"
+      },
+      {
+       "cn": "毕沙罗",
+       "id": "ARTIST.pissarro"
+      },
+      {
+       "cn": "西斯莱"
+      },
+      {
+       "cn": "德加",
+       "id": "ARTIST.degas"
+      }
+     ]
+    },
+    {
+     "m": "新印象/点彩",
+     "side": "西",
+     "artists": [
+      {
+       "cn": "修拉",
+       "id": "ARTIST.seurat"
+      },
+      {
+       "cn": "西涅克"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "WV5",
+   "name": "表现外化",
+   "axis": "内心 · 变形 · 外化",
+   "movements": [
+    {
+     "m": "后印象",
+     "side": "西",
+     "artists": [
+      {
+       "cn": "梵高",
+       "id": "ARTIST.vangogh"
+      },
+      {
+       "cn": "高更",
+       "id": "ARTIST.gauguin"
+      }
+     ]
+    },
+    {
+     "m": "表现主义",
+     "side": "西",
+     "artists": [
+      {
+       "cn": "蒙克",
+       "id": "ARTIST.munch"
+      },
+      {
+       "cn": "康定斯基",
+       "id": "ARTIST.kandinsky"
+      },
+      {
+       "cn": "席勒"
+      },
+      {
+       "cn": "诺尔德"
+      }
+     ]
+    },
+    {
+     "m": "野兽派",
+     "side": "西",
+     "artists": [
+      {
+       "cn": "马蒂斯",
+       "id": "ARTIST.matisse"
+      },
+      {
+       "cn": "弗拉曼克"
+      }
+     ]
+    },
+    {
+     "m": "超现实",
+     "side": "西",
+     "artists": [
+      {
+       "cn": "达利"
+      },
+      {
+       "cn": "米罗"
+      },
+      {
+       "cn": "马格利特"
+      }
+     ]
+    },
+    {
+     "m": "东方大写意",
+     "side": "东",
+     "artists": [
+      {
+       "cn": "梁楷"
+      },
+      {
+       "cn": "徐渭"
+      },
+      {
+       "cn": "八大山人",
+       "id": "ARTIST.badashanren"
+      },
+      {
+       "cn": "傅抱石"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "WV6",
+   "name": "形式建构",
+   "axis": "形状 · 结构 · 观念",
+   "movements": [
+    {
+     "m": "立体主义",
+     "side": "西",
+     "artists": [
+      {
+       "cn": "毕加索",
+       "id": "ARTIST.picasso"
+      },
+      {
+       "cn": "布拉克"
+      },
+      {
+       "cn": "莱热"
+      }
+     ]
+    },
+    {
+     "m": "几何抽象",
+     "side": "西",
+     "artists": [
+      {
+       "cn": "蒙德里安",
+       "id": "ARTIST.mondrian"
+      },
+      {
+       "cn": "马列维奇",
+       "id": "ARTIST.malevich"
+      }
+     ]
+    },
+    {
+     "m": "色域/极简",
+     "side": "西",
+     "artists": [
+      {
+       "cn": "罗斯科",
+       "id": "ARTIST.rothko"
+      },
+      {
+       "cn": "纽曼"
+      }
+     ]
+    },
+    {
+     "m": "东方现代抽象",
+     "side": "东",
+     "artists": [
+      {
+       "cn": "吴冠中"
+      },
+      {
+       "cn": "赵无极"
+      },
+      {
+       "cn": "朱德群"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "cross": [
+  {
+   "cn": "徐悲鸿",
+   "id": "ARTIST.xubeihong",
+   "note": "跨越 · 写实 ↔ 写意(中西合璧)"
+  },
+  {
+   "cn": "塞尚",
+   "id": "ARTIST.cezanne",
+   "note": "跨越 · 经验之光 → 形式建构(现代绘画之父)"
+  }
+ ]
+}

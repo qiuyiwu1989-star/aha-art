@@ -1,0 +1,1134 @@
+{
+ "edges": [
+  {
+   "src": "ARTIST.balla",
+   "dst": "ARTIST.boccioni",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.balla",
+   "dst": "ARTIST.severini",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.beuys",
+   "dst": "ARTIST.kiefer",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.boucher",
+   "dst": "ARTIST.fragonard",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.cimabue",
+   "dst": "ARTIST.giotto",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.corot",
+   "dst": "ARTIST.pissarro",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.daijin",
+   "dst": "ARTIST.wuwei",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.dongqichang",
+   "dst": "ARTIST.zhashibiao",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.dongyuan",
+   "dst": "ARTIST.juran",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.duccio",
+   "dst": "ARTIST.lorenzetti",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.duccio",
+   "dst": "ARTIST.martini",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.gaojianfu",
+   "dst": "ARTIST.chenshuren",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.gaojianfu",
+   "dst": "ARTIST.gaoqifeng",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.gaojianfu",
+   "dst": "ARTIST.guanshanyue",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.giorgione",
+   "dst": "ARTIST.titian",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.huangbinhong",
+   "dst": "ARTIST.likeran",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.jldavid",
+   "dst": "ARTIST.ingres",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.juran",
+   "dst": "ARTIST.wuzhen",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.kandinsky",
+   "dst": "ARTIST.munter",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.klimt",
+   "dst": "ARTIST.schiele",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.kramskoi",
+   "dst": "ARTIST.repin",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.kramskoi",
+   "dst": "ARTIST.serov",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.licheng",
+   "dst": "ARTIST.fankuan",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.licheng",
+   "dst": "ARTIST.guoxi",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.ligonglin",
+   "dst": "ARTIST.zhangwo",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.linfengmian",
+   "dst": "ARTIST.chudehchun",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.linfengmian",
+   "dst": "ARTIST.wuguanzhong",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.linfengmian",
+   "dst": "ARTIST.zaowuji",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.lisixun",
+   "dst": "ARTIST.lizhaodao",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.litang",
+   "dst": "ARTIST.mayuan",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.litang",
+   "dst": "ARTIST.xiagui",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.malevich",
+   "dst": "ARTIST.lissitzky",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.moreau",
+   "dst": "ARTIST.matisse",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.nizan",
+   "dst": "ARTIST.hongren",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.nizan",
+   "dst": "ARTIST.zhashibiao",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.pantianshou",
+   "dst": "ARTIST.wuguanzhong",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.pissarro",
+   "dst": "ARTIST.cezanne",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.pissarro",
+   "dst": "ARTIST.gauguin",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.qibaishi",
+   "dst": "ARTIST.likeran",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.qibaishi",
+   "dst": "ARTIST.likuchan",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.renbonian",
+   "dst": "ARTIST.wuchangshuo",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.repin",
+   "dst": "ARTIST.serov",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.seurat",
+   "dst": "ARTIST.signac",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.shenzhou",
+   "dst": "ARTIST.wenzhengming",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.sotatsu",
+   "dst": "ARTIST.korin",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.titian",
+   "dst": "ARTIST.elgreco",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.titian",
+   "dst": "ARTIST.tintoretto",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.wenzhengming",
+   "dst": "ARTIST.chenchun",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.wuchangshuo",
+   "dst": "ARTIST.pantianshou",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.wuchangshuo",
+   "dst": "ARTIST.qibaishi",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.xubeihong",
+   "dst": "ARTIST.jiangzhaohe",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.xubeihong",
+   "dst": "ARTIST.likuchan",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.xuwei",
+   "dst": "ARTIST.badashanren",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.zhangxuan",
+   "dst": "ARTIST.zhoufang",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.zhaomengfu",
+   "dst": "ARTIST.huanggongwang",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.zhaomengfu",
+   "dst": "ARTIST.nizan",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.zhaomengfu",
+   "dst": "ARTIST.wangmeng",
+   "rel": "师承"
+  },
+  {
+   "src": "ARTIST.angelico",
+   "dst": "ARTIST.masaccio",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.arp",
+   "dst": "ARTIST.ernst",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.arp",
+   "dst": "ARTIST.tzara",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.badashanren",
+   "dst": "ARTIST.hongren",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.badashanren",
+   "dst": "ARTIST.kuncan",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.badashanren",
+   "dst": "ARTIST.shitao",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.balla",
+   "dst": "ARTIST.boccioni",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.balla",
+   "dst": "ARTIST.severini",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.baselitz",
+   "dst": "ARTIST.kiefer",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.basquiat",
+   "dst": "ARTIST.haring",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.bastienlepage",
+   "dst": "ARTIST.millet",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.bastienlepage",
+   "dst": "ARTIST.zola",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.boccioni",
+   "dst": "ARTIST.severini",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.bonnard",
+   "dst": "ARTIST.denis",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.bonnard",
+   "dst": "ARTIST.vuillard",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.boucher",
+   "dst": "ARTIST.watteau",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.braque",
+   "dst": "ARTIST.gris",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.braque",
+   "dst": "ARTIST.picasso",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.bruegel",
+   "dst": "ARTIST.durer",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.buson",
+   "dst": "ARTIST.ikenotaiga",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.caravaggio",
+   "dst": "ARTIST.rubens",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.cezanne",
+   "dst": "ARTIST.pissarro",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.cezanne",
+   "dst": "ARTIST.zola",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.chagall",
+   "dst": "ARTIST.modigliani",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.chagall",
+   "dst": "ARTIST.soutine",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.chavannes",
+   "dst": "ARTIST.moreau",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.chavannes",
+   "dst": "ARTIST.redon",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.chenchun",
+   "dst": "ARTIST.xuwei",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.chenjiru",
+   "dst": "ARTIST.dongqichang",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.chenshuren",
+   "dst": "ARTIST.gaojianfu",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.chenshuren",
+   "dst": "ARTIST.gaoqifeng",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.chuckclose",
+   "dst": "ARTIST.estes",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.chudehchun",
+   "dst": "ARTIST.zaowuji",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.cimabue",
+   "dst": "ARTIST.duccio",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.constable",
+   "dst": "ARTIST.turner",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.corot",
+   "dst": "ARTIST.millet",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.corot",
+   "dst": "ARTIST.rousseau",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.courbet",
+   "dst": "ARTIST.daumier",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.courbet",
+   "dst": "ARTIST.millet",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.cuibai",
+   "dst": "ARTIST.huizong",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.dali",
+   "dst": "ARTIST.magritte",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.dali",
+   "dst": "ARTIST.miro",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.daumier",
+   "dst": "ARTIST.millet",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.davinci",
+   "dst": "ARTIST.michelangelo",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.davinci",
+   "dst": "ARTIST.raphael",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.dekooning",
+   "dst": "ARTIST.kline",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.dekooning",
+   "dst": "ARTIST.pollock",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.demaria",
+   "dst": "ARTIST.smithson",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.denis",
+   "dst": "ARTIST.vuillard",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.derain",
+   "dst": "ARTIST.matisse",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.derain",
+   "dst": "ARTIST.picasso",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.derain",
+   "dst": "ARTIST.vlaminck",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.dingguanpeng",
+   "dst": "ARTIST.langshining",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.dix",
+   "dst": "ARTIST.grosz",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.dongqichang",
+   "dst": "ARTIST.zhaozuo",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.dubuffet",
+   "dst": "ARTIST.fautrier",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.duccio",
+   "dst": "ARTIST.giotto",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.elgreco",
+   "dst": "ARTIST.tintoretto",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.ernst",
+   "dst": "ARTIST.masson",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.ernst",
+   "dst": "ARTIST.miro",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.fangzengxian",
+   "dst": "ARTIST.huangzhou",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.fankuan",
+   "dst": "ARTIST.guoxi",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.fankuan",
+   "dst": "ARTIST.licheng",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.fankuan",
+   "dst": "ARTIST.litang",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.fanqi",
+   "dst": "ARTIST.gongxian",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.frankenthaler",
+   "dst": "ARTIST.noland",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.friedrich",
+   "dst": "ARTIST.turner",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.fubaoshi",
+   "dst": "ARTIST.guanshanyue",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.gaojianfu",
+   "dst": "ARTIST.gaoqifeng",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.gauguin",
+   "dst": "ARTIST.munch",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.gauguin",
+   "dst": "ARTIST.vangogh",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.giorgione",
+   "dst": "ARTIST.titian",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.giotto",
+   "dst": "ARTIST.lorenzetti",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.gris",
+   "dst": "ARTIST.picasso",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.guwenda",
+   "dst": "ARTIST.wangtiande",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.guwenda",
+   "dst": "ARTIST.xubing",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.guwenda",
+   "dst": "ARTIST.zhangyu",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.hals",
+   "dst": "ARTIST.rembrandt",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.hamilton",
+   "dst": "ARTIST.lichtenstein",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.hamilton",
+   "dst": "ARTIST.warhol",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.heartfield",
+   "dst": "ARTIST.hoch",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.heckel",
+   "dst": "ARTIST.kirchner",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.heckel",
+   "dst": "ARTIST.schmidtrottluff",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.hejiaying",
+   "dst": "ARTIST.jiangcaiping",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.henrirousseau",
+   "dst": "ARTIST.picasso",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.hiroshige",
+   "dst": "ARTIST.hokusai",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.hokusai",
+   "dst": "ARTIST.utamaro",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.hongren",
+   "dst": "ARTIST.kuncan",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.hongren",
+   "dst": "ARTIST.shitao",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.huangbinhong",
+   "dst": "ARTIST.pantianshou",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.huangbinhong",
+   "dst": "ARTIST.qibaishi",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.huanggongwang",
+   "dst": "ARTIST.nizan",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.huanggongwang",
+   "dst": "ARTIST.wangmeng",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.huanggongwang",
+   "dst": "ARTIST.wuzhen",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.huangshen",
+   "dst": "ARTIST.jinnong",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.huangshen",
+   "dst": "ARTIST.zhengxie",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.hunt",
+   "dst": "ARTIST.millais",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.hunt",
+   "dst": "ARTIST.rossetti",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.jiangzhaohe",
+   "dst": "ARTIST.xubeihong",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.jinnong",
+   "dst": "ARTIST.wuchangshuo",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.jinnong",
+   "dst": "ARTIST.zhengxie",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.judd",
+   "dst": "ARTIST.lewitt",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.kandinsky",
+   "dst": "ARTIST.marc",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.kandinsky",
+   "dst": "ARTIST.munter",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.kelly",
+   "dst": "ARTIST.noland",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.kiefer",
+   "dst": "ARTIST.schnabel",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.kirchner",
+   "dst": "ARTIST.schmidtrottluff",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.klimt",
+   "dst": "ARTIST.schiele",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.kline",
+   "dst": "ARTIST.pollock",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.kosuth",
+   "dst": "ARTIST.lewitt",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.kounellis",
+   "dst": "ARTIST.merz",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.kuncan",
+   "dst": "ARTIST.shitao",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.kusama",
+   "dst": "ARTIST.teamlab",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.leger",
+   "dst": "ARTIST.picasso",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.levitan",
+   "dst": "ARTIST.repin",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.levitan",
+   "dst": "ARTIST.serov",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.lewitt",
+   "dst": "ARTIST.martin",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.lichtenstein",
+   "dst": "ARTIST.warhol",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.ligonglin",
+   "dst": "ARTIST.sushi",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.likuchan",
+   "dst": "ARTIST.pantianshou",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.linfengmian",
+   "dst": "ARTIST.xubeihong",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.lissitzky",
+   "dst": "ARTIST.malevich",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.lissitzky",
+   "dst": "ARTIST.rodchenko",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.malevich",
+   "dst": "ARTIST.tatlin",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.marc",
+   "dst": "ARTIST.munter",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.martin",
+   "dst": "ARTIST.rothko",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.masson",
+   "dst": "ARTIST.matta",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.masson",
+   "dst": "ARTIST.miro",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.matisse",
+   "dst": "ARTIST.picasso",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.matisse",
+   "dst": "ARTIST.vlaminck",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.mayuan",
+   "dst": "ARTIST.xiagui",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.michelangelo",
+   "dst": "ARTIST.raphael",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.millais",
+   "dst": "ARTIST.rossetti",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.millet",
+   "dst": "ARTIST.rousseau",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.modigliani",
+   "dst": "ARTIST.soutine",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.mohr",
+   "dst": "ARTIST.nees",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.mondrian",
+   "dst": "ARTIST.vandoesburg",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.monet",
+   "dst": "ARTIST.pissarro",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.monet",
+   "dst": "ARTIST.renoir",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.monet",
+   "dst": "ARTIST.sisley",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.moreau",
+   "dst": "ARTIST.redon",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.newman",
+   "dst": "ARTIST.reinhardt",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.newman",
+   "dst": "ARTIST.rothko",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.nizan",
+   "dst": "ARTIST.wangmeng",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.nizan",
+   "dst": "ARTIST.wuzhen",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.pantianshou",
+   "dst": "ARTIST.qibaishi",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.parmigianino",
+   "dst": "ARTIST.pontormo",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.pissarro",
+   "dst": "ARTIST.renoir",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.pissarro",
+   "dst": "ARTIST.vangogh",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.qibaishi",
+   "dst": "ARTIST.zhangdaqian",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.qiuying",
+   "dst": "ARTIST.tangyin",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.qiuying",
+   "dst": "ARTIST.wenzhengming",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.rembrandt",
+   "dst": "ARTIST.vermeer",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.renbonian",
+   "dst": "ARTIST.wuchangshuo",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.renoir",
+   "dst": "ARTIST.sisley",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.repin",
+   "dst": "ARTIST.surikov",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.rodchenko",
+   "dst": "ARTIST.tatlin",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.rubens",
+   "dst": "ARTIST.velazquez",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.seurat",
+   "dst": "ARTIST.signac",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.shenzhou",
+   "dst": "ARTIST.tangyin",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.sushi",
+   "dst": "ARTIST.wentong",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.tangyin",
+   "dst": "ARTIST.wenzhengming",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.tintoretto",
+   "dst": "ARTIST.titian",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.tintoretto",
+   "dst": "ARTIST.veronese",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.titian",
+   "dst": "ARTIST.veronese",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.wangmeng",
+   "dst": "ARTIST.wuzhen",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.wangtiande",
+   "dst": "ARTIST.zhangyu",
+   "rel": "同侪"
+  },
+  {
+   "src": "ARTIST.wuguanzhong",
+   "dst": "ARTIST.zaowuji",
+   "rel": "同侪"
+  }
+ ],
+ "meta": {
+  "师承": 57,
+  "同侪": 168,
+  "total": 225
+ }
+}

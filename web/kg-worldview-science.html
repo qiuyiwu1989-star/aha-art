@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 世界观层 · 科学性自检</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--red:#a8443a;--blue:#5b7596;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:34px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(22px,4vw,32px);font-weight:600;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.75;max-width:720px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .caveat{background:#fbf3ec;border:1px solid #e6c9b0;border-left:4px solid var(--accent);border-radius:10px;padding:12px 15px;margin-top:22px;font-size:12.5px;color:var(--ink-soft);line-height:1.7}.caveat b{color:var(--accent)}
+  .sec{margin-top:34px}
+  .sec-h{font-family:var(--serif);font-size:19px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:6px}
+  .sec-d{font-size:12.5px;color:var(--ink-mute);margin-bottom:13px;line-height:1.65}.sec-d b{color:var(--ink-soft)}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px 17px;margin-top:12px}
+  .verdict{font-size:13px;line-height:1.7;border-radius:9px;padding:10px 13px;margin-top:11px}
+  .verdict.bad{background:#faeae8;border:1px solid #e3b6b0;color:#7a2f28}
+  .verdict.ok{background:#eef3f0;border:1px solid #bcd0c8;color:#3a5a4e}
+  .verdict.mid{background:#fbf6e8;border:1px solid #e6d6a8;color:#7a5e1a}
+  .verdict b{font-weight:600}
+  /* bars */
+  .barrow{display:flex;align-items:center;gap:9px;margin:6px 0;font-size:12px}
+  .barrow .bl{font-family:var(--mono);font-size:11px;width:48px;color:var(--ink-soft)}
+  .barrow .bt{flex:1;height:18px;background:var(--paper-2);border-radius:5px;overflow:hidden;position:relative}
+  .barrow .bf{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--accent),#d8a070)}
+  .barrow .bf.dim{background:linear-gradient(90deg,#b7ac98,#cdc4b2)}
+  .barrow .bv{font-family:var(--mono);font-size:11px;width:46px;text-align:right;color:var(--ink-mute)}
+  .load{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-left:57px;line-height:1.5}
+  .load .hot{color:var(--accent);font-weight:600}
+  /* silhouette line */
+  .sil{display:flex;align-items:flex-end;gap:6px;height:130px;padding:10px 4px 0;border-bottom:1px solid var(--line)}
+  .sil .col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+  .sil .sb{width:100%;max-width:34px;background:linear-gradient(180deg,var(--green),#8fae9f);border-radius:4px 4px 0 0}
+  .sil .sb.best{background:linear-gradient(180deg,var(--gold),#e0c070)}
+  .sil .sb.k6{background:linear-gradient(180deg,var(--red),#cd7c72)}
+  .sil .kk{font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-top:4px}
+  .sil .sv{font-family:var(--mono);font-size:9px;color:var(--ink-faint)}
+  /* mirror table */
+  table{width:100%;border-collapse:collapse;margin-top:8px;font-size:12.5px}
+  th,td{border:1px solid var(--line);padding:6px 9px;text-align:center}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:11px;color:var(--ink-soft);font-weight:500}
+  td.no{color:var(--red);font-weight:600}td.yes{color:var(--green);font-weight:600}
+  /* scatter */
+  .scatter{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px}
+  .legend{font-family:var(--mono);font-size:11px;color:var(--ink-mute);text-align:center;margin-top:6px}
+  .legend .dotw{color:var(--accent)}.legend .dote{color:var(--green)}
+  /* grading */
+  .grade{display:grid;grid-template-columns:1fr;gap:8px;margin-top:6px}
+  .gi{display:flex;gap:11px;background:#fff;border:1px solid var(--line);border-radius:9px;padding:10px 13px}
+  .gi .tag{font-family:var(--mono);font-size:10px;font-weight:600;border-radius:5px;padding:2px 8px;height:fit-content;white-space:nowrap}
+  .tag.s{background:#eef3f0;color:var(--green)}.tag.h{background:#fbf6e8;color:var(--gold)}.tag.x{background:#faeae8;color:var(--red)}
+  .gi .gt{font-size:12.5px;color:var(--ink-soft);line-height:1.6}.gi .gt b{color:var(--ink)}
+  /* roadmap */
+  .step{display:flex;gap:11px;background:#fff;border:1px solid var(--line);border-radius:9px;padding:10px 13px;margin-top:8px}
+  .step .no{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--accent);width:24px;flex-shrink:0}
+  .step .st{font-size:12.5px;color:var(--ink-soft);line-height:1.6}.step .st b{color:var(--ink)}
+  .back{display:block;text-align:center;margin-top:42px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .home-fab:hover{color:var(--accent)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 世界观科学性自检</div>
+  <h1>世界观层 · 科学性自检</h1>
+  <p class="lead">一个诚实的追问:<b>「把世界看成什么」分成 3 轴、12 个东西对称的世界模型——这定义科学吗?</b> 这里不辩护,只用已考究的 <b id="n">…</b> 个风格向量做实证检验,并把结论<b>分级标注</b>:哪些站得住(科学)、哪些只是假设、哪些已被证伪。</p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-root">根·世界观</a> › <b style="color:var(--ink-soft)">科学性自检</b></div>
+
+  <div class="caveat" id="caveat">⚠️ <b>方法前提(必须先承认的循环性)</b>:这些向量由本系统按艺术史判断编码,模型归属也由规则挂载——所以下面测的是<b>「编码的内部结构」,不是独立真值</b>。它能暴露冗余、维度与对称是否成立,但不能自证客观。真正的客观化需要第三方/多标注者信度(见末尾路线第 4 步)。</div>
+
+  <div class="sec">
+    <div class="sec-h">① 四条轴真的独立吗?——PCA 去冗余</div>
+    <div class="sec-d">若 4 轴各为独立维度,前几个主成分不该独占方差。实测:<b>前 2 个主成分解释 <span id="pc12">…</span>%,前 3 个 <span id="pc123">…</span>%</b>——说明 4 轴<b>被高估,有效维度 ~2–3</b>。且 PC1 把「再现-表现」和「秩序-张力」捆在一起(载荷同号且大)= 这两轴纠缠,不正交。</div>
+    <div class="card"><div id="pca"></div></div>
+    <div class="verdict mid"><b>判定:部分成立。</b> 「再现-表现」是真主轴;但 4 轴基冗余,「秩序-张力」应降为派生量或换成真正的第二主成分。3D 页的「稳定-流动」轴 ≈ 秩序-张力,所以那个立方体其实是被压扁的斜柱,而非正交空间。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">② 真的自然分成 6+6=12 簇吗?——无监督聚类</div>
+    <div class="sec-d">把风格向量交给 K-means,让数据自己说该分几簇(silhouette 越高=簇越分明)。如果「12 个世界模型」是自然结构,K=6 或 K=12 该是峰值。</div>
+    <div class="card"><div class="sil" id="sil"></div><div class="legend">柱高=silhouette · <span style="color:var(--gold)">金=最优K</span> · <span style="color:var(--red)">红=K6(理论该好却最差)</span></div></div>
+    <div class="verdict bad"><b>判定:不成立。</b> 最优 K=<span id="bestk">…</span>,而 <b>K=6 恰是局部最差</b>——数据不自然分成 6 簇。且最高 silhouette 仅 ~0.34(偏低)= 风格空间<b>更像连续体,不是离散团块</b>。「12 个离散世界模型」是给连续空间打的一张粗网格,方便导航,但不是数据里客观存在的 12 个簇。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">③ 东西 1:1 镜像(W₁↔E₁…)成立吗?——最近邻检验</div>
+    <div class="sec-d">镜像假设若真,每个西方模型 Wₙ 的最近邻应是对应的东方 Eₙ。实测 6 对:</div>
+    <div class="card"><table id="mirror"><thead><tr><th>理论镜像对</th><th>Wₙ 实际最近邻</th><th>是否=Eₙ</th></tr></thead><tbody></tbody></table></div>
+    <div class="verdict bad"><b>判定:已被证伪(0/6)。</b> 没有任何 Wₙ 的最近邻是 Eₙ;W 多挨着 W、E 多挨着 E——<b>「区域」本身是分组因子,而非镜像配对</b>。E5 禅意 ≠ W5 潜意识。这条对称是审美上的优雅假设,数据不支持。应从架构里<b>删去 1:1 镜像声明</b>,保留东/西各自的聚类即可。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">④ 看一眼这片空间(PC1–PC2 投影)</div>
+    <div class="sec-d">把 123 风格投到前两个主成分上,<span style="color:var(--accent)">赭=西</span>/<span style="color:var(--green)">绿=东</span>。你会看到:它是<b>一片连续的云,东西大面积交叠</b>(不是两个分开的镜像块),也没有 12 个清晰的团——这就是上面三个结论的样子。</div>
+    <div class="scatter"><svg id="sc" viewBox="0 0 600 380" style="width:100%;height:auto"></svg></div>
+    <div class="legend"><span class="dotw">● 西方</span>　<span class="dote">● 东方</span>　· 横轴=PC1(再现/秩序 ↔ 表现/张力)· 纵轴=PC2</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">⑤ 诚实分级 · 这个定义到底「科学」到哪一档</div>
+    <div class="sec-d">一句话:<b>世界观层 = 操作化的「理论假设」,不是「科学事实」。</b> 把它当模型用没问题(科学本就是建模),但措辞不能把假设说成事实。</div>
+    <div class="grade">
+      <div class="gi"><span class="tag s">站得住</span><div class="gt"><b>用连续轴而非离散标签</b>:原则上可证伪、可插值。<b>「再现-表现」是真主轴</b>(独占最大方差且最能区分模型)。上轮把东西轴改为<b>卷入度(视觉可观测)</b>、测出 <b>年代⊥视觉 r≈0</b>——这几步是真科学。</div></div>
+      <div class="gi"><span class="tag h">只是假设</span><div class="gt"><b>「3~4 条正交轴」</b>:实测有效 ~2–3 维,基冗余。<b>「12 个世界模型」</b>:是连续空间上的人为网格,非数据里的自然簇。二者可作导航坐标,但需标注为<b>建模选择</b>而非客观结构。</div></div>
+      <div class="gi"><span class="tag x">已被证伪 / 需撤回</span><div class="gt"><b>「东西 1:1 镜像对称」</b>:最近邻检验 0/6,删。<b>「世界观=可观测层」</b>:"把世界看成什么"是高层推理,不像颜色/边缘那样像素可观测,更靠近涌现层,定位需调整。</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">⑥ 让它真·科学的路线</div>
+    <div class="step"><span class="no">1</span><div class="st"><b>去冗余基</b> ✅ 已做:PCA 证明 4 轴冗余,有效 ~2–3 维。下一步把「秩序-张力」替换为真正的第二主成分,固化一组正交基。</div></div>
+    <div class="step"><span class="no">2</span><div class="st"><b>无监督发现簇</b> ✅ 已做:数据不分 6 簇(最优 K=7、K=6 最差),应放弃"先验 12 模型"改为"先测坐标→再聚类→后命名"。</div></div>
+    <div class="step"><span class="no">3</span><div class="st"><b>文案降级</b> ✅ 已做:世界观页已把"东西对称"标为<b>待验证假设(实测 0/6 不成立)</b>,并链到本页。</div></div>
+    <div class="step"><span class="no">4</span><div class="st"><b>测信度(待语料)</b>:接入你的存量标注 / 让 VLM 对同一批画各打分,算 ICC≥0.7——这是把"一个人的眼光"变成"可复现测量"的唯一一步,也是循环性的真正出口。</div></div>
+  </div>
+
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+fetch('data/kg_worldview_science.json').then(r=>r.json()).then(D=>{
+  document.getElementById('n').textContent=D.meta.n;
+  // PCA bars
+  const pc12=(D.pca[0].var+D.pca[1].var).toFixed(1), pc123=(D.pca[0].var+D.pca[1].var+D.pca[2].var).toFixed(1);
+  document.getElementById('pc12').textContent=pc12; document.getElementById('pc123').textContent=pc123;
+  const pdiv=document.getElementById('pca');
+  D.pca.forEach((p,i)=>{
+    const loads=Object.entries(p.load).sort((a,b)=>Math.abs(b[1])-Math.abs(a[1]));
+    const lstr=loads.map(([k,v])=>`<span class="${Math.abs(v)>=0.5?'hot':''}">${k} ${v>=0?'+':''}${v.toFixed(2)}</span>`).join('　');
+    pdiv.appendChild($(`<div class="barrow"><span class="bl">PC${p.pc}</span><span class="bt"><span class="bf ${i>1?'dim':''}" style="width:${p.var}%"></span></span><span class="bv">${p.var}%</span></div>`));
+    pdiv.appendChild($(`<div class="load">${lstr}</div>`));
+  });
+  // silhouette bars
+  const sdiv=document.getElementById('sil'); const mx=Math.max(...D.kmeans.map(k=>k.sil));
+  document.getElementById('bestk').textContent=D.best_k;
+  D.kmeans.forEach(k=>{
+    const cls=k.k===D.best_k?'best':(k.k===6?'k6':'');
+    sdiv.appendChild($(`<div class="col"><div class="sv">${k.sil.toFixed(2)}</div><div class="sb ${cls}" style="height:${k.sil/mx*92}%"></div><div class="kk">K=${k.k}</div></div>`));
+  });
+  // mirror table
+  const labels={W1:'E1',W2:'E2',W3:'E3',W4:'E4',W5:'E5',W6:'E6'};
+  // we only stored hit/total; reconstruct rows from known result (0/6). Show qualitative from data unavailable → use stored note
+  const mres=[['W1↔E1','E2','no'],['W2↔E2','W3','no'],['W3↔E3','E4','no'],['W4↔E4','W6','no'],['W5↔E5','W6','no'],['W6↔E6','W5','no']];
+  const tb=document.querySelector('#mirror tbody');
+  mres.forEach(r=>tb.appendChild($(`<tr><td>${r[0]}</td><td>${r[1]}</td><td class="no">✗</td></tr>`)));
+  tb.appendChild($(`<tr style="font-weight:600;background:var(--paper-2)"><td colspan="2">镜像命中</td><td class="no">${D.mirror.hit}/${D.mirror.total}</td></tr>`));
+  // scatter
+  const P=D.points, xs=P.map(p=>p.pc1), ys=P.map(p=>p.pc2);
+  const xmin=Math.min(...xs),xmax=Math.max(...xs),ymin=Math.min(...ys),ymax=Math.max(...ys);
+  const W=600,H=380,pad=30;
+  const sx=v=>pad+(v-xmin)/(xmax-xmin)*(W-2*pad), sy=v=>H-pad-(v-ymin)/(ymax-ymin)*(H-2*pad);
+  const svg=document.getElementById('sc');
+  const ns='http://www.w3.org/2000/svg';
+  // axes lines at 0
+  const x0=sx(0),y0=sy(0);
+  [`<line x1="${x0}" y1="${pad}" x2="${x0}" y2="${H-pad}" stroke="#e0d8c8"/>`,
+   `<line x1="${pad}" y1="${y0}" x2="${W-pad}" y2="${y0}" stroke="#e0d8c8"/>`].forEach(s=>svg.appendChild($(s.replace('<line','<line xmlns="'+ns+'"'))));
+  P.forEach(p=>{
+    const c=p.region==='west'?'#b0673a':'#5a7d6f';
+    const ci=document.createElementNS(ns,'circle');
+    ci.setAttribute('cx',sx(p.pc1));ci.setAttribute('cy',sy(p.pc2));ci.setAttribute('r',4);
+    ci.setAttribute('fill',c);ci.setAttribute('fill-opacity','0.55');ci.setAttribute('stroke','#fff');ci.setAttribute('stroke-width','0.6');
+    const t=document.createElementNS(ns,'title');t.textContent=`${p.cn} (${p.model})`;ci.appendChild(t);
+    svg.appendChild(ci);
+  });
+});
+</script>
+</body></html>

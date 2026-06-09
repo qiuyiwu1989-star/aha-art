@@ -1,0 +1,909 @@
+{
+ "meta": {
+  "layer": "语境层·艺术史的语境力",
+  "note": "作用于整个画坛的'场':技术·制度·社会·科学·宗教·地理。它们不是艺术家→艺术家的边,而是推动力极大的环境力。与『关系层动力学』(kg-dynamics)互补。人工考据。",
+  "boundary": "这是艺术史另一半的力。关系力(反叛/复兴/跨文化…)见关系层;东西方'再现→表现'的时间漂移见漂移页。",
+  "tmin": 1050,
+  "tmax": 2030,
+  "events": 52,
+  "by_lane": {
+   "tech": 9,
+   "inst": 8,
+   "soc": 7,
+   "sci": 8,
+   "rel": 8,
+   "geo": 12
+  }
+ },
+ "lanes": [
+  {
+   "key": "tech",
+   "cn": "技术 / 媒介",
+   "col": "#b8893a",
+   "desc": "新工具改写'能做什么'"
+  },
+  {
+   "key": "inst",
+   "cn": "制度 / 市场 / 赞助",
+   "col": "#5b7596",
+   "desc": "谁出钱、在哪展、由谁评判"
+  },
+  {
+   "key": "soc",
+   "cn": "社会 / 政治",
+   "col": "#c0492f",
+   "desc": "战争、革命与意识形态"
+  },
+  {
+   "key": "sci",
+   "cn": "科学 / 知识",
+   "col": "#3f8f8a",
+   "desc": "新知识进入眼睛"
+  },
+  {
+   "key": "rel",
+   "cn": "宗教 / 精神 / 哲学",
+   "col": "#8a5fa3",
+   "desc": "信仰与观念的底层"
+  },
+  {
+   "key": "geo",
+   "cn": "地理 · 艺术之都的迁移",
+   "col": "#5a7d6f",
+   "desc": "中心在哪,潮流就在哪(西=上轨 · 东=下轨)"
+  }
+ ],
+ "events": [
+  {
+   "lane": "tech",
+   "year": 1420,
+   "title": "油画成熟",
+   "what": "凡·艾克以多层透明罩染完善油画。",
+   "effect": "媒介能记录极精微的光泽与质感,催生尼德兰式纤毫毕现的写实。",
+   "artists": [
+    {
+     "id": "ARTIST.vaneyck",
+     "cn": "凡·艾克"
+    }
+   ]
+  },
+  {
+   "lane": "tech",
+   "year": 1500,
+   "title": "版画的复制力",
+   "what": "木刻与铜版印刷在欧洲普及。",
+   "effect": "图像第一次可大量复制传播,丢勒靠版画名动全欧——艺术开始有'发行量'。",
+   "artists": [
+    {
+     "id": "ARTIST.durer",
+     "cn": "丢勒"
+    }
+   ]
+  },
+  {
+   "lane": "tech",
+   "year": 1839,
+   "title": "照相术",
+   "what": "达盖尔银版摄影公布于世。",
+   "effect": "相机接管了'如实记录'的职能,逼绘画转去做相机做不到的事——印象、表现、抽象。",
+   "artists": [
+    {
+     "id": "ARTIST.monet",
+     "cn": "莫奈"
+    },
+    {
+     "id": "ARTIST.malevich",
+     "cn": "马列维奇"
+    }
+   ]
+  },
+  {
+   "lane": "tech",
+   "year": 1841,
+   "title": "管装颜料",
+   "what": "金属软管颜料上市,颜料可随身携带。",
+   "effect": "画家走出画室、当场写生成为可能,直接成全了印象派的外光。",
+   "artists": [
+    {
+     "id": "ARTIST.monet",
+     "cn": "莫奈"
+    },
+    {
+     "id": "ARTIST.pissarro",
+     "cn": "毕沙罗"
+    },
+    {
+     "id": "ARTIST.renoir",
+     "cn": "雷诺阿"
+    }
+   ]
+  },
+  {
+   "lane": "tech",
+   "year": 1900,
+   "title": "运动的影像",
+   "what": "连续摄影与早期电影捕捉运动。",
+   "effect": "'运动'本身成为题材,未来主义把速度与机械的颤动画进画面。",
+   "artists": [
+    {
+     "id": "ARTIST.balla",
+     "cn": "巴拉"
+    },
+    {
+     "id": "ARTIST.boccioni",
+     "cn": "波丘尼"
+    }
+   ]
+  },
+  {
+   "lane": "tech",
+   "year": 1962,
+   "title": "丝网印刷入画",
+   "what": "沃霍尔把商业丝网搬进美术馆。",
+   "effect": "机械复制成了创作手段,艺术与大众商品图像就此合流。",
+   "artists": [
+    {
+     "id": "ARTIST.warhol",
+     "cn": "沃霍尔"
+    },
+    {
+     "id": "ARTIST.lichtenstein",
+     "cn": "利希滕斯坦"
+    }
+   ]
+  },
+  {
+   "lane": "tech",
+   "year": 2021,
+   "title": "NFT · 加密艺术",
+   "what": "区块链为纯数字图像确权。",
+   "effect": "数字作品第一次获得'原作'身份与市场,Beeple 拍出天价。",
+   "artists": [
+    {
+     "id": "ARTIST.beeple",
+     "cn": "Beeple"
+    }
+   ]
+  },
+  {
+   "lane": "inst",
+   "year": 1104,
+   "title": "宋设翰林图画院",
+   "what": "朝廷以画院养画家、以画取士。",
+   "effect": "体制把写实精工推到顶峰,形成富丽严谨的'院体'。",
+   "artists": [
+    {
+     "id": "ARTIST.huizong",
+     "cn": "宋徽宗赵佶"
+    },
+    {
+     "id": "ARTIST.yuanti",
+     "cn": "宋画院群体(院体)"
+    }
+   ],
+   "era": "北宋"
+  },
+  {
+   "lane": "inst",
+   "year": 1300,
+   "title": "文人在野",
+   "what": "元废画院,士大夫退居林泉。",
+   "effect": "脱离体制的文人把绘画变成自娱的'逸笔',写意压过形似。",
+   "artists": [
+    {
+     "id": "ARTIST.huanggongwang",
+     "cn": "黄公望"
+    },
+    {
+     "id": "ARTIST.nizan",
+     "cn": "倪瓒"
+    }
+   ],
+   "era": "元"
+  },
+  {
+   "lane": "inst",
+   "year": 1450,
+   "title": "人文主义赞助",
+   "what": "美第奇等家族资助艺术与古典学问。",
+   "effect": "赞助人的趣味把古典神话与世俗题材请回画面,成全文艺复兴。",
+   "artists": [
+    {
+     "id": "ARTIST.botticelli",
+     "cn": "波提切利"
+    }
+   ]
+  },
+  {
+   "lane": "inst",
+   "year": 1648,
+   "title": "法兰西皇家学院",
+   "what": "官方学院垄断训练与评判。",
+   "effect": "确立题材等级制(历史画最高)与素描至上,统治画坛两百年。",
+   "artists": [
+    {
+     "id": "ARTIST.jldavid",
+     "cn": "大卫"
+    },
+    {
+     "id": "ARTIST.ingres",
+     "cn": "安格尔"
+    }
+   ]
+  },
+  {
+   "lane": "inst",
+   "year": 1660,
+   "title": "荷兰自由画市",
+   "what": "无宫廷无教会,中产阶级买画。",
+   "effect": "市场口味催生风俗、风景、静物等世俗小画种。",
+   "artists": [
+    {
+     "id": "ARTIST.vermeer",
+     "cn": "维米尔"
+    },
+    {
+     "id": "ARTIST.rembrandt",
+     "cn": "伦勃朗"
+    },
+    {
+     "id": "ARTIST.ruisdael",
+     "cn": "勒伊斯达尔"
+    }
+   ]
+  },
+  {
+   "lane": "inst",
+   "year": 1863,
+   "title": "落选者沙龙",
+   "what": "拿破仑三世特许落选作品另办展。",
+   "effect": "官方体系裂开一道缝,前卫艺术第一次有了合法出口。",
+   "artists": []
+  },
+  {
+   "lane": "inst",
+   "year": 1874,
+   "title": "画商-评论体系",
+   "what": "杜朗-吕厄等画商经营前卫艺术。",
+   "effect": "印象派绕开沙龙、靠画商与私人市场存活——现代艺术的商业模式成形。",
+   "artists": [
+    {
+     "id": "ARTIST.monet",
+     "cn": "莫奈"
+    },
+    {
+     "id": "ARTIST.degas",
+     "cn": "德加"
+    }
+   ]
+  },
+  {
+   "lane": "inst",
+   "year": 1929,
+   "title": "美术馆与批评",
+   "what": "MoMA 成立,批评家建构现代谱系。",
+   "effect": "机构与批评共同'加冕'前卫,为现代主义书写正史。",
+   "artists": [
+    {
+     "id": "ARTIST.picasso",
+     "cn": "毕加索"
+    },
+    {
+     "id": "ARTIST.pollock",
+     "cn": "波洛克"
+    }
+   ]
+  },
+  {
+   "lane": "soc",
+   "year": 1789,
+   "title": "法国大革命",
+   "what": "旧制度崩塌、共和理想高涨。",
+   "effect": "艺术被政治征用,大卫以古典英雄为革命造像。",
+   "artists": [
+    {
+     "id": "ARTIST.jldavid",
+     "cn": "大卫"
+    }
+   ]
+  },
+  {
+   "lane": "soc",
+   "year": 1848,
+   "title": "革命之年",
+   "what": "欧洲革命浪潮、社会矛盾尖锐。",
+   "effect": "现实主义把农民与劳动者搬上严肃画幅,为底层立像。",
+   "artists": [
+    {
+     "id": "ARTIST.courbet",
+     "cn": "库尔贝"
+    },
+    {
+     "id": "ARTIST.millet",
+     "cn": "米勒"
+    },
+    {
+     "id": "ARTIST.daumier",
+     "cn": "杜米埃"
+    }
+   ]
+  },
+  {
+   "lane": "soc",
+   "year": 1914,
+   "title": "第一次世界大战",
+   "what": "空前的机械化屠杀。",
+   "effect": "幻灭催生达达的'反艺术',与表现主义的惊惧。",
+   "artists": [
+    {
+     "id": "ARTIST.tzara",
+     "cn": "查拉"
+    },
+    {
+     "id": "ARTIST.ernst",
+     "cn": "恩斯特"
+    },
+    {
+     "id": "ARTIST.dix",
+     "cn": "迪克斯"
+    },
+    {
+     "id": "ARTIST.grosz",
+     "cn": "格罗茨"
+    }
+   ]
+  },
+  {
+   "lane": "soc",
+   "year": 1917,
+   "title": "俄国革命",
+   "what": "布尔什维克夺权。",
+   "effect": "构成主义把艺术投入革命生产,其后被社会主义现实主义取代。",
+   "artists": [
+    {
+     "id": "ARTIST.tatlin",
+     "cn": "塔特林"
+    },
+    {
+     "id": "ARTIST.rodchenko",
+     "cn": "罗德琴科"
+    },
+    {
+     "id": "ARTIST.malevich",
+     "cn": "马列维奇"
+    }
+   ]
+  },
+  {
+   "lane": "soc",
+   "year": 1937,
+   "title": "格尔尼卡 & 堕落艺术展",
+   "what": "西班牙内战轰炸 + 纳粹清算现代艺术。",
+   "effect": "毕加索以《格尔尼卡》控诉,现代主义者流亡,艺术重心随之西移。",
+   "artists": [
+    {
+     "id": "ARTIST.picasso",
+     "cn": "毕加索"
+    },
+    {
+     "id": "ARTIST.kirchner",
+     "cn": "基希纳"
+    }
+   ]
+  },
+  {
+   "lane": "soc",
+   "year": 1942,
+   "title": "延安文艺座谈会",
+   "what": "'文艺为工农兵服务'的方针确立。",
+   "effect": "写实、叙事、为人民的美术成为新中国的主流。",
+   "artists": [
+    {
+     "id": "ARTIST.xubeihong",
+     "cn": "徐悲鸿"
+    },
+    {
+     "id": "ARTIST.jiangzhaohe",
+     "cn": "蒋兆和"
+    }
+   ]
+  },
+  {
+   "lane": "soc",
+   "year": 1960,
+   "title": "民权·反战·消费社会",
+   "what": "战后大众消费与社会运动并起。",
+   "effect": "波普拥抱大众图像,街头与政治直接进入艺术。",
+   "artists": [
+    {
+     "id": "ARTIST.warhol",
+     "cn": "沃霍尔"
+    },
+    {
+     "id": "ARTIST.haring",
+     "cn": "哈林"
+    }
+   ]
+  },
+  {
+   "lane": "sci",
+   "year": 1425,
+   "title": "线性透视",
+   "what": "布鲁内莱斯基与阿尔贝蒂奠定透视法。",
+   "effect": "几何让空间可计算,绘画成为'透过画框看世界'的窗口。",
+   "artists": [
+    {
+     "id": "ARTIST.masaccio",
+     "cn": "马萨乔"
+    },
+    {
+     "id": "ARTIST.davinci",
+     "cn": "达·芬奇"
+    }
+   ]
+  },
+  {
+   "lane": "sci",
+   "year": 1510,
+   "title": "人体解剖",
+   "what": "艺术家解剖尸体研究结构。",
+   "effect": "对肌肉骨骼的科学认识,成就盛期文艺复兴的理想人体。",
+   "artists": [
+    {
+     "id": "ARTIST.davinci",
+     "cn": "达·芬奇"
+    },
+    {
+     "id": "ARTIST.michelangelo",
+     "cn": "米开朗基罗"
+    }
+   ]
+  },
+  {
+   "lane": "sci",
+   "year": 1839,
+   "title": "色彩对比律",
+   "what": "谢弗勒尔发表同时对比定律。",
+   "effect": "色彩被纳入光学科学,修拉据此把印象派推成点彩。",
+   "artists": [
+    {
+     "id": "ARTIST.seurat",
+     "cn": "修拉"
+    },
+    {
+     "id": "ARTIST.signac",
+     "cn": "西涅克"
+    }
+   ]
+  },
+  {
+   "lane": "sci",
+   "year": 1900,
+   "title": "精神分析",
+   "what": "弗洛伊德《梦的解析》出版。",
+   "effect": "潜意识与梦成为题材,超现实主义向内心深处取景。",
+   "artists": [
+    {
+     "id": "ARTIST.dali",
+     "cn": "达利"
+    },
+    {
+     "id": "ARTIST.ernst",
+     "cn": "恩斯特"
+    },
+    {
+     "id": "ARTIST.miro",
+     "cn": "米罗"
+    }
+   ]
+  },
+  {
+   "lane": "sci",
+   "year": 1905,
+   "title": "相对论与第四维",
+   "what": "新物理动摇绝对时空。",
+   "effect": "'多视角、四维'的话语,为立体派同时呈现多个面提供了想象。",
+   "artists": [
+    {
+     "id": "ARTIST.picasso",
+     "cn": "毕加索"
+    },
+    {
+     "id": "ARTIST.braque",
+     "cn": "布拉克"
+    }
+   ]
+  },
+  {
+   "lane": "sci",
+   "year": 1920,
+   "title": "视知觉与构成",
+   "what": "格式塔心理学与包豪斯造型研究。",
+   "effect": "对纯粹视觉规律的研究,通向抽象、欧普与现代设计。",
+   "artists": [
+    {
+     "id": "ARTIST.kandinsky",
+     "cn": "康定斯基"
+    },
+    {
+     "id": "ARTIST.vasarely",
+     "cn": "瓦萨雷利"
+    },
+    {
+     "id": "ARTIST.riley",
+     "cn": "赖利"
+    }
+   ]
+  },
+  {
+   "lane": "rel",
+   "year": 726,
+   "title": "拜占庭圣像之争",
+   "what": "东罗马围绕圣像的破坏与辩护。",
+   "effect": "神圣不可写实——圣像走向平面、程式与金色的象征。",
+   "artists": [
+    {
+     "id": "ARTIST.byzantineicon",
+     "cn": "拜占庭圣像"
+    }
+   ],
+   "era": "8世纪"
+  },
+  {
+   "lane": "rel",
+   "year": 1200,
+   "title": "禅宗与墨戏",
+   "what": "禅门崇尚顿悟、简淡。",
+   "effect": "减笔泼墨的'墨戏'兴起,寥寥数笔即得神韵。",
+   "artists": [
+    {
+     "id": "ARTIST.muqi",
+     "cn": "牧溪"
+    },
+    {
+     "id": "ARTIST.liangkai",
+     "cn": "梁楷"
+    }
+   ],
+   "era": "宋"
+  },
+  {
+   "lane": "rel",
+   "year": 1305,
+   "title": "方济各灵修",
+   "what": "托钵修会强调可感的虔敬。",
+   "effect": "乔托把圣徒画成有血肉、有情绪的人,叙事走向人性。",
+   "artists": [
+    {
+     "id": "ARTIST.giotto",
+     "cn": "乔托"
+    }
+   ]
+  },
+  {
+   "lane": "rel",
+   "year": 1517,
+   "title": "新教改革",
+   "what": "路德反对偶像崇拜。",
+   "effect": "北方新教地区宗教画退场,风俗、风景、肖像顶上。",
+   "artists": [
+    {
+     "id": "ARTIST.bruegel",
+     "cn": "勃鲁盖尔"
+    },
+    {
+     "id": "ARTIST.hals",
+     "cn": "哈尔斯"
+    }
+   ]
+  },
+  {
+   "lane": "rel",
+   "year": 1545,
+   "title": "反宗教改革",
+   "what": "特伦特会议要艺术动员信仰。",
+   "effect": "巴洛克以强烈明暗与戏剧性煽动情感,卡拉瓦乔登场。",
+   "artists": [
+    {
+     "id": "ARTIST.caravaggio",
+     "cn": "卡拉瓦乔"
+    }
+   ]
+  },
+  {
+   "lane": "rel",
+   "year": 1911,
+   "title": "神智学与精神",
+   "what": "通灵学说追求超越物质的精神。",
+   "effect": "康定斯基、蒙德里安、马列维奇以抽象通向'精神'。",
+   "artists": [
+    {
+     "id": "ARTIST.kandinsky",
+     "cn": "康定斯基"
+    },
+    {
+     "id": "ARTIST.mondrian",
+     "cn": "蒙德里安"
+    },
+    {
+     "id": "ARTIST.malevich",
+     "cn": "马列维奇"
+    }
+   ]
+  },
+  {
+   "lane": "rel",
+   "year": 1950,
+   "title": "存在主义与禅",
+   "what": "战后追问存在、禅意西传。",
+   "effect": "行动绘画把作画过程当作'在场'的存在证明。",
+   "artists": [
+    {
+     "id": "ARTIST.pollock",
+     "cn": "波洛克"
+    },
+    {
+     "id": "ARTIST.dekooning",
+     "cn": "德库宁"
+    }
+   ]
+  },
+  {
+   "lane": "tech",
+   "year": 1050,
+   "title": "水墨与生纸",
+   "what": "文人以生宣、水墨写意。",
+   "effect": "纸的洇染与'墨分五色',让'写意'在材料上成立——东方走向表现靠的是纸与墨,而非颜料管。",
+   "artists": [
+    {
+     "id": "ARTIST.sushi",
+     "cn": "苏轼"
+    },
+    {
+     "id": "ARTIST.wentong",
+     "cn": "文同"
+    }
+   ]
+  },
+  {
+   "lane": "tech",
+   "year": 1679,
+   "title": "《芥子园画传》",
+   "what": "木版彩印的绘画教科书问世。",
+   "effect": "把名家画法批量复制、人人可临,程式化的笔墨'套路'由此普及,塑造了清代以降的国画。",
+   "artists": []
+  },
+  {
+   "lane": "sci",
+   "year": 500,
+   "title": "谢赫'六法'",
+   "what": "南齐《古画品录》立六法。",
+   "effect": "'气韵生动'被定为绘画第一准则——东方从一开始就把'神'置于'形'之上。",
+   "artists": [],
+   "era": "南齐"
+  },
+  {
+   "lane": "sci",
+   "year": 1080,
+   "title": "郭熙'三远'",
+   "what": "《林泉高致》立高远·深远·平远。",
+   "effect": "东方的空间不靠几何透视,而靠可行可望可游可居的'三远'——一套迥异于西方的空间法。",
+   "artists": [
+    {
+     "id": "ARTIST.guoxi",
+     "cn": "郭熙"
+    }
+   ]
+  },
+  {
+   "lane": "rel",
+   "year": 366,
+   "title": "佛教东传与敦煌",
+   "what": "佛教沿丝路传入,敦煌开窟造像。",
+   "effect": "异域宗教带来叙事壁画与繁丽图像,塑造了中国早期人物与重彩的高峰。",
+   "artists": [
+    {
+     "id": "ARTIST.dunhuang",
+     "cn": "敦煌画工(历代佚名)"
+    }
+   ],
+   "era": "4世纪"
+  },
+  {
+   "lane": "geo",
+   "year": 1490,
+   "title": "佛罗伦萨",
+   "what": "美第奇治下的文艺复兴心脏。",
+   "effect": "人文主义与古典学问在此点燃。",
+   "artists": [
+    {
+     "id": "ARTIST.botticelli",
+     "cn": "波提切利"
+    }
+   ],
+   "track": "west"
+  },
+  {
+   "lane": "geo",
+   "year": 1510,
+   "title": "罗马 / 威尼斯",
+   "what": "盛期文艺复兴与威尼斯色彩。",
+   "effect": "教廷巨资与威尼斯画派把'宏伟'与'色彩'两条路同时推到巅峰。",
+   "artists": [
+    {
+     "id": "ARTIST.titian",
+     "cn": "提香"
+    }
+   ],
+   "track": "west"
+  },
+  {
+   "lane": "geo",
+   "year": 1610,
+   "title": "罗马 / 安特卫普",
+   "what": "巴洛克的两座引擎。",
+   "effect": "反宗教改革的罗马与商业鼎盛的安特卫普,共同点燃巴洛克。",
+   "artists": [
+    {
+     "id": "ARTIST.caravaggio",
+     "cn": "卡拉瓦乔"
+    },
+    {
+     "id": "ARTIST.rubens",
+     "cn": "鲁本斯"
+    }
+   ],
+   "track": "west"
+  },
+  {
+   "lane": "geo",
+   "year": 1650,
+   "title": "阿姆斯特丹",
+   "what": "荷兰黄金时代的市民艺术。",
+   "effect": "自由市场把绘画的主角换成了市民、风景与日常。",
+   "artists": [
+    {
+     "id": "ARTIST.rembrandt",
+     "cn": "伦勃朗"
+    },
+    {
+     "id": "ARTIST.vermeer",
+     "cn": "维米尔"
+    }
+   ],
+   "track": "west"
+  },
+  {
+   "lane": "geo",
+   "year": 1700,
+   "title": "巴黎(品味之都)",
+   "what": "沙龙与洛可可的优雅。",
+   "effect": "宫廷与沙龙让巴黎成为欧洲趣味的裁判。",
+   "artists": [],
+   "track": "west"
+  },
+  {
+   "lane": "geo",
+   "year": 1870,
+   "title": "巴黎(现代主义)",
+   "what": "从印象派到立体派的大本营。",
+   "effect": "半个世纪里几乎每一场前卫革命都在巴黎引爆。",
+   "artists": [
+    {
+     "id": "ARTIST.monet",
+     "cn": "莫奈"
+    },
+    {
+     "id": "ARTIST.picasso",
+     "cn": "毕加索"
+    }
+   ],
+   "track": "west"
+  },
+  {
+   "lane": "geo",
+   "year": 1948,
+   "title": "纽约",
+   "what": "抽象表现主义把重心拉过大西洋。",
+   "effect": "二战后资本、人才与机构西移,纽约接棒成为新中心。",
+   "artists": [
+    {
+     "id": "ARTIST.pollock",
+     "cn": "波洛克"
+    }
+   ],
+   "track": "west"
+  },
+  {
+   "lane": "geo",
+   "year": 750,
+   "title": "长安(盛唐)",
+   "what": "世界性帝都,画坛的中心。",
+   "effect": "吴道子的'吴带当风'与李思训的金碧山水在此鼎盛,气象恢宏。",
+   "artists": [
+    {
+     "id": "ARTIST.wudaozi",
+     "cn": "吴道子"
+    },
+    {
+     "id": "ARTIST.lisixun",
+     "cn": "李思训"
+    }
+   ],
+   "era": "唐",
+   "track": "east"
+  },
+  {
+   "lane": "geo",
+   "year": 1100,
+   "title": "汴京(北宋)",
+   "what": "翰林图画院与全景山水的顶峰。",
+   "effect": "范宽、郭熙式的巨碑山水与精丽院体,以汴京为轴心。",
+   "artists": [
+    {
+     "id": "ARTIST.fankuan",
+     "cn": "范宽"
+    },
+    {
+     "id": "ARTIST.guoxi",
+     "cn": "郭熙"
+    }
+   ],
+   "track": "east"
+  },
+  {
+   "lane": "geo",
+   "year": 1180,
+   "title": "临安(南宋)",
+   "what": "院体南渡,'边角'山水。",
+   "effect": "马远、夏圭以一角半边的诗意构图,把院体推向空灵。",
+   "artists": [
+    {
+     "id": "ARTIST.mayuan",
+     "cn": "马远"
+    },
+    {
+     "id": "ARTIST.xiagui",
+     "cn": "夏圭"
+    }
+   ],
+   "track": "east"
+  },
+  {
+   "lane": "geo",
+   "year": 1400,
+   "title": "苏州 · 松江(江南)",
+   "what": "文人画八百年的中心。",
+   "effect": "吴门到松江,江南的隐逸与笔墨主导了明清的主流趣味。",
+   "artists": [
+    {
+     "id": "ARTIST.shenzhou",
+     "cn": "沈周"
+    },
+    {
+     "id": "ARTIST.dongqichang",
+     "cn": "董其昌"
+    }
+   ],
+   "track": "east"
+  },
+  {
+   "lane": "geo",
+   "year": 1880,
+   "title": "上海(海派)",
+   "what": "开埠都市的市场化画坛。",
+   "effect": "任伯年、吴昌硕在通商口岸把文人画接入市场与市民。",
+   "artists": [
+    {
+     "id": "ARTIST.renbonian",
+     "cn": "任伯年"
+    },
+    {
+     "id": "ARTIST.wuchangshuo",
+     "cn": "吴昌硕"
+    }
+   ],
+   "track": "east"
+  }
+ ]
+}

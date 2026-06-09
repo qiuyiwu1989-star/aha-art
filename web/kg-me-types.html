@@ -1,0 +1,143 @@
+<!doctype html><html lang="zh"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 审美门派图鉴 · 48 种审美原型</title>
+<style>
+:root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.65}
+.wrap{max-width:1040px;margin:0 auto;padding:30px 18px 90px}
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+h1{font-family:var(--serif);font-size:clamp(22px,4.5vw,32px);font-weight:600;text-align:center;margin:8px 0}
+.lead{text-align:center;color:var(--ink-mute);font-size:13.5px;max-width:740px;margin:6px auto}.lead b{color:var(--ink-soft)}
+.breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+.sec-t{font-family:var(--serif);font-size:19px;font-weight:600;text-align:center;margin:32px 0 4px}
+.sec-d{text-align:center;color:var(--ink-mute);font-size:12.5px;margin-bottom:14px}
+.plane{max-width:560px;margin:8px auto}
+.houses{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px}
+@media(max-width:760px){.houses{grid-template-columns:1fr}}
+.house{background:#fff;border:1px solid var(--line);border-radius:12px;padding:0;overflow:hidden}
+.house .top{padding:13px 16px 11px;border-left:5px solid var(--accent)}
+.house .hn{font-family:var(--serif);font-size:18px;font-weight:600;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.house .rare{font-family:var(--mono);font-size:10px;border-radius:10px;padding:1px 8px;background:var(--paper-2);color:var(--ink-mute)}
+.house .rare.r{background:#f3e2d6;color:var(--accent)}
+.house .creed{font-family:var(--serif);font-style:italic;color:var(--accent);font-size:13.5px;margin:5px 0 6px}
+.house .ess{font-size:12.5px;color:var(--ink-soft);line-height:1.6}
+.house .pos{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-top:6px}
+.house .body{padding:11px 16px 14px;border-top:1px solid var(--line);background:#fcfaf5}
+.house .ml{display:flex;align-items:center;gap:10px}
+.house .mt{width:46px;height:46px;flex:0 0 46px;border-radius:8px;background:var(--paper-2) center/cover no-repeat;border:1px solid var(--line)}
+.house .mk{font-family:var(--mono);font-size:9.5px;color:var(--ink-faint)}
+.house .mn{font-family:var(--serif);font-size:14px;font-weight:600}
+.house .reps{margin-top:7px}
+.tag{display:inline-block;font-size:10px;font-family:var(--mono);background:var(--accent-soft);color:var(--accent);border-radius:10px;padding:1px 7px;margin:2px 3px 0 0}
+.tag.e{background:#e3ece7;color:var(--green)}.tag.g{background:var(--paper-2);color:var(--ink-mute)}
+.axes3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px}
+@media(max-width:680px){.axes3{grid-template-columns:1fr}}
+.ax{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 13px}
+.ax .at{font-family:var(--serif);font-size:14px;font-weight:600}
+.ax .ad{font-size:11.5px;color:var(--ink-mute);margin-top:3px}
+.subs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
+@media(max-width:760px){.subs{grid-template-columns:1fr 1fr}}
+.sub{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.sub .sn{font-family:var(--serif);font-size:15px;font-weight:600}
+.sub .sb{font-family:var(--mono);font-size:9px;color:var(--ink-faint);margin:1px 0 4px}
+.sub .sd{font-size:11.5px;color:var(--ink-soft);line-height:1.5}
+.matrix{overflow-x:auto;margin-top:10px}
+table{border-collapse:collapse;font-size:11px;min-width:640px;margin:0 auto}
+th,td{border:1px solid var(--line);padding:5px 7px;text-align:center}
+th{font-family:var(--mono);font-size:9.5px;color:var(--ink-faint);background:#fcfaf5}
+td.h{font-family:var(--serif);font-weight:600;text-align:left;white-space:nowrap;background:#fcfaf5}
+.cta{text-align:center;margin-top:30px}
+.cta a{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-size:13.5px;border-radius:24px;padding:11px 26px;font-weight:600}
+.loading{text-align:center;color:var(--ink-faint);padding:40px 0}
+</style></head>
+<body><div class="wrap">
+<div class="kick">审美门派图鉴 · Aesthetic Houses</div>
+<h1>48 种审美原型,你是哪一种</h1>
+<p class="lead">和 MBTI 一样,这是一套<b>给审美定位</b>的坐标。你的原型 = <b>6 大门派</b>(你怎么看世界)×<b>8 种亚型</b>(你怎么逛)。门派由人类艺术史的<b>6 个世界观区</b>而来,掌门与稀有度由真实数据算出。</p>
+<div class="breadcrumb"><a href="home.html">🏠 首页</a> › <a href="kg-v2.html">🧭 艺术图谱</a> › <a href="kg-me.html">🧑‍🎨 我的审美档案</a> › <b style="color:var(--ink-soft)">门派图鉴</b></div>
+
+<div id="content"><div class="loading">加载门派数据(6 区 · 282 大师)…</div></div>
+
+<div class="cta" id="cta" style="display:none"><a href="kg-me.html">→ 测出我的门派与本命画家</a></div>
+
+<script>
+const $=s=>document.querySelector(s), E=(t,a={})=>{const e=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)e.setAttribute(k,a[k]);return e;};
+const LANGK=['构图','空间','造型','光影','色彩','笔触','边缘'];
+// 手写门派文案(keyed by 区 id)
+const MENPAI={
+  WV1:{creed:'世界本已动人,我只需忠实地看见。',color:'#9a6b4a',ess:'相信外部世界真实、可被忠实再现。追求形似、坚实的素描与可信的光影——画是一扇透明的窗。',kw:'写实 · 学院 · 肖像'},
+  WV2:{creed:'万物各有其位,秩序即是美。',color:'#8a7a52',ess:'世界是一套有等级与象征的图式。画不是个人观察,而是对既定秩序的庄重呈现——礼制、宗教、装饰。',kw:'图式 · 宗教 · 装饰'},
+  WV3:{creed:'不求形似,但写胸中逸气。',color:'#5a7d6f',ess:'画不为再现物象,而为抒写心境与人格。逸笔草草、计白当黑,意在象外——东方文人的写意传统。',kw:'写意 · 文人 · 留白'},
+  WV4:{creed:'我画的不是物,是光落在物上的那一刻。',color:'#c98a1a',ess:'真实不在物本身,而在此刻的光色与知觉经验。瞬间、外光、笔触的颤动——印象派的世界。',kw:'印象 · 外光 · 瞬间'},
+  WV5:{creed:'色彩与笔触,是情感的直接呐喊。',color:'#b0673a',ess:'画是内在情感的外化。形与色服从于表达,而非再现——后印象、表现主义的炽烈。',kw:'表现 · 情感 · 炽烈'},
+  WV6:{creed:'拆解万象,重组为纯粹的形与色。',color:'#5b7596',ess:'物象只是素材;绘画真正的主题是形式、结构、色彩本身。立体、构成、抽象的智性建造。',kw:'形式 · 抽象 · 建构'}
+};
+const SUBS=[
+  {n:'守炉人',b:'专一·安住·守成',d:'认定一种美,安守其中,稳稳深耕。'},
+  {n:'深井者',b:'专一·安住·探索',d:'口味集中却不断往深里掘,在一隅凿出深井。'},
+  {n:'移巢者',b:'专一·漂移·守成',d:'一次只专注一种,但隔段时间整体迁徙。'},
+  {n:'孤旅者',b:'专一·漂移·探索',d:'一次只爱一种,却不断远行去寻下一种。'},
+  {n:'集萃者',b:'博览·安住·守成',d:'兼收并蓄,但始终围绕一个稳定的中心。'},
+  {n:'博览家',b:'博览·安住·探索',d:'口味开阔、中心稳定,乐于尝鲜。'},
+  {n:'漫游者',b:'博览·漂移·守成',d:'什么都看,随兴漂移,但步子不大。'},
+  {n:'游牧者',b:'博览·漂移·探索',d:'最自由的灵魂——广、动、险,逐美而居。'}
+];
+const W=560,H=460,pad=46,sx=v=>pad+v*(W-2*pad),sy=v=>H-pad-v*(H-2*pad);
+function T(svg,x,y,s,o={}){const e=E('text',{x,y,'font-family':o.f||'Noto Sans SC','font-size':o.fs||11,fill:o.fill||'#a89f8f','text-anchor':o.a||'middle'});e.textContent=s;if(o.w)e.setAttribute('font-weight',o.w);if(o.st){e.setAttribute('paint-order','stroke');e.setAttribute('stroke',o.st);e.setAttribute('stroke-width',3);}svg.appendChild(e);}
+
+Promise.all([
+  fetch('data/kg_artists.json').then(r=>r.json()),
+  fetch('data/kg_worldview_v3.json').then(r=>r.json()),
+  fetch('data/kg_artist_images.json').then(r=>r.json()).catch(()=>({}))
+]).then(([AJ,WV,IMG])=>{
+  const ARTS=AJ.artists||{}, REG=(WV.regions||[]).map(r=>({id:r.id,name:r.name,cx:r.cx,cy:r.cy}));
+  const IM=IMG.artists||IMG, aimg={};
+  for(const aid in IM){const its=(IM[aid]&&(IM[aid].items||IM[aid]))||[];if(Array.isArray(its)){const f=(its.find(x=>x&&x.file)||{}).file;if(f)aimg[aid]=f;}}
+  const pts=Object.values(ARTS).filter(a=>a.wv&&a.wv.x!=null).map(a=>({id:a.id,cn:a.cn,region:a.region,regionId:a.wv.region_id,x:a.wv.x,y:a.wv.y,img:aimg[a.id]}));
+  const total=pts.length;
+  const byReg={}; REG.forEach(r=>byReg[r.id]=pts.filter(p=>p.regionId===r.id));
+  // 平面图
+  let html='<div class="sec-t">六大门派 · 在世界观平面上的位置</div><div class="sec-d">横:再现↔表现　纵:结构↔感知。每个门派是一片真实的世界观聚类。</div><div class="plane" id="plane"></div>';
+  // 门派卡
+  html+='<div class="sec-t">六大门派 · 你怎么看世界</div><div class="sec-d">核心身份,决定你的"信条"。掌门=离区中心最近的大师,稀有度=该派在 282 位大师中的占比。</div><div class="houses">';
+  REG.forEach(r=>{const mp=MENPAI[r.id]||{};const list=byReg[r.id]||[];
+    const share=Math.round(list.length/total*100), rare=share<8?'稀有':share<18?'小众':'主流';
+    const withImg=list.filter(p=>p.img);
+    const sorted=[...(withImg.length?withImg:list)].sort((a,b)=>Math.hypot(a.x-r.cx,a.y-r.cy)-Math.hypot(b.x-r.cx,b.y-r.cy));
+    const pat=sorted[0]; const reps=sorted.slice(1,5).map(p=>`<span class="tag ${p.region==='east'?'e':''}">${p.cn}</span>`).join('');
+    html+=`<div class="house"><div class="top" style="border-left-color:${mp.color}">
+      <div class="hn"><span style="color:${mp.color}">${r.name}派</span><span class="rare ${share<18?'r':''}">稀有度 ${share}% · ${rare}</span></div>
+      <div class="creed">「${mp.creed}」</div>
+      <div class="ess">${mp.ess}</div>
+      <div class="pos">坐标 (${r.cx.toFixed(2)}, ${r.cy.toFixed(2)}) · ${mp.kw}</div></div>
+      <div class="body">
+        <div class="ml"><div class="mt" style="background-image:url('${pat?pat.img||'':''}')"></div><div><div class="mk">掌门 · 离区中心最近的大师</div><div class="mn" style="color:${mp.color}">${pat?pat.cn:'—'}</div></div></div>
+        <div class="reps"><span class="mk" style="font-family:var(--mono);font-size:9.5px;color:var(--ink-faint)">代表大师:</span><br>${reps||'—'}</div>
+      </div></div>`;});
+  html+='</div>';
+  // 8 亚型
+  html+='<div class="sec-t">八种亚型 · 你怎么逛</div><div class="sec-d">三条性格轴,组合出 8 种逛法亚型——和门派交叉,就是你的完整原型。</div>';
+  html+='<div class="axes3">'
+    +'<div class="ax"><div class="at">专注度</div><div class="ad"><b>专一</b>(口味集中)↔ <b>博览</b>(口味开阔)。由你心动作品的<b>离散度σ</b>决定。</div></div>'
+    +'<div class="ax"><div class="at">稳定度</div><div class="ad"><b>安住</b>(重心稳定)↔ <b>漂移</b>(重心在移动)。由你审美轨迹的<b>位移</b>决定。</div></div>'
+    +'<div class="ax"><div class="at">探索度</div><div class="ad"><b>守成</b>(爱小步)↔ <b>探索</b>(爱大跳)。由你接受的<b>跳跃幅度 d*</b>反学得到。</div></div></div>';
+  html+='<div class="subs">'+SUBS.map(s=>`<div class="sub"><div class="sn">${s.n}</div><div class="sb">${s.b}</div><div class="sd">${s.d}</div></div>`).join('')+'</div>';
+  // 48 矩阵
+  html+='<div class="sec-t">全部 48 种原型 · 门派 × 亚型</div><div class="sec-d">任一门派 × 任一亚型 = 一个原型。横向找你的门派,纵向找你的亚型。</div><div class="matrix"><table><tr><th>门派 \\ 亚型</th>'+SUBS.map(s=>`<th>${s.n}</th>`).join('')+'</tr>';
+  REG.forEach(r=>{const mp=MENPAI[r.id]||{};html+=`<tr><td class="h" style="color:${mp.color}">${r.name}派</td>`+SUBS.map(()=>'<td>·</td>').join('')+'</tr>';});
+  html+='</table><div class="sec-d" style="margin-top:8px">6 门派 × 8 亚型 = <b>48 种命名原型</b>;再叠 4 种情绪底色 ≈ 192 变体,加本命画家(282 位)≈ 千人千面。</div></div>';
+  $('#content').innerHTML=html; $('#cta').style.display='';
+  // 画平面
+  const svg=E('svg',{viewBox:`0 0 ${W} ${H}`});
+  svg.appendChild(E('rect',{x:pad,y:pad,width:W-2*pad,height:H-2*pad,fill:'#fcfaf5',stroke:'#e8e0d0'}));
+  T(svg,sx(.02),H-pad+18,'再现',{a:'start',fill:'#5a7d6f',w:600});T(svg,sx(.98),H-pad+18,'表现 →',{a:'end',fill:'#b0673a',w:600});
+  T(svg,pad-10,sy(.03),'结构',{a:'end',fill:'#5a7d6f',w:600});T(svg,pad-10,sy(.96),'感知',{a:'end',fill:'#b0673a',w:600});
+  pts.forEach(p=>svg.appendChild(E('circle',{cx:sx(p.x),cy:sy(p.y),r:2.2,fill:p.region==='east'?'#aac3b8':'#d8b9a3','fill-opacity':.4})));
+  REG.forEach(r=>{const mp=MENPAI[r.id]||{color:'#b0673a'};
+    svg.appendChild(E('circle',{cx:sx(r.cx),cy:sy(r.cy),r:14,fill:mp.color,'fill-opacity':.16,stroke:mp.color,'stroke-width':2}));
+    T(svg,sx(r.cx),sy(r.cy)-19,r.name+'派',{f:'Noto Serif SC',fs:12.5,fill:mp.color,w:600,st:'#fcfaf5'});});
+  $('#plane').appendChild(svg);
+}).catch(e=>{$('#content').innerHTML='<div class="loading">加载失败:'+e+'</div>';});
+</script>
+</div></body></html>

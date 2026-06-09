@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 风格层取舍 + 增补评审</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--green:#5a7d6f;--blue:#5b7596;--gold:#c98a1a;--red:#b0473a;--purple:#7a6a9a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:34px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(21px,4vw,31px);font-weight:600;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.7;max-width:720px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .cards{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:20px}@media(max-width:720px){.cards{grid-template-columns:1fr 1fr}}
+  .c{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px;text-align:center}
+  .c .v{font-family:var(--serif);font-size:22px;font-weight:600}.c .l{font-size:11px;color:var(--ink-soft);margin-top:2px}
+  .c.keep .v{color:var(--green)}.c.demote .v{color:var(--purple)}.c.move .v{color:var(--blue)}.c.cut .v{color:var(--red)}.c.merge .v{color:var(--gold)}
+  .legend{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px;font-family:var(--mono);font-size:10.5px}
+  .lg{padding:2px 9px;border-radius:6px;color:#fff}
+  .lg.keep{background:var(--green)}.lg.demote{background:var(--purple)}.lg.move{background:var(--blue)}.lg.cut{background:var(--red)}.lg.merge{background:var(--gold)}
+  .sec{margin-top:28px}.sec-h{font-family:var(--serif);font-size:17px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:8px}
+  .sec-h .mc{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-left:8px;font-weight:400}
+  .items{display:flex;flex-wrap:wrap;gap:6px}
+  .it{font-size:12px;border-radius:7px;padding:3px 9px;border:1px solid var(--line);position:relative}
+  .it.keep{background:#fff;color:var(--ink-soft)}
+  .it.demote{background:#f3f0f8;color:var(--purple);border-color:#ddd3ea}
+  .it.move{background:#eef1f6;color:var(--blue);border-color:#d4dde8}
+  .it.cut{background:#fbeceb;color:var(--red);border-color:#ecc9c6;text-decoration:line-through}
+  .it.merge{background:#fbf3e0;color:#9a6a14;border-color:#ecd9a8}
+  .addbox{background:#fff;border:1px solid var(--line);border-left:3px solid var(--green);border-radius:10px;padding:12px 15px;margin-bottom:9px}
+  .addbox .at{font-family:var(--serif);font-size:14px;font-weight:600;color:var(--green);margin-bottom:6px}
+  .addrow{font-size:12.5px;color:var(--ink-soft);line-height:1.7}.addrow b{color:var(--ink)}
+  .note{font-size:12.5px;color:var(--ink-soft);background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 15px;margin-top:14px;line-height:1.75}
+  .back{display:block;text-align:center;margin-top:38px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 风格取舍评审</div>
+  <h1>全部风格 · 取舍 + 增补建议</h1>
+  <p class="lead">把现有 <b>296</b> 个风格逐个研究,给出建议:哪些<b>真风格保留</b>、哪些是<b>画家个人</b>(降为代表人物)、哪些是<b>笔法技法</b>(应移到绘画语言层)、哪些是<b>非公认/重复</b>(删并)、哪些<b>过细</b>(并入关键节点)。下面逐条标注,<b>请你审定</b>。</p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">风格取舍评审</b></div>
+
+  <div class="cards" id="cards"></div>
+  <div class="legend">
+    <span class="lg keep">保留(真风格)</span><span class="lg demote">降为代表人物</span><span class="lg move">移到笔触层</span><span class="lg cut">删/并(非流派或重复)</span><span class="lg merge">并入关键节点(过细)</span>
+  </div>
+
+  <div id="list"></div>
+
+  <div class="sec">
+    <div class="sec-h">🆕 建议新增(现在缺的正典)</div>
+    <div id="add"></div>
+  </div>
+
+  <div class="note" id="concl"></div>
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const MC={W1:"W1 再现·理性",W2:"W2 戏剧·情感",W3:"W3 感知·经验",W4:"W4 结构·形式",W5:"W5 潜意识·观念",W6:"W6 当代·系统",E1:"E1 礼乐·秩序",E2:"E2 戏剧·人伦",E3:"E3 山水·天地",E4:"E4 文人·修养",E5:"E5 禅意·心性",E6:"E6 转译·当代"};
+const VL={keep:"保留",demote:"人物",move:"技法",cut:"删并",merge:"并"};
+fetch('data/kg_style_curation.json').then(r=>r.json()).then(D=>{
+  const allv={keep:0,demote:0,move:0,cut:0,merge:0};
+  D.rows.forEach(r=>allv[r.v]++);
+  const cards=[["keep","保留·真风格",allv.keep],["demote","→ 代表人物",allv.demote],["move","→ 笔触层",allv.move],["cut","删/并",allv.cut],["merge","并入关键点",allv.merge]];
+  const cc=document.getElementById('cards');
+  cards.forEach(([k,l,v])=>cc.appendChild($(`<div class="c ${k}"><div class="v">${v}</div><div class="l">${l}</div></div>`)));
+  // group by model
+  const bym={}; D.rows.forEach(r=>{(bym[r.model]=bym[r.model]||[]).push(r);});
+  const order=['W1','W2','W3','W4','W5','W6','E1','E2','E3','E4','E5','E6'];
+  const list=document.getElementById('list');
+  order.forEach(m=>{
+    const rs=bym[m]; if(!rs)return;
+    const keepN=rs.filter(r=>r.v==='keep').length;
+    const sec=$(`<div class="sec"><div class="sec-h">${MC[m]}<span class="mc">${rs.length} → 留 ${keepN}</span></div><div class="items"></div></div>`);
+    const it=sec.querySelector('.items');
+    // sort: keep first
+    rs.sort((a,b)=>(a.v==='keep'?0:1)-(b.v==='keep'?0:1));
+    rs.forEach(r=> it.appendChild($(`<span class="it ${r.v}" title="${r.reason||'保留'}">${r.cn}${r.v!=='keep'?` <span style="font-family:var(--mono);font-size:8px;opacity:.7">${VL[r.v]}</span>`:''}</span>`)));
+    list.appendChild(sec);
+  });
+  // additions
+  const ab=document.getElementById('add');
+  Object.entries(D.add).forEach(([grp,items])=>{
+    const box=$(`<div class="addbox"><div class="at">${grp}</div></div>`);
+    items.forEach(([nm,why])=> box.appendChild($(`<div class="addrow">＋ <b>${nm}</b> — ${why}</div>`)));
+    ab.appendChild(box);
+  });
+  document.getElementById('concl').innerHTML=`<b>结论:</b>清理后约 <b>180 个真风格</b>(296→180)更经得起推敲;<b>31 个画家</b>归到流派的"代表人物"、<b>23 个笔法</b>归到绘画语言层(本就该在那)、<b>41 删并 + 21 并地域</b>去掉冗余。再<b>新增约 20 个</b>正典(矫饰主义/拉斐尔前派/浮世绘…)。<br/>👉 <b>请你审定:哪些同意?东方是否纳入日本/朝鲜画派?</b> 定版后我据此重整风格层数据,再按 8 维逐个考究。`;
+}).catch(e=>{document.getElementById('list').innerHTML='加载失败(需服务器):'+e;});
+</script>
+</body></html>

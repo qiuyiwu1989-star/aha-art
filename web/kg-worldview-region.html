@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 世界观区志</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:30px 18px 90px}
+  .breadcrumb{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .std{font-family:var(--mono);font-size:10px;color:var(--ink-mute);background:var(--accent-soft);border:1px solid #e5d3c2;border-radius:6px;padding:2px 8px;display:inline-block;margin-top:8px}
+  .nh{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:10px;border-bottom:3px solid var(--rc,var(--accent));padding-bottom:10px}
+  .nh .code{font-family:var(--mono);font-size:13px;font-weight:600;color:#fff;background:var(--rc,var(--accent));border-radius:7px;padding:3px 11px}
+  .nh .cn{font-family:var(--serif);font-size:clamp(24px,5vw,34px);font-weight:700}
+  .nh .alt{font-family:var(--mono);font-size:13px;color:var(--ink-faint)}
+  .nh .dens{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--ink-mute)}.nh .dens .w{color:var(--accent)}.nh .dens .e{color:var(--green)}
+  .q{font-family:var(--serif);font-size:17px;font-style:italic;color:var(--rc,var(--accent));text-align:center;margin-top:16px;line-height:1.7}.q::before{content:"根本之问 · ";font-style:normal;font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
+  .ess{font-size:15px;color:var(--ink-soft);line-height:1.85;margin-top:12px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-align:center}
+  .sec{margin-top:24px}
+  .sh{font-family:var(--mono);font-size:11px;color:var(--rc,var(--accent));letter-spacing:.04em;margin-bottom:8px;border-bottom:1px dashed var(--line);padding-bottom:4px}
+  .body-t{font-size:14px;color:var(--ink-soft);line-height:1.9}
+  .psy{display:inline-block;font-family:var(--mono);font-size:12px;color:var(--rc,var(--accent));background:var(--accent-soft);border-radius:7px;padding:4px 12px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+  .card{background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 15px}
+  .card .ct{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-bottom:5px}
+  .card .cv{font-size:13.5px;color:var(--ink-soft);line-height:1.7}
+  .rel{display:flex;flex-direction:column;gap:8px}
+  .relrow{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 13px}
+  .relrow .rk{font-family:var(--mono);font-size:10px;color:#fff;border-radius:5px;padding:2px 8px;flex-shrink:0;height:fit-content}
+  .relrow .rk.op{background:#a8443a}.relrow .rk.nb{background:var(--ink-mute)}
+  .relrow a{font-family:var(--serif);font-weight:600;color:var(--ink);text-decoration:none}.relrow a:hover{color:var(--accent)}
+  .relrow .rwhy{font-size:12.5px;color:var(--ink-mute);line-height:1.6;margin-top:2px}
+  .people{display:flex;flex-wrap:wrap;gap:6px}.person{font-size:13px;color:var(--ink-soft);background:var(--paper-2);border-radius:7px;padding:3px 11px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{font-size:12.5px;color:var(--ink-soft);background:#fff;border:1px solid var(--line);border-radius:8px;padding:3px 10px;text-decoration:none}a.chip:hover{border-color:var(--accent);color:var(--accent)}
+  .miniwrap{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px}
+  .back{display:block;text-align:center;margin-top:34px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-root">根·世界观</a> › <b style="color:var(--ink-soft)">6 区志</b></div>
+  <div id="body"><div style="padding:40px;text-align:center;color:var(--ink-faint)">加载中…</div></div>
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const NS='http://www.w3.org/2000/svg';
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const el=(n,a,t)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(t!=null)e.textContent=t;return e;};
+const WVC={WV1:'#b0673a',WV2:'#9a7b3a',WV3:'#5a7d6f',WV4:'#5b7596',WV5:'#8a5a7a',WV6:'#4a6a8a'};
+const qid=new URLSearchParams(location.search).get('id')||'WV1';
+Promise.all([
+  fetch('data/kg_worldview_regions.json').then(r=>r.json()),
+  fetch('data/kg_style.json').then(r=>r.json()).catch(()=>({nodes:[]}))
+]).then(([D,sty])=>{
+  const byId=Object.fromEntries(D.regions.map(r=>[r.id,r]));
+  const r=byId[qid]||D.regions[0];
+  const rc=WVC[r.id]||'#b0673a';
+  const idByCn=Object.fromEntries((sty.nodes||[]).map(n=>[n.cn,n.id]));
+  const b=document.getElementById('body'); b.innerHTML=''; b.style.setProperty('--rc',rc);
+  document.title='aha · '+r.name+' · 世界观区志';
+  const SEC=(label,inner)=>{const s=$(`<div class="sec"><div class="sh">${label}</div></div>`);s.appendChild(typeof inner==='string'?$(`<div class="body-t">${inner}</div>`):inner);return s;};
+
+  b.appendChild($(`<div class="std">世界观区志 · V3 一级知识节点</div>`));
+  b.appendChild($(`<div class="nh" style="--rc:${rc}"><span class="code" style="background:${rc}">${r.id}</span><span class="cn">${r.name}</span><span class="alt">${r.alt}</span><span class="dens">坐标 (${r.cx.toFixed(2)}, ${r.cy.toFixed(2)}) · ${r.n} 风格 · <span class="w">西${r.west}</span>/<span class="e">东${r.east}</span></span></div>`));
+  b.appendChild($(`<div class="q" style="--rc:${rc}">${r.q}</div>`));
+  b.appendChild($(`<div class="ess">${r.essence}</div>`));
+
+  // ① 定义
+  b.appendChild(SEC('① 定义 DEFINITION',r.def));
+  // ② 坐标解读 + mini plane
+  const wrap2=$('<div class="grid2"></div>');
+  wrap2.appendChild($(`<div class="card"><div class="ct">为何落在这片坐标</div><div class="cv">${r.coord_read}</div><div style="margin-top:10px"><span class="psy" style="--rc:${rc}">${r.psy}</span></div></div>`));
+  const mp=$('<div class="miniwrap"></div>'); const svg=el('svg',{viewBox:'0 0 300 240',style:'width:100%;height:auto'});
+  const W=300,H=240,P=34, xv=v=>P+v*(W-2*P), yv=v=>H-P-v*(H-2*P);
+  svg.appendChild(el('rect',{x:xv(0),y:yv(1),width:xv(1)-xv(0),height:yv(0)-yv(1),fill:'#fcfaf5',stroke:'#e8e0d0'}));
+  svg.appendChild(el('text',{x:xv(0)-4,y:yv(.5)+4,'text-anchor':'end','font-size':9,fill:'#5a7d6f','font-family':'JetBrains Mono'},'再现'));
+  svg.appendChild(el('text',{x:xv(1)+4,y:yv(.5)+4,'font-size':9,fill:'#b0673a','font-family':'JetBrains Mono'},'表现'));
+  svg.appendChild(el('text',{x:xv(.5),y:yv(0)+12,'text-anchor':'middle','font-size':9,fill:'#5a7d6f','font-family':'JetBrains Mono'},'结构'));
+  svg.appendChild(el('text',{x:xv(.5),y:yv(1)-6,'text-anchor':'middle','font-size':9,fill:'#b0673a','font-family':'JetBrains Mono'},'感知'));
+  D.regions.forEach(o=>{const cur=o.id===r.id;svg.appendChild(el('circle',{cx:xv(o.cx),cy:yv(o.cy),r:cur?9:5,fill:WVC[o.id],'fill-opacity':cur?1:0.4,stroke:'#fff','stroke-width':cur?2:1}));
+    if(cur)svg.appendChild(el('text',{x:xv(o.cx),y:yv(o.cy)-13,'text-anchor':'middle','font-size':11,'font-weight':600,fill:WVC[o.id],'font-family':'Noto Serif SC','paint-order':'stroke',stroke:'#fff','stroke-width':3},o.name));});
+  mp.appendChild(svg); wrap2.appendChild(mp);
+  b.appendChild(SEC('② 坐标解读 · 在世界观平面的位置',wrap2));
+  // ③ 起源/历史
+  b.appendChild(SEC('③ 起源与历史 ORIGIN',r.origin));
+  // ④ 代表画家
+  const pp=$('<div class="people"></div>'); (r.people||[]).forEach(x=>pp.appendChild($(`<span class="person">${x}</span>`)));
+  b.appendChild(SEC('④ 代表画家 MASTERS',pp));
+  // ⑤ 题材 + 语言
+  const wrap5=$('<div class="grid2"></div>');
+  wrap5.appendChild($(`<div class="card"><div class="ct">典型题材</div><div class="cv">${r.themes}</div></div>`));
+  wrap5.appendChild($(`<div class="card"><div class="ct">绘画语言倾向(7大构成)</div><div class="cv">${r.language}</div></div>`));
+  b.appendChild(SEC('⑤ 题材与语言 REALIZATION',wrap5));
+  // ⑥ 关系:对立 + 邻接
+  const rel=$('<div class="rel"></div>');
+  if(r.oppose){const o=byId[r.oppose.id];rel.appendChild($(`<div class="relrow"><span class="rk op">对立</span><div><a href="kg-worldview-region.html?id=${o.id}">${o.id} ${o.name}</a><div class="rwhy">${r.oppose.why}</div></div></div>`));}
+  (r.neighbors||[]).forEach(nb=>{const o=byId[nb.id];if(!o)return;rel.appendChild($(`<div class="relrow"><span class="rk nb">邻接</span><div><a href="kg-worldview-region.html?id=${o.id}">${o.id} ${o.name}</a><div class="rwhy">${nb.why}</div></div></div>`));});
+  b.appendChild(SEC('⑥ 区间关系 · 对立与邻接 RELATIONS',rel));
+  // ⑦ 演化
+  b.appendChild(SEC('⑦ 在生成链中的演化 EVOLUTION',r.evolution));
+  // ⑧ 代表风格
+  const ch=$('<div class="chips"></div>'); r.members.forEach(cn=>ch.appendChild(idByCn[cn]?$(`<a class="chip" href="kg-style-detail.html?id=${idByCn[cn]}">${cn}</a>`):$(`<span class="chip">${cn}</span>`)));
+  b.appendChild(SEC(`⑧ 落在本区的风格 STYLES · ${r.n}`,ch));
+}).catch(e=>{document.getElementById('body').innerHTML='<div style="padding:40px;text-align:center;color:#a89f8f">加载失败(需服务器):'+e+'</div>';});
+</script>
+</body></html>

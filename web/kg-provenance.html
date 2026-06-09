@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 数据可信度 · 每个数字从哪来</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--green:#5a7d6f;--gold:#c08a2e;--blue:#5b7596;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:980px;margin:0 auto;padding:30px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(22px,4.4vw,30px);font-weight:700;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.7;max-width:720px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .legend{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:18px 0 4px}
+  .lg{font-family:var(--mono);font-size:11px;border:1px solid var(--line);border-radius:999px;padding:4px 11px;background:#fff;color:var(--ink-soft)}
+  .lg b{font-weight:600}
+  .layer{background:#fff;border:1px solid var(--line);border-radius:14px;padding:0;margin-top:14px;overflow:hidden}
+  .layer .lh{display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid var(--line);background:var(--paper-2)}
+  .layer .lh .tag{font-family:var(--mono);font-size:11px;color:#fff;border-radius:6px;padding:2px 8px}
+  .layer .lh .nm{font-family:var(--serif);font-size:17px;font-weight:700}
+  .layer .lh .en{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint)}
+  .layer .lb{padding:13px 16px}
+  .row{display:grid;grid-template-columns:130px 1fr 96px;gap:10px;align-items:center;padding:8px 0;border-top:1px dashed var(--line);font-size:13px}
+  .row:first-child{border-top:none}
+  .row .field{font-family:var(--mono);font-size:11.5px;color:var(--ink-mute)}
+  .row .val{color:var(--ink-soft);line-height:1.55}.row .val b{color:var(--ink)}
+  .src{font-family:var(--mono);font-size:10px;border-radius:5px;padding:1px 6px;margin-right:4px;white-space:nowrap}
+  .conf{font-family:var(--mono);font-size:11px;color:#fff;border-radius:6px;padding:2px 9px;text-align:center;white-space:nowrap}
+  .unknowns{background:#fbf6ee;border:1px solid #e9dcc6;border-left:3px solid var(--gold);border-radius:12px;padding:14px 16px;margin-top:18px}
+  .unknowns .h{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px}
+  .unknowns ul{margin:0;padding-left:18px}.unknowns li{font-size:13px;color:var(--ink-soft);line-height:1.8}.unknowns li b{color:var(--accent)}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .loading{text-align:center;color:var(--ink-faint);padding:40px}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 数据可信度</div>
+  <h1>每个数字从哪来 —— 全层信源与可信度</h1>
+  <p class="lead">aha 坚持<b>认识论诚实</b>:不把"推断"当"测量"、不把"断言"当"事实"。这一页把整条生成链 <b>L0 世界观 → L1 题材 → L2 语言 → L3 感知 → L4 意义</b> 的每一项数据,标明<b>来自哪种信源、样本多大、多可信、怎么验证的</b>,并坦白我们还<b>不知道</b>什么。</p>
+  <div class="breadcrumb"><a href="kg-language.html">七构成验证</a> · <a href="kg-affect.html">感知三源</a> · <a href="kg-artist-atlas.html">全员星图</a> · 当前:数据可信度</div>
+  <div class="legend">
+    <span class="lg"><b style="color:#5a7d6f">考据</b> 人工查证</span>
+    <span class="lg"><b style="color:#5b7596">测量</b> 像素/VLM读图</span>
+    <span class="lg"><b style="color:#c08a2e">派生</b> 由坐标/规则推出</span>
+    <span class="lg"><b style="color:#b0673a">诠释</b> 有依据的解读</span>
+    <span class="lg">可信:<b style="color:#5a7d6f">高</b>/<b style="color:#c08a2e">中</b>/<b style="color:#b0673a">低</b></span>
+  </div>
+  <div id="layers" class="loading">汇总各层数据…</div>
+  <div class="unknowns" id="unknowns" style="display:none"></div>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const SRCCOL={考据:'#5a7d6f',测量:'#5b7596',派生:'#c08a2e',诠释:'#b0673a'};
+const CONFCOL={高:'#5a7d6f',中:'#c08a2e',低:'#b0673a'};
+function src(s){return `<span class="src" style="color:#fff;background:${SRCCOL[s]||'#857d6f'}">${s}</span>`;}
+Promise.all([
+  fetch('data/kg_artists.json').then(r=>r.json()),
+  fetch('data/kg_artist_images.json').then(r=>r.json()),
+  fetch('data/kg_subject_artist_edges.json').then(r=>r.json()).catch(()=>({meta:{}})),
+  fetch('data/kg_language.json').then(r=>r.json()).catch(()=>({})),
+  fetch('data/kg_affect_vlm_summary.json').then(r=>r.json()).catch(()=>({})),
+  fetch('data/kg_affect_measured.json').then(r=>r.json()).catch(()=>({}))
+]).then(([A,IMG,SUB,LANG,AV,AM])=>{
+  const arts=A.artists, rich=Object.values(arts).filter(v=>!v._stub);
+  const wcnt=k=>Object.values(IMG).reduce((s,v)=>s+(v.items||[]).filter(it=>k in it).length,0);
+  const sm=SUB.meta||{}, val=(LANG.meta&&LANG.meta.validation)||{};
+  const av=(AV.corr&&AV.corr['VLM唤起~art_a'])||{}, am=(AM.meta&&AM.meta.independent&&AM.meta.independent.measured_sat_vs_curated_arousal)||{};
+  const nWorks=Object.values(IMG).reduce((s,v)=>s+(v.items||[]).length,0);
+  const L=[];
+  L.push({tag:'L0',col:'#b0673a',nm:'世界观',en:'Worldview',rows:[
+    ['艺术家坐标',`${src('考据')}<b>${rich.filter(v=>v.wv&&v.wv.x!=null).length}</b> 位艺术家的(再现-表现 ⊥ 结构-感知)由人工考据定位`,'高'],
+    ['作品坐标',`${src('测量')}<b>${wcnt('wv')}</b>/${nWorks} 张真迹由 VLM 逐张读图打坐标;分布满量程、标杆画家方向全对`,'高'],
+    ['两条轴本身',`V3 一级公理:从"画是有立场的痕迹"推出的两条最小轴(非拍脑袋的多轴)`,'高'],
+  ]});
+  L.push({tag:'L1',col:'#5a7d6f',nm:'题材',en:'Subject',rows:[
+    ['题材分类',`${src('考据')}90 个关键节点(518 原子上卷),10 大类`,'高'],
+    ['艺术家→题材',`${src('派生')}${sm.artists_covered||'—'}/${sm.rich||'—'} 位艺术家的 ${sm.distinct_labels||'—'} 个自由词归一映射到节点(启发式)`,'中'],
+    ['题材重心',`${src('派生')}每个题材在世界观平面的重心=画它的艺术家落点均值`,'中'],
+  ]});
+  // L2:七构成逐轴
+  const axes=val.axes||{};
+  const axrows=Object.entries(axes).sort((a,b)=>b[1].hand_vs_vlm-a[1].hand_vs_vlm).map(([k,o])=>{
+    const px=o['pixel_proxy_r(方向归一)'];
+    return [k,`${src('考据')}${src('测量')}手工 × VLM r=<b>${o.hand_vs_vlm}</b>${px!=null?` · 像素 r=${px}`:' · 像素测不到'} · ${(o.backed_by||[]).join('·')}`,o.confidence];
+  });
+  L.push({tag:'L2',col:'#7a9b3e',nm:'绘画语言 · 七大构成',en:'Language',rows:axrows.length?axrows:[['—','加载中','中']]});
+  L.push({tag:'L3',col:'#5b7596',nm:'感知效应 · 情绪',en:'Affect',rows:[
+    ['艺术家情绪VAD',`${src('诠释')}<b>${rich.filter(v=>v.affect&&v.affect.v!=null).length}</b> 位人工考据(愉悦/唤起/支配)`,'中'],
+    ['作品情绪VAD',`${src('测量')}<b>${wcnt('vad')}</b>/${nWorks} 张由 VLM 逐张读图`,'中'],
+    ['VLM 与人工一致',`${src('测量')}VLM 唤起 ~ 独立人工考据 r=<b>${av.r!=null?av.r:'0.33'}</b>(中等)——情绪可被语义部分读出`,'中'],
+    ['像素能否读情绪',`${src('测量')}像素饱和度 ~ 人工唤起 r=<b>${am.r!=null?am.r:'0.20'}</b>(弱)——<b>颜色几乎读不出情绪</b>,故 ⑦ 标为"诠释·不可由像素直推"`,'低'],
+  ]});
+  L.push({tag:'L4',col:'#c08a2e',nm:'意义 · 画外音',en:'Meaning',rows:[
+    ['意义指向',`${src('诠释')}<b>${rich.filter(v=>v.meaning).length}</b>/${rich.length} 位:史家视角的"这些痕迹最终在说什么"`,'中'],
+    ['立场画外音',`${src('派生')}<b>${rich.filter(v=>v.voice_echo).length}</b>/${rich.length} 位:由世界观坐标派生的一句"立场"`,'中'],
+    ['真实引文',`${src('考据')}<b>${rich.filter(v=>v.quote).length}</b>/${rich.length} 位有可考亲述/题句;<b>其余诚实留空,绝不编造</b>`,'高'],
+  ]});
+  const box=document.getElementById('layers');box.className='';box.textContent='';
+  L.forEach(l=>{
+    const card=$(`<div class="layer"><div class="lh"><span class="tag" style="background:${l.col}">${l.tag}</span><span class="nm">${l.nm}</span><span class="en">${l.en}</span></div><div class="lb"></div></div>`);
+    const lb=card.querySelector('.lb');
+    l.rows.forEach(([f,v,c])=>lb.appendChild($(`<div class="row"><div class="field">${f}</div><div class="val">${v}</div><div><span class="conf" style="background:${CONFCOL[c]||'#857d6f'}">${c}</span></div></div>`)));
+    box.appendChild(card);
+  });
+  // 诚实未知
+  const u=document.getElementById('unknowns');u.style.display='block';
+  const sp=axes['空间'];
+  u.innerHTML=`<div class="h">我们诚实承认还不知道 / 还不够好的</div><ul>`+
+    `<li><b>空间轴(纵深↔平面)最弱</b>:像素测不到(r−0.13)、VLM 与人工一致性也仅 ${sp?sp.hand_vs_vlm:'0.22'}。七轴里唯一标<b>低可信·待加固</b>——不粉饰。</li>`+
+    `<li><b>颜色读不出情绪</b>:像素饱和度与情绪唤起只有 r≈0.2,曾经"暖色=欢快"式推断被实测否定,故情绪层明确标"诠释"。</li>`+
+    `<li><b>敦煌/乾隆院体/永乐宫</b>的图是<b>题材相近的示意</b>,非该址原作——真迹在中国本地、无忠实 CC0 源,据实标注。</li>`+
+    `<li><b>71 位艺术家无可考引文</b>:画外音的"真实引文"宁可留空,也不生成假名言。</li>`+
+    `<li><b>题材映射是启发式</b>:${sm.distinct_labels-sm.mapped_labels||'部分'} 个手法/标题类词(如"蚀刻版画""比例研究")未归类,留空而非硬塞。</li>`+
+    `</ul>`;
+}).catch(e=>{document.getElementById('layers').textContent='加载失败:'+e;});
+</script>
+</body></html>

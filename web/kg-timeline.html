@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 风格演化时间线 · 东西双带</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1140px;margin:0 auto;padding:30px 14px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(21px,4vw,31px);font-weight:700;text-align:center;margin:7px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13px;line-height:1.7;max-width:780px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .controls{display:flex;flex-wrap:wrap;gap:7px;align-items:center;justify-content:center;margin-top:16px}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff;flex-wrap:wrap}
+  .seg button{border:none;background:#fff;font-size:12px;color:var(--ink-soft);padding:6px 10px;cursor:pointer;border-left:1px solid var(--line)}
+  .seg button:first-child{border-left:none}.seg button.on{color:#fff}
+  #search{font-size:12.5px;border:1px solid var(--line);border-radius:9px;padding:6px 11px;outline:none;background:#fff;width:150px}#search:focus{border-color:var(--accent)}
+  .stage{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:6px;overflow-x:auto}
+  svg{display:block;min-width:900px;width:100%;height:auto}
+  .tip{position:fixed;z-index:40;pointer-events:none;background:#fff;border:1px solid var(--line);box-shadow:0 6px 20px rgba(80,60,30,.18);border-radius:9px;padding:7px 11px;font-size:12.5px;opacity:0;transition:opacity .1s;max-width:240px}.tip.show{opacity:1}.tip .t{font-family:var(--serif);font-weight:600;font-size:14px}.tip .m{font-family:var(--mono);font-size:10px;margin-top:3px}
+  .legend{display:flex;flex-wrap:wrap;gap:6px 13px;justify-content:center;margin-top:13px;font-size:12px;color:var(--ink-soft)}
+  .legend .li{display:inline-flex;align-items:center;gap:5px}.legend .sw{width:11px;height:11px;border-radius:50%}
+  .note{font-size:12px;color:var(--ink-mute);background:#fff;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:9px;padding:11px 14px;line-height:1.7;margin-top:16px;max-width:880px;margin-left:auto;margin-right:auto}.note b{color:var(--accent)}
+  .back{display:block;text-align:center;margin-top:32px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="tip" id="tip"></div>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 风格演化时间线</div>
+  <h1>东西双带 × 时间 × 世界观区</h1>
+  <p class="lead">三条独立维度合在一张图:上下两带 = <b>西方 / 东方</b>两大文化谱系;横轴 = <b>时间</b>(已证 年代⊥视觉,故独立成轴);颜色 = <b>6 个世界观区</b>。于是能一眼看出:经验之光只在西方 19c 闪现、写意寄情贯穿东方千年、形式建构是西方 20c 独有……</p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">演化时间线</b></div>
+
+  <div class="controls">
+    <div class="seg" id="segWv"><button data-r="all" class="on" style="background:#b0673a;color:#fff">全部区</button></div>
+    <input type="text" id="search" placeholder="搜索风格…"/>
+  </div>
+
+  <div class="stage"><svg id="tl" viewBox="0 0 1000 560" preserveAspectRatio="xMinYMid meet"></svg></div>
+  <div class="legend" id="legend"></div>
+  <div class="note">🕰️ <b>读图</b>:横轴时间为<b>分段尺度</b>(1300 年前压缩、近世展开,便于看密集的现代)。点=风格,纵向轻微抖动避免重叠。<b>东西是文化谱系(带),不是世界观轴</b>;世界观(颜色)是文化中立的根——同一个世界观区(如写意寄情)可在不同时代、且主要在东方反复出现。点击进风格志。</div>
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const NS='http://www.w3.org/2000/svg';
+const el=(n,a,t)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(t!=null)e.textContent=t;return e;};
+const WVC={WV1:'#b0673a',WV2:'#9a7b3a',WV3:'#5a7d6f',WV4:'#5b7596',WV5:'#8a5a7a',WV6:'#4a6a8a'};
+const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+const W=1000,H=560,L=70,Rm=24,TOP=70,BOT=H-54, MID=(TOP+BOT)/2;
+// 分段时间尺度
+function ts(y){const bx=L,ex=W-Rm; const split=0.24;
+  if(y<1300){const t=(y-(-2500))/(1300-(-2500));return bx+(ex-bx)*split*t;}
+  const t=(y-1300)/(2025-1300);return bx+(ex-bx)*(split+(1-split)*t);}
+function hash(s){let h=0;for(const c of s)h=(h*131+c.charCodeAt(0))&0xffff;return h/0xffff;}
+let NODES=[],filterR='all',q='';
+const TICKS=[[-2000,'史前'],[-500,'先秦'],[0,'汉'],[750,'唐'],[1100,'宋'],[1300,'元'],[1500,'明'],[1700,'清'],[1850,'19c'],[1920,'现代'],[2000,'当代']];
+fetch('data/kg_style.json').then(r=>r.json()).then(sty=>{
+  NODES=sty.nodes.filter(n=>n.year!=null&&n.wv);
+  const seg=document.getElementById('segWv');
+  ['WV1','WV2','WV3','WV4','WV5','WV6'].forEach(id=>{const b=document.createElement('button');b.dataset.r=id;b.textContent=id+' '+WVN[id];b.onclick=()=>setR(id,b);seg.appendChild(b);});
+  seg.querySelector('[data-r=all]').onclick=()=>setR('all',seg.querySelector('[data-r=all]'));
+  document.getElementById('search').oninput=e=>{q=e.target.value.trim();draw();};
+  const lg=document.getElementById('legend');
+  Object.keys(WVN).forEach(id=>lg.appendChild(Object.assign(document.createElement('span'),{className:'li',innerHTML:`<span class="sw" style="background:${WVC[id]}"></span>${id} ${WVN[id]}`})));
+  draw();
+});
+function setR(r,btn){filterR=r;document.querySelectorAll('#segWv button').forEach(x=>{x.classList.remove('on');x.style.background='#fff';x.style.color='';});btn.classList.add('on');btn.style.background=r==='all'?'#b0673a':WVC[r];btn.style.color='#fff';draw();}
+function draw(){
+  const svg=document.getElementById('tl');while(svg.firstChild)svg.removeChild(svg.firstChild);
+  // bands
+  svg.appendChild(el('rect',{x:L,y:TOP-2,width:W-Rm-L,height:MID-TOP-8,fill:'#fbf6ef'}));
+  svg.appendChild(el('rect',{x:L,y:MID+8,width:W-Rm-L,height:BOT-MID-8,fill:'#f1f4f1'}));
+  svg.appendChild(el('text',{x:L-8,y:(TOP+MID)/2,'text-anchor':'end','font-family':'Noto Serif SC','font-size':15,'font-weight':600,fill:'#b0673a'},'西方'));
+  svg.appendChild(el('text',{x:L-8,y:(MID+BOT)/2,'text-anchor':'end','font-family':'Noto Serif SC','font-size':15,'font-weight':600,fill:'#5a7d6f'},'东方'));
+  // time axis + ticks
+  svg.appendChild(el('line',{x1:L,y1:MID,x2:W-Rm,y2:MID,stroke:'#d8cfbf','stroke-width':1.5}));
+  TICKS.forEach(([y,lab])=>{const x=ts(y);svg.appendChild(el('line',{x1:x,y1:TOP-2,x2:x,y2:BOT,stroke:'#ece4d4','stroke-width':1}));
+    svg.appendChild(el('text',{x:x,y:MID+4,'text-anchor':'middle','font-family':'JetBrains Mono','font-size':10,fill:'#9a917f'},lab));});
+  // pre-1300 compressed marker
+  const sx=ts(1300);svg.appendChild(el('line',{x1:sx,y1:TOP-2,x2:sx,y2:BOT,stroke:'#e0c9b0','stroke-width':1,'stroke-dasharray':'3 3'}));
+  svg.appendChild(el('text',{x:(L+sx)/2,y:TOP-8,'text-anchor':'middle','font-family':'JetBrains Mono','font-size':9,fill:'#c0a585'},'← 古代(压缩)'));
+  svg.appendChild(el('text',{x:(sx+W-Rm)/2,y:TOP-8,'text-anchor':'middle','font-family':'JetBrains Mono','font-size':9,fill:'#c0a585'},'近世(展开) →'));
+  // dots
+  const active=n=>(filterR==='all'||n.wv===filterR)&&(!q||n.cn.includes(q));
+  NODES.forEach(n=>{
+    const x=ts(n.year), west=n.region!=='east';
+    const c0=west?TOP:MID+16, c1=west?MID-16:BOT;
+    const y=c0+hash(n.id)*(c1-c0);
+    const on=active(n);
+    const c=el('circle',{cx:x,cy:y,r:on?5:3.5,fill:WVC[n.wv],'fill-opacity':on?0.9:0.12,stroke:'#fff','stroke-width':on?1:0.4,style:'cursor:pointer'});
+    c.addEventListener('mouseenter',()=>{const t=document.getElementById('tip');t.className='tip show';t.innerHTML=`<div class="t">${n.cn}</div><div class="m" style="color:${WVC[n.wv]}">${n.wv} ${WVN[n.wv]} · ${west?'西':'东'} · ${fmtYear(n.year)}</div>`;});
+    c.addEventListener('mousemove',ev=>{const t=document.getElementById('tip');t.style.left=(ev.clientX+14)+'px';t.style.top=(ev.clientY-10)+'px';});
+    c.addEventListener('mouseleave',()=>document.getElementById('tip').className='tip');
+    c.addEventListener('click',()=>location.href='kg-style-detail.html?id='+n.id);
+    svg.appendChild(c);
+  });
+}
+function fmtYear(y){return y<0?`公元前${-y}`:`${y} 年`;}
+</script>
+</body></html>

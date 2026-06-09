@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>aha · 一张会随你重排的人类艺术地图</title>
+  <meta name="description" content="aha —— 名作是节点,AI 是带路的策展人,你每一次「原来如此」就是它的产品。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&display=swap" rel="stylesheet" />
+  <style>
+/* ═══ aha · 低唤醒 / 画先到 / 安静的纸 ═══ */
+:root{
+  --paper:#f4f1ea; --paper-2:#ece7db; --ink:#1d1b18; --ink-soft:#4b463e;
+  --ink-mute:#857d6f; --ink-faint:#a89f8f; --line:#ddd5c6;
+  --accent:#b0673a; --accent-soft:#f0e4d8; --explore:#5a7d6f;
+  --serif:"Noto Serif SC","Source Serif 4",Georgia,serif;
+  --latin:"Source Serif 4",Georgia,serif;
+  --sans:"Noto Sans SC",system-ui,sans-serif;
+  --mono:"JetBrains Mono",monospace;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* 顶栏 */
+#topbar{position:fixed;top:0;left:0;right:0;height:56px;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 18px;background:linear-gradient(to bottom,rgba(244,241,234,.92),rgba(244,241,234,.0));
+  backdrop-filter:blur(6px)}
+.brand{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--ink);
+  background:none;border:none;cursor:pointer;letter-spacing:-.01em}
+.brand .dot{color:var(--accent)}
+.top-meta{font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.04em}
+.star-btn{font-family:var(--mono);font-size:12px;color:var(--ink-soft);background:none;
+  border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer;
+  transition:all .2s var(--ease)}
+.star-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+#stage{min-height:100vh}
+#boot{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:18px;color:var(--ink-mute);background:var(--paper);z-index:100}
+#boot.gone{opacity:0;pointer-events:none;transition:opacity .5s ease}
+
+.fade-in{animation:fadeIn .6s var(--ease)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ════ 通用:可加载图(blur-up + 失败兜底)════ */
+.artframe{position:relative;width:100%;background:var(--paper-2);overflow:hidden}
+.artframe img{display:block;width:100%;height:100%;object-fit:contain;
+  opacity:0;transition:opacity .7s var(--ease)}
+.artframe img.loaded{opacity:1}
+.artframe .blur{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  filter:blur(22px) saturate(1.2);transform:scale(1.1);opacity:.6}
+.artframe .fallback{position:absolute;inset:0;display:none;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;padding:28px;gap:8px}
+.artframe.failed .fallback{display:flex}
+.artframe.failed img.full{display:none}
+.fallback .ft{font-family:var(--serif);font-size:20px;color:var(--ink)}
+.fallback .fa{font-family:var(--latin);font-style:italic;color:var(--ink-mute)}
+.fallback .fn{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-top:6px}
+
+/* ════ 冷启动:审美滑滑 ════ */
+.onboard{max-width:520px;margin:0 auto;padding:76px 20px 30px;text-align:center;min-height:100vh;
+  display:flex;flex-direction:column}
+.ob-head{margin-bottom:14px}
+.ob-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:8px}
+.ob-h{font-family:var(--serif);font-size:25px;font-weight:500;line-height:1.3}
+.ob-sub{font-size:13.5px;color:var(--ink-mute);margin-top:8px;line-height:1.6}
+.ob-card{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0}
+.ob-art{border-radius:8px;box-shadow:0 12px 40px -12px rgba(40,30,20,.35);
+  border:1px solid var(--line);aspect-ratio:4/3;max-height:52vh}
+.ob-cap{font-family:var(--latin);font-style:italic;font-size:13px;color:var(--ink-mute);margin:12px 0 4px}
+.ob-progress{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.1em}
+.ob-actions{display:flex;gap:14px;justify-content:center;margin-top:18px}
+.ob-btn{width:62px;height:62px;border-radius:50%;border:1.5px solid var(--line);background:var(--paper);
+  font-size:24px;cursor:pointer;transition:all .18s var(--ease);display:flex;align-items:center;justify-content:center}
+.ob-btn:hover{transform:translateY(-3px)}
+.ob-btn.like:hover{border-color:var(--accent);background:var(--accent-soft)}
+.ob-btn.skip:hover{border-color:var(--ink-mute)}
+.ob-hint{font-size:12px;color:var(--ink-faint);margin-top:14px}
+.ob-skipall{margin-top:10px;background:none;border:none;color:var(--ink-faint);
+  font-size:12px;cursor:pointer;text-decoration:underline}
+
+/* ════ 漫游:单幅作品页 ════ */
+.roam{min-height:100vh;padding-top:56px}
+.work-wrap{max-width:1100px;margin:0 auto;padding:8px 16px 60px}
+.today-badge{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);text-align:center;margin:6px 0 12px}
+.work-art{border-radius:6px;border:1px solid var(--line);box-shadow:0 18px 50px -18px rgba(40,30,20,.4);
+  max-height:64vh;aspect-ratio:auto;cursor:pointer;background:var(--paper-2)}
+.work-art .artframe-inner,.work-art img{max-height:64vh}
+.tap-hint{text-align:center;font-family:var(--mono);font-size:10px;color:var(--ink-faint);
+  letter-spacing:.1em;margin-top:8px;transition:opacity .3s}
+.tap-hint.hide{opacity:0}
+
+/* 作品信息(轻点浮现) */
+.work-info{max-width:680px;margin:10px auto 0;overflow:hidden;max-height:0;
+  transition:max-height .5s var(--ease)}
+.work-info.open{max-height:420px}
+.wi-inner{padding:18px 4px 0;text-align:center}
+.wi-title{font-family:var(--serif);font-size:23px;font-weight:500;line-height:1.3}
+.wi-by{font-family:var(--latin);font-style:italic;font-size:14px;color:var(--ink-mute);margin-top:4px}
+.wi-one{font-family:var(--serif);font-size:16.5px;line-height:1.65;color:var(--ink-soft);
+  margin:16px auto;max-width:560px;padding-left:14px;border-left:3px solid var(--accent);text-align:left}
+.wi-look{font-size:13.5px;line-height:1.7;color:var(--ink-mute);background:var(--paper-2);
+  border-radius:8px;padding:12px 16px;max-width:560px;margin:0 auto;text-align:left}
+.wi-look b{color:var(--accent);font-weight:500}
+.wi-themes{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+.wi-themes .t{font-family:var(--sans);font-size:11.5px;color:var(--ink-mute);
+  border:1px solid var(--line);border-radius:999px;padding:3px 11px}
+.wi-themes .t::before{content:"#";opacity:.5}
+
+/* 心动按钮 */
+.heart-row{display:flex;justify-content:center;margin:18px 0 6px}
+.heart{font-family:var(--sans);font-size:14px;display:inline-flex;align-items:center;gap:8px;
+  background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:9px 20px;
+  cursor:pointer;color:var(--ink-soft);transition:all .2s var(--ease)}
+.heart:hover{border-color:var(--accent)}
+.heart.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.heart .hi{font-size:15px}
+
+/* ════ 三扇门 ════ */
+.doors{max-width:760px;margin:30px auto 0}
+.doors-label{text-align:center;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-faint);margin-bottom:14px}
+.door{display:block;width:100%;text-align:left;background:var(--paper);border:1px solid var(--line);
+  border-radius:10px;padding:15px 18px;margin-bottom:10px;cursor:pointer;
+  transition:all .22s var(--ease);position:relative}
+.door:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 22px -12px rgba(40,30,20,.3)}
+.door-top{display:flex;align-items:center;gap:9px;margin-bottom:7px}
+.door-chip{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 9px;border-radius:5px;background:var(--accent-soft);color:var(--accent)}
+.door.explore .door-chip{background:#e4ede9;color:var(--explore)}
+.door-arrow{margin-left:auto;color:var(--ink-faint);font-size:15px;transition:transform .2s var(--ease)}
+.door:hover .door-arrow{transform:translateX(4px);color:var(--accent)}
+.door-why{font-family:var(--serif);font-size:14.5px;line-height:1.6;color:var(--ink-soft)}
+
+/* ════ 星图 / 审美画像 ════ */
+.star{max-width:900px;margin:0 auto;padding:80px 20px 60px;min-height:100vh}
+.star-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);text-align:center;margin-bottom:8px}
+.star-h{font-family:var(--serif);font-size:28px;font-weight:500;text-align:center;margin-bottom:6px}
+.star-portrait{font-family:var(--serif);font-size:17px;line-height:1.8;color:var(--ink-soft);
+  max-width:600px;margin:14px auto 6px;text-align:center}
+.star-stats{font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-align:center;
+  letter-spacing:.04em;margin-bottom:8px}
+.star-themes{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:18px 0 30px}
+.star-themes .st{font-size:13px;color:var(--ink);background:var(--accent-soft);
+  border:1px solid var(--line);border-radius:999px;padding:5px 14px}
+.constellation{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px}
+.cnode{position:relative;border-radius:6px;overflow:hidden;border:1px solid var(--line);
+  aspect-ratio:1;cursor:pointer;transition:transform .2s var(--ease)}
+.cnode:hover{transform:scale(1.04)}
+.cnode .artframe{height:100%}
+.cnode.loved::after{content:"♥";position:absolute;top:6px;right:8px;color:#fff;font-size:13px;
+  text-shadow:0 1px 4px rgba(0,0,0,.5)}
+.cnode .cn-cap{position:absolute;bottom:0;left:0;right:0;font-family:var(--latin);font-size:10px;
+  color:#fff;padding:14px 6px 5px;background:linear-gradient(to top,rgba(0,0,0,.6),transparent);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.star-empty{text-align:center;color:var(--ink-mute);font-family:var(--serif);font-size:16px;padding:40px}
+.star-back{display:block;margin:34px auto 0;font-family:var(--sans);font-size:14px;
+  background:var(--ink);color:var(--paper);border:none;border-radius:999px;padding:12px 28px;cursor:pointer}
+.star-share{display:block;margin:12px auto 0;background:none;border:none;color:var(--ink-mute);
+  font-size:12.5px;cursor:pointer;text-decoration:underline}
+
+/* ════ v2 提升 ════ */
+#view{transition:opacity .18s var(--ease)}
+#view.leaving{opacity:0}
+.ob-art{transition:transform .14s var(--ease)}
+
+/* 漫游导航条 + 旅程小点 */
+.roam-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  max-width:760px;margin:6px auto 2px}
+.rn-btn{font-family:var(--mono);font-size:11.5px;color:var(--ink-mute);background:none;
+  border:1px solid var(--line);border-radius:999px;padding:6px 13px;cursor:pointer;
+  transition:all .2s var(--ease)}
+.rn-btn:hover:not([disabled]){border-color:var(--accent);color:var(--accent)}
+.rn-btn[disabled]{opacity:.32;cursor:default}
+.journey-dots{display:flex;gap:6px;align-items:center}
+.journey-dots .jd{width:6px;height:6px;border-radius:50%;background:var(--line)}
+.journey-dots .jd.now{background:var(--accent);transform:scale(1.4)}
+
+/* 「为你而来」理由 */
+.reason{text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.04em;
+  color:var(--accent);margin:10px 0 14px;opacity:.92}
+.reason.explore{color:var(--explore)}
+
+/* 键盘提示 */
+.kbd-hint{text-align:center;font-family:var(--mono);font-size:10px;color:var(--ink-faint);
+  letter-spacing:.05em;margin-top:30px}
+@media(hover:none){.kbd-hint{display:none}}
+
+/* 门:序号键 + 心动脉冲 */
+.door-key{font-family:var(--mono);font-size:11px;color:var(--ink-faint);
+  border:1px solid var(--line);border-radius:5px;width:18px;height:18px;
+  display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.door:hover .door-key{border-color:var(--accent);color:var(--accent)}
+.heart.pulse{animation:hpulse .4s var(--ease)}
+@keyframes hpulse{0%{transform:scale(1)}40%{transform:scale(1.12)}100%{transform:scale(1)}}
+
+/* 星座 SVG */
+.constel-wrap{max-width:620px;margin:8px auto 0}
+.constellation-svg{width:100%;height:auto;display:block}
+.constellation-svg .cl{stroke:var(--line);stroke-width:1;opacity:.7}
+.constellation-svg .cl.path{stroke:var(--accent);stroke-width:1.6;opacity:.85}
+.cnode-svg{cursor:pointer;transition:transform .2s var(--ease)}
+.cnode-svg .ring{fill:none;stroke:#fff;stroke-width:1.5;opacity:.9}
+.cnode-svg.loved .ring{stroke:var(--accent);stroke-width:2.5}
+.cnode-svg:hover{transform-box:fill-box;transform-origin:center}
+.cnode-svg:hover .ring{stroke:var(--accent);stroke-width:3}
+.constel-legend{text-align:center;font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);
+  letter-spacing:.04em;margin:14px auto 0;max-width:520px;line-height:1.7}
+.constel-legend .lg-path{color:var(--accent)}
+.star-portrait b{color:var(--accent);font-weight:500}
+
+@media(max-width:560px){
+  .wi-one{font-size:15px}.work-h{font-size:20px}
+  .ob-art{max-height:46vh}
+  .roam-nav{flex-wrap:wrap}
+}
+
+</style>
+</head>
+<body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+  <!-- 顶栏 -->
+  <header id="topbar">
+    <button class="brand" id="brandBtn" title="回到漫游">aha<span class="dot">.</span></button>
+    <div class="top-meta" id="topMeta"></div>
+    <button class="star-btn" id="starBtn" title="你的星图">✦ 星图</button>
+  </header>
+
+  <main id="stage">
+    <!-- 视图由 JS 注入 -->
+    <div id="view"></div>
+  </main>
+
+  <!-- 加载态 -->
+  <div id="boot">正在打开美术馆…</div>
+
+  <script>
+window.__AHA={"works": [{"slug": "paris-rainy", "title": "Paris Street; Rainy Day", "artist": "Gustave Caillebotte", "date": "1877", "year": 1877, "medium": "Oil on canvas", "origin": "Paris", "image": "https://www.artic.edu/iiif/2/f8fd76e9-c396-5678-36ed-6a348c904d27/full/1200,/0/default.jpg", "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAACYtLiQwNDs9Pjw/QEFFSUVJTlFGRlhPT11iYmdgZ2xjaGpra2xqcWlvdmtzeHp6dH5+e4GDfXh+hJKLhZWTi4aMlZKVk5OWk5eXkpSanJ6emqSglbOrn6Glpq+spbe0q8G7sMTAtMjFuQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhQA7oIwpNFBrLpVNhJBoZiaNwMEA8GARhEHhQNpGFABAEADs=", "alt": "Life-size painting of an urban scene in Paris. A man in a top hat holding an umbrella and a woman in a long fashionable dark dress walk arm in arm toward the viewer as other city dwellers with umbrellas walk in various directions across cobblestone roads and sidewalks.", "themes": ["都市", "现代生活", "雨", "疏离", "光影"], "oneLiner": "雨中的巴黎,人人共撑一伞却彼此不看——这是现代都市孤独的第一张肖像。", "look": "看那个被画框切掉一半的男人:卡耶博特用'随手一拍'的构图,让你也成了街上匆匆的一员。"}, {"slug": "grande-jatte", "title": "A Sunday on La Grande Jatte — 1884", "artist": "Georges Seurat", "date": "1884–86, border added 1888–89", "year": 1884, "medium": "Oil on canvas", "origin": "France", "image": "https://www.artic.edu/iiif/2/2d484387-2509-5e8e-2c43-22f9981972eb/full/1200,/0/default.jpg", "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAE1WUFVTU1NWUFZYVllbVlpaW1tcWF1cXVxiWl1jWl9mX2NmVWVnXF9eZlxdaGZkYmpmZWRtYGZuY2htZGpsanBsZXVwZXB5Znp+ZXJwaYSAaYiBaYqIbIeAdI2DcYqFcI+FcoiCd5iRcouJgIyKhoyNi4mMjo2RkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlwBLmMmEkCAHTaRTqfB4QEmgj8mgaGY6lsohIHAXKwQBQIAaCIAA7", "alt": "Large painting of people in a crowded park, brushstrokes are dots.", "themes": ["都市休闲", "秩序", "光", "现代生活", "宁静"], "oneLiner": "一个慵懒的周日午后,被几百万个小点子,凝固成了永恒的纪念碑。", "look": "凑近看,没有线条,只有并排的纯色小点——后退几步,你的眼睛替修拉把它们调成了光。"}, {"slug": "vg-bedroom", "title": "The Bedroom", "artist": "Vincent van Gogh", "date": "1889", "year": 1889, "medium": "Oil on canvas", "origin": "Saint-Rémy-de-Provence", "image": "https://www.artic.edu/iiif/2/6644829f-f292-c5c4-a73c-0356a6fdbf0d/full/1200,/0/default.jpg", "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAHp3ZJttAJdwL5Z6MYt4Sod7V3uDdXmIc3qCe4uATIeCUoWDY4eGZZmOapiObICGdoeEdYqGe42EeIqNeZGOeXyFkHmIoIOIiJSMgZWMgouQhIeNmoCQpZSeqAAAAAAAACH5BAAAAAAAIf8LSW1hZ2VNYWdpY2sOZ2FtbWE9MC40NTQ1NDUALAAAAAAGAAUAAAUYoHUYW8dVyOM01wIwQkAolJYMBYRhUySFADs=", "alt": "Painting of bedroom, blue walls, green window, tan bed, red bedding.", "themes": ["私密", "孤独", "色彩", "居所", "内心"], "oneLiner": "梵高把自己空荡的小屋画下来,只为说一件事:这里,是我的安宁。", "look": "墙是歪的、地是斜的——他故意让透视'不对',好让你感到一种紧绷的、属于他的安静。"}, {"slug": "waterlilies", "title": "Water Lilies", "artist": "Claude Monet", "date": "1906", "year": 1906, "medium": "Oil on canvas", "origin": "France", "image": "https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/1200,/0/default.jpg", "lqip": "data:image/gif;base64,R0lGODlhBQAFAPQAAEZcaFFfdVtqbk9ldFBlcVFocllrcFlrd11rdl9sdFZtf15wcWV0d2R2eGByfmd6eGl6e2t9elZxiGF4kWB4kmJ9kGJ8lWeCkWSAnQAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAFAAUAAAUVoJBADXI4TLRMWHU9hmRRCjAURBACADs=", "alt": "Painting of a pond seen up close spotted with thickly painted pink and white water lilies and a shadow across the top third of the picture.", "themes": ["自然", "水", "光", "宁静", "沉思"], "oneLiner": "没有天、没有岸,只有水——莫奈把整个世界缩成一池倒影,请你沉下去。", "look": "找不到地平线,对吗?这正是他要的:让你失去坐标,只剩下光在水面上的呼吸。"}, {"slug": "haystacks", "title": "Stack of Wheat", "artist": "Claude Monet", "date": "1890–91", "year": 1890, "medium": "Oil on canvas", "origin": "France", "image": "https://www.artic.edu/iiif/2/27c1d720-8ca5-79a4-5e51-530bf75c1591/full/1200,/0/default.jpg", "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAFdJSVtOTWtfYWdgZWJib2tjaW9ufHVucndvcnBvfHhzfIB7f2tyhnBxgXF2jHV9lXeAl3+DkoeChoKElY+Mko+Mk4aKmo+Qm5ORm5WYqJ6drJ+hr7CqrbayuLa0urW1vrq3v7m4vLm5vQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhQE4H5AmJPoaGIuGAPBiEwmBiiWgEgEBlk8EsDggJ5RIEADs=", "alt": "A snowy landscape in cool tones featuring a prominent, snow-dusted haystack in reddish brown in front of a row of red-brown trees and low, blue mountains, all beheath a pink-gray strip of sky.", "themes": ["自然", "光", "时间", "田野", "宁静"], "oneLiner": "同一堆麦垛,他画了一整组——因为他画的从来不是麦垛,是光,是一天里逝去的时间。", "look": "阴影其实不是灰的,是紫的、蓝的;莫奈教会我们:影子里也住满了颜色。"}, {"slug": "two-sisters", "title": "Two Sisters (On the Terrace)", "artist": "Pierre-Auguste Renoir", "date": "1881", "year": 1881, "medium": "Oil on canvas", "origin": "France", "image": "https://www.artic.edu/iiif/2/3a608f55-d76e-fa96-d0b1-0789fbc48f1e/full/1200,/0/default.jpg", "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAENVWmNjWVFWZmRcYWJfZmZdZXtqZ3JxZXZ5aXl4b4J2cot2cHuCf4CDbYGIeH6EgX+Og5qbjY+Sl5yhlQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAUR4AQxSbQoD1IQjSMMwWFIQAgAOw==", "alt": "Impressionist painting of two girls on balcony, bright flower hat, knitting basket.", "themes": ["人物", "明媚", "休闲", "温情", "光"], "oneLiner": "一个被阳光、毛线团和春天填满的瞬间——雷诺阿一生都在画这种纯粹的愉悦。", "look": "看背景怎么化成了一片斑斓的虚——他让人物清晰、世界融化,像记忆里最好的那种下午。"}, {"slug": "basket-apples", "title": "The Basket of Apples", "artist": "Paul Cezanne", "date": "c. 1893", "year": 1887, "medium": "Oil on canvas", "origin": "France", "image": "https://www.artic.edu/iiif/2/52ac8996-3460-cf71-cb42-5c4d0aa29b74/full/1200,/0/default.jpg", "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAGdYO1hSRFVUSWFYRGtdRGFcSl9jW2xgS25iTnNlR3FlS2loXGxqY3V0Z3R0anl5aHN6cINuTIJzUHWAc3uGfYeFeYWOfYSOhIuLgIyMhJWVh52ci5majZ6ekQAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYIONA1GUJQGA800AsB1IoVYZpSdRw3SaFADs=", "alt": "Painting of a basket of green and red-yellow apples spilling over into a white cloth placed on a wooden table, with a dark green bottle and a plate of pale biscuits behind.", "themes": ["静物", "秩序", "结构", "日常", "沉思"], "oneLiner": "一篮歪斜的苹果,桌沿对不上——塞尚故意'画错',因为他想画的是看的方式本身。", "look": "桌子的左右两边接不上线:他把不同角度的观看拼进同一幅画,这一步,直接通向了立体主义。"}, {"slug": "great-wave", "title": "Under the Wave off Kanagawa (Kanagawa oki nami ura), also known as The Great Wave, from the series \"Thirty-Six Views of Mount Fuji (Fugaku sanjūrokkei)\"", "artist": "Katsushika Hokusai", "date": "1830/33", "year": 1826, "medium": "Color woodblock print; oban", "origin": "Japan", "image": "https://www.artic.edu/iiif/2/b3974542-b9b4-7568-fc4b-966738f61d78/full/1200,/0/default.jpg", "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAFpibG1vco2JfXh+g31/gXqAgo2MgoqOjY+RjJKSioiPkYySlJKVkpSYlJqblZKYmpyfm6mnmb6wlbyxl7+yl7+zmrWzormzocK1mcW2m8O6pce8pMq9oc/Bos7EqtHDp9PEpdLFqtbHqgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhwJDIwwF1PpsLIFKRZCCDwARD0TgQFoMg8SAcGIWGYhEEADs=", "alt": "A crashing wave looms over two small ships, Mount Fuji in the background.", "themes": ["自然之力", "海", "动与静", "崇高", "东方"], "oneLiner": "一道要吞掉天空的浪,而远处的富士山,小得像浪尖的一滴静。", "look": "浪爪像手指一样抓向小船;北斋用一个程式化的瞬间,封存了大自然全部的力量与冷酷。"}, {"slug": "childs-bath", "title": "The Child's Bath", "artist": "Mary Cassatt", "date": "1893", "year": 1893, "medium": "Oil on canvas", "origin": "France", "image": "https://www.artic.edu/iiif/2/3b885ae0-4d46-5fe4-d70a-00474827f02c/full/1200,/0/default.jpg", "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAE5NSWBSSmRbVmJkVmpbYWdmYm9oZmxrcmxtd2pueIJ3eXN9iouFj4eJkKGanQAAACH5BAAAAAAAIf8LSW1hZ2VNYWdpY2sOZ2FtbWE9MC40NTQ1NDUALAAAAAADAAUAAAQLsICRlEDuELaCaREAOw==", "alt": "Painting of mother in blue, purple, and green-stripped dress washing child's feet.", "themes": ["温情", "母与子", "私密", "日常", "凝视"], "oneLiner": "一只手试水温,一只手扶着孩子——卡萨特把最寻常的母爱,画成了庄严。", "look": "高高的俯视角、压平的图案——这套'去掉纵深'的构图,她是从日本版画里学来的。"}, {"slug": "moulin-rouge", "title": "At the Moulin Rouge", "artist": "Henri de Toulouse-Lautrec", "date": "1892–95", "year": 1892, "medium": "Oil on canvas", "origin": "France", "image": "https://www.artic.edu/iiif/2/defb4004-b500-218d-3d9b-9a02423f097d/full/1200,/0/default.jpg", "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAC4qHjInHDwpGjYwIDcwIzgzKVg5Cks3HF4/EVg6FkE2Jkk3IUs2JkI7K0Q6KEs7Kko5LFtBFmNDFV5EIVBLLU9NM0hINFhFNk1SOlRQMVdTO1ZTP1hVO2ZOKQAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYIIVZnFYdj1M0WXIxQrAhHbQQQGRIkzKEADs=", "alt": "Painting, heavy in tones of blue-green and burnt orange, depicting a bar scene at night. The men wear top hats and many are bearded; the women are dressed in voluminous gowns and decorative hats. Five people converse in the center of the composition and a woman with a green face dominates the right foreground.", "themes": ["夜生活", "都市", "人群", "现代", "疏离"], "oneLiner": "红磨坊的灯下,人挨着人,却各自孤独——劳特累克画夜场,不美化也不评判。", "look": "右下那张被煤气灯照成惨绿的脸,逼到了画框边缘:他让你直视夜生活不加修饰的真相。"}, {"slug": "el-greco-assump", "title": "The Assumption of the Virgin", "artist": "Domenico Theotokópoulos, called El Greco", "date": "1577–79", "year": 1577, "medium": "Oil on canvas", "origin": "Greece", "image": "https://www.artic.edu/iiif/2/47fd1564-93f5-f30b-7786-013421133b4a/full/1200,/0/default.jpg", "lqip": "data:image/gif;base64,R0lGODlhAgAFAPMAAEQ8Mk5DOGBLRmRQR2FYT29jUGxpX3dqWGReZmBmZwAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAACAAUAAAQIsJyEDBlAhAgAOw==", "alt": "Painting of the Virgin Mary ascending to heaven amongst multitude of angels.", "themes": ["灵性", "升腾", "情感强度", "宗教", "扭曲的形"], "oneLiner": "身体被拉长、向上撕扯,色彩冷得发烫——四百年前,他就在画'情绪'本身。", "look": "所有人都被拉长、扭动,违背解剖——这种为情感而牺牲'正确'的胆量,三百年后才被现代画家重新拾起。"}, {"slug": "gauguin-day", "title": "Mahana no atua (Day of the God)", "artist": "Paul Gauguin", "date": "1894", "year": 1894, "medium": "Oil on linen canvas", "origin": "France", "image": "https://www.artic.edu/iiif/2/a4bef587-48a4-d186-813d-f297441b1ab3/full/1200,/0/default.jpg", "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAExGPT5XW0tFSVVKR0xWW1xdVVFZXmFaVG5aWnZdVlVlX31pT2N1Wl9XcFBhaV9pb1VkcFtqcmZjYWRjY2lmb3xlaX1paGVwc2lwd4dsSoduUYFqVYFwW4F5XYGEZGd2g3t/g2+DlnOGmwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhQBDmQgiJPpEHxDExKCoWSQGR4DQonYVmkwkwPAeAYBAEADs=", "alt": "Brightly colored painting of a medium-skinned nude woman sitting on pink sand with her feet in a multicolored body of water, flanked by two nude figures resting in the fetal position. Behind them is a deity sculpture and individuals carrying objects, dancing, and swimming.", "themes": ["异域", "神话", "色彩", "原始", "灵性"], "oneLiner": "高更逃到塔希提,想找回文明之前的纯粹——画里那尊神,是他造的另一个世界。", "look": "看下方水中那几块纯粹的红、蓝、黄——他放弃了'真实的颜色',只为色彩本身的歌唱。"}, {"slug": "vg-selfportrait", "title": "Self-Portrait", "artist": "Vincent van Gogh", "date": "1887", "year": 1887, "medium": "Oil on artist's board, mounted on cradled panel", "origin": "Netherlands", "image": "https://www.artic.edu/iiif/2/47c5bcb8-62ef-e5d7-55e7-f5121f409a30/full/1200,/0/default.jpg", "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAD49PEA3NEA6OUY/OEw+OzpAO09EPFZFO1dGPDxGQEBIQ0ZMRU9PRVFNRV9MQmxUQmJZSnttWIdfSaGHaQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoMJAQBFNQ/JIwoI4QUMYRwgAOw==", "alt": "Painting of a red-haired, bearded man with light skin, painted in short brushstrokes and multicolored dots. The background is likewise a mass of small, closely spaced colored dots, these in green, blue, and red-orange.", "themes": ["自我", "凝视", "色彩", "内心", "情感强度"], "oneLiner": "一圈圈短促的笔触像漩涡,绕着那双眼睛——梵高盯着自己,也盯着你。", "look": "背景不是平的,是一团涌动的笔触;他让整个空间都跟着他的神经一起震颤。"}, {"slug": "hiroshige", "title": "A Red Plum Branch against the Summer Moon", "artist": "Utagawa Hiroshige", "date": "c. mid–1840s", "year": 1840, "medium": "Color woodblock print; uchiwa-e", "origin": "Japan", "image": "https://www.artic.edu/iiif/2/1a743f2c-c2a4-354c-4a53-22c0d129685e/full/1200,/0/default.jpg", "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAADVOZUhecUhfcmqAiXOCiHSSlH6Vk3yZloyQjJCUkaeaga+ojKWpnrOulqm0p7e6odW9n8a9ose/osvBpM/LrsXLssrOtNfOsdfRs9vTstvSs9XYvN7cvefSsuLau+TZuubZu+TdvuTgwQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhQAJAgEgEBoYCA9JxHCyPxgS0qVAUEY7ogpEsNJ7QJxMEADs=", "alt": "A color woodblock print of a large plum tree with red bloosoms set against a blue sky with a large white moon", "themes": ["自然", "月", "宁静", "东方", "诗意"], "oneLiner": "一枝红梅,斜斜划过夏夜的圆月——东方的留白,把'少'画成了'满'。", "look": "大片的空,只点一枝梅、一轮月;这种'以少胜多'的诗意,迷倒了整整一代欧洲画家。"}, {"slug": "monet-cliff", "title": "Cliff Walk at Pourville", "artist": "Claude Monet", "date": "1882", "year": 1882, "medium": "Oil on canvas", "origin": "France", "image": "https://www.artic.edu/iiif/2/b0effb1c-ff23-bbaa-f809-9fd94e31c1a0/full/1200,/0/default.jpg", "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAHF2XH98dIF3aHyEf4ODZ4ePaIaBc4WIc4eKd4iIc5GKd5OMeJSMeJuRfn2GkIeVlomZl5eZkJicl46ZrZKbr5qeqoaTs4eUt42XsYGZtIuYsIqZsI6cs4eWugAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYYHdZ2JZx2lRRDvQMxgFIUSAQRcMoS4KEADs=", "alt": "Painting of a cliff overlooking the sea. Two figures in long dresses, one with a parasol, stand on the cliff beneath blue sky.", "themes": ["自然", "海", "光", "风", "宁静"], "oneLiner": "海风把草吹成一个方向,两个小人站在崖边——莫奈画的是站在风里的那一刻。", "look": "海面不是蓝的,是被打碎的无数色块;眯起眼,它们才重新合成波光。"}, {"slug": "seurat-study", "title": "Trees (study for La Grande Jatte)", "artist": "Georges Seurat", "date": "1884", "year": 1884, "medium": "Black Conté crayon, on white laid paper, laid down on cream board", "origin": "France", "image": "https://www.artic.edu/iiif/2/d5ebfc97-c87c-b3ae-816f-5c8b519a082c/full/1200,/0/default.jpg", "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAJePgqWdjqeej72zosC3pcO4psS6qMW7qc7Crc7Crs7Dr83DsM/EsNDFstXJtNbMuNjNudnOudrPut7SvQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURIFIIQMIMgRMpxgQ1hPQsRwgAOw==", "alt": "A work made of black conté crayon, on white laid paper, laid down on cream board.", "themes": ["自然", "树", "习作", "光", "宁静"], "oneLiner": "这是《大碗岛》的种子——修拉为那幅巨作画的小习作,你能看见方法正在成形。", "look": "还没铺满点彩,却已在试探光与影的分布;杰作不是凭空降临,是这样一步步长出来的。"}, {"slug": "renoir-lunch", "title": "Lunch at the Restaurant Fournaise (The Rowers' Lunch)", "artist": "Pierre-Auguste Renoir", "date": "1875", "year": 1875, "medium": "Oil on canvas", "origin": "France", "image": "https://www.artic.edu/iiif/2/1a1b74fe-ff2a-8991-0581-5d420f0b840e/full/1200,/0/default.jpg", "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAC48TFNsX0NWYVJcY1NiYFRuZ152c2d3bmt3aXJ5a2N4d2d9d3uKfXuNfYeQdoiQcHeMjXyMjXmSiHWMlHqPkoeXh4SZiIqYjJWejY6WkIOZlI6fkJyrnqGklgAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYYGNxUhFcWFctxoM4WXQwAgFNyQAom0aFADs=", "alt": "A work made of oil on canvas.", "themes": ["休闲", "人物", "明媚", "温情", "光"], "oneLiner": "塞纳河边餐馆的一顿午饭,阳光、酒杯和笑意——雷诺阿把'好好活着'画了下来。", "look": "光透过凉棚洒在桌布与脸上,斑斑驳驳;印象派最爱的,正是这种流动、不固定的光。"}, {"slug": "toulouse-jane", "title": "Jane Avril", "artist": "Henri de Toulouse-Lautrec", "date": "1893", "year": 1893, "medium": "Color lithograph on tan wove paper", "origin": "France", "image": "https://www.artic.edu/iiif/2/4d57383a-0f32-20d0-b09a-afb9c81357d3/full/1200,/0/default.jpg", "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAG9pQ7GKO9iVMomAVoyBV46HX5KHWpeLX7WSRZ+WY6CRZqucZa2ca6udbK6ecbejbrukcLyodb6qeNqeQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURYBNBUoAwhDAVyvIAR2IMTggAOw==", "alt": "A work made of color lithograph on tan wove paper.", "themes": ["夜生活", "人物", "现代", "海报", "疏离"], "oneLiner": "舞者简·阿弗丽尔,被劳特累克用一条果断的轮廓线,定格成了海报时代的偶像。", "look": "大块平涂、硬朗的边线、留白——这套海报语言直接学自日本版画,也定义了现代平面设计。"}], "graph": {"typeLabels": {"influence": "影响", "theme": "同母题", "formal": "形式呼应", "artist": "同艺术家", "movement": "同流派"}, "edges": [{"a": "great-wave", "b": "vg-bedroom", "type": "influence", "why": "梵高痴迷浮世绘:《大浪》的平涂色块与硬朗轮廓,正是《卧室》里大胆色彩与简化空间的来源。"}, {"a": "great-wave", "b": "moulin-rouge", "type": "influence", "why": "劳特累克的画面美学直接学自浮世绘——平面色块、果断的轮廓线,都来自《大浪》这类版画。"}, {"a": "great-wave", "b": "gauguin-day", "type": "influence", "why": "高更的平涂色块与装饰性轮廓,同样吸收了日本版画的语言。"}, {"a": "great-wave", "b": "toulouse-jane", "type": "influence", "why": "《简·阿弗丽尔》海报里的平面与轮廓,延续着浮世绘对劳特累克的影响。"}, {"a": "hiroshige", "b": "waterlilies", "type": "influence", "why": "莫奈收藏了大量广重与北斋的版画;他铺满画面、取消地平线的水面,呼应着浮世绘的平面构图。"}, {"a": "hiroshige", "b": "childs-bath", "type": "influence", "why": "卡萨特从日本版画学来高视角与压平的空间——《沐浴》俯视的构图正是这种影响。"}, {"a": "great-wave", "b": "hiroshige", "type": "movement", "why": "同属浮世绘——日本江户时代的木刻版画,描绘'浮世'的风景与人生。"}, {"a": "waterlilies", "b": "haystacks", "type": "artist", "why": "同是莫奈——他用成组的画,追逐同一对象在不同光线下的瞬间。"}, {"a": "waterlilies", "b": "monet-cliff", "type": "artist", "why": "同是莫奈——从海崖到睡莲,他一生都在追光。"}, {"a": "haystacks", "b": "monet-cliff", "type": "artist", "why": "同是莫奈的户外之作,都是对光与瞬间的执着记录。"}, {"a": "two-sisters", "b": "renoir-lunch", "type": "artist", "why": "同是雷诺阿——印象派里最擅长画明媚、温暖、欢愉时刻的人。"}, {"a": "monet-cliff", "b": "two-sisters", "type": "movement", "why": "同属印象派——捕捉户外光线与现代生活的瞬间。"}, {"a": "paris-rainy", "b": "renoir-lunch", "type": "movement", "why": "卡耶博特既是印象派画家,也是他们的赞助人;与雷诺阿同属这场捕捉现代巴黎生活的运动。"}, {"a": "paris-rainy", "b": "grande-jatte", "type": "theme", "why": "两幅都画'现代巴黎人的闲暇',相隔七年——卡耶博特用写实的雨天街道,修拉用点彩的午后岛屿:同一主题,两种手法。"}, {"a": "grande-jatte", "b": "renoir-lunch", "type": "theme", "why": "都是河边/岛上的休闲时光——印象派一代对'现代生活'的共同迷恋。"}, {"a": "haystacks", "b": "grande-jatte", "type": "influence", "why": "修拉把印象派对光的直觉,升级成一套科学的点彩方法——新印象主义由此诞生。"}, {"a": "seurat-study", "b": "grande-jatte", "type": "artist", "why": "这就是《大碗岛》的种子——修拉为那幅巨作所画的习作,你能看见方法正在成形。"}, {"a": "seurat-study", "b": "monet-cliff", "type": "theme", "why": "都是对户外、光与自然瞬间的观察,印象派一代共同的功课。"}, {"a": "vg-bedroom", "b": "gauguin-day", "type": "influence", "why": "梵高与高更1888年在阿尔同住两月,亦师亦敌;两人都把色彩从'描摹'推向'表达'。"}, {"a": "vg-selfportrait", "b": "vg-bedroom", "type": "artist", "why": "同是梵高、同一时期——你能在自画像与卧室里认出同一双手、同一种躁动的笔触。"}, {"a": "basket-apples", "b": "grande-jatte", "type": "movement", "why": "塞尚、修拉、高更、梵高同属后印象派——都在印象派之后,寻找比'瞬间光线'更恒久的结构与情感。"}, {"a": "basket-apples", "b": "gauguin-day", "type": "movement", "why": "同属后印象派——一个用结构、一个用色彩与象征,各自越过印象派往前走。"}, {"a": "basket-apples", "b": "vg-bedroom", "type": "movement", "why": "同属后印象派——塞尚求'形'的恒久,梵高求'情'的炽烈。"}, {"a": "el-greco-assump", "b": "basket-apples", "type": "influence", "why": "塞尚推崇埃尔·格列柯——这位16世纪画家拉长的形体与结构性的色彩,启发了塞尚对'形'的重新构造。"}, {"a": "el-greco-assump", "b": "vg-selfportrait", "type": "theme", "why": "相隔三百年的同一种东西:灵性的、情感过载的强度,与不安分、被拉长扭曲的形。"}, {"a": "great-wave", "b": "monet-cliff", "type": "theme", "why": "同样面对海与自然之力,东西方各自的答案:北斋程式化的巨浪,莫奈瞬间的光色。"}, {"a": "great-wave", "b": "waterlilies", "type": "theme", "why": "同是'水'——一个把它画成吞天的力量,一个把它画成无边的宁静。"}, {"a": "hiroshige", "b": "haystacks", "type": "theme", "why": "都把'自然中一个寻常的片刻'郑重对待:广重的夏月红梅,莫奈的麦垛黄昏。"}, {"a": "moulin-rouge", "b": "toulouse-jane", "type": "artist", "why": "同是劳特累克、同一个蒙马特的夜——他画夜生活里的人,不美化、也不评判。"}, {"a": "moulin-rouge", "b": "paris-rainy", "type": "theme", "why": "同是现代都市里的人——卡耶博特画雨中擦肩的疏离,劳特累克画夜场人群里的孤独。"}, {"a": "childs-bath", "b": "two-sisters", "type": "theme", "why": "同是温柔的注视——卡萨特的母与子,雷诺阿的姐妹,印象派里少见的亲密。"}]}};
+// ═══ aha · 控制器 v2 ═══
+// 画来找人 / 顺着门走 / 被懂的理由 / 你的星座。纯前端,客户端个性化。
+
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const el = (html) => { const t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstChild; };
+const esc = (s) => String(s || '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+// ── 数据 ──
+let WORKS = [], GRAPH = null, BY = {}, ADJ = {}, TYPE_LABEL = {};
+// ── 状态 ──
+const LS = 'aha.taste.v1';
+let taste = JSON.parse(localStorage.getItem(LS) || '{}');
+let visited = new Set(), loved = new Set(), journey = [];
+let doorsFollowed = 0, hearts = 0, view = 'boot';
+// 当前漫游页的快捷操作引用(键盘用)
+let curToggleInfo = null, curHeart = null, curDoors = [], curRandom = null, curBack = null;
+
+async function boot() {
+  try {
+    WORKS = window.__AHA.works; GRAPH = window.__AHA.graph;
+  } catch (e) { $('#boot').textContent = '数据加载失败:请用本地服务器打开(见 README)。'; return; }
+  WORKS.forEach(w => { BY[w.slug] = w; ADJ[w.slug] = []; });
+  GRAPH.edges.forEach(e => {
+    ADJ[e.a].push({ to: e.b, type: e.type, why: e.why });
+    ADJ[e.b].push({ to: e.a, type: e.type, why: e.why });
+  });
+  TYPE_LABEL = GRAPH.typeLabels;
+  $('#boot').classList.add('gone');
+  $('#brandBtn').onclick = () => goToday();
+  $('#starBtn').onclick = renderStar;
+  document.addEventListener('keydown', onKey);
+  if (Object.keys(taste).length) goToday();
+  else renderOnboard();
+  updateMeta();
+}
+
+function goToday() { journey = []; renderRoam(pickStart(), { kind: 'today' }); }
+function updateMeta() {
+  $('#topMeta').textContent = visited.size
+    ? `已遇见 ${visited.size} · 心动 ${hearts} · 推开 ${doorsFollowed} 扇门` : '';
+}
+function bump(themes, w) { (themes || []).forEach(t => taste[t] = (taste[t] || 0) + w); save(); }
+function save() { localStorage.setItem(LS, JSON.stringify(taste)); }
+function score(work) { return (work.themes || []).reduce((s, t) => s + (taste[t] || 0), 0); }
+function topThemes(n = 4) {
+  return Object.entries(taste).filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]).slice(0, n).map(x => x[0]);
+}
+
+// ── 可加载图(blur-up + 失败降级 + 一次降尺寸重试)──
+function artframe(work, cls = '') {
+  const f = el(`<div class="artframe ${cls}">
+    <img class="blur" src="${work.lqip || ''}" alt="" aria-hidden="true"/>
+    <img class="full" alt="${esc(work.alt || work.title)}"/>
+    <div class="fallback"><div class="ft">《${esc(work.title)}》</div>
+      <div class="fa">${esc(work.artist || '')}</div><div class="fn">${esc(work.date || '')}</div></div>
+  </div>`);
+  const full = $('.full', f);
+  let retried = false;
+  full.onload = () => full.classList.add('loaded');
+  full.onerror = () => {
+    if (!retried && /\/\d+,\//.test(work.image)) { retried = true; full.src = work.image.replace(/\/\d+,\//, '/600,/'); }
+    else f.classList.add('failed');
+  };
+  full.src = work.image;
+  return f;
+}
+
+// 键盘:漫游页快捷键
+function onKey(e) {
+  if (view !== 'roam') return;
+  if (e.key === 'i' || e.key === 'I') { curToggleInfo && curToggleInfo(); }
+  else if (e.key === 'h' || e.key === 'H') { curHeart && curHeart(); }
+  else if (e.key === 'r' || e.key === 'R') { curRandom && curRandom(); }
+  else if (e.key === 'ArrowLeft') { curBack && curBack(); }
+  else if (['1', '2', '3'].includes(e.key)) { const d = curDoors[+e.key - 1]; d && d(); }
+}
+
+// ═══ 冷启动:审美滑滑 ═══
+const OB_SEQ = ['great-wave', 'vg-selfportrait', 'waterlilies', 'paris-rainy', 'el-greco-assump',
+  'childs-bath', 'grande-jatte', 'hiroshige', 'moulin-rouge', 'basket-apples'];
+function renderOnboard() {
+  view = 'onboard'; let i = 0;
+  const v = $('#view'); v.innerHTML = '';
+  const wrap = el(`<div class="onboard fade-in">
+    <div class="ob-head"><div class="ob-kicker">先认识一下你的眼睛</div>
+      <div class="ob-h">哪些,让你想多看一眼?</div>
+      <div class="ob-sub">凭直觉就好 —— 30 秒,让 aha 懂你的口味。</div></div>
+    <div class="ob-card"><div class="ob-art-holder"></div>
+      <div class="ob-cap"></div><div class="ob-progress"></div>
+      <div class="ob-actions">
+        <button class="ob-btn skip" title="无感">✕</button>
+        <button class="ob-btn like" title="想多看一眼">♥</button></div>
+      <div class="ob-hint">✕ 无感 &nbsp;·&nbsp; ♥ 想多看一眼</div>
+      <button class="ob-skipall">直接开始漫游 →</button></div></div>`);
+  v.appendChild(wrap);
+  const holder = $('.ob-art-holder', wrap), cap = $('.ob-cap', wrap), prog = $('.ob-progress', wrap);
+  function show() {
+    if (i >= OB_SEQ.length) return finishOnboard();
+    const w = BY[OB_SEQ[i]];
+    holder.innerHTML = ''; const a = artframe(w, 'ob-art fade-in'); holder.appendChild(a);
+    cap.textContent = w.artist; prog.textContent = `${i + 1} / ${OB_SEQ.length}`;
+  }
+  function choose(like) {
+    const w = BY[OB_SEQ[i]];
+    const card = $('.ob-art', wrap);
+    if (card) card.style.transform = like ? 'translateX(40px) rotate(3deg)' : 'translateX(-40px) rotate(-3deg)';
+    bump(w.themes, like ? 2 : -0.4); if (like) visited.add(w.slug);
+    i++; setTimeout(show, 130);
+  }
+  $('.like', wrap).onclick = () => choose(true);
+  $('.skip', wrap).onclick = () => choose(false);
+  $('.ob-skipall', wrap).onclick = finishOnboard;
+  show();
+}
+function finishOnboard() {
+  if (!Object.keys(taste).length) WORKS.forEach(w => bump(w.themes, 0.1));
+  goToday(); updateMeta();
+}
+
+// ═══ 漫游 ═══
+function pickStart() {
+  const unseen = WORKS.filter(w => !visited.has(w.slug));
+  return (unseen.length ? unseen : WORKS).slice().sort((a, b) => score(b) - score(a))[0].slug;
+}
+function rankDoors(slug) {
+  const from = journey[journey.length - 2] || null;
+  let nb = ADJ[slug].filter(d => d.to !== from); if (!nb.length) nb = ADJ[slug].slice();
+  const bt = {}; nb.forEach(d => { if (!bt[d.to]) bt[d.to] = d; });
+  let list = Object.values(bt).map(d => ({ ...d, s: score(BY[d.to]) })).sort((a, b) => b.s - a.s);
+  if (list.length <= 3) return list.map(d => ({ ...d, explore: false }));
+  return [...list.slice(0, 2).map(d => ({ ...d, explore: false })), { ...list[list.length - 1], explore: true }];
+}
+// 「为你而来」理由
+function reasonHTML(work, reason) {
+  const matched = (work.themes || []).filter(t => topThemes(6).includes(t)).slice(0, 2);
+  if (reason.kind === 'today')
+    return `<div class="reason">✦ 为你而来 · 今天最贴你的一帧${matched.length ? ' · 因为你偏爱 ' + matched.map(t => '#' + esc(t)).join(' ') : ''}</div>`;
+  if (reason.kind === 'taste' && matched.length)
+    return `<div class="reason">为你而来 · 因为你偏爱 ${matched.map(t => '#' + esc(t)).join(' ')}</div>`;
+  if (reason.kind === 'explore')
+    return `<div class="reason explore">踮脚一张 · 你舒适区之外的风景</div>`;
+  if (reason.kind === 'random')
+    return `<div class="reason">不期而遇 · 随手推开的一扇门</div>`;
+  return '';
+}
+
+function renderRoam(slug, reason = { kind: 'today' }, isBack = false) {
+  view = 'roam';
+  const w = BY[slug];
+  if (!isBack && journey[journey.length - 1] !== slug) journey.push(slug);
+  visited.add(slug); updateMeta();
+  const v = $('#view'); v.innerHTML = '';
+  const isLoved = loved.has(slug);
+  const root = el(`<div class="roam fade-in"><div class="work-wrap">
+    <div class="roam-nav">
+      <button class="rn-btn back" ${journey.length > 1 ? '' : 'disabled'} title="上一幅 (←)">← 上一幅</button>
+      <div class="journey-dots"></div>
+      <button class="rn-btn random" title="不期而遇 (R)">✦ 不期而遇</button>
+    </div>
+    ${reasonHTML(w, reason)}
+    <div class="art-holder"></div>
+    <div class="tap-hint">轻点画面 · 读它 &nbsp;(I)</div>
+    <div class="work-info"><div class="wi-inner">
+      <div class="wi-title">《${esc(w.title)}》</div>
+      <div class="wi-by">${esc(w.artist || '')} · ${esc(w.date || '')}</div>
+      <div class="wi-one">${esc(w.oneLiner)}</div>
+      <div class="wi-look">👁 <b>看这里</b> — ${esc(w.look)}</div>
+      <div class="wi-themes">${(w.themes || []).map(t => `<span class="t">${esc(t)}</span>`).join('')}</div>
+    </div></div>
+    <div class="heart-row"><button class="heart ${isLoved ? 'on' : ''}"><span class="hi">${isLoved ? '♥' : '♡'}</span><span class="ht">${isLoved ? '已心动' : '心动'}</span></button></div>
+    <div class="doors"><div class="doors-label">顺着这幅画走 —— 推开一扇门</div><div class="doors-list"></div></div>
+    <div class="kbd-hint">键盘:1·2·3 推开门 &nbsp; I 读它 &nbsp; H 心动 &nbsp; R 不期而遇 &nbsp; ← 上一幅</div>
+  </div></div>`);
+  v.appendChild(root);
+
+  // 旅程小点
+  const dots = $('.journey-dots', root);
+  journey.slice(-7).forEach((s, idx, arr) => {
+    const d = el(`<span class="jd ${s === slug ? 'now' : ''}" title="${esc(BY[s].title)}"></span>`);
+    dots.appendChild(d);
+  });
+
+  // 画 + 轻点浮现
+  const holder = $('.art-holder', root); const af = artframe(w, 'work-art'); holder.appendChild(af);
+  const info = $('.work-info', root), hint = $('.tap-hint', root);
+  curToggleInfo = () => { info.classList.toggle('open'); hint.classList.add('hide'); };
+  af.onclick = curToggleInfo;
+
+  // 心动
+  const heart = $('.heart', root);
+  curHeart = () => {
+    if (loved.has(slug)) { loved.delete(slug); heart.classList.remove('on'); $('.hi', heart).textContent = '♡'; $('.ht', heart).textContent = '心动'; }
+    else { loved.add(slug); hearts++; heart.classList.add('on'); $('.hi', heart).textContent = '♥'; $('.ht', heart).textContent = '已心动'; bump(w.themes, 2); heart.classList.add('pulse'); setTimeout(() => heart.classList.remove('pulse'), 400); }
+    updateMeta();
+  };
+  heart.onclick = curHeart;
+  if (!loved.has(slug)) bump(w.themes, 0.3);
+
+  // 门
+  const dl = $('.doors-list', root); curDoors = [];
+  rankDoors(slug).forEach((d, idx) => {
+    const door = el(`<button class="door ${d.explore ? 'explore' : ''}">
+      <div class="door-top"><span class="door-key">${idx + 1}</span>
+        <span class="door-chip">${d.explore ? '探索 ✦' : esc(TYPE_LABEL[d.type] || d.type)}</span>
+        <span class="door-arrow">→</span></div>
+      <div class="door-why">${esc(d.why)}</div></button>`);
+    const open = () => {
+      doorsFollowed++; bump(BY[d.to].themes, 1);
+      transitionTo(() => renderRoam(d.to, { kind: d.explore ? 'explore' : 'taste' }));
+    };
+    door.onclick = open; curDoors[idx] = open;
+    dl.appendChild(door);
+  });
+
+  // 上一幅 / 不期而遇
+  curBack = () => { if (journey.length > 1) { journey.pop(); transitionTo(() => renderRoam(journey[journey.length - 1], { kind: 'back' }, true)); } };
+  curRandom = () => {
+    const unseen = WORKS.filter(x => !visited.has(x.slug));
+    const pool = unseen.length ? unseen : WORKS.filter(x => x.slug !== slug);
+    const pick = pool[Math.floor(Math.random() * pool.length)];
+    journey = []; transitionTo(() => renderRoam(pick.slug, { kind: 'random' }));
+  };
+  $('.back', root).onclick = curBack;
+  $('.random', root).onclick = curRandom;
+
+  window.scrollTo({ top: 0 });
+}
+
+// 轻过渡(淡出 → 重渲染 → 淡入)
+function transitionTo(fn) {
+  const v = $('#view'); v.classList.add('leaving');
+  setTimeout(() => { v.classList.remove('leaving'); fn(); }, 180);
+}
+
+// ═══ 星座 / 审美画像 ═══
+const THEME_BLURB = {
+  '孤独': '你被独处与疏离打动', '疏离': '你对人群中的孤独敏感', '光': '你追逐光', '宁静': '你向往安静',
+  '自然': '你亲近自然', '色彩': '你被纯粹的色彩吸引', '都市': '你着迷于现代都市', '私密': '你珍视私密的时刻',
+  '温情': '你被温柔打动', '情感强度': '你偏爱强烈的情感', '灵性': '你被超越性的东西吸引', '东方': '你偏爱东方的诗意',
+  '秩序': '你欣赏结构与秩序', '现代生活': '你关注现代生活', '海': '你被海与水打动', '沉思': '你喜欢沉思的画面',
+};
+function constellationSVG(seen) {
+  const n = seen.length, size = Math.max(360, Math.min(760, 260 + n * 24));
+  const cx = size / 2, cy = size / 2, C = (size / 2) / Math.sqrt(Math.max(n, 1)) * 0.86;
+  const pos = {};
+  seen.forEach((w, i) => { const a = i * 2.399963; const r = i === 0 ? 0 : C * Math.sqrt(i + 0.5); pos[w.slug] = { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) }; });
+  const seenSet = new Set(seen.map(w => w.slug)); const drawn = new Set(); let lines = '';
+  GRAPH.edges.forEach(e => {
+    if (seenSet.has(e.a) && seenSet.has(e.b)) {
+      const k = [e.a, e.b].sort().join('|'); if (drawn.has(k)) return; drawn.add(k);
+      const p = pos[e.a], q = pos[e.b]; lines += `<line x1="${p.x}" y1="${p.y}" x2="${q.x}" y2="${q.y}" class="cl"/>`;
+    }
+  });
+  let pl = '';
+  for (let i = 1; i < journey.length; i++) { const p = pos[journey[i - 1]], q = pos[journey[i]]; if (p && q) pl += `<line x1="${p.x}" y1="${p.y}" x2="${q.x}" y2="${q.y}" class="cl path"/>`; }
+  let nodes = '';
+  seen.forEach((w, i) => {
+    const p = pos[w.slug], r = loved.has(w.slug) ? 24 : 17, id = 'cc' + i;
+    nodes += `<g class="cnode-svg ${loved.has(w.slug) ? 'loved' : ''}" data-slug="${w.slug}" transform="translate(${p.x},${p.y})">
+      <clipPath id="${id}"><circle r="${r}"/></clipPath>
+      <image href="${w.lqip}" x="${-r}" y="${-r}" width="${2 * r}" height="${2 * r}" clip-path="url(#${id})" preserveAspectRatio="xMidYMid slice"/>
+      <circle r="${r}" class="ring"/></g>`;
+  });
+  return `<svg viewBox="0 0 ${size} ${size}" class="constellation-svg" preserveAspectRatio="xMidYMid meet">${lines}${pl}${nodes}</svg>`;
+}
+function renderStar() {
+  view = 'star';
+  const v = $('#view'); v.innerHTML = '';
+  const seen = WORKS.filter(w => visited.has(w.slug));
+  const tt = topThemes(4);
+  const portrait = tt.length
+    ? '你的审美,关于 ' + tt.map(t => `<b>${esc(t)}</b>`).join('、') + '。<br/>' +
+    (tt.map(t => THEME_BLURB[t]).filter(Boolean).slice(0, 2).join('、') || '你正在长出自己的眼睛') + '。'
+    : '多看几幅、推开几扇门,你的审美就会在这里显形。';
+  const root = el(`<div class="star fade-in">
+    <div class="star-kicker">Your Constellation · 你的星座</div>
+    <div class="star-h">这就是你的审美</div>
+    <div class="star-portrait">${portrait}</div>
+    <div class="star-stats">遇见 ${seen.length} 幅 · 心动 ${loved.size} 次 · 推开 ${doorsFollowed} 扇门</div>
+    <div class="star-themes">${tt.map(t => `<span class="st">#${esc(t)}</span>`).join('')}</div>
+    ${seen.length ? `<div class="constel-wrap">${constellationSVG(seen)}</div>
+      <div class="constel-legend">每颗星是你遇见的一幅画 · 细线是它们在艺术史中的关联 · <span class="lg-path">高亮</span>是你走过的路</div>`
+      : '<div class="star-empty">你还没遇见任何作品 —— 去漫游吧。</div>'}
+    <button class="star-back">继续漫游 →</button>
+    <button class="star-share">把我的审美星座分享出去</button></div>`);
+  v.appendChild(root);
+  $$('.cnode-svg', root).forEach(g => g.onclick = () => { journey = []; transitionTo(() => renderRoam(g.dataset.slug, { kind: 'star' })); });
+  $('.star-back', root).onclick = () => goToday();
+  $('.star-share', root).onclick = () => {
+    const txt = `我的 aha 审美星座:关于 ${tt.join('、')} —— 遇见 ${seen.length} 幅名作,心动 ${loved.size} 次。`;
+    if (navigator.share) navigator.share({ title: 'aha 审美星座', text: txt }).catch(() => { });
+    else { navigator.clipboard?.writeText(txt); alert('已复制你的审美星座文案:\n\n' + txt); }
+  };
+  window.scrollTo({ top: 0 });
+}
+
+boot();
+
+</script>
+</body>
+</html>

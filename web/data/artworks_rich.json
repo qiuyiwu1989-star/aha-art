@@ -1,0 +1,5533 @@
+[
+ {
+  "aicId": 64729,
+  "title": "Early Morning, Tarpon Springs",
+  "artist": "George Inness",
+  "artistId": 35061,
+  "date": "1892",
+  "year": 1892,
+  "yearEnd": 1892,
+  "medium": "Oil on canvas",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "american arts"
+  ],
+  "style": "Impressionism",
+  "styles": [
+   "Impressionism",
+   "Post-Impressionism"
+  ],
+  "subjects": [
+   "landscapes",
+   "weather/seasons"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "oil painting",
+   "painting (image making)"
+  ],
+  "origin": "United States",
+  "type": "Painting",
+  "color": {
+   "h": 43,
+   "l": 32,
+   "s": 23,
+   "percentage": 0.1823254579013409,
+   "population": 1703
+  },
+  "colorfulness": 32.9311,
+  "image": "https://www.artic.edu/iiif/2/ef96e79b-f481-8114-0804-4bd39c101983/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAADUuJDsvIlc/JVY7KGI/I05CMUxNO1tOPGNBJmJaUGNkTnBgT2hsVXNjVXZlW25xZJOBb6CGb4iKho2MiQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoMJAkfFIk9MkC4EMQgAURwgAOw==",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 138,
+  "title": "Flower Girl in Holland",
+  "artist": "George Hitchcock",
+  "artistId": 34953,
+  "date": "1887",
+  "year": 1887,
+  "yearEnd": 1887,
+  "medium": "Oil on canvas",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "american arts"
+  ],
+  "style": "Impressionism",
+  "styles": [
+   "Impressionism"
+  ],
+  "subjects": [
+   "landscapes",
+   "countryside",
+   "women",
+   "flowers",
+   "Holland",
+   "Chicago"
+  ],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Holland",
+  "type": "Painting",
+  "color": {
+   "h": 43,
+   "l": 49,
+   "s": 48,
+   "percentage": 0.0053075598228336535,
+   "population": 20
+  },
+  "colorfulness": 25.2378,
+  "image": "https://www.artic.edu/iiif/2/e72305c9-1a1c-8a36-7450-582619366338/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhCQAFAPUAAD5VREBSQUJUQklWR0ZXSU9TT0hbSktbTU9ZTlJVTF9aVmJVTGBbTmpcU3NgT2FnUGhiU3BnUnVuVnlsWHNwWnF0Xnl3W31wXWlqZWttan1zZHZ3dIF4Y4l9bY2AZoyDaIyJbYaHdIuHdIiJdIyLdIWFeJmUdpKReJibgKu0oae3qa3As8Hi1wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAJAAUAAAYqwNJK9FGxUo4CCEU6bUyUxiI0qlgyHUYCczA8PAqNJIAgDCIcyGUiAAQBADs=",
+  "alt": "Painting of a young woman outdoors in a light purple dress and head covering with a wooden yoke around her neck suspending large bundles of brightly colored flowers. She stands on a path adjacent to a river, facing the wall of a red-brick house at right."
+ },
+ {
+  "aicId": 27992,
+  "title": "A Sunday on La Grande Jatte — 1884",
+  "artist": "Georges Seurat",
+  "artistId": 40810,
+  "date": "1884–86, border added 1888–89",
+  "year": 1884,
+  "yearEnd": 1886,
+  "medium": "Oil on canvas",
+  "classification": "oil on canvas",
+  "classifications": [
+   "oil on canvas",
+   "paint",
+   "oil paintings (visual works)",
+   "french",
+   "painting",
+   "european painting"
+  ],
+  "style": "Pointillism",
+  "styles": [
+   "Pointillism",
+   "nineteenth century",
+   "19th century",
+   "Post-Impressionism",
+   "Impressionism"
+  ],
+  "subjects": [
+   "leisure",
+   "animals",
+   "landscape",
+   "dogs",
+   "dog",
+   "monkeys",
+   "sailing",
+   "trees",
+   "nature",
+   "woman with children",
+   "flowers",
+   "reflections",
+   "urban life",
+   "weather/seasons",
+   "men",
+   "women",
+   "children",
+   "circles",
+   "landscapes",
+   "water",
+   "Century of Progress",
+   "world's fairs",
+   "Chicago World's Fairs"
+  ],
+  "themesRaw": [
+   "Art Institute Icons",
+   "Essentials",
+   "Save Ferris"
+  ],
+  "techniques": [
+   "oil painting",
+   "painting techniques",
+   "painting",
+   "painting (image making)"
+  ],
+  "origin": "France",
+  "type": "Painting",
+  "color": {
+   "h": 59,
+   "l": 52,
+   "s": 12,
+   "percentage": 0.002095873918287094,
+   "population": 1217
+  },
+  "colorfulness": 0,
+  "image": "https://www.artic.edu/iiif/2/2d484387-2509-5e8e-2c43-22f9981972eb/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAE1WUFVTU1NWUFZYVllbVlpaW1tcWF1cXVxiWl1jWl9mX2NmVWVnXF9eZlxdaGZkYmpmZWRtYGZuY2htZGpsanBsZXVwZXB5Znp+ZXJwaYSAaYiBaYqIbIeAdI2DcYqFcI+FcoiCd5iRcouJgIyKhoyNi4mMjo2RkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlwBLmMmEkCAHTaRTqfB4QEmgj8mgaGY6lsohIHAXKwQBQIAaCIAA7",
+  "alt": "Large painting of people in a crowded park, brushstrokes are dots."
+ },
+ {
+  "aicId": 71573,
+  "title": "A Holiday",
+  "artist": "Edward Henry Potthast",
+  "artistId": 36254,
+  "date": "c. 1915",
+  "year": 1915,
+  "yearEnd": 1915,
+  "medium": "Oil on canvas",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "modern and contemporary art"
+  ],
+  "style": "Impressionism",
+  "styles": [
+   "Impressionism"
+  ],
+  "subjects": [
+   "people",
+   "weather/seasons",
+   "leisure",
+   "children",
+   "water"
+  ],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "United States",
+  "type": "Painting",
+  "color": {
+   "h": 46,
+   "l": 47,
+   "s": 62,
+   "percentage": 5.1925995071823634e-05,
+   "population": 13
+  },
+  "colorfulness": 0,
+  "image": "https://www.artic.edu/iiif/2/a67c4473-57a4-9807-a94e-1136d3daf876/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAHqBfoqEdI2IeJiMe5yPepuVeJmSfZiXf3iAg3GJiHyLiXeRjHaQjneQjneQkXiVlHyVlISIgoCMhIePhouMgI+ThImVh4mSipOXiaieipmgkJ+nlZ2nlqelka+slayrmrK3ob+9qcO+oAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhwAWjkXBAHhLMJ8Q5aAIdkGhTsQgonsJloiAMMoYIABEEADs=",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 17229,
+  "title": "The Scream",
+  "artist": "Edvard Munch",
+  "artistId": 44014,
+  "date": "1895",
+  "year": 1895,
+  "yearEnd": 1895,
+  "medium": "Lithograph in black ink on cream card",
+  "classification": "lithograph",
+  "classifications": [
+   "lithograph",
+   "print",
+   "prints and drawing"
+  ],
+  "style": "Post-Impressionism",
+  "styles": [
+   "Post-Impressionism"
+  ],
+  "subjects": [
+   "landscapes",
+   "portraits",
+   "men",
+   "emotions",
+   "water"
+  ],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Norway",
+  "type": "Print",
+  "color": null,
+  "colorfulness": 13.1057,
+  "image": "https://www.artic.edu/iiif/2/3b374643-5328-3e00-c02b-5ab56e5ae8f8/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAEU+OEhCPFJLRFpTTGtiWm5lXHpxaIZ8cYyCd4+EeJKJfZyShqOYiqacj6ufkqqgkqyhkqyhlK2ilbGmmQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURYNRI0wMxjoEkhxIIxTIARAgAOw==",
+  "alt": "A work made of lithograph in black ink on cream card."
+ },
+ {
+  "aicId": 4749,
+  "title": "Mrs. George Swinton (Elizabeth Ebsworth)",
+  "artist": "John Singer Sargent",
+  "artistId": 36540,
+  "date": "1897",
+  "year": 1897,
+  "yearEnd": 1897,
+  "medium": "Oil on canvas",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "american arts"
+  ],
+  "style": "Impressionism",
+  "styles": [
+   "Impressionism",
+   "Realism",
+   "Modernism"
+  ],
+  "subjects": [
+   "fashion",
+   "women",
+   "portraits",
+   "Chicago",
+   "people"
+  ],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "London",
+  "type": "Painting",
+  "color": {
+   "h": 40,
+   "l": 41,
+   "s": 15,
+   "percentage": 0.113167409281073,
+   "population": 1514
+  },
+  "colorfulness": 21.3819,
+  "image": "https://www.artic.edu/iiif/2/074c1b1b-fe92-01ce-9e62-cc99369142dd/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAFZRQ2FbRm5nU3twW4JsW4h8a4l+apN1YY+JeZSKcpCGep6XgqSXgaaekbWsmwAAACH5BAAAAAAALAAAAAADAAUAAAQLMI0giiGKneYAWhEAOw==",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 90333,
+  "title": "An Alcove in the Art Students' League",
+  "artist": "Charles Courtney Curran",
+  "artistId": 5703,
+  "date": "1888",
+  "year": 1888,
+  "yearEnd": 1888,
+  "medium": "Oil on canvas",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "american arts"
+  ],
+  "style": "Impressionism",
+  "styles": [
+   "Impressionism"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "New York City",
+  "type": "Painting",
+  "color": {
+   "h": 39,
+   "l": 48,
+   "s": 15,
+   "percentage": 0.031256472537611324,
+   "population": 166
+  },
+  "colorfulness": 20.2724,
+  "image": "https://www.artic.edu/iiif/2/607d4ff1-578f-79ee-9980-ed133c743e64/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAADAqIz0tJTowJz8yJ0AwJkkyJ0Q0K0E3LEo4LUg8L1M4KlI6K1Q5KUM+M0A+NUY/NEk/MU0+M1Y/MUNANUVBNk9AMEtDN0xFN1JEM1pINVJIOVdMOVBJPVhLOE5MQVVQQWdWQm1dSnZmTQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhQENAkiEUFhFESAQSQC6Hh4WTUHQ2FMBEw6hgPg2PYxAEADs=",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 14309,
+  "title": "Coast Scene, Bathers",
+  "artist": "James McNeill Whistler",
+  "artistId": 37279,
+  "date": "1884–85",
+  "year": 1884,
+  "yearEnd": 1885,
+  "medium": "Oil on panel",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "american arts"
+  ],
+  "style": "Impressionism",
+  "styles": [
+   "Impressionism",
+   "Modernism"
+  ],
+  "subjects": [
+   "landscapes"
+  ],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "United States",
+  "type": "Painting",
+  "color": {
+   "h": 75,
+   "l": 36,
+   "s": 36,
+   "percentage": 0.00023489893473333095,
+   "population": 1
+  },
+  "colorfulness": 7.0917,
+  "image": "https://www.artic.edu/iiif/2/5888c23a-635f-396a-117b-2223032c0201/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAGNjXmVlYWdmYWhnY2doY2NqZWVqZmpoYWhoY2ppZGpqZWtqZWtrZWtqZmprZm5sZmZsaGduamZvbmdvb29waGpybGtybWtzbmZvcGdxcGlzcWpycW12cGhydGp0dHV8fXZ9f3Z/gnd/gnh/gniBhHmChHyEhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlwBJJFAJ9RiZNRoLZTDoezqViiRggBQpD4SAAAoIDIoEYLBqPIAA7",
+  "alt": "A work made of oil on panel."
+ },
+ {
+  "aicId": 7503,
+  "title": "The Annunciation",
+  "artist": "George Hitchcock",
+  "artistId": 34953,
+  "date": "1887",
+  "year": 1887,
+  "yearEnd": 1887,
+  "medium": "Oil on canvas",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "american arts"
+  ],
+  "style": "Impressionism",
+  "styles": [
+   "Impressionism"
+  ],
+  "subjects": [
+   "people",
+   "Chicago",
+   "landscapes",
+   "portraits"
+  ],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "United States",
+  "type": "Painting",
+  "color": {
+   "h": 42,
+   "l": 49,
+   "s": 12,
+   "percentage": 0.13336209065746432,
+   "population": 742
+  },
+  "colorfulness": 17.8542,
+  "image": "https://www.artic.edu/iiif/2/e35161fb-cd78-b757-8000-15ba3ebb0fc3/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAACIjDTExHURCKUpHN0lJPFFNOFNNPVhRNlZROFlXPlNURFtUQldWSVVXSlpYSF1eSmFbRGFaR2JhTmFhUmRhUGtnUHFyYnV2aX+CdImLfJibkpqelK+wo7W8sgAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYYMZ12oYFidAoADExl/UMlOFIBVJFC3SEADs=",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 17257,
+  "title": "Two Women on the Shore",
+  "artist": "Edvard Munch",
+  "artistId": 44014,
+  "date": "1898",
+  "year": 1898,
+  "yearEnd": 1898,
+  "medium": "Woodcut printed from one block (sawn into three sections) in dark blue, green, black and red-brown ink with additions in green crayon on cream Japanese paper",
+  "classification": "woodcut",
+  "classifications": [
+   "woodcut",
+   "print",
+   "prints and drawing"
+  ],
+  "style": "Post-Impressionism",
+  "styles": [
+   "Post-Impressionism"
+  ],
+  "subjects": [
+   "women",
+   "landscapes",
+   "water"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "woodcut (process)"
+  ],
+  "origin": "Norway",
+  "type": "Print",
+  "color": {
+   "h": 120,
+   "l": 54,
+   "s": 14,
+   "percentage": 0.222204462580173,
+   "population": 1418
+  },
+  "colorfulness": 20.4699,
+  "image": "https://www.artic.edu/iiif/2/faf61d4e-118f-4dff-5b72-dde12b07efa2/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAACZBQz5RUUFYVVplWVtqa11qam9+Z2Nwb2ZzcnN9e4B6cGuDanKDaICFeX6HhImVhZCUkJGWkpOkiJ6llJ2olKCql6KumKOumKOumaaymqy1n663obW2qLW4qgAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYIFQQBxJNyxAAicYoj+BsRpNJFWddFNaFADs=",
+  "alt": "A work made of woodcut printed from one block (sawn into three sections) in dark blue, green, black and red-brown ink with additions in green crayon on cream japanese paper."
+ },
+ {
+  "aicId": 64724,
+  "title": "The Home of the Heron",
+  "artist": "George Inness",
+  "artistId": 35061,
+  "date": "1893",
+  "year": 1893,
+  "yearEnd": 1893,
+  "medium": "Oil on canvas",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "american arts"
+  ],
+  "style": "Post-Impressionism",
+  "styles": [
+   "Post-Impressionism"
+  ],
+  "subjects": [
+   "landscapes",
+   "birds",
+   "weather/seasons",
+   "circles",
+   "animals"
+  ],
+  "themesRaw": [
+   "Essentials"
+  ],
+  "techniques": [
+   "oil painting",
+   "painting (image making)"
+  ],
+  "origin": "Florida",
+  "type": "Painting",
+  "color": {
+   "h": 40,
+   "l": 43,
+   "s": 66,
+   "percentage": 0.005567189554239415,
+   "population": 26
+  },
+  "colorfulness": 40.2645,
+  "image": "https://www.artic.edu/iiif/2/0f2d999d-0173-2935-a6d0-0175bb97b2a9/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAD0rDUQsCkIwDkMwDkszC0kzD1I4Dlk6DF87DFw9D0k1EUs2EUg1E0k1E004EFA5EVI6EVA4E18+EWE/EV1AE1tAFV1BFl9FGWBBD2FBEGJBE2dCEGZGEWVHE2ZHE2hEEW1NEm9NEmxJF21OF2lLGHFOEnBJFndSGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlwIqFpBA8HKMI49JYQAaAAuUkMmkkAQMBMflgEodOZuMBlUKcIAA7",
+  "alt": "A heronǳ silhouette sits amongst the brush in a golden hued forest."
+ },
+ {
+  "aicId": 76395,
+  "title": "Flower Clouds",
+  "artist": "Odilon Redon",
+  "artistId": 36336,
+  "date": "c. 1903",
+  "year": 1898,
+  "yearEnd": 1908,
+  "medium": "Pastel, with touches of stumping, incising, and brushwork, on blue-gray wove paper with multi-colored fibers altered to tan, perimeter mounted to cardboard",
+  "classification": "pastel",
+  "classifications": [
+   "pastel",
+   "drawings (visual works)",
+   "prints and drawing",
+   "paper"
+  ],
+  "style": "Post-Impressionism",
+  "styles": [
+   "Post-Impressionism"
+  ],
+  "subjects": [
+   "mysteries/fantasies",
+   "transportation",
+   "water"
+  ],
+  "themesRaw": [
+   "Essentials"
+  ],
+  "techniques": [
+   "scraping"
+  ],
+  "origin": "France",
+  "type": "Drawing and Watercolor",
+  "color": {
+   "h": 224,
+   "l": 42,
+   "s": 37,
+   "percentage": 0.00012108057367315366,
+   "population": 44
+  },
+  "colorfulness": 0,
+  "image": "https://www.artic.edu/iiif/2/fb2077d9-82cc-ca7e-f450-5471d7f78c9a/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAEtIRkdESEBBT1JNTlJOTltSUFlZXmxXR29YT2VTUnRfU3BfVH1gT39jTnlhVnZhWHJrX3VsZXhqZHFqa3xubH11a49mVYRnWYZnWYBzZoVxZoB1d4V4cYh3eAAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYoBAgx3IRUNNclpQljsZNVaRQmwEQxdOFADs=",
+  "alt": "Pastel drawing of two figures in a sailboat, bright multi-colored clouds."
+ },
+ {
+  "aicId": 67170,
+  "title": "Jane Avril",
+  "artist": "Henri de Toulouse-Lautrec",
+  "artistId": 40869,
+  "date": "1893",
+  "year": 1893,
+  "yearEnd": 1893,
+  "medium": "Color lithograph on tan wove paper",
+  "classification": "lithograph",
+  "classifications": [
+   "lithograph",
+   "print",
+   "prints and drawing"
+  ],
+  "style": "Post-Impressionism",
+  "styles": [
+   "Post-Impressionism"
+  ],
+  "subjects": [
+   "women",
+   "dancers",
+   "music"
+  ],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "France",
+  "type": "Print",
+  "color": {
+   "h": 34,
+   "l": 45,
+   "s": 98,
+   "percentage": 0.06903270008306796,
+   "population": 664
+  },
+  "colorfulness": 64.844,
+  "image": "https://www.artic.edu/iiif/2/4d57383a-0f32-20d0-b09a-afb9c81357d3/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAG9pQ7GKO9iVMomAVoyBV46HX5KHWpeLX7WSRZ+WY6CRZqucZa2ca6udbK6ecbejbrukcLyodb6qeNqeQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURYBNBUoAwhDAVyvIAR2IMTggAOw==",
+  "alt": "A work made of color lithograph on tan wove paper."
+ },
+ {
+  "aicId": 63085,
+  "title": "Noa noa (Fragrant)",
+  "artist": "Paul Gauguin",
+  "artistId": 34611,
+  "date": "1894/95",
+  "year": 1894,
+  "yearEnd": 1895,
+  "medium": "Wood-block print in black ink, with red, orange, blue, mauve, light green, and green watercolor on parchment",
+  "classification": "woodcut",
+  "classifications": [
+   "woodcut",
+   "print",
+   "prints and drawing"
+  ],
+  "style": "Post-Impressionism",
+  "styles": [
+   "Post-Impressionism"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "France",
+  "type": "Print",
+  "color": {
+   "h": 39,
+   "l": 58,
+   "s": 25,
+   "percentage": 0.06964448204485332,
+   "population": 610
+  },
+  "colorfulness": 31.3014,
+  "image": "https://www.artic.edu/iiif/2/2b8b9efe-ec86-8f48-f26e-ee15c27b2617/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAHZkS29kU31oUHtuXYZyV4l1XJV/XJZ+XoZ5Z4F4a5SGdJqNe6GUfqyYfZCKgJuUiqeZgKSZirOgg8G1ogAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoMNAUwAYElIczUAISrQkTwgAOw==",
+  "alt": "A work made of wood-block print in black ink, with red, orange, blue, mauve, light green, and green watercolor on parchment."
+ },
+ {
+  "aicId": 150773,
+  "title": "Seated Woman with a Parasol (study for La Grande Jatte)",
+  "artist": "Georges Seurat",
+  "artistId": 40810,
+  "date": "1884/85",
+  "year": 1884,
+  "yearEnd": 1885,
+  "medium": "Black Conté crayon on ivory laid paper",
+  "classification": "conté crayon",
+  "classifications": [
+   "conté crayon",
+   "drawings (visual works)",
+   "prints and drawing"
+  ],
+  "style": "Post-Impressionism",
+  "styles": [
+   "Post-Impressionism"
+  ],
+  "subjects": [
+   "study",
+   "women"
+  ],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "France",
+  "type": "Drawing and Watercolor",
+  "color": {
+   "h": 358,
+   "l": 12,
+   "s": 4,
+   "percentage": 0.00794565545581421,
+   "population": 85
+  },
+  "colorfulness": 12.5596,
+  "image": "https://www.artic.edu/iiif/2/8769be30-7bda-37f2-16a8-30e5396d47dc/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAFJPTF1ZVV1aVnp2b46If5WOhaeglqujmK2lmsS8sci/st7WyODYy+PazOTbzQAAACH5BAAAAAAALAAAAAADAAUAAAQLsB3iVFkoMAPSEBEAOw==",
+  "alt": "A work made of black conté crayon on ivory laid paper."
+ },
+ {
+  "aicId": 719,
+  "title": "A Burgher of Calais (Jean d'Aire)",
+  "artist": "Auguste Rodin",
+  "artistId": 36418,
+  "date": "Modeled 1889",
+  "year": 1889,
+  "yearEnd": 1889,
+  "medium": "Plaster",
+  "classification": "sculpture",
+  "classifications": [
+   "sculpture",
+   "large scale",
+   "figure",
+   "french",
+   "plaster"
+  ],
+  "style": "Post-Impressionism",
+  "styles": [
+   "Post-Impressionism",
+   "19th century",
+   "nineteenth century"
+  ],
+  "subjects": [
+   "men",
+   "portraits",
+   "portraits: male subject",
+   "portrait",
+   "man",
+   "figure"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "sculpture techniques",
+   "forming",
+   "modeling (forming)",
+   "sculpting"
+  ],
+  "origin": "France",
+  "type": "Sculpture",
+  "color": {
+   "h": 199,
+   "l": 48,
+   "s": 2,
+   "percentage": 0.009124920156948626,
+   "population": 140
+  },
+  "colorfulness": 7.7558,
+  "image": "https://www.artic.edu/iiif/2/d0a72b06-f1ee-4464-d58c-5e39bc0534b3/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhAgAFAPMAAE1NTE5OTFlXUmJgW2FiX2RjX2tpZnl6eJaYlp+hoAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAACAAUAAAQIEAQxTCEHpQgAOw==",
+  "alt": "A work made of plaster."
+ },
+ {
+  "aicId": 12888,
+  "title": "Portrait of the Artist's Sister",
+  "artist": "Georges Lemmen",
+  "artistId": 15107,
+  "date": "1891",
+  "year": 1891,
+  "yearEnd": 1891,
+  "medium": "Oil on canvas",
+  "classification": "oil on canvas",
+  "classifications": [
+   "oil on canvas",
+   "oil paintings (visual works)",
+   "paint",
+   "portrait",
+   "painting",
+   "european painting"
+  ],
+  "style": "Post-Impressionism",
+  "styles": [
+   "Post-Impressionism",
+   "19th century",
+   "nineteenth century"
+  ],
+  "subjects": [
+   "women",
+   "blue (color)",
+   "chair",
+   "dots",
+   "dresses",
+   "jewelry",
+   "portrait",
+   "portraits: female subject",
+   "red (color)",
+   "sisters",
+   "emotions",
+   "families",
+   "portraits"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "oil painting",
+   "pointillism",
+   "painting",
+   "painting (image making)",
+   "painting techniques"
+  ],
+  "origin": "Belgium",
+  "type": "Painting",
+  "color": {
+   "h": 205,
+   "l": 45,
+   "s": 64,
+   "percentage": 0.006184187594519685,
+   "population": 55
+  },
+  "colorfulness": 55.8905,
+  "image": "https://www.artic.edu/iiif/2/f652ab04-9d66-c3c3-6b5e-c2891fc3a891/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAABwuRy08TzhARjpCUFFOS0pNUVdZXGxdT2hhV2dhWIBmSodpTY1uUo9yUYtzVo93W4t2XZB3W4x5Y4x7aQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAUR4AJFjDJJDRIUTgIIDzEYRwgAOw==",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 11,
+  "title": "Self-Portrait",
+  "artist": "Walter Shirlaw",
+  "artistId": 36656,
+  "date": "1878",
+  "year": 1878,
+  "yearEnd": 1878,
+  "medium": "Oil on canvas",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "american arts"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [
+   "self-portraits"
+  ],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "United States",
+  "type": "Painting",
+  "color": {
+   "h": 38,
+   "l": 41,
+   "s": 26,
+   "percentage": 1.4282143749776842e-05,
+   "population": 7
+  },
+  "colorfulness": 0,
+  "image": "https://www.artic.edu/iiif/2/7b7a6f39-1cd8-ea2f-9811-18b0e23edac0/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAB8ZFyEaFiUZFS0aFCkcFSofFi8cFiIcGCceGDEaFDYdFS8hFi4hGS4hGysjHTMgFzQjGDUkGzYkG0MuIQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURIOA0hjBFyRBBykMsRIMcQQgAOw==",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 111,
+  "title": "Martin Vanden Bogaert Desjardins",
+  "artist": "Gérard Edelinck",
+  "artistId": 34355,
+  "date": "n.d.",
+  "year": 1800,
+  "yearEnd": 1888,
+  "medium": "Engraving and etching on cream wove paper",
+  "classification": "engraving",
+  "classifications": [
+   "engraving",
+   "print",
+   "prints and drawing"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "France",
+  "type": "Print",
+  "color": {
+   "h": 43,
+   "l": 50,
+   "s": 17,
+   "percentage": 0.010843140954326522,
+   "population": 100
+  },
+  "colorfulness": 15.5776,
+  "image": "https://www.artic.edu/iiif/2/13bb7117-5115-b409-1dbb-1d9c1d70a5c9/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAACAfGiopIkE+NUJANkdEPElFO0lGO0lGPE1JPk1KQU9LQE9MQlVRSVdTSnJuYXdxZHlyY4F7a4J8bQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURINQwT4EYxDIIyREASuQ4UggAOw==",
+  "alt": "A work made of engraving and etching on cream wove paper."
+ },
+ {
+  "aicId": 27,
+  "title": "Remembrance of Italy",
+  "artist": "Jean Baptiste Camille Corot",
+  "artistId": 34035,
+  "date": "c. 1866",
+  "year": 1861,
+  "yearEnd": 1871,
+  "medium": "Etching on tan laid paper",
+  "classification": "etching",
+  "classifications": [
+   "etching",
+   "print",
+   "prints and drawing"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "France",
+  "type": "Print",
+  "color": {
+   "h": 39,
+   "l": 40,
+   "s": 51,
+   "percentage": 0.008577574905134945,
+   "population": 88
+  },
+  "colorfulness": 41.0304,
+  "image": "https://www.artic.edu/iiif/2/ab107179-7106-937e-7676-e0263b02e530/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAFxOOYJmPYNvU4ZxUYdyUpt+UqKFXLaTYbWUaMCgc8akcMCheMaqhMqthtG0jQAAACH5BAAAAAAALAAAAAADAAUAAAQLMKF1glGFDCAacxEAOw==",
+  "alt": "A work made of etching on tan laid paper."
+ },
+ {
+  "aicId": 4,
+  "title": "Priest and Boy",
+  "artist": "Lawrence Carmichael Earle",
+  "artistId": 34348,
+  "date": "n.d.",
+  "year": 1865,
+  "yearEnd": 1880,
+  "medium": "Watercolor over graphite on cream wove paper",
+  "classification": "drawings (visual works)",
+  "classifications": [
+   "drawings (visual works)",
+   "prints and drawing"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "United States",
+  "type": "Drawing and Watercolor",
+  "color": {
+   "h": 43,
+   "l": 49,
+   "s": 16,
+   "percentage": 0.011841978998862765,
+   "population": 116
+  },
+  "colorfulness": 18.8599,
+  "image": "https://www.artic.edu/iiif/2/1753b638-d4fb-8e45-3db9-92dde7f053da/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAF1aS2deUJSLdpGKeKuegaSgiqunjK+pkrivk763mr+6n7+5osa+osi/o83EqdDIr9PKr9vRutvTvOHYwwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAAIf4KQXBwbGVNYXJrCgAsAAAAAAQABQAABRHgI01RwzhQIhCIAQSDUhxLCAA7",
+  "alt": "A work made of watercolor over graphite on cream wove paper."
+ },
+ {
+  "aicId": 65,
+  "title": "Fishing Craft near the Cliffs at Collioure",
+  "artist": "Adolphe Appian",
+  "artistId": 33440,
+  "date": "1878",
+  "year": 1878,
+  "yearEnd": 1878,
+  "medium": "Etching on China paper colle laid down on white wove paper",
+  "classification": "etching",
+  "classifications": [
+   "etching",
+   "print",
+   "prints and drawing"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "France",
+  "type": "Print",
+  "color": {
+   "h": 42,
+   "l": 50,
+   "s": 15,
+   "percentage": 0.004959886914578347,
+   "population": 24
+  },
+  "colorfulness": 10.7641,
+  "image": "https://www.artic.edu/iiif/2/6983bf9e-3cd8-c42d-4c91-cd646c97399c/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAFBHO2lgU6OajKKbj6yjlqykmLGomr+3qsa/stPLv9vTx+Lb0Ojh1ufj2efk3evk2Onk2+7n2+rm3enl3u3o3unm4Orn4uzo4ezp4+zp5O3q5O7q5e7r5e/s5vDr4fDt5/Hu5/Lv6QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhwI0E0vBQJhzGI3IwODoKggAQuGgWCURhUMlgOB9QyBIEADs=",
+  "alt": "A work made of etching on china paper colle laid down on white wove paper."
+ },
+ {
+  "aicId": 9,
+  "title": "Interior of St. Mark's, Venice",
+  "artist": "David Dalhoff Neal",
+  "artistId": 35975,
+  "date": "1869",
+  "year": 1869,
+  "yearEnd": 1869,
+  "medium": "Oil on canvas",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "american arts"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [
+   "interiors",
+   "architecture",
+   "religion",
+   "Venice, Italy",
+   "churches",
+   "cathedrals"
+  ],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Venice",
+  "type": "Painting",
+  "color": {
+   "h": 38,
+   "l": 48,
+   "s": 38,
+   "percentage": 0.014782557067334546,
+   "population": 122
+  },
+  "colorfulness": 41.7412,
+  "image": "https://www.artic.edu/iiif/2/b55d836c-ee20-59f8-1f0c-a95e09905361/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAABoTDS0dECweEDAjFU03JlxCI15FJmlPLmpQKmVRNG1VM2tWOXdaNXhdOHtdQHZiRoFlPoFkP4dqRoxwTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoGIUSBIAxyMM00I4UsNEUAgAOw==",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 27138,
+  "title": "A Friendly Warning",
+  "artist": "Thomas Hicks",
+  "artistId": 34926,
+  "date": "1881–90",
+  "year": 1881,
+  "yearEnd": 1890,
+  "medium": "Oil on canvas",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "american arts"
+  ],
+  "style": "Realism",
+  "styles": [
+   "Realism"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "United States",
+  "type": "Painting",
+  "color": {
+   "h": 43,
+   "l": 50,
+   "s": 6,
+   "percentage": 0.1180661691153776,
+   "population": 635
+  },
+  "colorfulness": 19.4985,
+  "image": "https://www.artic.edu/iiif/2/e1f6ef79-7216-4f19-ac78-a307a2fb4f32/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAB8aDSYiEiokFjQrHTguHD0zHzMvIDwwI0E3JEs+J0k+KlJHLlJHL0pGNFBHMVlON1NQPVdTRlxRQV1YS19ZTGFbTmVeVmpmVWxoWW1pW3JsYIeDc42LgZKSiJublaamnaarqa2vqrCxqgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhQMmk0vl4MhoLRxQCXSiHDSYCaRQSDIQhIAAQBoqHYxEEADs=",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 121629,
+  "title": "Life Study (Study of an Egyptian Girl)",
+  "artist": "John Singer Sargent",
+  "artistId": 36540,
+  "date": "1891",
+  "year": 1891,
+  "yearEnd": 1891,
+  "medium": "Oil on canvas",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "american arts"
+  ],
+  "style": "Realism",
+  "styles": [
+   "Realism"
+  ],
+  "subjects": [
+   "Chicago"
+  ],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Egypt",
+  "type": "Painting",
+  "color": null,
+  "colorfulness": 24.3836,
+  "image": "https://www.artic.edu/iiif/2/e6dd6199-c245-d1b4-a997-ce89eafb48ca/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhAgAFAPMAADwuIUIzIUM0JEg4JUM4KEM4KUk6KEg5Kk5BNE9FOQAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAACAAUAAAQIkJRhggAnoQgAOw==",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 191185,
+  "title": "The Puritan",
+  "artist": "Augustus Saint-Gaudens",
+  "artistId": 36518,
+  "date": "Modeled 1883–86, cast after 1899",
+  "year": 1883,
+  "yearEnd": 1886,
+  "medium": "Bronze",
+  "classification": "sculpture",
+  "classifications": [
+   "sculpture",
+   "bronze"
+  ],
+  "style": "Realism",
+  "styles": [
+   "Realism"
+  ],
+  "subjects": [
+   "people",
+   "portraits"
+  ],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "United States",
+  "type": "Sculpture",
+  "color": {
+   "h": 51,
+   "l": 48,
+   "s": 11,
+   "percentage": 0.04510456971613698,
+   "population": 427
+  },
+  "colorfulness": 12.6183,
+  "image": "https://www.artic.edu/iiif/2/f2f929b9-995a-9ed3-ef39-2fe81b35a64e/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAExOPFFQPk5UR2FnWoCAdICDeYyQgpudkZuemKusqa+vqbGyr7S1rLOxsLa1tL2/u8rKx9LSztXX0eXl4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURYLMkDlQQEQIEyjMIzHQYUggAOw==",
+  "alt": "A work made of bronze."
+ },
+ {
+  "aicId": 111377,
+  "title": "For Sunday's Dinner",
+  "artist": "William Michael Harnett",
+  "artistId": 10930,
+  "date": "1888",
+  "year": 1888,
+  "yearEnd": 1888,
+  "medium": "Oil on canvas",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "american arts"
+  ],
+  "style": "Realism",
+  "styles": [
+   "Realism"
+  ],
+  "subjects": [
+   "still life",
+   "animals"
+  ],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "United States",
+  "type": "Painting",
+  "color": {
+   "h": 37,
+   "l": 50,
+   "s": 65,
+   "percentage": 0.001190206976993299,
+   "population": 15
+  },
+  "colorfulness": 23.114,
+  "image": "https://www.artic.edu/iiif/2/3cea045a-92d6-36cf-1508-2c99ea740218/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAABoYGR0bGywnIiglJCwoJS4oJC8qKDEsKDMuKDoxKTsyKTw1L01CNFRJPHBgSAAAACH5BAAAAAAALAAAAAADAAUAAAQLkIij0mgOLBZMQREAOw==",
+  "alt": "A plucked chicken, a few stray feathers remaining, hangs upside-down by one foot, illuminated. Behind it the metal hinges and wood panels of a door are visible."
+ },
+ {
+  "aicId": 181777,
+  "title": "The Irish Question",
+  "artist": "De Scott Evans",
+  "artistId": 52802,
+  "date": "1880s",
+  "year": 1880,
+  "yearEnd": 1889,
+  "medium": "Oil on canvas",
+  "classification": "painting",
+  "classifications": [
+   "painting"
+  ],
+  "style": "Realism",
+  "styles": [
+   "Realism"
+  ],
+  "subjects": [
+   "still life",
+   "potatoes",
+   "potato"
+  ],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "United States",
+  "type": "Painting",
+  "color": null,
+  "colorfulness": 34.82,
+  "image": "https://www.artic.edu/iiif/2/6754947f-4ccf-b3ff-41ee-45b738534769/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAEgsGmU8HlI0IV46IG9EIG1EJG9FJG1FKHJIJXNKKXRJKHVLKnBJLnNPL3NRNIhbMoVbOo1jPoJgQJx/XgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoBFIU5E4DfFAwBIxgnIMSAgAOw==",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 81564,
+  "title": "Husking Bee, Island of Nantucket",
+  "artist": "Eastman Johnson",
+  "artistId": 35142,
+  "date": "1876",
+  "year": 1876,
+  "yearEnd": 1876,
+  "medium": "Oil on canvas",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "american arts"
+  ],
+  "style": "Realism",
+  "styles": [
+   "Realism"
+  ],
+  "subjects": [
+   "landscapes",
+   "animals"
+  ],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Nantucket Island",
+  "type": "Painting",
+  "color": {
+   "h": 39,
+   "l": 45,
+   "s": 37,
+   "percentage": 4.3352288372612005e-05,
+   "population": 55
+  },
+  "colorfulness": 0,
+  "image": "https://www.artic.edu/iiif/2/8a647e1c-d778-db71-6ba4-6456b800d6b9/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhCgAFAPUAAEEwHkM1Jkc0Jkk/JkY3KlVBKlJFKlhDLllHLV9GLlpHMVtKN1xNO2VLLmJOM2NPNmVRM2JQNmlQM2tSNWlTN2tZN25ZN2lTOGpYOG1ZQGpZR3xhQnBgSnRjTXVkT3hlS3pqUnxsVHtwXHtxX3xwXIttSIBxWYB0Xod4XoF1YYd7Zoh7ZIp9ZYt9ZYh8Z4l8Z4x/Z4l+agAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAKAAUAAAYuwJBIRDqpYLFUC9VqrVomEGfB0Hg6n4wi0RAEAAXJhHApbQ6IgcExeUQwFQskCAA7",
+  "alt": "Dozens of figures in a brown field filled with discarded corn silks form two rows and sit across from each other husking corn, a farm in the background."
+ },
+ {
+  "aicId": 191183,
+  "title": "Madame Paul Escudier (Louise Lefevre)",
+  "artist": "John Singer Sargent",
+  "artistId": 36540,
+  "date": "1882",
+  "year": 1882,
+  "yearEnd": 1882,
+  "medium": "Oil on canvas",
+  "classification": "oil on canvas",
+  "classifications": [
+   "oil on canvas",
+   "painting"
+  ],
+  "style": "Impressionism",
+  "styles": [
+   "Impressionism",
+   "Realism",
+   "Modernism"
+  ],
+  "subjects": [
+   "portraits",
+   "Chicago",
+   "fashion",
+   "people"
+  ],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "United States",
+  "type": "Painting",
+  "color": {
+   "h": 95,
+   "l": 32,
+   "s": 2,
+   "percentage": 0.0028477606781205566,
+   "population": 29
+  },
+  "colorfulness": 16.6349,
+  "image": "https://www.artic.edu/iiif/2/c6da9f8c-643b-f331-0f8f-a9b6a844caf6/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAACciHjEiHjcpHzwqHx4gIyMlIykmIywlJi8oIS8sKTYyLTw3MEI6M2xkXHJpXgAAACH5BAAAAAAALAAAAAADAAUAAAQLEJglmEOpFaLGCREAOw==",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 31816,
+  "title": "After the Bullfight",
+  "artist": "Mary Cassatt",
+  "artistId": 33890,
+  "date": "1873",
+  "year": 1873,
+  "yearEnd": 1873,
+  "medium": "Oil on canvas",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "american arts"
+  ],
+  "style": "Impressionism",
+  "styles": [
+   "Impressionism",
+   "Realism",
+   "Modernism"
+  ],
+  "subjects": [
+   "fashion",
+   "men",
+   "portraits",
+   "people"
+  ],
+  "themesRaw": [
+   "Women artists"
+  ],
+  "techniques": [],
+  "origin": "Seville",
+  "type": "Painting",
+  "color": {
+   "h": 37,
+   "l": 45,
+   "s": 11,
+   "percentage": 6.188251374043919e-05,
+   "population": 81
+  },
+  "colorfulness": 0,
+  "image": "https://www.artic.edu/iiif/2/7a314af6-336f-b6a4-809c-15659313a757/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAACgkITIqIzQsJDcyLDsxLD05MT85Mj88NlYnH0IpIkEzK0o2LUtAN0ZDPkhCOVxNP1FNQVhSRVpTSgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoDFAEaA8ziExhdEQixAkSAgAOw==",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 39954,
+  "title": "Seventeenth-Century Interior",
+  "artist": "Charles Gifford Dyer",
+  "artistId": 7311,
+  "date": "1877",
+  "year": 1877,
+  "yearEnd": 1877,
+  "medium": "Oil on canvas",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "american arts"
+  ],
+  "style": "Realism",
+  "styles": [
+   "Realism"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Munich",
+  "type": "Painting",
+  "color": {
+   "h": 9,
+   "l": 35,
+   "s": 57,
+   "percentage": 0.01874711116713696,
+   "population": 174
+  },
+  "colorfulness": 38.0494,
+  "image": "https://www.artic.edu/iiif/2/be4d3662-4e77-6e13-9ff9-bcdebff0f56d/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAACEZEyMdFyUeGDYrHzkuITgwIkAtH0wyH287H0Y4Jkw9JlBBMXlPM2xVPHBRNmZaR2laRnJTQIJdPYhtTgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURYCAoywBAD1FEzJEYiNNMUggAOw==",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 663,
+  "title": "Alice",
+  "artist": "William Merritt Chase",
+  "artistId": 41673,
+  "date": "1892",
+  "year": 1892,
+  "yearEnd": 1892,
+  "medium": "Oil on canvas",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "american arts"
+  ],
+  "style": "Impressionism",
+  "styles": [
+   "Impressionism",
+   "Realism"
+  ],
+  "subjects": [
+   "Chicago",
+   "Century of Progress",
+   "world's fairs",
+   "Chicago World's Fairs"
+  ],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "United States",
+  "type": "Painting",
+  "color": {
+   "h": 40,
+   "l": 59,
+   "s": 24,
+   "percentage": 0.03246756421878835,
+   "population": 332
+  },
+  "colorfulness": 16.4925,
+  "image": "https://www.artic.edu/iiif/2/91fcc71a-50eb-f418-85f5-d11fc81e8d83/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAB4aGR8aGiIdGygfHCUgHiohHi0kHyojIDApIzUqIzQuKTgyLFtSQ25iUYB0XgAAACH5BAAAAAAALAAAAAADAAUAAAQLECBxGlkuKFbMSBEAOw==",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 16,
+  "title": "The Fall of the Giants",
+  "artist": "Salvator Rosa",
+  "artistId": 40784,
+  "date": "1663",
+  "year": 1663,
+  "yearEnd": 1663,
+  "medium": "Etching with drypoint in black on ivory laid paper",
+  "classification": "etching",
+  "classifications": [
+   "etching",
+   "print",
+   "prints and drawing"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Italy",
+  "type": "Print",
+  "color": {
+   "h": 38,
+   "l": 94,
+   "s": 69,
+   "percentage": 0.047209380531627515,
+   "population": 511
+  },
+  "colorfulness": 11.3588,
+  "image": "https://www.artic.edu/iiif/2/e82b61d4-1d5b-a15d-4d2e-ff9caca3fb51/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAK+mmLOrnrSsnrevormworqyo72zpb2zpr20pby0qMrBtM/FtM/FtdHIuNLIuAAAACH5BAAAAAAALAAAAAADAAUAAAQLcDlWVBMDhUTAMREAOw==",
+  "alt": "A work made of etching with drypoint in black on ivory laid paper."
+ },
+ {
+  "aicId": 20,
+  "title": "It Rocks but is Not Sunk",
+  "artist": "Charles Meryon",
+  "artistId": 35543,
+  "date": "1854",
+  "year": 1854,
+  "yearEnd": 1854,
+  "medium": "Etching on ivory laid paper",
+  "classification": "etching",
+  "classifications": [
+   "etching",
+   "print",
+   "prints and drawing"
+  ],
+  "style": "19th century",
+  "styles": [
+   "19th century"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "France",
+  "type": "Print",
+  "color": {
+   "h": 45,
+   "l": 52,
+   "s": 27,
+   "percentage": 0.0006001212244873465,
+   "population": 6
+  },
+  "colorfulness": 14.503,
+  "image": "https://www.artic.edu/iiif/2/67f10695-cb9d-f716-9cd0-902217ebb317/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAJuRd6GYfcW+qsrCr83Er87Gsd3Xxd/ZyOHayeLczOPdzuXg0ebh1Obh1ebi1enk1+rl2e3o3O3p3QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURIPNADUIUixEARzIIihNJTggAOw==",
+  "alt": "A work made of etching on ivory laid paper."
+ },
+ {
+  "aicId": 28,
+  "title": "Souvenir of Tuscany",
+  "artist": "Jean Baptiste Camille Corot",
+  "artistId": 34035,
+  "date": "c. 1845",
+  "year": 1840,
+  "yearEnd": 1850,
+  "medium": "Etching on ivory laid paper",
+  "classification": "etching",
+  "classifications": [
+   "etching",
+   "print",
+   "prints and drawing"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "France",
+  "type": "Print",
+  "color": {
+   "h": 44,
+   "l": 46,
+   "s": 16,
+   "percentage": 0.044559254776571466,
+   "population": 222
+  },
+  "colorfulness": 14.4845,
+  "image": "https://www.artic.edu/iiif/2/72cc9b54-7549-dda8-9720-51c36e67ba3b/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAD04LkhCNkhDN0xHOllTRWNdTWdiU2liUWpiUWtkU2tlVnBpWXNrWXJrWndwX3RuYndwYHxzYX10YoV9aYZ+a4B6bYN9boeAa4mBbYqDcY+IepePe5SNfJWOfZSOgZ2VgqGZhrGplgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhQM3CcMFAKBXAIKMQNDqEycZxiDwCiQKCIfFYOJwPKBQEADs=",
+  "alt": "A work made of etching on ivory laid paper."
+ },
+ {
+  "aicId": 24,
+  "title": "Portrait of Edouard Molé",
+  "artist": "Robert Nanteuil",
+  "artistId": 35960,
+  "date": "1653",
+  "year": 1653,
+  "yearEnd": 1653,
+  "medium": "Engraving on paper",
+  "classification": "engraving",
+  "classifications": [
+   "engraving",
+   "print",
+   "prints and drawing"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "France",
+  "type": "Print",
+  "color": {
+   "h": 38,
+   "l": 38,
+   "s": 8,
+   "percentage": 0.0851460738951813,
+   "population": 880
+  },
+  "colorfulness": 12.5248,
+  "image": "https://www.artic.edu/iiif/2/5df51c9d-dac5-d962-4d4b-300339219e54/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAF1ZUGNfVWdiWGdiWWtmW3VvY3p1aYB7bYB7boR+boWAcY6IeZiSgZyWhZ2XiAAAACH5BAAAAAAALAAAAAADAAUAAAQL0AwERDiLpKKaYxEAOw==",
+  "alt": "A work made of engraving on paper."
+ },
+ {
+  "aicId": 73413,
+  "title": "Bust of a Youth (Saint John the Baptist)",
+  "artist": "Francesco Mochi",
+  "artistId": 17492,
+  "date": "1630-40",
+  "year": 1630,
+  "yearEnd": 1640,
+  "medium": "Marble on variegated black marble socle",
+  "classification": "bust/head",
+  "classifications": [
+   "bust/head",
+   "sculpture",
+   "Italian"
+  ],
+  "style": "Baroque",
+  "styles": [
+   "Baroque",
+   "17th Century"
+  ],
+  "subjects": [
+   "youth",
+   "children",
+   "busts",
+   "head",
+   "Saint John the Baptist"
+  ],
+  "themesRaw": [
+   "Art Institute Icons",
+   "Essentials"
+  ],
+  "techniques": [
+   "sculpting",
+   "carving",
+   "stonework"
+  ],
+  "origin": "Italy",
+  "type": "Sculpture",
+  "color": {
+   "h": 37,
+   "l": 53,
+   "s": 1,
+   "percentage": 0.0025196333767706428,
+   "population": 2843
+  },
+  "colorfulness": 0,
+  "image": "https://www.artic.edu/iiif/2/4e37b182-cc1e-ef86-3eb2-de7d5b9db717/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAADQ0Mzg4N0ZFREtKSn9/foeHh4mHg4yLiY2MjJiRhp+Zj5KSkJeWlZ2dnKaYhKefk6qjmKKio6mpqAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAAIf8LSW1hZ2VNYWdpY2sOZ2FtbWE9MC40NTQ1NDUALAAAAAAEAAUAAAURIPMYROMkRQQpiCQAizQERwgAOw==",
+  "alt": "Bust of young boy with large eyes and long curly hair, looking to his side."
+ },
+ {
+  "aicId": 24684,
+  "title": "Francesco de' Medici",
+  "artist": "Alessandro Allori",
+  "artistId": 40413,
+  "date": "c. 1560",
+  "year": 1555,
+  "yearEnd": 1565,
+  "medium": "Oil on panel",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "oil on panel",
+   "portrait",
+   "european painting"
+  ],
+  "style": "16th Century",
+  "styles": [
+   "16th Century",
+   "Baroque"
+  ],
+  "subjects": [
+   "portrait",
+   "man",
+   "portraits",
+   "portraits: male subject"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "panel painting",
+   "painting"
+  ],
+  "origin": "Italy",
+  "type": "Painting",
+  "color": {
+   "h": 9,
+   "l": 37,
+   "s": 60,
+   "percentage": 0.059097858345003015,
+   "population": 552
+  },
+  "colorfulness": 41.5954,
+  "image": "https://www.artic.edu/iiif/2/9a29cc5d-3779-c9ab-2aa2-0df7b6c3f391/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAAcEAAsHAQsIAgkLAg8IAw4LBAgMBBoNBB0VDCQPBiofFTYjFTEqFjwsH0EaDUcbDGkmF1tHM4I1HYI3JAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURIKEgAtAsQfFIRzRBA+MkRggAOw==",
+  "alt": "A work made of oil on panel."
+ },
+ {
+  "aicId": 19333,
+  "title": "Kitchen Still Life",
+  "artist": "Paolo Antonio Barbieri",
+  "artistId": 1573,
+  "date": "c. 1640",
+  "year": 1635,
+  "yearEnd": 1645,
+  "medium": "Oil on canvas",
+  "classification": "oil on canvas",
+  "classifications": [
+   "oil on canvas",
+   "oil",
+   "paint",
+   "painting",
+   "european painting"
+  ],
+  "style": "17th Century",
+  "styles": [
+   "17th Century",
+   "Baroque"
+  ],
+  "subjects": [
+   "still life",
+   "berries",
+   "Bread",
+   "food",
+   "interiors",
+   "nuts"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "painting",
+   "painting (image making)",
+   "painting techniques"
+  ],
+  "origin": "Italy",
+  "type": "Painting",
+  "color": {
+   "h": 37,
+   "l": 60,
+   "s": 37,
+   "percentage": 0.024100833786292263,
+   "population": 141
+  },
+  "colorfulness": 32.4018,
+  "image": "https://www.artic.edu/iiif/2/29163982-8310-36bb-3530-2b5000ce7290/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAABIQCxQRDBURDRcSDhgTDh4XEicdFysbESwcFDkcEDEgFzgiGE80H1I4J1g+KllAK1dFMGdIL2FIMndXOHVZP25XQnhhR3diTIZlQY5zV4t6X5uCXgAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYYCCMA0Agi2IUR4JtlyZRE1RljxUxjRMCADs=",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 119245,
+  "title": "Baroque Pearl Mounted as a Grotesque Beast",
+  "artist": null,
+  "artistId": null,
+  "date": "c. 1600-c. 1725",
+  "year": 1600,
+  "yearEnd": 1725,
+  "medium": "Gold, enamel, diamonds, and baroque pearl",
+  "classification": "jewelry",
+  "classifications": [
+   "jewelry",
+   "european decorative arts",
+   "costume"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Europe",
+  "type": "Costume and Accessories",
+  "color": {
+   "h": 39,
+   "l": 59,
+   "s": 75,
+   "percentage": 0.003163305654408857,
+   "population": 18
+  },
+  "colorfulness": 23.4884,
+  "image": "https://www.artic.edu/iiif/2/74c43437-3c25-09a1-c16f-cae0b258c47d/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAGJMKIFxXod8cpmLepuMfJ+RhZaRk6ymprquorCtr7SvsLq3uL+9vsizl8K8u8C+v8G/wMK+wsPAwMHAw8PAw8TAwcXDxMXCxcXDxsfGysrIy83LzQAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUY4GRBzwNlhaNh1SYQDXJRSgAMEbMcRiKFADs=",
+  "alt": "A work made of gold, enamel, diamonds, and baroque pearl."
+ },
+ {
+  "aicId": 119335,
+  "title": "Baroque Pearl Mounted as a Cat Holding a Mouse",
+  "artist": null,
+  "artistId": null,
+  "date": "17th century",
+  "year": 1600,
+  "yearEnd": 1700,
+  "medium": "Gold, enamel, and baroque pearl",
+  "classification": "jewelry",
+  "classifications": [
+   "jewelry",
+   "european decorative arts",
+   "costume"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [
+   "cats",
+   "animals"
+  ],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Spain",
+  "type": "Costume and Accessories",
+  "color": {
+   "h": 245,
+   "l": 48,
+   "s": 2,
+   "percentage": 0.0018193859208639896,
+   "population": 10
+  },
+  "colorfulness": 32.9981,
+  "image": "https://www.artic.edu/iiif/2/fe394433-14ae-89e0-136f-31cbdb390771/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAKGJbLOYdbKafMGhdJ6fn6eWgLSgiLCnnKKhoaWjpKakpaelpqenp66wtbKwsbSztLW0tLi3uLe5v7y9vsasjsO6ssK9vMPAvsfBvMXBwMTCwsLCxcjIyO3m3wAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYILMoCUJAjxMczXR1QyFtBiUAEYdVVqaFADs=",
+  "alt": "A work made of gold, enamel, and baroque pearl."
+ },
+ {
+  "aicId": 146875,
+  "title": "Samson and the Lion",
+  "artist": "Cristoforo Stati",
+  "artistId": 58468,
+  "date": "1604–7",
+  "year": 1604,
+  "yearEnd": 1607,
+  "medium": "Marble",
+  "classification": "large scale",
+  "classifications": [
+   "large scale",
+   "sculpture",
+   "Italian",
+   "marble"
+  ],
+  "style": "17th Century",
+  "styles": [
+   "17th Century",
+   "Baroque"
+  ],
+  "subjects": [
+   "religious",
+   "Old Testament",
+   "religious scenes",
+   "nudes",
+   "man",
+   "figure",
+   "biblical",
+   "animals",
+   "lions",
+   "religious figures"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "carving",
+   "forming",
+   "modeling (forming)",
+   "sculpture techniques",
+   "stonework"
+  ],
+  "origin": "Italy",
+  "type": "Sculpture",
+  "color": {
+   "h": 37,
+   "l": 49,
+   "s": 7,
+   "percentage": 0.06088370715598637,
+   "population": 736
+  },
+  "colorfulness": 8.9168,
+  "image": "https://www.artic.edu/iiif/2/833b1d8d-9e16-efb3-e848-73552c9b8404/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAAAAABgXFx8gICwrKTMxLTIxLzU0Mzw6OEZFQlNST2NfV4N/douIgZCLg5uWjgAAACH5BAAAAAAALAAAAAADAAUAAAQLMBmAWhDujEUKUxEAOw==",
+  "alt": "A work made of marble."
+ },
+ {
+  "aicId": 103347,
+  "title": "Bureau Table",
+  "artist": "John Townsend",
+  "artistId": 37001,
+  "date": "c. 1770",
+  "year": 1770,
+  "yearEnd": 1770,
+  "medium": "Mahogany, chestnut, and tulip poplar",
+  "classification": "table",
+  "classifications": [
+   "table",
+   "furniture",
+   "american decorative arts",
+   "american arts"
+  ],
+  "style": "Baroque",
+  "styles": [
+   "Baroque"
+  ],
+  "subjects": [
+   "furniture"
+  ],
+  "themesRaw": [
+   "Essentials"
+  ],
+  "techniques": [
+   "carving",
+   "furniture making"
+  ],
+  "origin": "Newport",
+  "type": "Furniture",
+  "color": {
+   "h": 43,
+   "l": 66,
+   "s": 89,
+   "percentage": 0.000563534261474262,
+   "population": 4
+  },
+  "colorfulness": 37.2564,
+  "image": "https://www.artic.edu/iiif/2/729c7015-ffde-6525-a0c8-6e61b67acbe8/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBQAFAPQAAEksJm1CLG9EL2hHOGlMP2xMPHZLNWBMRmxQQ8ixo8qypM61pMa+u8vCv8jCwMrIx8zKytDJxtPMydPOzNLR0NnX19va2d7a2OHd2wAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAFAAUAAAUVIKYsySUZgdBMBTBEDnIQjAVRTxUCADs=",
+  "alt": "Small wooden bureau with carved half-circle designs, gilded handles."
+ },
+ {
+  "aicId": 62042,
+  "title": "Still Life with Dead Game, Fruits, and Vegetables in a Market",
+  "artist": "Frans Snyders",
+  "artistId": 24418,
+  "date": "1614",
+  "year": 1614,
+  "yearEnd": 1614,
+  "medium": "Oil on canvas",
+  "classification": "oil on canvas",
+  "classifications": [
+   "oil on canvas",
+   "paint",
+   "still life",
+   "painting",
+   "european painting"
+  ],
+  "style": "Baroque",
+  "styles": [
+   "Baroque",
+   "17th Century"
+  ],
+  "subjects": [
+   "still life",
+   "animals",
+   "towns",
+   "baskets",
+   "peacocks",
+   "boars",
+   "apples",
+   "man",
+   "children",
+   "swans",
+   "vegetables",
+   "food",
+   "rabbits",
+   "deer",
+   "birds"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "painting",
+   "oil painting",
+   "painting (image making)",
+   "painting techniques"
+  ],
+  "origin": "Flanders",
+  "type": "Painting",
+  "color": {
+   "h": 211,
+   "l": 26,
+   "s": 14,
+   "percentage": 0.0027245786334351907,
+   "population": 13
+  },
+  "colorfulness": 26.107,
+  "image": "https://www.artic.edu/iiif/2/d9bde524-38b2-4262-3338-e4d06a50746d/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAABwYHB0aHyUeHSQeHycjJCoiISgjJCwnKTImITUqJzUtKTAyMDYwMTw3ND43OUYtJkkuKEc4LlM6K0U6NWY8MUpBO09BOlBEPVNGPVhLPkRBQk1ISVVKRF5SRVtdWGlVQ2FUSWRUSGlbTnlVTYZ9aoF7eZaEcq6rqQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlQM9ioAAEDAwIRRJJFBCZx8j06VgwJM2pxAFdRI2N4xCaECqCIAA7",
+  "alt": "An older man at left in red raises his hat toward a central table chaotically overflowing with dead game, fruits, and vegetables. The wings of dead birds and limbs of animals are splayed out at dramatic angles; a deer at center is suspended by his back legs. Live birds and a cat animate the scene."
+ },
+ {
+  "aicId": 126981,
+  "title": "Gaming Set, Probably Made for the Russian Court",
+  "artist": "Du Paquier Porcelain Manufactory",
+  "artistId": 36482,
+  "date": "c. 1735",
+  "year": 1730,
+  "yearEnd": 1740,
+  "medium": "Enameled and gilded hard-paste porcelain, gold, and diamonds",
+  "classification": "porcelain",
+  "classifications": [
+   "porcelain",
+   "ceramics",
+   "european decorative arts"
+  ],
+  "style": "late baroque",
+  "styles": [
+   "late baroque"
+  ],
+  "subjects": [
+   "games",
+   "leisure",
+   "entertainment",
+   "cards",
+   "flowers",
+   "plant-derived motif",
+   "luxury",
+   "gambling"
+  ],
+  "themesRaw": [
+   "Essentials"
+  ],
+  "techniques": [
+   "gilding"
+  ],
+  "origin": "Vienna",
+  "type": "Ceramics",
+  "color": {
+   "h": 12,
+   "l": 31,
+   "s": 82,
+   "percentage": 0.007729040019625041,
+   "population": 46
+  },
+  "colorfulness": 27.8162,
+  "image": "https://www.artic.edu/iiif/2/55c7170e-0011-df2a-8943-b22cb5585661/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAGlpam1tbW1ub313bnBxcnZzcXZ0cHt5d4t6Z4J+eJ6FZ4mAdJ+Od56Th5yTiJyXj6KajqOZlaickqyimrWooL60pLy2rry5tsjDv8rGwdDJw9PS0NTU09jZ2gAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYICAUyxAYR1JBhNMgCvNclBRNFqdl2NaFADs=",
+  "alt": "Gilded porcelain box of betting chips for card game."
+ },
+ {
+  "aicId": 19336,
+  "title": "The Resurrection",
+  "artist": "Cecco del Caravaggio",
+  "artistId": 42706,
+  "date": "c. 1619-20",
+  "year": 1619,
+  "yearEnd": 1620,
+  "medium": "Oil on canvas",
+  "classification": "oil on canvas",
+  "classifications": [
+   "oil on canvas",
+   "Italian",
+   "oil paintings (visual works)",
+   "paint",
+   "painting",
+   "european painting"
+  ],
+  "style": "17th Century",
+  "styles": [
+   "17th Century",
+   "Baroque"
+  ],
+  "subjects": [
+   "resurrection scenes",
+   "lantern",
+   "clouds",
+   "armor",
+   "sleep",
+   "shields",
+   "swords",
+   "flags",
+   "angels",
+   "soldiers",
+   "biblical",
+   "religious",
+   "religion",
+   "Christianity",
+   "Christian subjects"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "oil painting",
+   "painting",
+   "painting (image making)",
+   "painting techniques"
+  ],
+  "origin": "Italy",
+  "type": "Painting",
+  "color": {
+   "h": 43,
+   "l": 87,
+   "s": 22,
+   "percentage": 0.02037858171414797,
+   "population": 257
+  },
+  "colorfulness": 21.3186,
+  "image": "https://www.artic.edu/iiif/2/a49c5ada-f461-d7d1-0f1b-468ac577a872/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAACEbGisiHS8mIDsyKzgyMDs0MkE0K0I2LUg6NEg8NVFDOFFGO1ZHQG1kW2xmYAAAACH5BAAAAAAALAAAAAADAAUAAAQLEIwSFkFNMHdMUhEAOw==",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 160030,
+  "title": "The Ecstasy of Saint Francis",
+  "artist": "Giovanni Baglione",
+  "artistId": 1397,
+  "date": "1601",
+  "year": 1601,
+  "yearEnd": 1601,
+  "medium": "Oil on canvas",
+  "classification": "oil on canvas",
+  "classifications": [
+   "oil on canvas",
+   "european painting",
+   "Italian",
+   "oil",
+   "paint",
+   "religious",
+   "painting"
+  ],
+  "style": "17th Century",
+  "styles": [
+   "17th Century",
+   "Baroque"
+  ],
+  "subjects": [
+   "religious figures",
+   "divine",
+   "angels",
+   "saints",
+   "Christianity",
+   "Christian subjects",
+   "religious scenes",
+   "religion"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "painting",
+   "painting (image making)",
+   "painting techniques"
+  ],
+  "origin": "Italy",
+  "type": "Painting",
+  "color": {
+   "h": 201,
+   "l": 33,
+   "s": 46,
+   "percentage": 0.003380201945940008,
+   "population": 32
+  },
+  "colorfulness": 22.7726,
+  "image": "https://www.artic.edu/iiif/2/107dd824-9ae2-b091-9787-5901d5e300da/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAABURCxgQCh8YECQYECUaEiYdFS4iFy8jFzAjFjUnGTYrHzUrITYrID0xJUU1JUM3LEg2KEw9Lk9EOWxgUwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoBI1yzMxkFQghHMIQWIAQwgAOw==",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 14690,
+  "title": "Fragment",
+  "artist": null,
+  "artistId": null,
+  "date": "Late 14th/15th century",
+  "year": 1325,
+  "yearEnd": 1375,
+  "medium": "Silk and gilt-animal-substrate-wrapped linen, warp-float faced 3:1 twill weave with supplementary patterning wefts bound by secondary binding warps in (weft-float faced 1:3) twill interlacings (on reverse face secondary binding warps and supplementary wefts form detached interlacing)",
+  "classification": "textile",
+  "classifications": [
+   "textile",
+   "weaving"
+  ],
+  "style": "Renaissance",
+  "styles": [
+   "Renaissance"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Lucca",
+  "type": "Textile",
+  "color": null,
+  "colorfulness": 26.5433,
+  "image": "https://www.artic.edu/iiif/2/b4ccdf0f-8b1b-2969-e447-5402cbe56985/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAGtKJ3dXOXVXPXZYPXpaOHtdQnxeRYBfQIBhRYJjR4ZnSYVnTIltUIxxWo90XZR3WJZ4W5h5XJF3YJV5YJR6ZJh7YJp+ZZ+AYZ+AZKWIaquOc6ySeKySe7SbggAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYYFdl17M5Q0IAjIQsyoFRglEEEddYE6SFADs=",
+  "alt": "A work made of silk and gilt-animal-substrate-wrapped linen, warp-float faced 3:1 twill weave with supplementary patterning wefts bound by secondary binding warps in (weft-float faced 1:3) twill interlacings (on reverse face secondary binding warps and supplementary wefts form detached interlacing)."
+ },
+ {
+  "aicId": 1895,
+  "title": "Panel",
+  "artist": null,
+  "artistId": null,
+  "date": "16th century",
+  "year": 1501,
+  "yearEnd": 1600,
+  "medium": "Silk and linen, satin damask weave",
+  "classification": "textile",
+  "classifications": [
+   "textile",
+   "weaving"
+  ],
+  "style": "Renaissance",
+  "styles": [
+   "Renaissance"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [
+   "satin weaving",
+   "damask"
+  ],
+  "origin": "Italy",
+  "type": "Textile",
+  "color": {
+   "h": 347,
+   "l": 39,
+   "s": 36,
+   "percentage": 0.09302166807479284,
+   "population": 763
+  },
+  "colorfulness": 30.3886,
+  "image": "https://www.artic.edu/iiif/2/f17aa6ce-bda2-53b2-1be7-07fed381715a/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAJZrbJhtbppwcJ9ydJ90dZZ6eZp+fKZ6eqF/f6OEgKOEgamIhKmIh6uLh6GMibCPjKqRjauWk7WSkLuhngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAUR4MQg0EMEiXQMSyMASmQUTggAOw==",
+  "alt": "Textile with a cream-colored floral motif on red fabric, vines arranged in repeating diamond shapes, a large flourish or blossom within each one."
+ },
+ {
+  "aicId": 14693,
+  "title": "Fragment",
+  "artist": null,
+  "artistId": null,
+  "date": "1401-1425",
+  "year": 1401,
+  "yearEnd": 1425,
+  "medium": "Silk and gilt-animal-substrate-wrapped linen, warp-float faced 2:1 'S' twill weave with weft-float faced 1:3 'S' twill interlacings of secondary binding warps and supplementary patterning wefts",
+  "classification": "textile",
+  "classifications": [
+   "textile",
+   "weaving"
+  ],
+  "style": "Renaissance",
+  "styles": [
+   "Renaissance"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Italy",
+  "type": "Textile",
+  "color": {
+   "h": 40,
+   "l": 34,
+   "s": 28,
+   "percentage": 0.2744975981460162,
+   "population": 2196
+  },
+  "colorfulness": 24.2212,
+  "image": "https://www.artic.edu/iiif/2/155c11f8-0e76-501f-12eb-bd1f6d06aaa2/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAHBdOnJfPHJgPXVgPXVhP3VjQHdlQnljQHliQXhkQXlkQXlkQnpkQ31lQ3xmRH5oRX9pRoBoRoFqR4NsSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoBEoCYRED8Ec0uI0UwEMQggAOw==",
+  "alt": "A work made of silk and gilt-animal-substrate-wrapped linen, warp-float faced 2:1 's' twill weave with weft-float faced 1:3 's' twill interlacings of secondary binding warps and supplementary patterning wefts."
+ },
+ {
+  "aicId": 11147,
+  "title": "Orphrey",
+  "artist": null,
+  "artistId": null,
+  "date": "16th century",
+  "year": 1501,
+  "yearEnd": 1600,
+  "medium": "Red velvet with design in applique and couched gold cord",
+  "classification": "textile",
+  "classifications": [
+   "textile",
+   "needlework (visual works)",
+   "liturgical"
+  ],
+  "style": "Renaissance",
+  "styles": [
+   "Renaissance",
+   "european"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Spain",
+  "type": "Textile",
+  "color": {
+   "h": 37,
+   "l": 42,
+   "s": 33,
+   "percentage": 0.015165711515025763,
+   "population": 421
+  },
+  "colorfulness": 33.7841,
+  "image": "https://www.artic.edu/iiif/2/2b47fefc-7e54-5c56-f0f7-9d75f4d81aa1/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhAQAFAPIAAHhgUHtjU31nWIJxZId2aAAAAAAAAAAAACH5BAAAAAAALAAAAAABAAUAAAMEOCBBCQA7",
+  "alt": "A work made of red velvet with design in applique and couched gold cord."
+ },
+ {
+  "aicId": 156525,
+  "title": "\"Renaissance\" Fringe",
+  "artist": null,
+  "artistId": null,
+  "date": "16th century",
+  "year": 1501,
+  "yearEnd": 1600,
+  "medium": "Silk and gold and silver gilt strips wound around silk fiber cores, countered warp twining with extended weft loop fringe",
+  "classification": "textile",
+  "classifications": [
+   "textile",
+   "weaving"
+  ],
+  "style": "Renaissance",
+  "styles": [
+   "Renaissance",
+   "european"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Italy",
+  "type": "Textile",
+  "color": {
+   "h": 148,
+   "l": 47,
+   "s": 3,
+   "percentage": 0.01867609090946406,
+   "population": 91
+  },
+  "colorfulness": 11.5338,
+  "image": "https://www.artic.edu/iiif/2/5e8dcfd7-11f8-3bd4-a666-05c0a1301994/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBwAFAPQAAAAAAgAAAwAABAABBQECBwEDCAIDCAMECAMECQQFCggICwwNDw0ODxEREhYVFBYWFRwcGyUkJiUkJygoKS8rKi0sLTIsLC8vMTw7OT8/PENBPEhFQFRKQlpYV2pZUgAAACH5BAAAAAAALAAAAAAHAAUAAAUdYCAIASAMFiVV1xR5XKZ1G7YwjvI0EIIUCcOBEAIAOw==",
+  "alt": "A work made of silk and gold and silver gilt strips wound around silk fiber cores, countered warp twining with extended weft loop fringe."
+ },
+ {
+  "aicId": 103440,
+  "title": "\"Renaissance\" Fringe",
+  "artist": null,
+  "artistId": null,
+  "date": "16th century",
+  "year": 1501,
+  "yearEnd": 1600,
+  "medium": "Silk and gold gilt strip wound around a silk fiber core, plain weave with supplementary patterning weft extended loop fringe",
+  "classification": "textile",
+  "classifications": [
+   "textile",
+   "weaving"
+  ],
+  "style": "Renaissance",
+  "styles": [
+   "Renaissance",
+   "european"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [
+   "plain weaving"
+  ],
+  "origin": "Italy",
+  "type": "Textile",
+  "color": {
+   "h": 350,
+   "l": 44,
+   "s": 58,
+   "percentage": 0.0013309841463150871,
+   "population": 8
+  },
+  "colorfulness": 30.8954,
+  "image": "https://www.artic.edu/iiif/2/c4983161-b315-cbb8-e28e-218f5ffbdc33/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAAAAAAsLCQwMCg0NCxkNDBgODRoODRIRDxMSDxsQDx0QDyASEXZOQ3tQRHxSR39WS4FXSYFVSgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUTICCOhFEkysJEj9NAA3IIwTCOIQA7",
+  "alt": "A work made of silk and gold gilt strip wound around a silk fiber core, plain weave with supplementary patterning weft extended loop fringe."
+ },
+ {
+  "aicId": 74048,
+  "title": "Equestrienne in Renaissance Dress",
+  "artist": "Antoine Louis Barye",
+  "artistId": 33541,
+  "date": "c. 1840",
+  "year": 1835,
+  "yearEnd": 1845,
+  "medium": "Bronze",
+  "classification": "statuette",
+  "classifications": [
+   "statuette",
+   "french",
+   "sculpture"
+  ],
+  "style": "nineteenth century",
+  "styles": [
+   "nineteenth century",
+   "19th century"
+  ],
+  "subjects": [
+   "equestrian",
+   "woman",
+   "horse",
+   "headdresses",
+   "feathers",
+   "dresses",
+   "costume",
+   "animals"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "casting (process)",
+   "sculpting"
+  ],
+  "origin": "France",
+  "type": "Sculpture",
+  "color": {
+   "h": 197,
+   "l": 44,
+   "s": 1,
+   "percentage": 0.1635236859901775,
+   "population": 1475
+  },
+  "colorfulness": 8.0271,
+  "image": "https://www.artic.edu/iiif/2/0f5a850b-9342-7c55-52dd-2995279a657f/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAE9IRFpVUV5ZVVlaWVhaWmFgX2FiYmVkY2JkZGttb3Nwbn5/f31/gXyBhJ6ho6aqr7y8vr++wc7Q1OHk6QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAUR4IAYRFIcDQMEy6MIjgRFUwgAOw==",
+  "alt": "A work made of bronze."
+ },
+ {
+  "aicId": 156524,
+  "title": "\"Renaissance\" Fringe",
+  "artist": null,
+  "artistId": null,
+  "date": "16th century",
+  "year": 1501,
+  "yearEnd": 1600,
+  "medium": "Silk and gold gilt strip wound around silk fiber core, warp-faced plain weave with extended ground wefts loop fringe",
+  "classification": "textile",
+  "classifications": [
+   "textile",
+   "weaving"
+  ],
+  "style": "Renaissance",
+  "styles": [
+   "Renaissance",
+   "european"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [
+   "plain weaving"
+  ],
+  "origin": "Italy",
+  "type": "Textile",
+  "color": {
+   "h": 353,
+   "l": 48,
+   "s": 37,
+   "percentage": 0.0024713325425069197,
+   "population": 13
+  },
+  "colorfulness": 31.052,
+  "image": "https://www.artic.edu/iiif/2/2dcb6db4-b401-7410-c866-02e89aae11ae/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBwAFAPQAAAABBQABBgACBgACBwADBwAECAIECQMFCQQFCQUFCgYGCgIIDAkMDw0MDhMPEiEUFiQVGCYXGSoYGy4bHiseIDQeITYeIS4gIl83OFI+PmQ1NGtBQXlHR4lGRo9JSAAAACH5BAAAAAAALAAAAAAHAAUAAAUdIEEIQDAA0CNVU2Rp3ZZxHtZczOJQxSEgCQNBEQIAOw==",
+  "alt": "A work made of silk and gold gilt strip wound around silk fiber core, warp-faced plain weave with extended ground wefts loop fringe."
+ },
+ {
+  "aicId": 156526,
+  "title": "\"Renaissance\" Fringe",
+  "artist": null,
+  "artistId": null,
+  "date": "16th century",
+  "year": 1501,
+  "yearEnd": 1600,
+  "medium": "Silk and gold gilt strip wound around silk fiber core, plain weave with supplementary patterning weft loop fringe and extended ground weft cut fringe",
+  "classification": "textile",
+  "classifications": [
+   "textile",
+   "weaving"
+  ],
+  "style": "Renaissance",
+  "styles": [
+   "Renaissance",
+   "european"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [
+   "plain weaving"
+  ],
+  "origin": "Italy",
+  "type": "Textile",
+  "color": {
+   "h": 57,
+   "l": 50,
+   "s": 8,
+   "percentage": 0.003177427554651754,
+   "population": 15
+  },
+  "colorfulness": 6.6331,
+  "image": "https://www.artic.edu/iiif/2/35a9db76-b943-6caa-78cc-ae77e367983a/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBwAFAPQAAAoLCQwNCwwOCw0ODA0PDA0PDQ0QDQ4QDQ4QDg8RDhARDhETEBMVEhYYFR4fHSsxLjE1MDI2MjQ5MzQ7NTxCOwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAUb4CEeiJggBREMhANFEjU9QaIsDQMcBkEIg0MIADs=",
+  "alt": "A work made of silk and gold gilt strip wound around silk fiber core, plain weave with supplementary patterning weft loop fringe and extended ground weft cut fringe."
+ },
+ {
+  "aicId": 14684,
+  "title": "Fragment",
+  "artist": null,
+  "artistId": null,
+  "date": "14th century",
+  "year": 1325,
+  "yearEnd": 1375,
+  "medium": "Silk, gilt-animal-substrate-wrapped linen, warp-float faced 2:1 twill weave with supplementary patterning wefts bound by secondary binding warps in weft-float faced 1:3 twill interlacings; left selvage present",
+  "classification": "textile",
+  "classifications": [
+   "textile",
+   "weaving"
+  ],
+  "style": "Renaissance",
+  "styles": [
+   "Renaissance"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Lucca",
+  "type": "Textile",
+  "color": {
+   "h": 37,
+   "l": 60,
+   "s": 35,
+   "percentage": 0.002295168308315999,
+   "population": 19
+  },
+  "colorfulness": 25.7445,
+  "image": "https://www.artic.edu/iiif/2/abe1d99e-c57d-ef66-f915-a50279e8cd70/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAFxEIV5GI19HJV9IJl9IKGRNLYhwT4ZwUYhxUIpzU4l0V453V5F6WZB6WpF7W5F8XaCLbaiSc62YerWefwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURYHQoEwIIyUIUjxEMDOQ0UggAOw==",
+  "alt": "A work made of silk, gilt-animal-substrate-wrapped linen, warp-float faced 2:1 twill weave with supplementary patterning wefts bound by secondary binding warps in weft-float faced 1:3 twill interlacings; left selvage present."
+ },
+ {
+  "aicId": 110760,
+  "title": "The Adventures of Ulysses",
+  "artist": "Apollonio di Giovanni",
+  "artistId": 9766,
+  "date": "1435–45",
+  "year": 1435,
+  "yearEnd": 1445,
+  "medium": "Tempera on panel",
+  "classification": "tempera",
+  "classifications": [
+   "tempera",
+   "paint",
+   "wood",
+   "painting",
+   "european painting"
+  ],
+  "style": "15th century",
+  "styles": [
+   "15th century",
+   "Renaissance"
+  ],
+  "subjects": [
+   "Greek mythology",
+   "classical"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "painting",
+   "painting (image making)",
+   "painting techniques",
+   "panel painting"
+  ],
+  "origin": "Italy",
+  "type": "Painting",
+  "color": {
+   "h": 39,
+   "l": 63,
+   "s": 64,
+   "percentage": 0.013802159105321664,
+   "population": 37
+  },
+  "colorfulness": 37.4524,
+  "image": "https://www.artic.edu/iiif/2/2295d601-573b-72f8-9760-cfec0d116b48/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhDQAFAPYAAEw/KldEJ1RGLFhIK1ZLM1pMMV5MMV1OM1hONltPNl1OOV1QNVxTO2VOL2NPMWZPMWxSMGlUMGxSNG5UNW9YNGZWOWtWOGtZPm1bPHFVN3BWN3FbPHJcPH9fPWRWQm1WQWZfUXJiTnhoSHVnUndrVXtpUnlpVHpqVH5rVnlrWX5qWH53Y4BgNIJiOoJrRoJmSoJnSoRnSYdoSotwS4BrVYRuVIRzUoN0WYFzXYR0XZF3XIF6Zop7ZYZ9aZN9ZJN/ZpR8ZQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAANAAUAAAdDgA8HBQwEAw4SExwVFBExKCo4JB41QDo0OTMuLx8pPjwrPwolMCc3Nh0yJiEjOz0gGywtGCIZGgYAAggJFxYNEAELgQA7",
+  "alt": "A work made of tempera on panel."
+ },
+ {
+  "aicId": 22857,
+  "title": "The Garden of Paradise",
+  "artist": "Workshop of Hieronymus Bosch",
+  "artistId": 119568,
+  "date": "c. 1500–c. 1520",
+  "year": 1495,
+  "yearEnd": 1525,
+  "medium": "Oil on panel",
+  "classification": "oil on panel",
+  "classifications": [
+   "oil on panel",
+   "oil paintings (visual works)",
+   "paint",
+   "painting",
+   "european painting"
+  ],
+  "style": "16th Century",
+  "styles": [
+   "16th Century",
+   "northern renaissance",
+   "Renaissance"
+  ],
+  "subjects": [
+   "water",
+   "angels",
+   "animals",
+   "bird",
+   "birds",
+   "fantastic beasts",
+   "figures",
+   "fruit",
+   "garden",
+   "heaven",
+   "man",
+   "men",
+   "nudes",
+   "religion",
+   "religious",
+   "symbolism",
+   "woman",
+   "women"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "panel painting",
+   "oil painting",
+   "painting",
+   "painting (image making)",
+   "painting techniques"
+  ],
+  "origin": "Netherlands",
+  "type": "Painting",
+  "color": {
+   "h": 39,
+   "l": 35,
+   "s": 53,
+   "percentage": 0.05524365019206804,
+   "population": 258
+  },
+  "colorfulness": 37.6799,
+  "image": "https://www.artic.edu/iiif/2/3e82db48-5f93-ada3-7ab2-f97328ccc1bd/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAF5NHV1OIFpNLV1QJkpONVxONF1fPmBNI2FPJmJRI2dSIGFRJGNSLGZWLWRYKXNdJnBZKGZfMWtdN2VdPm1hNHZlOHtrOmNfRGpnS2ZxVGlxVIJrM4JrTIt0Qo19V3WHcI2HYY2WfZKafpCfio+gjZ21pK/Arq/EswAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlwNIppMmMTKSPqAIYCEATB8VzwRQSjAOkY5FwGguCIaJAbB6BIAA7",
+  "alt": "A work made of oil on panel."
+ },
+ {
+  "aicId": 80084,
+  "title": "The Crucifixion",
+  "artist": "Francisco de Zurbarán",
+  "artistId": 42406,
+  "date": "1627",
+  "year": 1627,
+  "yearEnd": 1627,
+  "medium": "Oil on canvas",
+  "classification": "oil on canvas",
+  "classifications": [
+   "oil on canvas",
+   "oil paintings (visual works)",
+   "paint",
+   "spanish",
+   "painting",
+   "european painting"
+  ],
+  "style": "Renaissance",
+  "styles": [
+   "Renaissance",
+   "17th Century"
+  ],
+  "subjects": [
+   "crucifixions",
+   "man",
+   "biblical",
+   "Christianity",
+   "Christian subjects",
+   "religious",
+   "religion",
+   "Jesus",
+   "crosses"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "oil painting",
+   "painting",
+   "painting techniques",
+   "painting (image making)"
+  ],
+  "origin": "Spain",
+  "type": "Painting",
+  "color": {
+   "h": 39,
+   "l": 51,
+   "s": 14,
+   "percentage": 1.3579392082466315e-05,
+   "population": 22
+  },
+  "colorfulness": 0,
+  "image": "https://www.artic.edu/iiif/2/c8ee825f-bc8c-c76b-1f05-5d692d9a6b47/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAABIODxQREBURERUSERYSERgTEhkVExwXFR4ZFRwYFh4ZFiQfGiokHjQsIzs1LAAAACH5BAAAAAAALAAAAAADAAUAAAQL8DBUGgIOjTWGGREAOw==",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 50993,
+  "title": "At the Renaissance: Sarah Bernhardt in Phèdre",
+  "artist": "Henri de Toulouse-Lautrec",
+  "artistId": 40869,
+  "date": "1893",
+  "year": 1893,
+  "yearEnd": 1893,
+  "medium": "Lithograph on grayish-cream wove paper",
+  "classification": "lithograph",
+  "classifications": [
+   "lithograph",
+   "print",
+   "prints and drawing"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "France",
+  "type": "Print",
+  "color": {
+   "h": 2,
+   "l": 54,
+   "s": 97,
+   "percentage": 0.0002084779649214976,
+   "population": 2
+  },
+  "colorfulness": 14.1585,
+  "image": "https://www.artic.edu/iiif/2/401edc97-f21c-da88-89d9-07c5afa24c04/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAGFcSm9qXX13ZJaPepaQgLWtmbu0osC5oMW/qNDKtNnSudjSvODZwuLbyeHby+TeyeTezurjzPDo0wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURIOQURsMMxKMIQXQAgbQgSQgAOw==",
+  "alt": "A work made of lithograph on grayish-cream wove paper."
+ },
+ {
+  "aicId": 62460,
+  "title": "The Terrace",
+  "artist": "Dutch",
+  "artistId": 119723,
+  "date": "c. 1660",
+  "year": 1655,
+  "yearEnd": 1665,
+  "medium": "Oil on canvas",
+  "classification": "oil on canvas",
+  "classifications": [
+   "oil on canvas",
+   "paint",
+   "painting",
+   "european painting"
+  ],
+  "style": "17th Century",
+  "styles": [
+   "17th Century"
+  ],
+  "subjects": [
+   "exterior",
+   "vines",
+   "love",
+   "women",
+   "men",
+   "tablecloth",
+   "table",
+   "clouds",
+   "trees",
+   "servingware",
+   "figures",
+   "instruments",
+   "interior",
+   "man",
+   "sculpture",
+   "woman"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "oil painting",
+   "painting",
+   "painting (image making)",
+   "painting techniques"
+  ],
+  "origin": "Delft",
+  "type": "Painting",
+  "color": {
+   "h": 41,
+   "l": 50,
+   "s": 60,
+   "percentage": 0.0011417128204074317,
+   "population": 10
+  },
+  "colorfulness": 34.8268,
+  "image": "https://www.artic.edu/iiif/2/086f1a92-1a07-1805-3321-d238009fcda0/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAEM0Ik08J1c8I1xBLFpHLVNGM1BHN19GMVZJMVZINlpMN1tOOF1RPmRPMGFONGVPOV9XQXVrT4B5Y6yojAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoAEhgDRFQbEoDvMMTXIIRAgAOw==",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 160031,
+  "title": "The Golden Age",
+  "artist": "Sir John Edward Poynter",
+  "artistId": 40755,
+  "date": "1875",
+  "year": 1875,
+  "yearEnd": 1875,
+  "medium": "Oil on canvas",
+  "classification": "oil on canvas",
+  "classifications": [
+   "oil on canvas",
+   "european painting",
+   "paint",
+   "oil paintings (visual works)",
+   "british",
+   "painting"
+  ],
+  "style": "nineteenth century",
+  "styles": [
+   "nineteenth century",
+   "19th century"
+  ],
+  "subjects": [
+   "men",
+   "nudes",
+   "ladders",
+   "trees",
+   "man",
+   "foliage",
+   "cloth",
+   "fruit",
+   "nature"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "oil painting",
+   "painting techniques",
+   "painting (image making)",
+   "painting"
+  ],
+  "origin": "England",
+  "type": "Painting",
+  "color": {
+   "h": 38,
+   "l": 69,
+   "s": 32,
+   "percentage": 0.0016893488141035283,
+   "population": 32
+  },
+  "colorfulness": 31.3797,
+  "image": "https://www.artic.edu/iiif/2/5b4ab4f3-0d51-584d-afd3-833e42392c81/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhAgAFAPMAADIgIjMhIlY/NVs9MVdBNlpCNmJGOWJIOXZRPW5UQgAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAACAAUAAAQI8BQ0EjFAhAgAOw==",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 14973,
+  "title": "Side Chair",
+  "artist": "Dutch School",
+  "artistId": 46239,
+  "date": "c. 1745/55",
+  "year": 1740,
+  "yearEnd": 1760,
+  "medium": "Walnut, walnut veneer; upholstery",
+  "classification": "chair",
+  "classifications": [
+   "chair",
+   "seating",
+   "furniture",
+   "european decorative arts"
+  ],
+  "style": "Rococo",
+  "styles": [
+   "Rococo"
+  ],
+  "subjects": [
+   "furniture"
+  ],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Netherlands",
+  "type": "Furniture",
+  "color": {
+   "h": 8,
+   "l": 52,
+   "s": 62,
+   "percentage": 0.003654787562862346,
+   "population": 35
+  },
+  "colorfulness": 28.4037,
+  "image": "https://www.artic.edu/iiif/2/f89c86fb-e111-450d-6e12-a555ca760278/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAJxxbJp0bo2AhLiYjrWop9i2rMvJydrW0dzf3+Hf2uXg3Ofj3+7r5+3t5+vs6fDv6fHv7PTw6/Tz7fb18wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAUR4BMRjOQISlMAyzEECYQYUwgAOw==",
+  "alt": "A work made of walnut, walnut veneer; upholstery."
+ },
+ {
+  "aicId": 110559,
+  "title": "Portrait of a Woman",
+  "artist": "Dutch",
+  "artistId": 119723,
+  "date": "c. 1655",
+  "year": 1650,
+  "yearEnd": 1660,
+  "medium": "Oil on canvas",
+  "classification": "oil on canvas",
+  "classifications": [
+   "oil on canvas",
+   "oil paintings (visual works)",
+   "paint",
+   "dutch",
+   "painting",
+   "european painting"
+  ],
+  "style": "17th Century",
+  "styles": [
+   "17th Century"
+  ],
+  "subjects": [
+   "portraits: female subject",
+   "clouds",
+   "dresses",
+   "dutch",
+   "headdresses",
+   "jewelry",
+   "portrait",
+   "portraits",
+   "sky",
+   "woman"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "oil painting",
+   "painting",
+   "painting (image making)",
+   "painting techniques"
+  ],
+  "origin": "Netherlands",
+  "type": "Painting",
+  "color": {
+   "h": 75,
+   "l": 44,
+   "s": 6,
+   "percentage": 0.15780905460620762,
+   "population": 1329
+  },
+  "colorfulness": 8.1236,
+  "image": "https://www.artic.edu/iiif/2/56909e17-e34d-9c18-d0b9-2a08ceff911c/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAAEAAA4MCw0PERERESQmJUhIQWpwYXR4Z3F3aXt+dnyAd4KEdoCGeIeLf4eMfo2ThZ+kl6esn6itn9fZ0gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURIPI4hwFFEqNMS0MIQZEMQAgAOw==",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 40902,
+  "title": "Bowl",
+  "artist": "Ancient Cypriot",
+  "artistId": 37559,
+  "date": "Late Bronze Age, about 1450-1200 BCE",
+  "year": -1450,
+  "yearEnd": -1200,
+  "medium": "terracotta",
+  "classification": "bowl",
+  "classifications": [
+   "bowl",
+   "ceramics",
+   "dish (vessel)",
+   "vessel",
+   "ancient art"
+  ],
+  "style": "late bronze age",
+  "styles": [
+   "late bronze age",
+   "bronze age"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Cyprus",
+  "type": "Vessel",
+  "color": {
+   "h": 318,
+   "l": 81,
+   "s": 2,
+   "percentage": 0.988407886241122,
+   "population": 5266
+  },
+  "colorfulness": 21.5635,
+  "image": "https://www.artic.edu/iiif/2/1a7bbc2b-84b7-ea89-22e7-d81d93c83501/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAGtRP2lRQHRcSXZeS3pqY4ZtW5B1YJZ+bIR3ca+flK+ioLeporywp7uzs8G4s8O4s8K9vsjAwsnDxMvExcrHycvIys3Iyc/IyM/MztHO0dPQ0tTQ09XT09PR1tTR1dbV19jW19jX2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhwI2GAwp9MBmPxcF4VCiLQgBgkHguh4Eg0ZlEFAREAxIEADs=",
+  "alt": "A work made of terracotta."
+ },
+ {
+  "aicId": 40905,
+  "title": "Bowl",
+  "artist": "Ancient Cypriot",
+  "artistId": 37559,
+  "date": "Late Bronze Age, 1450-1200 BCE",
+  "year": -1450,
+  "yearEnd": -1200,
+  "medium": "terracotta",
+  "classification": "bowl",
+  "classifications": [
+   "bowl",
+   "ceramics",
+   "dish (vessel)",
+   "vessel",
+   "ancient art"
+  ],
+  "style": "late bronze age",
+  "styles": [
+   "late bronze age",
+   "bronze age"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Cyprus",
+  "type": "Vessel",
+  "color": {
+   "h": 340,
+   "l": 80,
+   "s": 3,
+   "percentage": 1.1331216120846284,
+   "population": 6037
+  },
+  "colorfulness": 20.0909,
+  "image": "https://www.artic.edu/iiif/2/fd6cf52c-5eac-163d-a3fe-d1d22eb9f13c/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAGxUQW1UQW1ZTGlZUHtgSXpiU4JpVoh6dJaAcaSXk7GjnLOknb63t8W+ucK8vce/vcW+v8nCv8fAwsrGxMnHyc3Kys7Ly83Mz8/MztDMz83M0dLP0NPQ0NPR0NPR0tTR0NbU09TS19bV2QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhwA2n8wF5LJhMZdKIUDSLgiCAuIQeBgBBIZJAEoMDwxEEADs=",
+  "alt": "A work made of terracotta."
+ },
+ {
+  "aicId": 110643,
+  "title": "Jug in the Shape of a Barrel",
+  "artist": "Ancient Cypriot",
+  "artistId": 37559,
+  "date": "750-550 BCE",
+  "year": -750,
+  "yearEnd": -550,
+  "medium": "terracotta, bichrome",
+  "classification": "vessel",
+  "classifications": [
+   "vessel",
+   "earthenware",
+   "ceramics",
+   "ancient art"
+  ],
+  "style": "white-ground",
+  "styles": [
+   "white-ground",
+   "early iron age",
+   "iron age"
+  ],
+  "subjects": [
+   "vessels"
+  ],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Cyprus",
+  "type": "Vessel",
+  "color": null,
+  "colorfulness": 20.1958,
+  "image": "https://www.artic.edu/iiif/2/21055e80-5196-fe06-4241-ed66b5cc2711/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAEgxGVhIN21bRXBcSYyBdpSKgp+TiqegmLqvpbOtrru3t725uMi8tcC6utPMyOPf2+Xg3unl5fDt7/r2+QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAAIf4KQXBwbGVNYXJrCgAsAAAAAAQABQAABRFg0izKZBQSMwQOAggPRBxRCAA7",
+  "alt": "A work made of terracotta, bichrome."
+ },
+ {
+  "aicId": 19584,
+  "title": "Murasaki Shikibu, from the series Ukiyo-e Genji",
+  "artist": "Okumura Masanobu",
+  "artistId": 61758,
+  "date": "Edo period (1615–1868), about 1710",
+  "year": 1705,
+  "yearEnd": 1715,
+  "medium": "Woodblock print; oban",
+  "classification": "woodblock print",
+  "classifications": [
+   "woodblock print",
+   "print",
+   "asian art",
+   "woodblock"
+  ],
+  "style": "Japanese (culture or style)",
+  "styles": [
+   "Japanese (culture or style)"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Japan",
+  "type": "Print",
+  "color": {
+   "h": 50,
+   "l": 47,
+   "s": 18,
+   "percentage": 0.017350404622751284,
+   "population": 92
+  },
+  "colorfulness": 13.1891,
+  "image": "https://www.artic.edu/iiif/2/607ff8ac-8d1b-170d-7b35-d4004017cb66/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAKajjq6qlbWwmrm0nrm1n724oL64oMC5oMG8pcG9pcG9psK8psO/psbAp8jDq8vErMzGrc7IsM/IsM7JsdDJsNLKsdDLs9HLs9DMs9LMtdXPttnTu9zVvd3WvN3Xvt7Xv9/ZwOLcxAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhwM6nAbk8KpsQZiJAUDaWBANA4DgyBcUgsDBoPKCI5BAEADs=",
+  "alt": "A work made of woodblock print; oban."
+ },
+ {
+  "aicId": 2995,
+  "title": "Fragments (Border)",
+  "artist": "Nasca",
+  "artistId": 29844,
+  "date": "100 BCE-200 CE",
+  "year": -100,
+  "yearEnd": 200,
+  "medium": "Cotton, plain weave; embroidered with cotton and wool (camelid) in stem stitches",
+  "classification": "textile",
+  "classifications": [
+   "textile",
+   "needlework (visual works)"
+  ],
+  "style": "nazca",
+  "styles": [
+   "nazca",
+   "andean",
+   "andes",
+   "Pre-Columbian"
+  ],
+  "subjects": [],
+  "themesRaw": [
+   "Latin American"
+  ],
+  "techniques": [],
+  "origin": "Peru",
+  "type": "Textile",
+  "color": {
+   "h": 37,
+   "l": 52,
+   "s": 73,
+   "percentage": 0.012747649652095397,
+   "population": 36
+  },
+  "colorfulness": 47.8343,
+  "image": "https://www.artic.edu/iiif/2/beb9c895-4d71-d087-95e3-f647882dd9d2/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhDQAFAPU+ADgrLUUkFlIwHVoxHmszGWg5HkYtKFEsI1QwJ100LVo6LUwxMk47NlI7M1w+MWEvInQ9L3VKLmhJOnZENXtKOnxTOmtNSHNLR3xRRXRXSn5VS2FPUGtVUH5dUXtgVn5hXWZja4VRRpZhT5RpU4NrY4FsZI92Y491Z4lwaIN5eZt+fpuOiMG8vMbCwc/JxcnIysvJytLGw9DLxtLMx9vMytXQy9DQ2uHPztfX4dna4+vg4P38/P38/f79/f///wAAACH5BAAAAAAALAAAAAANAAUAAAY6wE/JtFKJQpqUwsMAQR6DRYJwcJAkkwZAd6PFZjVXS/ZiwXK+9KkyiiAEhYAB19vxUBRM5mLpcDY2QQA7",
+  "alt": "A work made of cotton, plain weave; embroidered with cotton and wool (camelid) in stem stitches."
+ },
+ {
+  "aicId": 235667,
+  "title": "Altar Set",
+  "artist": null,
+  "artistId": null,
+  "date": "Qing dynasty (1644–1911), Jiaqing reign mark and period",
+  "year": 1644,
+  "yearEnd": 1911,
+  "medium": "Porcelain painted in overglaze enamels (famille rose)",
+  "classification": "ceramics",
+  "classifications": [
+   "ceramics",
+   "decorative arts"
+  ],
+  "style": "Chinese (culture or style)",
+  "styles": [
+   "Chinese (culture or style)"
+  ],
+  "subjects": [],
+  "themesRaw": [
+   "Arts of Asia 100"
+  ],
+  "techniques": [],
+  "origin": "China",
+  "type": "Vessel",
+  "color": {
+   "h": 182,
+   "l": 45,
+   "s": 62,
+   "percentage": 0.005083884087442806,
+   "population": 12
+  },
+  "colorfulness": 24.6553,
+  "image": "https://www.artic.edu/iiif/2/98325971-f2f2-31dc-00de-a16214ceaf79/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhDwAFAPYAAG5ucHJxdXd1enx7fX99fYB/fYF+fnaCeHqBfYCAf4OIfImMepGOf4+Qe5mbeZyffXl/hX+ChXmLiXqUi4GBgoCCgoWEgYaFg4SCho2OgoKDiomIiYuKioqPiIiJj4uLjoyLjI6MjY+Oj4WShI+Sg46Qh5aRhpKSjJWZiZydiJuckqCdlZ6ojJ6hlp+okaClgKOnjKaokKWql6Oim6OioailpLC2orGxqba2tra4sbi3ucC2scvBvr6+xMXCwMrEw8rGw8/FwMzJx8zLyczLytbOzNPT1NfX1tnZ2tvd4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAPAAUAAAdNgBETEhgXFAUQFQQWAwgHAB4uHR8oGwwjCgYkCSUNARorIicPIDIvCxwOGSEmAj02LTgwNDksKjoxMzcpNUlFQkhBREdAQ0Y8Pj87RIEAOw==",
+  "alt": "A work made of porcelain painted in overglaze enamels (famille rose)."
+ },
+ {
+  "aicId": 204587,
+  "title": "Landscape in the Style of Ancient Masters: after Ni Zan (1301-1374)",
+  "artist": "Lan Ying",
+  "artistId": 14686,
+  "date": "Ming dynasty (1368–1644), first half of 17th century",
+  "year": 1637,
+  "yearEnd": 1647,
+  "medium": "Album leaf; ink and color on paper",
+  "classification": "album leaf",
+  "classifications": [
+   "album leaf",
+   "painting"
+  ],
+  "style": "Chinese (culture or style)",
+  "styles": [
+   "Chinese (culture or style)"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "China",
+  "type": "Painting",
+  "color": {
+   "h": 2,
+   "l": 48,
+   "s": 35,
+   "percentage": 1.056452154760944e-05,
+   "population": 6
+  },
+  "colorfulness": 0,
+  "image": "https://www.artic.edu/iiif/2/97ff9a90-1148-5ffa-ba6e-714db56bf4d6/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAK6jlrGmmLGmmrWqnbitnrmtnruworywobywor2yo7+zpMCzpMK2qMa5qse7q8e7rMq8rMq9rsu/r8y/rsu/sM7Bss/CstHDstDEtNHEtNHFtdPGtgAAAAAAAAAAAAAAACH5BAAAAAAAIf8LSW1hZ2VNYWdpY2sOZ2FtbWE9MC40NTQ1NDUALAAAAAAGAAUAAAUYYCZW0pUhCEFMVAI8mfMYg8BIkrMISRUCADs=",
+  "alt": "A work made of album leaf; ink and color on paper."
+ },
+ {
+  "aicId": 7624,
+  "title": "Komurasaki of the Miuraya and Shirai Gompachi (Miuraya Komurasaki, Shirai Gompachi)",
+  "artist": "Kitagawa Utamaro",
+  "artistId": 37074,
+  "date": "c. 1800",
+  "year": 1795,
+  "yearEnd": 1805,
+  "medium": "Color woodblock print; hashira-e",
+  "classification": "woodblock print",
+  "classifications": [
+   "woodblock print",
+   "print",
+   "asian art"
+  ],
+  "style": "Japanese (culture or style)",
+  "styles": [
+   "Japanese (culture or style)"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Japan",
+  "type": "Print",
+  "color": {
+   "h": 49,
+   "l": 40,
+   "s": 52,
+   "percentage": 0.0021239458729829645,
+   "population": 67
+  },
+  "colorfulness": 33.3818,
+  "image": "https://www.artic.edu/iiif/2/66c4dafb-2f53-f5ac-b676-32cafbe5b6bd/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhAQAFAPIAAGthS6KXcq+ng7WngLSphgAAAAAAAAAAACH5BAAAAAAALAAAAAABAAUAAAMEGCQDCQA7",
+  "alt": "A work made of color woodblock print; hashira-e."
+ },
+ {
+  "aicId": 158100,
+  "title": "Five Panels of a Vajrasattva Crown with Transcendental Buddhas",
+  "artist": null,
+  "artistId": null,
+  "date": "15th century",
+  "year": 1399,
+  "yearEnd": 1499,
+  "medium": "Ink and pigments, with gold on pressed paper",
+  "classification": "ceremonial object",
+  "classifications": [
+   "ceremonial object",
+   "asian art",
+   "ritual objects"
+  ],
+  "style": "Himalayan",
+  "styles": [
+   "Himalayan"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Tibet",
+  "type": "Religious/Ritual Object",
+  "color": {
+   "h": 38,
+   "l": 51,
+   "s": 59,
+   "percentage": 0.004792887355164935,
+   "population": 44
+  },
+  "colorfulness": 39.0146,
+  "image": "https://www.artic.edu/iiif/2/cb140230-3ddb-b072-e724-3c3d80d5f8aa/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQTAHtmTIJuU4d2Xod3YY97Y5GAbKGSfqyeh6qeia2disa+rcrDtc7Hu9PNwtPOw9zYzuDc0uPd1P7//P///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAUR4PA0heAwhIQck7EoCRBBQQgAOw==",
+  "alt": "A work made of ink and pigments, with gold on pressed paper."
+ },
+ {
+  "aicId": 91415,
+  "title": "Vessel with Painted Landscape",
+  "artist": "Nasca",
+  "artistId": 29844,
+  "date": "180 BCE–500 CE",
+  "year": -180,
+  "yearEnd": 500,
+  "medium": "Ceramic and pigment",
+  "classification": "earthenware",
+  "classifications": [
+   "earthenware",
+   "art of the americas",
+   "ceramics",
+   "vessel"
+  ],
+  "style": "nazca",
+  "styles": [
+   "nazca",
+   "early intermediate period",
+   "Pre-Columbian",
+   "americas",
+   "andes",
+   "Arts of the Americas",
+   "andean"
+  ],
+  "subjects": [
+   "landscapes",
+   "agriculture",
+   "plants",
+   "animals",
+   "mythology",
+   "vessels"
+  ],
+  "themesRaw": [
+   "Latin American"
+  ],
+  "techniques": [
+   "modeling (forming)",
+   "painting (image making)"
+  ],
+  "origin": "Peruvian South Coast",
+  "type": "Ceramics",
+  "color": {
+   "h": 44,
+   "l": 57,
+   "s": 1,
+   "percentage": 0.07521620173726706,
+   "population": 629
+  },
+  "colorfulness": 21.0869,
+  "image": "https://www.artic.edu/iiif/2/092de658-a96c-21d4-e1cd-33e04d451334/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAACgnJy0tLTMtLTUvL1ZDOWJRSGRVUWhYU2xfVnRfUXt6eoGBgY2IhJOPjL69vMHAv8PAv8vMzN3e3t3e3wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURYDAIwHIYCpQgTlQQj9QwUwgAOw==",
+  "alt": "A work made of ceramic and pigment."
+ },
+ {
+  "aicId": 4717,
+  "title": "A Treatise on Landscape Painting and Effect in Water Colours: From the First Rudiments, to the Finished Picture No. 1",
+  "artist": "David Cox, the elder",
+  "artistId": 41042,
+  "date": "1813",
+  "year": 1813,
+  "yearEnd": 1813,
+  "medium": "Book with six etchings and letterpress in black on cream wove paper, in box",
+  "classification": "watercolor",
+  "classifications": [
+   "watercolor",
+   "book",
+   "prints and drawing"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "England",
+  "type": "Book",
+  "color": {
+   "h": 203,
+   "l": 35,
+   "s": 28,
+   "percentage": 1.3299656568079936,
+   "population": 5987
+  },
+  "colorfulness": 19.5192,
+  "image": "https://www.artic.edu/iiif/2/19ea80cb-da70-cfb8-53df-de4128f04b74/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAD1RZEBUZkFUZ0FVaENXa0RXaERYaUZYaUVZbEZZbEVabEdbbEZabUdcb0lcb0pfcUxfck1gc1Vlc1hnc1lodVpod1tqd19ueVxte11tfF1ufF1ufl1vfl9wfV9wf2Nzf2FygWx3gHJ+h5+ZjaCbkKKdk6qilKmjlwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlwFPFs+GAMqJSAiEIDAATUgRyKDQYlpHjsTAoCBLT5dPRYCihIAA7",
+  "alt": "A work made of book with six etchings and letterpress in black on cream wove paper, in box."
+ },
+ {
+  "aicId": 269223,
+  "title": "Landscape Painting",
+  "artist": "William Keith",
+  "artistId": 35230,
+  "date": "1868-1900",
+  "year": 1868,
+  "yearEnd": 1900,
+  "medium": "Oil on panel",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "modern and contemporary art"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [
+   "landscape"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "painting"
+  ],
+  "origin": "United States",
+  "type": "Painting",
+  "color": {
+   "h": 40,
+   "l": 33,
+   "s": 23,
+   "percentage": 0.009228826818183194,
+   "population": 3539
+  },
+  "colorfulness": 0,
+  "image": "https://www.artic.edu/iiif/2/2a1e5636-e9c6-6b72-70ab-437f767f73db/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAF1QP11RP19TPmFUPWFVP2JWPmNXP2NZP19VSGRXQGZZQWVcQ2VaRGdcRmpeQ2lcRWleRGlcRmpcRmteR2tgQ25jSXBlSHBkSXFkS3VqS3FkUXVrWnpuXIN1YYZ7Z4h9Zot/aIqAaoqAawAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYgwA4HsfGIRI8HAKABfQyUDCa5MDgwmIrjkFAYDA0GIAgAOw==",
+  "alt": "A work made of oil on panel."
+ },
+ {
+  "aicId": 192263,
+  "title": "Two Figures (related to the painting Tahitian Landscape)",
+  "artist": "Paul Gauguin",
+  "artistId": 34611,
+  "date": "1891/93",
+  "year": 1891,
+  "yearEnd": 1893,
+  "medium": "Black chalk, with touches of watercolor and watercolor offset on cream wove paper",
+  "classification": "prints and drawing",
+  "classifications": [
+   "prints and drawing",
+   "drawings (visual works)",
+   "chalk"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "France",
+  "type": "Drawing and Watercolor",
+  "color": {
+   "h": 4,
+   "l": 47,
+   "s": 28,
+   "percentage": 0.00044707523382034726,
+   "population": 3
+  },
+  "colorfulness": 50.612,
+  "image": "https://www.artic.edu/iiif/2/8601fc41-631d-18b8-489f-4c2f20b05e90/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBQAFAPQAANiudNmwd9qxd9mxeduze9izftu0ftu0f+C0fOO2fNu2gN+4gdq4iN67jOO4geK5geK5g+S5geC5hOC6heO9iuS8iOG8jOO+jebAjgAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAFAAUAAAUVICUUkDUBA+JIxBFhS2AkVaMwzxUCADs=",
+  "alt": "A work made of black chalk, with touches of watercolor and watercolor offset on cream wove paper."
+ },
+ {
+  "aicId": 222711,
+  "title": "A Treatise on Landscape Painting and Effect in Water Colours: From the First Rudiments, to the Finished Picture No. 8",
+  "artist": "David Cox, the elder",
+  "artistId": 41042,
+  "date": "1813",
+  "year": 1813,
+  "yearEnd": 1813,
+  "medium": "Book with four aquatints and letterpress in black on cream wove paper, in box",
+  "classification": "book",
+  "classifications": [
+   "book",
+   "paper",
+   "prints and drawing"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "England",
+  "type": "Book",
+  "color": {
+   "h": 204,
+   "l": 31,
+   "s": 36,
+   "percentage": 1.6121154006316103,
+   "population": 7162
+  },
+  "colorfulness": 22.6691,
+  "image": "https://www.artic.edu/iiif/2/f6b9d91b-f768-b412-b2a6-61331e6e3e15/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAADhNYzpPZDpPZTtPZTxRZj1RZjtQaDxRajxSaj5Taj9Uaz5TbEBVbEFWbUBVbktcb0xcbkNYcEtfc01fc01hdVBgcFBjd1Nld1dnd1NkeFVneVVoel5te2l1fp6Ug52UhJ6WhqKXhaeejQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlQNHEQpFQJhzQIhEAGAyPT6RRGCgYFY+DQRAgDpBQZqO5aDCdIAA7",
+  "alt": "A work made of book with four aquatints and letterpress in black on cream wove paper, in box."
+ },
+ {
+  "aicId": 222697,
+  "title": "A Treatise on Landscape Painting and Effect in Water Colours: From the First Rudiments, to the Finished Picture No. 4",
+  "artist": "David Cox, the elder",
+  "artistId": 41042,
+  "date": "1813",
+  "year": 1813,
+  "yearEnd": 1813,
+  "medium": "Book with six etchings and letterpress in black on cream wove paper, in box",
+  "classification": "book",
+  "classifications": [
+   "book",
+   "paper",
+   "prints and drawing"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "England",
+  "type": "Book",
+  "color": {
+   "h": 204,
+   "l": 32,
+   "s": 35,
+   "percentage": 1.4841424382819668,
+   "population": 6631
+  },
+  "colorfulness": 21.8931,
+  "image": "https://www.artic.edu/iiif/2/d2758c61-d823-d0b7-8741-2535c8c28c9c/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAADlOZDpPZTtQZjpQZzxQZj1RaD1SaDxSaT5TaD9Uaj5Uaz9VbEFWbUNZb0VacERack5fcVBhc1Fjc1Jjc1BhdFNkdVBkd1Fkd1Jld1RkdVFkeFNmeVRnelZoeldpemNwfWd0f5SPg52WhpmUiJiUiaCajQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlwFKEo7FcIJ9QIREADAAU0sOBICwWlRGjYRAoDhNRxoPZdCSgIAA7",
+  "alt": "A work made of book with six etchings and letterpress in black on cream wove paper, in box."
+ },
+ {
+  "aicId": 222710,
+  "title": "A Treatise on Landscape Painting and Effect in Water Colours: From the First Rudiments, to the Finished Picture No. 7",
+  "artist": "David Cox, the elder",
+  "artistId": 41042,
+  "date": "1813",
+  "year": 1813,
+  "yearEnd": 1813,
+  "medium": "Book with four aquatints and letterpress in black on cream wove paper, in box",
+  "classification": "book",
+  "classifications": [
+   "book",
+   "paper",
+   "prints and drawing"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "England",
+  "type": "Book",
+  "color": {
+   "h": 203,
+   "l": 59,
+   "s": 37,
+   "percentage": 0.005443547015235127,
+   "population": 24
+  },
+  "colorfulness": 19.8735,
+  "image": "https://www.artic.edu/iiif/2/7936235b-1df6-c24d-1ec6-65405f3f2ef6/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAEJWZ0NXakRYaURZa0VaakdbbEdabUhdbkldbkhecEhecUpfcUpecktgc0xhc0xhdE1hdU9jd1Rlc1ZndFdodVdoeFlsfVtufVtufl5wf2NzgmJ0gmh2gGV4hmh5h2h6iGl7iHB+h5eShZeTh5iTh56XiKGajQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlQFPFYsFkLhwSwyAADAKSUeSBKCwaExHEcSAkFJSSBvTpeDahIAA7",
+  "alt": "A work made of book with four aquatints and letterpress in black on cream wove paper, in box."
+ },
+ {
+  "aicId": 222712,
+  "title": "A Treatise on Landscape Painting and Effect in Water Colours: From the First Rudiments, to the Finished Picture No. 9",
+  "artist": "David Cox, the elder",
+  "artistId": 41042,
+  "date": "1813",
+  "year": 1813,
+  "yearEnd": 1813,
+  "medium": "Book with four color aquatints and letterpress in black on cream wove paper, in box",
+  "classification": "book",
+  "classifications": [
+   "book",
+   "paper",
+   "prints and drawing"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "England",
+  "type": "Book",
+  "color": {
+   "h": 37,
+   "l": 52,
+   "s": 20,
+   "percentage": 0.03503287103247193,
+   "population": 158
+  },
+  "colorfulness": 24.3915,
+  "image": "https://www.artic.edu/iiif/2/48b38632-98a5-45fa-62ff-3b0f85be7e6c/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAJmMcJqOcZuOcZ2Qc56QcqCTdaKWd6KUeKKVeKSWeKWXeaaYeaiafamafaqafKubfqmcfa2df6qdgKudgKydgK2dgK+egayegq6gg7WhgLeigbGhhLCihLSjhrSlhrmkgLikhL6nhbioigAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYkQNADc5FMGhtN4yAADAiODIUxCBgUj08EgigkFpaQyMMpVzpBADs=",
+  "alt": "A work made of book with four color aquatints and letterpress in black on cream wove paper, in box."
+ },
+ {
+  "aicId": 222695,
+  "title": "A Treatise on Landscape Painting and Effect in Water Colours: From the First Rudiments, to the Finished Picture No. 2",
+  "artist": "David Cox, the elder",
+  "artistId": 41042,
+  "date": "1813",
+  "year": 1813,
+  "yearEnd": 1813,
+  "medium": "Book with six etchings and letterpress in black on cream wove paper, in box",
+  "classification": "book",
+  "classifications": [
+   "book",
+   "paper",
+   "prints and drawing"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "England",
+  "type": "Book",
+  "color": {
+   "h": 200,
+   "l": 36,
+   "s": 24,
+   "percentage": 0.7947145212015573,
+   "population": 3611
+  },
+  "colorfulness": 20.4928,
+  "image": "https://www.artic.edu/iiif/2/b45f83c0-43a6-0ffa-c047-1c0a5d1b7464/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAEBUZEJWZUFVZkNYZ0VYZEBVaENXa0RYaURZaURbbEdcbUdcbkhba0ldakhdbkxgck1idVppc2FveWRxemNzfWJxfmJzgGJ0gWV1gGV1gmd3gml4gWh4gml4g257gm19hoOMjpiShJqUhZqVh4yTlqqjlq6llAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlwFIlc7FgKKCQ4SAABACREeTBIDQUE9HCgRgkChLTpqPhfDykIAA7",
+  "alt": "A work made of book with six etchings and letterpress in black on cream wove paper, in box."
+ },
+ {
+  "aicId": 222713,
+  "title": "A Treatise on Landscape Painting and Effect in Water Colours: From the First Rudiments, to the Finished Picture No. 10",
+  "artist": "David Cox, the elder",
+  "artistId": 41042,
+  "date": "1813–14",
+  "year": 1813,
+  "yearEnd": 1814,
+  "medium": "Book with four color aquatints and letterpress in black on cream wove paper, in box",
+  "classification": "book",
+  "classifications": [
+   "book",
+   "paper",
+   "prints and drawing"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "England",
+  "type": "Book",
+  "color": {
+   "h": 39,
+   "l": 50,
+   "s": 15,
+   "percentage": 0.00793766288745717,
+   "population": 36
+  },
+  "colorfulness": 24.7897,
+  "image": "https://www.artic.edu/iiif/2/76dca3ac-e5cc-07f5-c004-0ed4b279f2a1/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAJ2Pcp2Pc5+RdZ+SdaKUdqSWd6SVeKaXeKaYeaeZe6iZeqiae6qae6iafKqafa2cfbOdebGefK2dgK+fga+fg7CggbCggrGhhLKjhbCihrCjhrSlh7OliLOlibWkiLSliL+ri76sjburkMCsi8Sui8KukMu0kgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlwBKlk9FwMJ6RwxAAEA4P0KQhGCQWElKFUSggFBZTCBLZfC6iIAA7",
+  "alt": "A work made of book with four color aquatints and letterpress in black on cream wove paper, in box."
+ },
+ {
+  "aicId": 222714,
+  "title": "A Treatise on Landscape Painting and Effect in Water Colours: From the First Rudiments, to the Finished Picture No. 11",
+  "artist": "David Cox, the elder",
+  "artistId": 41042,
+  "date": "1813",
+  "year": 1813,
+  "yearEnd": 1813,
+  "medium": "Book with four color aquatints and letterpress in black on cream wove paper, in box",
+  "classification": "book",
+  "classifications": [
+   "book",
+   "paper",
+   "prints and drawing"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "England",
+  "type": "Book",
+  "color": {
+   "h": 39,
+   "l": 38,
+   "s": 18,
+   "percentage": 0.007249242124686964,
+   "population": 33
+  },
+  "colorfulness": 26.6912,
+  "image": "https://www.artic.edu/iiif/2/cf2d0d7d-bbce-f070-4dff-82c2892934c5/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAJqLbJuMbZyNbZ6NbJ2Nb52ObqCRcKCQcaGScqOTc6STcqWUc6aVdaaXd6iXdq2be62ce6+de62bfK2cfq6cfq6cf7WefLagfrigfa+ggbCggbKhgrWigreig7ajg7OhhLKjhLSkhr2kgramiAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYkwE4lNAJlHhwL4xAACAaPC6RBACAUE0zEYSgkFhKRZ6MpUz5BADs=",
+  "alt": "A work made of book with four color aquatints and letterpress in black on cream wove paper, in box."
+ },
+ {
+  "aicId": 222698,
+  "title": "A Treatise on Landscape Painting and Effect in Water Colours: From the First Rudiments, to the Finished Picture No. 5",
+  "artist": "David Cox, the elder",
+  "artistId": 41042,
+  "date": "1813",
+  "year": 1813,
+  "yearEnd": 1813,
+  "medium": "Book with four aquatints and letterpress in black on cream wove paper, in box",
+  "classification": "book",
+  "classifications": [
+   "book",
+   "paper",
+   "prints and drawing"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "England",
+  "type": "Book",
+  "color": {
+   "h": 203,
+   "l": 33,
+   "s": 41,
+   "percentage": 0.6067214299092928,
+   "population": 2721
+  },
+  "colorfulness": 22.9268,
+  "image": "https://www.artic.edu/iiif/2/b91e1528-539f-6285-62d5-fd2d070985f5/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAADpRZjtTajxTaj1Vaz9WazxUbD9WbD9XbD5WbT5WcEFYbkBZcENbckRcckNcdEZddUZddk9fcFBibk9icUlheU9mfFFhcVFjcVJiclBld1Bne1VoeFRpe1FoflZrfFdqfV9veVlsfVhtfmNye2ZxeGNwfFRqgVlvgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlQNLH1KloMqAIJFEIIA4TDMVhECwaF8uDMQAQFJJS6CTieDajIAA7",
+  "alt": "A work made of book with four aquatints and letterpress in black on cream wove paper, in box."
+ },
+ {
+  "aicId": 180976,
+  "title": "Miniature Vessel in the Form of a Portrait Head with Painted Cheeks",
+  "artist": "Moche",
+  "artistId": 30183,
+  "date": "100 BCE–500 CE",
+  "year": -100,
+  "yearEnd": 500,
+  "medium": "Ceramic and pigment",
+  "classification": "ceramics",
+  "classifications": [
+   "ceramics",
+   "art of the americas",
+   "vessel"
+  ],
+  "style": "moche",
+  "styles": [
+   "moche",
+   "Arts of the Americas",
+   "andes",
+   "south american",
+   "andean"
+  ],
+  "subjects": [
+   "people",
+   "portraits",
+   "vessels"
+  ],
+  "themesRaw": [
+   "Latin American"
+  ],
+  "techniques": [],
+  "origin": "Peru",
+  "type": "Ceramics",
+  "color": {
+   "h": 244,
+   "l": 68,
+   "s": 0,
+   "percentage": 0.03429524447106633,
+   "population": 292
+  },
+  "colorfulness": 65.1137,
+  "image": "https://www.artic.edu/iiif/2/644050e7-1b8c-18f7-14a6-f2620aa873fd/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAJFuXJJuXLNtTLVzTrhwULl1UMFsQcpxSX1/gIGBgrOajKCfnr2fkLukmb2mm6GiosOzqtG+tObr7e7y9QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURYAIEyCMQi2IcDDQUkdQ4UwgAOw==",
+  "alt": "A work made of ceramic and pigment."
+ },
+ {
+  "aicId": 250080,
+  "title": "Untitled (Painted Portrait of Charles Coit)",
+  "artist": null,
+  "artistId": null,
+  "date": "1855/56",
+  "year": 1855,
+  "yearEnd": 1856,
+  "medium": "Daguerreotype",
+  "classification": "portrait",
+  "classifications": [
+   "portrait",
+   "photograph",
+   "photographic process",
+   "photography",
+   "portrait",
+   "daguerreotype"
+  ],
+  "style": "19th century",
+  "styles": [
+   "19th century"
+  ],
+  "subjects": [
+   "lundberg collection",
+   "portraits",
+   "Male",
+   "portrait",
+   "portraits: male subject"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "photography",
+   "daguerreotype (process)",
+   "photographic processes",
+   "photographic techniques"
+  ],
+  "origin": "United States",
+  "type": "Photograph",
+  "color": {
+   "h": 41,
+   "l": 69,
+   "s": 86,
+   "percentage": 0.0034962851969782107,
+   "population": 28
+  },
+  "colorfulness": 44.8514,
+  "image": "https://www.artic.edu/iiif/2/e8c92565-704d-d666-b213-8b26d0ea969d/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAEc+M1FHOlVKPnZWPXhaP3laP3pcP0dHRltPQVVST3BXRXJYRXpaQHxcQH5cQH9eQXddSXleSHpdSnphTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoDQwkCMgzXIkygMERGQUUwgAOw==",
+  "alt": "A work made of daguerreotype."
+ },
+ {
+  "aicId": 250181,
+  "title": "Untitled (Portrait of a Man Painting)",
+  "artist": null,
+  "artistId": null,
+  "date": "1865",
+  "year": 1865,
+  "yearEnd": 1865,
+  "medium": "Ambrotype",
+  "classification": "portrait",
+  "classifications": [
+   "portrait",
+   "ambrotype",
+   "portrait"
+  ],
+  "style": "19th century",
+  "styles": [
+   "19th century"
+  ],
+  "subjects": [
+   "lundberg collection",
+   "Male",
+   "paintbrushes",
+   "painting",
+   "portraits",
+   "portraits: male subject"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "photography",
+   "photographic processes",
+   "photographic techniques"
+  ],
+  "origin": "United States",
+  "type": "Photograph",
+  "color": {
+   "h": 216,
+   "l": 31,
+   "s": 41,
+   "percentage": 0.004610825379659554,
+   "population": 33
+  },
+  "colorfulness": 41.3432,
+  "image": "https://www.artic.edu/iiif/2/90ebe170-9747-6569-e809-c4fe0f86b5ae/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBQAFAPQAAFRHM11LM2tTO2xWO3BTNnNVN3ZYN3hYNnFXPVpUR2JVQmBWRWtVQm9bQW1YRXRbQ3VcRHleQnleRHxiSHx2cn95dn98e4B8eo+AZwAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAFAAUAAAUVoBNBz0U0ikEJSzJgRQAcFYNIkxUCADs=",
+  "alt": "A work made of ambrotype."
+ },
+ {
+  "aicId": 862,
+  "title": "Portrait of an Artist",
+  "artist": "Follower of Frans Hals",
+  "artistId": 46225,
+  "date": "1644",
+  "year": 1644,
+  "yearEnd": 1644,
+  "medium": "Oil on canvas",
+  "classification": "oil on canvas",
+  "classifications": [
+   "oil on canvas",
+   "oil paintings (visual works)",
+   "paint",
+   "portrait",
+   "painting",
+   "european painting"
+  ],
+  "style": "17th Century",
+  "styles": [
+   "17th Century"
+  ],
+  "subjects": [
+   "portraits: male subject",
+   "artist",
+   "black (color)",
+   "hat",
+   "man",
+   "portrait",
+   "portraits",
+   "white (color)",
+   "Century of Progress",
+   "world's fairs",
+   "Chicago World's Fairs"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "oil painting",
+   "painting",
+   "painting (image making)",
+   "painting techniques"
+  ],
+  "origin": "Holland",
+  "type": "Painting",
+  "color": {
+   "h": 40,
+   "l": 35,
+   "s": 37,
+   "percentage": 0.004240555557415448,
+   "population": 38
+  },
+  "colorfulness": 20.3661,
+  "image": "https://www.artic.edu/iiif/2/c95d58bf-fe9e-e5bb-2c71-ab8bad984759/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAAkLCBAPCRAQCxMRChMRCxQRDBQSDBcTDRoXDxwYDxYWEB8bERwbEyEdEyQgFScjFjcqFjUsGjowHVM7HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURILM4jzJBDSJFiQAQhzEERQgAOw==",
+  "alt": "Painting of a mustached man with a wide-brimmed black hat and white flat collar seen from the waist up, turned to the viewer."
+ },
+ {
+  "aicId": 80607,
+  "title": "Self-Portrait",
+  "artist": "Vincent van Gogh",
+  "artistId": 40610,
+  "date": "1887",
+  "year": 1887,
+  "yearEnd": 1887,
+  "medium": "Oil on artist's board, mounted on cradled panel",
+  "classification": "oil on board",
+  "classifications": [
+   "oil on board",
+   "dutch",
+   "oil paintings (visual works)",
+   "paint",
+   "portrait",
+   "painting",
+   "european painting"
+  ],
+  "style": "Post-Impressionism",
+  "styles": [
+   "Post-Impressionism",
+   "19th century",
+   "nineteenth century"
+  ],
+  "subjects": [
+   "portraits",
+   "red (color)",
+   "blue (color)",
+   "green (color)",
+   "orange (color)",
+   "artist",
+   "self-portraits",
+   "emotions",
+   "men",
+   "suits",
+   "beards"
+  ],
+  "themesRaw": [
+   "Essentials"
+  ],
+  "techniques": [
+   "oil painting",
+   "painting",
+   "painting techniques",
+   "painting (image making)"
+  ],
+  "origin": "Netherlands",
+  "type": "Painting",
+  "color": {
+   "h": 40,
+   "l": 30,
+   "s": 16,
+   "percentage": 0.005607523219299849,
+   "population": 2673
+  },
+  "colorfulness": 0,
+  "image": "https://www.artic.edu/iiif/2/47c5bcb8-62ef-e5d7-55e7-f5121f409a30/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAD49PEA3NEA6OUY/OEw+OzpAO09EPFZFO1dGPDxGQEBIQ0ZMRU9PRVFNRV9MQmxUQmJZSnttWIdfSaGHaQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoMJAQBFNQ/JIwoI4QUMYRwgAOw==",
+  "alt": "Painting of a red-haired, bearded man with light skin, painted in short brushstrokes and multicolored dots. The background is likewise a mass of small, closely spaced colored dots, these in green, blue, and red-orange."
+ },
+ {
+  "aicId": 193664,
+  "title": "The Captive Slave (Ira Aldridge)",
+  "artist": "John Philip Simpson",
+  "artistId": 107195,
+  "date": "1827",
+  "year": 1827,
+  "yearEnd": 1827,
+  "medium": "Oil on canvas",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "paint",
+   "oil paintings (visual works)",
+   "oil on canvas",
+   "portrait",
+   "british"
+  ],
+  "style": "nineteenth century",
+  "styles": [
+   "nineteenth century",
+   "19th century"
+  ],
+  "subjects": [
+   "men",
+   "slavery",
+   "red (color)",
+   "portraits: male subject",
+   "portraits: African subject",
+   "portraits",
+   "portrait",
+   "man",
+   "chains",
+   "actors (performing artists)"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "oil painting",
+   "painting techniques",
+   "painting",
+   "painting (image making)"
+  ],
+  "origin": "England",
+  "type": "Painting",
+  "color": {
+   "h": 37,
+   "l": 47,
+   "s": 8,
+   "percentage": 8.282751879043727e-07,
+   "population": 1
+  },
+  "colorfulness": 0,
+  "image": "https://www.artic.edu/iiif/2/5490fd49-dd52-4fd7-7d41-d871dcffae55/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAABwYFxwaGCchHSklHSslHSwnHTArHzcmIDQuIjQuIzUuIzctJEAqI0MqIkktJE4tJVEuJlAzKl46MGE1KwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURIGEgSLEgRCM5ATQ9wBE1QggAOw==",
+  "alt": "Painting of a dark-skinned man seated and wearing a red open-necked tunic. He looks up to the right. His wrists are shackled and a large chain rests at his right, running down the bench he sits upon."
+ },
+ {
+  "aicId": 66042,
+  "title": "Trompe-l'Oeil Still Life with a Flower Garland and a Curtain",
+  "artist": "Adriaen van der Spelt",
+  "artistId": 24621,
+  "date": "1658",
+  "year": 1658,
+  "yearEnd": 1658,
+  "medium": "Oil on panel",
+  "classification": "oil on panel",
+  "classifications": [
+   "oil on panel",
+   "paint",
+   "still life",
+   "painting",
+   "european painting"
+  ],
+  "style": "17th Century",
+  "styles": [
+   "17th Century"
+  ],
+  "subjects": [
+   "still life",
+   "curtains",
+   "flowers"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "panel painting",
+   "oil painting",
+   "painting",
+   "painting (image making)",
+   "painting techniques"
+  ],
+  "origin": "Netherlands",
+  "type": "Painting",
+  "color": {
+   "h": 211,
+   "l": 44,
+   "s": 23,
+   "percentage": 0.0017181471983626123,
+   "population": 498
+  },
+  "colorfulness": 0,
+  "image": "https://www.artic.edu/iiif/2/4a04138f-43d8-cd9f-5ac4-478cd8828210/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAABEPCRAPDRgXEx4YERoZFRkZFhsbFh4bFBscFx4eGRwcGyAeGSIiHSgmHigmICEpLCssKjozKzw4MEA1L0w+OVVAO1ZHR0RPWGtaVGRfXU1bZ05jelBleFNnfVVnfFZqflhpe2B0h2R3iAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhQEOCcIBoLo5GYSARgRiRDKYS8iAWE4rl0xEEFIAHZxMEADs=",
+  "alt": "A work made of oil on panel."
+ },
+ {
+  "aicId": 44892,
+  "title": "Fish (Still Life)",
+  "artist": "Édouard Manet",
+  "artistId": 35577,
+  "date": "1864",
+  "year": 1864,
+  "yearEnd": 1864,
+  "medium": "Oil on canvas",
+  "classification": "oil on canvas",
+  "classifications": [
+   "oil on canvas",
+   "paint",
+   "oil paintings (visual works)",
+   "french",
+   "still life",
+   "painting",
+   "european painting"
+  ],
+  "style": "19th century",
+  "styles": [
+   "19th century",
+   "nineteenth century",
+   "Impressionism"
+  ],
+  "subjects": [
+   "still life",
+   "tablecloth",
+   "table",
+   "pot",
+   "knife",
+   "kitchenware",
+   "death",
+   "food",
+   "eels",
+   "fruit",
+   "lemons",
+   "oysters",
+   "fish"
+  ],
+  "themesRaw": [
+   "Essentials"
+  ],
+  "techniques": [
+   "oil painting",
+   "painting techniques",
+   "painting",
+   "painting (image making)"
+  ],
+  "origin": "France",
+  "type": "Painting",
+  "color": {
+   "h": 52,
+   "l": 47,
+   "s": 62,
+   "percentage": 0.006925650478402625,
+   "population": 39
+  },
+  "colorfulness": 0,
+  "image": "https://www.artic.edu/iiif/2/0cbe27e8-2fec-3445-bc48-ce40a8f2dc25/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAB4ZGC8oHi0pJC0qJDMqIzUsIzQtJDsrITcxKUlCNkhBO1RCMlhPP1ZQQmphUHltWHt3aYFoV4Z0YY2IZpeOfpqNfJuWfKGdiKqghq2ljKmllbankrCqlQAAAAAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYYFAgwmAkTQMchBNt1cI8EqVZE5ZxF6SEADs=",
+  "alt": "Still-life painting, fish, open oysters, eel, lemon on tablecloth."
+ },
+ {
+  "aicId": 21682,
+  "title": "Still Life",
+  "artist": "Pieter Claesz",
+  "artistId": 4832,
+  "date": "c. 1625",
+  "year": 1620,
+  "yearEnd": 1630,
+  "medium": "Oil on panel",
+  "classification": "oil on panel",
+  "classifications": [
+   "oil on panel",
+   "paint",
+   "still life",
+   "painting",
+   "european painting"
+  ],
+  "style": "17th Century",
+  "styles": [
+   "17th Century"
+  ],
+  "subjects": [
+   "still life",
+   "nuts",
+   "Bread",
+   "tea",
+   "cup",
+   "wealth",
+   "tablecloth",
+   "meat",
+   "lemons",
+   "table",
+   "food"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "panel painting",
+   "oil painting",
+   "painting",
+   "painting (image making)",
+   "painting techniques"
+  ],
+  "origin": "Netherlands",
+  "type": "Painting",
+  "color": {
+   "h": 40,
+   "l": 42,
+   "s": 11,
+   "percentage": 0.00046469601135923583,
+   "population": 441
+  },
+  "colorfulness": 0,
+  "image": "https://www.artic.edu/iiif/2/574695d5-6bf3-fe58-a1d5-e6cbb5e10c77/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAABoXFRsYFhoYFxsZFx0aFxwaGBwaGR8dGx8eHSEeGyAeHCIfHCQeHCYiHigiHCUlIywoJC0qJTMqIjEsJUExMEE6M048MFI/PU9DM0hCNklEOU1IP1ZHO1RLOFFJP1dRSV9WSG5oXHBpXXZwZHx2agAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYkQMCgUBgcFgfhYNFIPBCESUSCcUQYG5BH06lwLCLSKJT5XChBADs=",
+  "alt": "A work made of oil on panel."
+ },
+ {
+  "aicId": 44065,
+  "title": "Just Dessert",
+  "artist": "William Michael Harnett",
+  "artistId": 10930,
+  "date": "1891",
+  "year": 1891,
+  "yearEnd": 1891,
+  "medium": "Oil on canvas",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "american arts"
+  ],
+  "style": "Realism",
+  "styles": [
+   "Realism"
+  ],
+  "subjects": [
+   "still life",
+   "dining",
+   "drinking"
+  ],
+  "themesRaw": [
+   "Drinking and Dining"
+  ],
+  "techniques": [],
+  "origin": "United States",
+  "type": "Painting",
+  "color": {
+   "h": 41,
+   "l": 55,
+   "s": 36,
+   "percentage": 0.005062188991763818,
+   "population": 30
+  },
+  "colorfulness": 30.7978,
+  "image": "https://www.artic.edu/iiif/2/e49ad195-1f62-2fd4-f4df-61f0f0f4951f/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAACEdGiIgGyciHSssHjIxHjo1HyolISwqIC4qIS0oIjAvJD8rIjUyIzcwJT87IkswH0szHkYuIUkxJEU5K0w9LVExIlk9KEFBKVpFJVxJIVlAKE9KOW9gNHdlRgAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYIBAQw6EYTeEwSLJdmCZQHZdZ01I9UCSFADs=",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 182381,
+  "title": "An Abundance of Fruit",
+  "artist": "Severin Roesen",
+  "artistId": 56869,
+  "date": "c. 1860",
+  "year": 1860,
+  "yearEnd": 1860,
+  "medium": "Oil on canvas",
+  "classification": "oil on canvas",
+  "classifications": [
+   "oil on canvas",
+   "painting"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [
+   "still life",
+   "dining",
+   "drinking"
+  ],
+  "themesRaw": [
+   "Drinking and Dining"
+  ],
+  "techniques": [],
+  "origin": "Germany",
+  "type": "Painting",
+  "color": {
+   "h": 43,
+   "l": 43,
+   "s": 75,
+   "percentage": 0.012764414853694278,
+   "population": 75
+  },
+  "colorfulness": 43.3156,
+  "image": "https://www.artic.edu/iiif/2/12f32e59-cba2-0a32-972e-cf4d7856560c/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAACQiGCgjGi4mHCsoHTQrIDczIz80JEAzG0EwI0g7IU86JEY/KUw9KUk6LFFEIV9UKlhEMFdMNFhOMmpDKWJXKHtYKWRLMmVUNmNYPWJYP2RZPndVMnthSIhzSAAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYIDAsUqYFDvVcWLFNRxIxHVdZCNFAiiGEADs=",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 145807,
+  "title": "Thistles",
+  "artist": "John Singer Sargent",
+  "artistId": 36540,
+  "date": "1883–89",
+  "year": 1883,
+  "yearEnd": 1889,
+  "medium": "Oil on canvas",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "american arts"
+  ],
+  "style": "Impressionism",
+  "styles": [
+   "Impressionism",
+   "Modernism"
+  ],
+  "subjects": [
+   "Chicago",
+   "still life"
+  ],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "England",
+  "type": "Painting",
+  "color": {
+   "h": 40,
+   "l": 52,
+   "s": 22,
+   "percentage": 0.11628742945468924,
+   "population": 647
+  },
+  "colorfulness": 33.2132,
+  "image": "https://www.artic.edu/iiif/2/79b94ddd-e208-1993-01ab-98f75174fe88/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAHQ8H3M9IF1MM3VEJXxPL2pYPHRUNH1VN3BVOnBWOnNXPHRZO3RbPXJaQHJaQXZeQndiRn5jRHhlRX1kRHhlSH1oTHdpUIBkQoZoRoJvUoZ1VYpzUYh1VYx9WgAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYYAAMxIEZ07VpnUQ9isUV0NJUmcAgThKFADs=",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 5157,
+  "title": "The Courtesan Sugawara of the Tsuruya and Her Attendant",
+  "artist": "Isoda Koryusai",
+  "artistId": 35327,
+  "date": "c. 1776/81",
+  "year": 1771,
+  "yearEnd": 1786,
+  "medium": "Color woodblock print; hashira-e",
+  "classification": "woodblock print",
+  "classifications": [
+   "woodblock print",
+   "print",
+   "asian art"
+  ],
+  "style": "Japanese (culture or style)",
+  "styles": [
+   "Japanese (culture or style)"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Japan",
+  "type": "Print",
+  "color": {
+   "h": 37,
+   "l": 58,
+   "s": 36,
+   "percentage": 0.08420416722942377,
+   "population": 3217
+  },
+  "colorfulness": 34.4353,
+  "image": "https://www.artic.edu/iiif/2/9d8e3a2c-91cd-78b3-ded0-d610343edb03/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhAQAFAPIAAHBhSJB8WJqHY52IYauYbgAAAAAAAAAAACH5BAAAAAAALAAAAAABAAUAAAMECEITCQA7",
+  "alt": "A work made of color woodblock print; hashira-e."
+ },
+ {
+  "aicId": 5150,
+  "title": "Summer: Planting Rice (Natsu: taue no zu), No. 2 from the series \"The Four Seasons of Farmers (Shiki no hyakusho)\"",
+  "artist": "Torii Kiyomasu II",
+  "artistId": 35269,
+  "date": "c. 1730s",
+  "year": 1730,
+  "yearEnd": 1739,
+  "medium": "Hand-colored woodblock print; hosoban, urushi-e",
+  "classification": "woodblock print",
+  "classifications": [
+   "woodblock print",
+   "print",
+   "asian art"
+  ],
+  "style": "Japanese (culture or style)",
+  "styles": [
+   "Japanese (culture or style)"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Japan",
+  "type": "Print",
+  "color": {
+   "h": 38,
+   "l": 54,
+   "s": 35,
+   "percentage": 0.26540648500608266,
+   "population": 3855
+  },
+  "colorfulness": 34.4027,
+  "image": "https://www.artic.edu/iiif/2/19a115b7-07ed-4946-4f75-3cc865e7133f/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhAgAFAPMAAIVuPoh1Sox3TJB5SJN9T6KQbKSSbayabq+ccAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAACAAUAAAQIEJ0BQhCkmAgAOw==",
+  "alt": "A work made of hand-colored woodblock print; hosoban, urushi-e."
+ },
+ {
+  "aicId": 7691,
+  "title": "Gathering Seaweed at Omori",
+  "artist": "Utagawa Kuniyoshi",
+  "artistId": 14488,
+  "date": "n.d.",
+  "year": null,
+  "yearEnd": null,
+  "medium": "Ink and red pigment on paper",
+  "classification": "woodblock print",
+  "classifications": [
+   "woodblock print",
+   "print",
+   "asian art"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Japan",
+  "type": "Drawing and Watercolor",
+  "color": {
+   "h": 41,
+   "l": 47,
+   "s": 42,
+   "percentage": 0.00550317349671644,
+   "population": 27
+  },
+  "colorfulness": 17.6372,
+  "image": "https://www.artic.edu/iiif/2/7a10cbaf-84b5-6b8c-91fb-52a8a8250a41/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAALKnhrasjbiuj72zlb+2mMC1ksC2l8S6m8S7nMi8msi9nszDpM/GpdDFptTIp9HGqdLIqdPIqtTKq9bKq9fOrtnNq9nNrNvPrdzQr9vQsNrRsd3Rsd7UtN/VtODWt+TaveTbvwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhwIeE8wF5MJHFQtPBZBoIAoNiGCgOggIgAJlYKpeEYxMEADs=",
+  "alt": "A work made of ink and red pigment on paper."
+ },
+ {
+  "aicId": 5159,
+  "title": "The Courtesan Matsukaze of the Matsubaya and Her Attendant",
+  "artist": "Isoda Koryusai",
+  "artistId": 35327,
+  "date": "c. 1776/81",
+  "year": 1771,
+  "yearEnd": 1786,
+  "medium": "Color woodblock print; hashira-e",
+  "classification": "woodblock print",
+  "classifications": [
+   "woodblock print",
+   "print",
+   "asian art"
+  ],
+  "style": "Japanese (culture or style)",
+  "styles": [
+   "Japanese (culture or style)"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Japan",
+  "type": "Print",
+  "color": {
+   "h": 37,
+   "l": 40,
+   "s": 44,
+   "percentage": 0.012569786803356298,
+   "population": 462
+  },
+  "colorfulness": 31.7115,
+  "image": "https://www.artic.edu/iiif/2/1870fde8-3303-ba25-828e-2c2ebb044717/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhAQAFAPIAAIJwSoZzSIp3TJSAVJeEWgAAAAAAAAAAACH5BAAAAAAALAAAAAABAAUAAAMESCMBCQA7",
+  "alt": "A work made of color woodblock print; hashira-e."
+ },
+ {
+  "aicId": 5154,
+  "title": "Gibbon snatching sake pot from flower-viewing party",
+  "artist": "Isoda Koryusai",
+  "artistId": 35327,
+  "date": "c. 1772",
+  "year": 1767,
+  "yearEnd": 1777,
+  "medium": "Color woodblock print; hashira-e",
+  "classification": "woodblock print",
+  "classifications": [
+   "woodblock print",
+   "print",
+   "asian art"
+  ],
+  "style": "Japanese (culture or style)",
+  "styles": [
+   "Japanese (culture or style)"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Japan",
+  "type": "Print",
+  "color": {
+   "h": 37,
+   "l": 67,
+   "s": 37,
+   "percentage": 0.06350864473747465,
+   "population": 2444
+  },
+  "colorfulness": 30.6583,
+  "image": "https://www.artic.edu/iiif/2/54bbec20-5732-2572-4413-400778507e23/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhAQAFAPIAAKOQaKWWcqiXcauYdbiqhgAAAAAAAAAAACH5BAAAAAAALAAAAAABAAUAAAMEGDQCCQA7",
+  "alt": "A work made of color woodblock print; hashira-e."
+ },
+ {
+  "aicId": 7688,
+  "title": "Sketch for Autumn Moon at Ishiyama Temple (Ishiyama no shugetsu), from the series \"Eight Views in Omi Province (Omi hakkei)\"",
+  "artist": "Utagawa Hiroshige II (Shigenobu)",
+  "artistId": 34950,
+  "date": "c. 1859",
+  "year": 1854,
+  "yearEnd": 1864,
+  "medium": "Ink on paper",
+  "classification": "woodblock print",
+  "classifications": [
+   "woodblock print",
+   "print",
+   "asian art"
+  ],
+  "style": "Japanese (culture or style)",
+  "styles": [
+   "Japanese (culture or style)"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Japan",
+  "type": "Drawing and Watercolor",
+  "color": {
+   "h": 55,
+   "l": 59,
+   "s": 49,
+   "percentage": 0.0009985181989926948,
+   "population": 5
+  },
+  "colorfulness": 16.4438,
+  "image": "https://www.artic.edu/iiif/2/2ef4b519-8f95-df08-8464-eb931bffb789/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAL22k8e/ncS+oM3EosjCpNDIptDJqtXNq9fPrtfQtNjRtdvStNvUtN/Wtt7Xut/XuuHYuuPau+bcuePbvePcvufevePewuXdwOXdwefhxOfjx+nhwurhwunjxuzlx+njyOrkyevnzO3nzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhQEil89lIHBeOKOQ5CDCTjIYBIDwiIEshkFg0KIYBQhEEADs=",
+  "alt": "A work made of ink on paper."
+ },
+ {
+  "aicId": 13095,
+  "title": "Asakusa Imado, from the series \"Famous Places in the Eastern Capital (Toto Meisho)\"",
+  "artist": "Utagawa Kuniyoshi",
+  "artistId": 14488,
+  "date": "c. 1832/33",
+  "year": 1827,
+  "yearEnd": 1838,
+  "medium": "Color woodblock print; oban",
+  "classification": "woodblock print",
+  "classifications": [
+   "woodblock print",
+   "print",
+   "asian art"
+  ],
+  "style": "Japanese (culture or style)",
+  "styles": [
+   "Japanese (culture or style)"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Japan",
+  "type": "Print",
+  "color": {
+   "h": 193,
+   "l": 32,
+   "s": 45,
+   "percentage": 0.03041123644837038,
+   "population": 151
+  },
+  "colorfulness": 22.992,
+  "image": "https://www.artic.edu/iiif/2/7a17c756-9f35-34c1-1273-63a2c0606ac0/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAF1SQ05bW2VbS3JnU1NlaldsbnZ1am18eXJ2cIZ9ZYh+ZoqAZIuFbJGFa5WOcZiRdJ2Vd52ZeqKYfaikhKaljqysi7Wig7WmirKoirOpjLOqjq+qkbSzkrqxk7K6o7q7obi+psW6mMa9nQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhQAziQCgEDJ3MxwOiXCQNy0YjCjEGCgGgwoE8HIlFZBIEADs=",
+  "alt": "A work made of color woodblock print; oban."
+ },
+ {
+  "aicId": 14856,
+  "title": "Commodore Perry",
+  "artist": null,
+  "artistId": null,
+  "date": "c. 1853/54",
+  "year": 1848,
+  "yearEnd": 1859,
+  "medium": "Woodblock print; oban",
+  "classification": "woodblock print",
+  "classifications": [
+   "woodblock print",
+   "print",
+   "asian art",
+   "woodblock"
+  ],
+  "style": "Japanese (culture or style)",
+  "styles": [
+   "Japanese (culture or style)"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Japan",
+  "type": "Print",
+  "color": {
+   "h": 42,
+   "l": 92,
+   "s": 87,
+   "percentage": 0.033804756021856314,
+   "population": 330
+  },
+  "colorfulness": 22.1757,
+  "image": "https://www.artic.edu/iiif/2/7e1b1a90-b18f-b5a9-d076-f9b90d2d0db0/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAIV1YIl4YYl5ZIl6ZYx9aJF/Z5KCbJiGbqGMcaSSeKuVeayXeq+ZfbGafbKbfLKcf7CcgLWfgrWggwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURYCQxDfQsSrI4iCEUATEcQAgAOw==",
+  "alt": "Earthenware plate decorated with colorful flower and grape border on the rim and central figurative scene depicting a fashionably dressed couple in the front with a barber serving a man at the back. The scene has an inscription \"LE BARBIER DE SEVILLE\" with five more lines at the bottom."
+ },
+ {
+  "aicId": 14854,
+  "title": "The Powhatan",
+  "artist": null,
+  "artistId": null,
+  "date": "c. 1854",
+  "year": 1849,
+  "yearEnd": 1859,
+  "medium": "Color woodblock print; yoko-oban",
+  "classification": "woodblock print",
+  "classifications": [
+   "woodblock print",
+   "print",
+   "asian art"
+  ],
+  "style": "Japanese (culture or style)",
+  "styles": [
+   "Japanese (culture or style)"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Japan",
+  "type": "Print",
+  "color": {
+   "h": 39,
+   "l": 57,
+   "s": 16,
+   "percentage": 0.18752278191100463,
+   "population": 890
+  },
+  "colorfulness": 23.0158,
+  "image": "https://www.artic.edu/iiif/2/ff2f8305-6b16-cc2b-8a80-6a5be2cc9484/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAFlSSGdeUm1lV25mWX15aX57a4F9bYp/bYJ/cY6GdYyJeZWKdZCMe5yTf52UgKKVgaSYgaiag66bg6eeirOehrKkir6ymsKvlcaxl8KymMW1mMW1mse3m8W2nci2mMq5nMq6n8y8oM/Apc/BptTBotbEpQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlQM6n5CGRMqAQR1OBSC6ixyZyWFAwHUtiEBAAGqOJAkEwFBiOIAA7",
+  "alt": "A work made of color woodblock print; yoko-oban."
+ },
+ {
+  "aicId": 9400,
+  "title": "Uchikake (Over Kimono)",
+  "artist": null,
+  "artistId": null,
+  "date": "late Edo (1789–1868)/Meiji period (1868–1912), 19th century",
+  "year": 1801,
+  "yearEnd": 1900,
+  "medium": "Silk, warp-float faced 4:1 satin weave; embroidered with silk in satin, single satin, and stem stitches; laid work and couching, and Chinese knots; painted with gold; lined with red silk (chirimen), crepe; dyed with beni, safflower",
+  "classification": "textile",
+  "classifications": [
+   "textile",
+   "costume - needlework",
+   "needlework (visual works)",
+   "costume",
+   "kimonos"
+  ],
+  "style": "late edo",
+  "styles": [
+   "late edo"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Japan",
+  "type": "Textile",
+  "color": {
+   "h": 48,
+   "l": 62,
+   "s": 56,
+   "percentage": 0.0004580075754452978,
+   "population": 5
+  },
+  "colorfulness": 43.3106,
+  "image": "https://www.artic.edu/iiif/2/0ae367f8-e885-e201-3df9-38c84f2a5e32/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAFdgfVd1mWZ+m2KAomWJrHqTsH2fvoSnxaG5y6/H27rR4c7V3tTU29zi6evr7gAAACH5BAAAAAAALAAAAAADAAUAAAQLMClkDilDtLAcYBEAOw==",
+  "alt": "A work made of silk, warp-float faced 4:1 satin weave; embroidered with silk in satin, single satin, and stem stitches; laid work and couching, and chinese knots; painted with gold; lined with red silk (chirimen), crepe; dyed with beni, safflower."
+ },
+ {
+  "aicId": 21263,
+  "title": "No. 2: Chinese boys copying paintings and writing Japanese, from the series \"Children Say 'This is Japan!' and Imitate the Games They See in Picturebooks (Yodo iu koitsu wa Nippon, ezoshi o mite yori sono gai ni asobu)\"",
+  "artist": "Torii Kiyonaga",
+  "artistId": 35265,
+  "date": "c. 1791",
+  "year": 1786,
+  "yearEnd": 1796,
+  "medium": "Color woodblock print; chuban",
+  "classification": "woodblock print",
+  "classifications": [
+   "woodblock print",
+   "print",
+   "asian art"
+  ],
+  "style": "Japanese (culture or style)",
+  "styles": [
+   "Japanese (culture or style)"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Japan",
+  "type": "Print",
+  "color": {
+   "h": 5,
+   "l": 34,
+   "s": 68,
+   "percentage": 0.0007201801685015829,
+   "population": 7
+  },
+  "colorfulness": 41.6192,
+  "image": "https://www.artic.edu/iiif/2/34996b2c-dcf6-695f-c223-475245976bbd/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAJ+DbqmQcauWeaObfrWWerWcfb+ce72ger+vkcCfgcGkgcKohcephs6yj8+4k9G9m9vCnN/Gn+TKoeLJpQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAUR4CRFiJMwQ2MUAUAoh7BATwgAOw==",
+  "alt": "A work made of color woodblock print; chuban."
+ },
+ {
+  "aicId": 15742,
+  "title": "Deity from a Set of Five Pancharaksha Goddesses",
+  "artist": "Tibeto-Chinese",
+  "artistId": 113171,
+  "date": "Qing dynasty (1644–1911), 19th century",
+  "year": 1801,
+  "yearEnd": 1900,
+  "medium": "Gilt copper alloy with lapis, coral and malachite",
+  "classification": "bronze",
+  "classifications": [
+   "bronze",
+   "metal",
+   "sculpture",
+   "asian art"
+  ],
+  "style": "Chinese (culture or style)",
+  "styles": [
+   "Chinese (culture or style)",
+   "Himalayan"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "China",
+  "type": "Sculpture",
+  "color": {
+   "h": 39,
+   "l": 50,
+   "s": 68,
+   "percentage": 0.02464767332716579,
+   "population": 219
+  },
+  "colorfulness": 49.4814,
+  "image": "https://www.artic.edu/iiif/2/6ff57311-952a-e307-d5e3-5900c535912c/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAL6fXbWZYL2hZLyjb8Ozk8W3m9XLtdrPudnVytfW1N3b09nY1dra1tva2dzd2d/f3uDe1+Xh1+Lg2ejl3wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAUR4JI0zFMQjjIESAQI0nQYUAgAOw==",
+  "alt": "A work made of gilt copper alloy with lapis, coral and malachite."
+ },
+ {
+  "aicId": 7896,
+  "title": "Dinner Plate",
+  "artist": "Chinese export porcelain",
+  "artistId": 107170,
+  "date": "1796–1810",
+  "year": 1796,
+  "yearEnd": 1810,
+  "medium": "Hard-paste porcelain, glaze, with enamels in colors, and gilding",
+  "classification": "plate (general, dish)",
+  "classifications": [
+   "plate (general, dish)",
+   "porcelain",
+   "dish (vessel)",
+   "American market",
+   "chinese export porcelain",
+   "art of the americas",
+   "ceramics",
+   "decorative arts",
+   "pottery"
+  ],
+  "style": "Chinese (culture or style)",
+  "styles": [
+   "Chinese (culture or style)",
+   "18th Century",
+   "19th century",
+   "asian",
+   "chinese export",
+   "East Asian",
+   "jiajing",
+   "qianlong",
+   "Export porcelain"
+  ],
+  "subjects": [
+   "architecture",
+   "house",
+   "immortals",
+   "landscape",
+   "Monograms",
+   "dining",
+   "drinking"
+  ],
+  "themesRaw": [
+   "Drinking and Dining"
+  ],
+  "techniques": [
+   "molding",
+   "enameling",
+   "gilding",
+   "glazing"
+  ],
+  "origin": "China",
+  "type": "Ceramics",
+  "color": {
+   "h": 55,
+   "l": 39,
+   "s": 46,
+   "percentage": 0.0013446041037317247,
+   "population": 9
+  },
+  "colorfulness": 21.4486,
+  "image": "https://www.artic.edu/iiif/2/7597e412-18c9-0e33-0202-79f808cd43c3/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBQAFAPQAAIqIfJmQhZidlqObkKagl6+mm6uop6urqrKtobaupLWwrbWxrbSyr7iwqr21rLi1sb+2sby4ssa9tMe+tcS/ucC+vcfCvcvIxd3c2wAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAFAAUAAAUV4ME4i/EU0qQ0gUBA1wAgFkYlURUCADs=",
+  "alt": "A work made of hard-paste porcelain, glaze, with enamels in colors, and gilding."
+ },
+ {
+  "aicId": 2716,
+  "title": "Cup",
+  "artist": "Chinese export porcelain",
+  "artistId": 107170,
+  "date": "1750–70",
+  "year": 1750,
+  "yearEnd": 1770,
+  "medium": "Hard-paste porcelain, enamels, gilding",
+  "classification": "drinking vessel",
+  "classifications": [
+   "drinking vessel",
+   "art of the americas",
+   "chinese export porcelain",
+   "porcelain",
+   "ceramics",
+   "decorative arts",
+   "pottery"
+  ],
+  "style": "chinese export",
+  "styles": [
+   "chinese export",
+   "Export porcelain"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [
+   "molding",
+   "enameling",
+   "gilding"
+  ],
+  "origin": "China",
+  "type": "Ceramics",
+  "color": {
+   "h": 49,
+   "l": 55,
+   "s": 2,
+   "percentage": 0.04957837374531001,
+   "population": 354
+  },
+  "colorfulness": 12.6473,
+  "image": "https://www.artic.edu/iiif/2/8d8023a2-ff20-e51e-e701-d43af6a919f8/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBQAFAPQAAFFGOU9NSlpRQXZ0coeDfZiTipqVj56cl6Gdl6ChoaWmpqmqq7KzsrOztbe2tre4t7a2uLm6usXFxsfIysjJycjIysrKzcvLzQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAFAAUAAAUVoMI8zNIYBQJdAUBY1SAck+QkERUCADs=",
+  "alt": "A work made of hard-paste porcelain, enamels, gilding."
+ },
+ {
+  "aicId": 76279,
+  "title": "Yang Pu Moving His Family",
+  "artist": null,
+  "artistId": null,
+  "date": "Yuan dynasty (1279–1368) 元朝",
+  "year": 1279,
+  "yearEnd": 1368,
+  "medium": "Handscroll; ink and light color on paper",
+  "classification": "handscroll",
+  "classifications": [
+   "handscroll",
+   "painting",
+   "asian art"
+  ],
+  "style": "Chinese (culture or style)",
+  "styles": [
+   "Chinese (culture or style)",
+   "yüan"
+  ],
+  "subjects": [
+   "folklore",
+   "children",
+   "animals",
+   "boats",
+   "rivers",
+   "trees",
+   "scholars",
+   "families",
+   "landscapes",
+   "Chinese"
+  ],
+  "themesRaw": [
+   "Essentials",
+   "Arts of Asia 100"
+  ],
+  "techniques": [
+   "painting (image making)"
+  ],
+  "origin": "China",
+  "type": "Painting",
+  "color": {
+   "h": 211,
+   "l": 83,
+   "s": 12,
+   "percentage": 0.06040629801315806,
+   "population": 138
+  },
+  "colorfulness": 22.406,
+  "image": "https://www.artic.edu/iiif/2/f78addab-4d3a-f87c-4c83-7eae824c7504/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhEAAFAPYAAHJgTXRgTnVkU3ZlVHlnVHpoWn5rWnxrXIJuW4VvW4FvXYtvWYVxXoVzX4lzXop0Xo14Yo54Yo54ZI55ZId4aot8bZB7ZpB6Z5J8ZZJ8Z5R9ZZN/aZV+aJR/apR/a5eBapaAa5aBa5SAbpiAapmBapqDapqDa5yDa5yEa5uGb5yEbJ2FbZyGb5+GbpCCcpuGcZ2HcZ+JcZ+KcpqIeJqJeqCIcKSLcKSLcqWLcqWOc6OLdKOMdaOMdqSMdKWMdKaMdKWPd6aOdqaOeKePeKiQdqqRdqiReKuTeauUe6yUebSdggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAQAAUAAAdSgCIvQT84Nz0sMCATFgYKCDNIRkdFNjlJSUpEDw8EAgAVOhkkLScqDClAGxEcAwkLLjshJSYaKB8xMg0QGBAOARRCQz41KycjEjw8Fx0eBwU0gQA7",
+  "alt": "Long scroll ink painting depicting people with their animals and belongings crossing a river."
+ },
+ {
+  "aicId": 253,
+  "title": "Hydria (Water Jar)",
+  "artist": "Ancient Greek",
+  "artistId": 2601,
+  "date": "about 300 BCE",
+  "year": -300,
+  "yearEnd": -300,
+  "medium": "terracotta, black-glaze",
+  "classification": "vessel",
+  "classifications": [
+   "vessel",
+   "ceramics",
+   "ancient art"
+  ],
+  "style": "greek",
+  "styles": [
+   "greek",
+   "apulian",
+   "ancient"
+  ],
+  "subjects": [
+   "waves",
+   "abstract"
+  ],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Nola",
+  "type": "Vessel",
+  "color": {
+   "h": 48,
+   "l": 6,
+   "s": 16,
+   "percentage": 0.07598687959878928,
+   "population": 720
+  },
+  "colorfulness": 16.7747,
+  "image": "https://www.artic.edu/iiif/2/9af8c354-e223-256b-6aa9-71738010d4d5/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAE8/NlRHP3ZiVWNjY4RyZoOCgpOKh5KMiZeRjqqgnMG+vsfCwtzRzd3a2ejg3evl5fb08/n39vr4+Pv6+QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAAIf4KQXBwbGVNYXJrCgAsAAAAAAQABQAABRHgkhjKUwwNAwQOJBCTdCBRCAA7",
+  "alt": "A work made of terracotta, black-glaze."
+ },
+ {
+  "aicId": 120154,
+  "title": "Still Life—Strawberries, Nuts, &c.",
+  "artist": "Raphaelle Peale",
+  "artistId": 43370,
+  "date": "1822",
+  "year": 1822,
+  "yearEnd": 1822,
+  "medium": "Oil on wood panel",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "american arts"
+  ],
+  "style": "Realism",
+  "styles": [
+   "Realism"
+  ],
+  "subjects": [
+   "still life",
+   "food",
+   "orange (fruit)",
+   "strawberries",
+   "nuts",
+   "porcelain",
+   "symbolism",
+   "dining",
+   "drinking"
+  ],
+  "themesRaw": [
+   "Drinking and Dining",
+   "Essentials"
+  ],
+  "techniques": [
+   "oil painting",
+   "painting (image making)"
+  ],
+  "origin": "Philadelphia",
+  "type": "Painting",
+  "color": {
+   "h": 44,
+   "l": 47,
+   "s": 95,
+   "percentage": 0.013551412882090923,
+   "population": 69
+  },
+  "colorfulness": 37.3636,
+  "image": "https://www.artic.edu/iiif/2/1cddae1c-99d5-462f-4aa6-128c0732ac11/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAABQTEhETFR8aEhkYFxoYFhsZGBwaGR0bGh4cGx8dHDcdFSskGz4kETYrGjYsHDksGVUqF0w+KUo9LUw/L2ZQBE5ALExCLVREOFBKPlpOPV1QOV1SPXRZJFZQRFtUQ1tURGpfRmxkU3NqVQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhwAMiQRgYFgEFpAAQODoXBgUjeoQ+E44k09BsQB5LpBIEADs=",
+  "alt": "Still life painting of strawberries, nuts, lemon, and porcelain vessels."
+ },
+ {
+  "aicId": 5407,
+  "title": "Teapot with Symbols of England, Ireland, and Scotland",
+  "artist": null,
+  "artistId": null,
+  "date": "c. 1830",
+  "year": 1825,
+  "yearEnd": 1835,
+  "medium": "Earthenware with copper lustre decoration",
+  "classification": "teapot",
+  "classifications": [
+   "teapot",
+   "earthenware",
+   "european decorative arts",
+   "ceramics"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "Staffordshire",
+  "type": "Ceramics",
+  "color": {
+   "h": 357,
+   "l": 36,
+   "s": 65,
+   "percentage": 0.0021296941120346885,
+   "population": 10
+  },
+  "colorfulness": 34.8358,
+  "image": "https://www.artic.edu/iiif/2/05207941-1c7b-5ba3-c49c-1555d03e1247/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAExJSlJNTVZTVFhUVWBeX3dpXGdhY21mZW5oZ2pnaW1oaW5rb3dpaHpwb35ycY93XYl9faGDYsKgf4Z9gIuGhoiGiYuHiYyFio6JjJqMg5yKi5eTk5eTl5qUlZqYmaSYjrKXgbmfhqSho6qnqde/tdW9ut/DnufOtwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlQAHBwFAgDoABZFIiaRqBxCVkOkkcC0ulEAE9MBzPhpL5dESjIAA7",
+  "alt": "Earthenware white ground teapot with copper luster decoration designed with floral pattern in white relief. The edges and the bandwork is decorated with pink highlights."
+ },
+ {
+  "aicId": 62091,
+  "title": "Pilgrimage Jug with Christian Symbols",
+  "artist": "Byzantine",
+  "artistId": 37902,
+  "date": "578–636",
+  "year": 578,
+  "yearEnd": 636,
+  "medium": "Glass, mold-blown technique",
+  "classification": "vessel",
+  "classifications": [
+   "vessel",
+   "glass",
+   "ancient art"
+  ],
+  "style": "byzantine",
+  "styles": [
+   "byzantine",
+   "imperial (roman)",
+   "palestinian"
+  ],
+  "subjects": [
+   "Christian subjects",
+   "containers"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "glass appliqué"
+  ],
+  "origin": "Latin Kingdom of Jerusalem",
+  "type": "Vessel",
+  "color": {
+   "h": 39,
+   "l": 52,
+   "s": 91,
+   "percentage": 0.000543790264755943,
+   "population": 7
+  },
+  "colorfulness": 53.0947,
+  "image": "https://www.artic.edu/iiif/2/61416255-46e6-cf9f-f79c-c7f1b14e21ef/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAFo0IHlMK3RWSYBCDY9dOZhvSZh5ZqOUi7GWhLWln72pm7Woo7Wqp8CyqcvBvgAAACH5BAAAAAAALAAAAAADAAUAAAQLsJXjTEKBkaEEWBEAOw==",
+  "alt": "A work made of glass, mold-blown technique."
+ },
+ {
+  "aicId": 60812,
+  "title": "Merahi metua no Tehamana (Tehamana Has Many Parents or The Ancestors of Tehamana)",
+  "artist": "Paul Gauguin",
+  "artistId": 34611,
+  "date": "1893",
+  "year": 1893,
+  "yearEnd": 1893,
+  "medium": "Oil on jute canvas",
+  "classification": "oil on canvas",
+  "classifications": [
+   "oil on canvas",
+   "french",
+   "oil paintings (visual works)",
+   "paint",
+   "portrait",
+   "painting",
+   "european painting"
+  ],
+  "style": "Post-Impressionism",
+  "styles": [
+   "Post-Impressionism",
+   "19th century",
+   "nineteenth century"
+  ],
+  "subjects": [
+   "portraits: child subject",
+   "deities",
+   "fruit",
+   "flowers",
+   "symbols",
+   "decoration",
+   "white (color)",
+   "blue (color)",
+   "fans",
+   "stripes",
+   "portraits: female subject",
+   "portrait",
+   "women",
+   "portraits",
+   "mysteries/fantasies",
+   "interiors",
+   "fashion",
+   "dresses",
+   "text",
+   "Tahiti",
+   "Tahitian people"
+  ],
+  "themesRaw": [
+   "Essentials",
+   "Save Ferris"
+  ],
+  "techniques": [
+   "oil painting",
+   "painting",
+   "painting techniques",
+   "painting (image making)"
+  ],
+  "origin": "France",
+  "type": "Painting",
+  "color": {
+   "h": 41,
+   "l": 43,
+   "s": 82,
+   "percentage": 0.00544146614863909,
+   "population": 55
+  },
+  "colorfulness": 36.3819,
+  "image": "https://www.artic.edu/iiif/2/48268fc7-2eb4-ded6-1293-e91f27b66478/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAFZEMVNMPVZUP2hcPmxjP01MQFxaRVxgUGFgTnFoQHhvRHhzT2diUnRoVldhYntyYnV5cnB4eaeQd3V/ggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURYKIQi3EMSOBMkfBIENAwRQgAOw==",
+  "alt": "A young girl with medium skin wears a striking dress of black and white stripes with a short lace collar. Behind her is backdrop featuring symbols and native figures. Mangos sit beside her."
+ },
+ {
+  "aicId": 14644,
+  "title": "Bowl with Peony Scrolls, Thunderbolt (Vajra) Symbol, and Characters Shufu (Privy Council)",
+  "artist": null,
+  "artistId": null,
+  "date": "Yuan dynasty (1279–1368), 1300/50",
+  "year": 1301,
+  "yearEnd": 1350,
+  "medium": "Luanbai (eggshell white) ware; porcelain with underglaze molded decoration and inscription in raised slip",
+  "classification": "bowl",
+  "classifications": [
+   "bowl",
+   "porcelain",
+   "dish (vessel)",
+   "asian art",
+   "ceramics",
+   "vessel"
+  ],
+  "style": "Chinese (culture or style)",
+  "styles": [
+   "Chinese (culture or style)"
+  ],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [],
+  "origin": "China",
+  "type": "Vessel",
+  "color": {
+   "h": 77,
+   "l": 49,
+   "s": 3,
+   "percentage": 0.15220501011792617,
+   "population": 698
+  },
+  "colorfulness": 6.2839,
+  "image": "https://www.artic.edu/iiif/2/69ef912a-5d29-aea5-ec9c-bfb28ed921e8/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAGZoYnFza3Z7b3uBdIWGfoaGfoeHhIuMhY2Oh5WWkpedkJialJudmKKjoqOloaSlpKWmpqenp6epp6epqKipqamqqKqrq66ura2zpK60prK0rrK0r7i+r7Kzsra3trq6ub29vL+/vb/DucfLwczPxs3RyAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlwEnnAwqBPBeIZlQiiTaWSCXDwSgalEciMBAADBDH4kAoIBiSIAA7",
+  "alt": "A work made of luanbai (eggshell white) ware; porcelain with underglaze molded decoration and inscription in raised slip."
+ },
+ {
+  "aicId": 81557,
+  "title": "Seascape",
+  "artist": "Pierre-Auguste Renoir",
+  "artistId": 36351,
+  "date": "1879",
+  "year": 1879,
+  "yearEnd": 1879,
+  "medium": "Oil on canvas",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "paint",
+   "oil paintings (visual works)",
+   "oil on canvas",
+   "french",
+   "european painting"
+  ],
+  "style": "Impressionism",
+  "styles": [
+   "Impressionism",
+   "nineteenth century",
+   "19th century"
+  ],
+  "subjects": [
+   "weather/seasons",
+   "sea",
+   "blue",
+   "blue (color)",
+   "green (color)",
+   "waves",
+   "sky",
+   "clouds",
+   "water",
+   "landscapes"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "oil painting",
+   "painting techniques",
+   "painting (image making)",
+   "painting"
+  ],
+  "origin": "France",
+  "type": "Painting",
+  "color": {
+   "h": 215,
+   "l": 40,
+   "s": 35,
+   "percentage": 0.3046762814509584,
+   "population": 1708
+  },
+  "colorfulness": 34.9787,
+  "image": "https://www.artic.edu/iiif/2/caf4fa39-e2e8-344a-542c-2d9a03ec9d4b/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAADxehkZmjElnj1FojEltlk1vlVJuk1xyl2mCoHOHoHWSon6Wp4OTn4qUmoCbpYCZpoabpI2is5uqs5+vuqqoraKvvqivvq2wuK61wKy6yLa9wrm+xri/xrC/zgAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUY4HAIRdIYAUAgDPQsihNl3SRVlsZt2EWFADs=",
+  "alt": "Vivid, lush view of rolling waves in purple, white, blue, and green against a bright blue sky with a watercolor-like blending of blues and purples. Sea and sky nearly become one."
+ },
+ {
+  "aicId": 154235,
+  "title": "The Girl by the Window",
+  "artist": "Edvard Munch",
+  "artistId": 44014,
+  "date": "1893",
+  "year": 1893,
+  "yearEnd": 1893,
+  "medium": "Oil on canvas",
+  "classification": "oil on canvas",
+  "classifications": [
+   "oil on canvas",
+   "paint",
+   "oil paintings (visual works)",
+   "painting",
+   "european painting"
+  ],
+  "style": "Post-Impressionism",
+  "styles": [
+   "Post-Impressionism",
+   "nineteenth century",
+   "19th century"
+  ],
+  "subjects": [
+   "interiors",
+   "window",
+   "night",
+   "light",
+   "girl",
+   "domestic",
+   "curtains",
+   "blue (color)",
+   "blue",
+   "domestic scenes",
+   "night scenes",
+   "children"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "oil painting",
+   "painting techniques",
+   "painting",
+   "painting (image making)"
+  ],
+  "origin": "Norway",
+  "type": "Painting",
+  "color": {
+   "h": 209,
+   "l": 41,
+   "s": 49,
+   "percentage": 0.001904076437244497,
+   "population": 20
+  },
+  "colorfulness": 19.8644,
+  "image": "https://www.artic.edu/iiif/2/d7df2633-3b40-f570-c906-211503a37cde/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAEg8Pko/Pz8/Q0tHRUZFUEpHUUxPVVdUX2NfaGJqfG1zh3Z/k3F9lX+FmYSJmQAAACH5BAAAAAAALAAAAAADAAUAAAQLsCnDFkmuHCQCGBEAOw==",
+  "alt": "Loosely painted scene of a brown-haired girl in her nightgown standing in a dark room, gazing out a window into a brighter night, her face unseen and her hand drawing back the pale curtain. Light blues and pink whites dominate the girl and the window, while deep browns, blues, and greens color the darkened portions of her room."
+ },
+ {
+  "aicId": 56905,
+  "title": "Nocturne: Blue and Gold—Southampton Water",
+  "artist": "James McNeill Whistler",
+  "artistId": 37279,
+  "date": "1872",
+  "year": 1872,
+  "yearEnd": 1872,
+  "medium": "Oil on canvas",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "american arts"
+  ],
+  "style": "Impressionism",
+  "styles": [
+   "Impressionism",
+   "Modernism"
+  ],
+  "subjects": [
+   "landscapes",
+   "water",
+   "weather/seasons",
+   "night scenes",
+   "Century of Progress",
+   "world's fairs",
+   "Chicago World's Fairs"
+  ],
+  "themesRaw": [
+   "Art Institute Icons",
+   "Essentials"
+  ],
+  "techniques": [
+   "oil painting",
+   "painting (image making)"
+  ],
+  "origin": "London",
+  "type": "Painting",
+  "color": {
+   "h": 37,
+   "l": 44,
+   "s": 21,
+   "percentage": 0.001277816467220813,
+   "population": 6
+  },
+  "colorfulness": 6.4541,
+  "image": "https://www.artic.edu/iiif/2/50034c7f-ce51-00f1-430e-a6f7efc233fc/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAEpORE9SRVFTR1FSSVJTSlJVS1VWSVJUTFJWTFVXTVRXT1VXT1VYTFdZT1dbUVdaUlhaUVhbUVlcU11fUltdVFteVV1gV19iWV5iWmJlXGhsXmRnYGdqYGdqYWhrY2hsYGxuYnBzZnN1a3V4bQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlwNBI5OFwPhrMBtTJUBoTh+VSgSwGBoSk8lgsEgxAIaI4EASBIAA7",
+  "alt": "A sparsely painted waterside scene in dark tones with minimal ghostly shapes suggesting ships, yellow glitches of paint for light reflections, and the orb of an orange moon overhead."
+ },
+ {
+  "aicId": 111620,
+  "title": "The Abduction of the Sabine Women",
+  "artist": "Luca Giordano",
+  "artistId": 34664,
+  "date": "c. 1675",
+  "year": 1670,
+  "yearEnd": 1680,
+  "medium": "Oil on canvas",
+  "classification": "oil on canvas",
+  "classifications": [
+   "oil on canvas",
+   "Italian",
+   "oil paintings (visual works)",
+   "paint",
+   "painting",
+   "european painting"
+  ],
+  "style": "17th Century",
+  "styles": [
+   "17th Century"
+  ],
+  "subjects": [
+   "mythology",
+   "gestural",
+   "festivals",
+   "night scenes",
+   "night",
+   "architechture",
+   "men",
+   "Rome",
+   "Roman",
+   "violence",
+   "women"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "oil painting",
+   "painting",
+   "painting (image making)",
+   "painting techniques"
+  ],
+  "origin": "Italy",
+  "type": "Painting",
+  "color": {
+   "h": 37,
+   "l": 37,
+   "s": 19,
+   "percentage": 0.1021211794424347,
+   "population": 625
+  },
+  "colorfulness": 24.1719,
+  "image": "https://www.artic.edu/iiif/2/c01c7f64-0098-a2d5-56c2-3eb0b28f68ae/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAC4jFzMoHjosHjsvHzstIjovIz4yJD8yJEU0H0Q2JkY3Jkc5J0U3KEk7K1BBLE5CMU9BNFJCMFNCMFZFMFZKN11KNGBON2JQO09LRGBVRGNXRGReUm9hSnFhSAAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYILZp1BNkXHc5zCFMSwEpDRBJhJEMVoWEADs=",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 14664,
+  "title": "Moulin de la Galette",
+  "artist": "Henri de Toulouse-Lautrec",
+  "artistId": 40869,
+  "date": "1889",
+  "year": 1889,
+  "yearEnd": 1889,
+  "medium": "Oil on canvas",
+  "classification": "oil on canvas",
+  "classifications": [
+   "oil on canvas",
+   "paint",
+   "oil paintings (visual works)",
+   "french",
+   "painting",
+   "european painting"
+  ],
+  "style": "Post-Impressionism",
+  "styles": [
+   "Post-Impressionism",
+   "nineteenth century",
+   "19th century"
+  ],
+  "subjects": [
+   "nightlife",
+   "table",
+   "night",
+   "dance",
+   "women",
+   "night scenes",
+   "leisure",
+   "dancers",
+   "men",
+   "urban life",
+   "Century of Progress",
+   "world's fairs",
+   "Chicago World's Fairs"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "oil painting",
+   "painting techniques",
+   "painting (image making)",
+   "painting"
+  ],
+  "origin": "France",
+  "type": "Painting",
+  "color": {
+   "h": 38,
+   "l": 32,
+   "s": 16,
+   "percentage": 0.6104559237339421,
+   "population": 3803
+  },
+  "colorfulness": 33.6045,
+  "image": "https://www.artic.edu/iiif/2/156aaed6-fe3c-a13c-f39e-55f381205929/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAD9HR0dJQUZJSEtMSVJLQVpOQ0tWS05VSl1TR1RWS15TSF5YS1lXUVxbUmtSRGdZQ21cQWNYSnJeR3JdSWFaVWFcVVpgTltgT19kVWRoVoNmOYNoQZByQ5x9TgAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYIJZZxnEVS0MMiUNVAhAgjBI90CRtHaeFADs=",
+  "alt": "A scene in brown and green tones of people dancing indoors. In the foreground, three women stand near boothed tables while a man sits."
+ },
+ {
+  "aicId": 887,
+  "title": "Landscape with Figures",
+  "artist": "Narcisse Virgile Diaz de la Peña",
+  "artistId": 30911,
+  "date": "c. 1870",
+  "year": 1865,
+  "yearEnd": 1875,
+  "medium": "Oil on panel",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "france",
+   "french",
+   "oil on panel",
+   "oil paintings (visual works)",
+   "paint",
+   "european painting"
+  ],
+  "style": "nineteenth century",
+  "styles": [
+   "nineteenth century",
+   "19th century",
+   "Barbizon School"
+  ],
+  "subjects": [
+   "landscape",
+   "night scenes",
+   "night",
+   "figures",
+   "France",
+   "French",
+   "man",
+   "men",
+   "sky",
+   "trees",
+   "woman",
+   "women"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "panel painting",
+   "oil painting",
+   "painting",
+   "painting (image making)",
+   "painting techniques"
+  ],
+  "origin": "France",
+  "type": "Painting",
+  "color": {
+   "h": 0,
+   "l": 47,
+   "s": 0,
+   "percentage": 0.05611672278338946,
+   "population": 281
+  },
+  "colorfulness": 0,
+  "image": "https://www.artic.edu/iiif/2/ad3280c6-611a-c136-29b8-8f303a02f416/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBwAFAPQAABwcHB0dHSQkJCUlJScnJygoKCsrKywsLDAwMDIyMjMzMzQ0NDg4ODo6Oj8/P1BQUFFRUVVVVXJycnd3d39/f4SEhIWFhZmZmZubm5ycnJ2dnaqqqq6ursDAwNnZ2ff39yH5BAAAAAAAIf8LSW1hZ2VNYWdpY2sOZ2FtbWE9MC40NTQ1NDUALAAAAAAHAAUAAAUcYLdllyVhH/doFDBFjuJVATMUBpQIROMfiMMiBAA7",
+  "alt": "Nocturnal landscape painting with lush trees and a large patch of sky with visible brushstrokes. Multiple small, seated figures line the foreground."
+ },
+ {
+  "aicId": 139288,
+  "title": "Nocturne",
+  "artist": "James McNeill Whistler",
+  "artistId": 37279,
+  "date": "1878, published 1887",
+  "year": 1878,
+  "yearEnd": 1878,
+  "medium": "Lithotint, on a prepared half-tint ground, in black with scraping, on blue laid paper, laid down on ivory plate paper (chine collé)",
+  "classification": "lithotint",
+  "classifications": [
+   "lithotint",
+   "lithograph",
+   "print",
+   "prints and drawing",
+   "paper"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [],
+  "themesRaw": [],
+  "techniques": [
+   "scraping"
+  ],
+  "origin": "United States",
+  "type": "Print",
+  "color": {
+   "h": 65,
+   "l": 50,
+   "s": 2,
+   "percentage": 0.08192150540904988,
+   "population": 404
+  },
+  "colorfulness": 9.1334,
+  "image": "https://www.artic.edu/iiif/2/0c025221-1687-3a83-c0ba-018d05f37b27/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBwAFAPQAAHp8d3t8d4qMh6ahnaaln6uoo62qpbKwqri3sc7IwtfRy9rSzdrTzd3W0N7W0efd1enf1urg1+rg2uvh2uvh2+zi2+3j3O7k3O7k3fDm3/Po4fPp4fTq4gAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAUd4DNZWCY9lIMcxGJVihAASVY1xWAwF2RtHM0lEgIAOw==",
+  "alt": "A work made of lithotint, on a prepared half-tint ground, in black with scraping, on blue laid paper, laid down on ivory plate paper (chine collé)."
+ },
+ {
+  "aicId": 64754,
+  "title": "Moonrise",
+  "artist": "George Inness",
+  "artistId": 35061,
+  "date": "1891",
+  "year": 1891,
+  "yearEnd": 1891,
+  "medium": "Oil on canvas",
+  "classification": "painting",
+  "classifications": [
+   "painting",
+   "american arts"
+  ],
+  "style": null,
+  "styles": [],
+  "subjects": [
+   "moon",
+   "field",
+   "figure",
+   "grass",
+   "landscape",
+   "night",
+   "trees"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "painting"
+  ],
+  "origin": "United States",
+  "type": "Painting",
+  "color": {
+   "h": 33,
+   "l": 38,
+   "s": 86,
+   "percentage": 0.003993281890466627,
+   "population": 34
+  },
+  "colorfulness": 37.6069,
+  "image": "https://www.artic.edu/iiif/2/4425984b-e241-6413-1404-cdac0fb06518/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAABsLGDMPDjUWDjwcCzkZDCcUGzUaED8lEkEnGUgwGkkyHFtBJF1POmpLJ2lNKWdSOn5fMH5tVIFeLZNuMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURYLFIDtBMEBM9CpIcRjAQQggAOw==",
+  "alt": "A work made of oil on canvas."
+ },
+ {
+  "aicId": 110867,
+  "title": "Tight-Rope Walker",
+  "artist": "Jean Louis Forain",
+  "artistId": 34505,
+  "date": "c. 1885",
+  "year": 1880,
+  "yearEnd": 1890,
+  "medium": "Oil on canvas",
+  "classification": "oil on canvas",
+  "classifications": [
+   "oil on canvas",
+   "oil paintings (visual works)",
+   "paint",
+   "france",
+   "french",
+   "painting",
+   "european painting"
+  ],
+  "style": "Impressionism",
+  "styles": [
+   "Impressionism",
+   "19th century",
+   "nineteenth century"
+  ],
+  "subjects": [
+   "performance",
+   "France",
+   "French",
+   "men",
+   "night",
+   "Paris",
+   "woman",
+   "women",
+   "work",
+   "leisure",
+   "night scenes",
+   "urban life",
+   "Century of Progress",
+   "world's fairs",
+   "Chicago World's Fairs"
+  ],
+  "themesRaw": [],
+  "techniques": [
+   "oil painting",
+   "painting",
+   "painting (image making)",
+   "painting techniques"
+  ],
+  "origin": "France",
+  "type": "Painting",
+  "color": {
+   "h": 39,
+   "l": 40,
+   "s": 51,
+   "percentage": 0.00011395193279570811,
+   "population": 1
+  },
+  "colorfulness": 13.763,
+  "image": "https://www.artic.edu/iiif/2/f67d49b0-90a6-7aa3-29ab-77e5d1e9fd9c/full/1200,/0/default.jpg",
+  "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAA8UHxoYEx8aFBUVGRAVHBYZHRQYHiMdGiYfGCoiGy8lHC8lHxEWIBkbIiAgJSMlKTMxLzMuNDwzMkA0KAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoEEMBcBID9REzpQcCxIISggAOw==",
+  "alt": "A work made of oil on canvas."
+ }
+]

@@ -1,0 +1,8932 @@
+{
+ "meta": {
+  "src": "风格 lore.motifs → 题材层(已扩词表)",
+  "edges": 934,
+  "styles_covered": 187,
+  "total": 202,
+  "atoms_covered": 135,
+  "note": "题材层已用复现母题扩充;干净匹配(精确/原子名为motif子串)。"
+ },
+ "by_style": {
+  "STYLE.west.001": {
+   "cn": "古希腊风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x62",
+     "cn": "神祇",
+     "motif": "神祇"
+    },
+    {
+     "id": "SUBJECT.figure.32",
+     "cn": "英雄",
+     "motif": "英雄"
+    }
+   ]
+  },
+  "STYLE.west.002": {
+   "cn": "古罗马风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.figure.01",
+     "cn": "肖像",
+     "motif": "皇帝肖像"
+    },
+    {
+     "id": "SUBJECT.still-life.x52",
+     "cn": "宴饮",
+     "motif": "宴饮"
+    }
+   ]
+  },
+  "STYLE.west.003": {
+   "cn": "拜占庭风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.34",
+     "cn": "基督",
+     "motif": "基督"
+    },
+    {
+     "id": "SUBJECT.myth.33",
+     "cn": "圣母",
+     "motif": "圣母"
+    },
+    {
+     "id": "SUBJECT.myth.40",
+     "cn": "圣徒",
+     "motif": "圣徒"
+    }
+   ]
+  },
+  "STYLE.west.004": {
+   "cn": "罗马式风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.history.50",
+     "cn": "审判",
+     "motif": "末日审判"
+    },
+    {
+     "id": "SUBJECT.myth.34",
+     "cn": "基督",
+     "motif": "基督威严"
+    },
+    {
+     "id": "SUBJECT.myth.x63",
+     "cn": "圣经",
+     "motif": "圣经叙事"
+    }
+   ]
+  },
+  "STYLE.west.005": {
+   "cn": "哥特式风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.33",
+     "cn": "圣母",
+     "motif": "圣母子"
+    }
+   ]
+  },
+  "STYLE.west.006": {
+   "cn": "中世纪风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x63",
+     "cn": "圣经",
+     "motif": "圣经故事"
+    },
+    {
+     "id": "SUBJECT.myth.40",
+     "cn": "圣徒",
+     "motif": "圣徒"
+    }
+   ]
+  },
+  "STYLE.west.007": {
+   "cn": "古埃及风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x62",
+     "cn": "神祇",
+     "motif": "神祇"
+    },
+    {
+     "id": "SUBJECT.abstract.x60",
+     "cn": "文字",
+     "motif": "象形文字"
+    }
+   ]
+  },
+  "STYLE.west.008": {
+   "cn": "早期文艺复兴",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x63",
+     "cn": "圣经",
+     "motif": "圣经"
+    },
+    {
+     "id": "SUBJECT.myth.x64",
+     "cn": "神话",
+     "motif": "神话"
+    },
+    {
+     "id": "SUBJECT.figure.01",
+     "cn": "肖像",
+     "motif": "肖像"
+    }
+   ]
+  },
+  "STYLE.west.009": {
+   "cn": "高文艺复兴",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x63",
+     "cn": "圣经",
+     "motif": "圣经"
+    },
+    {
+     "id": "SUBJECT.myth.x64",
+     "cn": "神话",
+     "motif": "神话"
+    },
+    {
+     "id": "SUBJECT.figure.01",
+     "cn": "肖像",
+     "motif": "肖像"
+    }
+   ]
+  },
+  "STYLE.west.010": {
+   "cn": "晚期文艺复兴",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x63",
+     "cn": "圣经",
+     "motif": "圣经"
+    },
+    {
+     "id": "SUBJECT.myth.x64",
+     "cn": "神话",
+     "motif": "神话"
+    },
+    {
+     "id": "SUBJECT.figure.01",
+     "cn": "肖像",
+     "motif": "肖像"
+    }
+   ]
+  },
+  "STYLE.west.011": {
+   "cn": "佛罗伦萨画派",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.33",
+     "cn": "圣母",
+     "motif": "圣母子"
+    },
+    {
+     "id": "SUBJECT.myth.x64",
+     "cn": "神话",
+     "motif": "神话"
+    },
+    {
+     "id": "SUBJECT.figure.x51",
+     "cn": "人体",
+     "motif": "人体"
+    }
+   ]
+  },
+  "STYLE.west.012": {
+   "cn": "威尼斯画派",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x64",
+     "cn": "神话",
+     "motif": "神话"
+    },
+    {
+     "id": "SUBJECT.figure.17",
+     "cn": "裸体",
+     "motif": "裸体"
+    },
+    {
+     "id": "SUBJECT.figure.01",
+     "cn": "肖像",
+     "motif": "肖像"
+    }
+   ]
+  },
+  "STYLE.west.013": {
+   "cn": "北方文艺复兴",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x65",
+     "cn": "宗教",
+     "motif": "宗教"
+    },
+    {
+     "id": "SUBJECT.urban.x52",
+     "cn": "市井",
+     "motif": "市井"
+    },
+    {
+     "id": "SUBJECT.figure.01",
+     "cn": "肖像",
+     "motif": "肖像"
+    },
+    {
+     "id": "SUBJECT.landscape.x50",
+     "cn": "风景",
+     "motif": "风景"
+    }
+   ]
+  },
+  "STYLE.west.014": {
+   "cn": "锡耶纳画派",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.33",
+     "cn": "圣母",
+     "motif": "圣母子"
+    },
+    {
+     "id": "SUBJECT.myth.32",
+     "cn": "天使",
+     "motif": "天使报喜"
+    }
+   ]
+  },
+  "STYLE.west.015": {
+   "cn": "意大利巴洛克",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x66",
+     "cn": "宗教激情",
+     "motif": "宗教激情"
+    },
+    {
+     "id": "SUBJECT.myth.x67",
+     "cn": "殉道",
+     "motif": "殉道"
+    },
+    {
+     "id": "SUBJECT.history.x53",
+     "cn": "权力",
+     "motif": "权力"
+    }
+   ]
+  },
+  "STYLE.west.016": {
+   "cn": "西班牙巴洛克",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x66",
+     "cn": "宗教激情",
+     "motif": "宗教激情"
+    },
+    {
+     "id": "SUBJECT.myth.x67",
+     "cn": "殉道",
+     "motif": "殉道"
+    },
+    {
+     "id": "SUBJECT.history.x53",
+     "cn": "权力",
+     "motif": "权力"
+    }
+   ]
+  },
+  "STYLE.west.017": {
+   "cn": "荷兰黄金时代",
+   "atoms": [
+    {
+     "id": "SUBJECT.figure.01",
+     "cn": "肖像",
+     "motif": "市民肖像"
+    },
+    {
+     "id": "SUBJECT.still-life.x53",
+     "cn": "静物",
+     "motif": "静物"
+    },
+    {
+     "id": "SUBJECT.landscape.x50",
+     "cn": "风景",
+     "motif": "风景"
+    }
+   ]
+  },
+  "STYLE.west.018": {
+   "cn": "法国巴洛克",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x66",
+     "cn": "宗教激情",
+     "motif": "宗教激情"
+    },
+    {
+     "id": "SUBJECT.myth.x67",
+     "cn": "殉道",
+     "motif": "殉道"
+    },
+    {
+     "id": "SUBJECT.history.x53",
+     "cn": "权力",
+     "motif": "权力"
+    }
+   ]
+  },
+  "STYLE.west.019": {
+   "cn": "法国洛可可",
+   "atoms": [
+    {
+     "id": "SUBJECT.folk.x51",
+     "cn": "爱情",
+     "motif": "爱情"
+    },
+    {
+     "id": "SUBJECT.folk.26",
+     "cn": "田园",
+     "motif": "田园嬉游"
+    },
+    {
+     "id": "SUBJECT.myth.x68",
+     "cn": "仙境",
+     "motif": "仙境"
+    }
+   ]
+  },
+  "STYLE.west.020": {
+   "cn": "德国洛可可",
+   "atoms": [
+    {
+     "id": "SUBJECT.folk.x51",
+     "cn": "爱情",
+     "motif": "爱情"
+    },
+    {
+     "id": "SUBJECT.folk.26",
+     "cn": "田园",
+     "motif": "田园嬉游"
+    },
+    {
+     "id": "SUBJECT.myth.x68",
+     "cn": "仙境",
+     "motif": "仙境"
+    }
+   ]
+  },
+  "STYLE.west.021": {
+   "cn": "英国洛可可",
+   "atoms": [
+    {
+     "id": "SUBJECT.folk.x51",
+     "cn": "爱情",
+     "motif": "爱情"
+    },
+    {
+     "id": "SUBJECT.folk.26",
+     "cn": "田园",
+     "motif": "田园嬉游"
+    },
+    {
+     "id": "SUBJECT.myth.x68",
+     "cn": "仙境",
+     "motif": "仙境"
+    }
+   ]
+  },
+  "STYLE.west.022": {
+   "cn": "新古典主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.history.x54",
+     "cn": "历史",
+     "motif": "历史"
+    },
+    {
+     "id": "SUBJECT.figure.32",
+     "cn": "英雄",
+     "motif": "英雄"
+    }
+   ]
+  },
+  "STYLE.west.023": {
+   "cn": "法国浪漫主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.history.33",
+     "cn": "灾难",
+     "motif": "灾难"
+    },
+    {
+     "id": "SUBJECT.urban.x53",
+     "cn": "异域",
+     "motif": "异域"
+    },
+    {
+     "id": "SUBJECT.abstract.x52",
+     "cn": "崇高自然",
+     "motif": "崇高自然"
+    },
+    {
+     "id": "SUBJECT.figure.x52",
+     "cn": "孤独者",
+     "motif": "孤独者"
+    }
+   ]
+  },
+  "STYLE.west.024": {
+   "cn": "英国浪漫主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.history.33",
+     "cn": "灾难",
+     "motif": "灾难"
+    },
+    {
+     "id": "SUBJECT.urban.x53",
+     "cn": "异域",
+     "motif": "异域"
+    },
+    {
+     "id": "SUBJECT.abstract.x52",
+     "cn": "崇高自然",
+     "motif": "崇高自然"
+    },
+    {
+     "id": "SUBJECT.figure.x52",
+     "cn": "孤独者",
+     "motif": "孤独者"
+    }
+   ]
+  },
+  "STYLE.west.025": {
+   "cn": "德国浪漫主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.history.33",
+     "cn": "灾难",
+     "motif": "灾难"
+    },
+    {
+     "id": "SUBJECT.urban.x53",
+     "cn": "异域",
+     "motif": "异域"
+    },
+    {
+     "id": "SUBJECT.abstract.x52",
+     "cn": "崇高自然",
+     "motif": "崇高自然"
+    },
+    {
+     "id": "SUBJECT.figure.x52",
+     "cn": "孤独者",
+     "motif": "孤独者"
+    }
+   ]
+  },
+  "STYLE.west.026": {
+   "cn": "现实主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.history.x55",
+     "cn": "劳动",
+     "motif": "劳动"
+    },
+    {
+     "id": "SUBJECT.folk.x52",
+     "cn": "农民",
+     "motif": "农民"
+    },
+    {
+     "id": "SUBJECT.urban.x52",
+     "cn": "市井",
+     "motif": "市井"
+    },
+    {
+     "id": "SUBJECT.abstract.x53",
+     "cn": "贫困",
+     "motif": "贫困"
+    }
+   ]
+  },
+  "STYLE.west.027": {
+   "cn": "自然主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.folk.x53",
+     "cn": "农事",
+     "motif": "农事"
+    },
+    {
+     "id": "SUBJECT.figure.09",
+     "cn": "劳动者",
+     "motif": "劳动者"
+    }
+   ]
+  },
+  "STYLE.west.028": {
+   "cn": "社会现实主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.history.x54",
+     "cn": "历史",
+     "motif": "历史"
+    },
+    {
+     "id": "SUBJECT.figure.01",
+     "cn": "肖像",
+     "motif": "平民肖像"
+    },
+    {
+     "id": "SUBJECT.landscape.x50",
+     "cn": "风景",
+     "motif": "俄罗斯风景"
+    }
+   ]
+  },
+  "STYLE.west.029": {
+   "cn": "印象派",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x51",
+     "cn": "户外风景",
+     "motif": "户外风景"
+    },
+    {
+     "id": "SUBJECT.landscape.x52",
+     "cn": "花园",
+     "motif": "花园"
+    },
+    {
+     "id": "SUBJECT.urban.x54",
+     "cn": "都市生活",
+     "motif": "都市生活"
+    },
+    {
+     "id": "SUBJECT.abstract.x54",
+     "cn": "光",
+     "motif": "光"
+    }
+   ]
+  },
+  "STYLE.west.030": {
+   "cn": "新印象派",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x51",
+     "cn": "户外风景",
+     "motif": "户外风景"
+    },
+    {
+     "id": "SUBJECT.landscape.x52",
+     "cn": "花园",
+     "motif": "花园"
+    },
+    {
+     "id": "SUBJECT.urban.x54",
+     "cn": "都市生活",
+     "motif": "都市生活"
+    },
+    {
+     "id": "SUBJECT.abstract.x54",
+     "cn": "光",
+     "motif": "光"
+    }
+   ]
+  },
+  "STYLE.west.031": {
+   "cn": "点彩派",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x50",
+     "cn": "风景",
+     "motif": "风景"
+    }
+   ]
+  },
+  "STYLE.west.032": {
+   "cn": "后印象派",
+   "atoms": [
+    {
+     "id": "SUBJECT.still-life.x53",
+     "cn": "静物",
+     "motif": "静物"
+    },
+    {
+     "id": "SUBJECT.figure.02",
+     "cn": "自画像",
+     "motif": "自画像"
+    },
+    {
+     "id": "SUBJECT.folk.26",
+     "cn": "田园",
+     "motif": "田园"
+    },
+    {
+     "id": "SUBJECT.urban.x53",
+     "cn": "异域",
+     "motif": "异域"
+    }
+   ]
+  },
+  "STYLE.west.033": {
+   "cn": "纳比派",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x55",
+     "cn": "室内",
+     "motif": "室内"
+    },
+    {
+     "id": "SUBJECT.landscape.x52",
+     "cn": "花园",
+     "motif": "花园"
+    }
+   ]
+  },
+  "STYLE.west.034": {
+   "cn": "象征主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x64",
+     "cn": "神话",
+     "motif": "神话"
+    },
+    {
+     "id": "SUBJECT.figure.x53",
+     "cn": "女性",
+     "motif": "女性"
+    },
+    {
+     "id": "SUBJECT.myth.x69",
+     "cn": "梦",
+     "motif": "梦"
+    }
+   ]
+  },
+  "STYLE.west.035": {
+   "cn": "新艺术运动",
+   "atoms": [
+    {
+     "id": "SUBJECT.bird-flower.x52",
+     "cn": "花卉",
+     "motif": "花卉"
+    },
+    {
+     "id": "SUBJECT.figure.x53",
+     "cn": "女性",
+     "motif": "女性"
+    }
+   ]
+  },
+  "STYLE.west.036": {
+   "cn": "野兽派",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x50",
+     "cn": "风景",
+     "motif": "风景"
+    },
+    {
+     "id": "SUBJECT.still-life.x54",
+     "cn": "人物",
+     "motif": "人物"
+    },
+    {
+     "id": "SUBJECT.abstract.x55",
+     "cn": "室内",
+     "motif": "室内"
+    }
+   ]
+  },
+  "STYLE.west.037": {
+   "cn": "表现主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.urban.x55",
+     "cn": "城市",
+     "motif": "城市"
+    },
+    {
+     "id": "SUBJECT.abstract.x56",
+     "cn": "欲望",
+     "motif": "欲望"
+    },
+    {
+     "id": "SUBJECT.history.01",
+     "cn": "战争",
+     "motif": "战争"
+    }
+   ]
+  },
+  "STYLE.west.039": {
+   "cn": "桥社",
+   "atoms": [
+    {
+     "id": "SUBJECT.urban.x56",
+     "cn": "都市",
+     "motif": "都市"
+    },
+    {
+     "id": "SUBJECT.figure.x51",
+     "cn": "人体",
+     "motif": "人体"
+    }
+   ]
+  },
+  "STYLE.west.040": {
+   "cn": "立体主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.still-life.x53",
+     "cn": "静物",
+     "motif": "静物"
+    },
+    {
+     "id": "SUBJECT.still-life.06",
+     "cn": "乐器",
+     "motif": "乐器"
+    },
+    {
+     "id": "SUBJECT.still-life.x54",
+     "cn": "人物",
+     "motif": "人物"
+    }
+   ]
+  },
+  "STYLE.west.041": {
+   "cn": "分析立体主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.still-life.x53",
+     "cn": "静物",
+     "motif": "静物"
+    },
+    {
+     "id": "SUBJECT.still-life.06",
+     "cn": "乐器",
+     "motif": "乐器"
+    },
+    {
+     "id": "SUBJECT.still-life.x54",
+     "cn": "人物",
+     "motif": "人物"
+    }
+   ]
+  },
+  "STYLE.west.042": {
+   "cn": "综合立体主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.still-life.x53",
+     "cn": "静物",
+     "motif": "静物"
+    },
+    {
+     "id": "SUBJECT.still-life.06",
+     "cn": "乐器",
+     "motif": "乐器"
+    },
+    {
+     "id": "SUBJECT.still-life.x54",
+     "cn": "人物",
+     "motif": "人物"
+    }
+   ]
+  },
+  "STYLE.west.043": {
+   "cn": "未来主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.urban.x55",
+     "cn": "城市",
+     "motif": "城市"
+    },
+    {
+     "id": "SUBJECT.history.01",
+     "cn": "战争",
+     "motif": "战争"
+    }
+   ]
+  },
+  "STYLE.west.044": {
+   "cn": "形而上绘画",
+   "atoms": [
+    {
+     "id": "SUBJECT.still-life.34",
+     "cn": "人偶",
+     "motif": "人偶"
+    }
+   ]
+  },
+  "STYLE.west.046": {
+   "cn": "构成主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x57",
+     "cn": "空间",
+     "motif": "空间"
+    }
+   ]
+  },
+  "STYLE.west.047": {
+   "cn": "新造型主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x58",
+     "cn": "纯抽象",
+     "motif": "纯抽象"
+    }
+   ]
+  },
+  "STYLE.west.048": {
+   "cn": "苏黎世达达",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x76",
+     "cn": "拼贴",
+     "motif": "偶然拼贴"
+    }
+   ]
+  },
+  "STYLE.west.050": {
+   "cn": "自动主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x69",
+     "cn": "梦",
+     "motif": "梦"
+    }
+   ]
+  },
+  "STYLE.west.051": {
+   "cn": "超现实主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x69",
+     "cn": "梦",
+     "motif": "梦"
+    },
+    {
+     "id": "SUBJECT.abstract.x56",
+     "cn": "欲望",
+     "motif": "欲望"
+    }
+   ]
+  },
+  "STYLE.west.054": {
+   "cn": "抒情抽象",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x50",
+     "cn": "风景",
+     "motif": "风景化抽象"
+    }
+   ]
+  },
+  "STYLE.west.055": {
+   "cn": "非形式艺术",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x69",
+     "cn": "肌理",
+     "motif": "物质肌理"
+    }
+   ]
+  },
+  "STYLE.west.057": {
+   "cn": "抽象表现主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x58",
+     "cn": "纯抽象",
+     "motif": "纯抽象"
+    }
+   ]
+  },
+  "STYLE.west.063": {
+   "cn": "魔幻现实主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.history.x55",
+     "cn": "劳动",
+     "motif": "劳动"
+    },
+    {
+     "id": "SUBJECT.folk.x52",
+     "cn": "农民",
+     "motif": "农民"
+    },
+    {
+     "id": "SUBJECT.urban.x52",
+     "cn": "市井",
+     "motif": "市井"
+    },
+    {
+     "id": "SUBJECT.abstract.x53",
+     "cn": "贫困",
+     "motif": "贫困"
+    }
+   ]
+  },
+  "STYLE.west.064": {
+   "cn": "照相写实主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.urban.x56",
+     "cn": "都市",
+     "motif": "都市"
+    },
+    {
+     "id": "SUBJECT.abstract.x59",
+     "cn": "橱窗",
+     "motif": "橱窗"
+    },
+    {
+     "id": "SUBJECT.figure.01",
+     "cn": "肖像",
+     "motif": "肖像"
+    }
+   ]
+  },
+  "STYLE.west.065": {
+   "cn": "超写实主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.figure.01",
+     "cn": "肖像",
+     "motif": "巨幅肖像"
+    },
+    {
+     "id": "SUBJECT.abstract.x59",
+     "cn": "橱窗",
+     "motif": "橱窗"
+    }
+   ]
+  },
+  "STYLE.west.069": {
+   "cn": "素人绘画",
+   "atoms": [
+    {
+     "id": "SUBJECT.history.46",
+     "cn": "节庆",
+     "motif": "节庆"
+    }
+   ]
+  },
+  "STYLE.west.081": {
+   "cn": "新表现主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.history.x54",
+     "cn": "历史",
+     "motif": "历史"
+    },
+    {
+     "id": "SUBJECT.myth.x64",
+     "cn": "神话",
+     "motif": "神话"
+    },
+    {
+     "id": "SUBJECT.figure.x54",
+     "cn": "身体",
+     "motif": "身体"
+    }
+   ]
+  },
+  "STYLE.west.090": {
+   "cn": "街头与涂鸦艺术",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.27",
+     "cn": "符号",
+     "motif": "符号"
+    },
+    {
+     "id": "SUBJECT.abstract.x60",
+     "cn": "文字",
+     "motif": "文字"
+    },
+    {
+     "id": "SUBJECT.urban.x55",
+     "cn": "城市",
+     "motif": "城市墙面"
+    }
+   ]
+  },
+  "STYLE.west.098": {
+   "cn": "沉浸与环境艺术",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x57",
+     "cn": "空间",
+     "motif": "光影空间"
+    }
+   ]
+  },
+  "STYLE.west.099": {
+   "cn": "网络与后互联网艺术",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x61",
+     "cn": "屏幕",
+     "motif": "屏幕"
+    }
+   ]
+  },
+  "STYLE.west.102": {
+   "cn": "区块链与NFT艺术",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x62",
+     "cn": "生成",
+     "motif": "生成"
+    }
+   ]
+  },
+  "STYLE.west.116": {
+   "cn": "当代具象",
+   "atoms": [
+    {
+     "id": "SUBJECT.still-life.x54",
+     "cn": "人物",
+     "motif": "人物"
+    }
+   ]
+  },
+  "STYLE.east.003": {
+   "cn": "汉代画像石",
+   "atoms": [
+    {
+     "id": "SUBJECT.still-life.x52",
+     "cn": "宴饮",
+     "motif": "宴饮"
+    },
+    {
+     "id": "SUBJECT.animal.37",
+     "cn": "神兽",
+     "motif": "神兽"
+    }
+   ]
+  },
+  "STYLE.east.004": {
+   "cn": "壁画风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x70",
+     "cn": "经变",
+     "motif": "经变"
+    },
+    {
+     "id": "SUBJECT.myth.x71",
+     "cn": "升仙",
+     "motif": "升仙"
+    }
+   ]
+  },
+  "STYLE.east.010": {
+   "cn": "墓室壁画",
+   "atoms": [
+    {
+     "id": "SUBJECT.still-life.x52",
+     "cn": "宴饮",
+     "motif": "宴饮"
+    },
+    {
+     "id": "SUBJECT.myth.x71",
+     "cn": "升仙",
+     "motif": "升仙"
+    }
+   ]
+  },
+  "STYLE.east.011": {
+   "cn": "佛教壁画风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x70",
+     "cn": "经变",
+     "motif": "经变"
+    },
+    {
+     "id": "SUBJECT.myth.x72",
+     "cn": "飞天",
+     "motif": "飞天"
+    }
+   ]
+  },
+  "STYLE.east.012": {
+   "cn": "唐代宫廷绘画",
+   "atoms": [
+    {
+     "id": "SUBJECT.figure.28",
+     "cn": "帝王",
+     "motif": "帝王"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x53",
+     "cn": "簪花",
+     "motif": "簪花"
+    }
+   ]
+  },
+  "STYLE.east.019": {
+   "cn": "金碧山水风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x53",
+     "cn": "楼阁",
+     "motif": "仙山楼阁"
+    },
+    {
+     "id": "SUBJECT.myth.x73",
+     "cn": "瀛洲",
+     "motif": "瀛洲"
+    },
+    {
+     "id": "SUBJECT.landscape.31",
+     "cn": "行旅",
+     "motif": "行旅"
+    }
+   ]
+  },
+  "STYLE.east.021": {
+   "cn": "唐代仕女风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.bird-flower.x53",
+     "cn": "簪花",
+     "motif": "簪花"
+    }
+   ]
+  },
+  "STYLE.east.022": {
+   "cn": "佛像造像风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x74",
+     "cn": "佛",
+     "motif": "佛"
+    },
+    {
+     "id": "SUBJECT.myth.02",
+     "cn": "菩萨",
+     "motif": "菩萨"
+    },
+    {
+     "id": "SUBJECT.myth.03",
+     "cn": "罗汉",
+     "motif": "罗汉"
+    },
+    {
+     "id": "SUBJECT.figure.x55",
+     "cn": "供养人",
+     "motif": "供养人"
+    }
+   ]
+  },
+  "STYLE.east.023": {
+   "cn": "道教图像风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x75",
+     "cn": "朝元",
+     "motif": "朝元"
+    },
+    {
+     "id": "SUBJECT.myth.x76",
+     "cn": "星君",
+     "motif": "星君"
+    },
+    {
+     "id": "SUBJECT.history.x56",
+     "cn": "帝后",
+     "motif": "帝后"
+    },
+    {
+     "id": "SUBJECT.myth.x77",
+     "cn": "仙官",
+     "motif": "仙官"
+    }
+   ]
+  },
+  "STYLE.east.024": {
+   "cn": "唐代青绿风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x53",
+     "cn": "楼阁",
+     "motif": "楼阁"
+    },
+    {
+     "id": "SUBJECT.landscape.31",
+     "cn": "行旅",
+     "motif": "行旅"
+    }
+   ]
+  },
+  "STYLE.east.025": {
+   "cn": "李思训派风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x78",
+     "cn": "仙山",
+     "motif": "仙山"
+    },
+    {
+     "id": "SUBJECT.landscape.x53",
+     "cn": "楼阁",
+     "motif": "楼阁"
+    },
+    {
+     "id": "SUBJECT.myth.x73",
+     "cn": "瀛洲",
+     "motif": "瀛洲"
+    },
+    {
+     "id": "SUBJECT.landscape.31",
+     "cn": "行旅",
+     "motif": "行旅"
+    }
+   ]
+  },
+  "STYLE.east.026": {
+   "cn": "北宋院体风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.33",
+     "cn": "寒林",
+     "motif": "寒林"
+    },
+    {
+     "id": "SUBJECT.landscape.31",
+     "cn": "行旅",
+     "motif": "行旅"
+    }
+   ]
+  },
+  "STYLE.east.027": {
+   "cn": "文人画风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x54",
+     "cn": "山水",
+     "motif": "山水"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x54",
+     "cn": "墨竹",
+     "motif": "墨竹"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x55",
+     "cn": "梅兰",
+     "motif": "梅兰"
+    }
+   ]
+  },
+  "STYLE.east.028": {
+   "cn": "山水正宗风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x54",
+     "cn": "山水",
+     "motif": "全景山水"
+    },
+    {
+     "id": "SUBJECT.landscape.33",
+     "cn": "寒林",
+     "motif": "寒林"
+    },
+    {
+     "id": "SUBJECT.landscape.x55",
+     "cn": "云山",
+     "motif": "云山"
+    }
+   ]
+  },
+  "STYLE.east.029": {
+   "cn": "北宋山水风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.33",
+     "cn": "寒林",
+     "motif": "寒林"
+    },
+    {
+     "id": "SUBJECT.landscape.31",
+     "cn": "行旅",
+     "motif": "行旅"
+    }
+   ]
+  },
+  "STYLE.east.030": {
+   "cn": "南宋山水风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x56",
+     "cn": "烟岚",
+     "motif": "烟岚"
+    }
+   ]
+  },
+  "STYLE.east.032": {
+   "cn": "写意山水风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x55",
+     "cn": "云山",
+     "motif": "云山"
+    }
+   ]
+  },
+  "STYLE.east.034": {
+   "cn": "青绿山水风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x78",
+     "cn": "仙山",
+     "motif": "仙山"
+    },
+    {
+     "id": "SUBJECT.landscape.x53",
+     "cn": "楼阁",
+     "motif": "楼阁"
+    }
+   ]
+  },
+  "STYLE.east.035": {
+   "cn": "水墨山水风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x55",
+     "cn": "云山",
+     "motif": "云山"
+    },
+    {
+     "id": "SUBJECT.landscape.x57",
+     "cn": "平远",
+     "motif": "平远"
+    },
+    {
+     "id": "SUBJECT.abstract.x63",
+     "cn": "隐逸",
+     "motif": "隐逸"
+    }
+   ]
+  },
+  "STYLE.east.037": {
+   "cn": "文人水墨风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x58",
+     "cn": "枯木竹石",
+     "motif": "枯木竹石"
+    }
+   ]
+  },
+  "STYLE.east.040": {
+   "cn": "写意人物风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.figure.x56",
+     "cn": "高士",
+     "motif": "高士"
+    },
+    {
+     "id": "SUBJECT.urban.x52",
+     "cn": "市井",
+     "motif": "市井"
+    }
+   ]
+  },
+  "STYLE.east.047": {
+   "cn": "写意花鸟风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.bird-flower.x56",
+     "cn": "墨荷",
+     "motif": "墨荷"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x57",
+     "cn": "藤葡",
+     "motif": "藤葡"
+    },
+    {
+     "id": "SUBJECT.animal.x53",
+     "cn": "八哥",
+     "motif": "八哥"
+    }
+   ]
+  },
+  "STYLE.east.049": {
+   "cn": "牧溪风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.06",
+     "cn": "观音",
+     "motif": "观音"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x58",
+     "cn": "蔬果",
+     "motif": "蔬果"
+    }
+   ]
+  },
+  "STYLE.east.050": {
+   "cn": "元代文人风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.folk.x54",
+     "cn": "渔隐",
+     "motif": "渔隐"
+    }
+   ]
+  },
+  "STYLE.east.055": {
+   "cn": "禅意绘画风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x79",
+     "cn": "高僧",
+     "motif": "高僧"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x59",
+     "cn": "枯枝",
+     "motif": "枯枝"
+    }
+   ]
+  },
+  "STYLE.east.058": {
+   "cn": "浙派风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x54",
+     "cn": "山水",
+     "motif": "山水"
+    },
+    {
+     "id": "SUBJECT.folk.x54",
+     "cn": "渔隐",
+     "motif": "渔隐"
+    },
+    {
+     "id": "SUBJECT.still-life.x54",
+     "cn": "人物",
+     "motif": "人物"
+    }
+   ]
+  },
+  "STYLE.east.059": {
+   "cn": "吴派风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x54",
+     "cn": "山水",
+     "motif": "山水"
+    },
+    {
+     "id": "SUBJECT.abstract.x64",
+     "cn": "雅集",
+     "motif": "雅集"
+    }
+   ]
+  },
+  "STYLE.east.060": {
+   "cn": "松江派风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x55",
+     "cn": "云山",
+     "motif": "仿古云山"
+    },
+    {
+     "id": "SUBJECT.landscape.x57",
+     "cn": "平远",
+     "motif": "平远"
+    },
+    {
+     "id": "SUBJECT.abstract.x65",
+     "cn": "笔墨",
+     "motif": "笔墨structure"
+    }
+   ]
+  },
+  "STYLE.east.061": {
+   "cn": "南宗画风",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x55",
+     "cn": "云山",
+     "motif": "云山"
+    },
+    {
+     "id": "SUBJECT.landscape.x57",
+     "cn": "平远",
+     "motif": "平远"
+    },
+    {
+     "id": "SUBJECT.abstract.x65",
+     "cn": "笔墨",
+     "motif": "笔墨"
+    }
+   ]
+  },
+  "STYLE.east.062": {
+   "cn": "北宗画风",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x53",
+     "cn": "楼阁",
+     "motif": "楼阁"
+    }
+   ]
+  },
+  "STYLE.east.069": {
+   "cn": "八大山人风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.animal.x54",
+     "cn": "白眼鱼鸟",
+     "motif": "白眼鱼鸟"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x59",
+     "cn": "枯枝",
+     "motif": "枯枝"
+    }
+   ]
+  },
+  "STYLE.east.072": {
+   "cn": "四僧风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.animal.x54",
+     "cn": "白眼鱼鸟",
+     "motif": "白眼鱼鸟"
+    },
+    {
+     "id": "SUBJECT.landscape.x59",
+     "cn": "黄山",
+     "motif": "黄山"
+    }
+   ]
+  },
+  "STYLE.east.073": {
+   "cn": "扬州八怪风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.bird-flower.x55",
+     "cn": "梅兰",
+     "motif": "梅兰竹石"
+    },
+    {
+     "id": "SUBJECT.still-life.x54",
+     "cn": "人物",
+     "motif": "人物"
+    }
+   ]
+  },
+  "STYLE.east.079": {
+   "cn": "工笔花鸟风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.animal.x55",
+     "cn": "珍禽",
+     "motif": "珍禽"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x60",
+     "cn": "折枝",
+     "motif": "折枝"
+    },
+    {
+     "id": "SUBJECT.bird-flower.10",
+     "cn": "芙蓉",
+     "motif": "芙蓉锦鸡"
+    }
+   ]
+  },
+  "STYLE.east.081": {
+   "cn": "文人花鸟风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.bird-flower.x60",
+     "cn": "折枝",
+     "motif": "折枝"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x56",
+     "cn": "墨荷",
+     "motif": "墨荷"
+    }
+   ]
+  },
+  "STYLE.east.082": {
+   "cn": "宫廷画风",
+   "atoms": [
+    {
+     "id": "SUBJECT.history.x56",
+     "cn": "帝后",
+     "motif": "帝后行乐"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x61",
+     "cn": "花鸟",
+     "motif": "花鸟"
+    }
+   ]
+  },
+  "STYLE.east.088": {
+   "cn": "山水诗画风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.figure.x56",
+     "cn": "高士",
+     "motif": "高士行吟"
+    },
+    {
+     "id": "SUBJECT.abstract.x64",
+     "cn": "雅集",
+     "motif": "雅集"
+    }
+   ]
+  },
+  "STYLE.east.090": {
+   "cn": "留白风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x66",
+     "cn": "虚空",
+     "motif": "虚空"
+    },
+    {
+     "id": "SUBJECT.landscape.x56",
+     "cn": "烟岚",
+     "motif": "烟岚"
+    }
+   ]
+  },
+  "STYLE.east.092": {
+   "cn": "写实主义风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.figure.09",
+     "cn": "劳动者",
+     "motif": "劳动者"
+    },
+    {
+     "id": "SUBJECT.figure.07",
+     "cn": "历史人物",
+     "motif": "历史人物"
+    }
+   ]
+  },
+  "STYLE.east.108": {
+   "cn": "现代花鸟风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.bird-flower.44",
+     "cn": "虾蟹",
+     "motif": "虾蟹"
+    },
+    {
+     "id": "SUBJECT.animal.x56",
+     "cn": "雄鹰",
+     "motif": "雄鹰"
+    },
+    {
+     "id": "SUBJECT.bird-flower.12",
+     "cn": "荷塘",
+     "motif": "荷塘"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x58",
+     "cn": "蔬果",
+     "motif": "蔬果"
+    }
+   ]
+  },
+  "STYLE.east.109": {
+   "cn": "现代山水风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x68",
+     "cn": "写生",
+     "motif": "写生山河"
+    },
+    {
+     "id": "SUBJECT.landscape.x55",
+     "cn": "云山",
+     "motif": "云山"
+    },
+    {
+     "id": "SUBJECT.landscape.x54",
+     "cn": "山水",
+     "motif": "红色山水"
+    }
+   ]
+  },
+  "STYLE.east.111": {
+   "cn": "重彩风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x80",
+     "cn": "敦煌",
+     "motif": "敦煌"
+    },
+    {
+     "id": "SUBJECT.still-life.x54",
+     "cn": "人物",
+     "motif": "人物"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x52",
+     "cn": "花卉",
+     "motif": "花卉"
+    },
+    {
+     "id": "SUBJECT.abstract.x67",
+     "cn": "装饰",
+     "motif": "装饰"
+    }
+   ]
+  },
+  "STYLE.east.112": {
+   "cn": "现代工笔风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.figure.x53",
+     "cn": "女性",
+     "motif": "当代女性"
+    },
+    {
+     "id": "SUBJECT.urban.x56",
+     "cn": "都市",
+     "motif": "都市"
+    },
+    {
+     "id": "SUBJECT.figure.25",
+     "cn": "美人",
+     "motif": "唯美人物"
+    }
+   ]
+  },
+  "STYLE.east.113": {
+   "cn": "学院派风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.still-life.x54",
+     "cn": "人物",
+     "motif": "写实人物"
+    },
+    {
+     "id": "SUBJECT.abstract.x68",
+     "cn": "写生",
+     "motif": "写生"
+    }
+   ]
+  },
+  "STYLE.east.114": {
+   "cn": "革新文人画风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x54",
+     "cn": "山水",
+     "motif": "山水"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x54",
+     "cn": "墨竹",
+     "motif": "墨竹"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x55",
+     "cn": "梅兰",
+     "motif": "梅兰"
+    }
+   ]
+  },
+  "STYLE.east.115": {
+   "cn": "抽象水墨",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x69",
+     "cn": "肌理",
+     "motif": "肌理"
+    }
+   ]
+  },
+  "STYLE.east.116": {
+   "cn": "现代人物画风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.history.x57",
+     "cn": "工农兵",
+     "motif": "工农兵"
+    },
+    {
+     "id": "SUBJECT.urban.x52",
+     "cn": "市井",
+     "motif": "市井百姓"
+    }
+   ]
+  },
+  "STYLE.east.119": {
+   "cn": "表现水墨",
+   "atoms": [
+    {
+     "id": "SUBJECT.figure.x51",
+     "cn": "人体",
+     "motif": "挣扎人体"
+    },
+    {
+     "id": "SUBJECT.urban.x56",
+     "cn": "都市",
+     "motif": "都市焦虑"
+    }
+   ]
+  },
+  "STYLE.east.120": {
+   "cn": "现代写意风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.bird-flower.x61",
+     "cn": "花鸟",
+     "motif": "花鸟"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x58",
+     "cn": "蔬果",
+     "motif": "蔬果"
+    },
+    {
+     "id": "SUBJECT.animal.x56",
+     "cn": "雄鹰",
+     "motif": "雄鹰"
+    },
+    {
+     "id": "SUBJECT.bird-flower.12",
+     "cn": "荷塘",
+     "motif": "荷塘"
+    }
+   ]
+  },
+  "STYLE.east.121": {
+   "cn": "新中国画风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x70",
+     "cn": "领袖",
+     "motif": "领袖诗意"
+    }
+   ]
+  },
+  "STYLE.east.122": {
+   "cn": "政治题材风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x70",
+     "cn": "领袖",
+     "motif": "领袖"
+    },
+    {
+     "id": "SUBJECT.history.02",
+     "cn": "革命",
+     "motif": "革命"
+    },
+    {
+     "id": "SUBJECT.history.11",
+     "cn": "历史事件",
+     "motif": "历史事件"
+    }
+   ]
+  },
+  "STYLE.east.123": {
+   "cn": "宣传画风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.history.x57",
+     "cn": "工农兵",
+     "motif": "工农兵"
+    },
+    {
+     "id": "SUBJECT.abstract.x70",
+     "cn": "领袖",
+     "motif": "领袖"
+    }
+   ]
+  },
+  "STYLE.east.124": {
+   "cn": "海派风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.bird-flower.x61",
+     "cn": "花鸟",
+     "motif": "花鸟"
+    },
+    {
+     "id": "SUBJECT.still-life.x54",
+     "cn": "人物",
+     "motif": "人物"
+    },
+    {
+     "id": "SUBJECT.abstract.x71",
+     "cn": "吉祥",
+     "motif": "吉祥"
+    }
+   ]
+  },
+  "STYLE.east.125": {
+   "cn": "岭南画派风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.bird-flower.x61",
+     "cn": "花鸟",
+     "motif": "花鸟"
+    }
+   ]
+  },
+  "STYLE.east.126": {
+   "cn": "白描人物风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.figure.x56",
+     "cn": "高士",
+     "motif": "高士"
+    },
+    {
+     "id": "SUBJECT.myth.03",
+     "cn": "罗汉",
+     "motif": "罗汉"
+    },
+    {
+     "id": "SUBJECT.abstract.x72",
+     "cn": "白描稿",
+     "motif": "白描稿"
+    }
+   ]
+  },
+  "STYLE.east.129": {
+   "cn": "观念水墨",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x60",
+     "cn": "文字",
+     "motif": "文字"
+    },
+    {
+     "id": "SUBJECT.abstract.x73",
+     "cn": "文化批判",
+     "motif": "文化批判"
+    }
+   ]
+  },
+  "STYLE.east.130": {
+   "cn": "实验水墨",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x74",
+     "cn": "装置",
+     "motif": "装置"
+    },
+    {
+     "id": "SUBJECT.abstract.x69",
+     "cn": "肌理",
+     "motif": "肌理"
+    }
+   ]
+  },
+  "STYLE.east.134": {
+   "cn": "极简水墨风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x66",
+     "cn": "虚空",
+     "motif": "虚空"
+    }
+   ]
+  },
+  "STYLE.east.136": {
+   "cn": "数字与AI水墨",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x62",
+     "cn": "生成",
+     "motif": "生成"
+    },
+    {
+     "id": "SUBJECT.abstract.28",
+     "cn": "数字",
+     "motif": "数字笔墨"
+    },
+    {
+     "id": "SUBJECT.landscape.x54",
+     "cn": "山水",
+     "motif": "虚拟山水"
+    }
+   ]
+  },
+  "STYLE.east.143": {
+   "cn": "行为与影像水墨",
+   "atoms": [
+    {
+     "id": "SUBJECT.figure.x54",
+     "cn": "身体",
+     "motif": "身体"
+    },
+    {
+     "id": "SUBJECT.figure.x57",
+     "cn": "影像",
+     "motif": "影像"
+    }
+   ]
+  },
+  "STYLE.east.146": {
+   "cn": "社会与生态水墨",
+   "atoms": [
+    {
+     "id": "SUBJECT.urban.x55",
+     "cn": "城市",
+     "motif": "城市"
+    }
+   ]
+  },
+  "STYLE.east.152": {
+   "cn": "多媒介水墨风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x75",
+     "cn": "材料",
+     "motif": "材料"
+    },
+    {
+     "id": "SUBJECT.abstract.x76",
+     "cn": "拼贴",
+     "motif": "拼贴"
+    },
+    {
+     "id": "SUBJECT.abstract.x69",
+     "cn": "肌理",
+     "motif": "肌理"
+    }
+   ]
+  },
+  "STYLE.east.164": {
+   "cn": "敦煌壁画风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x81",
+     "cn": "佛传",
+     "motif": "佛传"
+    },
+    {
+     "id": "SUBJECT.myth.x70",
+     "cn": "经变",
+     "motif": "经变"
+    },
+    {
+     "id": "SUBJECT.myth.x72",
+     "cn": "飞天",
+     "motif": "飞天"
+    },
+    {
+     "id": "SUBJECT.figure.x55",
+     "cn": "供养人",
+     "motif": "供养人"
+    }
+   ]
+  },
+  "STYLE.east.165": {
+   "cn": "永乐宫壁画风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x75",
+     "cn": "朝元",
+     "motif": "朝元"
+    },
+    {
+     "id": "SUBJECT.myth.x76",
+     "cn": "星君",
+     "motif": "星君"
+    },
+    {
+     "id": "SUBJECT.history.x56",
+     "cn": "帝后",
+     "motif": "帝后"
+    },
+    {
+     "id": "SUBJECT.myth.x77",
+     "cn": "仙官",
+     "motif": "仙官"
+    }
+   ]
+  },
+  "STYLE.east.166": {
+   "cn": "唐卡风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x74",
+     "cn": "佛",
+     "motif": "佛"
+    },
+    {
+     "id": "SUBJECT.myth.02",
+     "cn": "菩萨",
+     "motif": "菩萨"
+    },
+    {
+     "id": "SUBJECT.myth.x82",
+     "cn": "护法",
+     "motif": "护法"
+    }
+   ]
+  },
+  "STYLE.east.167": {
+   "cn": "藏传绘画风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x81",
+     "cn": "佛传",
+     "motif": "佛传"
+    },
+    {
+     "id": "SUBJECT.myth.x82",
+     "cn": "护法",
+     "motif": "护法"
+    },
+    {
+     "id": "SUBJECT.myth.x79",
+     "cn": "高僧",
+     "motif": "高僧"
+    }
+   ]
+  },
+  "STYLE.east.176": {
+   "cn": "漆画风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x67",
+     "cn": "装饰",
+     "motif": "装饰纹样"
+    },
+    {
+     "id": "SUBJECT.still-life.x54",
+     "cn": "人物",
+     "motif": "人物"
+    },
+    {
+     "id": "SUBJECT.landscape.x50",
+     "cn": "风景",
+     "motif": "风景"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x61",
+     "cn": "花鸟",
+     "motif": "花鸟"
+    }
+   ]
+  },
+  "STYLE.east.179": {
+   "cn": "西北岩彩风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x80",
+     "cn": "敦煌",
+     "motif": "敦煌"
+    },
+    {
+     "id": "SUBJECT.still-life.x54",
+     "cn": "人物",
+     "motif": "人物"
+    }
+   ]
+  },
+  "STYLE.east.193": {
+   "cn": "工笔人物风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.figure.24",
+     "cn": "仕女",
+     "motif": "仕女"
+    },
+    {
+     "id": "SUBJECT.figure.x56",
+     "cn": "高士",
+     "motif": "高士"
+    },
+    {
+     "id": "SUBJECT.figure.07",
+     "cn": "历史人物",
+     "motif": "历史人物"
+    },
+    {
+     "id": "SUBJECT.figure.01",
+     "cn": "肖像",
+     "motif": "肖像"
+    }
+   ]
+  },
+  "STYLE.east.195": {
+   "cn": "工笔山水风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x60",
+     "cn": "青绿山川",
+     "motif": "青绿山川"
+    },
+    {
+     "id": "SUBJECT.landscape.x53",
+     "cn": "楼阁",
+     "motif": "楼阁"
+    },
+    {
+     "id": "SUBJECT.landscape.31",
+     "cn": "行旅",
+     "motif": "行旅"
+    }
+   ]
+  },
+  "STYLE.east.199": {
+   "cn": "小写意风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.bird-flower.x60",
+     "cn": "折枝",
+     "motif": "折枝花鸟"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x58",
+     "cn": "蔬果",
+     "motif": "蔬果"
+    }
+   ]
+  },
+  "STYLE.east.200": {
+   "cn": "大写意风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.bird-flower.x56",
+     "cn": "墨荷",
+     "motif": "墨荷"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x57",
+     "cn": "藤葡",
+     "motif": "藤葡"
+    },
+    {
+     "id": "SUBJECT.animal.x53",
+     "cn": "八哥",
+     "motif": "八哥"
+    }
+   ]
+  },
+  "STYLE.east.201": {
+   "cn": "白描风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.figure.x56",
+     "cn": "高士",
+     "motif": "高士"
+    },
+    {
+     "id": "SUBJECT.myth.03",
+     "cn": "罗汉",
+     "motif": "罗汉"
+    },
+    {
+     "id": "SUBJECT.abstract.x72",
+     "cn": "白描稿",
+     "motif": "白描稿"
+    }
+   ]
+  },
+  "STYLE.east.202": {
+   "cn": "重彩工笔风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.animal.x55",
+     "cn": "珍禽",
+     "motif": "珍禽"
+    },
+    {
+     "id": "SUBJECT.still-life.x54",
+     "cn": "人物",
+     "motif": "人物"
+    },
+    {
+     "id": "SUBJECT.abstract.x67",
+     "cn": "装饰",
+     "motif": "装饰"
+    },
+    {
+     "id": "SUBJECT.myth.x80",
+     "cn": "敦煌",
+     "motif": "敦煌"
+    }
+   ]
+  },
+  "STYLE.east.203": {
+   "cn": "青绿工笔风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x60",
+     "cn": "青绿山川",
+     "motif": "青绿山川"
+    },
+    {
+     "id": "SUBJECT.landscape.x53",
+     "cn": "楼阁",
+     "motif": "楼阁"
+    },
+    {
+     "id": "SUBJECT.myth.x68",
+     "cn": "仙境",
+     "motif": "仙境"
+    }
+   ]
+  },
+  "STYLE.east.204": {
+   "cn": "淡彩工笔风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.bird-flower.x52",
+     "cn": "花卉",
+     "motif": "折枝花卉"
+    }
+   ]
+  },
+  "STYLE.east.216": {
+   "cn": "寫形風格",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x68",
+     "cn": "写生",
+     "motif": "写生"
+    }
+   ]
+  },
+  "STYLE.east.219": {
+   "cn": "自然笔墨风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x68",
+     "cn": "写生",
+     "motif": "写生"
+    }
+   ]
+  },
+  "STYLE.east.220": {
+   "cn": "文人笔墨风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x58",
+     "cn": "枯木竹石",
+     "motif": "枯木竹石"
+    },
+    {
+     "id": "SUBJECT.abstract.x65",
+     "cn": "笔墨",
+     "motif": "笔墨"
+    }
+   ]
+  },
+  "STYLE.east.231": {
+   "cn": "综合材料绘画",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x75",
+     "cn": "材料",
+     "motif": "材料"
+    },
+    {
+     "id": "SUBJECT.abstract.x69",
+     "cn": "肌理",
+     "motif": "肌理"
+    },
+    {
+     "id": "SUBJECT.abstract.x76",
+     "cn": "拼贴",
+     "motif": "拼贴"
+    }
+   ]
+  },
+  "STYLE.east.233": {
+   "cn": "装置与空间绘画",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x57",
+     "cn": "空间",
+     "motif": "空间"
+    },
+    {
+     "id": "SUBJECT.abstract.x74",
+     "cn": "装置",
+     "motif": "装置"
+    }
+   ]
+  },
+  "STYLE.east.236": {
+   "cn": "观念绘画",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x73",
+     "cn": "文化批判",
+     "motif": "文化批判"
+    }
+   ]
+  },
+  "STYLE.east.238": {
+   "cn": "新媒体绘画",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x61",
+     "cn": "屏幕",
+     "motif": "屏幕"
+    },
+    {
+     "id": "SUBJECT.figure.x57",
+     "cn": "影像",
+     "motif": "影像"
+    }
+   ]
+  },
+  "STYLE.east.257": {
+   "cn": "科技山水风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x54",
+     "cn": "山水",
+     "motif": "数字山水"
+    }
+   ]
+  },
+  "STYLE.east.260": {
+   "cn": "虚空绘画风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x66",
+     "cn": "虚空",
+     "motif": "虚空"
+    },
+    {
+     "id": "SUBJECT.abstract.13",
+     "cn": "极简",
+     "motif": "极简"
+    }
+   ]
+  },
+  "STYLE.east.M180": {
+   "cn": "少数民族绘画风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.history.46",
+     "cn": "节庆",
+     "motif": "节庆"
+    }
+   ]
+  },
+  "STYLE.east.M181": {
+   "cn": "地方民俗绘画风格",
+   "atoms": [
+    {
+     "id": "SUBJECT.folk.x53",
+     "cn": "农事",
+     "motif": "农事"
+    },
+    {
+     "id": "SUBJECT.folk.22",
+     "cn": "集市",
+     "motif": "集市"
+    },
+    {
+     "id": "SUBJECT.history.46",
+     "cn": "节庆",
+     "motif": "节庆"
+    }
+   ]
+  },
+  "STYLE.west.A01": {
+   "cn": "矫饰主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x65",
+     "cn": "宗教",
+     "motif": "宗教"
+    },
+    {
+     "id": "SUBJECT.myth.x64",
+     "cn": "神话",
+     "motif": "神话"
+    },
+    {
+     "id": "SUBJECT.figure.01",
+     "cn": "肖像",
+     "motif": "宫廷肖像"
+    }
+   ]
+  },
+  "STYLE.west.A02": {
+   "cn": "国际哥特式",
+   "atoms": [
+    {
+     "id": "SUBJECT.history.06",
+     "cn": "宫廷",
+     "motif": "宫廷"
+    },
+    {
+     "id": "SUBJECT.myth.x65",
+     "cn": "宗教",
+     "motif": "宗教"
+    }
+   ]
+  },
+  "STYLE.west.A03": {
+   "cn": "拉斐尔前派",
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.x64",
+     "cn": "神话",
+     "motif": "神话"
+    },
+    {
+     "id": "SUBJECT.figure.x53",
+     "cn": "女性",
+     "motif": "女性"
+    },
+    {
+     "id": "SUBJECT.myth.x67",
+     "cn": "殉道",
+     "motif": "殉道"
+    }
+   ]
+  },
+  "STYLE.west.A04": {
+   "cn": "巴比松画派",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x50",
+     "cn": "风景",
+     "motif": "乡野风景"
+    },
+    {
+     "id": "SUBJECT.landscape.15",
+     "cn": "森林",
+     "motif": "森林"
+    }
+   ]
+  },
+  "STYLE.west.A05": {
+   "cn": "新即物主义",
+   "atoms": [
+    {
+     "id": "SUBJECT.figure.01",
+     "cn": "肖像",
+     "motif": "肖像"
+    },
+    {
+     "id": "SUBJECT.history.01",
+     "cn": "战争",
+     "motif": "战争创伤"
+    }
+   ]
+  },
+  "STYLE.west.A06": {
+   "cn": "巴黎画派",
+   "atoms": [
+    {
+     "id": "SUBJECT.figure.01",
+     "cn": "肖像",
+     "motif": "肖像"
+    },
+    {
+     "id": "SUBJECT.myth.x69",
+     "cn": "梦",
+     "motif": "梦"
+    },
+    {
+     "id": "SUBJECT.history.34",
+     "cn": "流亡",
+     "motif": "流亡"
+    }
+   ]
+  },
+  "STYLE.west.A07": {
+   "cn": "贫穷艺术",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x75",
+     "cn": "材料",
+     "motif": "材料"
+    }
+   ]
+  },
+  "STYLE.west.A08": {
+   "cn": "大地艺术",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.16",
+     "cn": "荒野",
+     "motif": "荒野"
+    }
+   ]
+  },
+  "STYLE.east.A09": {
+   "cn": "没骨派",
+   "atoms": [
+    {
+     "id": "SUBJECT.bird-flower.x52",
+     "cn": "花卉",
+     "motif": "花卉"
+    }
+   ]
+  },
+  "STYLE.east.A10": {
+   "cn": "界画",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x53",
+     "cn": "楼阁",
+     "motif": "楼阁"
+    }
+   ]
+  },
+  "STYLE.east.A11": {
+   "cn": "金陵画派",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x54",
+     "cn": "山水",
+     "motif": "江南山水"
+    }
+   ]
+  },
+  "STYLE.east.A12": {
+   "cn": "新安画派",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x59",
+     "cn": "黄山",
+     "motif": "黄山"
+    }
+   ]
+  },
+  "STYLE.east.A13": {
+   "cn": "常州画派",
+   "atoms": [
+    {
+     "id": "SUBJECT.bird-flower.x52",
+     "cn": "花卉",
+     "motif": "花卉"
+    },
+    {
+     "id": "SUBJECT.abstract.x68",
+     "cn": "写生",
+     "motif": "写生"
+    }
+   ]
+  },
+  "STYLE.east.A14": {
+   "cn": "金石画派",
+   "atoms": [
+    {
+     "id": "SUBJECT.bird-flower.x52",
+     "cn": "花卉",
+     "motif": "花卉"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x58",
+     "cn": "蔬果",
+     "motif": "蔬果"
+    },
+    {
+     "id": "SUBJECT.abstract.x71",
+     "cn": "吉祥",
+     "motif": "吉祥"
+    }
+   ]
+  },
+  "STYLE.east.A15": {
+   "cn": "浮世绘",
+   "atoms": [
+    {
+     "id": "SUBJECT.figure.25",
+     "cn": "美人",
+     "motif": "美人"
+    },
+    {
+     "id": "SUBJECT.landscape.x50",
+     "cn": "风景",
+     "motif": "名所风景"
+    }
+   ]
+  },
+  "STYLE.east.A16": {
+   "cn": "琳派",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x77",
+     "cn": "四季",
+     "motif": "四季"
+    }
+   ]
+  },
+  "STYLE.east.A17": {
+   "cn": "狩野派",
+   "atoms": [
+    {
+     "id": "SUBJECT.bird-flower.x61",
+     "cn": "花鸟",
+     "motif": "花鸟"
+    },
+    {
+     "id": "SUBJECT.landscape.x54",
+     "cn": "山水",
+     "motif": "山水"
+    },
+    {
+     "id": "SUBJECT.history.x54",
+     "cn": "历史",
+     "motif": "历史"
+    }
+   ]
+  },
+  "STYLE.east.A18": {
+   "cn": "大和绘",
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.x77",
+     "cn": "四季",
+     "motif": "四季"
+    },
+    {
+     "id": "SUBJECT.history.06",
+     "cn": "宫廷",
+     "motif": "宫廷"
+    }
+   ]
+  },
+  "STYLE.east.A19": {
+   "cn": "日本南画",
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.x54",
+     "cn": "山水",
+     "motif": "山水"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x52",
+     "cn": "花卉",
+     "motif": "花卉"
+    },
+    {
+     "id": "SUBJECT.abstract.x63",
+     "cn": "隐逸",
+     "motif": "隐逸"
+    }
+   ]
+  },
+  "STYLE.east.A20": {
+   "cn": "朝鲜民画",
+   "atoms": [
+    {
+     "id": "SUBJECT.bird-flower.x61",
+     "cn": "花鸟",
+     "motif": "花鸟"
+    },
+    {
+     "id": "SUBJECT.abstract.x60",
+     "cn": "文字",
+     "motif": "文字图"
+    }
+   ]
+  }
+ },
+ "by_atom": {
+  "SUBJECT.myth.x62": [
+   "STYLE.west.001",
+   "STYLE.west.007"
+  ],
+  "SUBJECT.figure.32": [
+   "STYLE.west.001",
+   "STYLE.west.022"
+  ],
+  "SUBJECT.figure.01": [
+   "STYLE.west.002",
+   "STYLE.west.008",
+   "STYLE.west.009",
+   "STYLE.west.010",
+   "STYLE.west.012",
+   "STYLE.west.013",
+   "STYLE.west.017",
+   "STYLE.west.028",
+   "STYLE.west.064",
+   "STYLE.west.065",
+   "STYLE.east.193",
+   "STYLE.west.A01",
+   "STYLE.west.A05",
+   "STYLE.west.A06"
+  ],
+  "SUBJECT.still-life.x52": [
+   "STYLE.west.002",
+   "STYLE.east.003",
+   "STYLE.east.010"
+  ],
+  "SUBJECT.myth.34": [
+   "STYLE.west.003",
+   "STYLE.west.004"
+  ],
+  "SUBJECT.myth.33": [
+   "STYLE.west.003",
+   "STYLE.west.005",
+   "STYLE.west.011",
+   "STYLE.west.014"
+  ],
+  "SUBJECT.myth.40": [
+   "STYLE.west.003",
+   "STYLE.west.006"
+  ],
+  "SUBJECT.history.50": [
+   "STYLE.west.004"
+  ],
+  "SUBJECT.myth.x63": [
+   "STYLE.west.004",
+   "STYLE.west.006",
+   "STYLE.west.008",
+   "STYLE.west.009",
+   "STYLE.west.010"
+  ],
+  "SUBJECT.abstract.x60": [
+   "STYLE.west.007",
+   "STYLE.west.090",
+   "STYLE.east.129",
+   "STYLE.east.A20"
+  ],
+  "SUBJECT.myth.x64": [
+   "STYLE.west.008",
+   "STYLE.west.009",
+   "STYLE.west.010",
+   "STYLE.west.011",
+   "STYLE.west.012",
+   "STYLE.west.034",
+   "STYLE.west.081",
+   "STYLE.west.A01",
+   "STYLE.west.A03"
+  ],
+  "SUBJECT.figure.x51": [
+   "STYLE.west.011",
+   "STYLE.west.039",
+   "STYLE.east.119"
+  ],
+  "SUBJECT.figure.17": [
+   "STYLE.west.012"
+  ],
+  "SUBJECT.myth.x65": [
+   "STYLE.west.013",
+   "STYLE.west.A01",
+   "STYLE.west.A02"
+  ],
+  "SUBJECT.urban.x52": [
+   "STYLE.west.013",
+   "STYLE.west.026",
+   "STYLE.west.063",
+   "STYLE.east.040",
+   "STYLE.east.116"
+  ],
+  "SUBJECT.landscape.x50": [
+   "STYLE.west.013",
+   "STYLE.west.017",
+   "STYLE.west.028",
+   "STYLE.west.031",
+   "STYLE.west.036",
+   "STYLE.west.054",
+   "STYLE.east.176",
+   "STYLE.west.A04",
+   "STYLE.east.A15"
+  ],
+  "SUBJECT.myth.32": [
+   "STYLE.west.014"
+  ],
+  "SUBJECT.myth.x66": [
+   "STYLE.west.015",
+   "STYLE.west.016",
+   "STYLE.west.018"
+  ],
+  "SUBJECT.myth.x67": [
+   "STYLE.west.015",
+   "STYLE.west.016",
+   "STYLE.west.018",
+   "STYLE.west.A03"
+  ],
+  "SUBJECT.history.x53": [
+   "STYLE.west.015",
+   "STYLE.west.016",
+   "STYLE.west.018"
+  ],
+  "SUBJECT.still-life.x53": [
+   "STYLE.west.017",
+   "STYLE.west.032",
+   "STYLE.west.040",
+   "STYLE.west.041",
+   "STYLE.west.042"
+  ],
+  "SUBJECT.folk.x51": [
+   "STYLE.west.019",
+   "STYLE.west.020",
+   "STYLE.west.021"
+  ],
+  "SUBJECT.folk.26": [
+   "STYLE.west.019",
+   "STYLE.west.020",
+   "STYLE.west.021",
+   "STYLE.west.032"
+  ],
+  "SUBJECT.myth.x68": [
+   "STYLE.west.019",
+   "STYLE.west.020",
+   "STYLE.west.021",
+   "STYLE.east.203"
+  ],
+  "SUBJECT.history.x54": [
+   "STYLE.west.022",
+   "STYLE.west.028",
+   "STYLE.west.081",
+   "STYLE.east.A17"
+  ],
+  "SUBJECT.history.33": [
+   "STYLE.west.023",
+   "STYLE.west.024",
+   "STYLE.west.025"
+  ],
+  "SUBJECT.urban.x53": [
+   "STYLE.west.023",
+   "STYLE.west.024",
+   "STYLE.west.025",
+   "STYLE.west.032"
+  ],
+  "SUBJECT.abstract.x52": [
+   "STYLE.west.023",
+   "STYLE.west.024",
+   "STYLE.west.025"
+  ],
+  "SUBJECT.figure.x52": [
+   "STYLE.west.023",
+   "STYLE.west.024",
+   "STYLE.west.025"
+  ],
+  "SUBJECT.history.x55": [
+   "STYLE.west.026",
+   "STYLE.west.063"
+  ],
+  "SUBJECT.folk.x52": [
+   "STYLE.west.026",
+   "STYLE.west.063"
+  ],
+  "SUBJECT.abstract.x53": [
+   "STYLE.west.026",
+   "STYLE.west.063"
+  ],
+  "SUBJECT.folk.x53": [
+   "STYLE.west.027",
+   "STYLE.east.M181"
+  ],
+  "SUBJECT.figure.09": [
+   "STYLE.west.027",
+   "STYLE.east.092"
+  ],
+  "SUBJECT.landscape.x51": [
+   "STYLE.west.029",
+   "STYLE.west.030"
+  ],
+  "SUBJECT.landscape.x52": [
+   "STYLE.west.029",
+   "STYLE.west.030",
+   "STYLE.west.033"
+  ],
+  "SUBJECT.urban.x54": [
+   "STYLE.west.029",
+   "STYLE.west.030"
+  ],
+  "SUBJECT.abstract.x54": [
+   "STYLE.west.029",
+   "STYLE.west.030"
+  ],
+  "SUBJECT.figure.02": [
+   "STYLE.west.032"
+  ],
+  "SUBJECT.abstract.x55": [
+   "STYLE.west.033",
+   "STYLE.west.036"
+  ],
+  "SUBJECT.figure.x53": [
+   "STYLE.west.034",
+   "STYLE.west.035",
+   "STYLE.east.112",
+   "STYLE.west.A03"
+  ],
+  "SUBJECT.myth.x69": [
+   "STYLE.west.034",
+   "STYLE.west.050",
+   "STYLE.west.051",
+   "STYLE.west.A06"
+  ],
+  "SUBJECT.bird-flower.x52": [
+   "STYLE.west.035",
+   "STYLE.east.111",
+   "STYLE.east.204",
+   "STYLE.east.A09",
+   "STYLE.east.A13",
+   "STYLE.east.A14",
+   "STYLE.east.A19"
+  ],
+  "SUBJECT.still-life.x54": [
+   "STYLE.west.036",
+   "STYLE.west.040",
+   "STYLE.west.041",
+   "STYLE.west.042",
+   "STYLE.west.116",
+   "STYLE.east.058",
+   "STYLE.east.073",
+   "STYLE.east.111",
+   "STYLE.east.113",
+   "STYLE.east.124",
+   "STYLE.east.176",
+   "STYLE.east.179",
+   "STYLE.east.202"
+  ],
+  "SUBJECT.urban.x55": [
+   "STYLE.west.037",
+   "STYLE.west.043",
+   "STYLE.west.090",
+   "STYLE.east.146"
+  ],
+  "SUBJECT.abstract.x56": [
+   "STYLE.west.037",
+   "STYLE.west.051"
+  ],
+  "SUBJECT.history.01": [
+   "STYLE.west.037",
+   "STYLE.west.043",
+   "STYLE.west.A05"
+  ],
+  "SUBJECT.urban.x56": [
+   "STYLE.west.039",
+   "STYLE.west.064",
+   "STYLE.east.112",
+   "STYLE.east.119"
+  ],
+  "SUBJECT.still-life.06": [
+   "STYLE.west.040",
+   "STYLE.west.041",
+   "STYLE.west.042"
+  ],
+  "SUBJECT.still-life.34": [
+   "STYLE.west.044"
+  ],
+  "SUBJECT.abstract.x57": [
+   "STYLE.west.046",
+   "STYLE.west.098",
+   "STYLE.east.233"
+  ],
+  "SUBJECT.abstract.x58": [
+   "STYLE.west.047",
+   "STYLE.west.057"
+  ],
+  "SUBJECT.abstract.x76": [
+   "STYLE.west.048",
+   "STYLE.east.152",
+   "STYLE.east.231"
+  ],
+  "SUBJECT.abstract.x69": [
+   "STYLE.west.055",
+   "STYLE.east.115",
+   "STYLE.east.130",
+   "STYLE.east.152",
+   "STYLE.east.231"
+  ],
+  "SUBJECT.abstract.x59": [
+   "STYLE.west.064",
+   "STYLE.west.065"
+  ],
+  "SUBJECT.history.46": [
+   "STYLE.west.069",
+   "STYLE.east.M180",
+   "STYLE.east.M181"
+  ],
+  "SUBJECT.figure.x54": [
+   "STYLE.west.081",
+   "STYLE.east.143"
+  ],
+  "SUBJECT.abstract.27": [
+   "STYLE.west.090"
+  ],
+  "SUBJECT.abstract.x61": [
+   "STYLE.west.099",
+   "STYLE.east.238"
+  ],
+  "SUBJECT.abstract.x62": [
+   "STYLE.west.102",
+   "STYLE.east.136"
+  ],
+  "SUBJECT.animal.37": [
+   "STYLE.east.003"
+  ],
+  "SUBJECT.myth.x70": [
+   "STYLE.east.004",
+   "STYLE.east.011",
+   "STYLE.east.164"
+  ],
+  "SUBJECT.myth.x71": [
+   "STYLE.east.004",
+   "STYLE.east.010"
+  ],
+  "SUBJECT.myth.x72": [
+   "STYLE.east.011",
+   "STYLE.east.164"
+  ],
+  "SUBJECT.figure.28": [
+   "STYLE.east.012"
+  ],
+  "SUBJECT.bird-flower.x53": [
+   "STYLE.east.012",
+   "STYLE.east.021"
+  ],
+  "SUBJECT.landscape.x53": [
+   "STYLE.east.019",
+   "STYLE.east.024",
+   "STYLE.east.025",
+   "STYLE.east.034",
+   "STYLE.east.062",
+   "STYLE.east.195",
+   "STYLE.east.203",
+   "STYLE.east.A10"
+  ],
+  "SUBJECT.myth.x73": [
+   "STYLE.east.019",
+   "STYLE.east.025"
+  ],
+  "SUBJECT.landscape.31": [
+   "STYLE.east.019",
+   "STYLE.east.024",
+   "STYLE.east.025",
+   "STYLE.east.026",
+   "STYLE.east.029",
+   "STYLE.east.195"
+  ],
+  "SUBJECT.myth.x74": [
+   "STYLE.east.022",
+   "STYLE.east.166"
+  ],
+  "SUBJECT.myth.02": [
+   "STYLE.east.022",
+   "STYLE.east.166"
+  ],
+  "SUBJECT.myth.03": [
+   "STYLE.east.022",
+   "STYLE.east.126",
+   "STYLE.east.201"
+  ],
+  "SUBJECT.figure.x55": [
+   "STYLE.east.022",
+   "STYLE.east.164"
+  ],
+  "SUBJECT.myth.x75": [
+   "STYLE.east.023",
+   "STYLE.east.165"
+  ],
+  "SUBJECT.myth.x76": [
+   "STYLE.east.023",
+   "STYLE.east.165"
+  ],
+  "SUBJECT.history.x56": [
+   "STYLE.east.023",
+   "STYLE.east.082",
+   "STYLE.east.165"
+  ],
+  "SUBJECT.myth.x77": [
+   "STYLE.east.023",
+   "STYLE.east.165"
+  ],
+  "SUBJECT.myth.x78": [
+   "STYLE.east.025",
+   "STYLE.east.034"
+  ],
+  "SUBJECT.landscape.33": [
+   "STYLE.east.026",
+   "STYLE.east.028",
+   "STYLE.east.029"
+  ],
+  "SUBJECT.landscape.x54": [
+   "STYLE.east.027",
+   "STYLE.east.028",
+   "STYLE.east.058",
+   "STYLE.east.059",
+   "STYLE.east.109",
+   "STYLE.east.114",
+   "STYLE.east.136",
+   "STYLE.east.257",
+   "STYLE.east.A11",
+   "STYLE.east.A17",
+   "STYLE.east.A19"
+  ],
+  "SUBJECT.bird-flower.x54": [
+   "STYLE.east.027",
+   "STYLE.east.114"
+  ],
+  "SUBJECT.bird-flower.x55": [
+   "STYLE.east.027",
+   "STYLE.east.073",
+   "STYLE.east.114"
+  ],
+  "SUBJECT.landscape.x55": [
+   "STYLE.east.028",
+   "STYLE.east.032",
+   "STYLE.east.035",
+   "STYLE.east.060",
+   "STYLE.east.061",
+   "STYLE.east.109"
+  ],
+  "SUBJECT.landscape.x56": [
+   "STYLE.east.030",
+   "STYLE.east.090"
+  ],
+  "SUBJECT.landscape.x57": [
+   "STYLE.east.035",
+   "STYLE.east.060",
+   "STYLE.east.061"
+  ],
+  "SUBJECT.abstract.x63": [
+   "STYLE.east.035",
+   "STYLE.east.A19"
+  ],
+  "SUBJECT.landscape.x58": [
+   "STYLE.east.037",
+   "STYLE.east.220"
+  ],
+  "SUBJECT.figure.x56": [
+   "STYLE.east.040",
+   "STYLE.east.088",
+   "STYLE.east.126",
+   "STYLE.east.193",
+   "STYLE.east.201"
+  ],
+  "SUBJECT.bird-flower.x56": [
+   "STYLE.east.047",
+   "STYLE.east.081",
+   "STYLE.east.200"
+  ],
+  "SUBJECT.bird-flower.x57": [
+   "STYLE.east.047",
+   "STYLE.east.200"
+  ],
+  "SUBJECT.animal.x53": [
+   "STYLE.east.047",
+   "STYLE.east.200"
+  ],
+  "SUBJECT.myth.06": [
+   "STYLE.east.049"
+  ],
+  "SUBJECT.bird-flower.x58": [
+   "STYLE.east.049",
+   "STYLE.east.108",
+   "STYLE.east.120",
+   "STYLE.east.199",
+   "STYLE.east.A14"
+  ],
+  "SUBJECT.folk.x54": [
+   "STYLE.east.050",
+   "STYLE.east.058"
+  ],
+  "SUBJECT.myth.x79": [
+   "STYLE.east.055",
+   "STYLE.east.167"
+  ],
+  "SUBJECT.bird-flower.x59": [
+   "STYLE.east.055",
+   "STYLE.east.069"
+  ],
+  "SUBJECT.abstract.x64": [
+   "STYLE.east.059",
+   "STYLE.east.088"
+  ],
+  "SUBJECT.abstract.x65": [
+   "STYLE.east.060",
+   "STYLE.east.061",
+   "STYLE.east.220"
+  ],
+  "SUBJECT.animal.x54": [
+   "STYLE.east.069",
+   "STYLE.east.072"
+  ],
+  "SUBJECT.landscape.x59": [
+   "STYLE.east.072",
+   "STYLE.east.A12"
+  ],
+  "SUBJECT.animal.x55": [
+   "STYLE.east.079",
+   "STYLE.east.202"
+  ],
+  "SUBJECT.bird-flower.x60": [
+   "STYLE.east.079",
+   "STYLE.east.081",
+   "STYLE.east.199"
+  ],
+  "SUBJECT.bird-flower.10": [
+   "STYLE.east.079"
+  ],
+  "SUBJECT.bird-flower.x61": [
+   "STYLE.east.082",
+   "STYLE.east.120",
+   "STYLE.east.124",
+   "STYLE.east.125",
+   "STYLE.east.176",
+   "STYLE.east.A17",
+   "STYLE.east.A20"
+  ],
+  "SUBJECT.abstract.x66": [
+   "STYLE.east.090",
+   "STYLE.east.134",
+   "STYLE.east.260"
+  ],
+  "SUBJECT.figure.07": [
+   "STYLE.east.092",
+   "STYLE.east.193"
+  ],
+  "SUBJECT.bird-flower.44": [
+   "STYLE.east.108"
+  ],
+  "SUBJECT.animal.x56": [
+   "STYLE.east.108",
+   "STYLE.east.120"
+  ],
+  "SUBJECT.bird-flower.12": [
+   "STYLE.east.108",
+   "STYLE.east.120"
+  ],
+  "SUBJECT.abstract.x68": [
+   "STYLE.east.109",
+   "STYLE.east.113",
+   "STYLE.east.216",
+   "STYLE.east.219",
+   "STYLE.east.A13"
+  ],
+  "SUBJECT.myth.x80": [
+   "STYLE.east.111",
+   "STYLE.east.179",
+   "STYLE.east.202"
+  ],
+  "SUBJECT.abstract.x67": [
+   "STYLE.east.111",
+   "STYLE.east.176",
+   "STYLE.east.202"
+  ],
+  "SUBJECT.figure.25": [
+   "STYLE.east.112",
+   "STYLE.east.A15"
+  ],
+  "SUBJECT.history.x57": [
+   "STYLE.east.116",
+   "STYLE.east.123"
+  ],
+  "SUBJECT.abstract.x70": [
+   "STYLE.east.121",
+   "STYLE.east.122",
+   "STYLE.east.123"
+  ],
+  "SUBJECT.history.02": [
+   "STYLE.east.122"
+  ],
+  "SUBJECT.history.11": [
+   "STYLE.east.122"
+  ],
+  "SUBJECT.abstract.x71": [
+   "STYLE.east.124",
+   "STYLE.east.A14"
+  ],
+  "SUBJECT.abstract.x72": [
+   "STYLE.east.126",
+   "STYLE.east.201"
+  ],
+  "SUBJECT.abstract.x73": [
+   "STYLE.east.129",
+   "STYLE.east.236"
+  ],
+  "SUBJECT.abstract.x74": [
+   "STYLE.east.130",
+   "STYLE.east.233"
+  ],
+  "SUBJECT.abstract.28": [
+   "STYLE.east.136"
+  ],
+  "SUBJECT.figure.x57": [
+   "STYLE.east.143",
+   "STYLE.east.238"
+  ],
+  "SUBJECT.abstract.x75": [
+   "STYLE.east.152",
+   "STYLE.east.231",
+   "STYLE.west.A07"
+  ],
+  "SUBJECT.myth.x81": [
+   "STYLE.east.164",
+   "STYLE.east.167"
+  ],
+  "SUBJECT.myth.x82": [
+   "STYLE.east.166",
+   "STYLE.east.167"
+  ],
+  "SUBJECT.figure.24": [
+   "STYLE.east.193"
+  ],
+  "SUBJECT.landscape.x60": [
+   "STYLE.east.195",
+   "STYLE.east.203"
+  ],
+  "SUBJECT.abstract.13": [
+   "STYLE.east.260"
+  ],
+  "SUBJECT.folk.22": [
+   "STYLE.east.M181"
+  ],
+  "SUBJECT.history.06": [
+   "STYLE.west.A02",
+   "STYLE.east.A18"
+  ],
+  "SUBJECT.landscape.15": [
+   "STYLE.west.A04"
+  ],
+  "SUBJECT.history.34": [
+   "STYLE.west.A06"
+  ],
+  "SUBJECT.landscape.16": [
+   "STYLE.west.A08"
+  ],
+  "SUBJECT.abstract.x77": [
+   "STYLE.east.A16",
+   "STYLE.east.A18"
+  ]
+ },
+ "edges": [
+  {
+   "style_id": "STYLE.west.001",
+   "style_cn": "古希腊风格",
+   "subject_atom": "SUBJECT.myth.x62",
+   "subject_cn": "神祇",
+   "via_motif": "神祇"
+  },
+  {
+   "style_id": "STYLE.west.001",
+   "style_cn": "古希腊风格",
+   "subject_atom": "SUBJECT.figure.32",
+   "subject_cn": "英雄",
+   "via_motif": "英雄"
+  },
+  {
+   "style_id": "STYLE.west.002",
+   "style_cn": "古罗马风格",
+   "subject_atom": "SUBJECT.figure.01",
+   "subject_cn": "肖像",
+   "via_motif": "皇帝肖像"
+  },
+  {
+   "style_id": "STYLE.west.002",
+   "style_cn": "古罗马风格",
+   "subject_atom": "SUBJECT.still-life.x52",
+   "subject_cn": "宴饮",
+   "via_motif": "宴饮"
+  },
+  {
+   "style_id": "STYLE.west.003",
+   "style_cn": "拜占庭风格",
+   "subject_atom": "SUBJECT.myth.34",
+   "subject_cn": "基督",
+   "via_motif": "基督"
+  },
+  {
+   "style_id": "STYLE.west.003",
+   "style_cn": "拜占庭风格",
+   "subject_atom": "SUBJECT.myth.33",
+   "subject_cn": "圣母",
+   "via_motif": "圣母"
+  },
+  {
+   "style_id": "STYLE.west.003",
+   "style_cn": "拜占庭风格",
+   "subject_atom": "SUBJECT.myth.40",
+   "subject_cn": "圣徒",
+   "via_motif": "圣徒"
+  },
+  {
+   "style_id": "STYLE.west.004",
+   "style_cn": "罗马式风格",
+   "subject_atom": "SUBJECT.history.50",
+   "subject_cn": "审判",
+   "via_motif": "末日审判"
+  },
+  {
+   "style_id": "STYLE.west.004",
+   "style_cn": "罗马式风格",
+   "subject_atom": "SUBJECT.myth.34",
+   "subject_cn": "基督",
+   "via_motif": "基督威严"
+  },
+  {
+   "style_id": "STYLE.west.004",
+   "style_cn": "罗马式风格",
+   "subject_atom": "SUBJECT.myth.x63",
+   "subject_cn": "圣经",
+   "via_motif": "圣经叙事"
+  },
+  {
+   "style_id": "STYLE.west.005",
+   "style_cn": "哥特式风格",
+   "subject_atom": "SUBJECT.myth.33",
+   "subject_cn": "圣母",
+   "via_motif": "圣母子"
+  },
+  {
+   "style_id": "STYLE.west.006",
+   "style_cn": "中世纪风格",
+   "subject_atom": "SUBJECT.myth.x63",
+   "subject_cn": "圣经",
+   "via_motif": "圣经故事"
+  },
+  {
+   "style_id": "STYLE.west.006",
+   "style_cn": "中世纪风格",
+   "subject_atom": "SUBJECT.myth.40",
+   "subject_cn": "圣徒",
+   "via_motif": "圣徒"
+  },
+  {
+   "style_id": "STYLE.west.007",
+   "style_cn": "古埃及风格",
+   "subject_atom": "SUBJECT.myth.x62",
+   "subject_cn": "神祇",
+   "via_motif": "神祇"
+  },
+  {
+   "style_id": "STYLE.west.007",
+   "style_cn": "古埃及风格",
+   "subject_atom": "SUBJECT.abstract.x60",
+   "subject_cn": "文字",
+   "via_motif": "象形文字"
+  },
+  {
+   "style_id": "STYLE.west.008",
+   "style_cn": "早期文艺复兴",
+   "subject_atom": "SUBJECT.myth.x63",
+   "subject_cn": "圣经",
+   "via_motif": "圣经"
+  },
+  {
+   "style_id": "STYLE.west.008",
+   "style_cn": "早期文艺复兴",
+   "subject_atom": "SUBJECT.myth.x64",
+   "subject_cn": "神话",
+   "via_motif": "神话"
+  },
+  {
+   "style_id": "STYLE.west.008",
+   "style_cn": "早期文艺复兴",
+   "subject_atom": "SUBJECT.figure.01",
+   "subject_cn": "肖像",
+   "via_motif": "肖像"
+  },
+  {
+   "style_id": "STYLE.west.009",
+   "style_cn": "高文艺复兴",
+   "subject_atom": "SUBJECT.myth.x63",
+   "subject_cn": "圣经",
+   "via_motif": "圣经"
+  },
+  {
+   "style_id": "STYLE.west.009",
+   "style_cn": "高文艺复兴",
+   "subject_atom": "SUBJECT.myth.x64",
+   "subject_cn": "神话",
+   "via_motif": "神话"
+  },
+  {
+   "style_id": "STYLE.west.009",
+   "style_cn": "高文艺复兴",
+   "subject_atom": "SUBJECT.figure.01",
+   "subject_cn": "肖像",
+   "via_motif": "肖像"
+  },
+  {
+   "style_id": "STYLE.west.010",
+   "style_cn": "晚期文艺复兴",
+   "subject_atom": "SUBJECT.myth.x63",
+   "subject_cn": "圣经",
+   "via_motif": "圣经"
+  },
+  {
+   "style_id": "STYLE.west.010",
+   "style_cn": "晚期文艺复兴",
+   "subject_atom": "SUBJECT.myth.x64",
+   "subject_cn": "神话",
+   "via_motif": "神话"
+  },
+  {
+   "style_id": "STYLE.west.010",
+   "style_cn": "晚期文艺复兴",
+   "subject_atom": "SUBJECT.figure.01",
+   "subject_cn": "肖像",
+   "via_motif": "肖像"
+  },
+  {
+   "style_id": "STYLE.west.011",
+   "style_cn": "佛罗伦萨画派",
+   "subject_atom": "SUBJECT.myth.33",
+   "subject_cn": "圣母",
+   "via_motif": "圣母子"
+  },
+  {
+   "style_id": "STYLE.west.011",
+   "style_cn": "佛罗伦萨画派",
+   "subject_atom": "SUBJECT.myth.x64",
+   "subject_cn": "神话",
+   "via_motif": "神话"
+  },
+  {
+   "style_id": "STYLE.west.011",
+   "style_cn": "佛罗伦萨画派",
+   "subject_atom": "SUBJECT.figure.x51",
+   "subject_cn": "人体",
+   "via_motif": "人体"
+  },
+  {
+   "style_id": "STYLE.west.012",
+   "style_cn": "威尼斯画派",
+   "subject_atom": "SUBJECT.myth.x64",
+   "subject_cn": "神话",
+   "via_motif": "神话"
+  },
+  {
+   "style_id": "STYLE.west.012",
+   "style_cn": "威尼斯画派",
+   "subject_atom": "SUBJECT.figure.17",
+   "subject_cn": "裸体",
+   "via_motif": "裸体"
+  },
+  {
+   "style_id": "STYLE.west.012",
+   "style_cn": "威尼斯画派",
+   "subject_atom": "SUBJECT.figure.01",
+   "subject_cn": "肖像",
+   "via_motif": "肖像"
+  },
+  {
+   "style_id": "STYLE.west.013",
+   "style_cn": "北方文艺复兴",
+   "subject_atom": "SUBJECT.myth.x65",
+   "subject_cn": "宗教",
+   "via_motif": "宗教"
+  },
+  {
+   "style_id": "STYLE.west.013",
+   "style_cn": "北方文艺复兴",
+   "subject_atom": "SUBJECT.urban.x52",
+   "subject_cn": "市井",
+   "via_motif": "市井"
+  },
+  {
+   "style_id": "STYLE.west.013",
+   "style_cn": "北方文艺复兴",
+   "subject_atom": "SUBJECT.figure.01",
+   "subject_cn": "肖像",
+   "via_motif": "肖像"
+  },
+  {
+   "style_id": "STYLE.west.013",
+   "style_cn": "北方文艺复兴",
+   "subject_atom": "SUBJECT.landscape.x50",
+   "subject_cn": "风景",
+   "via_motif": "风景"
+  },
+  {
+   "style_id": "STYLE.west.014",
+   "style_cn": "锡耶纳画派",
+   "subject_atom": "SUBJECT.myth.33",
+   "subject_cn": "圣母",
+   "via_motif": "圣母子"
+  },
+  {
+   "style_id": "STYLE.west.014",
+   "style_cn": "锡耶纳画派",
+   "subject_atom": "SUBJECT.myth.32",
+   "subject_cn": "天使",
+   "via_motif": "天使报喜"
+  },
+  {
+   "style_id": "STYLE.west.015",
+   "style_cn": "意大利巴洛克",
+   "subject_atom": "SUBJECT.myth.x66",
+   "subject_cn": "宗教激情",
+   "via_motif": "宗教激情"
+  },
+  {
+   "style_id": "STYLE.west.015",
+   "style_cn": "意大利巴洛克",
+   "subject_atom": "SUBJECT.myth.x67",
+   "subject_cn": "殉道",
+   "via_motif": "殉道"
+  },
+  {
+   "style_id": "STYLE.west.015",
+   "style_cn": "意大利巴洛克",
+   "subject_atom": "SUBJECT.history.x53",
+   "subject_cn": "权力",
+   "via_motif": "权力"
+  },
+  {
+   "style_id": "STYLE.west.016",
+   "style_cn": "西班牙巴洛克",
+   "subject_atom": "SUBJECT.myth.x66",
+   "subject_cn": "宗教激情",
+   "via_motif": "宗教激情"
+  },
+  {
+   "style_id": "STYLE.west.016",
+   "style_cn": "西班牙巴洛克",
+   "subject_atom": "SUBJECT.myth.x67",
+   "subject_cn": "殉道",
+   "via_motif": "殉道"
+  },
+  {
+   "style_id": "STYLE.west.016",
+   "style_cn": "西班牙巴洛克",
+   "subject_atom": "SUBJECT.history.x53",
+   "subject_cn": "权力",
+   "via_motif": "权力"
+  },
+  {
+   "style_id": "STYLE.west.017",
+   "style_cn": "荷兰黄金时代",
+   "subject_atom": "SUBJECT.figure.01",
+   "subject_cn": "肖像",
+   "via_motif": "市民肖像"
+  },
+  {
+   "style_id": "STYLE.west.017",
+   "style_cn": "荷兰黄金时代",
+   "subject_atom": "SUBJECT.still-life.x53",
+   "subject_cn": "静物",
+   "via_motif": "静物"
+  },
+  {
+   "style_id": "STYLE.west.017",
+   "style_cn": "荷兰黄金时代",
+   "subject_atom": "SUBJECT.landscape.x50",
+   "subject_cn": "风景",
+   "via_motif": "风景"
+  },
+  {
+   "style_id": "STYLE.west.018",
+   "style_cn": "法国巴洛克",
+   "subject_atom": "SUBJECT.myth.x66",
+   "subject_cn": "宗教激情",
+   "via_motif": "宗教激情"
+  },
+  {
+   "style_id": "STYLE.west.018",
+   "style_cn": "法国巴洛克",
+   "subject_atom": "SUBJECT.myth.x67",
+   "subject_cn": "殉道",
+   "via_motif": "殉道"
+  },
+  {
+   "style_id": "STYLE.west.018",
+   "style_cn": "法国巴洛克",
+   "subject_atom": "SUBJECT.history.x53",
+   "subject_cn": "权力",
+   "via_motif": "权力"
+  },
+  {
+   "style_id": "STYLE.west.019",
+   "style_cn": "法国洛可可",
+   "subject_atom": "SUBJECT.folk.x51",
+   "subject_cn": "爱情",
+   "via_motif": "爱情"
+  },
+  {
+   "style_id": "STYLE.west.019",
+   "style_cn": "法国洛可可",
+   "subject_atom": "SUBJECT.folk.26",
+   "subject_cn": "田园",
+   "via_motif": "田园嬉游"
+  },
+  {
+   "style_id": "STYLE.west.019",
+   "style_cn": "法国洛可可",
+   "subject_atom": "SUBJECT.myth.x68",
+   "subject_cn": "仙境",
+   "via_motif": "仙境"
+  },
+  {
+   "style_id": "STYLE.west.020",
+   "style_cn": "德国洛可可",
+   "subject_atom": "SUBJECT.folk.x51",
+   "subject_cn": "爱情",
+   "via_motif": "爱情"
+  },
+  {
+   "style_id": "STYLE.west.020",
+   "style_cn": "德国洛可可",
+   "subject_atom": "SUBJECT.folk.26",
+   "subject_cn": "田园",
+   "via_motif": "田园嬉游"
+  },
+  {
+   "style_id": "STYLE.west.020",
+   "style_cn": "德国洛可可",
+   "subject_atom": "SUBJECT.myth.x68",
+   "subject_cn": "仙境",
+   "via_motif": "仙境"
+  },
+  {
+   "style_id": "STYLE.west.021",
+   "style_cn": "英国洛可可",
+   "subject_atom": "SUBJECT.folk.x51",
+   "subject_cn": "爱情",
+   "via_motif": "爱情"
+  },
+  {
+   "style_id": "STYLE.west.021",
+   "style_cn": "英国洛可可",
+   "subject_atom": "SUBJECT.folk.26",
+   "subject_cn": "田园",
+   "via_motif": "田园嬉游"
+  },
+  {
+   "style_id": "STYLE.west.021",
+   "style_cn": "英国洛可可",
+   "subject_atom": "SUBJECT.myth.x68",
+   "subject_cn": "仙境",
+   "via_motif": "仙境"
+  },
+  {
+   "style_id": "STYLE.west.022",
+   "style_cn": "新古典主义",
+   "subject_atom": "SUBJECT.history.x54",
+   "subject_cn": "历史",
+   "via_motif": "历史"
+  },
+  {
+   "style_id": "STYLE.west.022",
+   "style_cn": "新古典主义",
+   "subject_atom": "SUBJECT.figure.32",
+   "subject_cn": "英雄",
+   "via_motif": "英雄"
+  },
+  {
+   "style_id": "STYLE.west.023",
+   "style_cn": "法国浪漫主义",
+   "subject_atom": "SUBJECT.history.33",
+   "subject_cn": "灾难",
+   "via_motif": "灾难"
+  },
+  {
+   "style_id": "STYLE.west.023",
+   "style_cn": "法国浪漫主义",
+   "subject_atom": "SUBJECT.urban.x53",
+   "subject_cn": "异域",
+   "via_motif": "异域"
+  },
+  {
+   "style_id": "STYLE.west.023",
+   "style_cn": "法国浪漫主义",
+   "subject_atom": "SUBJECT.abstract.x52",
+   "subject_cn": "崇高自然",
+   "via_motif": "崇高自然"
+  },
+  {
+   "style_id": "STYLE.west.023",
+   "style_cn": "法国浪漫主义",
+   "subject_atom": "SUBJECT.figure.x52",
+   "subject_cn": "孤独者",
+   "via_motif": "孤独者"
+  },
+  {
+   "style_id": "STYLE.west.024",
+   "style_cn": "英国浪漫主义",
+   "subject_atom": "SUBJECT.history.33",
+   "subject_cn": "灾难",
+   "via_motif": "灾难"
+  },
+  {
+   "style_id": "STYLE.west.024",
+   "style_cn": "英国浪漫主义",
+   "subject_atom": "SUBJECT.urban.x53",
+   "subject_cn": "异域",
+   "via_motif": "异域"
+  },
+  {
+   "style_id": "STYLE.west.024",
+   "style_cn": "英国浪漫主义",
+   "subject_atom": "SUBJECT.abstract.x52",
+   "subject_cn": "崇高自然",
+   "via_motif": "崇高自然"
+  },
+  {
+   "style_id": "STYLE.west.024",
+   "style_cn": "英国浪漫主义",
+   "subject_atom": "SUBJECT.figure.x52",
+   "subject_cn": "孤独者",
+   "via_motif": "孤独者"
+  },
+  {
+   "style_id": "STYLE.west.025",
+   "style_cn": "德国浪漫主义",
+   "subject_atom": "SUBJECT.history.33",
+   "subject_cn": "灾难",
+   "via_motif": "灾难"
+  },
+  {
+   "style_id": "STYLE.west.025",
+   "style_cn": "德国浪漫主义",
+   "subject_atom": "SUBJECT.urban.x53",
+   "subject_cn": "异域",
+   "via_motif": "异域"
+  },
+  {
+   "style_id": "STYLE.west.025",
+   "style_cn": "德国浪漫主义",
+   "subject_atom": "SUBJECT.abstract.x52",
+   "subject_cn": "崇高自然",
+   "via_motif": "崇高自然"
+  },
+  {
+   "style_id": "STYLE.west.025",
+   "style_cn": "德国浪漫主义",
+   "subject_atom": "SUBJECT.figure.x52",
+   "subject_cn": "孤独者",
+   "via_motif": "孤独者"
+  },
+  {
+   "style_id": "STYLE.west.026",
+   "style_cn": "现实主义",
+   "subject_atom": "SUBJECT.history.x55",
+   "subject_cn": "劳动",
+   "via_motif": "劳动"
+  },
+  {
+   "style_id": "STYLE.west.026",
+   "style_cn": "现实主义",
+   "subject_atom": "SUBJECT.folk.x52",
+   "subject_cn": "农民",
+   "via_motif": "农民"
+  },
+  {
+   "style_id": "STYLE.west.026",
+   "style_cn": "现实主义",
+   "subject_atom": "SUBJECT.urban.x52",
+   "subject_cn": "市井",
+   "via_motif": "市井"
+  },
+  {
+   "style_id": "STYLE.west.026",
+   "style_cn": "现实主义",
+   "subject_atom": "SUBJECT.abstract.x53",
+   "subject_cn": "贫困",
+   "via_motif": "贫困"
+  },
+  {
+   "style_id": "STYLE.west.027",
+   "style_cn": "自然主义",
+   "subject_atom": "SUBJECT.folk.x53",
+   "subject_cn": "农事",
+   "via_motif": "农事"
+  },
+  {
+   "style_id": "STYLE.west.027",
+   "style_cn": "自然主义",
+   "subject_atom": "SUBJECT.figure.09",
+   "subject_cn": "劳动者",
+   "via_motif": "劳动者"
+  },
+  {
+   "style_id": "STYLE.west.028",
+   "style_cn": "社会现实主义",
+   "subject_atom": "SUBJECT.history.x54",
+   "subject_cn": "历史",
+   "via_motif": "历史"
+  },
+  {
+   "style_id": "STYLE.west.028",
+   "style_cn": "社会现实主义",
+   "subject_atom": "SUBJECT.figure.01",
+   "subject_cn": "肖像",
+   "via_motif": "平民肖像"
+  },
+  {
+   "style_id": "STYLE.west.028",
+   "style_cn": "社会现实主义",
+   "subject_atom": "SUBJECT.landscape.x50",
+   "subject_cn": "风景",
+   "via_motif": "俄罗斯风景"
+  },
+  {
+   "style_id": "STYLE.west.029",
+   "style_cn": "印象派",
+   "subject_atom": "SUBJECT.landscape.x51",
+   "subject_cn": "户外风景",
+   "via_motif": "户外风景"
+  },
+  {
+   "style_id": "STYLE.west.029",
+   "style_cn": "印象派",
+   "subject_atom": "SUBJECT.landscape.x52",
+   "subject_cn": "花园",
+   "via_motif": "花园"
+  },
+  {
+   "style_id": "STYLE.west.029",
+   "style_cn": "印象派",
+   "subject_atom": "SUBJECT.urban.x54",
+   "subject_cn": "都市生活",
+   "via_motif": "都市生活"
+  },
+  {
+   "style_id": "STYLE.west.029",
+   "style_cn": "印象派",
+   "subject_atom": "SUBJECT.abstract.x54",
+   "subject_cn": "光",
+   "via_motif": "光"
+  },
+  {
+   "style_id": "STYLE.west.030",
+   "style_cn": "新印象派",
+   "subject_atom": "SUBJECT.landscape.x51",
+   "subject_cn": "户外风景",
+   "via_motif": "户外风景"
+  },
+  {
+   "style_id": "STYLE.west.030",
+   "style_cn": "新印象派",
+   "subject_atom": "SUBJECT.landscape.x52",
+   "subject_cn": "花园",
+   "via_motif": "花园"
+  },
+  {
+   "style_id": "STYLE.west.030",
+   "style_cn": "新印象派",
+   "subject_atom": "SUBJECT.urban.x54",
+   "subject_cn": "都市生活",
+   "via_motif": "都市生活"
+  },
+  {
+   "style_id": "STYLE.west.030",
+   "style_cn": "新印象派",
+   "subject_atom": "SUBJECT.abstract.x54",
+   "subject_cn": "光",
+   "via_motif": "光"
+  },
+  {
+   "style_id": "STYLE.west.031",
+   "style_cn": "点彩派",
+   "subject_atom": "SUBJECT.landscape.x50",
+   "subject_cn": "风景",
+   "via_motif": "风景"
+  },
+  {
+   "style_id": "STYLE.west.032",
+   "style_cn": "后印象派",
+   "subject_atom": "SUBJECT.still-life.x53",
+   "subject_cn": "静物",
+   "via_motif": "静物"
+  },
+  {
+   "style_id": "STYLE.west.032",
+   "style_cn": "后印象派",
+   "subject_atom": "SUBJECT.figure.02",
+   "subject_cn": "自画像",
+   "via_motif": "自画像"
+  },
+  {
+   "style_id": "STYLE.west.032",
+   "style_cn": "后印象派",
+   "subject_atom": "SUBJECT.folk.26",
+   "subject_cn": "田园",
+   "via_motif": "田园"
+  },
+  {
+   "style_id": "STYLE.west.032",
+   "style_cn": "后印象派",
+   "subject_atom": "SUBJECT.urban.x53",
+   "subject_cn": "异域",
+   "via_motif": "异域"
+  },
+  {
+   "style_id": "STYLE.west.033",
+   "style_cn": "纳比派",
+   "subject_atom": "SUBJECT.abstract.x55",
+   "subject_cn": "室内",
+   "via_motif": "室内"
+  },
+  {
+   "style_id": "STYLE.west.033",
+   "style_cn": "纳比派",
+   "subject_atom": "SUBJECT.landscape.x52",
+   "subject_cn": "花园",
+   "via_motif": "花园"
+  },
+  {
+   "style_id": "STYLE.west.034",
+   "style_cn": "象征主义",
+   "subject_atom": "SUBJECT.myth.x64",
+   "subject_cn": "神话",
+   "via_motif": "神话"
+  },
+  {
+   "style_id": "STYLE.west.034",
+   "style_cn": "象征主义",
+   "subject_atom": "SUBJECT.figure.x53",
+   "subject_cn": "女性",
+   "via_motif": "女性"
+  },
+  {
+   "style_id": "STYLE.west.034",
+   "style_cn": "象征主义",
+   "subject_atom": "SUBJECT.myth.x69",
+   "subject_cn": "梦",
+   "via_motif": "梦"
+  },
+  {
+   "style_id": "STYLE.west.035",
+   "style_cn": "新艺术运动",
+   "subject_atom": "SUBJECT.bird-flower.x52",
+   "subject_cn": "花卉",
+   "via_motif": "花卉"
+  },
+  {
+   "style_id": "STYLE.west.035",
+   "style_cn": "新艺术运动",
+   "subject_atom": "SUBJECT.figure.x53",
+   "subject_cn": "女性",
+   "via_motif": "女性"
+  },
+  {
+   "style_id": "STYLE.west.036",
+   "style_cn": "野兽派",
+   "subject_atom": "SUBJECT.landscape.x50",
+   "subject_cn": "风景",
+   "via_motif": "风景"
+  },
+  {
+   "style_id": "STYLE.west.036",
+   "style_cn": "野兽派",
+   "subject_atom": "SUBJECT.still-life.x54",
+   "subject_cn": "人物",
+   "via_motif": "人物"
+  },
+  {
+   "style_id": "STYLE.west.036",
+   "style_cn": "野兽派",
+   "subject_atom": "SUBJECT.abstract.x55",
+   "subject_cn": "室内",
+   "via_motif": "室内"
+  },
+  {
+   "style_id": "STYLE.west.037",
+   "style_cn": "表现主义",
+   "subject_atom": "SUBJECT.urban.x55",
+   "subject_cn": "城市",
+   "via_motif": "城市"
+  },
+  {
+   "style_id": "STYLE.west.037",
+   "style_cn": "表现主义",
+   "subject_atom": "SUBJECT.abstract.x56",
+   "subject_cn": "欲望",
+   "via_motif": "欲望"
+  },
+  {
+   "style_id": "STYLE.west.037",
+   "style_cn": "表现主义",
+   "subject_atom": "SUBJECT.history.01",
+   "subject_cn": "战争",
+   "via_motif": "战争"
+  },
+  {
+   "style_id": "STYLE.west.039",
+   "style_cn": "桥社",
+   "subject_atom": "SUBJECT.urban.x56",
+   "subject_cn": "都市",
+   "via_motif": "都市"
+  },
+  {
+   "style_id": "STYLE.west.039",
+   "style_cn": "桥社",
+   "subject_atom": "SUBJECT.figure.x51",
+   "subject_cn": "人体",
+   "via_motif": "人体"
+  },
+  {
+   "style_id": "STYLE.west.040",
+   "style_cn": "立体主义",
+   "subject_atom": "SUBJECT.still-life.x53",
+   "subject_cn": "静物",
+   "via_motif": "静物"
+  },
+  {
+   "style_id": "STYLE.west.040",
+   "style_cn": "立体主义",
+   "subject_atom": "SUBJECT.still-life.06",
+   "subject_cn": "乐器",
+   "via_motif": "乐器"
+  },
+  {
+   "style_id": "STYLE.west.040",
+   "style_cn": "立体主义",
+   "subject_atom": "SUBJECT.still-life.x54",
+   "subject_cn": "人物",
+   "via_motif": "人物"
+  },
+  {
+   "style_id": "STYLE.west.041",
+   "style_cn": "分析立体主义",
+   "subject_atom": "SUBJECT.still-life.x53",
+   "subject_cn": "静物",
+   "via_motif": "静物"
+  },
+  {
+   "style_id": "STYLE.west.041",
+   "style_cn": "分析立体主义",
+   "subject_atom": "SUBJECT.still-life.06",
+   "subject_cn": "乐器",
+   "via_motif": "乐器"
+  },
+  {
+   "style_id": "STYLE.west.041",
+   "style_cn": "分析立体主义",
+   "subject_atom": "SUBJECT.still-life.x54",
+   "subject_cn": "人物",
+   "via_motif": "人物"
+  },
+  {
+   "style_id": "STYLE.west.042",
+   "style_cn": "综合立体主义",
+   "subject_atom": "SUBJECT.still-life.x53",
+   "subject_cn": "静物",
+   "via_motif": "静物"
+  },
+  {
+   "style_id": "STYLE.west.042",
+   "style_cn": "综合立体主义",
+   "subject_atom": "SUBJECT.still-life.06",
+   "subject_cn": "乐器",
+   "via_motif": "乐器"
+  },
+  {
+   "style_id": "STYLE.west.042",
+   "style_cn": "综合立体主义",
+   "subject_atom": "SUBJECT.still-life.x54",
+   "subject_cn": "人物",
+   "via_motif": "人物"
+  },
+  {
+   "style_id": "STYLE.west.043",
+   "style_cn": "未来主义",
+   "subject_atom": "SUBJECT.urban.x55",
+   "subject_cn": "城市",
+   "via_motif": "城市"
+  },
+  {
+   "style_id": "STYLE.west.043",
+   "style_cn": "未来主义",
+   "subject_atom": "SUBJECT.history.01",
+   "subject_cn": "战争",
+   "via_motif": "战争"
+  },
+  {
+   "style_id": "STYLE.west.044",
+   "style_cn": "形而上绘画",
+   "subject_atom": "SUBJECT.still-life.34",
+   "subject_cn": "人偶",
+   "via_motif": "人偶"
+  },
+  {
+   "style_id": "STYLE.west.046",
+   "style_cn": "构成主义",
+   "subject_atom": "SUBJECT.abstract.x57",
+   "subject_cn": "空间",
+   "via_motif": "空间"
+  },
+  {
+   "style_id": "STYLE.west.047",
+   "style_cn": "新造型主义",
+   "subject_atom": "SUBJECT.abstract.x58",
+   "subject_cn": "纯抽象",
+   "via_motif": "纯抽象"
+  },
+  {
+   "style_id": "STYLE.west.048",
+   "style_cn": "苏黎世达达",
+   "subject_atom": "SUBJECT.abstract.x76",
+   "subject_cn": "拼贴",
+   "via_motif": "偶然拼贴"
+  },
+  {
+   "style_id": "STYLE.west.050",
+   "style_cn": "自动主义",
+   "subject_atom": "SUBJECT.myth.x69",
+   "subject_cn": "梦",
+   "via_motif": "梦"
+  },
+  {
+   "style_id": "STYLE.west.051",
+   "style_cn": "超现实主义",
+   "subject_atom": "SUBJECT.myth.x69",
+   "subject_cn": "梦",
+   "via_motif": "梦"
+  },
+  {
+   "style_id": "STYLE.west.051",
+   "style_cn": "超现实主义",
+   "subject_atom": "SUBJECT.abstract.x56",
+   "subject_cn": "欲望",
+   "via_motif": "欲望"
+  },
+  {
+   "style_id": "STYLE.west.054",
+   "style_cn": "抒情抽象",
+   "subject_atom": "SUBJECT.landscape.x50",
+   "subject_cn": "风景",
+   "via_motif": "风景化抽象"
+  },
+  {
+   "style_id": "STYLE.west.055",
+   "style_cn": "非形式艺术",
+   "subject_atom": "SUBJECT.abstract.x69",
+   "subject_cn": "肌理",
+   "via_motif": "物质肌理"
+  },
+  {
+   "style_id": "STYLE.west.057",
+   "style_cn": "抽象表现主义",
+   "subject_atom": "SUBJECT.abstract.x58",
+   "subject_cn": "纯抽象",
+   "via_motif": "纯抽象"
+  },
+  {
+   "style_id": "STYLE.west.063",
+   "style_cn": "魔幻现实主义",
+   "subject_atom": "SUBJECT.history.x55",
+   "subject_cn": "劳动",
+   "via_motif": "劳动"
+  },
+  {
+   "style_id": "STYLE.west.063",
+   "style_cn": "魔幻现实主义",
+   "subject_atom": "SUBJECT.folk.x52",
+   "subject_cn": "农民",
+   "via_motif": "农民"
+  },
+  {
+   "style_id": "STYLE.west.063",
+   "style_cn": "魔幻现实主义",
+   "subject_atom": "SUBJECT.urban.x52",
+   "subject_cn": "市井",
+   "via_motif": "市井"
+  },
+  {
+   "style_id": "STYLE.west.063",
+   "style_cn": "魔幻现实主义",
+   "subject_atom": "SUBJECT.abstract.x53",
+   "subject_cn": "贫困",
+   "via_motif": "贫困"
+  },
+  {
+   "style_id": "STYLE.west.064",
+   "style_cn": "照相写实主义",
+   "subject_atom": "SUBJECT.urban.x56",
+   "subject_cn": "都市",
+   "via_motif": "都市"
+  },
+  {
+   "style_id": "STYLE.west.064",
+   "style_cn": "照相写实主义",
+   "subject_atom": "SUBJECT.abstract.x59",
+   "subject_cn": "橱窗",
+   "via_motif": "橱窗"
+  },
+  {
+   "style_id": "STYLE.west.064",
+   "style_cn": "照相写实主义",
+   "subject_atom": "SUBJECT.figure.01",
+   "subject_cn": "肖像",
+   "via_motif": "肖像"
+  },
+  {
+   "style_id": "STYLE.west.065",
+   "style_cn": "超写实主义",
+   "subject_atom": "SUBJECT.figure.01",
+   "subject_cn": "肖像",
+   "via_motif": "巨幅肖像"
+  },
+  {
+   "style_id": "STYLE.west.065",
+   "style_cn": "超写实主义",
+   "subject_atom": "SUBJECT.abstract.x59",
+   "subject_cn": "橱窗",
+   "via_motif": "橱窗"
+  },
+  {
+   "style_id": "STYLE.west.069",
+   "style_cn": "素人绘画",
+   "subject_atom": "SUBJECT.history.46",
+   "subject_cn": "节庆",
+   "via_motif": "节庆"
+  },
+  {
+   "style_id": "STYLE.west.081",
+   "style_cn": "新表现主义",
+   "subject_atom": "SUBJECT.history.x54",
+   "subject_cn": "历史",
+   "via_motif": "历史"
+  },
+  {
+   "style_id": "STYLE.west.081",
+   "style_cn": "新表现主义",
+   "subject_atom": "SUBJECT.myth.x64",
+   "subject_cn": "神话",
+   "via_motif": "神话"
+  },
+  {
+   "style_id": "STYLE.west.081",
+   "style_cn": "新表现主义",
+   "subject_atom": "SUBJECT.figure.x54",
+   "subject_cn": "身体",
+   "via_motif": "身体"
+  },
+  {
+   "style_id": "STYLE.west.090",
+   "style_cn": "街头与涂鸦艺术",
+   "subject_atom": "SUBJECT.abstract.27",
+   "subject_cn": "符号",
+   "via_motif": "符号"
+  },
+  {
+   "style_id": "STYLE.west.090",
+   "style_cn": "街头与涂鸦艺术",
+   "subject_atom": "SUBJECT.abstract.x60",
+   "subject_cn": "文字",
+   "via_motif": "文字"
+  },
+  {
+   "style_id": "STYLE.west.090",
+   "style_cn": "街头与涂鸦艺术",
+   "subject_atom": "SUBJECT.urban.x55",
+   "subject_cn": "城市",
+   "via_motif": "城市墙面"
+  },
+  {
+   "style_id": "STYLE.west.098",
+   "style_cn": "沉浸与环境艺术",
+   "subject_atom": "SUBJECT.abstract.x57",
+   "subject_cn": "空间",
+   "via_motif": "光影空间"
+  },
+  {
+   "style_id": "STYLE.west.099",
+   "style_cn": "网络与后互联网艺术",
+   "subject_atom": "SUBJECT.abstract.x61",
+   "subject_cn": "屏幕",
+   "via_motif": "屏幕"
+  },
+  {
+   "style_id": "STYLE.west.102",
+   "style_cn": "区块链与NFT艺术",
+   "subject_atom": "SUBJECT.abstract.x62",
+   "subject_cn": "生成",
+   "via_motif": "生成"
+  },
+  {
+   "style_id": "STYLE.west.116",
+   "style_cn": "当代具象",
+   "subject_atom": "SUBJECT.still-life.x54",
+   "subject_cn": "人物",
+   "via_motif": "人物"
+  },
+  {
+   "style_id": "STYLE.east.003",
+   "style_cn": "汉代画像石",
+   "subject_atom": "SUBJECT.still-life.x52",
+   "subject_cn": "宴饮",
+   "via_motif": "宴饮"
+  },
+  {
+   "style_id": "STYLE.east.003",
+   "style_cn": "汉代画像石",
+   "subject_atom": "SUBJECT.animal.37",
+   "subject_cn": "神兽",
+   "via_motif": "神兽"
+  },
+  {
+   "style_id": "STYLE.east.004",
+   "style_cn": "壁画风格",
+   "subject_atom": "SUBJECT.myth.x70",
+   "subject_cn": "经变",
+   "via_motif": "经变"
+  },
+  {
+   "style_id": "STYLE.east.004",
+   "style_cn": "壁画风格",
+   "subject_atom": "SUBJECT.myth.x71",
+   "subject_cn": "升仙",
+   "via_motif": "升仙"
+  },
+  {
+   "style_id": "STYLE.east.010",
+   "style_cn": "墓室壁画",
+   "subject_atom": "SUBJECT.still-life.x52",
+   "subject_cn": "宴饮",
+   "via_motif": "宴饮"
+  },
+  {
+   "style_id": "STYLE.east.010",
+   "style_cn": "墓室壁画",
+   "subject_atom": "SUBJECT.myth.x71",
+   "subject_cn": "升仙",
+   "via_motif": "升仙"
+  },
+  {
+   "style_id": "STYLE.east.011",
+   "style_cn": "佛教壁画风格",
+   "subject_atom": "SUBJECT.myth.x70",
+   "subject_cn": "经变",
+   "via_motif": "经变"
+  },
+  {
+   "style_id": "STYLE.east.011",
+   "style_cn": "佛教壁画风格",
+   "subject_atom": "SUBJECT.myth.x72",
+   "subject_cn": "飞天",
+   "via_motif": "飞天"
+  },
+  {
+   "style_id": "STYLE.east.012",
+   "style_cn": "唐代宫廷绘画",
+   "subject_atom": "SUBJECT.figure.28",
+   "subject_cn": "帝王",
+   "via_motif": "帝王"
+  },
+  {
+   "style_id": "STYLE.east.012",
+   "style_cn": "唐代宫廷绘画",
+   "subject_atom": "SUBJECT.bird-flower.x53",
+   "subject_cn": "簪花",
+   "via_motif": "簪花"
+  },
+  {
+   "style_id": "STYLE.east.019",
+   "style_cn": "金碧山水风格",
+   "subject_atom": "SUBJECT.landscape.x53",
+   "subject_cn": "楼阁",
+   "via_motif": "仙山楼阁"
+  },
+  {
+   "style_id": "STYLE.east.019",
+   "style_cn": "金碧山水风格",
+   "subject_atom": "SUBJECT.myth.x73",
+   "subject_cn": "瀛洲",
+   "via_motif": "瀛洲"
+  },
+  {
+   "style_id": "STYLE.east.019",
+   "style_cn": "金碧山水风格",
+   "subject_atom": "SUBJECT.landscape.31",
+   "subject_cn": "行旅",
+   "via_motif": "行旅"
+  },
+  {
+   "style_id": "STYLE.east.021",
+   "style_cn": "唐代仕女风格",
+   "subject_atom": "SUBJECT.bird-flower.x53",
+   "subject_cn": "簪花",
+   "via_motif": "簪花"
+  },
+  {
+   "style_id": "STYLE.east.022",
+   "style_cn": "佛像造像风格",
+   "subject_atom": "SUBJECT.myth.x74",
+   "subject_cn": "佛",
+   "via_motif": "佛"
+  },
+  {
+   "style_id": "STYLE.east.022",
+   "style_cn": "佛像造像风格",
+   "subject_atom": "SUBJECT.myth.02",
+   "subject_cn": "菩萨",
+   "via_motif": "菩萨"
+  },
+  {
+   "style_id": "STYLE.east.022",
+   "style_cn": "佛像造像风格",
+   "subject_atom": "SUBJECT.myth.03",
+   "subject_cn": "罗汉",
+   "via_motif": "罗汉"
+  },
+  {
+   "style_id": "STYLE.east.022",
+   "style_cn": "佛像造像风格",
+   "subject_atom": "SUBJECT.figure.x55",
+   "subject_cn": "供养人",
+   "via_motif": "供养人"
+  },
+  {
+   "style_id": "STYLE.east.023",
+   "style_cn": "道教图像风格",
+   "subject_atom": "SUBJECT.myth.x75",
+   "subject_cn": "朝元",
+   "via_motif": "朝元"
+  },
+  {
+   "style_id": "STYLE.east.023",
+   "style_cn": "道教图像风格",
+   "subject_atom": "SUBJECT.myth.x76",
+   "subject_cn": "星君",
+   "via_motif": "星君"
+  },
+  {
+   "style_id": "STYLE.east.023",
+   "style_cn": "道教图像风格",
+   "subject_atom": "SUBJECT.history.x56",
+   "subject_cn": "帝后",
+   "via_motif": "帝后"
+  },
+  {
+   "style_id": "STYLE.east.023",
+   "style_cn": "道教图像风格",
+   "subject_atom": "SUBJECT.myth.x77",
+   "subject_cn": "仙官",
+   "via_motif": "仙官"
+  },
+  {
+   "style_id": "STYLE.east.024",
+   "style_cn": "唐代青绿风格",
+   "subject_atom": "SUBJECT.landscape.x53",
+   "subject_cn": "楼阁",
+   "via_motif": "楼阁"
+  },
+  {
+   "style_id": "STYLE.east.024",
+   "style_cn": "唐代青绿风格",
+   "subject_atom": "SUBJECT.landscape.31",
+   "subject_cn": "行旅",
+   "via_motif": "行旅"
+  },
+  {
+   "style_id": "STYLE.east.025",
+   "style_cn": "李思训派风格",
+   "subject_atom": "SUBJECT.myth.x78",
+   "subject_cn": "仙山",
+   "via_motif": "仙山"
+  },
+  {
+   "style_id": "STYLE.east.025",
+   "style_cn": "李思训派风格",
+   "subject_atom": "SUBJECT.landscape.x53",
+   "subject_cn": "楼阁",
+   "via_motif": "楼阁"
+  },
+  {
+   "style_id": "STYLE.east.025",
+   "style_cn": "李思训派风格",
+   "subject_atom": "SUBJECT.myth.x73",
+   "subject_cn": "瀛洲",
+   "via_motif": "瀛洲"
+  },
+  {
+   "style_id": "STYLE.east.025",
+   "style_cn": "李思训派风格",
+   "subject_atom": "SUBJECT.landscape.31",
+   "subject_cn": "行旅",
+   "via_motif": "行旅"
+  },
+  {
+   "style_id": "STYLE.east.026",
+   "style_cn": "北宋院体风格",
+   "subject_atom": "SUBJECT.landscape.33",
+   "subject_cn": "寒林",
+   "via_motif": "寒林"
+  },
+  {
+   "style_id": "STYLE.east.026",
+   "style_cn": "北宋院体风格",
+   "subject_atom": "SUBJECT.landscape.31",
+   "subject_cn": "行旅",
+   "via_motif": "行旅"
+  },
+  {
+   "style_id": "STYLE.east.027",
+   "style_cn": "文人画风格",
+   "subject_atom": "SUBJECT.landscape.x54",
+   "subject_cn": "山水",
+   "via_motif": "山水"
+  },
+  {
+   "style_id": "STYLE.east.027",
+   "style_cn": "文人画风格",
+   "subject_atom": "SUBJECT.bird-flower.x54",
+   "subject_cn": "墨竹",
+   "via_motif": "墨竹"
+  },
+  {
+   "style_id": "STYLE.east.027",
+   "style_cn": "文人画风格",
+   "subject_atom": "SUBJECT.bird-flower.x55",
+   "subject_cn": "梅兰",
+   "via_motif": "梅兰"
+  },
+  {
+   "style_id": "STYLE.east.028",
+   "style_cn": "山水正宗风格",
+   "subject_atom": "SUBJECT.landscape.x54",
+   "subject_cn": "山水",
+   "via_motif": "全景山水"
+  },
+  {
+   "style_id": "STYLE.east.028",
+   "style_cn": "山水正宗风格",
+   "subject_atom": "SUBJECT.landscape.33",
+   "subject_cn": "寒林",
+   "via_motif": "寒林"
+  },
+  {
+   "style_id": "STYLE.east.028",
+   "style_cn": "山水正宗风格",
+   "subject_atom": "SUBJECT.landscape.x55",
+   "subject_cn": "云山",
+   "via_motif": "云山"
+  },
+  {
+   "style_id": "STYLE.east.029",
+   "style_cn": "北宋山水风格",
+   "subject_atom": "SUBJECT.landscape.33",
+   "subject_cn": "寒林",
+   "via_motif": "寒林"
+  },
+  {
+   "style_id": "STYLE.east.029",
+   "style_cn": "北宋山水风格",
+   "subject_atom": "SUBJECT.landscape.31",
+   "subject_cn": "行旅",
+   "via_motif": "行旅"
+  },
+  {
+   "style_id": "STYLE.east.030",
+   "style_cn": "南宋山水风格",
+   "subject_atom": "SUBJECT.landscape.x56",
+   "subject_cn": "烟岚",
+   "via_motif": "烟岚"
+  },
+  {
+   "style_id": "STYLE.east.032",
+   "style_cn": "写意山水风格",
+   "subject_atom": "SUBJECT.landscape.x55",
+   "subject_cn": "云山",
+   "via_motif": "云山"
+  },
+  {
+   "style_id": "STYLE.east.034",
+   "style_cn": "青绿山水风格",
+   "subject_atom": "SUBJECT.myth.x78",
+   "subject_cn": "仙山",
+   "via_motif": "仙山"
+  },
+  {
+   "style_id": "STYLE.east.034",
+   "style_cn": "青绿山水风格",
+   "subject_atom": "SUBJECT.landscape.x53",
+   "subject_cn": "楼阁",
+   "via_motif": "楼阁"
+  },
+  {
+   "style_id": "STYLE.east.035",
+   "style_cn": "水墨山水风格",
+   "subject_atom": "SUBJECT.landscape.x55",
+   "subject_cn": "云山",
+   "via_motif": "云山"
+  },
+  {
+   "style_id": "STYLE.east.035",
+   "style_cn": "水墨山水风格",
+   "subject_atom": "SUBJECT.landscape.x57",
+   "subject_cn": "平远",
+   "via_motif": "平远"
+  },
+  {
+   "style_id": "STYLE.east.035",
+   "style_cn": "水墨山水风格",
+   "subject_atom": "SUBJECT.abstract.x63",
+   "subject_cn": "隐逸",
+   "via_motif": "隐逸"
+  },
+  {
+   "style_id": "STYLE.east.037",
+   "style_cn": "文人水墨风格",
+   "subject_atom": "SUBJECT.landscape.x58",
+   "subject_cn": "枯木竹石",
+   "via_motif": "枯木竹石"
+  },
+  {
+   "style_id": "STYLE.east.040",
+   "style_cn": "写意人物风格",
+   "subject_atom": "SUBJECT.figure.x56",
+   "subject_cn": "高士",
+   "via_motif": "高士"
+  },
+  {
+   "style_id": "STYLE.east.040",
+   "style_cn": "写意人物风格",
+   "subject_atom": "SUBJECT.urban.x52",
+   "subject_cn": "市井",
+   "via_motif": "市井"
+  },
+  {
+   "style_id": "STYLE.east.047",
+   "style_cn": "写意花鸟风格",
+   "subject_atom": "SUBJECT.bird-flower.x56",
+   "subject_cn": "墨荷",
+   "via_motif": "墨荷"
+  },
+  {
+   "style_id": "STYLE.east.047",
+   "style_cn": "写意花鸟风格",
+   "subject_atom": "SUBJECT.bird-flower.x57",
+   "subject_cn": "藤葡",
+   "via_motif": "藤葡"
+  },
+  {
+   "style_id": "STYLE.east.047",
+   "style_cn": "写意花鸟风格",
+   "subject_atom": "SUBJECT.animal.x53",
+   "subject_cn": "八哥",
+   "via_motif": "八哥"
+  },
+  {
+   "style_id": "STYLE.east.049",
+   "style_cn": "牧溪风格",
+   "subject_atom": "SUBJECT.myth.06",
+   "subject_cn": "观音",
+   "via_motif": "观音"
+  },
+  {
+   "style_id": "STYLE.east.049",
+   "style_cn": "牧溪风格",
+   "subject_atom": "SUBJECT.bird-flower.x58",
+   "subject_cn": "蔬果",
+   "via_motif": "蔬果"
+  },
+  {
+   "style_id": "STYLE.east.050",
+   "style_cn": "元代文人风格",
+   "subject_atom": "SUBJECT.folk.x54",
+   "subject_cn": "渔隐",
+   "via_motif": "渔隐"
+  },
+  {
+   "style_id": "STYLE.east.055",
+   "style_cn": "禅意绘画风格",
+   "subject_atom": "SUBJECT.myth.x79",
+   "subject_cn": "高僧",
+   "via_motif": "高僧"
+  },
+  {
+   "style_id": "STYLE.east.055",
+   "style_cn": "禅意绘画风格",
+   "subject_atom": "SUBJECT.bird-flower.x59",
+   "subject_cn": "枯枝",
+   "via_motif": "枯枝"
+  },
+  {
+   "style_id": "STYLE.east.058",
+   "style_cn": "浙派风格",
+   "subject_atom": "SUBJECT.landscape.x54",
+   "subject_cn": "山水",
+   "via_motif": "山水"
+  },
+  {
+   "style_id": "STYLE.east.058",
+   "style_cn": "浙派风格",
+   "subject_atom": "SUBJECT.folk.x54",
+   "subject_cn": "渔隐",
+   "via_motif": "渔隐"
+  },
+  {
+   "style_id": "STYLE.east.058",
+   "style_cn": "浙派风格",
+   "subject_atom": "SUBJECT.still-life.x54",
+   "subject_cn": "人物",
+   "via_motif": "人物"
+  },
+  {
+   "style_id": "STYLE.east.059",
+   "style_cn": "吴派风格",
+   "subject_atom": "SUBJECT.landscape.x54",
+   "subject_cn": "山水",
+   "via_motif": "山水"
+  },
+  {
+   "style_id": "STYLE.east.059",
+   "style_cn": "吴派风格",
+   "subject_atom": "SUBJECT.abstract.x64",
+   "subject_cn": "雅集",
+   "via_motif": "雅集"
+  },
+  {
+   "style_id": "STYLE.east.060",
+   "style_cn": "松江派风格",
+   "subject_atom": "SUBJECT.landscape.x55",
+   "subject_cn": "云山",
+   "via_motif": "仿古云山"
+  },
+  {
+   "style_id": "STYLE.east.060",
+   "style_cn": "松江派风格",
+   "subject_atom": "SUBJECT.landscape.x57",
+   "subject_cn": "平远",
+   "via_motif": "平远"
+  },
+  {
+   "style_id": "STYLE.east.060",
+   "style_cn": "松江派风格",
+   "subject_atom": "SUBJECT.abstract.x65",
+   "subject_cn": "笔墨",
+   "via_motif": "笔墨structure"
+  },
+  {
+   "style_id": "STYLE.east.061",
+   "style_cn": "南宗画风",
+   "subject_atom": "SUBJECT.landscape.x55",
+   "subject_cn": "云山",
+   "via_motif": "云山"
+  },
+  {
+   "style_id": "STYLE.east.061",
+   "style_cn": "南宗画风",
+   "subject_atom": "SUBJECT.landscape.x57",
+   "subject_cn": "平远",
+   "via_motif": "平远"
+  },
+  {
+   "style_id": "STYLE.east.061",
+   "style_cn": "南宗画风",
+   "subject_atom": "SUBJECT.abstract.x65",
+   "subject_cn": "笔墨",
+   "via_motif": "笔墨"
+  },
+  {
+   "style_id": "STYLE.east.062",
+   "style_cn": "北宗画风",
+   "subject_atom": "SUBJECT.landscape.x53",
+   "subject_cn": "楼阁",
+   "via_motif": "楼阁"
+  },
+  {
+   "style_id": "STYLE.east.069",
+   "style_cn": "八大山人风格",
+   "subject_atom": "SUBJECT.animal.x54",
+   "subject_cn": "白眼鱼鸟",
+   "via_motif": "白眼鱼鸟"
+  },
+  {
+   "style_id": "STYLE.east.069",
+   "style_cn": "八大山人风格",
+   "subject_atom": "SUBJECT.bird-flower.x59",
+   "subject_cn": "枯枝",
+   "via_motif": "枯枝"
+  },
+  {
+   "style_id": "STYLE.east.072",
+   "style_cn": "四僧风格",
+   "subject_atom": "SUBJECT.animal.x54",
+   "subject_cn": "白眼鱼鸟",
+   "via_motif": "白眼鱼鸟"
+  },
+  {
+   "style_id": "STYLE.east.072",
+   "style_cn": "四僧风格",
+   "subject_atom": "SUBJECT.landscape.x59",
+   "subject_cn": "黄山",
+   "via_motif": "黄山"
+  },
+  {
+   "style_id": "STYLE.east.073",
+   "style_cn": "扬州八怪风格",
+   "subject_atom": "SUBJECT.bird-flower.x55",
+   "subject_cn": "梅兰",
+   "via_motif": "梅兰竹石"
+  },
+  {
+   "style_id": "STYLE.east.073",
+   "style_cn": "扬州八怪风格",
+   "subject_atom": "SUBJECT.still-life.x54",
+   "subject_cn": "人物",
+   "via_motif": "人物"
+  },
+  {
+   "style_id": "STYLE.east.079",
+   "style_cn": "工笔花鸟风格",
+   "subject_atom": "SUBJECT.animal.x55",
+   "subject_cn": "珍禽",
+   "via_motif": "珍禽"
+  },
+  {
+   "style_id": "STYLE.east.079",
+   "style_cn": "工笔花鸟风格",
+   "subject_atom": "SUBJECT.bird-flower.x60",
+   "subject_cn": "折枝",
+   "via_motif": "折枝"
+  },
+  {
+   "style_id": "STYLE.east.079",
+   "style_cn": "工笔花鸟风格",
+   "subject_atom": "SUBJECT.bird-flower.10",
+   "subject_cn": "芙蓉",
+   "via_motif": "芙蓉锦鸡"
+  },
+  {
+   "style_id": "STYLE.east.081",
+   "style_cn": "文人花鸟风格",
+   "subject_atom": "SUBJECT.bird-flower.x60",
+   "subject_cn": "折枝",
+   "via_motif": "折枝"
+  },
+  {
+   "style_id": "STYLE.east.081",
+   "style_cn": "文人花鸟风格",
+   "subject_atom": "SUBJECT.bird-flower.x56",
+   "subject_cn": "墨荷",
+   "via_motif": "墨荷"
+  },
+  {
+   "style_id": "STYLE.east.082",
+   "style_cn": "宫廷画风",
+   "subject_atom": "SUBJECT.history.x56",
+   "subject_cn": "帝后",
+   "via_motif": "帝后行乐"
+  },
+  {
+   "style_id": "STYLE.east.082",
+   "style_cn": "宫廷画风",
+   "subject_atom": "SUBJECT.bird-flower.x61",
+   "subject_cn": "花鸟",
+   "via_motif": "花鸟"
+  },
+  {
+   "style_id": "STYLE.east.088",
+   "style_cn": "山水诗画风格",
+   "subject_atom": "SUBJECT.figure.x56",
+   "subject_cn": "高士",
+   "via_motif": "高士行吟"
+  },
+  {
+   "style_id": "STYLE.east.088",
+   "style_cn": "山水诗画风格",
+   "subject_atom": "SUBJECT.abstract.x64",
+   "subject_cn": "雅集",
+   "via_motif": "雅集"
+  },
+  {
+   "style_id": "STYLE.east.090",
+   "style_cn": "留白风格",
+   "subject_atom": "SUBJECT.abstract.x66",
+   "subject_cn": "虚空",
+   "via_motif": "虚空"
+  },
+  {
+   "style_id": "STYLE.east.090",
+   "style_cn": "留白风格",
+   "subject_atom": "SUBJECT.landscape.x56",
+   "subject_cn": "烟岚",
+   "via_motif": "烟岚"
+  },
+  {
+   "style_id": "STYLE.east.092",
+   "style_cn": "写实主义风格",
+   "subject_atom": "SUBJECT.figure.09",
+   "subject_cn": "劳动者",
+   "via_motif": "劳动者"
+  },
+  {
+   "style_id": "STYLE.east.092",
+   "style_cn": "写实主义风格",
+   "subject_atom": "SUBJECT.figure.07",
+   "subject_cn": "历史人物",
+   "via_motif": "历史人物"
+  },
+  {
+   "style_id": "STYLE.east.108",
+   "style_cn": "现代花鸟风格",
+   "subject_atom": "SUBJECT.bird-flower.44",
+   "subject_cn": "虾蟹",
+   "via_motif": "虾蟹"
+  },
+  {
+   "style_id": "STYLE.east.108",
+   "style_cn": "现代花鸟风格",
+   "subject_atom": "SUBJECT.animal.x56",
+   "subject_cn": "雄鹰",
+   "via_motif": "雄鹰"
+  },
+  {
+   "style_id": "STYLE.east.108",
+   "style_cn": "现代花鸟风格",
+   "subject_atom": "SUBJECT.bird-flower.12",
+   "subject_cn": "荷塘",
+   "via_motif": "荷塘"
+  },
+  {
+   "style_id": "STYLE.east.108",
+   "style_cn": "现代花鸟风格",
+   "subject_atom": "SUBJECT.bird-flower.x58",
+   "subject_cn": "蔬果",
+   "via_motif": "蔬果"
+  },
+  {
+   "style_id": "STYLE.east.109",
+   "style_cn": "现代山水风格",
+   "subject_atom": "SUBJECT.abstract.x68",
+   "subject_cn": "写生",
+   "via_motif": "写生山河"
+  },
+  {
+   "style_id": "STYLE.east.109",
+   "style_cn": "现代山水风格",
+   "subject_atom": "SUBJECT.landscape.x55",
+   "subject_cn": "云山",
+   "via_motif": "云山"
+  },
+  {
+   "style_id": "STYLE.east.109",
+   "style_cn": "现代山水风格",
+   "subject_atom": "SUBJECT.landscape.x54",
+   "subject_cn": "山水",
+   "via_motif": "红色山水"
+  },
+  {
+   "style_id": "STYLE.east.111",
+   "style_cn": "重彩风格",
+   "subject_atom": "SUBJECT.myth.x80",
+   "subject_cn": "敦煌",
+   "via_motif": "敦煌"
+  },
+  {
+   "style_id": "STYLE.east.111",
+   "style_cn": "重彩风格",
+   "subject_atom": "SUBJECT.still-life.x54",
+   "subject_cn": "人物",
+   "via_motif": "人物"
+  },
+  {
+   "style_id": "STYLE.east.111",
+   "style_cn": "重彩风格",
+   "subject_atom": "SUBJECT.bird-flower.x52",
+   "subject_cn": "花卉",
+   "via_motif": "花卉"
+  },
+  {
+   "style_id": "STYLE.east.111",
+   "style_cn": "重彩风格",
+   "subject_atom": "SUBJECT.abstract.x67",
+   "subject_cn": "装饰",
+   "via_motif": "装饰"
+  },
+  {
+   "style_id": "STYLE.east.112",
+   "style_cn": "现代工笔风格",
+   "subject_atom": "SUBJECT.figure.x53",
+   "subject_cn": "女性",
+   "via_motif": "当代女性"
+  },
+  {
+   "style_id": "STYLE.east.112",
+   "style_cn": "现代工笔风格",
+   "subject_atom": "SUBJECT.urban.x56",
+   "subject_cn": "都市",
+   "via_motif": "都市"
+  },
+  {
+   "style_id": "STYLE.east.112",
+   "style_cn": "现代工笔风格",
+   "subject_atom": "SUBJECT.figure.25",
+   "subject_cn": "美人",
+   "via_motif": "唯美人物"
+  },
+  {
+   "style_id": "STYLE.east.113",
+   "style_cn": "学院派风格",
+   "subject_atom": "SUBJECT.still-life.x54",
+   "subject_cn": "人物",
+   "via_motif": "写实人物"
+  },
+  {
+   "style_id": "STYLE.east.113",
+   "style_cn": "学院派风格",
+   "subject_atom": "SUBJECT.abstract.x68",
+   "subject_cn": "写生",
+   "via_motif": "写生"
+  },
+  {
+   "style_id": "STYLE.east.114",
+   "style_cn": "革新文人画风格",
+   "subject_atom": "SUBJECT.landscape.x54",
+   "subject_cn": "山水",
+   "via_motif": "山水"
+  },
+  {
+   "style_id": "STYLE.east.114",
+   "style_cn": "革新文人画风格",
+   "subject_atom": "SUBJECT.bird-flower.x54",
+   "subject_cn": "墨竹",
+   "via_motif": "墨竹"
+  },
+  {
+   "style_id": "STYLE.east.114",
+   "style_cn": "革新文人画风格",
+   "subject_atom": "SUBJECT.bird-flower.x55",
+   "subject_cn": "梅兰",
+   "via_motif": "梅兰"
+  },
+  {
+   "style_id": "STYLE.east.115",
+   "style_cn": "抽象水墨",
+   "subject_atom": "SUBJECT.abstract.x69",
+   "subject_cn": "肌理",
+   "via_motif": "肌理"
+  },
+  {
+   "style_id": "STYLE.east.116",
+   "style_cn": "现代人物画风格",
+   "subject_atom": "SUBJECT.history.x57",
+   "subject_cn": "工农兵",
+   "via_motif": "工农兵"
+  },
+  {
+   "style_id": "STYLE.east.116",
+   "style_cn": "现代人物画风格",
+   "subject_atom": "SUBJECT.urban.x52",
+   "subject_cn": "市井",
+   "via_motif": "市井百姓"
+  },
+  {
+   "style_id": "STYLE.east.119",
+   "style_cn": "表现水墨",
+   "subject_atom": "SUBJECT.figure.x51",
+   "subject_cn": "人体",
+   "via_motif": "挣扎人体"
+  },
+  {
+   "style_id": "STYLE.east.119",
+   "style_cn": "表现水墨",
+   "subject_atom": "SUBJECT.urban.x56",
+   "subject_cn": "都市",
+   "via_motif": "都市焦虑"
+  },
+  {
+   "style_id": "STYLE.east.120",
+   "style_cn": "现代写意风格",
+   "subject_atom": "SUBJECT.bird-flower.x61",
+   "subject_cn": "花鸟",
+   "via_motif": "花鸟"
+  },
+  {
+   "style_id": "STYLE.east.120",
+   "style_cn": "现代写意风格",
+   "subject_atom": "SUBJECT.bird-flower.x58",
+   "subject_cn": "蔬果",
+   "via_motif": "蔬果"
+  },
+  {
+   "style_id": "STYLE.east.120",
+   "style_cn": "现代写意风格",
+   "subject_atom": "SUBJECT.animal.x56",
+   "subject_cn": "雄鹰",
+   "via_motif": "雄鹰"
+  },
+  {
+   "style_id": "STYLE.east.120",
+   "style_cn": "现代写意风格",
+   "subject_atom": "SUBJECT.bird-flower.12",
+   "subject_cn": "荷塘",
+   "via_motif": "荷塘"
+  },
+  {
+   "style_id": "STYLE.east.121",
+   "style_cn": "新中国画风格",
+   "subject_atom": "SUBJECT.abstract.x70",
+   "subject_cn": "领袖",
+   "via_motif": "领袖诗意"
+  },
+  {
+   "style_id": "STYLE.east.122",
+   "style_cn": "政治题材风格",
+   "subject_atom": "SUBJECT.abstract.x70",
+   "subject_cn": "领袖",
+   "via_motif": "领袖"
+  },
+  {
+   "style_id": "STYLE.east.122",
+   "style_cn": "政治题材风格",
+   "subject_atom": "SUBJECT.history.02",
+   "subject_cn": "革命",
+   "via_motif": "革命"
+  },
+  {
+   "style_id": "STYLE.east.122",
+   "style_cn": "政治题材风格",
+   "subject_atom": "SUBJECT.history.11",
+   "subject_cn": "历史事件",
+   "via_motif": "历史事件"
+  },
+  {
+   "style_id": "STYLE.east.123",
+   "style_cn": "宣传画风格",
+   "subject_atom": "SUBJECT.history.x57",
+   "subject_cn": "工农兵",
+   "via_motif": "工农兵"
+  },
+  {
+   "style_id": "STYLE.east.123",
+   "style_cn": "宣传画风格",
+   "subject_atom": "SUBJECT.abstract.x70",
+   "subject_cn": "领袖",
+   "via_motif": "领袖"
+  },
+  {
+   "style_id": "STYLE.east.124",
+   "style_cn": "海派风格",
+   "subject_atom": "SUBJECT.bird-flower.x61",
+   "subject_cn": "花鸟",
+   "via_motif": "花鸟"
+  },
+  {
+   "style_id": "STYLE.east.124",
+   "style_cn": "海派风格",
+   "subject_atom": "SUBJECT.still-life.x54",
+   "subject_cn": "人物",
+   "via_motif": "人物"
+  },
+  {
+   "style_id": "STYLE.east.124",
+   "style_cn": "海派风格",
+   "subject_atom": "SUBJECT.abstract.x71",
+   "subject_cn": "吉祥",
+   "via_motif": "吉祥"
+  },
+  {
+   "style_id": "STYLE.east.125",
+   "style_cn": "岭南画派风格",
+   "subject_atom": "SUBJECT.bird-flower.x61",
+   "subject_cn": "花鸟",
+   "via_motif": "花鸟"
+  },
+  {
+   "style_id": "STYLE.east.126",
+   "style_cn": "白描人物风格",
+   "subject_atom": "SUBJECT.figure.x56",
+   "subject_cn": "高士",
+   "via_motif": "高士"
+  },
+  {
+   "style_id": "STYLE.east.126",
+   "style_cn": "白描人物风格",
+   "subject_atom": "SUBJECT.myth.03",
+   "subject_cn": "罗汉",
+   "via_motif": "罗汉"
+  },
+  {
+   "style_id": "STYLE.east.126",
+   "style_cn": "白描人物风格",
+   "subject_atom": "SUBJECT.abstract.x72",
+   "subject_cn": "白描稿",
+   "via_motif": "白描稿"
+  },
+  {
+   "style_id": "STYLE.east.129",
+   "style_cn": "观念水墨",
+   "subject_atom": "SUBJECT.abstract.x60",
+   "subject_cn": "文字",
+   "via_motif": "文字"
+  },
+  {
+   "style_id": "STYLE.east.129",
+   "style_cn": "观念水墨",
+   "subject_atom": "SUBJECT.abstract.x73",
+   "subject_cn": "文化批判",
+   "via_motif": "文化批判"
+  },
+  {
+   "style_id": "STYLE.east.130",
+   "style_cn": "实验水墨",
+   "subject_atom": "SUBJECT.abstract.x74",
+   "subject_cn": "装置",
+   "via_motif": "装置"
+  },
+  {
+   "style_id": "STYLE.east.130",
+   "style_cn": "实验水墨",
+   "subject_atom": "SUBJECT.abstract.x69",
+   "subject_cn": "肌理",
+   "via_motif": "肌理"
+  },
+  {
+   "style_id": "STYLE.east.134",
+   "style_cn": "极简水墨风格",
+   "subject_atom": "SUBJECT.abstract.x66",
+   "subject_cn": "虚空",
+   "via_motif": "虚空"
+  },
+  {
+   "style_id": "STYLE.east.136",
+   "style_cn": "数字与AI水墨",
+   "subject_atom": "SUBJECT.abstract.x62",
+   "subject_cn": "生成",
+   "via_motif": "生成"
+  },
+  {
+   "style_id": "STYLE.east.136",
+   "style_cn": "数字与AI水墨",
+   "subject_atom": "SUBJECT.abstract.28",
+   "subject_cn": "数字",
+   "via_motif": "数字笔墨"
+  },
+  {
+   "style_id": "STYLE.east.136",
+   "style_cn": "数字与AI水墨",
+   "subject_atom": "SUBJECT.landscape.x54",
+   "subject_cn": "山水",
+   "via_motif": "虚拟山水"
+  },
+  {
+   "style_id": "STYLE.east.143",
+   "style_cn": "行为与影像水墨",
+   "subject_atom": "SUBJECT.figure.x54",
+   "subject_cn": "身体",
+   "via_motif": "身体"
+  },
+  {
+   "style_id": "STYLE.east.143",
+   "style_cn": "行为与影像水墨",
+   "subject_atom": "SUBJECT.figure.x57",
+   "subject_cn": "影像",
+   "via_motif": "影像"
+  },
+  {
+   "style_id": "STYLE.east.146",
+   "style_cn": "社会与生态水墨",
+   "subject_atom": "SUBJECT.urban.x55",
+   "subject_cn": "城市",
+   "via_motif": "城市"
+  },
+  {
+   "style_id": "STYLE.east.152",
+   "style_cn": "多媒介水墨风格",
+   "subject_atom": "SUBJECT.abstract.x75",
+   "subject_cn": "材料",
+   "via_motif": "材料"
+  },
+  {
+   "style_id": "STYLE.east.152",
+   "style_cn": "多媒介水墨风格",
+   "subject_atom": "SUBJECT.abstract.x76",
+   "subject_cn": "拼贴",
+   "via_motif": "拼贴"
+  },
+  {
+   "style_id": "STYLE.east.152",
+   "style_cn": "多媒介水墨风格",
+   "subject_atom": "SUBJECT.abstract.x69",
+   "subject_cn": "肌理",
+   "via_motif": "肌理"
+  },
+  {
+   "style_id": "STYLE.east.164",
+   "style_cn": "敦煌壁画风格",
+   "subject_atom": "SUBJECT.myth.x81",
+   "subject_cn": "佛传",
+   "via_motif": "佛传"
+  },
+  {
+   "style_id": "STYLE.east.164",
+   "style_cn": "敦煌壁画风格",
+   "subject_atom": "SUBJECT.myth.x70",
+   "subject_cn": "经变",
+   "via_motif": "经变"
+  },
+  {
+   "style_id": "STYLE.east.164",
+   "style_cn": "敦煌壁画风格",
+   "subject_atom": "SUBJECT.myth.x72",
+   "subject_cn": "飞天",
+   "via_motif": "飞天"
+  },
+  {
+   "style_id": "STYLE.east.164",
+   "style_cn": "敦煌壁画风格",
+   "subject_atom": "SUBJECT.figure.x55",
+   "subject_cn": "供养人",
+   "via_motif": "供养人"
+  },
+  {
+   "style_id": "STYLE.east.165",
+   "style_cn": "永乐宫壁画风格",
+   "subject_atom": "SUBJECT.myth.x75",
+   "subject_cn": "朝元",
+   "via_motif": "朝元"
+  },
+  {
+   "style_id": "STYLE.east.165",
+   "style_cn": "永乐宫壁画风格",
+   "subject_atom": "SUBJECT.myth.x76",
+   "subject_cn": "星君",
+   "via_motif": "星君"
+  },
+  {
+   "style_id": "STYLE.east.165",
+   "style_cn": "永乐宫壁画风格",
+   "subject_atom": "SUBJECT.history.x56",
+   "subject_cn": "帝后",
+   "via_motif": "帝后"
+  },
+  {
+   "style_id": "STYLE.east.165",
+   "style_cn": "永乐宫壁画风格",
+   "subject_atom": "SUBJECT.myth.x77",
+   "subject_cn": "仙官",
+   "via_motif": "仙官"
+  },
+  {
+   "style_id": "STYLE.east.166",
+   "style_cn": "唐卡风格",
+   "subject_atom": "SUBJECT.myth.x74",
+   "subject_cn": "佛",
+   "via_motif": "佛"
+  },
+  {
+   "style_id": "STYLE.east.166",
+   "style_cn": "唐卡风格",
+   "subject_atom": "SUBJECT.myth.02",
+   "subject_cn": "菩萨",
+   "via_motif": "菩萨"
+  },
+  {
+   "style_id": "STYLE.east.166",
+   "style_cn": "唐卡风格",
+   "subject_atom": "SUBJECT.myth.x82",
+   "subject_cn": "护法",
+   "via_motif": "护法"
+  },
+  {
+   "style_id": "STYLE.east.167",
+   "style_cn": "藏传绘画风格",
+   "subject_atom": "SUBJECT.myth.x81",
+   "subject_cn": "佛传",
+   "via_motif": "佛传"
+  },
+  {
+   "style_id": "STYLE.east.167",
+   "style_cn": "藏传绘画风格",
+   "subject_atom": "SUBJECT.myth.x82",
+   "subject_cn": "护法",
+   "via_motif": "护法"
+  },
+  {
+   "style_id": "STYLE.east.167",
+   "style_cn": "藏传绘画风格",
+   "subject_atom": "SUBJECT.myth.x79",
+   "subject_cn": "高僧",
+   "via_motif": "高僧"
+  },
+  {
+   "style_id": "STYLE.east.176",
+   "style_cn": "漆画风格",
+   "subject_atom": "SUBJECT.abstract.x67",
+   "subject_cn": "装饰",
+   "via_motif": "装饰纹样"
+  },
+  {
+   "style_id": "STYLE.east.176",
+   "style_cn": "漆画风格",
+   "subject_atom": "SUBJECT.still-life.x54",
+   "subject_cn": "人物",
+   "via_motif": "人物"
+  },
+  {
+   "style_id": "STYLE.east.176",
+   "style_cn": "漆画风格",
+   "subject_atom": "SUBJECT.landscape.x50",
+   "subject_cn": "风景",
+   "via_motif": "风景"
+  },
+  {
+   "style_id": "STYLE.east.176",
+   "style_cn": "漆画风格",
+   "subject_atom": "SUBJECT.bird-flower.x61",
+   "subject_cn": "花鸟",
+   "via_motif": "花鸟"
+  },
+  {
+   "style_id": "STYLE.east.179",
+   "style_cn": "西北岩彩风格",
+   "subject_atom": "SUBJECT.myth.x80",
+   "subject_cn": "敦煌",
+   "via_motif": "敦煌"
+  },
+  {
+   "style_id": "STYLE.east.179",
+   "style_cn": "西北岩彩风格",
+   "subject_atom": "SUBJECT.still-life.x54",
+   "subject_cn": "人物",
+   "via_motif": "人物"
+  },
+  {
+   "style_id": "STYLE.east.193",
+   "style_cn": "工笔人物风格",
+   "subject_atom": "SUBJECT.figure.24",
+   "subject_cn": "仕女",
+   "via_motif": "仕女"
+  },
+  {
+   "style_id": "STYLE.east.193",
+   "style_cn": "工笔人物风格",
+   "subject_atom": "SUBJECT.figure.x56",
+   "subject_cn": "高士",
+   "via_motif": "高士"
+  },
+  {
+   "style_id": "STYLE.east.193",
+   "style_cn": "工笔人物风格",
+   "subject_atom": "SUBJECT.figure.07",
+   "subject_cn": "历史人物",
+   "via_motif": "历史人物"
+  },
+  {
+   "style_id": "STYLE.east.193",
+   "style_cn": "工笔人物风格",
+   "subject_atom": "SUBJECT.figure.01",
+   "subject_cn": "肖像",
+   "via_motif": "肖像"
+  },
+  {
+   "style_id": "STYLE.east.195",
+   "style_cn": "工笔山水风格",
+   "subject_atom": "SUBJECT.landscape.x60",
+   "subject_cn": "青绿山川",
+   "via_motif": "青绿山川"
+  },
+  {
+   "style_id": "STYLE.east.195",
+   "style_cn": "工笔山水风格",
+   "subject_atom": "SUBJECT.landscape.x53",
+   "subject_cn": "楼阁",
+   "via_motif": "楼阁"
+  },
+  {
+   "style_id": "STYLE.east.195",
+   "style_cn": "工笔山水风格",
+   "subject_atom": "SUBJECT.landscape.31",
+   "subject_cn": "行旅",
+   "via_motif": "行旅"
+  },
+  {
+   "style_id": "STYLE.east.199",
+   "style_cn": "小写意风格",
+   "subject_atom": "SUBJECT.bird-flower.x60",
+   "subject_cn": "折枝",
+   "via_motif": "折枝花鸟"
+  },
+  {
+   "style_id": "STYLE.east.199",
+   "style_cn": "小写意风格",
+   "subject_atom": "SUBJECT.bird-flower.x58",
+   "subject_cn": "蔬果",
+   "via_motif": "蔬果"
+  },
+  {
+   "style_id": "STYLE.east.200",
+   "style_cn": "大写意风格",
+   "subject_atom": "SUBJECT.bird-flower.x56",
+   "subject_cn": "墨荷",
+   "via_motif": "墨荷"
+  },
+  {
+   "style_id": "STYLE.east.200",
+   "style_cn": "大写意风格",
+   "subject_atom": "SUBJECT.bird-flower.x57",
+   "subject_cn": "藤葡",
+   "via_motif": "藤葡"
+  },
+  {
+   "style_id": "STYLE.east.200",
+   "style_cn": "大写意风格",
+   "subject_atom": "SUBJECT.animal.x53",
+   "subject_cn": "八哥",
+   "via_motif": "八哥"
+  },
+  {
+   "style_id": "STYLE.east.201",
+   "style_cn": "白描风格",
+   "subject_atom": "SUBJECT.figure.x56",
+   "subject_cn": "高士",
+   "via_motif": "高士"
+  },
+  {
+   "style_id": "STYLE.east.201",
+   "style_cn": "白描风格",
+   "subject_atom": "SUBJECT.myth.03",
+   "subject_cn": "罗汉",
+   "via_motif": "罗汉"
+  },
+  {
+   "style_id": "STYLE.east.201",
+   "style_cn": "白描风格",
+   "subject_atom": "SUBJECT.abstract.x72",
+   "subject_cn": "白描稿",
+   "via_motif": "白描稿"
+  },
+  {
+   "style_id": "STYLE.east.202",
+   "style_cn": "重彩工笔风格",
+   "subject_atom": "SUBJECT.animal.x55",
+   "subject_cn": "珍禽",
+   "via_motif": "珍禽"
+  },
+  {
+   "style_id": "STYLE.east.202",
+   "style_cn": "重彩工笔风格",
+   "subject_atom": "SUBJECT.still-life.x54",
+   "subject_cn": "人物",
+   "via_motif": "人物"
+  },
+  {
+   "style_id": "STYLE.east.202",
+   "style_cn": "重彩工笔风格",
+   "subject_atom": "SUBJECT.abstract.x67",
+   "subject_cn": "装饰",
+   "via_motif": "装饰"
+  },
+  {
+   "style_id": "STYLE.east.202",
+   "style_cn": "重彩工笔风格",
+   "subject_atom": "SUBJECT.myth.x80",
+   "subject_cn": "敦煌",
+   "via_motif": "敦煌"
+  },
+  {
+   "style_id": "STYLE.east.203",
+   "style_cn": "青绿工笔风格",
+   "subject_atom": "SUBJECT.landscape.x60",
+   "subject_cn": "青绿山川",
+   "via_motif": "青绿山川"
+  },
+  {
+   "style_id": "STYLE.east.203",
+   "style_cn": "青绿工笔风格",
+   "subject_atom": "SUBJECT.landscape.x53",
+   "subject_cn": "楼阁",
+   "via_motif": "楼阁"
+  },
+  {
+   "style_id": "STYLE.east.203",
+   "style_cn": "青绿工笔风格",
+   "subject_atom": "SUBJECT.myth.x68",
+   "subject_cn": "仙境",
+   "via_motif": "仙境"
+  },
+  {
+   "style_id": "STYLE.east.204",
+   "style_cn": "淡彩工笔风格",
+   "subject_atom": "SUBJECT.bird-flower.x52",
+   "subject_cn": "花卉",
+   "via_motif": "折枝花卉"
+  },
+  {
+   "style_id": "STYLE.east.216",
+   "style_cn": "寫形風格",
+   "subject_atom": "SUBJECT.abstract.x68",
+   "subject_cn": "写生",
+   "via_motif": "写生"
+  },
+  {
+   "style_id": "STYLE.east.219",
+   "style_cn": "自然笔墨风格",
+   "subject_atom": "SUBJECT.abstract.x68",
+   "subject_cn": "写生",
+   "via_motif": "写生"
+  },
+  {
+   "style_id": "STYLE.east.220",
+   "style_cn": "文人笔墨风格",
+   "subject_atom": "SUBJECT.landscape.x58",
+   "subject_cn": "枯木竹石",
+   "via_motif": "枯木竹石"
+  },
+  {
+   "style_id": "STYLE.east.220",
+   "style_cn": "文人笔墨风格",
+   "subject_atom": "SUBJECT.abstract.x65",
+   "subject_cn": "笔墨",
+   "via_motif": "笔墨"
+  },
+  {
+   "style_id": "STYLE.east.231",
+   "style_cn": "综合材料绘画",
+   "subject_atom": "SUBJECT.abstract.x75",
+   "subject_cn": "材料",
+   "via_motif": "材料"
+  },
+  {
+   "style_id": "STYLE.east.231",
+   "style_cn": "综合材料绘画",
+   "subject_atom": "SUBJECT.abstract.x69",
+   "subject_cn": "肌理",
+   "via_motif": "肌理"
+  },
+  {
+   "style_id": "STYLE.east.231",
+   "style_cn": "综合材料绘画",
+   "subject_atom": "SUBJECT.abstract.x76",
+   "subject_cn": "拼贴",
+   "via_motif": "拼贴"
+  },
+  {
+   "style_id": "STYLE.east.233",
+   "style_cn": "装置与空间绘画",
+   "subject_atom": "SUBJECT.abstract.x57",
+   "subject_cn": "空间",
+   "via_motif": "空间"
+  },
+  {
+   "style_id": "STYLE.east.233",
+   "style_cn": "装置与空间绘画",
+   "subject_atom": "SUBJECT.abstract.x74",
+   "subject_cn": "装置",
+   "via_motif": "装置"
+  },
+  {
+   "style_id": "STYLE.east.236",
+   "style_cn": "观念绘画",
+   "subject_atom": "SUBJECT.abstract.x73",
+   "subject_cn": "文化批判",
+   "via_motif": "文化批判"
+  },
+  {
+   "style_id": "STYLE.east.238",
+   "style_cn": "新媒体绘画",
+   "subject_atom": "SUBJECT.abstract.x61",
+   "subject_cn": "屏幕",
+   "via_motif": "屏幕"
+  },
+  {
+   "style_id": "STYLE.east.238",
+   "style_cn": "新媒体绘画",
+   "subject_atom": "SUBJECT.figure.x57",
+   "subject_cn": "影像",
+   "via_motif": "影像"
+  },
+  {
+   "style_id": "STYLE.east.257",
+   "style_cn": "科技山水风格",
+   "subject_atom": "SUBJECT.landscape.x54",
+   "subject_cn": "山水",
+   "via_motif": "数字山水"
+  },
+  {
+   "style_id": "STYLE.east.260",
+   "style_cn": "虚空绘画风格",
+   "subject_atom": "SUBJECT.abstract.x66",
+   "subject_cn": "虚空",
+   "via_motif": "虚空"
+  },
+  {
+   "style_id": "STYLE.east.260",
+   "style_cn": "虚空绘画风格",
+   "subject_atom": "SUBJECT.abstract.13",
+   "subject_cn": "极简",
+   "via_motif": "极简"
+  },
+  {
+   "style_id": "STYLE.east.M180",
+   "style_cn": "少数民族绘画风格",
+   "subject_atom": "SUBJECT.history.46",
+   "subject_cn": "节庆",
+   "via_motif": "节庆"
+  },
+  {
+   "style_id": "STYLE.east.M181",
+   "style_cn": "地方民俗绘画风格",
+   "subject_atom": "SUBJECT.folk.x53",
+   "subject_cn": "农事",
+   "via_motif": "农事"
+  },
+  {
+   "style_id": "STYLE.east.M181",
+   "style_cn": "地方民俗绘画风格",
+   "subject_atom": "SUBJECT.folk.22",
+   "subject_cn": "集市",
+   "via_motif": "集市"
+  },
+  {
+   "style_id": "STYLE.east.M181",
+   "style_cn": "地方民俗绘画风格",
+   "subject_atom": "SUBJECT.history.46",
+   "subject_cn": "节庆",
+   "via_motif": "节庆"
+  },
+  {
+   "style_id": "STYLE.west.A01",
+   "style_cn": "矫饰主义",
+   "subject_atom": "SUBJECT.myth.x65",
+   "subject_cn": "宗教",
+   "via_motif": "宗教"
+  },
+  {
+   "style_id": "STYLE.west.A01",
+   "style_cn": "矫饰主义",
+   "subject_atom": "SUBJECT.myth.x64",
+   "subject_cn": "神话",
+   "via_motif": "神话"
+  },
+  {
+   "style_id": "STYLE.west.A01",
+   "style_cn": "矫饰主义",
+   "subject_atom": "SUBJECT.figure.01",
+   "subject_cn": "肖像",
+   "via_motif": "宫廷肖像"
+  },
+  {
+   "style_id": "STYLE.west.A02",
+   "style_cn": "国际哥特式",
+   "subject_atom": "SUBJECT.history.06",
+   "subject_cn": "宫廷",
+   "via_motif": "宫廷"
+  },
+  {
+   "style_id": "STYLE.west.A02",
+   "style_cn": "国际哥特式",
+   "subject_atom": "SUBJECT.myth.x65",
+   "subject_cn": "宗教",
+   "via_motif": "宗教"
+  },
+  {
+   "style_id": "STYLE.west.A03",
+   "style_cn": "拉斐尔前派",
+   "subject_atom": "SUBJECT.myth.x64",
+   "subject_cn": "神话",
+   "via_motif": "神话"
+  },
+  {
+   "style_id": "STYLE.west.A03",
+   "style_cn": "拉斐尔前派",
+   "subject_atom": "SUBJECT.figure.x53",
+   "subject_cn": "女性",
+   "via_motif": "女性"
+  },
+  {
+   "style_id": "STYLE.west.A03",
+   "style_cn": "拉斐尔前派",
+   "subject_atom": "SUBJECT.myth.x67",
+   "subject_cn": "殉道",
+   "via_motif": "殉道"
+  },
+  {
+   "style_id": "STYLE.west.A04",
+   "style_cn": "巴比松画派",
+   "subject_atom": "SUBJECT.landscape.x50",
+   "subject_cn": "风景",
+   "via_motif": "乡野风景"
+  },
+  {
+   "style_id": "STYLE.west.A04",
+   "style_cn": "巴比松画派",
+   "subject_atom": "SUBJECT.landscape.15",
+   "subject_cn": "森林",
+   "via_motif": "森林"
+  },
+  {
+   "style_id": "STYLE.west.A05",
+   "style_cn": "新即物主义",
+   "subject_atom": "SUBJECT.figure.01",
+   "subject_cn": "肖像",
+   "via_motif": "肖像"
+  },
+  {
+   "style_id": "STYLE.west.A05",
+   "style_cn": "新即物主义",
+   "subject_atom": "SUBJECT.history.01",
+   "subject_cn": "战争",
+   "via_motif": "战争创伤"
+  },
+  {
+   "style_id": "STYLE.west.A06",
+   "style_cn": "巴黎画派",
+   "subject_atom": "SUBJECT.figure.01",
+   "subject_cn": "肖像",
+   "via_motif": "肖像"
+  },
+  {
+   "style_id": "STYLE.west.A06",
+   "style_cn": "巴黎画派",
+   "subject_atom": "SUBJECT.myth.x69",
+   "subject_cn": "梦",
+   "via_motif": "梦"
+  },
+  {
+   "style_id": "STYLE.west.A06",
+   "style_cn": "巴黎画派",
+   "subject_atom": "SUBJECT.history.34",
+   "subject_cn": "流亡",
+   "via_motif": "流亡"
+  },
+  {
+   "style_id": "STYLE.west.A07",
+   "style_cn": "贫穷艺术",
+   "subject_atom": "SUBJECT.abstract.x75",
+   "subject_cn": "材料",
+   "via_motif": "材料"
+  },
+  {
+   "style_id": "STYLE.west.A08",
+   "style_cn": "大地艺术",
+   "subject_atom": "SUBJECT.landscape.16",
+   "subject_cn": "荒野",
+   "via_motif": "荒野"
+  },
+  {
+   "style_id": "STYLE.east.A09",
+   "style_cn": "没骨派",
+   "subject_atom": "SUBJECT.bird-flower.x52",
+   "subject_cn": "花卉",
+   "via_motif": "花卉"
+  },
+  {
+   "style_id": "STYLE.east.A10",
+   "style_cn": "界画",
+   "subject_atom": "SUBJECT.landscape.x53",
+   "subject_cn": "楼阁",
+   "via_motif": "楼阁"
+  },
+  {
+   "style_id": "STYLE.east.A11",
+   "style_cn": "金陵画派",
+   "subject_atom": "SUBJECT.landscape.x54",
+   "subject_cn": "山水",
+   "via_motif": "江南山水"
+  },
+  {
+   "style_id": "STYLE.east.A12",
+   "style_cn": "新安画派",
+   "subject_atom": "SUBJECT.landscape.x59",
+   "subject_cn": "黄山",
+   "via_motif": "黄山"
+  },
+  {
+   "style_id": "STYLE.east.A13",
+   "style_cn": "常州画派",
+   "subject_atom": "SUBJECT.bird-flower.x52",
+   "subject_cn": "花卉",
+   "via_motif": "花卉"
+  },
+  {
+   "style_id": "STYLE.east.A13",
+   "style_cn": "常州画派",
+   "subject_atom": "SUBJECT.abstract.x68",
+   "subject_cn": "写生",
+   "via_motif": "写生"
+  },
+  {
+   "style_id": "STYLE.east.A14",
+   "style_cn": "金石画派",
+   "subject_atom": "SUBJECT.bird-flower.x52",
+   "subject_cn": "花卉",
+   "via_motif": "花卉"
+  },
+  {
+   "style_id": "STYLE.east.A14",
+   "style_cn": "金石画派",
+   "subject_atom": "SUBJECT.bird-flower.x58",
+   "subject_cn": "蔬果",
+   "via_motif": "蔬果"
+  },
+  {
+   "style_id": "STYLE.east.A14",
+   "style_cn": "金石画派",
+   "subject_atom": "SUBJECT.abstract.x71",
+   "subject_cn": "吉祥",
+   "via_motif": "吉祥"
+  },
+  {
+   "style_id": "STYLE.east.A15",
+   "style_cn": "浮世绘",
+   "subject_atom": "SUBJECT.figure.25",
+   "subject_cn": "美人",
+   "via_motif": "美人"
+  },
+  {
+   "style_id": "STYLE.east.A15",
+   "style_cn": "浮世绘",
+   "subject_atom": "SUBJECT.landscape.x50",
+   "subject_cn": "风景",
+   "via_motif": "名所风景"
+  },
+  {
+   "style_id": "STYLE.east.A16",
+   "style_cn": "琳派",
+   "subject_atom": "SUBJECT.abstract.x77",
+   "subject_cn": "四季",
+   "via_motif": "四季"
+  },
+  {
+   "style_id": "STYLE.east.A17",
+   "style_cn": "狩野派",
+   "subject_atom": "SUBJECT.bird-flower.x61",
+   "subject_cn": "花鸟",
+   "via_motif": "花鸟"
+  },
+  {
+   "style_id": "STYLE.east.A17",
+   "style_cn": "狩野派",
+   "subject_atom": "SUBJECT.landscape.x54",
+   "subject_cn": "山水",
+   "via_motif": "山水"
+  },
+  {
+   "style_id": "STYLE.east.A17",
+   "style_cn": "狩野派",
+   "subject_atom": "SUBJECT.history.x54",
+   "subject_cn": "历史",
+   "via_motif": "历史"
+  },
+  {
+   "style_id": "STYLE.east.A18",
+   "style_cn": "大和绘",
+   "subject_atom": "SUBJECT.abstract.x77",
+   "subject_cn": "四季",
+   "via_motif": "四季"
+  },
+  {
+   "style_id": "STYLE.east.A18",
+   "style_cn": "大和绘",
+   "subject_atom": "SUBJECT.history.06",
+   "subject_cn": "宫廷",
+   "via_motif": "宫廷"
+  },
+  {
+   "style_id": "STYLE.east.A19",
+   "style_cn": "日本南画",
+   "subject_atom": "SUBJECT.landscape.x54",
+   "subject_cn": "山水",
+   "via_motif": "山水"
+  },
+  {
+   "style_id": "STYLE.east.A19",
+   "style_cn": "日本南画",
+   "subject_atom": "SUBJECT.bird-flower.x52",
+   "subject_cn": "花卉",
+   "via_motif": "花卉"
+  },
+  {
+   "style_id": "STYLE.east.A19",
+   "style_cn": "日本南画",
+   "subject_atom": "SUBJECT.abstract.x63",
+   "subject_cn": "隐逸",
+   "via_motif": "隐逸"
+  },
+  {
+   "style_id": "STYLE.east.A20",
+   "style_cn": "朝鲜民画",
+   "subject_atom": "SUBJECT.bird-flower.x61",
+   "subject_cn": "花鸟",
+   "via_motif": "花鸟"
+  },
+  {
+   "style_id": "STYLE.east.A20",
+   "style_cn": "朝鲜民画",
+   "subject_atom": "SUBJECT.abstract.x60",
+   "subject_cn": "文字",
+   "via_motif": "文字图"
+  },
+  {
+   "style": "STYLE.west.026",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.026",
+   "subject": "SUBJECT.figure.03",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.026",
+   "subject": "SUBJECT.history.11",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.026",
+   "subject": "SUBJECT.history.x55",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.029",
+   "subject": "SUBJECT.landscape.x51",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.029",
+   "subject": "SUBJECT.landscape.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.032",
+   "subject": "SUBJECT.bird-flower.17",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.032",
+   "subject": "SUBJECT.figure.02",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.032",
+   "subject": "SUBJECT.figure.09",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.032",
+   "subject": "SUBJECT.history.x55",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.032",
+   "subject": "SUBJECT.landscape.14",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.032",
+   "subject": "SUBJECT.landscape.21",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.032",
+   "subject": "SUBJECT.figure.17",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.032",
+   "subject": "SUBJECT.landscape.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.032",
+   "subject": "SUBJECT.landscape.x50",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.032",
+   "subject": "SUBJECT.still-life.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.016",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.016",
+   "subject": "SUBJECT.figure.14",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.016",
+   "subject": "SUBJECT.history.06",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.016",
+   "subject": "SUBJECT.myth.x64",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.016",
+   "subject": "SUBJECT.still-life.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.016",
+   "subject": "SUBJECT.urban.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.017",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.017",
+   "subject": "SUBJECT.figure.02",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.017",
+   "subject": "SUBJECT.figure.03",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.017",
+   "subject": "SUBJECT.myth.x65",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.013",
+   "subject": "SUBJECT.figure.02",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.013",
+   "subject": "SUBJECT.myth.x65",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.013",
+   "subject": "SUBJECT.still-life.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.026",
+   "subject": "SUBJECT.history.45",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.026",
+   "subject": "SUBJECT.landscape.x50",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.026",
+   "subject": "SUBJECT.still-life.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A04",
+   "subject": "SUBJECT.folk.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A04",
+   "subject": "SUBJECT.landscape.14",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.026",
+   "subject": "SUBJECT.folk.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.026",
+   "subject": "SUBJECT.landscape.14",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.029",
+   "subject": "SUBJECT.bird-flower.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.029",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.029",
+   "subject": "SUBJECT.figure.17",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.029",
+   "subject": "SUBJECT.landscape.14",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.029",
+   "subject": "SUBJECT.still-life.02",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.029",
+   "subject": "SUBJECT.urban.06",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.029",
+   "subject": "SUBJECT.animal.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.030",
+   "subject": "SUBJECT.landscape.04",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.030",
+   "subject": "SUBJECT.urban.x55",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.031",
+   "subject": "SUBJECT.landscape.04",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.031",
+   "subject": "SUBJECT.urban.x55",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.032",
+   "subject": "SUBJECT.myth.x64",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.032",
+   "subject": "SUBJECT.myth.x65",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.036",
+   "subject": "SUBJECT.abstract.x55",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.036",
+   "subject": "SUBJECT.figure.x51",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.036",
+   "subject": "SUBJECT.folk.19",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.040",
+   "subject": "SUBJECT.history.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.040",
+   "subject": "SUBJECT.myth.x64",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.040",
+   "subject": "SUBJECT.still-life.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.040",
+   "subject": "SUBJECT.still-life.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.047",
+   "subject": "SUBJECT.abstract.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.045",
+   "subject": "SUBJECT.abstract.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.058",
+   "subject": "SUBJECT.abstract.03",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.057",
+   "subject": "SUBJECT.abstract.03",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.009",
+   "subject": "SUBJECT.figure.32",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.009",
+   "subject": "SUBJECT.figure.x51",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.009",
+   "subject": "SUBJECT.myth.x65",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.011",
+   "subject": "SUBJECT.figure.32",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.011",
+   "subject": "SUBJECT.figure.x51",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.011",
+   "subject": "SUBJECT.myth.x65",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.010",
+   "subject": "SUBJECT.figure.32",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.010",
+   "subject": "SUBJECT.figure.x51",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.010",
+   "subject": "SUBJECT.myth.x65",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.024",
+   "subject": "SUBJECT.landscape.04",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.023",
+   "subject": "SUBJECT.landscape.04",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.005",
+   "subject": "SUBJECT.myth.x63",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.011",
+   "subject": "SUBJECT.myth.x63",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.008",
+   "subject": "SUBJECT.myth.33",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.008",
+   "subject": "SUBJECT.myth.x64",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.015",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.015",
+   "subject": "SUBJECT.history.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.015",
+   "subject": "SUBJECT.myth.x64",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.015",
+   "subject": "SUBJECT.myth.x65",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.016",
+   "subject": "SUBJECT.history.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.016",
+   "subject": "SUBJECT.myth.x65",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.018",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.018",
+   "subject": "SUBJECT.history.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.018",
+   "subject": "SUBJECT.myth.x64",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.018",
+   "subject": "SUBJECT.myth.x65",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.019",
+   "subject": "SUBJECT.folk.x51",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.019",
+   "subject": "SUBJECT.landscape.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.020",
+   "subject": "SUBJECT.folk.x51",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.020",
+   "subject": "SUBJECT.landscape.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.021",
+   "subject": "SUBJECT.folk.x51",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.021",
+   "subject": "SUBJECT.landscape.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.023",
+   "subject": "SUBJECT.history.02",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.023",
+   "subject": "SUBJECT.history.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.024",
+   "subject": "SUBJECT.history.02",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.024",
+   "subject": "SUBJECT.history.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.025",
+   "subject": "SUBJECT.history.02",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.025",
+   "subject": "SUBJECT.history.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A04",
+   "subject": "SUBJECT.abstract.x68",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A04",
+   "subject": "SUBJECT.landscape.x50",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A04",
+   "subject": "SUBJECT.still-life.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.029",
+   "subject": "SUBJECT.landscape.02",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.029",
+   "subject": "SUBJECT.landscape.08",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.029",
+   "subject": "SUBJECT.landscape.18",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.030",
+   "subject": "SUBJECT.landscape.02",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.030",
+   "subject": "SUBJECT.landscape.08",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.030",
+   "subject": "SUBJECT.landscape.18",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.050",
+   "subject": "SUBJECT.abstract.27",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.050",
+   "subject": "SUBJECT.animal.24",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.050",
+   "subject": "SUBJECT.figure.14",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.051",
+   "subject": "SUBJECT.abstract.27",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.051",
+   "subject": "SUBJECT.animal.24",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.051",
+   "subject": "SUBJECT.figure.14",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.051",
+   "subject": "SUBJECT.still-life.02",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.040",
+   "subject": "SUBJECT.abstract.x57",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.040",
+   "subject": "SUBJECT.abstract.x76",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.040",
+   "subject": "SUBJECT.still-life.06",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.041",
+   "subject": "SUBJECT.abstract.x57",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.041",
+   "subject": "SUBJECT.abstract.x76",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.041",
+   "subject": "SUBJECT.still-life.06",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.041",
+   "subject": "SUBJECT.still-life.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.042",
+   "subject": "SUBJECT.abstract.x57",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.042",
+   "subject": "SUBJECT.abstract.x76",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.042",
+   "subject": "SUBJECT.still-life.06",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.042",
+   "subject": "SUBJECT.still-life.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.019",
+   "subject": "SUBJECT.landscape.31",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.019",
+   "subject": "SUBJECT.landscape.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.019",
+   "subject": "SUBJECT.myth.x78",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.024",
+   "subject": "SUBJECT.landscape.31",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.024",
+   "subject": "SUBJECT.landscape.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.024",
+   "subject": "SUBJECT.myth.x78",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.025",
+   "subject": "SUBJECT.landscape.31",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.025",
+   "subject": "SUBJECT.landscape.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.025",
+   "subject": "SUBJECT.myth.x78",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.034",
+   "subject": "SUBJECT.landscape.31",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.034",
+   "subject": "SUBJECT.landscape.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.034",
+   "subject": "SUBJECT.myth.x78",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.026",
+   "subject": "SUBJECT.folk.25",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.026",
+   "subject": "SUBJECT.landscape.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.026",
+   "subject": "SUBJECT.landscape.31",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.026",
+   "subject": "SUBJECT.landscape.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.034",
+   "subject": "SUBJECT.folk.25",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.034",
+   "subject": "SUBJECT.landscape.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.195",
+   "subject": "SUBJECT.folk.25",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.195",
+   "subject": "SUBJECT.landscape.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.195",
+   "subject": "SUBJECT.landscape.31",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.195",
+   "subject": "SUBJECT.landscape.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.203",
+   "subject": "SUBJECT.folk.25",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.203",
+   "subject": "SUBJECT.landscape.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.203",
+   "subject": "SUBJECT.landscape.31",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.203",
+   "subject": "SUBJECT.landscape.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.081",
+   "subject": "SUBJECT.abstract.x68",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.081",
+   "subject": "SUBJECT.bird-flower.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.081",
+   "subject": "SUBJECT.bird-flower.x60",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.081",
+   "subject": "SUBJECT.still-life.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.199",
+   "subject": "SUBJECT.abstract.x68",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.199",
+   "subject": "SUBJECT.bird-flower.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.199",
+   "subject": "SUBJECT.bird-flower.x60",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.199",
+   "subject": "SUBJECT.still-life.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.204",
+   "subject": "SUBJECT.abstract.x68",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.204",
+   "subject": "SUBJECT.bird-flower.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.204",
+   "subject": "SUBJECT.bird-flower.x60",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.204",
+   "subject": "SUBJECT.still-life.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A09",
+   "subject": "SUBJECT.abstract.x68",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A09",
+   "subject": "SUBJECT.bird-flower.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A09",
+   "subject": "SUBJECT.bird-flower.x60",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A09",
+   "subject": "SUBJECT.still-life.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.079",
+   "subject": "SUBJECT.abstract.x68",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.079",
+   "subject": "SUBJECT.animal.x55",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.079",
+   "subject": "SUBJECT.bird-flower.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.202",
+   "subject": "SUBJECT.abstract.x68",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.202",
+   "subject": "SUBJECT.animal.x55",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.202",
+   "subject": "SUBJECT.bird-flower.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.216",
+   "subject": "SUBJECT.abstract.x68",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.216",
+   "subject": "SUBJECT.animal.x55",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.216",
+   "subject": "SUBJECT.bird-flower.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.025",
+   "subject": "SUBJECT.landscape.04",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.025",
+   "subject": "SUBJECT.still-life.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.023",
+   "subject": "SUBJECT.still-life.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.013",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.013",
+   "subject": "SUBJECT.figure.05",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.013",
+   "subject": "SUBJECT.history.06",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.026",
+   "subject": "SUBJECT.history.05",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.026",
+   "subject": "SUBJECT.urban.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.063",
+   "subject": "SUBJECT.history.05",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.063",
+   "subject": "SUBJECT.urban.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.030",
+   "subject": "SUBJECT.animal.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.030",
+   "subject": "SUBJECT.landscape.x50",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.031",
+   "subject": "SUBJECT.animal.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.031",
+   "subject": "SUBJECT.landscape.x50",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.037",
+   "subject": "SUBJECT.figure.02",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.037",
+   "subject": "SUBJECT.figure.17",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.037",
+   "subject": "SUBJECT.figure.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.037",
+   "subject": "SUBJECT.bird-flower.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.037",
+   "subject": "SUBJECT.myth.x65",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.039",
+   "subject": "SUBJECT.bird-flower.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.039",
+   "subject": "SUBJECT.myth.x65",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.036",
+   "subject": "SUBJECT.landscape.x50",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.036",
+   "subject": "SUBJECT.still-life.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.040",
+   "subject": "SUBJECT.urban.x55",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.026",
+   "subject": "SUBJECT.history.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.026",
+   "subject": "SUBJECT.myth.x65",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.019",
+   "subject": "SUBJECT.figure.17",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.019",
+   "subject": "SUBJECT.folk.26",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.019",
+   "subject": "SUBJECT.myth.x64",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.020",
+   "subject": "SUBJECT.figure.17",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.020",
+   "subject": "SUBJECT.folk.26",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.020",
+   "subject": "SUBJECT.myth.x64",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.021",
+   "subject": "SUBJECT.figure.17",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.021",
+   "subject": "SUBJECT.folk.26",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.021",
+   "subject": "SUBJECT.myth.x64",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.040",
+   "subject": "SUBJECT.abstract.25",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.041",
+   "subject": "SUBJECT.abstract.25",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.042",
+   "subject": "SUBJECT.abstract.25",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.028",
+   "subject": "SUBJECT.landscape.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.028",
+   "subject": "SUBJECT.landscape.x56",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.028",
+   "subject": "SUBJECT.landscape.x57",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.035",
+   "subject": "SUBJECT.landscape.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.035",
+   "subject": "SUBJECT.landscape.x56",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.035",
+   "subject": "SUBJECT.landscape.x57",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.195",
+   "subject": "SUBJECT.landscape.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.203",
+   "subject": "SUBJECT.landscape.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.079",
+   "subject": "SUBJECT.bird-flower.09",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.079",
+   "subject": "SUBJECT.bird-flower.x60",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.204",
+   "subject": "SUBJECT.animal.x55",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.204",
+   "subject": "SUBJECT.bird-flower.09",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.111",
+   "subject": "SUBJECT.figure.25",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.111",
+   "subject": "SUBJECT.figure.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.111",
+   "subject": "SUBJECT.still-life.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.111",
+   "subject": "SUBJECT.urban.x56",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.112",
+   "subject": "SUBJECT.figure.25",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.112",
+   "subject": "SUBJECT.figure.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.112",
+   "subject": "SUBJECT.still-life.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.112",
+   "subject": "SUBJECT.urban.x56",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.202",
+   "subject": "SUBJECT.figure.25",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.202",
+   "subject": "SUBJECT.figure.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.202",
+   "subject": "SUBJECT.still-life.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.202",
+   "subject": "SUBJECT.urban.x56",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.005",
+   "subject": "SUBJECT.history.06",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.005",
+   "subject": "SUBJECT.myth.32",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.005",
+   "subject": "SUBJECT.myth.33",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.014",
+   "subject": "SUBJECT.history.06",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.014",
+   "subject": "SUBJECT.myth.32",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.014",
+   "subject": "SUBJECT.myth.33",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.126",
+   "subject": "SUBJECT.figure.x56",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.201",
+   "subject": "SUBJECT.figure.x56",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.047",
+   "subject": "SUBJECT.abstract.03",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.047",
+   "subject": "SUBJECT.abstract.x58",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.047",
+   "subject": "SUBJECT.landscape.02",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.053",
+   "subject": "SUBJECT.abstract.03",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.053",
+   "subject": "SUBJECT.abstract.x58",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.053",
+   "subject": "SUBJECT.landscape.02",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.059",
+   "subject": "SUBJECT.figure.24",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.059",
+   "subject": "SUBJECT.figure.x56",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.059",
+   "subject": "SUBJECT.landscape.07",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.059",
+   "subject": "SUBJECT.landscape.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.088",
+   "subject": "SUBJECT.figure.24",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.088",
+   "subject": "SUBJECT.figure.x56",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.088",
+   "subject": "SUBJECT.landscape.07",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.088",
+   "subject": "SUBJECT.landscape.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A12",
+   "subject": "SUBJECT.bird-flower.05",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A12",
+   "subject": "SUBJECT.landscape.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A12",
+   "subject": "SUBJECT.landscape.x59",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.059",
+   "subject": "SUBJECT.abstract.x58",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.061",
+   "subject": "SUBJECT.abstract.x58",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.064",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.064",
+   "subject": "SUBJECT.figure.02",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.065",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.065",
+   "subject": "SUBJECT.figure.02",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.092",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.116",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.130",
+   "subject": "SUBJECT.figure.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.143",
+   "subject": "SUBJECT.figure.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.108",
+   "subject": "SUBJECT.bird-flower.05",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.108",
+   "subject": "SUBJECT.bird-flower.06",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.120",
+   "subject": "SUBJECT.bird-flower.05",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.120",
+   "subject": "SUBJECT.bird-flower.06",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.111",
+   "subject": "SUBJECT.bird-flower.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.112",
+   "subject": "SUBJECT.bird-flower.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.081",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.081",
+   "subject": "SUBJECT.history.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.081",
+   "subject": "SUBJECT.myth.x65",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.084",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.084",
+   "subject": "SUBJECT.history.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.084",
+   "subject": "SUBJECT.myth.x65",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.054",
+   "subject": "SUBJECT.abstract.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.054",
+   "subject": "SUBJECT.abstract.03",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A06",
+   "subject": "SUBJECT.abstract.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A06",
+   "subject": "SUBJECT.abstract.03",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.054",
+   "subject": "SUBJECT.still-life.04",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A06",
+   "subject": "SUBJECT.still-life.04",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.164",
+   "subject": "SUBJECT.figure.x55",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.164",
+   "subject": "SUBJECT.myth.x70",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.164",
+   "subject": "SUBJECT.myth.x72",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.017",
+   "subject": "SUBJECT.abstract.x55",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.017",
+   "subject": "SUBJECT.still-life.06",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.022",
+   "subject": "SUBJECT.animal.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.022",
+   "subject": "SUBJECT.figure.32",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.022",
+   "subject": "SUBJECT.history.02",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.022",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.013",
+   "subject": "SUBJECT.abstract.x77",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.013",
+   "subject": "SUBJECT.folk.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.035",
+   "subject": "SUBJECT.abstract.x77",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.035",
+   "subject": "SUBJECT.landscape.04",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.001",
+   "subject": "SUBJECT.figure.32",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.001",
+   "subject": "SUBJECT.figure.x51",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.001",
+   "subject": "SUBJECT.myth.x62",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.011",
+   "subject": "SUBJECT.abstract.x57",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.011",
+   "subject": "SUBJECT.figure.03",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.011",
+   "subject": "SUBJECT.still-life.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.012",
+   "subject": "SUBJECT.folk.26",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.012",
+   "subject": "SUBJECT.landscape.x50",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.012",
+   "subject": "SUBJECT.still-life.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.012",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.012",
+   "subject": "SUBJECT.myth.x64",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.012",
+   "subject": "SUBJECT.myth.x65",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.014",
+   "subject": "SUBJECT.myth.34",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.014",
+   "subject": "SUBJECT.myth.40",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.014",
+   "subject": "SUBJECT.myth.x65",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.017",
+   "subject": "SUBJECT.figure.23",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.017",
+   "subject": "SUBJECT.landscape.06",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.017",
+   "subject": "SUBJECT.landscape.15",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.017",
+   "subject": "SUBJECT.landscape.18",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.017",
+   "subject": "SUBJECT.landscape.x50",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.027",
+   "subject": "SUBJECT.folk.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.027",
+   "subject": "SUBJECT.landscape.x50",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.027",
+   "subject": "SUBJECT.history.x55",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.028",
+   "subject": "SUBJECT.landscape.14",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.028",
+   "subject": "SUBJECT.landscape.x50",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.028",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.028",
+   "subject": "SUBJECT.figure.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.028",
+   "subject": "SUBJECT.history.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.028",
+   "subject": "SUBJECT.myth.x64",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.033",
+   "subject": "SUBJECT.abstract.x55",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.033",
+   "subject": "SUBJECT.figure.17",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.033",
+   "subject": "SUBJECT.landscape.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.033",
+   "subject": "SUBJECT.still-life.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.033",
+   "subject": "SUBJECT.abstract.x67",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.033",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.033",
+   "subject": "SUBJECT.figure.42",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.033",
+   "subject": "SUBJECT.myth.x65",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.034",
+   "subject": "SUBJECT.myth.x63",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.034",
+   "subject": "SUBJECT.myth.x64",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.034",
+   "subject": "SUBJECT.bird-flower.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.034",
+   "subject": "SUBJECT.myth.x65",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.034",
+   "subject": "SUBJECT.folk.26",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.035",
+   "subject": "SUBJECT.abstract.x67",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.035",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.035",
+   "subject": "SUBJECT.figure.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.034",
+   "subject": "SUBJECT.abstract.x67",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.034",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.034",
+   "subject": "SUBJECT.figure.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.036",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.037",
+   "subject": "SUBJECT.landscape.x50",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.037",
+   "subject": "SUBJECT.still-life.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.037",
+   "subject": "SUBJECT.urban.x56",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.039",
+   "subject": "SUBJECT.figure.17",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.039",
+   "subject": "SUBJECT.landscape.x50",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.039",
+   "subject": "SUBJECT.still-life.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.039",
+   "subject": "SUBJECT.urban.x56",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.038",
+   "subject": "SUBJECT.landscape.x50",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.038",
+   "subject": "SUBJECT.abstract.x55",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.038",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.037",
+   "subject": "SUBJECT.abstract.x55",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.037",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.043",
+   "subject": "SUBJECT.urban.x56",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.043",
+   "subject": "SUBJECT.abstract.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.043",
+   "subject": "SUBJECT.figure.18",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.044",
+   "subject": "SUBJECT.figure.x51",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.046",
+   "subject": "SUBJECT.abstract.x75",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.046",
+   "subject": "SUBJECT.abstract.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.046",
+   "subject": "SUBJECT.landscape.04",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.046",
+   "subject": "SUBJECT.abstract.x57",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.048",
+   "subject": "SUBJECT.abstract.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.049",
+   "subject": "SUBJECT.history.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.049",
+   "subject": "SUBJECT.still-life.36",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.049",
+   "subject": "SUBJECT.figure.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.050",
+   "subject": "SUBJECT.myth.x64",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.050",
+   "subject": "SUBJECT.still-life.04",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.051",
+   "subject": "SUBJECT.myth.x64",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.051",
+   "subject": "SUBJECT.still-life.04",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.050",
+   "subject": "SUBJECT.abstract.x57",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.051",
+   "subject": "SUBJECT.abstract.x57",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.051",
+   "subject": "SUBJECT.abstract.x76",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.051",
+   "subject": "SUBJECT.landscape.15",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.054",
+   "subject": "SUBJECT.landscape.x50",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.054",
+   "subject": "SUBJECT.still-life.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.054",
+   "subject": "SUBJECT.abstract.02",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.054",
+   "subject": "SUBJECT.history.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.055",
+   "subject": "SUBJECT.abstract.x69",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.055",
+   "subject": "SUBJECT.urban.06",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.055",
+   "subject": "SUBJECT.abstract.27",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.057",
+   "subject": "SUBJECT.figure.14",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.057",
+   "subject": "SUBJECT.figure.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.057",
+   "subject": "SUBJECT.landscape.x50",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.058",
+   "subject": "SUBJECT.abstract.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.058",
+   "subject": "SUBJECT.landscape.x50",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.059",
+   "subject": "SUBJECT.abstract.03",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.059",
+   "subject": "SUBJECT.abstract.x57",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.060",
+   "subject": "SUBJECT.abstract.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.060",
+   "subject": "SUBJECT.abstract.03",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.061",
+   "subject": "SUBJECT.abstract.x57",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.061",
+   "subject": "SUBJECT.abstract.03",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.064",
+   "subject": "SUBJECT.abstract.x59",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.064",
+   "subject": "SUBJECT.urban.06",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.064",
+   "subject": "SUBJECT.urban.x56",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.065",
+   "subject": "SUBJECT.figure.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.066",
+   "subject": "SUBJECT.abstract.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.069",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.069",
+   "subject": "SUBJECT.folk.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.069",
+   "subject": "SUBJECT.landscape.x50",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.070",
+   "subject": "SUBJECT.myth.x64",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.077",
+   "subject": "SUBJECT.abstract.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.078",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.078",
+   "subject": "SUBJECT.history.33",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.081",
+   "subject": "SUBJECT.landscape.14",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.081",
+   "subject": "SUBJECT.myth.x64",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.081",
+   "subject": "SUBJECT.still-life.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.084",
+   "subject": "SUBJECT.abstract.x76",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.084",
+   "subject": "SUBJECT.figure.x51",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.090",
+   "subject": "SUBJECT.abstract.27",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.090",
+   "subject": "SUBJECT.history.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.090",
+   "subject": "SUBJECT.urban.06",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.090",
+   "subject": "SUBJECT.history.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.098",
+   "subject": "SUBJECT.abstract.26",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.098",
+   "subject": "SUBJECT.abstract.28",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.098",
+   "subject": "SUBJECT.abstract.x57",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.099",
+   "subject": "SUBJECT.abstract.28",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.116",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.116",
+   "subject": "SUBJECT.figure.17",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.116",
+   "subject": "SUBJECT.still-life.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.116",
+   "subject": "SUBJECT.history.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.116",
+   "subject": "SUBJECT.history.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.116",
+   "subject": "SUBJECT.landscape.x50",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.116",
+   "subject": "SUBJECT.still-life.36",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.023",
+   "subject": "SUBJECT.figure.05",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.023",
+   "subject": "SUBJECT.myth.x65",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.023",
+   "subject": "SUBJECT.still-life.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.028",
+   "subject": "SUBJECT.landscape.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.030",
+   "subject": "SUBJECT.landscape.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.030",
+   "subject": "SUBJECT.landscape.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.031",
+   "subject": "SUBJECT.landscape.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.031",
+   "subject": "SUBJECT.still-life.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.031",
+   "subject": "SUBJECT.landscape.02",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.031",
+   "subject": "SUBJECT.landscape.03",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.031",
+   "subject": "SUBJECT.landscape.x57",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.035",
+   "subject": "SUBJECT.landscape.08",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.035",
+   "subject": "SUBJECT.landscape.27",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.035",
+   "subject": "SUBJECT.landscape.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.055",
+   "subject": "SUBJECT.bird-flower.x58",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.055",
+   "subject": "SUBJECT.figure.05",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.055",
+   "subject": "SUBJECT.myth.06",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.056",
+   "subject": "SUBJECT.bird-flower.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.057",
+   "subject": "SUBJECT.bird-flower.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.058",
+   "subject": "SUBJECT.landscape.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.058",
+   "subject": "SUBJECT.still-life.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.060",
+   "subject": "SUBJECT.bird-flower.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.060",
+   "subject": "SUBJECT.landscape.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.060",
+   "subject": "SUBJECT.landscape.x55",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.081",
+   "subject": "SUBJECT.bird-flower.x61",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.082",
+   "subject": "SUBJECT.figure.24",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.082",
+   "subject": "SUBJECT.still-life.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.083",
+   "subject": "SUBJECT.still-life.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.083",
+   "subject": "SUBJECT.urban.x55",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.094",
+   "subject": "SUBJECT.figure.24",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.094",
+   "subject": "SUBJECT.landscape.x50",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.094",
+   "subject": "SUBJECT.still-life.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.094",
+   "subject": "SUBJECT.still-life.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.109",
+   "subject": "SUBJECT.bird-flower.x61",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.109",
+   "subject": "SUBJECT.landscape.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.109",
+   "subject": "SUBJECT.still-life.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.115",
+   "subject": "SUBJECT.landscape.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.116",
+   "subject": "SUBJECT.still-life.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.116",
+   "subject": "SUBJECT.folk.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.121",
+   "subject": "SUBJECT.abstract.x68",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.121",
+   "subject": "SUBJECT.landscape.x50",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.121",
+   "subject": "SUBJECT.landscape.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.125",
+   "subject": "SUBJECT.bird-flower.x61",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.125",
+   "subject": "SUBJECT.landscape.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.130",
+   "subject": "SUBJECT.abstract.x60",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.130",
+   "subject": "SUBJECT.landscape.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.139",
+   "subject": "SUBJECT.abstract.02",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.139",
+   "subject": "SUBJECT.still-life.04",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A01",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A01",
+   "subject": "SUBJECT.myth.x65",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A02",
+   "subject": "SUBJECT.figure.08",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A02",
+   "subject": "SUBJECT.myth.x65",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A02",
+   "subject": "SUBJECT.figure.05",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A03",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A03",
+   "subject": "SUBJECT.figure.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A03",
+   "subject": "SUBJECT.landscape.07",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A03",
+   "subject": "SUBJECT.abstract.x68",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A03",
+   "subject": "SUBJECT.myth.x65",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A04",
+   "subject": "SUBJECT.abstract.03",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A04",
+   "subject": "SUBJECT.landscape.15",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A05",
+   "subject": "SUBJECT.history.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A05",
+   "subject": "SUBJECT.urban.x56",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A06",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A06",
+   "subject": "SUBJECT.figure.17",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A06",
+   "subject": "SUBJECT.still-life.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A06",
+   "subject": "SUBJECT.folk.x51",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A06",
+   "subject": "SUBJECT.myth.x63",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A06",
+   "subject": "SUBJECT.landscape.x50",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A06",
+   "subject": "SUBJECT.still-life.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A07",
+   "subject": "SUBJECT.abstract.x57",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A07",
+   "subject": "SUBJECT.abstract.x74",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A07",
+   "subject": "SUBJECT.abstract.x75",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A07",
+   "subject": "SUBJECT.history.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A08",
+   "subject": "SUBJECT.landscape.14",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.west.A08",
+   "subject": "SUBJECT.abstract.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A10",
+   "subject": "SUBJECT.landscape.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A11",
+   "subject": "SUBJECT.landscape.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A11",
+   "subject": "SUBJECT.landscape.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A11",
+   "subject": "SUBJECT.bird-flower.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A11",
+   "subject": "SUBJECT.still-life.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A12",
+   "subject": "SUBJECT.landscape.x58",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A14",
+   "subject": "SUBJECT.bird-flower.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A14",
+   "subject": "SUBJECT.bird-flower.x58",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A15",
+   "subject": "SUBJECT.bird-flower.x61",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A15",
+   "subject": "SUBJECT.landscape.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A15",
+   "subject": "SUBJECT.landscape.x50",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A15",
+   "subject": "SUBJECT.landscape.08",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A15",
+   "subject": "SUBJECT.figure.25",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A15",
+   "subject": "SUBJECT.figure.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A16",
+   "subject": "SUBJECT.abstract.x67",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A16",
+   "subject": "SUBJECT.bird-flower.x52",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A16",
+   "subject": "SUBJECT.myth.x62",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A17",
+   "subject": "SUBJECT.bird-flower.05",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A17",
+   "subject": "SUBJECT.bird-flower.x61",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A17",
+   "subject": "SUBJECT.landscape.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A19",
+   "subject": "SUBJECT.landscape.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A19",
+   "subject": "SUBJECT.still-life.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.216",
+   "subject": "SUBJECT.bird-flower.x60",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.216",
+   "subject": "SUBJECT.bird-flower.x61",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.216",
+   "subject": "SUBJECT.landscape.x53",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.216",
+   "subject": "SUBJECT.still-life.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A18",
+   "subject": "SUBJECT.abstract.x77",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A18",
+   "subject": "SUBJECT.history.06",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.A20",
+   "subject": "SUBJECT.abstract.x60",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.113",
+   "subject": "SUBJECT.figure.01",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.113",
+   "subject": "SUBJECT.figure.x51",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.113",
+   "subject": "SUBJECT.history.x54",
+   "src": "artist_routed"
+  },
+  {
+   "style": "STYLE.east.113",
+   "subject": "SUBJECT.myth.x64",
+   "src": "artist_routed"
+  }
+ ]
+}

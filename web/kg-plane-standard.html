@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 世界观平面 · 逻辑图标准(对照基准)</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding:30px 18px 80px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(21px,4.2vw,30px);font-weight:700;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.75;max-width:700px;margin:8px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .sec{margin-top:30px}
+  .sec-h{font-family:var(--serif);font-size:18px;font-weight:600;border-bottom:2px solid var(--accent);padding-bottom:7px;margin-bottom:6px}
+  .sec-d{font-size:13px;color:var(--ink-mute);margin:8px 0 12px;line-height:1.7}.sec-d b{color:var(--ink-soft)}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}
+  .axtab,.bctab{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:6px;background:#fff;border-radius:10px;overflow:hidden}
+  .axtab th,.axtab td,.bctab th,.bctab td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left}
+  .axtab th,.bctab th{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);background:var(--paper-2)}
+  .regs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px}@media(max-width:600px){.regs{grid-template-columns:1fr 1fr}}
+  .rg{background:#fff;border:1px solid var(--line);border-radius:11px;padding:11px 13px;border-top:3px solid var(--c)}
+  .rg .rn{font-family:var(--serif);font-size:15px;font-weight:600}
+  .rg .rm{font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-top:5px;line-height:1.6}
+  .rg .sw{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:-1px;margin-right:5px}
+  ul.rules{margin:6px 0 0 2px;list-style:none}ul.rules li{font-size:13px;color:var(--ink-soft);line-height:1.8;padding-left:18px;position:relative}
+  ul.rules li:before{content:'▸';position:absolute;left:0;color:var(--accent)}
+  .auditrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+  .ac{flex:1;min-width:120px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px;text-align:center}
+  .ac .big{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--green)}.ac .lb{font-size:11px;color:var(--ink-mute);margin-top:4px}
+  .conform{font-size:12.5px;color:var(--ink-soft);background:#fff;border:1px solid var(--line);border-left:4px solid var(--green);border-radius:10px;padding:11px 14px;line-height:1.75;margin-top:10px}.conform a{color:var(--accent);text-decoration:none}
+  .back{display:block;text-align:center;margin-top:36px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 逻辑图标准</div>
+  <h1>世界观平面 · 对照基准</h1>
+  <p class="lead">所有把风格/艺术家落到二维平面的图,<b>必须遵此标准</b>:同坐标系、同配色、同区质心、同数据源。母版是 <a href="kg-worldview-map.html" style="color:var(--accent)">世界观地图</a>;下面是把它固化成的<b>验收基准</b>(机器可读:<code style="font-family:var(--mono);font-size:11px">data/kg_plane_standard.json</code>)。</p>
+  <div class="breadcrumb"><a href="home.html">🏠 首页</a> › <a href="kg-v2.html">🧭 艺术图谱</a> › <a href="kg-v2.html#g-root">根·世界观</a> › <b style="color:var(--ink-soft)">逻辑图标准</b></div>
+
+  <div class="sec"><div class="sec-h">① 基准平面(母版)</div>
+    <div class="sec-d">横轴 = 再现→表现,纵轴 = 结构→感知(<b>绘制时向上为感知</b>)。淡点=全 202 风格按区着色,虚线块=各区凸包。这张就是"对照标准图"。</div>
+    <div class="card"><div id="plane"></div></div>
+  </div>
+
+  <div class="sec"><div class="sec-h">② 坐标系</div>
+    <table class="axtab" id="axtab"></table>
+  </div>
+
+  <div class="sec"><div class="sec-h">③ 六区 · 配色与质心(canonical)</div>
+    <div class="regs" id="regs"></div>
+  </div>
+
+  <div class="sec"><div class="sec-h">④ 渲染规矩</div>
+    <ul class="rules" id="rules"></ul>
+  </div>
+
+  <div class="sec"><div class="sec-h">⑤ 数据核验</div>
+    <div class="auditrow" id="audit"></div>
+    <div class="sec-d" style="margin-top:10px">边界近平局(到自区/邻区距离差 ≤0.03,艺术史两可,保留 k-means 归属):</div>
+    <table class="bctab" id="bctab"></table>
+  </div>
+
+  <div class="sec"><div class="sec-h">⑥ 遵此标准的图</div>
+    <div class="conform">母版 <a href="kg-worldview-map.html">世界观地图</a> · <a href="kg-worldview.html">世界观层②</a> · <a href="kg-style-detail.html?id=STYLE.west.029">风格详情·源流图谱</a> · <a href="kg-style-compare.html">风格对比</a> —— 经核对<b>轴向、配色、坐标、数据源完全统一</b>。新增任何平面图都应读取本标准。</div>
+  </div>
+
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+function hull(P){if(P.length<3)return P.slice();P=P.slice().sort((a,b)=>a[0]-b[0]||a[1]-b[1]);
+  const cr=(o,a,b)=>(a[0]-o[0])*(b[1]-o[1])-(a[1]-o[1])*(b[0]-o[0]);
+  const lo=[];for(const q of P){while(lo.length>=2&&cr(lo[lo.length-2],lo[lo.length-1],q)<=0)lo.pop();lo.push(q);}
+  const u=[];for(let i=P.length-1;i>=0;i--){const q=P[i];while(u.length>=2&&cr(u[u.length-2],u[u.length-1],q)<=0)u.pop();u.push(q);}
+  lo.pop();u.pop();return lo.concat(u);}
+Promise.all([
+  fetch('data/kg_plane_standard.json').then(r=>r.json()),
+  fetch('data/kg_style.json').then(r=>r.json()).catch(()=>({nodes:[]}))
+]).then(([STD,sty])=>{
+  const COL={}; STD.regions.forEach(r=>COL[r.id]=r.color);
+  // ① plane
+  const nodes=sty.nodes||[],W=620,H=380,p=42,sx=v=>p+v*(W-2*p),sy=v=>H-p-v*(H-2*p);
+  let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block">`;
+  s+=`<rect x="${sx(0)}" y="${sy(1)}" width="${sx(1)-sx(0)}" height="${sy(0)-sy(1)}" fill="#fcfaf5" stroke="#e8e0d0"/>`;
+  [.25,.5,.75].forEach(t=>{s+=`<line x1="${sx(t)}" y1="${sy(0)}" x2="${sx(t)}" y2="${sy(1)}" stroke="#efe9dc"/><line x1="${sx(0)}" y1="${sy(t)}" x2="${sx(1)}" y2="${sy(t)}" stroke="#efe9dc"/>`;});
+  ['WV1','WV2','WV3','WV4','WV5','WV6'].forEach(wv=>{
+    const ps=nodes.filter(n=>n.wv===wv&&n.coord&&n.coord.rep_exp!=null).map(n=>[sx(n.coord.rep_exp),sy(n.coord.struct_perc)]);
+    if(ps.length<3)return;const c=[ps.reduce((a,q)=>a+q[0],0)/ps.length,ps.reduce((a,q)=>a+q[1],0)/ps.length],col=COL[wv];
+    const hl=hull(ps).map(pt=>{const dx=pt[0]-c[0],dy=pt[1]-c[1],d=Math.hypot(dx,dy)||1;return[pt[0]+dx/d*12,pt[1]+dy/d*12];});
+    s+=`<polygon points="${hl.map(pt=>pt.join(',')).join(' ')}" fill="${col}" fill-opacity="0.06" stroke="${col}" stroke-opacity="0.4" stroke-dasharray="6 5" stroke-width="1.3"/>`;
+    const ty=Math.min(...hl.map(pt=>pt[1]));
+    s+=`<text x="${c[0]}" y="${ty-5}" text-anchor="middle" font-family="Noto Serif SC" font-size="12" font-weight="600" fill="${col}" paint-order="stroke" stroke="#fcfaf5" stroke-width="3">${wv} ${WVN[wv]}</text>`;
+  });
+  nodes.forEach(n=>{if(n.coord&&n.coord.rep_exp!=null)s+=`<circle cx="${sx(n.coord.rep_exp)}" cy="${sy(n.coord.struct_perc)}" r="3" fill="${COL[n.wv]||'#999'}" fill-opacity="0.5"/>`;});
+  s+=`<text x="8" y="${sy(.5)+4}" font-family="Noto Serif SC" font-size="12" fill="#857d6f">再现</text><text x="${W-8}" y="${sy(.5)+4}" text-anchor="end" font-family="Noto Serif SC" font-size="12" fill="#857d6f">表现</text>`;
+  s+=`<text x="${sx(.5)}" y="${sy(1)-10}" text-anchor="middle" font-family="Noto Serif SC" font-size="12" fill="#857d6f">感知</text><text x="${sx(.5)}" y="${sy(0)+22}" text-anchor="middle" font-family="Noto Serif SC" font-size="12" fill="#857d6f">结构</text>`;
+  document.getElementById('plane').innerHTML=s+'</svg>';
+  // ② axes
+  const ax=STD.axes;
+  document.getElementById('axtab').innerHTML=`<tr><th>轴</th><th>字段</th><th>低 ← → 高</th><th>范围</th></tr>`+
+    `<tr><td>X(横)</td><td><code>${ax.x.field}</code></td><td>${ax.x.left} ← → ${ax.x.right}</td><td>${ax.x.range.join(' – ')}</td></tr>`+
+    `<tr><td>Y(纵)</td><td><code>${ax.y.field}</code></td><td>${ax.y.bottom}(下) ← → ${ax.y.top}(上)</td><td>${ax.y.range.join(' – ')}</td></tr>`+
+    `<tr><td colspan="4" style="color:var(--ink-mute);font-size:11px">数据源:<code>${STD.meta.data_source}</code></td></tr>`;
+  // ③ regions
+  document.getElementById('regs').innerHTML=STD.regions.map(r=>`<div class="rg" style="--c:${r.color}"><div class="rn"><span class="sw" style="background:${r.color}"></span>${r.id} ${r.name}</div><div class="rm">色 ${r.color}<br>质心 (${r.centroid[0]}, ${r.centroid[1]})<br>风格数 ${r.n}</div></div>`).join('');
+  // ④ rules
+  document.getElementById('rules').innerHTML=(STD.render_rules||[]).map(x=>`<li>${x}</li>`).join('');
+  // ⑤ audit + border
+  const a=STD.audit;
+  document.getElementById('audit').innerHTML=
+    `<div class="ac"><div class="big">${a.total}</div><div class="lb">风格总数</div></div>`+
+    `<div class="ac"><div class="big">${a.clean_in_region}</div><div class="lb">干净落在自己区</div></div>`+
+    `<div class="ac"><div class="big" style="color:var(--accent)">${a.border_ties}</div><div class="lb">边界近平局</div></div>`+
+    `<div class="ac"><div class="big">${a.missing_coord}/${a.out_of_range}</div><div class="lb">缺坐标 / 越界</div></div>`;
+  document.getElementById('bctab').innerHTML=`<tr><th>风格</th><th>标注区</th><th>最近区</th><th>坐标</th></tr>`+
+    (STD.border_cases||[]).map(b=>`<tr><td>${b.cn}</td><td>${b.assigned} ${WVN[b.assigned]}</td><td>${b.nearest} ${WVN[b.nearest]}</td><td>(${b.coord[0]}, ${b.coord[1]})</td></tr>`).join('');
+}).catch(e=>{document.getElementById('plane').innerHTML='<div style="color:#a89f8f;padding:20px">需服务器加载:'+e+'</div>';});
+</script>
+</body></html>

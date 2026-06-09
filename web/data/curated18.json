@@ -1,0 +1,380 @@
+[
+  {
+    "slug": "paris-rainy",
+    "title": "Paris Street; Rainy Day",
+    "artist": "Gustave Caillebotte",
+    "date": "1877",
+    "year": 1877,
+    "medium": "Oil on canvas",
+    "origin": "Paris",
+    "image": "https://www.artic.edu/iiif/2/f8fd76e9-c396-5678-36ed-6a348c904d27/full/1200,/0/default.jpg",
+    "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAACYtLiQwNDs9Pjw/QEFFSUVJTlFGRlhPT11iYmdgZ2xjaGpra2xqcWlvdmtzeHp6dH5+e4GDfXh+hJKLhZWTi4aMlZKVk5OWk5eXkpSanJ6emqSglbOrn6Glpq+spbe0q8G7sMTAtMjFuQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhQA7oIwpNFBrLpVNhJBoZiaNwMEA8GARhEHhQNpGFABAEADs=",
+    "alt": "Life-size painting of an urban scene in Paris. A man in a top hat holding an umbrella and a woman in a long fashionable dark dress walk arm in arm toward the viewer as other city dwellers with umbrellas walk in various directions across cobblestone roads and sidewalks.",
+    "themes": [
+      "都市",
+      "现代生活",
+      "雨",
+      "疏离",
+      "光影"
+    ],
+    "oneLiner": "雨中的巴黎,人人共撑一伞却彼此不看——这是现代都市孤独的第一张肖像。",
+    "look": "看那个被画框切掉一半的男人:卡耶博特用'随手一拍'的构图,让你也成了街上匆匆的一员。"
+  },
+  {
+    "slug": "grande-jatte",
+    "title": "A Sunday on La Grande Jatte — 1884",
+    "artist": "Georges Seurat",
+    "date": "1884–86, border added 1888–89",
+    "year": 1884,
+    "medium": "Oil on canvas",
+    "origin": "France",
+    "image": "https://www.artic.edu/iiif/2/2d484387-2509-5e8e-2c43-22f9981972eb/full/1200,/0/default.jpg",
+    "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAE1WUFVTU1NWUFZYVllbVlpaW1tcWF1cXVxiWl1jWl9mX2NmVWVnXF9eZlxdaGZkYmpmZWRtYGZuY2htZGpsanBsZXVwZXB5Znp+ZXJwaYSAaYiBaYqIbIeAdI2DcYqFcI+FcoiCd5iRcouJgIyKhoyNi4mMjo2RkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlwBLmMmEkCAHTaRTqfB4QEmgj8mgaGY6lsohIHAXKwQBQIAaCIAA7",
+    "alt": "Large painting of people in a crowded park, brushstrokes are dots.",
+    "themes": [
+      "都市休闲",
+      "秩序",
+      "光",
+      "现代生活",
+      "宁静"
+    ],
+    "oneLiner": "一个慵懒的周日午后,被几百万个小点子,凝固成了永恒的纪念碑。",
+    "look": "凑近看,没有线条,只有并排的纯色小点——后退几步,你的眼睛替修拉把它们调成了光。"
+  },
+  {
+    "slug": "vg-bedroom",
+    "title": "The Bedroom",
+    "artist": "Vincent van Gogh",
+    "date": "1889",
+    "year": 1889,
+    "medium": "Oil on canvas",
+    "origin": "Saint-Rémy-de-Provence",
+    "image": "https://www.artic.edu/iiif/2/6644829f-f292-c5c4-a73c-0356a6fdbf0d/full/1200,/0/default.jpg",
+    "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAHp3ZJttAJdwL5Z6MYt4Sod7V3uDdXmIc3qCe4uATIeCUoWDY4eGZZmOapiObICGdoeEdYqGe42EeIqNeZGOeXyFkHmIoIOIiJSMgZWMgouQhIeNmoCQpZSeqAAAAAAAACH5BAAAAAAAIf8LSW1hZ2VNYWdpY2sOZ2FtbWE9MC40NTQ1NDUALAAAAAAGAAUAAAUYoHUYW8dVyOM01wIwQkAolJYMBYRhUySFADs=",
+    "alt": "Painting of bedroom, blue walls, green window, tan bed, red bedding.",
+    "themes": [
+      "私密",
+      "孤独",
+      "色彩",
+      "居所",
+      "内心"
+    ],
+    "oneLiner": "梵高把自己空荡的小屋画下来,只为说一件事:这里,是我的安宁。",
+    "look": "墙是歪的、地是斜的——他故意让透视'不对',好让你感到一种紧绷的、属于他的安静。"
+  },
+  {
+    "slug": "waterlilies",
+    "title": "Water Lilies",
+    "artist": "Claude Monet",
+    "date": "1906",
+    "year": 1906,
+    "medium": "Oil on canvas",
+    "origin": "France",
+    "image": "https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/1200,/0/default.jpg",
+    "lqip": "data:image/gif;base64,R0lGODlhBQAFAPQAAEZcaFFfdVtqbk9ldFBlcVFocllrcFlrd11rdl9sdFZtf15wcWV0d2R2eGByfmd6eGl6e2t9elZxiGF4kWB4kmJ9kGJ8lWeCkWSAnQAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAFAAUAAAUVoJBADXI4TLRMWHU9hmRRCjAURBACADs=",
+    "alt": "Painting of a pond seen up close spotted with thickly painted pink and white water lilies and a shadow across the top third of the picture.",
+    "themes": [
+      "自然",
+      "水",
+      "光",
+      "宁静",
+      "沉思"
+    ],
+    "oneLiner": "没有天、没有岸,只有水——莫奈把整个世界缩成一池倒影,请你沉下去。",
+    "look": "找不到地平线,对吗?这正是他要的:让你失去坐标,只剩下光在水面上的呼吸。"
+  },
+  {
+    "slug": "haystacks",
+    "title": "Stack of Wheat",
+    "artist": "Claude Monet",
+    "date": "1890–91",
+    "year": 1890,
+    "medium": "Oil on canvas",
+    "origin": "France",
+    "image": "https://www.artic.edu/iiif/2/27c1d720-8ca5-79a4-5e51-530bf75c1591/full/1200,/0/default.jpg",
+    "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAFdJSVtOTWtfYWdgZWJib2tjaW9ufHVucndvcnBvfHhzfIB7f2tyhnBxgXF2jHV9lXeAl3+DkoeChoKElY+Mko+Mk4aKmo+Qm5ORm5WYqJ6drJ+hr7CqrbayuLa0urW1vrq3v7m4vLm5vQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhQE4H5AmJPoaGIuGAPBiEwmBiiWgEgEBlk8EsDggJ5RIEADs=",
+    "alt": "A snowy landscape in cool tones featuring a prominent, snow-dusted haystack in reddish brown in front of a row of red-brown trees and low, blue mountains, all beheath a pink-gray strip of sky.",
+    "themes": [
+      "自然",
+      "光",
+      "时间",
+      "田野",
+      "宁静"
+    ],
+    "oneLiner": "同一堆麦垛,他画了一整组——因为他画的从来不是麦垛,是光,是一天里逝去的时间。",
+    "look": "阴影其实不是灰的,是紫的、蓝的;莫奈教会我们:影子里也住满了颜色。"
+  },
+  {
+    "slug": "two-sisters",
+    "title": "Two Sisters (On the Terrace)",
+    "artist": "Pierre-Auguste Renoir",
+    "date": "1881",
+    "year": 1881,
+    "medium": "Oil on canvas",
+    "origin": "France",
+    "image": "https://www.artic.edu/iiif/2/3a608f55-d76e-fa96-d0b1-0789fbc48f1e/full/1200,/0/default.jpg",
+    "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAENVWmNjWVFWZmRcYWJfZmZdZXtqZ3JxZXZ5aXl4b4J2cot2cHuCf4CDbYGIeH6EgX+Og5qbjY+Sl5yhlQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAUR4AQxSbQoD1IQjSMMwWFIQAgAOw==",
+    "alt": "Impressionist painting of two girls on balcony, bright flower hat, knitting basket.",
+    "themes": [
+      "人物",
+      "明媚",
+      "休闲",
+      "温情",
+      "光"
+    ],
+    "oneLiner": "一个被阳光、毛线团和春天填满的瞬间——雷诺阿一生都在画这种纯粹的愉悦。",
+    "look": "看背景怎么化成了一片斑斓的虚——他让人物清晰、世界融化,像记忆里最好的那种下午。"
+  },
+  {
+    "slug": "basket-apples",
+    "title": "The Basket of Apples",
+    "artist": "Paul Cezanne",
+    "date": "c. 1893",
+    "year": 1887,
+    "medium": "Oil on canvas",
+    "origin": "France",
+    "image": "https://www.artic.edu/iiif/2/52ac8996-3460-cf71-cb42-5c4d0aa29b74/full/1200,/0/default.jpg",
+    "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAGdYO1hSRFVUSWFYRGtdRGFcSl9jW2xgS25iTnNlR3FlS2loXGxqY3V0Z3R0anl5aHN6cINuTIJzUHWAc3uGfYeFeYWOfYSOhIuLgIyMhJWVh52ci5majZ6ekQAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYIONA1GUJQGA800AsB1IoVYZpSdRw3SaFADs=",
+    "alt": "Painting of a basket of green and red-yellow apples spilling over into a white cloth placed on a wooden table, with a dark green bottle and a plate of pale biscuits behind.",
+    "themes": [
+      "静物",
+      "秩序",
+      "结构",
+      "日常",
+      "沉思"
+    ],
+    "oneLiner": "一篮歪斜的苹果,桌沿对不上——塞尚故意'画错',因为他想画的是看的方式本身。",
+    "look": "桌子的左右两边接不上线:他把不同角度的观看拼进同一幅画,这一步,直接通向了立体主义。"
+  },
+  {
+    "slug": "great-wave",
+    "title": "Under the Wave off Kanagawa (Kanagawa oki nami ura), also known as The Great Wave, from the series \"Thirty-Six Views of Mount Fuji (Fugaku sanjūrokkei)\"",
+    "artist": "Katsushika Hokusai",
+    "date": "1830/33",
+    "year": 1826,
+    "medium": "Color woodblock print; oban",
+    "origin": "Japan",
+    "image": "https://www.artic.edu/iiif/2/b3974542-b9b4-7568-fc4b-966738f61d78/full/1200,/0/default.jpg",
+    "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAFpibG1vco2JfXh+g31/gXqAgo2MgoqOjY+RjJKSioiPkYySlJKVkpSYlJqblZKYmpyfm6mnmb6wlbyxl7+yl7+zmrWzormzocK1mcW2m8O6pce8pMq9oc/Bos7EqtHDp9PEpdLFqtbHqgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhwJDIwwF1PpsLIFKRZCCDwARD0TgQFoMg8SAcGIWGYhEEADs=",
+    "alt": "A crashing wave looms over two small ships, Mount Fuji in the background.",
+    "themes": [
+      "自然之力",
+      "海",
+      "动与静",
+      "崇高",
+      "东方"
+    ],
+    "oneLiner": "一道要吞掉天空的浪,而远处的富士山,小得像浪尖的一滴静。",
+    "look": "浪爪像手指一样抓向小船;北斋用一个程式化的瞬间,封存了大自然全部的力量与冷酷。"
+  },
+  {
+    "slug": "childs-bath",
+    "title": "The Child's Bath",
+    "artist": "Mary Cassatt",
+    "date": "1893",
+    "year": 1893,
+    "medium": "Oil on canvas",
+    "origin": "France",
+    "image": "https://www.artic.edu/iiif/2/3b885ae0-4d46-5fe4-d70a-00474827f02c/full/1200,/0/default.jpg",
+    "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAE5NSWBSSmRbVmJkVmpbYWdmYm9oZmxrcmxtd2pueIJ3eXN9iouFj4eJkKGanQAAACH5BAAAAAAAIf8LSW1hZ2VNYWdpY2sOZ2FtbWE9MC40NTQ1NDUALAAAAAADAAUAAAQLsICRlEDuELaCaREAOw==",
+    "alt": "Painting of mother in blue, purple, and green-stripped dress washing child's feet.",
+    "themes": [
+      "温情",
+      "母与子",
+      "私密",
+      "日常",
+      "凝视"
+    ],
+    "oneLiner": "一只手试水温,一只手扶着孩子——卡萨特把最寻常的母爱,画成了庄严。",
+    "look": "高高的俯视角、压平的图案——这套'去掉纵深'的构图,她是从日本版画里学来的。"
+  },
+  {
+    "slug": "moulin-rouge",
+    "title": "At the Moulin Rouge",
+    "artist": "Henri de Toulouse-Lautrec",
+    "date": "1892–95",
+    "year": 1892,
+    "medium": "Oil on canvas",
+    "origin": "France",
+    "image": "https://www.artic.edu/iiif/2/defb4004-b500-218d-3d9b-9a02423f097d/full/1200,/0/default.jpg",
+    "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAC4qHjInHDwpGjYwIDcwIzgzKVg5Cks3HF4/EVg6FkE2Jkk3IUs2JkI7K0Q6KEs7Kko5LFtBFmNDFV5EIVBLLU9NM0hINFhFNk1SOlRQMVdTO1ZTP1hVO2ZOKQAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYIIVZnFYdj1M0WXIxQrAhHbQQQGRIkzKEADs=",
+    "alt": "Painting, heavy in tones of blue-green and burnt orange, depicting a bar scene at night. The men wear top hats and many are bearded; the women are dressed in voluminous gowns and decorative hats. Five people converse in the center of the composition and a woman with a green face dominates the right foreground.",
+    "themes": [
+      "夜生活",
+      "都市",
+      "人群",
+      "现代",
+      "疏离"
+    ],
+    "oneLiner": "红磨坊的灯下,人挨着人,却各自孤独——劳特累克画夜场,不美化也不评判。",
+    "look": "右下那张被煤气灯照成惨绿的脸,逼到了画框边缘:他让你直视夜生活不加修饰的真相。"
+  },
+  {
+    "slug": "el-greco-assump",
+    "title": "The Assumption of the Virgin",
+    "artist": "Domenico Theotokópoulos, called El Greco",
+    "date": "1577–79",
+    "year": 1577,
+    "medium": "Oil on canvas",
+    "origin": "Greece",
+    "image": "https://www.artic.edu/iiif/2/47fd1564-93f5-f30b-7786-013421133b4a/full/1200,/0/default.jpg",
+    "lqip": "data:image/gif;base64,R0lGODlhAgAFAPMAAEQ8Mk5DOGBLRmRQR2FYT29jUGxpX3dqWGReZmBmZwAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAACAAUAAAQIsJyEDBlAhAgAOw==",
+    "alt": "Painting of the Virgin Mary ascending to heaven amongst multitude of angels.",
+    "themes": [
+      "灵性",
+      "升腾",
+      "情感强度",
+      "宗教",
+      "扭曲的形"
+    ],
+    "oneLiner": "身体被拉长、向上撕扯,色彩冷得发烫——四百年前,他就在画'情绪'本身。",
+    "look": "所有人都被拉长、扭动,违背解剖——这种为情感而牺牲'正确'的胆量,三百年后才被现代画家重新拾起。"
+  },
+  {
+    "slug": "gauguin-day",
+    "title": "Mahana no atua (Day of the God)",
+    "artist": "Paul Gauguin",
+    "date": "1894",
+    "year": 1894,
+    "medium": "Oil on linen canvas",
+    "origin": "France",
+    "image": "https://www.artic.edu/iiif/2/a4bef587-48a4-d186-813d-f297441b1ab3/full/1200,/0/default.jpg",
+    "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAExGPT5XW0tFSVVKR0xWW1xdVVFZXmFaVG5aWnZdVlVlX31pT2N1Wl9XcFBhaV9pb1VkcFtqcmZjYWRjY2lmb3xlaX1paGVwc2lwd4dsSoduUYFqVYFwW4F5XYGEZGd2g3t/g2+DlnOGmwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhQBDmQgiJPpEHxDExKCoWSQGR4DQonYVmkwkwPAeAYBAEADs=",
+    "alt": "Brightly colored painting of a medium-skinned nude woman sitting on pink sand with her feet in a multicolored body of water, flanked by two nude figures resting in the fetal position. Behind them is a deity sculpture and individuals carrying objects, dancing, and swimming.",
+    "themes": [
+      "异域",
+      "神话",
+      "色彩",
+      "原始",
+      "灵性"
+    ],
+    "oneLiner": "高更逃到塔希提,想找回文明之前的纯粹——画里那尊神,是他造的另一个世界。",
+    "look": "看下方水中那几块纯粹的红、蓝、黄——他放弃了'真实的颜色',只为色彩本身的歌唱。"
+  },
+  {
+    "slug": "vg-selfportrait",
+    "title": "Self-Portrait",
+    "artist": "Vincent van Gogh",
+    "date": "1887",
+    "year": 1887,
+    "medium": "Oil on artist's board, mounted on cradled panel",
+    "origin": "Netherlands",
+    "image": "https://www.artic.edu/iiif/2/47c5bcb8-62ef-e5d7-55e7-f5121f409a30/full/1200,/0/default.jpg",
+    "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAD49PEA3NEA6OUY/OEw+OzpAO09EPFZFO1dGPDxGQEBIQ0ZMRU9PRVFNRV9MQmxUQmJZSnttWIdfSaGHaQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoMJAQBFNQ/JIwoI4QUMYRwgAOw==",
+    "alt": "Painting of a red-haired, bearded man with light skin, painted in short brushstrokes and multicolored dots. The background is likewise a mass of small, closely spaced colored dots, these in green, blue, and red-orange.",
+    "themes": [
+      "自我",
+      "凝视",
+      "色彩",
+      "内心",
+      "情感强度"
+    ],
+    "oneLiner": "一圈圈短促的笔触像漩涡,绕着那双眼睛——梵高盯着自己,也盯着你。",
+    "look": "背景不是平的,是一团涌动的笔触;他让整个空间都跟着他的神经一起震颤。"
+  },
+  {
+    "slug": "hiroshige",
+    "title": "A Red Plum Branch against the Summer Moon",
+    "artist": "Utagawa Hiroshige",
+    "date": "c. mid–1840s",
+    "year": 1840,
+    "medium": "Color woodblock print; uchiwa-e",
+    "origin": "Japan",
+    "image": "https://www.artic.edu/iiif/2/1a743f2c-c2a4-354c-4a53-22c0d129685e/full/1200,/0/default.jpg",
+    "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAADVOZUhecUhfcmqAiXOCiHSSlH6Vk3yZloyQjJCUkaeaga+ojKWpnrOulqm0p7e6odW9n8a9ose/osvBpM/LrsXLssrOtNfOsdfRs9vTstvSs9XYvN7cvefSsuLau+TZuubZu+TdvuTgwQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhQAJAgEgEBoYCA9JxHCyPxgS0qVAUEY7ogpEsNJ7QJxMEADs=",
+    "alt": "A color woodblock print of a large plum tree with red bloosoms set against a blue sky with a large white moon",
+    "themes": [
+      "自然",
+      "月",
+      "宁静",
+      "东方",
+      "诗意"
+    ],
+    "oneLiner": "一枝红梅,斜斜划过夏夜的圆月——东方的留白,把'少'画成了'满'。",
+    "look": "大片的空,只点一枝梅、一轮月;这种'以少胜多'的诗意,迷倒了整整一代欧洲画家。"
+  },
+  {
+    "slug": "monet-cliff",
+    "title": "Cliff Walk at Pourville",
+    "artist": "Claude Monet",
+    "date": "1882",
+    "year": 1882,
+    "medium": "Oil on canvas",
+    "origin": "France",
+    "image": "https://www.artic.edu/iiif/2/b0effb1c-ff23-bbaa-f809-9fd94e31c1a0/full/1200,/0/default.jpg",
+    "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAHF2XH98dIF3aHyEf4ODZ4ePaIaBc4WIc4eKd4iIc5GKd5OMeJSMeJuRfn2GkIeVlomZl5eZkJicl46ZrZKbr5qeqoaTs4eUt42XsYGZtIuYsIqZsI6cs4eWugAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYYHdZ2JZx2lRRDvQMxgFIUSAQRcMoS4KEADs=",
+    "alt": "Painting of a cliff overlooking the sea. Two figures in long dresses, one with a parasol, stand on the cliff beneath blue sky.",
+    "themes": [
+      "自然",
+      "海",
+      "光",
+      "风",
+      "宁静"
+    ],
+    "oneLiner": "海风把草吹成一个方向,两个小人站在崖边——莫奈画的是站在风里的那一刻。",
+    "look": "海面不是蓝的,是被打碎的无数色块;眯起眼,它们才重新合成波光。"
+  },
+  {
+    "slug": "seurat-study",
+    "title": "Trees (study for La Grande Jatte)",
+    "artist": "Georges Seurat",
+    "date": "1884",
+    "year": 1884,
+    "medium": "Black Conté crayon, on white laid paper, laid down on cream board",
+    "origin": "France",
+    "image": "https://www.artic.edu/iiif/2/d5ebfc97-c87c-b3ae-816f-5c8b519a082c/full/1200,/0/default.jpg",
+    "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAJePgqWdjqeej72zosC3pcO4psS6qMW7qc7Crc7Crs7Dr83DsM/EsNDFstXJtNbMuNjNudnOudrPut7SvQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURIFIIQMIMgRMpxgQ1hPQsRwgAOw==",
+    "alt": "A work made of black conté crayon, on white laid paper, laid down on cream board.",
+    "themes": [
+      "自然",
+      "树",
+      "习作",
+      "光",
+      "宁静"
+    ],
+    "oneLiner": "这是《大碗岛》的种子——修拉为那幅巨作画的小习作,你能看见方法正在成形。",
+    "look": "还没铺满点彩,却已在试探光与影的分布;杰作不是凭空降临,是这样一步步长出来的。"
+  },
+  {
+    "slug": "renoir-lunch",
+    "title": "Lunch at the Restaurant Fournaise (The Rowers' Lunch)",
+    "artist": "Pierre-Auguste Renoir",
+    "date": "1875",
+    "year": 1875,
+    "medium": "Oil on canvas",
+    "origin": "France",
+    "image": "https://www.artic.edu/iiif/2/1a1b74fe-ff2a-8991-0581-5d420f0b840e/full/1200,/0/default.jpg",
+    "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAC48TFNsX0NWYVJcY1NiYFRuZ152c2d3bmt3aXJ5a2N4d2d9d3uKfXuNfYeQdoiQcHeMjXyMjXmSiHWMlHqPkoeXh4SZiIqYjJWejY6WkIOZlI6fkJyrnqGklgAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYYGNxUhFcWFctxoM4WXQwAgFNyQAom0aFADs=",
+    "alt": "A work made of oil on canvas.",
+    "themes": [
+      "休闲",
+      "人物",
+      "明媚",
+      "温情",
+      "光"
+    ],
+    "oneLiner": "塞纳河边餐馆的一顿午饭,阳光、酒杯和笑意——雷诺阿把'好好活着'画了下来。",
+    "look": "光透过凉棚洒在桌布与脸上,斑斑驳驳;印象派最爱的,正是这种流动、不固定的光。"
+  },
+  {
+    "slug": "toulouse-jane",
+    "title": "Jane Avril",
+    "artist": "Henri de Toulouse-Lautrec",
+    "date": "1893",
+    "year": 1893,
+    "medium": "Color lithograph on tan wove paper",
+    "origin": "France",
+    "image": "https://www.artic.edu/iiif/2/4d57383a-0f32-20d0-b09a-afb9c81357d3/full/1200,/0/default.jpg",
+    "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAG9pQ7GKO9iVMomAVoyBV46HX5KHWpeLX7WSRZ+WY6CRZqucZa2ca6udbK6ecbejbrukcLyodb6qeNqeQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURYBNBUoAwhDAVyvIAR2IMTggAOw==",
+    "alt": "A work made of color lithograph on tan wove paper.",
+    "themes": [
+      "夜生活",
+      "人物",
+      "现代",
+      "海报",
+      "疏离"
+    ],
+    "oneLiner": "舞者简·阿弗丽尔,被劳特累克用一条果断的轮廓线,定格成了海报时代的偶像。",
+    "look": "大块平涂、硬朗的边线、留白——这套海报语言直接学自日本版画,也定义了现代平面设计。"
+  }
+]

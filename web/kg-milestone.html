@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 知识图谱 V3 · 阶段性总结(里程碑)</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--blue:#5b7596;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:32px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(23px,4.6vw,34px);font-weight:700;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:14px;line-height:1.85;max-width:740px;margin:10px auto}.lead b{color:var(--ink-soft)}
+  .stamp{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:8px}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .sec{margin-top:40px}
+  .sec-h{font-family:var(--serif);font-size:20px;font-weight:600;border-bottom:2px solid var(--accent);padding-bottom:7px;margin-bottom:6px}
+  .sec-h .nx{font-family:var(--mono);font-size:12px;color:var(--accent);margin-right:8px}
+  .sec-d{font-size:13.5px;color:var(--ink-mute);margin:9px 0 14px;line-height:1.8}.sec-d b{color:var(--ink-soft)}
+  /* thesis chain */
+  .chain{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 14px}
+  .flow{display:flex;align-items:center;gap:5px;flex-wrap:wrap;justify-content:center}
+  .node{border-radius:10px;padding:10px 12px;text-align:center;min-width:96px;color:#fff;text-decoration:none}
+  .node .nn{font-family:var(--serif);font-size:14px;font-weight:600}.node .nd{font-size:9.5px;margin-top:2px;opacity:.9}
+  .node.root{background:var(--accent)}.node.real{background:var(--green)}.node.eff{background:var(--blue)}.node.mean{background:var(--gold)}
+  .arrow{font-family:var(--serif);font-size:18px;color:var(--ink-faint)}
+  .emerge{margin-top:14px;text-align:center;font-size:13px;color:var(--ink-soft);background:var(--accent-soft);border:1px dashed var(--accent);border-radius:10px;padding:11px 14px;line-height:1.7}.emerge b{color:var(--accent)}
+  /* numbers */
+  .nums{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}@media(max-width:680px){.nums{grid-template-columns:1fr 1fr}}
+  .nm{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 10px;text-align:center;border-top:3px solid var(--c)}
+  .nm .big{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--ink)}
+  .nm .lb{font-size:11.5px;color:var(--ink-mute);margin-top:5px;line-height:1.4}
+  /* connectivity bars */
+  .bars{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .bar{margin:10px 0}
+  .bar .bt{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink-soft);margin-bottom:4px}.bar .bt .bv{font-family:var(--mono);color:var(--ink-mute)}
+  .bar .bg{height:10px;background:var(--paper-2);border-radius:6px;overflow:hidden}
+  .bar .bf{height:100%;border-radius:6px}
+  /* breakthrough cards */
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:11px}@media(max-width:640px){.cards{grid-template-columns:1fr}}
+  .bc{background:#fff;border:1px solid var(--line);border-left:3px solid var(--c);border-radius:11px;padding:13px 15px}
+  .bc .bh{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--ink)}
+  .bc .bd{font-size:12.5px;color:var(--ink-soft);line-height:1.75;margin-top:6px}.bc .bd b{color:var(--accent)}
+  .bc .bl{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+  .bc .bl a{font-family:var(--mono);font-size:10.5px;color:var(--accent);text-decoration:none;background:var(--accent-soft);border-radius:6px;padding:2px 8px}
+  /* honesty */
+  .hon{background:#fff;border:1px solid var(--line);border-left:4px solid var(--green);border-radius:11px;padding:13px 16px;font-size:13px;color:var(--ink-soft);line-height:1.85}.hon b{color:var(--ink)}.hon .neg{color:var(--accent)}
+  .hon ul{margin:6px 0 0 0;list-style:none}.hon li{padding-left:18px;position:relative;margin:4px 0}.hon li:before{content:'▸';position:absolute;left:0;color:var(--green)}
+  .backlog{background:#fff;border:1px solid var(--line);border-radius:11px;padding:6px 0;overflow:hidden}
+  .blr{display:flex;gap:10px;padding:10px 15px;border-bottom:1px solid var(--line);font-size:12.5px;align-items:flex-start}.blr:last-child{border-bottom:none}
+  .blr .bk{font-family:var(--mono);font-size:10px;color:#fff;border-radius:5px;padding:2px 7px;white-space:nowrap;margin-top:1px}
+  .blr .bx{color:var(--ink-soft);line-height:1.7}.blr .bx b{color:var(--ink)}
+  .back{display:block;text-align:center;margin-top:42px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 里程碑</div>
+  <h1>阶段性总结:一张经得起推敲的画</h1>
+  <p class="lead">从「一幅画是什么」的<b>第一性原理</b>,把艺术史重做成一张<b>可交互、可调用、敢自我证伪</b>的知识图谱。这一页是它当前的全貌快照——规模、完成度、关键突破,以及<b>诚实标注的边界</b>。</p>
+  <div class="stamp" id="stamp">— 数据驱动快照 · 读取 kg_v3_export.json —</div>
+  <div class="breadcrumb"><a href="home.html">🏠 首页</a> › <a href="kg-v2.html">🧭 艺术图谱</a> › <b style="color:var(--ink-soft)">阶段性总结</b></div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="nx">论点</span>不是五层并列,是一条生成因果链</div>
+    <div class="sec-d">V3 的根本主张:世界观是<b>根</b>,题材/语言/感知/意义都<b>由它生</b>;而「风格」不是一层,是这条链上反复出现、被历史命名的<b>涌现签名</b>。旧 V2 的"五层并列 / 东西 12 镜像 / 三轴空间"已被实测证伪并撤回。</div>
+    <div class="chain">
+      <div class="flow">
+        <a class="node root" href="kg-worldview.html"><div class="nn">世界观</div><div class="nd">根·2轴6区</div></a>
+        <span class="arrow">→</span>
+        <a class="node real" href="kg-subject.html"><div class="nn">题材</div><div class="nd">画什么</div></a>
+        <a class="node real" href="kg-language.html"><div class="nn">7大构成</div><div class="nd">怎么画</div></a>
+        <span class="arrow">→</span>
+        <a class="node eff" href="kg-affect.html"><div class="nn">感知效应</div><div class="nd">VAD</div></a>
+        <span class="arrow">→</span>
+        <a class="node mean" href="kg-subtext.html"><div class="nn">画外音</div><div class="nd">意义</div></a>
+      </div>
+      <div class="emerge">风格 = <b>世界观 × 题材 × 语言</b> 链上的命名签名(投影,非独立层)</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="nx">规模</span>这张图现在有多大</div>
+    <div class="sec-d">以下数字全部<b>实时读取自数据资产</b>,非手填——若数据增长,本页随之变化。</div>
+    <div class="nums" id="nums"></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="nx">连通</span>生成链每一环连到哪了</div>
+    <div class="sec-d">风格侧每环都 <b>202/202</b> 齐备;下面是连到<b>独立规范层</b>的 typed 边覆盖率——没连满的,后面诚实说原因(不靠造数据补)。</div>
+    <div class="bars" id="bars"></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="nx">突破</span>这一阶段做成了什么</div>
+    <div class="cards">
+      <div class="bc" style="--c:var(--accent)"><div class="bh">世界观立住</div><div class="bd">2 条经检验正交真轴 + 数据发现的 6 个区(非先验、非东西镜像)。母版平面固化成<b>逻辑图标准</b>,所有平面图同坐标同配色同质心。</div><div class="bl"><a href="kg-worldview-map.html">世界观地图</a><a href="kg-plane-standard.html">逻辑图标准</a></div></div>
+      <div class="bc" style="--c:var(--blue)"><div class="bh">VLM 真的在看画</div><div class="bd">119 幅真迹 × 6 维系统读图;多通道情绪 <b>唤起~人工 r0.33 &gt; 纯像素 0.20</b>,且与饱和度<b>负相关</b>=读语义不读色。</div><div class="bl"><a href="kg-artworks.html">真迹读图</a><a href="kg-affect.html">感知效应</a></div></div>
+      <div class="bc" style="--c:var(--green)"><div class="bh">7 大构成变成连续轴</div><div class="bd">每轴 0→1,202 风格各有数值指纹;用<b>全 282 艺术家</b>实测复核(样本 80→137):<b>色彩/笔触/光影稳健</b>,造型小样本虚高已回落,空间/边缘≈0 据实标⚠不粉饰。</div><div class="bl"><a href="kg-language.html">7大构成·连续轴</a></div></div>
+      <div class="bc" style="--c:var(--gold)"><div class="bh">KG 结构夯实</div><div class="bd">权威本体(8 节点×11 边)+ 谱系物化 <b>138 边</b> + is-a <b>1212 边</b> + <b>0 孤立风格</b> + 完备性体检看板。</div><div class="bl"><a href="kg-ontology.html">权威本体</a><a href="kg-health.html">完备性体检</a></div></div>
+      <div class="bc" style="--c:var(--accent)"><div class="bh">能用 · 能逛</div><div class="bd">多风格对比(11 维平行坐标)、源流图谱(落在世界观平面)、真迹画廊、数据资产导出。</div><div class="bl"><a href="kg-style-compare.html">风格对比</a><a href="kg-data.html">数据资产</a></div></div>
+      <div class="bc" style="--c:var(--blue)"><div class="bh">意图编译器 v2 · 能生成</div><div class="bd"><b>三入口</b>:⚡即时(规则秒出)· 🧠深度推理(LLM 在图谱上推理,<b>零幻觉</b>)· 📷传图(VLM 拆解→重画);可编辑卡(改一处其余重算)+正向/负向 prompt;一键出图自动入库,评分回流影响选风格。把之前的 artist-painter skill 推理接到了活图谱。</div><div class="bl"><a href="kg-compile-v2.html">意图编译器 v2</a><a href="kg-gallery.html">生成图库</a></div></div>
+      <div class="bc" style="--c:var(--blue)"><div class="bh">导航统一</div><div class="bd">全站收敛到唯一入口「艺术图谱」,77 页统一面包屑/回上一级/0 断链。</div><div class="bl"><a href="kg-v2.html">艺术图谱总览</a></div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="nx">推敲</span>经得起推敲 = 敢撤回自己</div>
+    <div class="hon">
+      <b>认识论诚实是这张图的底色</b>,不是把推断当测量:
+      <ul>
+        <li>L3 曾得出"<b>饱和度→唤起 r≈0.78</b>",自查发现是<span class="neg">循环论证</span>(情绪锚点的颜色本就由饱和派生)——<b>已撤回</b>,改用独立人工/VLM 信源。</li>
+        <li>世界观"东西 12 镜像"模型最近邻命中 0/6 → <b>证伪并替换</b>为数据发现的 6 区。</li>
+        <li>7 大构成里<b>空间轴满样本 r=0.22</b>(中途 n=46 时曾"被 VLM 救回 0.57"),据实标"低可信·待加固",不取高值。</li>
+        <li>引文铁律:只保留可考真实亲述/印文/题句,<span class="neg">否则留空</span>——本轮清空 40 条早先杜撰句。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="nx">边界</span>诚实没做完的,和为什么</div>
+    <div class="backlog">
+      <div class="blr"><span class="bk" style="background:var(--gold)">词表限</span><span class="bx"><b>题材/画外音细粒度个体原子全连风格</b>(题材 187/202、画外音 100/202):经 282 艺术家题材回灌已推到此;再上需<b>真实逐画标注语料</b>,余下是孤词/无独立情绪源,造数据=噪声,故停在可证伪的天花板。</span></div>
+      <div class="blr"><span class="bk" style="background:var(--green)">已打通</span><span class="bx"><b>生成回测闭环</b>:<a href="kg-compile-v2.html" style="color:var(--accent);text-decoration:none">意图编译器 v2</a> 三入口(⚡即时 / 🧠深度推理 LLM 在图谱上零幻觉 / 📷传图 VLM 拆解)→ 正负向 prompt → 火山方舟出图 → <a href="kg-gallery.html" style="color:var(--accent);text-decoration:none">图库</a> 自动入库 + 评分回流。多模型注册表就位,接第 2 个模型即解锁对比墙。</span></div>
+      <div class="blr"><span class="bk" style="background:var(--green)">已完成</span><span class="bx"><b>艺术家层 100%</b>:282 位全部考究至莫奈级,stub 归零(含 5 个匿名集体作"传统"页);题材↔艺术家、画外音锚点↔艺术家均已挂连可逛。</span></div>
+      <div class="blr"><span class="bk" style="background:var(--accent)">待协同</span><span class="bx"><b>两套体系合并</b>:本项目有并行进程同改(已自托管 227 张 PD 真图);题材词表/作品层/看板两轨并存、干净合并中,需拍板由谁主合再统一。</span></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="nx">收尾</span>一句话</div>
+    <div class="sec-d" style="font-size:15px;color:var(--ink-soft);line-height:1.9">这套图谱已经从「一个漂亮的论点」长成了<b>一个结构完整、经得起推敲、且开始灌入真实血肉的知识图谱</b>。剩下的是<b>协同与真实数据灌注</b>,不是结构本身的缺口。</div>
+  </div>
+
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const NUMDEF=[
+  ['styles','风格(满考究)','var(--accent)'],
+  ['worldview_regions','世界观区','var(--gold)'],
+  ['artists','艺术家(库内)','var(--green)'],
+  ['lineage_edges','风格关系边','var(--blue)'],
+  ['artist_lineage_edges','艺术家谱系边','var(--accent)'],
+  ['subject_atoms','题材原子','var(--green)'],
+  ['taxonomy_isa_edges','层内 is-a 边','var(--gold)'],
+  ['artworks_vlm_read','VLM 深读真迹','var(--blue)'],
+];
+const BARDEF=[
+  ['worldview','世界观坐标','var(--accent)'],
+  ['language_numeric','语言数值指纹','var(--green)'],
+  ['subject_to_layer','题材→规范层','var(--green)'],
+  ['subtext_to_anchor','画外音→情绪锚点','var(--blue)'],
+];
+fetch('data/kg_v3_export.json').then(r=>r.json()).then(D=>{
+  const c=(D.meta&&D.meta.counts)||{}, cc=(D.meta&&D.meta.chain_connectivity)||{};
+  const g=document.getElementById('nums');
+  NUMDEF.forEach(([k,lb,col])=>{const v=c[k];if(v==null)return;
+    const d=document.createElement('div');d.className='nm';d.style.setProperty('--c',col);
+    d.innerHTML=`<div class="big">${v}</div><div class="lb">${lb}</div>`;g.appendChild(d);});
+  const b=document.getElementById('bars');
+  BARDEF.forEach(([k,lb,col])=>{const v=cc[k];if(v==null)return;const pct=Math.round(v/202*100);
+    const d=document.createElement('div');d.className='bar';
+    d.innerHTML=`<div class="bt"><span>${lb}</span><span class="bv">${v}/202 · ${pct}%</span></div><div class="bg"><div class="bf" style="width:${pct}%;background:${col}"></div></div>`;b.appendChild(d);});
+}).catch(e=>{document.getElementById('nums').innerHTML='<div style="grid-column:1/-1;color:#a89f8f;font-size:12px;text-align:center">需服务器加载数据资产</div>';});
+</script>
+</body></html>

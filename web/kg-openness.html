@@ -1,0 +1,1503 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 节点开放性 · 闭集 vs 开集(题材收成关键节点)</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--green-soft:#eef3f0;--blue:#5b7596;--blue-soft:#e9eef4;--warn:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:34px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(21px,4vw,31px);font-weight:600;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.7;max-width:710px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .sec{margin-top:34px}
+  .sec-h{font-family:var(--serif);font-size:19px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:6px}
+  .sec-d{font-size:12.5px;color:var(--ink-mute);margin-bottom:13px;line-height:1.6}.sec-d b{color:var(--ink-soft)}
+  /* trap illustration */
+  .trap{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 16px;font-family:var(--serif);font-size:14px;color:var(--ink-soft);text-align:center;line-height:1.9}
+  .trap .bad{color:var(--accent)}.trap .stop{font-family:var(--mono);font-size:11px;color:var(--warn);background:#fbf0d8;border-radius:6px;padding:2px 8px}
+  .trap .key{color:var(--green);font-weight:600}
+  /* mechanisms */
+  .mechs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:8px}@media(max-width:720px){.mechs{grid-template-columns:1fr}}
+  .mc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;border-top:3px solid var(--green)}
+  .mc .mn{font-family:var(--serif);font-size:15px;font-weight:600}.mc .me{font-family:var(--mono);font-size:9.5px;color:var(--ink-faint)}
+  .mc .md{font-size:12px;color:var(--ink-soft);line-height:1.6;margin-top:6px}
+  /* layer table */
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10px;color:var(--ink-soft);font-weight:500}
+  .kind{font-family:var(--mono);font-size:10px;border-radius:5px;padding:1px 7px;white-space:nowrap}
+  .kind.open{background:var(--green);color:#fff}.kind.semi{background:var(--blue);color:#fff}.kind.closed{background:var(--ink-soft);color:#fff}
+  /* subject keys */
+  .cat{margin-top:16px}
+  .cat-h{display:flex;align-items:baseline;gap:9px;border-bottom:2px solid var(--accent);padding-bottom:5px}
+  .cat-h .cn{font-family:var(--serif);font-size:16px;font-weight:600}
+  .cat-h .meta{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-left:auto}
+  .keys{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+  .kn{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 11px;cursor:help}
+  .kn .knn{font-family:var(--serif);font-size:13px;font-weight:600;color:var(--ink)}
+  .kn .opb{font-family:var(--mono);font-size:8px;color:#fff;background:var(--green);border-radius:3px;padding:0 4px;margin-left:4px;vertical-align:middle}
+  .kn .exc{font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-left:5px}
+  .kn .ex{font-size:10.5px;color:var(--ink-mute);margin-top:3px;line-height:1.4;max-width:230px}
+  .back{display:block;text-align:center;margin-top:42px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .home-fab:hover{color:var(--accent)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 节点开放性</div>
+  <h1>不穷举:闭集 vs 开集</h1>
+  <p class="lead">知识图谱<b>不该追求穷举</b>。能无限往下分的"开集"层,只立<b>关键节点</b>,具体物象/情绪降为<b>实例</b>,靠三种机制泛化——而不是把词写尽。</p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-impl">实现·题材+语言</a> › <b style="color:var(--ink-soft)">开放性</b></div>
+
+  <div class="sec">
+    <div class="sec-h">① 穷举陷阱</div>
+    <div class="sec-d">这条路走不通——它没有底:</div>
+    <div class="trap">植物 → 花卉 → <span class="bad">玫瑰 → 红玫瑰 → 某品种红玫瑰 → …</span> <span class="stop">无底洞</span><br/><span style="font-size:12px;color:var(--ink-mute)">正解:在「<span class="key">花卉</span>」这个<b>关键节点</b>停下,更细的"玫瑰"是画上的标签实例,自动上卷到它。</span></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">② 三种泛化机制(代替穷举)</div>
+    <div class="mechs" id="mechs"></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">③ 各层定性:哪些该列全、哪些只立关键点</div>
+    <div class="sec-d">不是所有层都开集。<b>世界观/风格主干是闭集</b>(艺术史有界,列全);<b>题材/画外音是开集</b>(只立关键节点)。</div>
+    <table><thead><tr><th>层</th><th>类型</th><th>泛化机制</th><th>状态</th></tr></thead><tbody id="layers"></tbody></table>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">④ 示范:题材 518 → 90 关键节点</div>
+    <div class="sec-d">把过细的 518 原子收成 <b id="kc"></b> 个关键节点(属级,标 <span class="kind open" style="font-size:9px">open</span>);原子降为 examples(悬停看)。图谱只认关键节点,具体物象交给实例上卷。</div>
+    <div id="subject"></div>
+  </div>
+
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+
+<script>
+const T={
+ "meta": {
+  "title": "节点开放性规范 · 闭集 vs 开集",
+  "version": "v1",
+  "principle": "知识图谱不该追求穷举。能无限往下分的'开集'层,只立关键节点(属级),具体物象/情绪降为实例,靠三种机制泛化,而非写尽。"
+ },
+ "mechanisms": [
+  {
+   "k": "实例上卷",
+   "cn": "Instance roll-up",
+   "desc": "关键节点=属(植物/禽鸟);具体'玫瑰/麻雀'是画上的标签实例,自动归到最近关键节点。不为每个物种建节点。"
+  },
+  {
+   "k": "连续坐标",
+   "cn": "Continuous coordinate",
+   "desc": "画外音情绪不必列尽:任何情绪=VAD空间一个点;风格之间=插值。坐标本身就是泛化器。"
+  },
+  {
+   "k": "开放标记",
+   "cn": "Open flag",
+   "desc": "关键节点标 open:true='它下面还能更细,但图谱到此为止',更细交给实例,不污染图结构。"
+  }
+ ],
+ "layers": [
+  {
+   "layer": "题材",
+   "kind": "开集 open",
+   "mech": "实例上卷",
+   "status": "已收:518原子 → 90关键节点,原子降为examples",
+   "color": "open"
+  },
+  {
+   "layer": "画外音 / 感知",
+   "kind": "开集 open",
+   "mech": "连续坐标(VAD)+关键锚点",
+   "status": "已收:398原子 → 14情绪锚点(各带VAD坐标),具体情绪=VAD一点",
+   "color": "open"
+  },
+  {
+   "layer": "7大构成",
+   "kind": "半闭 semi",
+   "mech": "有界技法词表",
+   "status": "基本可控,关键节点为主(可适度收)",
+   "color": "semi"
+  },
+  {
+   "layer": "风格",
+   "kind": "半开 semi",
+   "mech": "aka合并 + 坐标插值",
+   "status": "已合并296(当代变体→aka);融合/当代靠插值",
+   "color": "semi"
+  },
+  {
+   "layer": "世界观 W/E",
+   "kind": "闭集 closed",
+   "mech": "艺术史有界",
+   "status": "12模型,可列全,不泛化",
+   "color": "closed"
+  }
+ ]
+}, S={
+ "meta": {
+  "layer": "题材(关键节点版)",
+  "en": "Subject·key-nodes",
+  "version": "V2.1",
+  "kind": "open",
+  "note": "开集层:只立关键节点(属级),具体物象降为 examples(画上标签实例,上卷到关键节点)。518原子→关键节点。",
+  "before": 518,
+  "key_nodes": 90,
+  "examples": 518
+ },
+ "categories": [
+  {
+   "id": "SUBJECT.figure",
+   "cn": "人物题材",
+   "en": "Figure",
+   "open": true,
+   "key_count": 15,
+   "keys": [
+    {
+     "id": "SUBJECT.figure.K01",
+     "cn": "肖像与自我",
+     "open": true,
+     "example_count": 4,
+     "examples": [
+      "肖像",
+      "自画像",
+      "自我映像",
+      "面具人物"
+     ]
+    },
+    {
+     "id": "SUBJECT.figure.K02",
+     "cn": "群像与家族",
+     "open": true,
+     "example_count": 6,
+     "examples": [
+      "群像",
+      "家族像",
+      "群体运动",
+      "情侣",
+      "家庭场景",
+      "群体仪式"
+     ]
+    },
+    {
+     "id": "SUBJECT.figure.K03",
+     "cn": "女性形象",
+     "open": true,
+     "example_count": 4,
+     "examples": [
+      "母子形象",
+      "少女形象",
+      "仕女",
+      "美人"
+     ]
+    },
+    {
+     "id": "SUBJECT.figure.K04",
+     "cn": "劳动者与士兵",
+     "open": true,
+     "example_count": 6,
+     "examples": [
+      "劳动者",
+      "农民形象",
+      "工人形象",
+      "士兵形象",
+      "战士与武士",
+      "武将"
+     ]
+    },
+    {
+     "id": "SUBJECT.figure.K05",
+     "cn": "文人与学者",
+     "open": true,
+     "example_count": 3,
+     "examples": [
+      "文人形象",
+      "学者",
+      "道士"
+     ]
+    },
+    {
+     "id": "SUBJECT.figure.K06",
+     "cn": "帝王权贵",
+     "open": true,
+     "example_count": 1,
+     "examples": [
+      "帝王"
+     ]
+    },
+    {
+     "id": "SUBJECT.figure.K07",
+     "cn": "宗教修行者",
+     "open": true,
+     "example_count": 3,
+     "examples": [
+      "神官与僧侣",
+      "佛像",
+      "仙人"
+     ]
+    },
+    {
+     "id": "SUBJECT.figure.K08",
+     "cn": "神话英雄与革命者",
+     "open": true,
+     "example_count": 3,
+     "examples": [
+      "神话人物",
+      "英雄",
+      "革命者"
+     ]
+    },
+    {
+     "id": "SUBJECT.figure.K09",
+     "cn": "表演者",
+     "open": true,
+     "example_count": 3,
+     "examples": [
+      "舞者",
+      "音乐家",
+      "戏剧人物"
+     ]
+    },
+    {
+     "id": "SUBJECT.figure.K10",
+     "cn": "市井与行旅",
+     "open": true,
+     "example_count": 4,
+     "examples": [
+      "市井人物",
+      "行者",
+      "异乡人",
+      "病者"
+     ]
+    },
+    {
+     "id": "SUBJECT.figure.K11",
+     "cn": "儿童与长者",
+     "open": true,
+     "example_count": 2,
+     "examples": [
+      "儿童形象",
+      "老年形象"
+     ]
+    },
+    {
+     "id": "SUBJECT.figure.K12",
+     "cn": "身体与裸体",
+     "open": true,
+     "example_count": 1,
+     "examples": [
+      "裸体"
+     ]
+    },
+    {
+     "id": "SUBJECT.figure.K13",
+     "cn": "当代与虚拟身份",
+     "open": true,
+     "example_count": 6,
+     "examples": [
+      "当代青年",
+      "网络人物",
+      "漫画人物",
+      "虚拟偶像",
+      "性别身份",
+      "仿生人"
+     ]
+    },
+    {
+     "id": "SUBJECT.figure.K14",
+     "cn": "梦境心理意象",
+     "open": true,
+     "example_count": 2,
+     "examples": [
+      "梦中人",
+      "幻象人物"
+     ]
+    },
+    {
+     "id": "SUBJECT.figure.K99",
+     "cn": "其它(开放)",
+     "open": true,
+     "example_count": 2,
+     "examples": [
+      "宗教人物",
+      "历史人物"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "SUBJECT.landscape",
+   "cn": "山水题材",
+   "en": "Landscape",
+   "open": true,
+   "key_count": 9,
+   "keys": [
+    {
+     "id": "SUBJECT.landscape.K01",
+     "cn": "山岳峰峦",
+     "open": true,
+     "example_count": 16,
+     "examples": [
+      "山岳",
+      "远山",
+      "峰峦叠嶂",
+      "山居",
+      "寒林",
+      "春山",
+      "秋山",
+      "高远山水",
+      "平远山水",
+      "深远山水",
+      "峰顶",
+      "山寺",
+      "雪岭",
+      "山河故土",
+      "幻境山水",
+      "科幻山水"
+     ]
+    },
+    {
+     "id": "SUBJECT.landscape.K02",
+     "cn": "水体江海",
+     "open": true,
+     "example_count": 9,
+     "examples": [
+      "江河",
+      "湖泊",
+      "海洋",
+      "瀑布",
+      "溪流",
+      "舟行",
+      "渔舟",
+      "云海",
+      "浮光倒影"
+     ]
+    },
+    {
+     "id": "SUBJECT.landscape.K03",
+     "cn": "天象气候",
+     "open": true,
+     "example_count": 8,
+     "examples": [
+      "云雾",
+      "雪景",
+      "天空",
+      "日出",
+      "黄昏",
+      "夜色",
+      "雨景",
+      "雾林"
+     ]
+    },
+    {
+     "id": "SUBJECT.landscape.K04",
+     "cn": "林木植被",
+     "open": true,
+     "example_count": 4,
+     "examples": [
+      "竹林",
+      "松林",
+      "草原",
+      "森林"
+     ]
+    },
+    {
+     "id": "SUBJECT.landscape.K05",
+     "cn": "地貌奇观",
+     "open": true,
+     "example_count": 6,
+     "examples": [
+      "峡谷",
+      "岩石",
+      "沙漠",
+      "荒野",
+      "岛屿",
+      "洞穴"
+     ]
+    },
+    {
+     "id": "SUBJECT.landscape.K06",
+     "cn": "人居与行旅",
+     "open": true,
+     "example_count": 4,
+     "examples": [
+      "茅屋",
+      "桥梁",
+      "行旅",
+      "观景者"
+     ]
+    },
+    {
+     "id": "SUBJECT.landscape.K07",
+     "cn": "四季时景",
+     "open": true,
+     "example_count": 0,
+     "examples": []
+    },
+    {
+     "id": "SUBJECT.landscape.K08",
+     "cn": "构图程式",
+     "open": true,
+     "example_count": 2,
+     "examples": [
+      "风景小景",
+      "近景"
+     ]
+    },
+    {
+     "id": "SUBJECT.landscape.K09",
+     "cn": "想象山水",
+     "open": true,
+     "example_count": 0,
+     "examples": []
+    }
+   ]
+  },
+  {
+   "id": "SUBJECT.bird-flower",
+   "cn": "花鸟题材",
+   "en": "Bird & Flower",
+   "open": true,
+   "key_count": 6,
+   "keys": [
+    {
+     "id": "SUBJECT.bird-flower.K01",
+     "cn": "花卉",
+     "open": true,
+     "example_count": 23,
+     "examples": [
+      "梅花",
+      "兰花",
+      "菊花",
+      "荷花",
+      "桃花",
+      "杏花",
+      "牡丹",
+      "芙蓉",
+      "荷塘",
+      "梨花",
+      "海棠",
+      "芍药",
+      "紫藤",
+      "向日葵",
+      "玫瑰",
+      "鸡冠花",
+      "秋菊",
+      "莲蓬",
+      "兰竹石组合",
+      "花卉静物",
+      "春意图",
+      "四季花卉",
+      "百花齐放"
+     ]
+    },
+    {
+     "id": "SUBJECT.bird-flower.K02",
+     "cn": "草木竹石",
+     "open": true,
+     "example_count": 6,
+     "examples": [
+      "竹子",
+      "松树",
+      "石榴",
+      "石头",
+      "奇石",
+      "松鹤"
+     ]
+    },
+    {
+     "id": "SUBJECT.bird-flower.K03",
+     "cn": "禽鸟",
+     "open": true,
+     "example_count": 13,
+     "examples": [
+      "鹰隼",
+      "鸡",
+      "鸽子",
+      "麻雀",
+      "燕子",
+      "鹦鹉",
+      "鸳鸯",
+      "白鹭",
+      "鹤",
+      "孔雀",
+      "鹰",
+      "喜鹊",
+      "乌鸦"
+     ]
+    },
+    {
+     "id": "SUBJECT.bird-flower.K04",
+     "cn": "虫蝶",
+     "open": true,
+     "example_count": 4,
+     "examples": [
+      "蝴蝶",
+      "蜻蜓",
+      "蜜蜂",
+      "瓢虫"
+     ]
+    },
+    {
+     "id": "SUBJECT.bird-flower.K05",
+     "cn": "水族",
+     "open": true,
+     "example_count": 3,
+     "examples": [
+      "鱼",
+      "虾蟹",
+      "蛙"
+     ]
+    },
+    {
+     "id": "SUBJECT.bird-flower.K06",
+     "cn": "小宠",
+     "open": true,
+     "example_count": 2,
+     "examples": [
+      "猫",
+      "狗"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "SUBJECT.animal",
+   "cn": "动物题材",
+   "en": "Animal",
+   "open": true,
+   "key_count": 9,
+   "keys": [
+    {
+     "id": "SUBJECT.animal.K01",
+     "cn": "家畜",
+     "open": true,
+     "example_count": 9,
+     "examples": [
+      "马",
+      "牛",
+      "羊",
+      "鸡",
+      "狗",
+      "猫",
+      "猪",
+      "龙马",
+      "家畜群"
+     ]
+    },
+    {
+     "id": "SUBJECT.animal.K02",
+     "cn": "猛兽走兽",
+     "open": true,
+     "example_count": 14,
+     "examples": [
+      "虎",
+      "狮",
+      "鹿",
+      "象",
+      "猴",
+      "狼",
+      "熊",
+      "狐狸",
+      "兔",
+      "猿",
+      "蛇",
+      "老鼠",
+      "白虎",
+      "野兽群像"
+     ]
+    },
+    {
+     "id": "SUBJECT.animal.K03",
+     "cn": "禽鸟",
+     "open": true,
+     "example_count": 3,
+     "examples": [
+      "鸟",
+      "鹤",
+      "鹰"
+     ]
+    },
+    {
+     "id": "SUBJECT.animal.K04",
+     "cn": "水族",
+     "open": true,
+     "example_count": 6,
+     "examples": [
+      "鱼",
+      "虾",
+      "蟹",
+      "乌龟",
+      "青蛙",
+      "海洋生物"
+     ]
+    },
+    {
+     "id": "SUBJECT.animal.K05",
+     "cn": "虫",
+     "open": true,
+     "example_count": 4,
+     "examples": [
+      "蝴蝶",
+      "蜻蜓",
+      "蜜蜂",
+      "蝙蝠"
+     ]
+    },
+    {
+     "id": "SUBJECT.animal.K06",
+     "cn": "神兽",
+     "open": true,
+     "example_count": 9,
+     "examples": [
+      "龙",
+      "凤",
+      "凤凰",
+      "麒麟",
+      "神兽",
+      "鲲鹏",
+      "朱雀",
+      "青龙",
+      "玄武"
+     ]
+    },
+    {
+     "id": "SUBJECT.animal.K07",
+     "cn": "生肖与组合",
+     "open": true,
+     "example_count": 1,
+     "examples": [
+      "十二生肖"
+     ]
+    },
+    {
+     "id": "SUBJECT.animal.K08",
+     "cn": "异兽与机械",
+     "open": true,
+     "example_count": 5,
+     "examples": [
+      "热带动物",
+      "实验动物",
+      "机械动物",
+      "虚构生物",
+      "人兽混形"
+     ]
+    },
+    {
+     "id": "SUBJECT.animal.K99",
+     "cn": "其它(开放)",
+     "open": true,
+     "example_count": 1,
+     "examples": [
+      "宠物"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "SUBJECT.still-life",
+   "cn": "静物题材",
+   "en": "Still Life",
+   "open": true,
+   "key_count": 9,
+   "keys": [
+    {
+     "id": "SUBJECT.still-life.K01",
+     "cn": "花果静物",
+     "open": true,
+     "example_count": 5,
+     "examples": [
+      "花卉静物",
+      "水果静物",
+      "水果篮",
+      "花瓶",
+      "水果切面"
+     ]
+    },
+    {
+     "id": "SUBJECT.still-life.K02",
+     "cn": "器皿容器",
+     "open": true,
+     "example_count": 9,
+     "examples": [
+      "瓶罐",
+      "酒瓶",
+      "水杯",
+      "茶具",
+      "瓷器",
+      "铜器",
+      "包装物",
+      "空盒",
+      "破碎器物"
+     ]
+    },
+    {
+     "id": "SUBJECT.still-life.K03",
+     "cn": "食物饮品",
+     "open": true,
+     "example_count": 3,
+     "examples": [
+      "面包",
+      "食物",
+      "餐桌"
+     ]
+    },
+    {
+     "id": "SUBJECT.still-life.K04",
+     "cn": "书文与乐器",
+     "open": true,
+     "example_count": 7,
+     "examples": [
+      "书本",
+      "乐器",
+      "书信",
+      "书案",
+      "墨砚",
+      "古琴",
+      "纸张"
+     ]
+    },
+    {
+     "id": "SUBJECT.still-life.K05",
+     "cn": "象征虚空物",
+     "open": true,
+     "example_count": 6,
+     "examples": [
+      "烛光",
+      "镜子",
+      "骷髅",
+      "沙漏",
+      "钟表",
+      "枯叶"
+     ]
+    },
+    {
+     "id": "SUBJECT.still-life.K06",
+     "cn": "日用与现代物",
+     "open": true,
+     "example_count": 9,
+     "examples": [
+      "仪器",
+      "玩具",
+      "人偶",
+      "照片",
+      "日用品",
+      "工业零件",
+      "电子产品",
+      "垃圾",
+      "实验台"
+     ]
+    },
+    {
+     "id": "SUBJECT.still-life.K07",
+     "cn": "自然小物",
+     "open": true,
+     "example_count": 7,
+     "examples": [
+      "珠宝",
+      "石雕",
+      "布料",
+      "植物标本",
+      "标本动物",
+      "鸟羽",
+      "水滴"
+     ]
+    },
+    {
+     "id": "SUBJECT.still-life.K08",
+     "cn": "桌面与光影",
+     "open": true,
+     "example_count": 4,
+     "examples": [
+      "桌面摆设",
+      "光影物件",
+      "桌面景象",
+      "水面反射"
+     ]
+    },
+    {
+     "id": "SUBJECT.still-life.K99",
+     "cn": "其它(开放)",
+     "open": true,
+     "example_count": 1,
+     "examples": [
+      "鸟笼"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "SUBJECT.myth",
+   "cn": "宗教与神话题材",
+   "en": "Myth & Religion",
+   "open": true,
+   "key_count": 7,
+   "keys": [
+    {
+     "id": "SUBJECT.myth.K01",
+     "cn": "佛教形象",
+     "open": true,
+     "example_count": 9,
+     "examples": [
+      "佛陀",
+      "菩萨",
+      "罗汉",
+      "弥勒佛",
+      "地藏王",
+      "观音",
+      "达摩",
+      "天王",
+      "地藏"
+     ]
+    },
+    {
+     "id": "SUBJECT.myth.K02",
+     "cn": "道教与中国神话",
+     "open": true,
+     "example_count": 20,
+     "examples": [
+      "神农",
+      "女娲",
+      "伏羲",
+      "八仙",
+      "太上老君",
+      "玉皇大帝",
+      "哪吒",
+      "孙悟空",
+      "二郎神",
+      "白蛇",
+      "牛魔王",
+      "嫦娥",
+      "后羿",
+      "精卫",
+      "天女散花",
+      "雷公电母",
+      "龙王",
+      "风神雨师",
+      "鬼神",
+      "冥界"
+     ]
+    },
+    {
+     "id": "SUBJECT.myth.K03",
+     "cn": "基督教形象",
+     "open": true,
+     "example_count": 12,
+     "examples": [
+      "天堂",
+      "地狱",
+      "天使",
+      "圣母",
+      "基督",
+      "十字架",
+      "亚当与夏娃",
+      "诺亚方舟",
+      "大天使",
+      "撒旦",
+      "圣徒",
+      "天启"
+     ]
+    },
+    {
+     "id": "SUBJECT.myth.K04",
+     "cn": "希腊罗马神话",
+     "open": true,
+     "example_count": 8,
+     "examples": [
+      "命运三女神",
+      "宙斯",
+      "雅典娜",
+      "阿波罗",
+      "阿芙洛狄忒",
+      "赫尔墨斯",
+      "波塞冬",
+      "哈迪斯"
+     ]
+    },
+    {
+     "id": "SUBJECT.myth.K05",
+     "cn": "北欧神话",
+     "open": true,
+     "example_count": 4,
+     "examples": [
+      "奥丁",
+      "托尔",
+      "洛基",
+      "芬里尔"
+     ]
+    },
+    {
+     "id": "SUBJECT.myth.K06",
+     "cn": "印度日本神话",
+     "open": true,
+     "example_count": 7,
+     "examples": [
+      "天照大神",
+      "伊邪那美",
+      "梵天",
+      "毗湿奴",
+      "湿婆",
+      "迦梨",
+      "迦尼萨"
+     ]
+    },
+    {
+     "id": "SUBJECT.myth.K07",
+     "cn": "神界群像",
+     "open": true,
+     "example_count": 1,
+     "examples": [
+      "天界众神"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "SUBJECT.history",
+   "cn": "历史与社会题材",
+   "en": "History & Society",
+   "open": true,
+   "key_count": 8,
+   "keys": [
+    {
+     "id": "SUBJECT.history.K01",
+     "cn": "战争与冲突",
+     "open": true,
+     "example_count": 13,
+     "examples": [
+      "战争",
+      "革命",
+      "起义",
+      "将军",
+      "战场遗迹",
+      "军人群像",
+      "战俘",
+      "灾难",
+      "流亡",
+      "囚禁",
+      "抗争",
+      "革命领袖",
+      "抗议"
+     ]
+    },
+    {
+     "id": "SUBJECT.history.K02",
+     "cn": "权力与政治",
+     "open": true,
+     "example_count": 8,
+     "examples": [
+      "政治集会",
+      "法庭",
+      "宫廷",
+      "皇帝",
+      "朝会",
+      "文臣",
+      "法律",
+      "审判"
+     ]
+    },
+    {
+     "id": "SUBJECT.history.K03",
+     "cn": "劳动与工业",
+     "open": true,
+     "example_count": 7,
+     "examples": [
+      "劳动场景",
+      "工业景象",
+      "工厂",
+      "矿山",
+      "建筑工地",
+      "工人群像",
+      "农民生活"
+     ]
+    },
+    {
+     "id": "SUBJECT.history.K04",
+     "cn": "城市与交通",
+     "open": true,
+     "example_count": 7,
+     "examples": [
+      "城市街景",
+      "车站",
+      "火车",
+      "飞机",
+      "港口",
+      "市场",
+      "街头生活"
+     ]
+    },
+    {
+     "id": "SUBJECT.history.K05",
+     "cn": "社会百态",
+     "open": true,
+     "example_count": 7,
+     "examples": [
+      "移民",
+      "群众运动",
+      "社区生活",
+      "家庭伦理",
+      "教育场景",
+      "医疗场景",
+      "游行"
+     ]
+    },
+    {
+     "id": "SUBJECT.history.K06",
+     "cn": "历史事件与纪念",
+     "open": true,
+     "example_count": 4,
+     "examples": [
+      "历史事件",
+      "英雄事迹",
+      "开国场景",
+      "民族融合"
+     ]
+    },
+    {
+     "id": "SUBJECT.history.K07",
+     "cn": "人生礼仪",
+     "open": true,
+     "example_count": 4,
+     "examples": [
+      "婚礼",
+      "葬礼",
+      "节庆",
+      "庙会"
+     ]
+    },
+    {
+     "id": "SUBJECT.history.K08",
+     "cn": "当代社会",
+     "open": true,
+     "example_count": 2,
+     "examples": [
+      "新时代青年",
+      "当代社会"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "SUBJECT.abstract",
+   "cn": "抽象与观念题材",
+   "en": "Abstract & Concept",
+   "open": true,
+   "key_count": 10,
+   "keys": [
+    {
+     "id": "SUBJECT.abstract.K01",
+     "cn": "几何与结构",
+     "open": true,
+     "example_count": 10,
+     "examples": [
+      "几何构成",
+      "对称",
+      "不对称",
+      "层叠",
+      "点阵",
+      "光影结构",
+      "结构网格",
+      "模块化",
+      "幻象结构",
+      "破碎结构"
+     ]
+    },
+    {
+     "id": "SUBJECT.abstract.K02",
+     "cn": "色彩与肌理",
+     "open": true,
+     "example_count": 3,
+     "examples": [
+      "色块关系",
+      "材料实验",
+      "自然肌理"
+     ]
+    },
+    {
+     "id": "SUBJECT.abstract.K03",
+     "cn": "笔势与痕迹",
+     "open": true,
+     "example_count": 4,
+     "examples": [
+      "时间痕迹",
+      "手势痕迹",
+      "运动轨迹",
+      "残迹"
+     ]
+    },
+    {
+     "id": "SUBJECT.abstract.K04",
+     "cn": "符号与文本",
+     "open": true,
+     "example_count": 7,
+     "examples": [
+      "数字图形",
+      "符号",
+      "数字",
+      "语言文字",
+      "概念文本",
+      "图形代码",
+      "数据可视"
+     ]
+    },
+    {
+     "id": "SUBJECT.abstract.K05",
+     "cn": "光与空间",
+     "open": true,
+     "example_count": 4,
+     "examples": [
+      "空间张力",
+      "光感",
+      "内视空间",
+      "逻辑空间"
+     ]
+    },
+    {
+     "id": "SUBJECT.abstract.K06",
+     "cn": "心理与意识",
+     "open": true,
+     "example_count": 5,
+     "examples": [
+      "情绪场",
+      "意识流",
+      "冥想状态",
+      "心灵地图",
+      "感官流"
+     ]
+    },
+    {
+     "id": "SUBJECT.abstract.K07",
+     "cn": "极简与混沌",
+     "open": true,
+     "example_count": 5,
+     "examples": [
+      "模糊",
+      "重复",
+      "极简",
+      "混沌",
+      "空白"
+     ]
+    },
+    {
+     "id": "SUBJECT.abstract.K08",
+     "cn": "时间与生成",
+     "open": true,
+     "example_count": 2,
+     "examples": [
+      "生成形态",
+      "时间循环"
+     ]
+    },
+    {
+     "id": "SUBJECT.abstract.K09",
+     "cn": "视错与图像",
+     "open": true,
+     "example_count": 3,
+     "examples": [
+      "视觉错觉",
+      "声音图像",
+      "模型构图"
+     ]
+    },
+    {
+     "id": "SUBJECT.abstract.K99",
+     "cn": "其它(开放)",
+     "open": true,
+     "example_count": 8,
+     "examples": [
+      "线条节奏",
+      "形体解构",
+      "透明叠加",
+      "能量流",
+      "对比",
+      "重构",
+      "流动",
+      "坏画面"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "SUBJECT.folk",
+   "cn": "民俗与生活题材",
+   "en": "Folk & Life",
+   "open": true,
+   "key_count": 8,
+   "keys": [
+    {
+     "id": "SUBJECT.folk.K01",
+     "cn": "传统节庆",
+     "open": true,
+     "example_count": 8,
+     "examples": [
+      "春节",
+      "元宵节",
+      "清明节",
+      "端午节",
+      "中秋节",
+      "七夕节",
+      "重阳节",
+      "庙会"
+     ]
+    },
+    {
+     "id": "SUBJECT.folk.K02",
+     "cn": "人生礼俗",
+     "open": true,
+     "example_count": 11,
+     "examples": [
+      "拜年",
+      "婚礼",
+      "生辰",
+      "寿宴",
+      "丧礼",
+      "民间信仰",
+      "祭祖",
+      "祭天",
+      "祈福",
+      "驱邪",
+      "占卜"
+     ]
+    },
+    {
+     "id": "SUBJECT.folk.K03",
+     "cn": "农事与手艺",
+     "open": true,
+     "example_count": 7,
+     "examples": [
+      "农耕",
+      "织布",
+      "打铁",
+      "制陶",
+      "木匠",
+      "剪纸",
+      "刺绣"
+     ]
+    },
+    {
+     "id": "SUBJECT.folk.K04",
+     "cn": "市井商贸",
+     "open": true,
+     "example_count": 5,
+     "examples": [
+      "赶集",
+      "集市",
+      "茶馆",
+      "酒肆",
+      "夜市"
+     ]
+    },
+    {
+     "id": "SUBJECT.folk.K05",
+     "cn": "乡村生活",
+     "open": true,
+     "example_count": 8,
+     "examples": [
+      "渔村",
+      "田园",
+      "家庭生活",
+      "烹饪场景",
+      "洗衣",
+      "农家屋舍",
+      "村落全景",
+      "乡镇风俗"
+     ]
+    },
+    {
+     "id": "SUBJECT.folk.K06",
+     "cn": "游艺民间",
+     "open": true,
+     "example_count": 8,
+     "examples": [
+      "舞龙舞狮",
+      "放烟花",
+      "吹糖人",
+      "木偶戏",
+      "皮影戏",
+      "说书场景",
+      "风筝",
+      "糖葫芦"
+     ]
+    },
+    {
+     "id": "SUBJECT.folk.K07",
+     "cn": "民俗符号",
+     "open": true,
+     "example_count": 2,
+     "examples": [
+      "红灯笼",
+      "喜字窗花"
+     ]
+    },
+    {
+     "id": "SUBJECT.folk.K08",
+     "cn": "城市生活",
+     "open": true,
+     "example_count": 1,
+     "examples": [
+      "城市街景"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "SUBJECT.urban",
+   "cn": "都市与未来题材",
+   "en": "Urban & Future",
+   "open": true,
+   "key_count": 9,
+   "keys": [
+    {
+     "id": "SUBJECT.urban.K01",
+     "cn": "城市景观",
+     "open": true,
+     "example_count": 7,
+     "examples": [
+      "城市天际线",
+      "摩天大楼",
+      "霓虹街道",
+      "城市天桥",
+      "城市雨夜",
+      "城市天台",
+      "城市广场"
+     ]
+    },
+    {
+     "id": "SUBJECT.urban.K02",
+     "cn": "交通与基础设施",
+     "open": true,
+     "example_count": 6,
+     "examples": [
+      "地铁站",
+      "十字路口",
+      "高速公路",
+      "公共交通",
+      "电线与天线",
+      "地铁人群"
+     ]
+    },
+    {
+     "id": "SUBJECT.urban.K03",
+     "cn": "商业与符号",
+     "open": true,
+     "example_count": 6,
+     "examples": [
+      "商场",
+      "广告牌",
+      "便利店",
+      "商务人群",
+      "数码屏幕",
+      "手机屏幕"
+     ]
+    },
+    {
+     "id": "SUBJECT.urban.K04",
+     "cn": "都市边缘",
+     "open": true,
+     "example_count": 4,
+     "examples": [
+      "居民楼",
+      "城市垃圾",
+      "工地",
+      "监控摄像头"
+     ]
+    },
+    {
+     "id": "SUBJECT.urban.K05",
+     "cn": "赛博与虚拟",
+     "open": true,
+     "example_count": 8,
+     "examples": [
+      "虚拟城市",
+      "元宇宙空间",
+      "赛博街区",
+      "网络空间",
+      "虚拟化身",
+      "模拟人生",
+      "虚拟自然",
+      "数字生命"
+     ]
+    },
+    {
+     "id": "SUBJECT.urban.K06",
+     "cn": "科技与AI",
+     "open": true,
+     "example_count": 7,
+     "examples": [
+      "机械都市",
+      "AI角色",
+      "数据流",
+      "智能家居",
+      "无人机视角",
+      "科技植入",
+      "人工智能"
+     ]
+    },
+    {
+     "id": "SUBJECT.urban.K07",
+     "cn": "未来与太空",
+     "open": true,
+     "example_count": 5,
+     "examples": [
+      "未来建筑",
+      "宇宙空间站",
+      "星际城市",
+      "火星基地",
+      "未来战争"
+     ]
+    },
+    {
+     "id": "SUBJECT.urban.K08",
+     "cn": "平行与灾变",
+     "open": true,
+     "example_count": 5,
+     "examples": [
+      "时间隧道",
+      "平行世界",
+      "灾后城市",
+      "光之城市",
+      "黑暗都市"
+     ]
+    },
+    {
+     "id": "SUBJECT.urban.K99",
+     "cn": "其它(开放)",
+     "open": true,
+     "example_count": 3,
+     "examples": [
+      "夜景灯光",
+      "城市雕塑",
+      "仿生人"
+     ]
+    }
+   ]
+  }
+ ]
+};
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+
+const mechs=document.getElementById('mechs');
+T.mechanisms.forEach(m=> mechs.appendChild($(`<div class="mc"><div class="mn">${m.k}</div><div class="me">${m.cn}</div><div class="md">${m.desc}</div></div>`)));
+
+const lay=document.getElementById('layers');
+T.layers.forEach(l=> lay.appendChild($(`<tr><td><b>${l.layer}</b></td><td><span class="kind ${l.color}">${l.kind}</span></td><td>${l.mech}</td><td style="color:var(--ink-soft)">${l.status}</td></tr>`)));
+
+document.getElementById('kc').textContent=S.meta.key_nodes;
+const sj=document.getElementById('subject');
+S.categories.forEach(c=>{
+  const sec=$(`<div class="cat"><div class="cat-h"><span class="cn">${c.cn}</span><span class="meta">${c.key_count} 关键节点 · ${c.keys.reduce((s,k)=>s+k.example_count,0)} 实例</span></div><div class="keys"></div></div>`);
+  const kk=sec.querySelector('.keys');
+  c.keys.forEach(k=>{
+    const ex=k.examples.slice(0,8).join('、')+(k.examples.length>8?'…':'');
+    kk.appendChild($(`<div class="kn" title="${k.examples.join('、')||'(暂无实例,开放待填)'}"><span class="knn">${k.cn}</span><span class="opb">open</span><span class="exc">${k.example_count}</span><div class="ex">${ex||'—'}</div></div>`));
+  });
+  sj.appendChild(sec);
+});
+</script>
+</body></html>

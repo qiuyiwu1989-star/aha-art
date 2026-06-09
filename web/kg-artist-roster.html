@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 艺术家名单 · 区 × 流派</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--blue:#5b7596;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:940px;margin:0 auto;padding:34px 18px 96px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(22px,4.4vw,32px);font-weight:700;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.8;max-width:760px;margin:8px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:8px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .prog{display:flex;gap:8px;justify-content:center;align-items:center;margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--ink-mute)}
+  .prog .bar{width:200px;height:8px;background:var(--paper-2);border-radius:5px;overflow:hidden}.prog .fl{height:100%;background:var(--green);border-radius:5px}
+  .reg{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;border-left:4px solid var(--accent)}
+  .reg .rh{display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:10px}
+  .reg .rid{font-family:var(--mono);font-size:12px;font-weight:600;color:#fff;background:var(--accent);border-radius:6px;padding:2px 8px}
+  .reg .rn{font-family:var(--serif);font-size:19px;font-weight:700}
+  .reg .rx{font-size:12px;color:var(--ink-mute);margin-left:auto;text-align:right}
+  .mv{margin-bottom:11px}
+  .mv .mh{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+  .mv .mn{font-family:var(--serif);font-size:14.5px;font-weight:600;color:var(--ink-soft)}
+  .side{font-family:var(--mono);font-size:9.5px;color:#fff;border-radius:4px;padding:1px 6px}
+  .side.西{background:var(--accent)}.side.东{background:var(--green)}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{font-size:12.5px;border-radius:8px;padding:3px 10px;text-decoration:none;border:1px solid var(--line);background:var(--paper);color:var(--ink-mute)}
+  a.chip{background:#eef3f0;border-color:#cfe0d7;color:var(--green);font-weight:500}a.chip:hover{border-color:var(--green)}
+  a.chip .ck{font-family:var(--mono);font-size:9px}
+  .cross{margin-top:22px;background:#fbf7f0;border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:14px;padding:16px 18px}
+  .cross .ch{font-family:var(--serif);font-size:17px;font-weight:600;margin-bottom:4px}
+  .cross .cd{font-size:12.5px;color:var(--ink-mute);margin-bottom:10px}
+  .cross .ci{display:flex;flex-wrap:wrap;gap:10px}
+  .cross a{display:block;background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 13px;text-decoration:none}
+  .cross a .cn{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--ink)}.cross a:hover .cn{color:var(--accent)}
+  .cross a .cno{font-size:11px;color:var(--ink-mute);margin-top:2px}
+  .note{font-size:12.5px;color:var(--ink-soft);line-height:1.7;margin-top:18px;background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:8px;padding:11px 14px}.note b{color:var(--accent)}
+  .back{display:block;text-align:center;margin-top:40px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 艺术家建设清单</div>
+  <h1>艺术家名单 · 世界观区 × 流派</h1>
+  <p class="lead" id="lead"></p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-artist">实例·艺术家</a> › <b style="color:var(--ink-soft)">建设清单</b></div>
+  <div class="prog" id="prog"></div>
+  <div id="regions"></div>
+  <div class="cross" id="cross"></div>
+  <div id="extra"></div>
+  <div class="note">🟢 绿色可点 = 已建主页;灰色 = 待建清单。<b>关联逻辑:</b>有了风格(涌现的命名区)→ 把该流派的代表艺术家挂进对应区 → 逐个建成「会动的点云」主页。东方密集在 写意寄情,西方密集在 经验之光/形式建构,正是 V3「东西=密度非镜像」的体现。</div>
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+// 数据驱动:清单(计划)来自 roster.json,「已建/进度」实测自 kg_artists.json(只有 rich 算已建),永不脱节
+Promise.all([
+  fetch('data/kg_artist_roster.json').then(r=>r.json()),
+  fetch('data/kg_artists.json').then(r=>r.json())
+]).then(([R,A])=>{
+  document.getElementById('lead').innerHTML=R.intro;
+  const byCn={};
+  Object.values(A.artists).forEach(a=>{ if(!a.cn) return; const rich=!a._stub; const c=byCn[a.cn]; if(!c||(rich&&!c.rich)) byCn[a.cn]={id:a.id,rich}; });
+  const builtId=cn=> (byCn[cn]&&byCn[cn].rich)?byCn[cn].id:null;
+  const rosterCns=new Set();
+  let total=0,built=0;
+  const chip=(cn)=>{const id=builtId(cn); rosterCns.add(cn); total++; if(id){built++; return `<a class="chip" href="kg-artist.html?id=${id}">${cn} <span class="ck">✓</span></a>`;} return `<span class="chip">${cn}</span>`;};
+  const rc=document.getElementById('regions');
+  R.regions.forEach(rg=>{
+    const box=$(`<div class="reg"><div class="rh"><span class="rid">${rg.id}</span><span class="rn">${rg.name}</span><span class="rx">${rg.axis}</span></div></div>`);
+    rg.movements.forEach(mv=>{
+      const m=$(`<div class="mv"><div class="mh"><span class="side ${mv.side}">${mv.side}</span><span class="mn">${mv.m}</span></div></div>`);
+      m.appendChild($(`<div class="chips">${mv.artists.map(a=>chip(a.cn)).join('')}</div>`));
+      box.appendChild(m);
+    });
+    rc.appendChild(box);
+  });
+  // cross
+  const cx=document.getElementById('cross');
+  cx.appendChild($(`<div class="ch">跨越者 · 横在两区之间</div>`));
+  cx.appendChild($(`<div class="cd">不归任一区,点云横跨——东西方各一座桥。</div>`));
+  const ci=$(`<div class="ci"></div>`);
+  R.cross.forEach(a=>{rosterCns.add(a.cn); total++; const id=builtId(a.cn)||a.id; if(builtId(a.cn))built++; ci.appendChild($(`<a href="kg-artist.html?id=${id}"><div class="cn">${a.cn} ✓</div><div class="cno">${a.note}</div></a>`));});
+  cx.appendChild(ci);
+  // 清单外已建(并行扩充 / 计划外考究)——把不在 roster 里的 rich 也露出来
+  const seen=new Set(); const extra=[];
+  Object.values(A.artists).forEach(a=>{ if(a._stub||!a.cn||rosterCns.has(a.cn)||seen.has(a.cn)) return; seen.add(a.cn); extra.push(a); });
+  if(extra.length){
+    const e=document.getElementById('extra');
+    e.className='cross'; e.style.borderTopColor='var(--accent)';
+    e.appendChild($(`<div class="ch">清单外已建 · ${extra.length} 位</div>`));
+    e.appendChild($(`<div class="cd">不在正典清单里、但已有完整主页的(多为扩充考究)。点进可看。</div>`));
+    const ch=$(`<div class="chips"></div>`);
+    extra.sort((x,y)=>(x.region||'').localeCompare(y.region||'')).forEach(a=>ch.appendChild($(`<a class="chip" href="kg-artist.html?id=${a.id}">${a.cn} <span class="ck">✓</span></a>`)));
+    e.appendChild(ch);
+  }
+  // 进度(正典)+ 全库已考究实测
+  const totalRich=Object.values(A.artists).filter(a=>!a._stub).length;
+  const pct=Math.round(built/total*100), prog=document.getElementById('prog');
+  prog.appendChild($(`<span>正典已建 <b style="color:var(--green)">${built}</b> / ${total}</span>`));
+  prog.appendChild($(`<span class="bar"><span class="fl" style="display:block;height:100%;width:${pct}%"></span></span>`));
+  prog.appendChild($(`<span>${pct}% · 全库已考究 <b style="color:var(--accent)">${totalRich}</b></span>`));
+}).catch(e=>{document.getElementById('regions').innerHTML='加载失败:'+e;});
+</script>
+</body></html>

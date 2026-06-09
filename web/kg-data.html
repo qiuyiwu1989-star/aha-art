@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 知识图谱 V3 · 数据资产 / 数据字典</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:34px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(22px,4vw,32px);font-weight:700;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.75;max-width:740px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px}@media(max-width:720px){.cards{grid-template-columns:1fr 1fr}}
+  .c{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center}
+  .c .v{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--green)}.c .l{font-size:11.5px;color:var(--ink-soft);margin-top:3px}
+  .dl{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+  .btn{font-family:var(--mono);font-size:13px;color:#fff;background:var(--accent);border:none;border-radius:10px;padding:11px 20px;text-decoration:none;cursor:pointer}
+  .btn.alt{background:#fff;color:var(--accent);border:1px solid var(--accent)}
+  .sec{margin-top:38px}
+  .sec-h{font-family:var(--serif);font-size:19px;font-weight:600;border-bottom:2px solid var(--accent);padding-bottom:7px;margin-bottom:6px}
+  .sec-d{font-size:12.5px;color:var(--ink-mute);margin:8px 0 14px;line-height:1.7}.sec-d b{color:var(--ink-soft)}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:8px}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;line-height:1.6}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:11px;color:var(--ink-soft);font-weight:500}
+  td.k{font-family:var(--mono);font-size:11.5px;color:var(--accent);white-space:nowrap}
+  code{font-family:var(--mono);font-size:11px;background:var(--paper-2);border-radius:4px;padding:1px 5px}
+  .file{display:flex;gap:10px;align-items:baseline;background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px 13px;margin-top:7px}
+  .file .fn{font-family:var(--mono);font-size:12px;color:var(--accent);min-width:200px}
+  .file .fd{font-size:12px;color:var(--ink-soft);line-height:1.5}
+  .pre{background:#1d1b18;color:#ece7db;border-radius:10px;padding:14px 16px;font-family:var(--mono);font-size:11.5px;line-height:1.7;overflow-x:auto;margin-top:10px;white-space:pre}
+  .pre .key{color:#e0925a}.pre .str{color:#9fd3bf}.pre .num{color:#c98a1a}
+  .back{display:block;text-align:center;margin-top:42px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 数据资产</div>
+  <h1>V3 数据资产 / 数据字典</h1>
+  <p class="lead">把整张图谱固化成<b>一份干净、可被任何系统调用的数据资产</b>:<code>kg_v3_export.json</code>。核心论点 <b>风格 = 世界观沿生成链的投影</b>;下面是计数、下载、字段字典与源文件清单。</p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-apply">应用·工具</a> › <b style="color:var(--ink-soft)">数据资产</b></div>
+
+  <div class="cards" id="cards"></div>
+  <div class="dl">
+    <a class="btn" href="data/kg_v3_export.json" download>⬇ 下载统一导出 kg_v3_export.json</a>
+    <a class="btn alt" href="data/kg_v3_export.json" target="_blank">在浏览器查看</a>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">① 顶层结构</div>
+    <table>
+      <thead><tr><th style="width:22%">键</th><th>内容</th></tr></thead>
+      <tbody>
+        <tr><td class="k">meta</td><td>版本/论点/计数/2 条真轴/许可</td></tr>
+        <tr><td class="k">worldview</td><td>2 条正交轴 + 6 个世界观区(含定义/坐标/成员/对立邻接)= 图谱的根</td></tr>
+        <tr><td class="k">styles[202]</td><td>风格节点:向量/世界观区/坐标/年代/定义/7大构成/题材/代表作/源流</td></tr>
+        <tr><td class="k">artists[276]</td><td>艺术家:区/年代/所属风格;已考究者含个人重心/轨迹/作品点云/VAD</td></tr>
+        <tr><td class="k">edges.cross_layer_cooccur[70]</td><td>题材↔风格↔画外音↔语言 跨层共现边,全部语料派生、可追溯</td></tr>
+        <tr><td class="k">affect_anchors[14]</td><td>情绪锚点 + VAD 坐标(画外音/感知层)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">② styles[] 字段字典</div>
+    <table>
+      <thead><tr><th style="width:20%">字段</th><th>含义</th></tr></thead>
+      <tbody>
+        <tr><td class="k">id / cn / en</td><td>节点 id / 中文名 / 英文</td></tr>
+        <tr><td class="k">wv</td><td>所属世界观区(WV1–6)← 由 vector 最近质心定</td></tr>
+        <tr><td class="k">vector{4}</td><td>E 向量:再现-表现 / 结构-感知 / 秩序-张力 / 节制-强度</td></tr>
+        <tr><td class="k">coord{rep_exp,struct_perc,east_west}</td><td>用于可视化的坐标(前两条=真轴)</td></tr>
+        <tr><td class="k">year / xi / region</td><td>数值年代 / 体系 / 东西</td></tr>
+        <tr><td class="k">def / essence / voice</td><td>正式定义 / 一句精髓 / 画外音</td></tr>
+        <tr><td class="k">lang7{7}</td><td>7 大构成剖面(构图/透视/造型/光影/色彩/笔触/边缘)</td></tr>
+        <tr><td class="k">themes / works / people / parents / influences</td><td>题材 / 代表作 / 代表人物 / 源流</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">③ artists[] 字段字典</div>
+    <table>
+      <thead><tr><th style="width:20%">字段</th><th>含义</th></tr></thead>
+      <tbody>
+        <tr><td class="k">id / cn / region / born / death</td><td>id / 名 / 东西 / 生卒(知名者)</td></tr>
+        <tr><td class="k">wv / styles[]</td><td>所属世界观区 / 所属风格(实例关系)</td></tr>
+        <tr><td class="k">authored</td><td>true=深度考究(含下列);false=继承所属风格的派生页</td></tr>
+        <tr><td class="k">wv_centroid{x,y,spread}</td><td>个人重心 + 点云离散(深度)</td></tr>
+        <tr><td class="k">trajectory[] / works[] / affect / quote</td><td>一生轨迹 / 作品点云 / VAD / 名言(深度)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">④ 怎么用(查询范式)</div>
+    <div class="pre"><span class="key">// 按世界观区取风格</span>
+styles.filter(s => s.wv === <span class="str">"WV4"</span>)   <span class="key">// 经验之光:印象派/浪漫…</span>
+
+<span class="key">// 风格间相似/插值(连续向量)</span>
+dist(a.vector, b.vector)              <span class="key">// 千人千面的内核</span>
+
+<span class="key">// 沿跨层边:某风格唤起什么情绪</span>
+edges.cross_layer_cooccur
+  .filter(e => e.a === styleId && e.b.startsWith(<span class="str">"AFFECT"</span>))
+
+<span class="key">// 一句话 → 结构化 Prompt(见意图编译器)</span></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">⑤ 源文件清单(真相源)</div>
+    <div class="sec-d">导出由这些真相源合成;需要单层数据时直接取对应文件(均在 <code>data/</code>)。</div>
+    <div id="files"></div>
+  </div>
+
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+fetch('data/kg_v3_export.json').then(r=>r.json()).then(d=>{
+  const c=d.meta.counts;
+  const cards=[['风格',c.styles],['世界观区',c.worldview_regions],['艺术家',c.artists+' / '+c.artists_authored+'考究'],['关系链',c.lineage_edges],['语言向量',(c.styles_with_lang_vec||0)+'×7'],['VLM读图',c.artworks_vlm_read||0]];
+  const cc=document.getElementById('cards');
+  cards.forEach(([l,v])=>cc.appendChild($(`<div class="c"><div class="v">${v}</div><div class="l">${l}</div></div>`)));
+  const fc=document.getElementById('files');
+  const man=d.datasets||[];
+  if(man.length){man.forEach(it=>fc.appendChild($(`<div class="file"><a class="fn" href="${it.file}" target="_blank">${it.file.replace('data/','')}</a><div class="fd">${it.desc} <span style="color:var(--ink-faint);font-family:var(--mono);font-size:10px">· ${it.kb}KB</span></div></div>`)));}
+  else fc.innerHTML='<div style="color:#a89f8f">无清单</div>';
+}).catch(()=>{document.getElementById('cards').innerHTML='<div style="color:#a89f8f;grid-column:1/-1;text-align:center">需服务器加载</div>';});
+</script>
+</body></html>

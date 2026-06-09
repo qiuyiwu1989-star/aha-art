@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 选一种方式逛美术馆</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/aha.css?v=3"/>
+<style>
+  body{background:var(--paper);overflow:auto}
+  .wrap{max-width:880px;margin:0 auto;padding:64px 22px 80px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  h1{font-family:var(--serif);font-size:clamp(28px,5vw,40px);font-weight:500;text-align:center;letter-spacing:-.01em}
+  .sub{text-align:center;color:var(--ink-mute);font-size:14.5px;line-height:1.7;margin:12px auto 4px;max-width:560px}
+  .note{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-bottom:36px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;
+    padding:24px;transition:all .22s var(--ease)}
+  .card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 16px 40px -20px rgba(40,30,20,.4)}
+  .c-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  .c-name{font-family:var(--serif);font-size:24px;font-weight:500;color:var(--ink);margin:6px 0 2px}
+  .c-en{font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-bottom:12px}
+  .c-desc{font-size:13.5px;line-height:1.7;color:var(--ink-soft)}
+  .c-feel{font-family:var(--serif);font-style:italic;color:var(--accent);font-size:13.5px;margin-top:12px}
+  .c-go{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:14px}
+  .card:hover .c-go{color:var(--accent)}
+  @media(max-width:620px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · four ways to wander</div>
+  <h1>同一座美术馆,<br/>选一种逛法</h1>
+  <p class="sub">四个交互方案,共用同一批名画与同一张知识图谱,只换"交互外壳"。点进去随便逛,感受差别。</p>
+  <p class="note">你的口味在四个版本间共享,可来回切换对比 · 想重置就清浏览器本地存储</p>
+  <div class="grid">
+    <a class="card" href="variant-drift.html">
+      <div class="c-tag">A · lean-back</div>
+      <div class="c-name">漂流</div><div class="c-en">Drift</div>
+      <div class="c-desc">零决策。轻点一下,画就温柔地溶进下一幅——aha 替你走图谱,连接在过渡里轻声浮现。还能开"环境模式"自动漂流。</div>
+      <div class="c-feel">"被一条懂你的暗流,带着走。"</div>
+      <div class="c-go">进入 →</div>
+    </a>
+    <a class="card" href="variant-crossroads.html">
+      <div class="c-tag">B · lean-forward</div>
+      <div class="c-name">岔路</div><div class="c-en">Crossroads</div>
+      <div class="c-desc">沉浸全屏,你来掌舵。轻点读它,想继续时才"推开一扇门"——2~3 扇连接里挑一条走,门含反茧房的"探索"。</div>
+      <div class="c-feel">"路口只在你想转的时候出现。"</div>
+      <div class="c-go">进入 →</div>
+    </a>
+    <a class="card" href="variant-resonance.html">
+      <div class="c-tag">C · 连接优先</div>
+      <div class="c-name">并置</div><div class="c-en">Resonance</div>
+      <div class="c-desc">每一屏都是一对画。当前作品 + 与它最共鸣的另一幅,中间写着"为何相连"。点右图走进它,顿悟始终在场。</div>
+      <div class="c-feel">"啊,这两个,原来如此。"</div>
+      <div class="c-go">进入 →</div>
+    </a>
+    <a class="card" href="index.html">
+      <div class="c-tag">D · 完整版</div>
+      <div class="c-name">经典</div><div class="c-en">Classic</div>
+      <div class="c-desc">最完整的一版:冷启动审美滑滑 + 今日一帧 + 作品页三扇门 + "为你而来"理由 + 走完连成"星座"。适合看全貌。</div>
+      <div class="c-feel">"从认识你的眼睛,到你的星座。"</div>
+      <div class="c-go">进入 →</div>
+    </a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 风格投影 · 沿生成链对比</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:30px 16px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(21px,4vw,31px);font-weight:700;text-align:center;margin:7px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13px;line-height:1.7;max-width:760px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;margin-top:18px}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff;flex-wrap:wrap}
+  .seg button{border:none;background:#fff;font-size:12px;color:var(--ink-soft);padding:6px 10px;cursor:pointer;border-left:1px solid var(--line)}
+  .seg button:first-child{border-left:none}.seg button.on{color:#fff}
+  #search{font-size:12.5px;border:1px solid var(--line);border-radius:9px;padding:6px 11px;outline:none;background:#fff;width:160px}
+  #search:focus{border-color:var(--accent)}
+  .btnclr{font-family:var(--mono);font-size:11px;color:var(--ink-mute);background:#fff;border:1px solid var(--line);border-radius:9px;padding:6px 11px;cursor:pointer}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px;min-height:26px}
+  .chip{font-size:12px;border-radius:7px;padding:3px 9px;cursor:pointer;color:#fff;display:inline-flex;align-items:center;gap:5px}
+  .chip .x{opacity:.7;font-family:var(--mono)}.chip:hover .x{opacity:1}
+  .panels{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}@media(max-width:820px){.panels{grid-template-columns:1fr}}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px}
+  .ph{font-family:var(--serif);font-size:15px;font-weight:600;margin-bottom:4px}
+  .pd{font-size:11.5px;color:var(--ink-mute);margin-bottom:8px;line-height:1.5}
+  svg{width:100%;height:auto;display:block}
+  .l7table{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;overflow-x:auto}
+  table{border-collapse:collapse;font-size:12px;width:100%;min-width:520px}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top;line-height:1.5}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);font-weight:500;position:sticky;left:0}
+  td.k{font-family:var(--serif);font-weight:600;color:var(--accent);white-space:nowrap;background:#fbf9f4}
+  .insight{font-size:12.5px;color:var(--ink-soft);background:var(--accent-soft);border:1px dashed var(--accent);border-radius:10px;padding:11px 15px;line-height:1.7;margin-top:16px;text-align:center}.insight b{color:var(--accent)}
+  .tip{position:fixed;z-index:40;pointer-events:none;background:#fff;border:1px solid var(--line);box-shadow:0 6px 20px rgba(80,60,30,.18);border-radius:8px;padding:5px 10px;font-size:12px;opacity:0;transition:opacity .1s}.tip.show{opacity:1}
+  .back{display:block;text-align:center;margin-top:34px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="tip" id="tip"></div>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 风格投影</div>
+  <h1>风格 = 沿生成链的投影</h1>
+  <p class="lead">V3 的核心论点做成可玩的:选一个<b>世界观区</b>或几个风格,看它们如何同时投影到 <b>世界观平面(根)</b>、<b>E向量雷达(签名)</b>、<b>7大构成(语言)</b>。同一区的风格<b>在平面上聚集、雷达形状相似</b>——这正说明"投影是连贯的、风格不是孤立标签"。<b>想反过来看两个风格的<a href="kg-style-compare.html" style="color:var(--accent)">差异</a>?去风格对比页。</b></p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">投影对比</b></div>
+  <div style="text-align:center;margin-top:10px;font-family:var(--mono);font-size:11px"><span style="color:var(--ink-faint)">两种对比工具 · </span><a href="kg-style-compare.html" style="color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 11px">⚖️ 看差异</a> <span style="background:var(--accent);color:#fff;border-radius:999px;padding:3px 11px">🎯 看聚集(本页)</span></div>
+
+  <div class="controls">
+    <div class="seg" id="segRegion"></div>
+    <input type="text" id="search" placeholder="加一个风格…"/>
+    <button class="btnclr" id="clr">清空</button>
+  </div>
+  <div class="chips" id="chips"></div>
+
+  <div class="panels">
+    <div class="panel"><div class="ph">① 世界观平面 · 根</div><div class="pd">再现-表现 × 结构-感知。淡点=全部 202 风格,实点=已选(看它们在根空间里聚不聚)。</div><svg id="plane" viewBox="0 0 480 400"></svg></div>
+    <div class="panel"><div class="ph">② E 向量雷达 · 签名</div><div class="pd">4 轴:再现-表现 / 结构-感知 / 秩序-张力 / 节制-强度。形状越像=投影越接近(仅含有向量的风格,最多叠 8 个)。</div><svg id="radar" viewBox="0 0 400 360"></svg></div>
+  </div>
+
+  <div class="l7table"><div class="ph" style="margin-bottom:8px">③ 7 大构成 · 语言剖面对比</div><div id="l7wrap"><div style="color:var(--ink-faint);font-size:12px">选风格后显示各自的 7 大构成剖面对比。</div></div></div>
+
+  <div class="insight" id="insight"></div>
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const NS='http://www.w3.org/2000/svg';
+const el=(n,a,t)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(t!=null)e.textContent=t;return e;};
+const WVC={WV1:'#b0673a',WV2:'#9a7b3a',WV3:'#5a7d6f',WV4:'#5b7596',WV5:'#8a5a7a',WV6:'#4a6a8a'};
+const PALETTE=['#b0673a','#5b7596','#5a7d6f','#c98a1a','#8a5a7a','#4a6a8a','#a8443a','#6a8a4a'];
+const AX=["再现-表现","结构-感知","秩序-张力","节制-强度"];
+const SEVEN=["构图与组织","透视与空间","形状与造型","光影与明暗","色彩系统","笔触与肌理","边缘与节奏"];
+let NODES=[], byId={}, REG=[], sel=[]; // sel = array of ids (ordered, for color)
+fetch('data/kg_style.json').then(r=>r.json()).then(sty=>{
+  NODES=sty.nodes.filter(n=>n.coord&&n.coord.rep_exp!=null);
+  NODES.forEach(n=>byId[n.id]=n);
+  return fetch('data/kg_worldview_regions.json').then(r=>r.json());
+}).then(wv=>{
+  REG=wv.regions;
+  const seg=document.getElementById('segRegion');
+  REG.forEach(r=>{const b=document.createElement('button');b.textContent=r.id+' '+r.name;b.onclick=()=>{selectRegion(r.id);
+    seg.querySelectorAll('button').forEach(x=>{x.classList.remove('on');x.style.background='#fff';x.style.color='';});
+    b.classList.add('on');b.style.background=WVC[r.id];b.style.color='#fff';};seg.appendChild(b);});
+  // search
+  const sr=document.getElementById('search');
+  sr.addEventListener('keydown',e=>{if(e.key==='Enter'){const q=sr.value.trim();const m=NODES.find(n=>n.cn===q)||NODES.find(n=>n.cn.includes(q));if(m&&!sel.includes(m.id)){sel.push(m.id);draw();}sr.value='';}});
+  document.getElementById('clr').onclick=()=>{sel=[];document.querySelectorAll('#segRegion button').forEach(x=>{x.classList.remove('on');x.style.background='#fff';x.style.color='';});draw();};
+  // default: WV4
+  const def=document.querySelector('#segRegion button:nth-child(4)'); selectRegion('WV4'); if(def){def.classList.add('on');def.style.background=WVC.WV4;def.style.color='#fff';}
+});
+function selectRegion(rid){sel=NODES.filter(n=>n.wv===rid).map(n=>n.id);draw();}
+function colorOf(i){return PALETTE[i%PALETTE.length];}
+function draw(){drawPlane();drawRadar();drawChips();drawL7();drawInsight();}
+function drawChips(){const c=document.getElementById('chips');c.innerHTML='';
+  sel.forEach((id,i)=>{const n=byId[id];const s=document.createElement('span');s.className='chip';s.style.background=colorOf(i);
+    s.innerHTML=`${n.cn} <span class="x">✕</span>`;s.onclick=()=>{sel.splice(i,1);draw();};c.appendChild(s);});}
+function drawPlane(){
+  const svg=document.getElementById('plane');while(svg.firstChild)svg.removeChild(svg.firstChild);
+  const W=480,H=400,P=40,xv=v=>P+v*(W-2*P),yv=v=>H-P-v*(H-2*P);
+  svg.appendChild(el('rect',{x:xv(0),y:yv(1),width:xv(1)-xv(0),height:yv(0)-yv(1),fill:'#fcfaf5',stroke:'#e8e0d0'}));
+  [.25,.5,.75].forEach(t=>{svg.appendChild(el('line',{x1:xv(t),y1:yv(0),x2:xv(t),y2:yv(1),stroke:'#efe9dc'}));svg.appendChild(el('line',{x1:xv(0),y1:yv(t),x2:xv(1),y2:yv(t),stroke:'#efe9dc'}));});
+  svg.appendChild(el('text',{x:xv(0)-6,y:yv(.5)+4,'text-anchor':'end','font-size':10,fill:'#5a7d6f','font-family':'JetBrains Mono'},'再现'));
+  svg.appendChild(el('text',{x:xv(1)+6,y:yv(.5)+4,'font-size':10,fill:'#b0673a','font-family':'JetBrains Mono'},'表现'));
+  svg.appendChild(el('text',{x:xv(.5),y:yv(0)+13,'text-anchor':'middle','font-size':10,fill:'#5a7d6f','font-family':'JetBrains Mono'},'结构'));
+  svg.appendChild(el('text',{x:xv(.5),y:yv(1)-7,'text-anchor':'middle','font-size':10,fill:'#b0673a','font-family':'JetBrains Mono'},'感知'));
+  NODES.forEach(n=>{const isSel=sel.includes(n.id);if(isSel)return;svg.appendChild(el('circle',{cx:xv(n.coord.rep_exp),cy:yv(n.coord.struct_perc),r:2.6,fill:'#cabfa8','fill-opacity':.5}));});
+  sel.forEach((id,i)=>{const n=byId[id];const c=el('circle',{cx:xv(n.coord.rep_exp),cy:yv(n.coord.struct_perc),r:6,fill:colorOf(i),stroke:'#fff','stroke-width':1.4});
+    const t=el('title',{});t.textContent=n.cn;c.appendChild(t);svg.appendChild(c);});
+}
+function drawRadar(){
+  const svg=document.getElementById('radar');while(svg.firstChild)svg.removeChild(svg.firstChild);
+  const W=400,H=360,cx=W/2,cy=H/2+6,R=120;
+  const ang=k=>(-90+k*90)*Math.PI/180; // 4 axes at top/right/bottom/left
+  const pt=(k,v)=>[cx+Math.cos(ang(k))*R*v, cy+Math.sin(ang(k))*R*v];
+  [.25,.5,.75,1].forEach(g=>{const pts=AX.map((_,k)=>pt(k,g).join(',')).join(' ');svg.appendChild(el('polygon',{points:pts,fill:'none',stroke:'#e8e0d0','stroke-width':1}));});
+  AX.forEach((a,k)=>{const[x,y]=pt(k,1);svg.appendChild(el('line',{x1:cx,y1:cy,x2:x,y2:y,stroke:'#e0d8c8'}));
+    const[lx,ly]=pt(k,1.16);const parts=a.split('-');
+    svg.appendChild(el('text',{x:lx,y:ly+3,'text-anchor':'middle','font-size':10,fill:'#857d6f','font-family':'JetBrains Mono'},parts[1]||a));});
+  const withV=sel.map((id,i)=>({n:byId[id],i})).filter(o=>o.n.lore&&o.n.lore.vector&&AX.every(a=>o.n.lore.vector[a]!=null)).slice(0,8);
+  withV.forEach(({n,i})=>{const v=n.lore.vector;const pts=AX.map((a,k)=>pt(k,v[a]).join(',')).join(' ');const col=colorOf(i);
+    svg.appendChild(el('polygon',{points:pts,fill:col,'fill-opacity':.08,stroke:col,'stroke-width':2,'stroke-opacity':.85}));
+    AX.forEach((a,k)=>{const[x,y]=pt(k,v[a]);svg.appendChild(el('circle',{cx:x,cy:y,r:3,fill:col}));});});
+  if(!withV.length)svg.appendChild(el('text',{x:cx,y:cy,'text-anchor':'middle','font-size':12,fill:'#a89f8f'},'所选风格暂无向量数据'));
+}
+function drawL7(){
+  const wrap=document.getElementById('l7wrap');
+  const withL=sel.map(id=>byId[id]).filter(n=>n.lore&&n.lore.lang7).slice(0,5);
+  if(!withL.length){wrap.innerHTML='<div style="color:var(--ink-faint);font-size:12px">所选风格暂无 7 大构成剖面(lang7)。</div>';return;}
+  let h='<table><thead><tr><th>7 大构成</th>'+withL.map((n,i)=>`<th style="color:${colorOf(sel.indexOf(n.id))}">${n.cn}</th>`).join('')+'</tr></thead><tbody>';
+  SEVEN.forEach(k=>{h+=`<tr><td class="k">${k}</td>`+withL.map(n=>`<td>${(n.lore.lang7[k]||'—')}</td>`).join('')+'</tr>';});
+  h+='</tbody></table>';
+  if(sel.filter(id=>byId[id].lore&&byId[id].lore.lang7).length>5)h+=`<div style="font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-top:6px">仅显示前 5 个含剖面的风格</div>`;
+  wrap.innerHTML=h;
+}
+function drawInsight(){
+  const ins=document.getElementById('insight');
+  if(!sel.length){ins.innerHTML='选一个世界观区开始 —— 看同区风格如何在三个空间里同步聚集。';return;}
+  // compute spread on plane (std of coords) for selected
+  const xs=sel.map(id=>byId[id].coord.rep_exp),ys=sel.map(id=>byId[id].coord.struct_perc);
+  const m=a=>a.reduce((s,v)=>s+v,0)/a.length, sd=a=>Math.sqrt(m(a.map(v=>(v-m(a))**2)));
+  const regs=[...new Set(sel.map(id=>byId[id].wv))];
+  const tight=(sd(xs)<0.13&&sd(ys)<0.16);
+  ins.innerHTML=`已选 <b>${sel.length}</b> 个风格,跨 <b>${regs.length}</b> 个世界观区。平面离散度 σ(再现)=${sd(xs).toFixed(2)} σ(结构)=${sd(ys).toFixed(2)}。${regs.length===1?(tight?'<b>同一区→在平面上紧聚、雷达形状相近:投影连贯 ✓</b>':'同区但略有展开(区内仍有个体差异)。'):'跨区选择 → 平面上分散、雷达形状分化,正好看出不同世界观的投影差异。'}`;
+}
+</script>
+</body></html>

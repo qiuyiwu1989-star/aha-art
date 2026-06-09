@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 风格详情 · 统一标准框架</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:860px;margin:0 auto;padding:34px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(21px,4vw,30px);font-weight:600;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.7;max-width:700px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .gold{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+  .gb{display:block;background:#fff;border:1px solid var(--line);border-top:3px solid #c98a1a;border-radius:12px;padding:12px 18px;text-decoration:none;text-align:center}
+  .gb:hover{border-color:var(--accent)}
+  .gb .gl{font-family:var(--mono);font-size:9.5px;color:#c98a1a}.gb .gn{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--ink);margin-top:3px}.gb .gd{font-size:11px;color:var(--ink-mute);margin-top:2px}
+  .sec{margin-top:30px}.sec-h{font-family:var(--serif);font-size:18px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:6px}
+  .sec-d{font-size:12.5px;color:var(--ink-mute);margin-bottom:12px;line-height:1.6}.sec-d b{color:var(--ink-soft)}
+  .row{display:flex;gap:12px;background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 15px;margin-bottom:8px}
+  .row .rk{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--accent);min-width:150px;flex-shrink:0}
+  .row .rf{font-size:12.5px;color:var(--ink-soft);line-height:1.65}
+  .origin{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}@media(max-width:600px){.origin{grid-template-columns:1fr}}
+  .oc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 13px}.oc .ot{font-family:var(--serif);font-size:14px;font-weight:600;margin-bottom:4px}.oc .od{font-size:12px;color:var(--ink-soft);line-height:1.6}
+  .back{display:block;text-align:center;margin-top:38px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 风格详情标准</div>
+  <h1>统一标准框架</h1>
+  <p class="lead">把<b>印象派模板</b>(精髓/源流/语言剖面/代表作)与<b>巡回画派 8 维 schema</b>(A 身份–H 画外音)<b>融合为一个标准</b>。以后<b>所有风格</b>的详情页都按这 9 段展开,体例统一、可对比、经得起推敲。</p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">风格详情标准</b></div>
+
+  <div class="sec">
+    <div class="sec-h">两个黄金范本(已按标准填满)</div>
+    <div class="sec-d">这两个是体例标杆——一西一东、一感知一现实,所有风格照此办理。</div>
+    <div class="gold">
+      <a class="gb" href="kg-style-detail.html?id=STYLE.west.029"><div class="gl">西方 · 感知</div><div class="gn">印象派</div><div class="gd">光与一瞬的感觉</div></a>
+      <a class="gb" href="kg-style-detail.html?id=STYLE.west.028"><div class="gl">俄国 · 现实</div><div class="gn">俄罗斯巡回画派</div><div class="gd">为苦难者立此存照</div></a>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">标准 · 9 段结构</div>
+    <div class="sec-d">融合来源:① 来自巡回画派 8 维(身份/锚点/家族/世界模型/E向量/主题/语言/画外音);② 来自印象派模板(精髓一句话/源流演化链/语言剖面/代表作)。</div>
+    <div id="rows"></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">两套来源 · 字段对照</div>
+    <div class="origin">
+      <div class="oc"><div class="ot">巡回画派 8 维 schema</div><div class="od">A 身份 · B 历史锚点 · C 风格家族 · D 世界模型 · <b>E 风格轴向量★</b> · F 主题叙事 · G 语言偏好 · H 画外音价值</div></div>
+      <div class="oc"><div class="ot">印象派 lore 模板</div><div class="od">精髓一句话 · 时期/发源地 · <b>源流演化链</b>(承自→影响→对抗) · 母题/色彩/技法剖面 · 代表作名单</div></div>
+    </div>
+  </div>
+
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+fetch('data/kg_style_framework.json').then(r=>r.json()).then(F=>{
+  const rc=document.getElementById('rows');
+  F.sections.forEach(s=> rc.appendChild($(`<div class="row"><div class="rk">${s.cn}</div><div class="rf">${s.fields}</div></div>`)));
+}).catch(e=>{document.getElementById('rows').innerHTML='加载失败:'+e;});
+</script>
+</body></html>

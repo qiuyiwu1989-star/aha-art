@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 一画解读 · 坐标即解释</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--blue:#5b7596;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:30px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(22px,4.4vw,30px);font-weight:700;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.7;max-width:680px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .read{display:none;margin-top:18px}
+  .rtop{display:grid;grid-template-columns:300px 1fr;gap:18px}@media(max-width:640px){.rtop{grid-template-columns:1fr}}
+  .rimg{width:100%;border:1px solid var(--line);border-radius:12px;background:var(--paper-2);display:block}
+  .rcap{font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px;text-align:center}
+  .rhd{font-family:var(--serif)}
+  .rhd .rt{font-size:22px;font-weight:700}.rhd .ra{font-size:14px;color:var(--accent);margin-left:6px}
+  .rhd .rmeta{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:5px}
+  .chain{margin-top:12px}
+  .step{display:flex;gap:11px;background:#fff;border:1px solid var(--line);border-radius:11px;padding:11px 13px;margin-bottom:8px}
+  .step .sl{font-family:var(--mono);font-size:10px;font-weight:600;color:#fff;border-radius:6px;padding:3px 7px;height:fit-content;flex-shrink:0;white-space:nowrap}
+  .step.l0 .sl{background:var(--accent)}.step.l12 .sl{background:var(--green)}.step.l3 .sl{background:var(--blue)}.step.l4 .sl{background:var(--gold)}
+  .step .sb{font-size:13px;color:var(--ink-soft);line-height:1.7}.step .sb b{color:var(--ink)}
+  .synth{background:var(--accent-soft);border:1px solid #e5d3c2;border-radius:12px;padding:14px 16px;margin-top:14px;font-size:13.5px;line-height:1.9;color:var(--ink-soft)}.synth b{color:var(--accent)}
+  .planemini{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;margin-top:14px}
+  .near{margin-top:14px}
+  .near .nh{font-family:var(--serif);font-size:15px;font-weight:600;margin-bottom:8px}
+  .nrow{display:flex;gap:9px;flex-wrap:wrap}
+  .nrow a{font-size:12.5px;color:var(--green);background:#eef3f0;border:1px solid #cfe0d7;border-radius:8px;padding:4px 11px;text-decoration:none}.nrow a:hover{border-color:var(--green)}
+  .gh{font-family:var(--serif);font-size:16px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:7px;margin:24px 0 12px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
+  .gi{cursor:pointer;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--paper-2);transition:border-color .12s,transform .12s}
+  .gi:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .gi img{width:100%;height:84px;object-fit:cover;display:block}
+  .gi .gl{font-size:10px;color:var(--ink-mute);padding:3px 5px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .empty{text-align:center;color:var(--ink-faint);padding:40px}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 坐标即解释</div>
+  <h1>一画解读 —— 沿生成链读懂一张画</h1>
+  <p class="lead">选一张真迹,aha 会沿 V3 的<b>生成链</b>(世界观 → 实现 → 效应 → 意义)把它<b>为什么这样画</b>讲给你听——这是"理解即生成"的兑现。</p>
+  <div class="breadcrumb"><a href="kg-artist-framework.html">生成链是什么</a> · <a href="kg-artist-atlas.html">全员星图</a> · <a href="kg-taste.html">审美定位</a> · 当前:一画解读</div>
+  <div id="read" class="read"></div>
+  <div class="gh" id="gh">选一张画 ↓</div>
+  <div class="grid" id="grid"></div>
+  <div id="loading" class="empty">加载中…</div>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const NS='http://www.w3.org/2000/svg',E=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+let A,IMG,REG=[],PIX={},POLES=[],RICH=[],WVN={};
+Promise.all([
+  fetch('data/kg_artists.json').then(r=>r.json()),
+  fetch('data/kg_artist_images.json').then(r=>r.json()),
+  fetch('data/kg_worldview_v3.json').then(r=>r.json()).catch(()=>({regions:[]})),
+  fetch('data/kg_artist_pixels.json').then(r=>r.json()).catch(()=>({}))
+]).then(([a,img,wv,px])=>{
+  A=a.artists; IMG=img; REG=wv.regions||[]; PIX=px; POLES=(a.meta&&a.meta.lang_poles)||[];
+  REG.forEach(r=>WVN[r.id]=r.name);
+  RICH=Object.values(A).filter(x=>!x._stub&&x.wv&&x.wv.x!=null);
+  const grid=document.getElementById('grid');
+  const list=[];
+  Object.keys(IMG).forEach(id=>{const ar=A[id]; if(!ar)return; (IMG[id].items||[]).forEach((it,i)=>list.push({id,ar,it,i}));});
+  list.forEach(L=>{const g=$(`<div class="gi" title="${L.it.title} · ${L.ar.cn}"><img loading="lazy" src="${L.it.file}"><div class="gl">${L.ar.cn}</div></div>`);
+    g.addEventListener('click',()=>explain(L)); grid.appendChild(g);});
+  document.getElementById('loading').style.display='none';
+  if(list.length) explain(list.find(L=>L.id==='ARTIST.vangogh')||list[0]);
+}).catch(e=>{document.getElementById('loading').textContent='加载失败:'+e;});
+
+function langTop(lang,n){
+  return POLES.map(p=>({k:p.k,l:p.l,r:p.r,v:lang[p.k]})).filter(o=>o.v!=null)
+    .map(o=>({...o,dev:Math.abs(o.v-0.5),side:o.v<0.5?o.l:o.r}))
+    .sort((x,y)=>y.dev-x.dev).slice(0,n).map(o=>`${o.k}偏${o.side}`);
+}
+function explain(L){
+  const a=L.ar, wv=a.wv, x=wv.x, y=wv.y;
+  const hasW=L.it.wv&&L.it.wv.x!=null, wx=hasW?L.it.wv.x:x, wy=hasW?L.it.wv.y:y;
+  const read=document.getElementById('read'); read.style.display='block';
+  document.getElementById('gh').textContent='换一张画 ↓';
+  const xside=x<0.5?'忠于眼睛所见 · 再现':'忠于内心所感 · 表现';
+  const yside=y<0.5?'把世界把握为底层的结构与秩序':'把世界把握为即时的光色与感受';
+  const reg=REG.find(r=>r.id===wv.region_id);
+  const sr=a.style_relation||{}; const mode=sr.mode||''; const tgt=sr.target||'';
+  const aff=a.affect||{}; const quad=aff.v!=null?(aff.a>=0.5?(aff.v>=0.5?'昂扬·欢腾':'紧张·悲怆'):(aff.v>=0.5?'宁静·惬意':'忧郁·萧索')):'';
+  const lt=a.lang?langTop(a.lang,3):[];
+  const px=PIX[a.id];
+  const pxtxt=px?`像素实测:明度 ${px.brightness.toFixed(2)} · 饱和 ${px.saturation.toFixed(2)} · 对比 ${px.contrast.toFixed(2)} · ${px.warmth>0.5?'偏暖':'偏冷'}调`:'';
+  const near=RICH.filter(r=>r.id!==a.id).map(r=>({r,d:Math.hypot(r.wv.x-x,r.wv.y-y)})).sort((p,q)=>p.d-q.d).slice(0,5);
+  // 顶部:图 + 抬头 + 链
+  let html=`<div class="rtop"><div><img class="rimg" src="${L.it.file}" alt="${L.it.title}"><div class="rcap">${L.it.title}${L.it.source?' · '+L.it.source:''}</div></div><div>`;
+  html+=`<div class="rhd"><span class="rt">${a.cn}</span><span class="ra">${a.en||''}</span><div class="rmeta">${a.region==='east'?'东方':'西方'} · ${a.born||''}–${a.death||''} · ${mode?mode+' 「'+tgt+'」':''}</div></div>`;
+  html+=`<div class="chain">`;
+  html+=`<div class="step l0"><span class="sl">① 世界观 L0</span><div class="sb"><b>${reg?reg.name:''}</b> · 坐标(再现-表现 ${x.toFixed(2)} · 结构-感知 ${y.toFixed(2)})。它<b>${xside}</b>,<b>${yside}</b>。${reg&&reg.essence?reg.essence:''}${hasW?`<br><span style="color:var(--ink-mute);font-size:12px">本幅自身坐标(逐张读图):再现-表现 ${wx.toFixed(2)} · 结构-感知 ${wy.toFixed(2)}${(Math.abs(wx-x)+Math.abs(wy-y))>0.18?' — 与画家重心有偏移':''}</span>`:''}</div></div>`;
+  html+=`<div class="step l12"><span class="sl">② 实现 L1·L2</span><div class="sb">画什么:${(a.subjects||[]).join('、')}。怎么画:<b>${lt.join(' / ')}</b>。${a.language?a.language+'。':''}${pxtxt?'<br><span style="color:var(--ink-mute);font-size:12px">'+pxtxt+'(取自真迹)</span>':''}</div></div>`;
+  html+=`<div class="step l3"><span class="sl">③ 效应 L3</span><div class="sb">惯常唤起「<b>${quad}</b>」的感受。${aff.note||''} <span style="color:var(--ink-faint);font-size:11.5px">(情绪为诠释,实测不可由像素直推)</span></div></div>`;
+  html+=`<div class="step l4"><span class="sl">④ 意义 L4</span><div class="sb">${a.meaning||''}${a.quote?'<br>「'+a.quote+'」':''}</div></div>`;
+  html+=`</div></div></div>`;
+  // 综合一段
+  html+=`<div class="synth">沿生成链读这张画:<b>${a.cn}</b>站在【${x<0.5?'再现':'表现'} × ${y<0.5?'结构':'感知'}】的位置,${reg?'落在「'+reg.name+'」':''}——这决定了他<b>画什么</b>(${(a.subjects||[])[0]||''}…)和<b>怎么画</b>(${lt[0]||''});这些痕迹对观者做的,是「${quad}」;而它最终想说的,是<b>${(a.meaning||'').replace(/。$/,'')}</b>。${mode==='立区'?'他更是这一区的<b>开创者</b>。':mode==='跨越'?'他横跨了两区,是其间的<b>桥</b>。':''}</div>`;
+  // 平面
+  html+=`<div class="planemini" id="pm"></div>`;
+  // 同脉
+  html+=`<div class="near"><div class="nh">同脉最近 · 按世界观距离</div><div class="nrow">${near.map(n=>`<a href="kg-artist.html?id=${n.r.id}">${n.r.cn} · ${WVN[n.r.wv.region_id]||''}</a>`).join('')}</div></div>`;
+  html+=`<div style="margin-top:14px;font-family:var(--mono);font-size:12px"><a href="kg-artist.html?id=${a.id}" style="color:var(--accent);text-decoration:none">→ 看 ${a.cn} 的完整主页</a></div>`;
+  read.innerHTML=html;
+  // mini plane
+  const pm=document.getElementById('pm'); const W=620,H=380,pad=44, sx=v=>pad+v*(W-2*pad), sy=v=>H-pad-v*(H-2*pad);
+  const svg=E('svg',{viewBox:`0 0 ${W} ${H}`,style:'width:100%;height:auto'});
+  svg.appendChild(E('rect',{x:pad,y:pad,width:W-2*pad,height:H-2*pad,fill:'#fcfaf5',stroke:'#e8e0d0'}));
+  const T=(X,Y,s,o={})=>{const e=E('text',{x:X,y:Y,'font-family':o.f||'Noto Sans SC','font-size':o.fs||10,fill:o.fill||'#a89f8f','text-anchor':o.a||'middle'});e.textContent=s;if(o.w)e.setAttribute('font-weight',o.w);if(o.st){e.setAttribute('paint-order','stroke');e.setAttribute('stroke',o.st);e.setAttribute('stroke-width',o.sw||3);}svg.appendChild(e);};
+  T(sx(.02),H-pad+15,'再现',{a:'start',fill:'#5a7d6f',w:600});T(sx(.98),H-pad+15,'表现→',{a:'end',fill:'#b0673a',w:600});
+  T(pad-8,sy(.03),'结构',{a:'end',fill:'#5a7d6f',w:600});T(pad-8,sy(.95),'感知',{a:'end',fill:'#b0673a',w:600});
+  REG.forEach(r=>{const here=r.id===wv.region_id;svg.appendChild(E('circle',{cx:sx(r.cx),cy:sy(r.cy),r:here?11:6,fill:'none',stroke:here?'#b0673a':'#cfc6b4','stroke-width':here?2:1.2,'stroke-dasharray':'3 3'}));T(sx(r.cx),sy(r.cy)-13,r.name,{f:'Noto Serif SC',fs:here?12:10,fill:here?'#b0673a':'#bcb3a2',w:here?600:400,st:'#fcfaf5'});});
+  RICH.forEach(r=>svg.appendChild(E('circle',{cx:sx(r.wv.x),cy:sy(r.wv.y),r:2.6,fill:r.region==='east'?'#aac3b8':'#d8b9a3','fill-opacity':.5})));
+  const ACR=a.region==='east'?'#5a7d6f':'#b0673a';
+  if(hasW && (Math.abs(wx-x)+Math.abs(wy-y))>0.04){
+    // 画家重心(空心环)— 连线 — 本幅(实心)
+    svg.appendChild(E('line',{x1:sx(x),y1:sy(y),x2:sx(wx),y2:sy(wy),stroke:ACR,'stroke-width':1.4,'stroke-dasharray':'4 3','stroke-opacity':.7}));
+    svg.appendChild(E('circle',{cx:sx(x),cy:sy(y),r:7,fill:'none',stroke:ACR,'stroke-width':2,'stroke-opacity':.8}));
+    T(sx(x),sy(y)+(wy>=y?18:-12),a.cn+'·重心',{f:'Noto Serif SC',fs:11,fill:'#857d6f',w:600,st:'#fcfaf5'});
+    svg.appendChild(E('circle',{cx:sx(wx),cy:sy(wy),r:9,fill:ACR,stroke:'#fff','stroke-width':2.5}));
+    T(sx(wx),sy(wy)-14,'这幅',{f:'Noto Serif SC',fs:13,fill:'#1d1b18',w:700,st:'#fcfaf5'});
+  }else{
+    svg.appendChild(E('circle',{cx:sx(x),cy:sy(y),r:9,fill:ACR,stroke:'#fff','stroke-width':2.5}));
+    T(sx(x),sy(y)-14,a.cn,{f:'Noto Serif SC',fs:13,fill:'#1d1b18',w:700,st:'#fcfaf5'});
+  }
+  pm.appendChild(svg);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body></html>

@@ -1,0 +1,3278 @@
+{
+ "meta": {
+  "layer": "题材",
+  "en": "Subject",
+  "version": "V2-draft-0.1",
+  "src": "V1.xlsx Sheet1 绘画题材",
+  "total": 614,
+  "cat_count": 10,
+  "note": "V2 题材层=可观测离散原子，从 V1 Sheet1 零损耗整合；大类层补东/西方语义差异。"
+ },
+ "categories": [
+  {
+   "id": "SUBJECT.figure",
+   "cn": "人物题材",
+   "en": "Figure",
+   "count": 57,
+   "shift": {
+    "west": "结构体 · 解剖与个体",
+    "east": "气与神 · 神韵与身份"
+   },
+   "atoms": [
+    {
+     "id": "SUBJECT.figure.01",
+     "cn": "肖像",
+     "desc": "单一人物形象描绘，表现性格、身份与心理"
+    },
+    {
+     "id": "SUBJECT.figure.02",
+     "cn": "自画像",
+     "desc": "艺术家自我意识的视觉化呈现"
+    },
+    {
+     "id": "SUBJECT.figure.03",
+     "cn": "群像",
+     "desc": "多人物构成的社会或集体场景"
+    },
+    {
+     "id": "SUBJECT.figure.04",
+     "cn": "家族像",
+     "desc": "血缘与权力象征的家族关系图像"
+    },
+    {
+     "id": "SUBJECT.figure.05",
+     "cn": "宗教人物",
+     "desc": "佛、道、圣徒、天使等信仰形象"
+    },
+    {
+     "id": "SUBJECT.figure.06",
+     "cn": "神话人物",
+     "desc": "女娲、伏羲、哪吒、赫拉克勒斯等超自然形象"
+    },
+    {
+     "id": "SUBJECT.figure.07",
+     "cn": "历史人物",
+     "desc": "帝王将相、贤士、思想家等文化象征人物"
+    },
+    {
+     "id": "SUBJECT.figure.08",
+     "cn": "文人形象",
+     "desc": "书画家、诗人等知识分子群体形象"
+    },
+    {
+     "id": "SUBJECT.figure.09",
+     "cn": "劳动者",
+     "desc": "普通劳动者与社会生产活动"
+    },
+    {
+     "id": "SUBJECT.figure.10",
+     "cn": "农民形象",
+     "desc": "土地与劳动的象征，乡土写实题材核心"
+    },
+    {
+     "id": "SUBJECT.figure.11",
+     "cn": "工人形象",
+     "desc": "工业化时代的劳动象征与集体精神"
+    },
+    {
+     "id": "SUBJECT.figure.12",
+     "cn": "士兵形象",
+     "desc": "战争记忆与英雄主义象征"
+    },
+    {
+     "id": "SUBJECT.figure.13",
+     "cn": "母子形象",
+     "desc": "亲情、生命延续与母爱主题"
+    },
+    {
+     "id": "SUBJECT.figure.14",
+     "cn": "少女形象",
+     "desc": "青春、纯洁、美感与欲望象征"
+    },
+    {
+     "id": "SUBJECT.figure.15",
+     "cn": "儿童形象",
+     "desc": "童真、时间与记忆的隐喻"
+    },
+    {
+     "id": "SUBJECT.figure.16",
+     "cn": "老年形象",
+     "desc": "时间、智慧与生命循环象征"
+    },
+    {
+     "id": "SUBJECT.figure.17",
+     "cn": "裸体",
+     "desc": "人体结构与美感研究，象征生命与欲望"
+    },
+    {
+     "id": "SUBJECT.figure.18",
+     "cn": "舞者",
+     "desc": "动作与节奏美，身体的动态空间表达"
+    },
+    {
+     "id": "SUBJECT.figure.19",
+     "cn": "音乐家",
+     "desc": "声音与视觉的融合象征"
+    },
+    {
+     "id": "SUBJECT.figure.20",
+     "cn": "戏剧人物",
+     "desc": "舞台与叙事性视觉构成（京剧、悲剧等）"
+    },
+    {
+     "id": "SUBJECT.figure.21",
+     "cn": "神官与僧侣",
+     "desc": "精神修行与宗教信仰的象征"
+    },
+    {
+     "id": "SUBJECT.figure.22",
+     "cn": "战士与武士",
+     "desc": "勇气与牺牲主题，权力与冲突象征"
+    },
+    {
+     "id": "SUBJECT.figure.23",
+     "cn": "市井人物",
+     "desc": "庶民生活场景与社会生态缩影"
+    },
+    {
+     "id": "SUBJECT.figure.24",
+     "cn": "仕女",
+     "desc": "女性美学与阶层文化象征（唐宋以来典型题材）"
+    },
+    {
+     "id": "SUBJECT.figure.25",
+     "cn": "美人",
+     "desc": "理想化人体表现与时代审美的视觉符号"
+    },
+    {
+     "id": "SUBJECT.figure.26",
+     "cn": "学者",
+     "desc": "知识、思想与文化身份的象征"
+    },
+    {
+     "id": "SUBJECT.figure.27",
+     "cn": "武将",
+     "desc": "力量、忠诚与英雄主义形象"
+    },
+    {
+     "id": "SUBJECT.figure.28",
+     "cn": "帝王",
+     "desc": "权力象征与政治秩序的视觉化表达"
+    },
+    {
+     "id": "SUBJECT.figure.29",
+     "cn": "道士",
+     "desc": "道法自然、精神游离与超脱形象"
+    },
+    {
+     "id": "SUBJECT.figure.30",
+     "cn": "佛像",
+     "desc": "静谧、觉悟与超越之象征"
+    },
+    {
+     "id": "SUBJECT.figure.31",
+     "cn": "仙人",
+     "desc": "神话化人形，表达对永生与自由的向往"
+    },
+    {
+     "id": "SUBJECT.figure.32",
+     "cn": "英雄",
+     "desc": "集体记忆与民族精神的具象表达"
+    },
+    {
+     "id": "SUBJECT.figure.33",
+     "cn": "革命者",
+     "desc": "理想与牺牲主题，近现代社会叙事核心"
+    },
+    {
+     "id": "SUBJECT.figure.34",
+     "cn": "当代青年",
+     "desc": "时代个体的精神写照，身份与自我意识主题"
+    },
+    {
+     "id": "SUBJECT.figure.35",
+     "cn": "网络人物",
+     "desc": "虚拟身份与社交人格的视觉象征"
+    },
+    {
+     "id": "SUBJECT.figure.36",
+     "cn": "漫画人物",
+     "desc": "流行文化、符号化形象与轻叙事"
+    },
+    {
+     "id": "SUBJECT.figure.37",
+     "cn": "虚拟偶像",
+     "desc": "AI化身与数字人格的艺术投射"
+    },
+    {
+     "id": "SUBJECT.figure.38",
+     "cn": "群体运动",
+     "desc": "社会集体行为与文化张力的再现"
+    },
+    {
+     "id": "SUBJECT.figure.39",
+     "cn": "性别身份",
+     "desc": "性别政治、身体意识与当代文化议题"
+    },
+    {
+     "id": "SUBJECT.figure.40",
+     "cn": "仿生人",
+     "desc": "未来人类与科技融合的身份隐喻"
+    },
+    {
+     "id": "SUBJECT.figure.41",
+     "cn": "情侣",
+     "desc": "爱、亲密与关系的视觉叙事"
+    },
+    {
+     "id": "SUBJECT.figure.42",
+     "cn": "家庭场景",
+     "desc": "生活与伦理主题，温情与社会秩序并存"
+    },
+    {
+     "id": "SUBJECT.figure.43",
+     "cn": "群体仪式",
+     "desc": "集体信仰与社会行为的象征性呈现"
+    },
+    {
+     "id": "SUBJECT.figure.44",
+     "cn": "自我映像",
+     "desc": "心理投射、潜意识与镜像意识的表达"
+    },
+    {
+     "id": "SUBJECT.figure.45",
+     "cn": "行者",
+     "desc": "旅行者、朝圣者与精神探索者象征"
+    },
+    {
+     "id": "SUBJECT.figure.46",
+     "cn": "异乡人",
+     "desc": "流动身份与归属感缺失的主题"
+    },
+    {
+     "id": "SUBJECT.figure.47",
+     "cn": "病者",
+     "desc": "身体痛苦、生命脆弱与存在意识主题"
+    },
+    {
+     "id": "SUBJECT.figure.48",
+     "cn": "梦中人",
+     "desc": "梦境化人物与心理象征叙事"
+    },
+    {
+     "id": "SUBJECT.figure.49",
+     "cn": "幻象人物",
+     "desc": "虚构角色与超现实身份的视觉化表达"
+    },
+    {
+     "id": "SUBJECT.figure.50",
+     "cn": "面具人物",
+     "desc": "身份、虚伪与社会角色的隐喻"
+    },
+    {
+     "id": "SUBJECT.figure.x51",
+     "cn": "人体",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.figure.x52",
+     "cn": "孤独者",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.figure.x53",
+     "cn": "女性",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.figure.x54",
+     "cn": "身体",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.figure.x55",
+     "cn": "供养人",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.figure.x56",
+     "cn": "高士",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.figure.x57",
+     "cn": "影像",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    }
+   ]
+  },
+  {
+   "id": "SUBJECT.landscape",
+   "cn": "山水题材",
+   "en": "Landscape",
+   "count": 60,
+   "shift": {
+    "west": "空间对象 · 风景再现",
+    "east": "精神场域 · 可游可居之境"
+   },
+   "atoms": [
+    {
+     "id": "SUBJECT.landscape.01",
+     "cn": "山岳",
+     "desc": "崇高与永恒的象征，天地轴心的视觉表达"
+    },
+    {
+     "id": "SUBJECT.landscape.02",
+     "cn": "江河",
+     "desc": "生命流动、时间与命运的象征"
+    },
+    {
+     "id": "SUBJECT.landscape.03",
+     "cn": "湖泊",
+     "desc": "平静与冥想空间，象征心灵的镜像"
+    },
+    {
+     "id": "SUBJECT.landscape.04",
+     "cn": "海洋",
+     "desc": "无限、潜意识与力量的象征"
+    },
+    {
+     "id": "SUBJECT.landscape.05",
+     "cn": "峡谷",
+     "desc": "深邃、险峻与时间侵蚀的视觉隐喻"
+    },
+    {
+     "id": "SUBJECT.landscape.06",
+     "cn": "瀑布",
+     "desc": "生命能量、流动性与自然节奏"
+    },
+    {
+     "id": "SUBJECT.landscape.07",
+     "cn": "云雾",
+     "desc": "朦胧、虚实交替的诗性空间"
+    },
+    {
+     "id": "SUBJECT.landscape.08",
+     "cn": "雪景",
+     "desc": "静寂、纯净与时间的凝结象征"
+    },
+    {
+     "id": "SUBJECT.landscape.09",
+     "cn": "竹林",
+     "desc": "君子气节与生命韧性的象征"
+    },
+    {
+     "id": "SUBJECT.landscape.10",
+     "cn": "松林",
+     "desc": "永恒、坚贞与超然人格化的自然形象"
+    },
+    {
+     "id": "SUBJECT.landscape.11",
+     "cn": "溪流",
+     "desc": "自然的律动与柔性之美"
+    },
+    {
+     "id": "SUBJECT.landscape.12",
+     "cn": "岩石",
+     "desc": "稳固、形体结构与精神支撑的象征"
+    },
+    {
+     "id": "SUBJECT.landscape.13",
+     "cn": "沙漠",
+     "desc": "孤独、荒凉与时间无尽的象征"
+    },
+    {
+     "id": "SUBJECT.landscape.14",
+     "cn": "草原",
+     "desc": "宽广与自由，空间意识的外化"
+    },
+    {
+     "id": "SUBJECT.landscape.15",
+     "cn": "森林",
+     "desc": "原始生命力与精神深处的象征空间"
+    },
+    {
+     "id": "SUBJECT.landscape.16",
+     "cn": "荒野",
+     "desc": "孤独、自然回归与人类渺小感的主题"
+    },
+    {
+     "id": "SUBJECT.landscape.17",
+     "cn": "岛屿",
+     "desc": "孤立、避世与心灵庇护的象征"
+    },
+    {
+     "id": "SUBJECT.landscape.18",
+     "cn": "天空",
+     "desc": "崇高与自由，超越性的空间象征"
+    },
+    {
+     "id": "SUBJECT.landscape.19",
+     "cn": "日出",
+     "desc": "新生、希望与时间轮回的象征"
+    },
+    {
+     "id": "SUBJECT.landscape.20",
+     "cn": "黄昏",
+     "desc": "消逝、美的终结与沉思气氛"
+    },
+    {
+     "id": "SUBJECT.landscape.21",
+     "cn": "夜色",
+     "desc": "静谧与未知，精神与梦境的边界"
+    },
+    {
+     "id": "SUBJECT.landscape.22",
+     "cn": "雨景",
+     "desc": "情绪化氛围，模糊与思念的象征"
+    },
+    {
+     "id": "SUBJECT.landscape.23",
+     "cn": "风景小景",
+     "desc": "片段化自然意象，象征内心平静与瞬间感知"
+    },
+    {
+     "id": "SUBJECT.landscape.24",
+     "cn": "远山",
+     "desc": "空间层次、哲学距离与精神高度的象征"
+    },
+    {
+     "id": "SUBJECT.landscape.25",
+     "cn": "近景",
+     "desc": "感官细节与现实观察的视觉焦点"
+    },
+    {
+     "id": "SUBJECT.landscape.26",
+     "cn": "峰峦叠嶂",
+     "desc": "层次构成、节奏与空间韵律"
+    },
+    {
+     "id": "SUBJECT.landscape.27",
+     "cn": "山居",
+     "desc": "寄情山林、隐逸哲学与精神居所"
+    },
+    {
+     "id": "SUBJECT.landscape.28",
+     "cn": "茅屋",
+     "desc": "简朴生活与自然共生的象征"
+    },
+    {
+     "id": "SUBJECT.landscape.29",
+     "cn": "桥梁",
+     "desc": "连接与过渡，象征人类介入自然的中介"
+    },
+    {
+     "id": "SUBJECT.landscape.30",
+     "cn": "舟行",
+     "desc": "旅行、生命流动与漂泊的象征"
+    },
+    {
+     "id": "SUBJECT.landscape.31",
+     "cn": "行旅",
+     "desc": "山川之间的移动人生观（如“行到水穷处”）"
+    },
+    {
+     "id": "SUBJECT.landscape.32",
+     "cn": "渔舟",
+     "desc": "恬淡自足的精神象征"
+    },
+    {
+     "id": "SUBJECT.landscape.33",
+     "cn": "寒林",
+     "desc": "孤寂与坚韧，象征人格独立与清寒之美"
+    },
+    {
+     "id": "SUBJECT.landscape.34",
+     "cn": "春山",
+     "desc": "生机、希望与复苏的象征"
+    },
+    {
+     "id": "SUBJECT.landscape.35",
+     "cn": "秋山",
+     "desc": "萧瑟、思索与时光流逝的象征"
+    },
+    {
+     "id": "SUBJECT.landscape.36",
+     "cn": "高远山水",
+     "desc": "崇高的精神向度与形而上空间感"
+    },
+    {
+     "id": "SUBJECT.landscape.37",
+     "cn": "平远山水",
+     "desc": "视觉延展与平和精神的体现"
+    },
+    {
+     "id": "SUBJECT.landscape.38",
+     "cn": "深远山水",
+     "desc": "心灵探索与沉浸感空间"
+    },
+    {
+     "id": "SUBJECT.landscape.39",
+     "cn": "雾林",
+     "desc": "模糊界线与未知感的氛围表现"
+    },
+    {
+     "id": "SUBJECT.landscape.40",
+     "cn": "峰顶",
+     "desc": "登临之感、成就与孤高象征"
+    },
+    {
+     "id": "SUBJECT.landscape.41",
+     "cn": "洞穴",
+     "desc": "内在心灵空间、隐喻潜意识与原始庇护"
+    },
+    {
+     "id": "SUBJECT.landscape.42",
+     "cn": "观景者",
+     "desc": "观者与自然对视的哲学关系"
+    },
+    {
+     "id": "SUBJECT.landscape.43",
+     "cn": "山寺",
+     "desc": "禅意、空寂与超脱精神的象征场所"
+    },
+    {
+     "id": "SUBJECT.landscape.44",
+     "cn": "雪岭",
+     "desc": "纯粹、寂静与形上崇高之象征"
+    },
+    {
+     "id": "SUBJECT.landscape.45",
+     "cn": "云海",
+     "desc": "广阔与自由的精神图景"
+    },
+    {
+     "id": "SUBJECT.landscape.46",
+     "cn": "浮光倒影",
+     "desc": "时间流动与存在反思的视觉隐喻"
+    },
+    {
+     "id": "SUBJECT.landscape.47",
+     "cn": "山河故土",
+     "desc": "文化归属、乡愁与身份认同的象征"
+    },
+    {
+     "id": "SUBJECT.landscape.48",
+     "cn": "幻境山水",
+     "desc": "超现实与梦境化的自然空间"
+    },
+    {
+     "id": "SUBJECT.landscape.49",
+     "cn": "科幻山水",
+     "desc": "虚拟地貌与科技自然的未来想象"
+    },
+    {
+     "id": "SUBJECT.landscape.x50",
+     "cn": "风景",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.landscape.x51",
+     "cn": "户外风景",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.landscape.x52",
+     "cn": "花园",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.landscape.x53",
+     "cn": "楼阁",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.landscape.x54",
+     "cn": "山水",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.landscape.x55",
+     "cn": "云山",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.landscape.x56",
+     "cn": "烟岚",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.landscape.x57",
+     "cn": "平远",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.landscape.x58",
+     "cn": "枯木竹石",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.landscape.x59",
+     "cn": "黄山",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.landscape.x60",
+     "cn": "青绿山川",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    }
+   ]
+  },
+  {
+   "id": "SUBJECT.bird-flower",
+   "cn": "花鸟题材",
+   "en": "Bird & Flower",
+   "count": 61,
+   "shift": null,
+   "atoms": [
+    {
+     "id": "SUBJECT.bird-flower.01",
+     "cn": "梅花",
+     "desc": "傲雪、坚贞、清逸之象征，冬之精神"
+    },
+    {
+     "id": "SUBJECT.bird-flower.02",
+     "cn": "兰花",
+     "desc": "君子之德、隐逸与高洁之象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.03",
+     "cn": "竹子",
+     "desc": "虚心、坚韧、人格象征，四君子之一"
+    },
+    {
+     "id": "SUBJECT.bird-flower.04",
+     "cn": "菊花",
+     "desc": "隐逸、淡泊与秋日精神，文人理想象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.05",
+     "cn": "松树",
+     "desc": "长青不朽、坚贞高洁，与梅竹并称岁寒三友"
+    },
+    {
+     "id": "SUBJECT.bird-flower.06",
+     "cn": "荷花",
+     "desc": "清净出尘、佛性与再生的象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.07",
+     "cn": "桃花",
+     "desc": "春意、爱情与生命更新的象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.08",
+     "cn": "杏花",
+     "desc": "早春象征，清雅与希望的意象"
+    },
+    {
+     "id": "SUBJECT.bird-flower.09",
+     "cn": "牡丹",
+     "desc": "富贵与繁荣象征，皇家气象代表"
+    },
+    {
+     "id": "SUBJECT.bird-flower.10",
+     "cn": "芙蓉",
+     "desc": "秋艳之花，纯洁高雅与女性气质"
+    },
+    {
+     "id": "SUBJECT.bird-flower.11",
+     "cn": "石榴",
+     "desc": "多子多福的象征，民间吉祥题材"
+    },
+    {
+     "id": "SUBJECT.bird-flower.12",
+     "cn": "荷塘",
+     "desc": "宁静、诗意与冥想空间的象征场景"
+    },
+    {
+     "id": "SUBJECT.bird-flower.13",
+     "cn": "梨花",
+     "desc": "洁白纯净、易逝之美的象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.14",
+     "cn": "海棠",
+     "desc": "春色与才情并茂的象征（“海棠无香”典故）"
+    },
+    {
+     "id": "SUBJECT.bird-flower.15",
+     "cn": "芍药",
+     "desc": "华贵典雅、姊妹花于牡丹"
+    },
+    {
+     "id": "SUBJECT.bird-flower.16",
+     "cn": "紫藤",
+     "desc": "柔韧缠绵、情感依附与生命流动"
+    },
+    {
+     "id": "SUBJECT.bird-flower.17",
+     "cn": "向日葵",
+     "desc": "生命朝气与光明信念的象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.18",
+     "cn": "玫瑰",
+     "desc": "爱情与欲望的象征，现代情感题材常见"
+    },
+    {
+     "id": "SUBJECT.bird-flower.19",
+     "cn": "鸡冠花",
+     "desc": "热烈生机与吉祥寓意"
+    },
+    {
+     "id": "SUBJECT.bird-flower.20",
+     "cn": "秋菊",
+     "desc": "岁月与坚守的象征，季节题材代表"
+    },
+    {
+     "id": "SUBJECT.bird-flower.21",
+     "cn": "莲蓬",
+     "desc": "果实成熟与轮回象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.22",
+     "cn": "石头",
+     "desc": "稳固、恒久与人格隐喻"
+    },
+    {
+     "id": "SUBJECT.bird-flower.23",
+     "cn": "奇石",
+     "desc": "自然之灵性与造化之工的象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.24",
+     "cn": "兰竹石组合",
+     "desc": "清逸与君子精神综合体"
+    },
+    {
+     "id": "SUBJECT.bird-flower.25",
+     "cn": "松鹤",
+     "desc": "长寿与高洁象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.26",
+     "cn": "鹰隼",
+     "desc": "力量、自由与英雄象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.27",
+     "cn": "鸡",
+     "desc": "吉祥与勤勉，寓意“吉”"
+    },
+    {
+     "id": "SUBJECT.bird-flower.28",
+     "cn": "鸽子",
+     "desc": "和平、纯洁与友谊的象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.29",
+     "cn": "麻雀",
+     "desc": "平凡生命、自由与活力"
+    },
+    {
+     "id": "SUBJECT.bird-flower.30",
+     "cn": "燕子",
+     "desc": "春天、家庭与希望的象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.31",
+     "cn": "鹦鹉",
+     "desc": "异国情调、语言象征与华丽装饰性"
+    },
+    {
+     "id": "SUBJECT.bird-flower.32",
+     "cn": "鸳鸯",
+     "desc": "爱情与伴侣象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.33",
+     "cn": "白鹭",
+     "desc": "清雅与孤洁，常见文人象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.34",
+     "cn": "鹤",
+     "desc": "长寿、精神高洁与仙境象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.35",
+     "cn": "孔雀",
+     "desc": "美丽、虚荣与仪式性象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.36",
+     "cn": "鹰",
+     "desc": "力量、警觉与阳刚气象"
+    },
+    {
+     "id": "SUBJECT.bird-flower.37",
+     "cn": "喜鹊",
+     "desc": "喜庆与好运的象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.38",
+     "cn": "乌鸦",
+     "desc": "不祥与命运感的象征（现代题材常用）"
+    },
+    {
+     "id": "SUBJECT.bird-flower.39",
+     "cn": "蝴蝶",
+     "desc": "生命短暂、美与灵魂自由象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.40",
+     "cn": "蜻蜓",
+     "desc": "轻盈与梦幻，象征时间与幻觉"
+    },
+    {
+     "id": "SUBJECT.bird-flower.41",
+     "cn": "蜜蜂",
+     "desc": "勤劳与秩序的象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.42",
+     "cn": "瓢虫",
+     "desc": "自然的微小之美与幸运象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.43",
+     "cn": "鱼",
+     "desc": "富足、繁荣与流动生命象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.44",
+     "cn": "虾蟹",
+     "desc": "清趣与生命力的象征（齐白石典型题材）"
+    },
+    {
+     "id": "SUBJECT.bird-flower.45",
+     "cn": "蛙",
+     "desc": "雨水与生命循环象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.46",
+     "cn": "猫",
+     "desc": "灵性、温情与独立象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.47",
+     "cn": "狗",
+     "desc": "忠诚、守护与情感陪伴"
+    },
+    {
+     "id": "SUBJECT.bird-flower.48",
+     "cn": "花卉静物",
+     "desc": "生命繁盛与美的短暂象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.49",
+     "cn": "春意图",
+     "desc": "季节更新与生命复苏的象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.50",
+     "cn": "四季花卉",
+     "desc": "时序与人生循环的象征体系"
+    },
+    {
+     "id": "SUBJECT.bird-flower.51",
+     "cn": "百花齐放",
+     "desc": "多样性与自由精神象征"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x52",
+     "cn": "花卉",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x53",
+     "cn": "簪花",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x54",
+     "cn": "墨竹",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x55",
+     "cn": "梅兰",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x56",
+     "cn": "墨荷",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x57",
+     "cn": "藤葡",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x58",
+     "cn": "蔬果",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x59",
+     "cn": "枯枝",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x60",
+     "cn": "折枝",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.bird-flower.x61",
+     "cn": "花鸟",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    }
+   ]
+  },
+  {
+   "id": "SUBJECT.animal",
+   "cn": "动物题材",
+   "en": "Animal",
+   "count": 56,
+   "shift": null,
+   "atoms": [
+    {
+     "id": "SUBJECT.animal.01",
+     "cn": "马",
+     "desc": "力量、速度与自由象征，中国文化中为“龙之化身”"
+    },
+    {
+     "id": "SUBJECT.animal.02",
+     "cn": "牛",
+     "desc": "耕耘、勤劳与朴实的象征，农业文明精神代表"
+    },
+    {
+     "id": "SUBJECT.animal.03",
+     "cn": "羊",
+     "desc": "温顺与祥和，常寓“吉祥”“三阳开泰”之意"
+    },
+    {
+     "id": "SUBJECT.animal.04",
+     "cn": "虎",
+     "desc": "勇猛、守护与阳刚之气，镇邪护佑象征"
+    },
+    {
+     "id": "SUBJECT.animal.05",
+     "cn": "龙",
+     "desc": "权威、祥瑞与宇宙之气，中国象征之核心"
+    },
+    {
+     "id": "SUBJECT.animal.06",
+     "cn": "凤",
+     "desc": "美德与重生，阴阳和谐与女性力量象征"
+    },
+    {
+     "id": "SUBJECT.animal.07",
+     "cn": "狮",
+     "desc": "威严与护佑象征，多见于宗教与宫廷绘画"
+    },
+    {
+     "id": "SUBJECT.animal.08",
+     "cn": "鹿",
+     "desc": "长寿与祥瑞象征，寓“禄”意，文人喜用题材"
+    },
+    {
+     "id": "SUBJECT.animal.09",
+     "cn": "象",
+     "desc": "力量与智慧象征，常寓“太平有象”之意"
+    },
+    {
+     "id": "SUBJECT.animal.10",
+     "cn": "猴",
+     "desc": "灵动、机智与仕途吉祥寓意"
+    },
+    {
+     "id": "SUBJECT.animal.11",
+     "cn": "鸡",
+     "desc": "守信与警觉象征，寓“吉祥”与“报晓”"
+    },
+    {
+     "id": "SUBJECT.animal.12",
+     "cn": "狗",
+     "desc": "忠诚、守护与伴侣精神的象征"
+    },
+    {
+     "id": "SUBJECT.animal.13",
+     "cn": "猫",
+     "desc": "独立、温柔与灵性象征，现代题材常见"
+    },
+    {
+     "id": "SUBJECT.animal.14",
+     "cn": "狼",
+     "desc": "野性与自由象征，现代社会的精神隐喻"
+    },
+    {
+     "id": "SUBJECT.animal.15",
+     "cn": "熊",
+     "desc": "力量与庇护象征，原始信仰中的图腾形象"
+    },
+    {
+     "id": "SUBJECT.animal.16",
+     "cn": "狐狸",
+     "desc": "机智、狡黠与魅惑的象征，民间传说常见"
+    },
+    {
+     "id": "SUBJECT.animal.17",
+     "cn": "兔",
+     "desc": "温和与月亮象征，寓“长寿”“祥瑞”"
+    },
+    {
+     "id": "SUBJECT.animal.18",
+     "cn": "鱼",
+     "desc": "富足与繁荣象征，“年年有余”题材代表"
+    },
+    {
+     "id": "SUBJECT.animal.19",
+     "cn": "虾",
+     "desc": "生命活力、清趣与文人画常用题材"
+    },
+    {
+     "id": "SUBJECT.animal.20",
+     "cn": "蟹",
+     "desc": "硬壳之下的柔性象征，常寓“横行正直”"
+    },
+    {
+     "id": "SUBJECT.animal.21",
+     "cn": "蝴蝶",
+     "desc": "美、自由与灵魂象征，生命短暂的隐喻"
+    },
+    {
+     "id": "SUBJECT.animal.22",
+     "cn": "蜻蜓",
+     "desc": "轻盈与梦幻，象征时间与幻觉"
+    },
+    {
+     "id": "SUBJECT.animal.23",
+     "cn": "蜜蜂",
+     "desc": "勤劳与秩序象征，社会群体精神代表"
+    },
+    {
+     "id": "SUBJECT.animal.24",
+     "cn": "鸟",
+     "desc": "自由、灵魂与精神升华象征"
+    },
+    {
+     "id": "SUBJECT.animal.25",
+     "cn": "鹤",
+     "desc": "长寿与高洁象征，常与松构成“松鹤延年”主题"
+    },
+    {
+     "id": "SUBJECT.animal.26",
+     "cn": "鹰",
+     "desc": "力量与远志，阳刚精神象征"
+    },
+    {
+     "id": "SUBJECT.animal.27",
+     "cn": "猿",
+     "desc": "灵性与孤傲，常见于山水边景人物陪衬"
+    },
+    {
+     "id": "SUBJECT.animal.28",
+     "cn": "蛇",
+     "desc": "生命轮回与智慧象征，具原始宗教意涵"
+    },
+    {
+     "id": "SUBJECT.animal.29",
+     "cn": "乌龟",
+     "desc": "长寿与坚忍象征，“玄武”文化意象代表"
+    },
+    {
+     "id": "SUBJECT.animal.30",
+     "cn": "青蛙",
+     "desc": "雨与生命复苏的自然象征"
+    },
+    {
+     "id": "SUBJECT.animal.31",
+     "cn": "蝙蝠",
+     "desc": "民间寓意“福到”，象征幸福与好运"
+    },
+    {
+     "id": "SUBJECT.animal.32",
+     "cn": "老鼠",
+     "desc": "机敏、繁衍与财富的象征"
+    },
+    {
+     "id": "SUBJECT.animal.33",
+     "cn": "猪",
+     "desc": "富足与满足象征，十二生肖之一"
+    },
+    {
+     "id": "SUBJECT.animal.34",
+     "cn": "十二生肖",
+     "desc": "中国文化系统的时间与命运象征"
+    },
+    {
+     "id": "SUBJECT.animal.35",
+     "cn": "凤凰",
+     "desc": "重生与祥瑞，女性力量与高贵气象象征"
+    },
+    {
+     "id": "SUBJECT.animal.36",
+     "cn": "麒麟",
+     "desc": "祥兽象征，寓意仁政与和平"
+    },
+    {
+     "id": "SUBJECT.animal.37",
+     "cn": "神兽",
+     "desc": "神话守护形象，融合动物与灵性想象"
+    },
+    {
+     "id": "SUBJECT.animal.38",
+     "cn": "龙马",
+     "desc": "启智与气运象征，传说中圣兽组合"
+    },
+    {
+     "id": "SUBJECT.animal.39",
+     "cn": "鲲鹏",
+     "desc": "超越与理想象征，古典哲学意象"
+    },
+    {
+     "id": "SUBJECT.animal.40",
+     "cn": "白虎",
+     "desc": "西方守护象征，阳刚与战争精神"
+    },
+    {
+     "id": "SUBJECT.animal.41",
+     "cn": "朱雀",
+     "desc": "南方火之象征，生命与光明"
+    },
+    {
+     "id": "SUBJECT.animal.42",
+     "cn": "青龙",
+     "desc": "东方水气象征，春与生机之象"
+    },
+    {
+     "id": "SUBJECT.animal.43",
+     "cn": "玄武",
+     "desc": "北方守护象征，稳重与坚韧"
+    },
+    {
+     "id": "SUBJECT.animal.44",
+     "cn": "海洋生物",
+     "desc": "自由与神秘的象征（鲸、章鱼、珊瑚等）"
+    },
+    {
+     "id": "SUBJECT.animal.45",
+     "cn": "热带动物",
+     "desc": "生命张力、异域风情与生态多样性"
+    },
+    {
+     "id": "SUBJECT.animal.46",
+     "cn": "家畜群",
+     "desc": "社会秩序与集体生存隐喻"
+    },
+    {
+     "id": "SUBJECT.animal.47",
+     "cn": "野兽群像",
+     "desc": "力量与自然法则的象征性场面"
+    },
+    {
+     "id": "SUBJECT.animal.48",
+     "cn": "宠物",
+     "desc": "情感陪伴、亲密与家庭关系象征"
+    },
+    {
+     "id": "SUBJECT.animal.49",
+     "cn": "实验动物",
+     "desc": "科技与伦理议题下的当代隐喻"
+    },
+    {
+     "id": "SUBJECT.animal.50",
+     "cn": "机械动物",
+     "desc": "人造生命、未来与科技幻想象征"
+    },
+    {
+     "id": "SUBJECT.animal.51",
+     "cn": "虚构生物",
+     "desc": "想象力与潜意识的投射（龙、独角兽等）"
+    },
+    {
+     "id": "SUBJECT.animal.52",
+     "cn": "人兽混形",
+     "desc": "神话与身份边界的视觉隐喻"
+    },
+    {
+     "id": "SUBJECT.animal.x53",
+     "cn": "八哥",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.animal.x54",
+     "cn": "白眼鱼鸟",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.animal.x55",
+     "cn": "珍禽",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.animal.x56",
+     "cn": "雄鹰",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    }
+   ]
+  },
+  {
+   "id": "SUBJECT.still-life",
+   "cn": "静物题材",
+   "en": "Still Life",
+   "count": 54,
+   "shift": null,
+   "atoms": [
+    {
+     "id": "SUBJECT.still-life.01",
+     "cn": "花卉静物",
+     "desc": "花瓶中的生命象征，繁盛与凋谢的对比"
+    },
+    {
+     "id": "SUBJECT.still-life.02",
+     "cn": "水果静物",
+     "desc": "丰收与富足象征，生命力的日常隐喻"
+    },
+    {
+     "id": "SUBJECT.still-life.03",
+     "cn": "桌面摆设",
+     "desc": "生活秩序与审美品味的视觉构成"
+    },
+    {
+     "id": "SUBJECT.still-life.04",
+     "cn": "书本",
+     "desc": "知识与思考的象征，常伴随哲思主题"
+    },
+    {
+     "id": "SUBJECT.still-life.05",
+     "cn": "瓶罐",
+     "desc": "容纳与保护的象征，形体与空间构成元素"
+    },
+    {
+     "id": "SUBJECT.still-life.06",
+     "cn": "乐器",
+     "desc": "声音的视觉化表达，象征艺术与时间流逝"
+    },
+    {
+     "id": "SUBJECT.still-life.07",
+     "cn": "面包",
+     "desc": "温饱与生命延续的象征"
+    },
+    {
+     "id": "SUBJECT.still-life.08",
+     "cn": "酒瓶",
+     "desc": "感官与意识、理性与放纵的对比象征"
+    },
+    {
+     "id": "SUBJECT.still-life.09",
+     "cn": "水杯",
+     "desc": "清洁、透明与生活片段的意象"
+    },
+    {
+     "id": "SUBJECT.still-life.10",
+     "cn": "书信",
+     "desc": "记忆、情感与人际关系的隐喻"
+    },
+    {
+     "id": "SUBJECT.still-life.11",
+     "cn": "烛光",
+     "desc": "时间、生命与灵魂的象征"
+    },
+    {
+     "id": "SUBJECT.still-life.12",
+     "cn": "镜子",
+     "desc": "自我反思与虚实关系的象征"
+    },
+    {
+     "id": "SUBJECT.still-life.13",
+     "cn": "骷髅",
+     "desc": "生命短暂与死亡意识的象征（“虚空画”核心）"
+    },
+    {
+     "id": "SUBJECT.still-life.14",
+     "cn": "沙漏",
+     "desc": "时间流逝与生命无常的象征"
+    },
+    {
+     "id": "SUBJECT.still-life.15",
+     "cn": "珠宝",
+     "desc": "欲望与虚荣的象征"
+    },
+    {
+     "id": "SUBJECT.still-life.16",
+     "cn": "食物",
+     "desc": "感官享受与丰盈生活象征"
+    },
+    {
+     "id": "SUBJECT.still-life.17",
+     "cn": "餐桌",
+     "desc": "家庭关系、社会秩序与日常仪式象征"
+    },
+    {
+     "id": "SUBJECT.still-life.18",
+     "cn": "水果篮",
+     "desc": "自然馈赠与生活美学结合"
+    },
+    {
+     "id": "SUBJECT.still-life.19",
+     "cn": "花瓶",
+     "desc": "女性气质与生命盛放的象征"
+    },
+    {
+     "id": "SUBJECT.still-life.20",
+     "cn": "鸟笼",
+     "desc": "限制与自由的对比隐喻"
+    },
+    {
+     "id": "SUBJECT.still-life.21",
+     "cn": "书案",
+     "desc": "文人精神与秩序美学的象征"
+    },
+    {
+     "id": "SUBJECT.still-life.22",
+     "cn": "墨砚",
+     "desc": "思考与精神劳动的象征（东方绘画常用）"
+    },
+    {
+     "id": "SUBJECT.still-life.23",
+     "cn": "古琴",
+     "desc": "静与动、听与想之间的美学隐喻"
+    },
+    {
+     "id": "SUBJECT.still-life.24",
+     "cn": "茶具",
+     "desc": "精神修养与东方生活哲学象征"
+    },
+    {
+     "id": "SUBJECT.still-life.25",
+     "cn": "瓷器",
+     "desc": "工艺美与文化身份的象征"
+    },
+    {
+     "id": "SUBJECT.still-life.26",
+     "cn": "铜器",
+     "desc": "历史、祭祀与时间厚度象征"
+    },
+    {
+     "id": "SUBJECT.still-life.27",
+     "cn": "石雕",
+     "desc": "永恒与工艺精神象征"
+    },
+    {
+     "id": "SUBJECT.still-life.28",
+     "cn": "布料",
+     "desc": "柔性、装饰与女性气质的象征"
+    },
+    {
+     "id": "SUBJECT.still-life.29",
+     "cn": "水果切面",
+     "desc": "生与死、内与外的视觉哲学"
+    },
+    {
+     "id": "SUBJECT.still-life.30",
+     "cn": "植物标本",
+     "desc": "时间凝固与自然再生象征"
+    },
+    {
+     "id": "SUBJECT.still-life.31",
+     "cn": "标本动物",
+     "desc": "科学与伦理、生命与死亡的边界隐喻"
+    },
+    {
+     "id": "SUBJECT.still-life.32",
+     "cn": "仪器",
+     "desc": "理性思维与工业文明的象征"
+    },
+    {
+     "id": "SUBJECT.still-life.33",
+     "cn": "玩具",
+     "desc": "童年记忆与人性重构象征"
+    },
+    {
+     "id": "SUBJECT.still-life.34",
+     "cn": "人偶",
+     "desc": "精神投射与孤独象征（常见于超现实主义）"
+    },
+    {
+     "id": "SUBJECT.still-life.35",
+     "cn": "钟表",
+     "desc": "时间、秩序与不可逆性象征"
+    },
+    {
+     "id": "SUBJECT.still-life.36",
+     "cn": "照片",
+     "desc": "记忆与时间的视觉化延伸"
+    },
+    {
+     "id": "SUBJECT.still-life.37",
+     "cn": "纸张",
+     "desc": "记录、遗忘与轻盈质感象征"
+    },
+    {
+     "id": "SUBJECT.still-life.38",
+     "cn": "枯叶",
+     "desc": "生命消逝与自然循环象征"
+    },
+    {
+     "id": "SUBJECT.still-life.39",
+     "cn": "鸟羽",
+     "desc": "灵性、轻盈与自由象征"
+    },
+    {
+     "id": "SUBJECT.still-life.40",
+     "cn": "水滴",
+     "desc": "时间与感知的微观化象征"
+    },
+    {
+     "id": "SUBJECT.still-life.41",
+     "cn": "光影物件",
+     "desc": "视觉错觉与时间流动的媒介"
+    },
+    {
+     "id": "SUBJECT.still-life.42",
+     "cn": "日用品",
+     "desc": "当代生活现实的视觉记录"
+    },
+    {
+     "id": "SUBJECT.still-life.43",
+     "cn": "包装物",
+     "desc": "消费社会与表象文化的隐喻"
+    },
+    {
+     "id": "SUBJECT.still-life.44",
+     "cn": "工业零件",
+     "desc": "冷峻与机械理性象征"
+    },
+    {
+     "id": "SUBJECT.still-life.45",
+     "cn": "电子产品",
+     "desc": "当代时间感与数字记忆象征"
+    },
+    {
+     "id": "SUBJECT.still-life.46",
+     "cn": "垃圾",
+     "desc": "消耗、废弃与存在价值反思象征"
+    },
+    {
+     "id": "SUBJECT.still-life.47",
+     "cn": "实验台",
+     "desc": "科学与生命伦理的艺术隐喻"
+    },
+    {
+     "id": "SUBJECT.still-life.48",
+     "cn": "桌面景象",
+     "desc": "当代个体生活片段化叙事象征"
+    },
+    {
+     "id": "SUBJECT.still-life.49",
+     "cn": "空盒",
+     "desc": "缺失、虚无与等待的象征"
+    },
+    {
+     "id": "SUBJECT.still-life.50",
+     "cn": "破碎器物",
+     "desc": "记忆、创伤与美的残缺象征"
+    },
+    {
+     "id": "SUBJECT.still-life.51",
+     "cn": "水面反射",
+     "desc": "自我认知与现实扭曲象征"
+    },
+    {
+     "id": "SUBJECT.still-life.x52",
+     "cn": "宴饮",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.still-life.x53",
+     "cn": "静物",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.still-life.x54",
+     "cn": "人物",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    }
+   ]
+  },
+  {
+   "id": "SUBJECT.myth",
+   "cn": "宗教与神话题材",
+   "en": "Myth & Religion",
+   "count": 82,
+   "shift": null,
+   "atoms": [
+    {
+     "id": "SUBJECT.myth.01",
+     "cn": "佛陀",
+     "desc": "觉悟与慈悲象征，佛教核心人物题材"
+    },
+    {
+     "id": "SUBJECT.myth.02",
+     "cn": "菩萨",
+     "desc": "智慧与慈悲并存的神圣化身"
+    },
+    {
+     "id": "SUBJECT.myth.03",
+     "cn": "罗汉",
+     "desc": "修行与守护象征，常用于壁画与寺庙装饰"
+    },
+    {
+     "id": "SUBJECT.myth.04",
+     "cn": "弥勒佛",
+     "desc": "未来佛象征，欢乐与包容的精神图像"
+    },
+    {
+     "id": "SUBJECT.myth.05",
+     "cn": "地藏王",
+     "desc": "救赎与慈悲，象征超度亡灵与地狱慈悲"
+    },
+    {
+     "id": "SUBJECT.myth.06",
+     "cn": "观音",
+     "desc": "慈悲与拯救象征，东亚女性神格代表"
+    },
+    {
+     "id": "SUBJECT.myth.07",
+     "cn": "达摩",
+     "desc": "坚毅修行与禅宗精神象征"
+    },
+    {
+     "id": "SUBJECT.myth.08",
+     "cn": "天王",
+     "desc": "护法与力量象征，寺庙门神常见题材"
+    },
+    {
+     "id": "SUBJECT.myth.09",
+     "cn": "地藏",
+     "desc": "超度亡魂与无私悲悯象征"
+    },
+    {
+     "id": "SUBJECT.myth.10",
+     "cn": "神农",
+     "desc": "农耕文明与医学智慧象征"
+    },
+    {
+     "id": "SUBJECT.myth.11",
+     "cn": "女娲",
+     "desc": "创世与修补天地的象征"
+    },
+    {
+     "id": "SUBJECT.myth.12",
+     "cn": "伏羲",
+     "desc": "智慧、天地秩序与文化起源象征"
+    },
+    {
+     "id": "SUBJECT.myth.13",
+     "cn": "八仙",
+     "desc": "民间信仰体系中超脱世俗的象征群体"
+    },
+    {
+     "id": "SUBJECT.myth.14",
+     "cn": "太上老君",
+     "desc": "道教精神代表，象征无为与自然法则"
+    },
+    {
+     "id": "SUBJECT.myth.15",
+     "cn": "玉皇大帝",
+     "desc": "宇宙秩序与神权象征"
+    },
+    {
+     "id": "SUBJECT.myth.16",
+     "cn": "哪吒",
+     "desc": "叛逆与重生的象征，现代英雄题材化代表"
+    },
+    {
+     "id": "SUBJECT.myth.17",
+     "cn": "孙悟空",
+     "desc": "智慧、勇气与自由精神象征"
+    },
+    {
+     "id": "SUBJECT.myth.18",
+     "cn": "二郎神",
+     "desc": "正义与权威平衡的象征形象"
+    },
+    {
+     "id": "SUBJECT.myth.19",
+     "cn": "白蛇",
+     "desc": "爱情与牺牲象征，民间叙事常用题材"
+    },
+    {
+     "id": "SUBJECT.myth.20",
+     "cn": "牛魔王",
+     "desc": "力量与欲望象征，神话冲突核心人物"
+    },
+    {
+     "id": "SUBJECT.myth.21",
+     "cn": "嫦娥",
+     "desc": "美丽、孤独与月亮象征"
+    },
+    {
+     "id": "SUBJECT.myth.22",
+     "cn": "后羿",
+     "desc": "英雄主义与天人冲突象征"
+    },
+    {
+     "id": "SUBJECT.myth.23",
+     "cn": "精卫",
+     "desc": "毅力与反抗命运象征"
+    },
+    {
+     "id": "SUBJECT.myth.24",
+     "cn": "天女散花",
+     "desc": "美与慈悲的视觉象征"
+    },
+    {
+     "id": "SUBJECT.myth.25",
+     "cn": "雷公电母",
+     "desc": "自然法则与天象权威象征"
+    },
+    {
+     "id": "SUBJECT.myth.26",
+     "cn": "龙王",
+     "desc": "水与秩序之神象征"
+    },
+    {
+     "id": "SUBJECT.myth.27",
+     "cn": "风神雨师",
+     "desc": "自然力量与季节循环象征"
+    },
+    {
+     "id": "SUBJECT.myth.28",
+     "cn": "鬼神",
+     "desc": "超自然存在与人类恐惧象征"
+    },
+    {
+     "id": "SUBJECT.myth.29",
+     "cn": "冥界",
+     "desc": "灵魂归宿与时间终点象征"
+    },
+    {
+     "id": "SUBJECT.myth.30",
+     "cn": "天堂",
+     "desc": "光明与纯洁象征，宗教信仰的归宿空间"
+    },
+    {
+     "id": "SUBJECT.myth.31",
+     "cn": "地狱",
+     "desc": "罪与救赎、审判与惩戒的象征"
+    },
+    {
+     "id": "SUBJECT.myth.32",
+     "cn": "天使",
+     "desc": "纯洁、守护与信仰传递象征"
+    },
+    {
+     "id": "SUBJECT.myth.33",
+     "cn": "圣母",
+     "desc": "慈悲与人性光辉象征"
+    },
+    {
+     "id": "SUBJECT.myth.34",
+     "cn": "基督",
+     "desc": "救赎与牺牲象征，西方宗教绘画核心题材"
+    },
+    {
+     "id": "SUBJECT.myth.35",
+     "cn": "十字架",
+     "desc": "信仰与苦难象征"
+    },
+    {
+     "id": "SUBJECT.myth.36",
+     "cn": "亚当与夏娃",
+     "desc": "人类起源与罪的象征叙事"
+    },
+    {
+     "id": "SUBJECT.myth.37",
+     "cn": "诺亚方舟",
+     "desc": "拯救与希望象征，末日与重生的主题"
+    },
+    {
+     "id": "SUBJECT.myth.38",
+     "cn": "大天使",
+     "desc": "战斗与光明象征（如米迦勒）"
+    },
+    {
+     "id": "SUBJECT.myth.39",
+     "cn": "撒旦",
+     "desc": "诱惑与堕落象征，善恶对立的视觉核心"
+    },
+    {
+     "id": "SUBJECT.myth.40",
+     "cn": "圣徒",
+     "desc": "信仰实践与牺牲精神象征"
+    },
+    {
+     "id": "SUBJECT.myth.41",
+     "cn": "天启",
+     "desc": "宇宙审判与命运循环象征"
+    },
+    {
+     "id": "SUBJECT.myth.42",
+     "cn": "命运三女神",
+     "desc": "宿命与时间象征，古希腊神话典型形象"
+    },
+    {
+     "id": "SUBJECT.myth.43",
+     "cn": "宙斯",
+     "desc": "权力与雷电象征，希腊神话主神"
+    },
+    {
+     "id": "SUBJECT.myth.44",
+     "cn": "雅典娜",
+     "desc": "智慧与战争平衡的象征"
+    },
+    {
+     "id": "SUBJECT.myth.45",
+     "cn": "阿波罗",
+     "desc": "光明与音乐象征"
+    },
+    {
+     "id": "SUBJECT.myth.46",
+     "cn": "阿芙洛狄忒",
+     "desc": "爱与美之神，感性与理性冲突象征"
+    },
+    {
+     "id": "SUBJECT.myth.47",
+     "cn": "赫尔墨斯",
+     "desc": "交流、速度与欺诈的象征"
+    },
+    {
+     "id": "SUBJECT.myth.48",
+     "cn": "波塞冬",
+     "desc": "海洋与力量象征"
+    },
+    {
+     "id": "SUBJECT.myth.49",
+     "cn": "哈迪斯",
+     "desc": "冥界与时间终结象征"
+    },
+    {
+     "id": "SUBJECT.myth.50",
+     "cn": "奥丁",
+     "desc": "智慧、牺牲与启示象征，北欧神话核心"
+    },
+    {
+     "id": "SUBJECT.myth.51",
+     "cn": "托尔",
+     "desc": "力量与雷电象征，北欧英雄神"
+    },
+    {
+     "id": "SUBJECT.myth.52",
+     "cn": "洛基",
+     "desc": "变化与混乱的象征"
+    },
+    {
+     "id": "SUBJECT.myth.53",
+     "cn": "芬里尔",
+     "desc": "命运与毁灭象征"
+    },
+    {
+     "id": "SUBJECT.myth.54",
+     "cn": "天照大神",
+     "desc": "光明与秩序象征，日本神话主神"
+    },
+    {
+     "id": "SUBJECT.myth.55",
+     "cn": "伊邪那美",
+     "desc": "生命与死亡循环象征"
+    },
+    {
+     "id": "SUBJECT.myth.56",
+     "cn": "梵天",
+     "desc": "创造与智慧象征，印度三主神之一"
+    },
+    {
+     "id": "SUBJECT.myth.57",
+     "cn": "毗湿奴",
+     "desc": "守护与秩序象征"
+    },
+    {
+     "id": "SUBJECT.myth.58",
+     "cn": "湿婆",
+     "desc": "毁灭与重生象征，宇宙循环理念体现"
+    },
+    {
+     "id": "SUBJECT.myth.59",
+     "cn": "迦梨",
+     "desc": "毁灭与女性力量象征"
+    },
+    {
+     "id": "SUBJECT.myth.60",
+     "cn": "迦尼萨",
+     "desc": "智慧与启示象征，象首神代表"
+    },
+    {
+     "id": "SUBJECT.myth.61",
+     "cn": "天界众神",
+     "desc": "宇宙秩序与人性多样性象征"
+    },
+    {
+     "id": "SUBJECT.myth.x62",
+     "cn": "神祇",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.myth.x63",
+     "cn": "圣经",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.myth.x64",
+     "cn": "神话",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.myth.x65",
+     "cn": "宗教",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.myth.x66",
+     "cn": "宗教激情",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.myth.x67",
+     "cn": "殉道",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.myth.x68",
+     "cn": "仙境",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.myth.x69",
+     "cn": "梦",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.myth.x70",
+     "cn": "经变",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.myth.x71",
+     "cn": "升仙",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.myth.x72",
+     "cn": "飞天",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.myth.x73",
+     "cn": "瀛洲",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.myth.x74",
+     "cn": "佛",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.myth.x75",
+     "cn": "朝元",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.myth.x76",
+     "cn": "星君",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.myth.x77",
+     "cn": "仙官",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.myth.x78",
+     "cn": "仙山",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.myth.x79",
+     "cn": "高僧",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.myth.x80",
+     "cn": "敦煌",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.myth.x81",
+     "cn": "佛传",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.myth.x82",
+     "cn": "护法",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    }
+   ]
+  },
+  {
+   "id": "SUBJECT.history",
+   "cn": "历史与社会题材",
+   "en": "History & Society",
+   "count": 57,
+   "shift": null,
+   "atoms": [
+    {
+     "id": "SUBJECT.history.01",
+     "cn": "战争",
+     "desc": "权力冲突与人类苦难的象征，史诗主题核心"
+    },
+    {
+     "id": "SUBJECT.history.02",
+     "cn": "革命",
+     "desc": "理想与牺牲的象征，政治叙事中心"
+    },
+    {
+     "id": "SUBJECT.history.03",
+     "cn": "起义",
+     "desc": "反抗与自由的象征"
+    },
+    {
+     "id": "SUBJECT.history.04",
+     "cn": "政治集会",
+     "desc": "权力组织与社会意识象征"
+    },
+    {
+     "id": "SUBJECT.history.05",
+     "cn": "法庭",
+     "desc": "正义与权威象征"
+    },
+    {
+     "id": "SUBJECT.history.06",
+     "cn": "宫廷",
+     "desc": "权力与礼仪的空间象征"
+    },
+    {
+     "id": "SUBJECT.history.07",
+     "cn": "皇帝",
+     "desc": "权威与秩序象征"
+    },
+    {
+     "id": "SUBJECT.history.08",
+     "cn": "朝会",
+     "desc": "等级秩序与社会规范象征"
+    },
+    {
+     "id": "SUBJECT.history.09",
+     "cn": "将军",
+     "desc": "战争与荣誉象征"
+    },
+    {
+     "id": "SUBJECT.history.10",
+     "cn": "文臣",
+     "desc": "智慧与政治平衡象征"
+    },
+    {
+     "id": "SUBJECT.history.11",
+     "cn": "历史事件",
+     "desc": "国家记忆与文明叙事象征"
+    },
+    {
+     "id": "SUBJECT.history.12",
+     "cn": "英雄事迹",
+     "desc": "勇气与民族精神象征"
+    },
+    {
+     "id": "SUBJECT.history.13",
+     "cn": "开国场景",
+     "desc": "秩序建立与文化起点象征"
+    },
+    {
+     "id": "SUBJECT.history.14",
+     "cn": "战场遗迹",
+     "desc": "记忆、牺牲与时间象征"
+    },
+    {
+     "id": "SUBJECT.history.15",
+     "cn": "民族融合",
+     "desc": "多元文化与共存象征"
+    },
+    {
+     "id": "SUBJECT.history.16",
+     "cn": "移民",
+     "desc": "流动与身份象征"
+    },
+    {
+     "id": "SUBJECT.history.17",
+     "cn": "劳动场景",
+     "desc": "社会建设与集体意识象征"
+    },
+    {
+     "id": "SUBJECT.history.18",
+     "cn": "工业景象",
+     "desc": "机械文明与现代化象征"
+    },
+    {
+     "id": "SUBJECT.history.19",
+     "cn": "工厂",
+     "desc": "生产力与社会秩序象征"
+    },
+    {
+     "id": "SUBJECT.history.20",
+     "cn": "矿山",
+     "desc": "劳动与压迫的象征"
+    },
+    {
+     "id": "SUBJECT.history.21",
+     "cn": "建筑工地",
+     "desc": "现代社会建设与劳动美学象征"
+    },
+    {
+     "id": "SUBJECT.history.22",
+     "cn": "城市街景",
+     "desc": "都市生活、时间流动与人群匿名化象征"
+    },
+    {
+     "id": "SUBJECT.history.23",
+     "cn": "车站",
+     "desc": "现代性、漂泊与时间节点象征"
+    },
+    {
+     "id": "SUBJECT.history.24",
+     "cn": "火车",
+     "desc": "工业革命与速度的象征"
+    },
+    {
+     "id": "SUBJECT.history.25",
+     "cn": "飞机",
+     "desc": "技术进步与时代精神象征"
+    },
+    {
+     "id": "SUBJECT.history.26",
+     "cn": "港口",
+     "desc": "交流与开放象征"
+    },
+    {
+     "id": "SUBJECT.history.27",
+     "cn": "市场",
+     "desc": "经济活动与民间生活象征"
+    },
+    {
+     "id": "SUBJECT.history.28",
+     "cn": "街头生活",
+     "desc": "平民叙事与社会真实的视觉写照"
+    },
+    {
+     "id": "SUBJECT.history.29",
+     "cn": "工人群像",
+     "desc": "集体精神与社会结构象征"
+    },
+    {
+     "id": "SUBJECT.history.30",
+     "cn": "农民生活",
+     "desc": "自然与社会关系象征"
+    },
+    {
+     "id": "SUBJECT.history.31",
+     "cn": "军人群像",
+     "desc": "国家意识与牺牲精神象征"
+    },
+    {
+     "id": "SUBJECT.history.32",
+     "cn": "战俘",
+     "desc": "苦难、尊严与人性象征"
+    },
+    {
+     "id": "SUBJECT.history.33",
+     "cn": "灾难",
+     "desc": "灾祸、命运与人类脆弱象征"
+    },
+    {
+     "id": "SUBJECT.history.34",
+     "cn": "流亡",
+     "desc": "战争与身份丧失象征"
+    },
+    {
+     "id": "SUBJECT.history.35",
+     "cn": "囚禁",
+     "desc": "自由与压迫象征"
+    },
+    {
+     "id": "SUBJECT.history.36",
+     "cn": "抗争",
+     "desc": "信念与命运对抗象征"
+    },
+    {
+     "id": "SUBJECT.history.37",
+     "cn": "革命领袖",
+     "desc": "理想与牺牲的象征化形象"
+    },
+    {
+     "id": "SUBJECT.history.38",
+     "cn": "群众运动",
+     "desc": "集体激情与社会力量象征"
+    },
+    {
+     "id": "SUBJECT.history.39",
+     "cn": "社区生活",
+     "desc": "人际关系与社会生态象征"
+    },
+    {
+     "id": "SUBJECT.history.40",
+     "cn": "家庭伦理",
+     "desc": "社会结构与个体关系象征"
+    },
+    {
+     "id": "SUBJECT.history.41",
+     "cn": "教育场景",
+     "desc": "知识传播与社会希望象征"
+    },
+    {
+     "id": "SUBJECT.history.42",
+     "cn": "医疗场景",
+     "desc": "人性与科技结合象征"
+    },
+    {
+     "id": "SUBJECT.history.43",
+     "cn": "法律",
+     "desc": "正义、制度与道德边界象征"
+    },
+    {
+     "id": "SUBJECT.history.44",
+     "cn": "婚礼",
+     "desc": "社会仪式与文化秩序象征"
+    },
+    {
+     "id": "SUBJECT.history.45",
+     "cn": "葬礼",
+     "desc": "死亡与群体记忆象征"
+    },
+    {
+     "id": "SUBJECT.history.46",
+     "cn": "节庆",
+     "desc": "民俗与集体欢乐象征"
+    },
+    {
+     "id": "SUBJECT.history.47",
+     "cn": "庙会",
+     "desc": "信仰与民间生活象征"
+    },
+    {
+     "id": "SUBJECT.history.48",
+     "cn": "游行",
+     "desc": "群体身份与社会表达象征"
+    },
+    {
+     "id": "SUBJECT.history.49",
+     "cn": "抗议",
+     "desc": "政治与良知的视觉语言"
+    },
+    {
+     "id": "SUBJECT.history.50",
+     "cn": "审判",
+     "desc": "道德冲突与社会秩序象征"
+    },
+    {
+     "id": "SUBJECT.history.51",
+     "cn": "新时代青年",
+     "desc": "社会变革中的个体精神象征"
+    },
+    {
+     "id": "SUBJECT.history.52",
+     "cn": "当代社会",
+     "desc": "现代生活的多元结构与心理状态象征"
+    },
+    {
+     "id": "SUBJECT.history.x53",
+     "cn": "权力",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.history.x54",
+     "cn": "历史",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.history.x55",
+     "cn": "劳动",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.history.x56",
+     "cn": "帝后",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.history.x57",
+     "cn": "工农兵",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    }
+   ]
+  },
+  {
+   "id": "SUBJECT.abstract",
+   "cn": "抽象与观念题材",
+   "en": "Abstract & Concept",
+   "count": 77,
+   "shift": null,
+   "atoms": [
+    {
+     "id": "SUBJECT.abstract.01",
+     "cn": "几何构成",
+     "desc": "形式与理性象征，结构秩序与比例关系探索"
+    },
+    {
+     "id": "SUBJECT.abstract.02",
+     "cn": "线条节奏",
+     "desc": "音乐性与视觉律动的抽象表达"
+    },
+    {
+     "id": "SUBJECT.abstract.03",
+     "cn": "色块关系",
+     "desc": "情绪与形式平衡象征，色域抽象代表"
+    },
+    {
+     "id": "SUBJECT.abstract.04",
+     "cn": "形体解构",
+     "desc": "解构具象的认知与感知边界"
+    },
+    {
+     "id": "SUBJECT.abstract.05",
+     "cn": "空间张力",
+     "desc": "形式与能量在平面中的平衡与冲突"
+    },
+    {
+     "id": "SUBJECT.abstract.06",
+     "cn": "对称",
+     "desc": "秩序、美与神圣感的视觉表现"
+    },
+    {
+     "id": "SUBJECT.abstract.07",
+     "cn": "不对称",
+     "desc": "自然与自由构成的象征"
+    },
+    {
+     "id": "SUBJECT.abstract.08",
+     "cn": "层叠",
+     "desc": "时间沉积与记忆堆叠象征"
+    },
+    {
+     "id": "SUBJECT.abstract.09",
+     "cn": "透明叠加",
+     "desc": "虚实共存与思维流动象征"
+    },
+    {
+     "id": "SUBJECT.abstract.10",
+     "cn": "点阵",
+     "desc": "秩序与信息象征，科技感表达"
+    },
+    {
+     "id": "SUBJECT.abstract.11",
+     "cn": "模糊",
+     "desc": "感知不确定性与心理朦胧象征"
+    },
+    {
+     "id": "SUBJECT.abstract.12",
+     "cn": "重复",
+     "desc": "仪式与时间循环的视觉表现"
+    },
+    {
+     "id": "SUBJECT.abstract.13",
+     "cn": "极简",
+     "desc": "纯粹与本质的审美追求"
+    },
+    {
+     "id": "SUBJECT.abstract.14",
+     "cn": "混沌",
+     "desc": "自然原力与生命起源象征"
+    },
+    {
+     "id": "SUBJECT.abstract.15",
+     "cn": "光感",
+     "desc": "时间流逝与精神层次象征"
+    },
+    {
+     "id": "SUBJECT.abstract.16",
+     "cn": "能量流",
+     "desc": "动态与内在力量的视觉呈现"
+    },
+    {
+     "id": "SUBJECT.abstract.17",
+     "cn": "时间痕迹",
+     "desc": "过程性与生命流逝象征"
+    },
+    {
+     "id": "SUBJECT.abstract.18",
+     "cn": "手势痕迹",
+     "desc": "身体行动与创作瞬间记录"
+    },
+    {
+     "id": "SUBJECT.abstract.19",
+     "cn": "材料实验",
+     "desc": "媒介与观念的结合实验"
+    },
+    {
+     "id": "SUBJECT.abstract.20",
+     "cn": "自然肌理",
+     "desc": "有机生长与生命律动象征"
+    },
+    {
+     "id": "SUBJECT.abstract.21",
+     "cn": "视觉错觉",
+     "desc": "感知与理性对抗象征"
+    },
+    {
+     "id": "SUBJECT.abstract.22",
+     "cn": "数字图形",
+     "desc": "人工秩序与科技意识象征"
+    },
+    {
+     "id": "SUBJECT.abstract.23",
+     "cn": "光影结构",
+     "desc": "空间意识与哲学深度象征"
+    },
+    {
+     "id": "SUBJECT.abstract.24",
+     "cn": "对比",
+     "desc": "对立统一与思辨视觉逻辑"
+    },
+    {
+     "id": "SUBJECT.abstract.25",
+     "cn": "重构",
+     "desc": "意义更新与视觉再生象征"
+    },
+    {
+     "id": "SUBJECT.abstract.26",
+     "cn": "流动",
+     "desc": "感知与思绪动态象征"
+    },
+    {
+     "id": "SUBJECT.abstract.27",
+     "cn": "符号",
+     "desc": "概念与语言之间的桥梁"
+    },
+    {
+     "id": "SUBJECT.abstract.28",
+     "cn": "数字",
+     "desc": "数学秩序与人类理性象征"
+    },
+    {
+     "id": "SUBJECT.abstract.29",
+     "cn": "语言文字",
+     "desc": "符号系统与意义逻辑象征"
+    },
+    {
+     "id": "SUBJECT.abstract.30",
+     "cn": "概念文本",
+     "desc": "思维过程的视觉化呈现"
+    },
+    {
+     "id": "SUBJECT.abstract.31",
+     "cn": "图形代码",
+     "desc": "信息化语言的艺术再造"
+    },
+    {
+     "id": "SUBJECT.abstract.32",
+     "cn": "结构网格",
+     "desc": "理性秩序与现代性象征"
+    },
+    {
+     "id": "SUBJECT.abstract.33",
+     "cn": "模块化",
+     "desc": "系统性思维与重复美学象征"
+    },
+    {
+     "id": "SUBJECT.abstract.34",
+     "cn": "生成形态",
+     "desc": "自组织与算法艺术象征"
+    },
+    {
+     "id": "SUBJECT.abstract.35",
+     "cn": "声音图像",
+     "desc": "感官交互与跨媒介艺术象征"
+    },
+    {
+     "id": "SUBJECT.abstract.36",
+     "cn": "运动轨迹",
+     "desc": "时间与空间的融合象征"
+    },
+    {
+     "id": "SUBJECT.abstract.37",
+     "cn": "情绪场",
+     "desc": "心理能量与意识流象征"
+    },
+    {
+     "id": "SUBJECT.abstract.38",
+     "cn": "内视空间",
+     "desc": "精神世界与梦境的抽象表达"
+    },
+    {
+     "id": "SUBJECT.abstract.39",
+     "cn": "意识流",
+     "desc": "思维与感知的非线性结构"
+    },
+    {
+     "id": "SUBJECT.abstract.40",
+     "cn": "冥想状态",
+     "desc": "静与空的精神空间象征"
+    },
+    {
+     "id": "SUBJECT.abstract.41",
+     "cn": "幻象结构",
+     "desc": "想象与现实边界象征"
+    },
+    {
+     "id": "SUBJECT.abstract.42",
+     "cn": "时间循环",
+     "desc": "永恒与宿命的哲学表达"
+    },
+    {
+     "id": "SUBJECT.abstract.43",
+     "cn": "空白",
+     "desc": "缺席与潜能的象征，东方留白哲学体现"
+    },
+    {
+     "id": "SUBJECT.abstract.44",
+     "cn": "坏画面",
+     "desc": "对视觉完美的反叛与观念颠覆"
+    },
+    {
+     "id": "SUBJECT.abstract.45",
+     "cn": "破碎结构",
+     "desc": "解构与再造的哲学思维象征"
+    },
+    {
+     "id": "SUBJECT.abstract.46",
+     "cn": "残迹",
+     "desc": "时间的痕迹与存在证明"
+    },
+    {
+     "id": "SUBJECT.abstract.47",
+     "cn": "数据可视",
+     "desc": "信息社会与算法感知象征"
+    },
+    {
+     "id": "SUBJECT.abstract.48",
+     "cn": "心灵地图",
+     "desc": "精神与意识的视觉拓扑"
+    },
+    {
+     "id": "SUBJECT.abstract.49",
+     "cn": "逻辑空间",
+     "desc": "思维运算的视觉呈现"
+    },
+    {
+     "id": "SUBJECT.abstract.50",
+     "cn": "感官流",
+     "desc": "多感官融合的艺术体验象征"
+    },
+    {
+     "id": "SUBJECT.abstract.51",
+     "cn": "模型构图",
+     "desc": "思维可视化与系统演化象征"
+    },
+    {
+     "id": "SUBJECT.abstract.x52",
+     "cn": "崇高自然",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x53",
+     "cn": "贫困",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x54",
+     "cn": "光",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x55",
+     "cn": "室内",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x56",
+     "cn": "欲望",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x57",
+     "cn": "空间",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x58",
+     "cn": "纯抽象",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x59",
+     "cn": "橱窗",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x60",
+     "cn": "文字",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x61",
+     "cn": "屏幕",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x62",
+     "cn": "生成",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x63",
+     "cn": "隐逸",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x64",
+     "cn": "雅集",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x65",
+     "cn": "笔墨",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x66",
+     "cn": "虚空",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x67",
+     "cn": "装饰",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x68",
+     "cn": "写生",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x69",
+     "cn": "肌理",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x70",
+     "cn": "领袖",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x71",
+     "cn": "吉祥",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x72",
+     "cn": "白描稿",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x73",
+     "cn": "文化批判",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x74",
+     "cn": "装置",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x75",
+     "cn": "材料",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x76",
+     "cn": "拼贴",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.abstract.x77",
+     "cn": "四季",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    }
+   ]
+  },
+  {
+   "id": "SUBJECT.folk",
+   "cn": "民俗与生活题材",
+   "en": "Folk & Life",
+   "count": 54,
+   "shift": null,
+   "atoms": [
+    {
+     "id": "SUBJECT.folk.01",
+     "cn": "春节",
+     "desc": "更新与团聚象征，最具中国情感的节日主题"
+    },
+    {
+     "id": "SUBJECT.folk.02",
+     "cn": "元宵节",
+     "desc": "团圆、灯火与民间喜乐象征"
+    },
+    {
+     "id": "SUBJECT.folk.03",
+     "cn": "清明节",
+     "desc": "追思与生命循环象征"
+    },
+    {
+     "id": "SUBJECT.folk.04",
+     "cn": "端午节",
+     "desc": "忠诚与驱邪象征，龙舟文化代表"
+    },
+    {
+     "id": "SUBJECT.folk.05",
+     "cn": "中秋节",
+     "desc": "团圆与思念象征，月亮意象核心"
+    },
+    {
+     "id": "SUBJECT.folk.06",
+     "cn": "七夕节",
+     "desc": "爱情与离别象征，东方浪漫主题"
+    },
+    {
+     "id": "SUBJECT.folk.07",
+     "cn": "重阳节",
+     "desc": "登高与敬老象征，秋日精神意象"
+    },
+    {
+     "id": "SUBJECT.folk.08",
+     "cn": "庙会",
+     "desc": "信仰与民间欢乐并存的社会仪式场景"
+    },
+    {
+     "id": "SUBJECT.folk.09",
+     "cn": "拜年",
+     "desc": "礼仪与祝福象征，文化交流形式"
+    },
+    {
+     "id": "SUBJECT.folk.10",
+     "cn": "婚礼",
+     "desc": "爱情与家族传承象征"
+    },
+    {
+     "id": "SUBJECT.folk.11",
+     "cn": "生辰",
+     "desc": "时间与生命庆典的象征"
+    },
+    {
+     "id": "SUBJECT.folk.12",
+     "cn": "寿宴",
+     "desc": "生命延续与祝福象征"
+    },
+    {
+     "id": "SUBJECT.folk.13",
+     "cn": "丧礼",
+     "desc": "悼念与精神延续象征"
+    },
+    {
+     "id": "SUBJECT.folk.14",
+     "cn": "农耕",
+     "desc": "劳作与自然节奏象征"
+    },
+    {
+     "id": "SUBJECT.folk.15",
+     "cn": "织布",
+     "desc": "女红与生活智慧象征"
+    },
+    {
+     "id": "SUBJECT.folk.16",
+     "cn": "打铁",
+     "desc": "技艺与生命力量象征"
+    },
+    {
+     "id": "SUBJECT.folk.17",
+     "cn": "制陶",
+     "desc": "手工与火的结合象征"
+    },
+    {
+     "id": "SUBJECT.folk.18",
+     "cn": "木匠",
+     "desc": "工艺与结构智慧象征"
+    },
+    {
+     "id": "SUBJECT.folk.19",
+     "cn": "剪纸",
+     "desc": "民间视觉与仪式美学象征"
+    },
+    {
+     "id": "SUBJECT.folk.20",
+     "cn": "刺绣",
+     "desc": "女性艺术与细腻情感象征"
+    },
+    {
+     "id": "SUBJECT.folk.21",
+     "cn": "赶集",
+     "desc": "地方生活与社会交流象征"
+    },
+    {
+     "id": "SUBJECT.folk.22",
+     "cn": "集市",
+     "desc": "人间烟火与商业活力象征"
+    },
+    {
+     "id": "SUBJECT.folk.23",
+     "cn": "茶馆",
+     "desc": "社交与文化空间象征"
+    },
+    {
+     "id": "SUBJECT.folk.24",
+     "cn": "酒肆",
+     "desc": "情感释放与庶民生活象征"
+    },
+    {
+     "id": "SUBJECT.folk.25",
+     "cn": "渔村",
+     "desc": "生活与自然共生象征"
+    },
+    {
+     "id": "SUBJECT.folk.26",
+     "cn": "田园",
+     "desc": "宁静与自足象征"
+    },
+    {
+     "id": "SUBJECT.folk.27",
+     "cn": "家庭生活",
+     "desc": "温情与秩序象征"
+    },
+    {
+     "id": "SUBJECT.folk.28",
+     "cn": "烹饪场景",
+     "desc": "感官享受与家庭仪式象征"
+    },
+    {
+     "id": "SUBJECT.folk.29",
+     "cn": "洗衣",
+     "desc": "劳动与纯净象征"
+    },
+    {
+     "id": "SUBJECT.folk.30",
+     "cn": "农家屋舍",
+     "desc": "地方文化与生活质朴象征"
+    },
+    {
+     "id": "SUBJECT.folk.31",
+     "cn": "村落全景",
+     "desc": "集体记忆与地域精神象征"
+    },
+    {
+     "id": "SUBJECT.folk.32",
+     "cn": "乡镇风俗",
+     "desc": "民族文化与地域生活象征"
+    },
+    {
+     "id": "SUBJECT.folk.33",
+     "cn": "舞龙舞狮",
+     "desc": "力量与庆典象征"
+    },
+    {
+     "id": "SUBJECT.folk.34",
+     "cn": "放烟花",
+     "desc": "欢庆与短暂美象征"
+    },
+    {
+     "id": "SUBJECT.folk.35",
+     "cn": "吹糖人",
+     "desc": "儿童记忆与民间手艺象征"
+    },
+    {
+     "id": "SUBJECT.folk.36",
+     "cn": "木偶戏",
+     "desc": "民间叙事与文化传承象征"
+    },
+    {
+     "id": "SUBJECT.folk.37",
+     "cn": "皮影戏",
+     "desc": "光与影的艺术化民俗象征"
+    },
+    {
+     "id": "SUBJECT.folk.38",
+     "cn": "说书场景",
+     "desc": "口述历史与地方文化象征"
+    },
+    {
+     "id": "SUBJECT.folk.39",
+     "cn": "民间信仰",
+     "desc": "精神庇护与文化共识象征"
+    },
+    {
+     "id": "SUBJECT.folk.40",
+     "cn": "祭祖",
+     "desc": "血脉与文化传承象征"
+    },
+    {
+     "id": "SUBJECT.folk.41",
+     "cn": "祭天",
+     "desc": "宇宙秩序与敬畏象征"
+    },
+    {
+     "id": "SUBJECT.folk.42",
+     "cn": "祈福",
+     "desc": "信仰与希望象征"
+    },
+    {
+     "id": "SUBJECT.folk.43",
+     "cn": "驱邪",
+     "desc": "对未知的敬畏与保护象征"
+    },
+    {
+     "id": "SUBJECT.folk.44",
+     "cn": "占卜",
+     "desc": "命运意识与精神焦虑象征"
+    },
+    {
+     "id": "SUBJECT.folk.45",
+     "cn": "红灯笼",
+     "desc": "喜庆与团圆象征"
+    },
+    {
+     "id": "SUBJECT.folk.46",
+     "cn": "喜字窗花",
+     "desc": "婚庆与传统装饰象征"
+    },
+    {
+     "id": "SUBJECT.folk.47",
+     "cn": "风筝",
+     "desc": "自由与童心象征"
+    },
+    {
+     "id": "SUBJECT.folk.48",
+     "cn": "糖葫芦",
+     "desc": "民间甜美与幸福象征"
+    },
+    {
+     "id": "SUBJECT.folk.49",
+     "cn": "城市街景",
+     "desc": "当代民俗与生活节奏象征"
+    },
+    {
+     "id": "SUBJECT.folk.50",
+     "cn": "夜市",
+     "desc": "现代人间烟火与消费文化象征"
+    },
+    {
+     "id": "SUBJECT.folk.x51",
+     "cn": "爱情",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.folk.x52",
+     "cn": "农民",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.folk.x53",
+     "cn": "农事",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.folk.x54",
+     "cn": "渔隐",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    }
+   ]
+  },
+  {
+   "id": "SUBJECT.urban",
+   "cn": "都市与未来题材",
+   "en": "Urban & Future",
+   "count": 56,
+   "shift": {
+    "west": "建筑秩序 · 空间构造",
+    "east": "生存隐喻 · 人在世中的处境"
+   },
+   "atoms": [
+    {
+     "id": "SUBJECT.urban.01",
+     "cn": "城市天际线",
+     "desc": "现代文明与秩序象征"
+    },
+    {
+     "id": "SUBJECT.urban.02",
+     "cn": "摩天大楼",
+     "desc": "权力、资本与科技的垂直隐喻"
+    },
+    {
+     "id": "SUBJECT.urban.03",
+     "cn": "地铁站",
+     "desc": "现代生活节奏与人流匿名象征"
+    },
+    {
+     "id": "SUBJECT.urban.04",
+     "cn": "十字路口",
+     "desc": "抉择与方向象征，城市哲学核心空间"
+    },
+    {
+     "id": "SUBJECT.urban.05",
+     "cn": "高速公路",
+     "desc": "流动性与现代焦虑象征"
+    },
+    {
+     "id": "SUBJECT.urban.06",
+     "cn": "霓虹街道",
+     "desc": "消费文化与感官迷乱象征"
+    },
+    {
+     "id": "SUBJECT.urban.07",
+     "cn": "夜景灯光",
+     "desc": "都市欲望与孤独的对比象征"
+    },
+    {
+     "id": "SUBJECT.urban.08",
+     "cn": "商场",
+     "desc": "消费社会与物质符号象征"
+    },
+    {
+     "id": "SUBJECT.urban.09",
+     "cn": "广告牌",
+     "desc": "视觉轰炸与现代幻象象征"
+    },
+    {
+     "id": "SUBJECT.urban.10",
+     "cn": "居民楼",
+     "desc": "普通生活与社会结构象征"
+    },
+    {
+     "id": "SUBJECT.urban.11",
+     "cn": "城市天桥",
+     "desc": "层级空间与社会隔阂象征"
+    },
+    {
+     "id": "SUBJECT.urban.12",
+     "cn": "公共交通",
+     "desc": "群体流动与时间秩序象征"
+    },
+    {
+     "id": "SUBJECT.urban.13",
+     "cn": "城市雨夜",
+     "desc": "情绪化都市孤独象征"
+    },
+    {
+     "id": "SUBJECT.urban.14",
+     "cn": "便利店",
+     "desc": "光、孤独与生活琐碎象征"
+    },
+    {
+     "id": "SUBJECT.urban.15",
+     "cn": "城市垃圾",
+     "desc": "消耗文明与生态反思象征"
+    },
+    {
+     "id": "SUBJECT.urban.16",
+     "cn": "工地",
+     "desc": "建设与破坏并存象征"
+    },
+    {
+     "id": "SUBJECT.urban.17",
+     "cn": "城市天台",
+     "desc": "逃避、自由与俯瞰象征"
+    },
+    {
+     "id": "SUBJECT.urban.18",
+     "cn": "电线与天线",
+     "desc": "通讯、连接与孤立象征"
+    },
+    {
+     "id": "SUBJECT.urban.19",
+     "cn": "商务人群",
+     "desc": "匿名社会与身份迷失象征"
+    },
+    {
+     "id": "SUBJECT.urban.20",
+     "cn": "地铁人群",
+     "desc": "日常重复与都市无意识象征"
+    },
+    {
+     "id": "SUBJECT.urban.21",
+     "cn": "城市广场",
+     "desc": "群体活动与社会仪式象征"
+    },
+    {
+     "id": "SUBJECT.urban.22",
+     "cn": "城市雕塑",
+     "desc": "权力与文化形象象征"
+    },
+    {
+     "id": "SUBJECT.urban.23",
+     "cn": "数码屏幕",
+     "desc": "信息社会与虚拟视觉象征"
+    },
+    {
+     "id": "SUBJECT.urban.24",
+     "cn": "手机屏幕",
+     "desc": "私密世界与注意力象征"
+    },
+    {
+     "id": "SUBJECT.urban.25",
+     "cn": "监控摄像头",
+     "desc": "控制与被凝视象征"
+    },
+    {
+     "id": "SUBJECT.urban.26",
+     "cn": "虚拟城市",
+     "desc": "数字文明与想象空间象征"
+    },
+    {
+     "id": "SUBJECT.urban.27",
+     "cn": "元宇宙空间",
+     "desc": "现实与虚拟融合象征"
+    },
+    {
+     "id": "SUBJECT.urban.28",
+     "cn": "赛博街区",
+     "desc": "科技都市与异化美学象征"
+    },
+    {
+     "id": "SUBJECT.urban.29",
+     "cn": "机械都市",
+     "desc": "冷峻秩序与人机共生象征"
+    },
+    {
+     "id": "SUBJECT.urban.30",
+     "cn": "AI角色",
+     "desc": "智能化人格与身份反思象征"
+    },
+    {
+     "id": "SUBJECT.urban.31",
+     "cn": "仿生人",
+     "desc": "人机边界与伦理反思象征"
+    },
+    {
+     "id": "SUBJECT.urban.32",
+     "cn": "数据流",
+     "desc": "信息时代的时间隐喻"
+    },
+    {
+     "id": "SUBJECT.urban.33",
+     "cn": "网络空间",
+     "desc": "连接、孤独与虚拟共生象征"
+    },
+    {
+     "id": "SUBJECT.urban.34",
+     "cn": "智能家居",
+     "desc": "科技与舒适、监控与自由象征"
+    },
+    {
+     "id": "SUBJECT.urban.35",
+     "cn": "无人机视角",
+     "desc": "全知视野与现代观察象征"
+    },
+    {
+     "id": "SUBJECT.urban.36",
+     "cn": "科技植入",
+     "desc": "未来身体与身份变异象征"
+    },
+    {
+     "id": "SUBJECT.urban.37",
+     "cn": "未来建筑",
+     "desc": "反重力与理性秩序象征"
+    },
+    {
+     "id": "SUBJECT.urban.38",
+     "cn": "宇宙空间站",
+     "desc": "拓界与孤独象征"
+    },
+    {
+     "id": "SUBJECT.urban.39",
+     "cn": "星际城市",
+     "desc": "宇宙文明与人类未来象征"
+    },
+    {
+     "id": "SUBJECT.urban.40",
+     "cn": "火星基地",
+     "desc": "探索与孤立象征"
+    },
+    {
+     "id": "SUBJECT.urban.41",
+     "cn": "虚拟化身",
+     "desc": "数字人格与身份替代象征"
+    },
+    {
+     "id": "SUBJECT.urban.42",
+     "cn": "时间隧道",
+     "desc": "时空交错与哲学思辨象征"
+    },
+    {
+     "id": "SUBJECT.urban.43",
+     "cn": "平行世界",
+     "desc": "多维现实与自我映射象征"
+    },
+    {
+     "id": "SUBJECT.urban.44",
+     "cn": "模拟人生",
+     "desc": "虚拟生命体验象征"
+    },
+    {
+     "id": "SUBJECT.urban.45",
+     "cn": "未来战争",
+     "desc": "技术毁灭与伦理危机象征"
+    },
+    {
+     "id": "SUBJECT.urban.46",
+     "cn": "灾后城市",
+     "desc": "生存与重生象征"
+    },
+    {
+     "id": "SUBJECT.urban.47",
+     "cn": "虚拟自然",
+     "desc": "人工自然与生态幻觉象征"
+    },
+    {
+     "id": "SUBJECT.urban.48",
+     "cn": "数字生命",
+     "desc": "数据与灵魂融合象征"
+    },
+    {
+     "id": "SUBJECT.urban.49",
+     "cn": "人工智能",
+     "desc": "意识模拟与创造性反思象征"
+    },
+    {
+     "id": "SUBJECT.urban.50",
+     "cn": "光之城市",
+     "desc": "理想未来与纯净乌托邦象征"
+    },
+    {
+     "id": "SUBJECT.urban.51",
+     "cn": "黑暗都市",
+     "desc": "欲望与控制的反乌托邦象征"
+    },
+    {
+     "id": "SUBJECT.urban.x52",
+     "cn": "市井",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.urban.x53",
+     "cn": "异域",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.urban.x54",
+     "cn": "都市生活",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.urban.x55",
+     "cn": "城市",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    },
+    {
+     "id": "SUBJECT.urban.x56",
+     "cn": "都市",
+     "desc": "(风格母题扩充)",
+     "src": "style_motif"
+    }
+   ]
+  }
+ ]
+}

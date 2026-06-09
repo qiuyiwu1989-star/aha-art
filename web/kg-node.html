@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 节点详情页样板 · 印象派</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--green-soft:#eef3f0;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:34px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  .demo{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-soft);background:var(--accent-soft);border:1px solid #e5d3c2;border-radius:999px;padding:6px 14px;width:fit-content;max-width:94%;margin:10px auto 0;line-height:1.5}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:8px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  /* head */
+  .nh{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:18px;border-bottom:2px solid var(--accent);padding-bottom:10px}
+  .nh .cn{font-family:var(--serif);font-size:clamp(26px,5vw,36px);font-weight:600}
+  .nh .en{font-family:var(--mono);font-size:13px;color:var(--ink-faint)}
+  .nh .badges{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+  .nh .bd{font-family:var(--mono);font-size:10.5px;border-radius:6px;padding:2px 9px}
+  .bd.layer{background:var(--accent);color:#fff}.bd.wm{background:var(--green);color:#fff}.bd.id{background:var(--paper-2);color:var(--ink-mute)}
+  .def{font-size:14px;color:var(--ink-soft);line-height:1.85;margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px 17px}
+  .meta-row{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;font-size:12.5px;color:var(--ink-soft)}
+  .meta-row .ml{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-right:6px}
+  .sec{margin-top:30px}
+  .sec-h{font-family:var(--serif);font-size:18px;font-weight:600;margin-bottom:4px}
+  .sec-h .tag{font-family:var(--mono);font-size:10px;color:#fff;border-radius:5px;padding:1px 7px;margin-left:8px;vertical-align:middle}
+  .tagA{background:#7a6a9a}.tagB{background:var(--accent)}.tagC{background:var(--green)}
+  .sec-d{font-size:12px;color:var(--ink-mute);margin-bottom:12px;line-height:1.6}
+  /* coord bars */
+  .bars{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .br{display:flex;align-items:center;gap:10px;margin:7px 0;font-size:12px}
+  .br .bl{width:74px;text-align:right;color:var(--ink-soft);font-family:var(--mono);font-size:11px}
+  .br .bt{flex:1;height:7px;background:var(--paper-2);border-radius:4px;position:relative}
+  .br .bd2{position:absolute;top:50%;width:13px;height:13px;border-radius:50%;background:var(--accent);transform:translate(-50%,-50%);border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+  .br .bv{width:34px;font-family:var(--mono);font-size:10px;color:var(--ink-mute)}
+  /* edges graph */
+  .egroup{margin-bottom:12px}
+  .egl{font-family:var(--mono);font-size:11px;color:var(--accent);margin-bottom:5px}
+  .echips{display:flex;flex-wrap:wrap;gap:6px}
+  .echip{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;color:var(--ink-soft);background:#fff;border:1px solid var(--line);border-radius:8px;padding:4px 10px;text-decoration:none}
+  .echip:hover{border-color:var(--accent);color:var(--accent)}
+  .echip .eid{font-family:var(--mono);font-size:9px;color:var(--ink-faint)}
+  .echip.miss{opacity:.5;border-style:dashed}
+  /* works */
+  .works{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+  .work{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column}
+  .work img{width:100%;aspect-ratio:1/1;object-fit:cover;background:var(--paper-2)}
+  .work .wt{font-size:11px;color:var(--ink);line-height:1.4;padding:6px 8px 2px;font-weight:500;flex:1}
+  .work .wa{font-family:var(--mono);font-size:9px;color:var(--ink-mute);padding:0 8px}
+  .work .wv{display:flex;gap:6px;padding:4px 8px 7px;font-family:var(--mono);font-size:8.5px;color:var(--green)}
+  /* schema */
+  .schema{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .srow{display:flex;gap:10px;font-size:12.5px;color:var(--ink-soft);line-height:1.6;padding:5px 0;border-bottom:1px dashed var(--line)}
+  .srow:last-child{border-bottom:none}
+  .srow .sk{font-family:var(--mono);font-size:11px;color:var(--accent);min-width:120px;flex-shrink:0;font-weight:600}
+  .srow .sk.star{color:var(--green)}
+  .princ{font-size:13px;color:var(--ink-soft);background:var(--green-soft);border:1px solid #d7e3dc;border-left:3px solid var(--green);border-radius:10px;padding:12px 15px;margin-top:10px;line-height:1.75}.princ b{color:var(--green)}
+  .back{display:block;text-align:center;margin-top:42px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .home-fab:hover{color:var(--accent)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 节点详情页样板</div>
+  <div class="demo">▶ 这是"每个知识点的详情页"长什么样的样板 · 一次演示三目标:<b style="color:var(--ink)">关联(A) · 详情(B) · 作品归类(C)</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-graph">图谱·关系</a> › <b style="color:var(--ink-soft)">节点样板</b></div>
+
+  <div class="nh">
+    <span class="cn" id="cn"></span><span class="en" id="en"></span>
+    <span class="badges" id="badges"></span>
+  </div>
+  <div class="def" id="def"></div>
+  <div class="meta-row" id="metarow"></div>
+
+  <div class="sec">
+    <div class="sec-h">坐标 · 统一正交基 5 轴<span class="tag tagB">B 详情</span></div>
+    <div class="sec-d">这个节点在 5 条正交轴上的位置(草案估计)。</div>
+    <div class="bars" id="bars"></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">关联关系 · 图的边<span class="tag tagA">A 关联</span></div>
+    <div class="sec-d">节点不是孤立的——按边的类型连到其它真实节点(可点)。这就是"每个知识点彼此关联"。虚线=暂未建节点。</div>
+    <div id="edges"></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">代表作 · 作品归类<span class="tag tagC">C 归类</span></div>
+    <div class="sec-d">从馆藏语料按作者/风格挂到本节点的真实作品——证明"每个知识点是画的归类点"。<span id="wc"></span></div>
+    <div class="works" id="works"></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">这套要推广到全部 1595 个节点 · 目标数据模型</div>
+    <div class="sec-d">上面这页之所以成立,是因为节点用了下面这套统一 schema + 边本体。目前绝大多数节点还只有"名字+一行",要逐步补齐。</div>
+    <div class="schema" id="schema"></div>
+    <div class="princ" id="princ"></div>
+  </div>
+
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+
+<script>
+const N={
+ "id": "STYLE.west.029",
+ "cn": "印象派",
+ "en": "Impressionism",
+ "layer": "风格",
+ "definition": "1860–1880 年代兴起于法国的绘画运动,反学院派沙龙体系。主张走出画室、在户外直接面对光线作画,用纯色并置与破碎短笔触捕捉光与大气的瞬间变化,取消棕色调与黑色阴影。本质是把'世界如何被眼睛看见'本身当作主题。",
+ "coord_basis": {
+  "X1_再现表现": 0.55,
+  "X2_具象抽象": 0.3,
+  "X3_秩序张力": 0.62,
+  "X4_能量": 0.4,
+  "X5_卷入": 0.58
+ },
+ "world_model": {
+  "code": "W3",
+  "cn": "感知·经验世界模型"
+ },
+ "people": [
+  "莫奈 Monet",
+  "雷诺阿 Renoir",
+  "毕沙罗 Pissarro",
+  "德加 Degas",
+  "西斯莱 Sisley",
+  "莫里索 Morisot"
+ ],
+ "period": "1860s–1880s · 法国",
+ "edges": [
+  {
+   "type": "belong",
+   "label": "隶属·世界模型",
+   "cn": "感知·经验世界模型",
+   "to": "W3"
+  },
+  {
+   "type": "temporal_from",
+   "label": "时间·前驱",
+   "cn": "写实主义",
+   "to": "STYLE.east.092"
+  },
+  {
+   "type": "temporal_from",
+   "label": "时间·前驱",
+   "cn": "巴比松",
+   "to": null
+  },
+  {
+   "type": "temporal_to",
+   "label": "时间·后继",
+   "cn": "点彩派",
+   "to": "STYLE.west.031"
+  },
+  {
+   "type": "temporal_to",
+   "label": "时间·后继",
+   "cn": "后印象派",
+   "to": "STYLE.west.032"
+  },
+  {
+   "type": "against",
+   "label": "对抗",
+   "cn": "学院派写实",
+   "to": null
+  },
+  {
+   "type": "expresses",
+   "label": "常画题材·关联",
+   "cn": "风景",
+   "to": "SUBJECT.landscape.01"
+  },
+  {
+   "type": "expresses",
+   "label": "常画题材·关联",
+   "cn": "家庭场景",
+   "to": "SUBJECT.figure.42"
+  },
+  {
+   "type": "uses",
+   "label": "典型语言·关联",
+   "cn": "冷暖",
+   "to": "LANG.color.01"
+  },
+  {
+   "type": "uses",
+   "label": "典型语言·关联",
+   "cn": "对角构图",
+   "to": "LANG.composition.09"
+  },
+  {
+   "type": "uses",
+   "label": "典型语言·关联",
+   "cn": "厚涂",
+   "to": "LANG.texture.01"
+  },
+  {
+   "type": "evokes",
+   "label": "画外音·关联",
+   "cn": "瞬间",
+   "to": "VOICE.narrative.07"
+  },
+  {
+   "type": "evokes",
+   "label": "画外音·关联",
+   "cn": "温度",
+   "to": "PERC.sense.02"
+  }
+ ],
+ "works": [
+  {
+   "slug": "m436965",
+   "title": "The Monet Family in Their Garden at Argenteuil",
+   "artist": "Edouard Manet",
+   "thumb": "/aha/img/t/m436965.jpg",
+   "valence": 0.157,
+   "arousal": 0.386
+  },
+  {
+   "slug": "m671456",
+   "title": "Chrysanthemums in the Garden at Petit-Gennevilliers",
+   "artist": "Gustave Caillebotte",
+   "thumb": "/aha/img/t/m671456.jpg",
+   "valence": 0.599,
+   "arousal": 0.538
+  },
+  {
+   "slug": "m436947",
+   "title": "Boating",
+   "artist": "Edouard Manet",
+   "thumb": "/aha/img/t/m436947.jpg",
+   "valence": 0.142,
+   "arousal": 0.683
+  },
+  {
+   "slug": "m438817",
+   "title": "The Dance Class",
+   "artist": "Edgar Degas",
+   "thumb": "/aha/img/t/m438817.jpg",
+   "valence": 0.469,
+   "arousal": 0.355
+  },
+  {
+   "slug": "m436135",
+   "title": "Dancer with a Fan",
+   "artist": "Edgar Degas",
+   "thumb": "/aha/img/t/m436135.jpg",
+   "valence": 0.897,
+   "arousal": 0.225
+  },
+  {
+   "slug": "m436155",
+   "title": "The Rehearsal of the Ballet Onstage",
+   "artist": "Edgar Degas",
+   "thumb": "/aha/img/t/m436155.jpg",
+   "valence": 0.706,
+   "arousal": 0.569
+  },
+  {
+   "slug": "m436120",
+   "title": "The Old Italian Woman",
+   "artist": "Edgar Degas",
+   "thumb": "/aha/img/t/m436120.jpg",
+   "valence": 0.775,
+   "arousal": 0.858
+  },
+  {
+   "slug": "m436143",
+   "title": "Fan Mount: The Ballet",
+   "artist": "Edgar Degas",
+   "thumb": "/aha/img/t/m436143.jpg",
+   "valence": 0.721,
+   "arousal": 0.492
+  },
+  {
+   "slug": "m436142",
+   "title": "Fan Mount: Dancers",
+   "artist": "Edgar Degas",
+   "thumb": "/aha/img/t/m436142.jpg",
+   "valence": 0.508,
+   "arousal": 0.576
+  },
+  {
+   "slug": "m437315",
+   "title": "Fan Mount: The Cabbage Gatherers",
+   "artist": "Camille Pissarro",
+   "thumb": "/aha/img/t/m437315.jpg",
+   "valence": 0.729,
+   "arousal": 0.874
+  },
+  {
+   "slug": "m437310",
+   "title": "The Boulevard Montmartre on a Winter Morning",
+   "artist": "Camille Pissarro",
+   "thumb": "/aha/img/t/m437310.jpg",
+   "valence": 0.416,
+   "arousal": 0.187
+  },
+  {
+   "slug": "m437299",
+   "title": "Jalais Hill, Pontoise",
+   "artist": "Camille Pissarro",
+   "thumb": "/aha/img/t/m437299.jpg",
+   "valence": 0.653,
+   "arousal": 0.79
+  },
+  {
+   "slug": "m436950",
+   "title": "The Dead Christ with Angels",
+   "artist": "Edouard Manet",
+   "thumb": "/aha/img/t/m436950.jpg",
+   "valence": 0.302,
+   "arousal": 0.698
+  }
+ ],
+ "works_count": 13,
+ "sources": [
+  "MoMA / Met 展览叙述",
+  "贡布里希《艺术的故事》印象派章(待补精确页码)"
+ ],
+ "confidence": "high"
+}, SC={
+ "node_schema": {
+  "required": [
+   "id",
+   "cn",
+   "en",
+   "layer",
+   "definition"
+  ],
+  "graph": [
+   "coord_basis(5轴)",
+   "edges[]",
+   "aka[]"
+  ],
+  "detail_page": [
+   "definition",
+   "people",
+   "period",
+   "representative_works[]",
+   "sources[]"
+  ],
+  "classify": [
+   "works[](artwork_id 级归属边)"
+  ]
+ },
+ "edge_ontology": [
+  {
+   "t": "belong",
+   "cn": "隶属",
+   "desc": "→上位(风格→世界模型;原子→大类)。IS-A/层级"
+  },
+  {
+   "t": "temporal",
+   "cn": "时间·影响",
+   "desc": "风格→风格 的历史前驱/后继。数据支持:年代⊥视觉(可独立成边)"
+  },
+  {
+   "t": "against",
+   "cn": "对抗",
+   "desc": "美学对立/反动"
+  },
+  {
+   "t": "expresses/uses/evokes",
+   "cn": "跨层·关联",
+   "desc": "风格↔题材/语言/画外音(由 关联风格/心理感受 列规范化而来)"
+  },
+  {
+   "t": "aka",
+   "cn": "近义/变体",
+   "desc": "合并的同义节点"
+  },
+  {
+   "t": "cooccurs",
+   "cn": "共现(派生)",
+   "desc": "★从作品语料统计派生:两节点常同现→建边。这是让边'经得起推敲'的关键——边由数据长出,不靠手画"
+  },
+  {
+   "t": "instance_of",
+   "cn": "作品归属",
+   "desc": "画 →节点(归类点);反向=该节点的代表作集合"
+  }
+ ],
+ "principle": "专业 KG 的边应尽量从作品语料派生/验证(共现、影响链),而非全靠手工断言。这才经得起推敲。"
+};
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+document.getElementById('cn').textContent=N.cn;
+document.getElementById('en').textContent=N.en;
+document.getElementById('badges').innerHTML=`<span class="bd layer">${N.layer}层</span><span class="bd wm">${N.world_model.code} ${N.world_model.cn}</span><span class="bd id">${N.id}</span>`;
+document.getElementById('def').textContent=N.definition;
+document.getElementById('metarow').innerHTML=`<div><span class="ml">代表人物</span>${N.people.join(' · ')}</div><div><span class="ml">时期</span>${N.period}</div><div><span class="ml">来源</span>${N.sources.join('；')}</div>`;
+
+// bars
+const bars=document.getElementById('bars');
+Object.entries(N.coord_basis).forEach(([k,v])=>{
+  const name=k.replace(/^X\d_/,'');
+  bars.appendChild($(`<div class="br"><span class="bl">${name}</span><span class="bt"><span class="bd2" style="left:${v*100}%"></span></span><span class="bv">${v.toFixed(2)}</span></div>`));
+});
+
+// edges grouped
+const GROUPS={belong:'隶属 · 上位',temporal_from:'时间 · 前驱',temporal_to:'时间 · 后继',against:'对抗',expresses:'常画题材',uses:'典型语言',evokes:'画外音'};
+const eg=document.getElementById('edges'); const byt={};
+N.edges.forEach(e=>{(byt[e.type]=byt[e.type]||[]).push(e);});
+Object.keys(GROUPS).forEach(t=>{
+  if(!byt[t]) return;
+  const grp=$(`<div class="egroup"><div class="egl">${GROUPS[t]}</div><div class="echips"></div></div>`);
+  const cont=grp.querySelector('.echips');
+  byt[t].forEach(e=>{
+    const miss=!e.to;
+    cont.appendChild($(`<span class="echip ${miss?'miss':''}">${e.cn}${e.to?`<span class="eid">${e.to}</span>`:'<span class="eid">待建</span>'}</span>`));
+  });
+  eg.appendChild(grp);
+});
+
+// works
+document.getElementById('wc').textContent=`共 ${N.works_count} 件。`;
+const w=document.getElementById('works');
+N.works.forEach(x=>{
+  w.appendChild($(`<a class="work" href="${x.thumb? x.thumb.replace('/t/','/'):'#'}" target="_blank"><img src="${x.thumb}" alt="${x.title}" loading="lazy"/><div class="wt">${x.title}</div><div class="wa">${x.artist}</div><div class="wv"><span>效价 ${x.valence!=null?x.valence.toFixed(2):'-'}</span><span>唤醒 ${x.arousal!=null?x.arousal.toFixed(2):'-'}</span></div></a>`));
+});
+
+// schema
+const sc=document.getElementById('schema');
+sc.appendChild($(`<div class="srow"><span class="sk">必填</span><span>${SC.node_schema.required.join(' · ')}</span></div>`));
+sc.appendChild($(`<div class="srow"><span class="sk star">图(A)</span><span>${SC.node_schema.graph.join(' · ')}</span></div>`));
+sc.appendChild($(`<div class="srow"><span class="sk star">详情(B)</span><span>${SC.node_schema.detail_page.join(' · ')}</span></div>`));
+sc.appendChild($(`<div class="srow"><span class="sk star">归类(C)</span><span>${SC.node_schema.classify.join(' · ')}</span></div>`));
+SC.edge_ontology.forEach(e=>{
+  sc.appendChild($(`<div class="srow"><span class="sk">边·${e.cn}</span><span>${e.desc}</span></div>`));
+});
+document.getElementById('princ').innerHTML='🔬 <b>方法论</b>:'+SC.principle;
+</script>
+</body></html>

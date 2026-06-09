@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 画外音/感知层 · 多面解构</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--purple:#7a6a9a;--blue:#5b7596;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:34px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(21px,4vw,31px);font-weight:600;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.7;max-width:710px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .sec{margin-top:34px}
+  .sec-h{font-family:var(--serif);font-size:19px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:6px}
+  .sec-d{font-size:12.5px;color:var(--ink-mute);margin-bottom:13px;line-height:1.6}.sec-d b{color:var(--ink-soft)}
+  /* facet cards */
+  .facets{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:720px){.facets{grid-template-columns:1fr}}
+  .fc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;border-left:4px solid var(--accent)}
+  .fc.affect{border-left-color:var(--purple)}.fc.motif{border-left-color:var(--accent)}.fc.narr{border-left-color:var(--blue)}
+  .fc.concept{border-left-color:var(--ink-soft)}.fc.sense{border-left-color:var(--green)}.fc.time{border-left-color:var(--gold)}
+  .fc .fh{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .fc .fn{font-family:var(--serif);font-size:16px;font-weight:600}
+  .fc .ct{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-left:auto}
+  .fc .row{font-size:12px;color:var(--ink-soft);line-height:1.6;margin-top:5px}
+  .fc .row .l{font-family:var(--mono);font-size:9.5px;color:var(--ink-faint);margin-right:5px}
+  .fc .mech{font-family:var(--mono);font-size:10.5px;color:#fff;background:var(--accent);border-radius:5px;padding:1px 7px;display:inline-block;margin-top:6px}
+  .fc.affect .mech{background:var(--purple)}.fc.narr .mech{background:var(--blue)}.fc.concept .mech{background:var(--ink-soft)}.fc.sense .mech{background:var(--green)}.fc.time .mech{background:var(--gold)}
+  .fc a{color:var(--accent);text-decoration:none;font-size:11px}
+  /* motif */
+  .motifs{display:flex;flex-wrap:wrap;gap:7px}
+  .mn{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 11px;cursor:help}
+  .mn .mname{font-family:var(--serif);font-size:13px;font-weight:600}
+  .mn .opb{font-family:var(--mono);font-size:8px;color:#fff;background:var(--accent);border-radius:3px;padding:0 4px;margin-left:4px;vertical-align:middle}
+  .mn .exc{font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-left:4px}
+  .mn .ex{font-size:10.5px;color:var(--ink-mute);margin-top:3px;line-height:1.4;max-width:220px}
+  .princ{font-size:13px;color:var(--ink-soft);background:#fff;border:1px solid var(--line);border-left:3px solid var(--green);border-radius:10px;padding:12px 15px;margin-top:14px;line-height:1.75}.princ b{color:var(--green)}
+  .back{display:block;text-align:center;margin-top:42px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .home-fab:hover{color:var(--accent)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 多面解构</div>
+  <h1>画外音/感知:一层其实是六面</h1>
+  <p class="lead">上轮发现:把"画外音/感知"398 原子一律塞进 VAD 是<b>粗的</b>——它其实混了 <b>≥6 种不同性质的"面"</b>(情感/象征/叙事/哲思/感官/时间),每种该用<b>不同机制</b>泛化。这一页把它们拆开、各归其位。</p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-effect">效应·感知+画外音</a> › <b style="color:var(--ink-soft)">多面解构</b></div>
+
+  <div class="sec">
+    <div class="sec-h">① 六个面 · 各用各的机制</div>
+    <div class="sec-d">同一批"读出来的东西",按性质拆成六面;闭集的枚举、开集的立关键点、连续的给坐标。</div>
+    <div class="facets" id="facets"></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">② 象征母题:50 → 11 关键节点(开集示范)</div>
+    <div class="sec-d">"象征"是开集面(光/水/门/镜…可无限),按<b>母题关键节点 + 实例上卷</b>处理(同题材)。悬停看实例。</div>
+    <div class="motifs" id="motifs"></div>
+    <div class="princ" id="princ"></div>
+  </div>
+
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+
+<script>
+const F={
+ "meta": {
+  "title": "画外音/感知层 · 多面解构",
+  "version": "v1",
+  "note": "原'画外音/感知'398原子混了≥6种不同性质的'面';各应用不同泛化机制,而非一律VAD。"
+ },
+ "facets": [
+  {
+   "cn": "情感 Affect",
+   "src": "心理语言 + 哲学/氛围的情感部分",
+   "mech": "VAD 连续坐标",
+   "status": "已做:14情绪锚点(kg-affect)",
+   "color": "affect",
+   "count": 51,
+   "link": "kg-affect.html"
+  },
+  {
+   "cn": "象征母题 Motif",
+   "src": "象征语言",
+   "mech": "母题关键节点 + 实例上卷(开集)",
+   "status": "已收:50 → 11母题",
+   "color": "motif",
+   "count": 50
+  },
+  {
+   "cn": "叙事结构 Narrative",
+   "src": "叙事语言",
+   "mech": "封闭枚举(叙事弧 + 叙事模式)",
+   "status": "已收:闭集3组(叙事弧/模式/手法)",
+   "color": "narr",
+   "count": 46,
+   "link": "kg-facets-detail.html"
+  },
+  {
+   "cn": "哲思概念 Concept",
+   "src": "哲学语言",
+   "mech": "概念锚点(小闭集)",
+   "status": "已收:10对立轴(存在↔虚无…)",
+   "color": "concept",
+   "count": 50,
+   "link": "kg-facets-detail.html"
+  },
+  {
+   "cn": "感官通道 Sensory",
+   "src": "感官语言 + 空气氛围",
+   "mech": "五感通道枚举(闭集)+ 强度",
+   "status": "已收:六通道(视/触/听/嗅味/体感/大气)",
+   "color": "sense",
+   "count": 104,
+   "link": "kg-facets-detail.html"
+  },
+  {
+   "cn": "时间性 Temporality",
+   "src": "时间语言 + 时间记忆",
+   "mech": "时间性坐标(瞬间↔永恒)+ 模式",
+   "status": "已收:坐标(瞬间↔永恒)+5模式",
+   "color": "time",
+   "count": 97,
+   "link": "kg-facets-detail.html"
+  }
+ ],
+ "motif_nodes": [
+  {
+   "id": "MOTIF.01",
+   "cn": "光与天体",
+   "open": true,
+   "example_count": 8,
+   "examples": [
+    "光",
+    "暗影",
+    "月亮",
+    "太阳",
+    "天空",
+    "阴影",
+    "烛光",
+    "光环"
+   ]
+  },
+  {
+   "id": "MOTIF.02",
+   "cn": "水与火",
+   "open": true,
+   "example_count": 6,
+   "examples": [
+    "水",
+    "火",
+    "血",
+    "海",
+    "河流",
+    "烟雾"
+   ]
+  },
+  {
+   "id": "MOTIF.03",
+   "cn": "草木生灵",
+   "open": true,
+   "example_count": 11,
+   "examples": [
+    "鸟",
+    "树",
+    "花",
+    "蝴蝶",
+    "蛇",
+    "鸽子",
+    "鸟笼",
+    "枯木",
+    "鱼",
+    "羽毛",
+    "果实"
+   ]
+  },
+  {
+   "id": "MOTIF.04",
+   "cn": "生死符号",
+   "open": true,
+   "example_count": 2,
+   "examples": [
+    "沙漏",
+    "骷髅"
+   ]
+  },
+  {
+   "id": "MOTIF.05",
+   "cn": "门径与界限",
+   "open": true,
+   "example_count": 6,
+   "examples": [
+    "门",
+    "门槛",
+    "十字路口",
+    "天梯",
+    "桥",
+    "迷宫"
+   ]
+  },
+  {
+   "id": "MOTIF.06",
+   "cn": "镜与面具",
+   "open": true,
+   "example_count": 6,
+   "examples": [
+    "镜子",
+    "面具",
+    "眼睛",
+    "镜像",
+    "剪影",
+    "面纱"
+   ]
+  },
+  {
+   "id": "MOTIF.07",
+   "cn": "囚禁束缚",
+   "open": true,
+   "example_count": 1,
+   "examples": [
+    "镣铐"
+   ]
+  },
+  {
+   "id": "MOTIF.08",
+   "cn": "圣俗符号",
+   "open": true,
+   "example_count": 3,
+   "examples": [
+    "十字",
+    "天使",
+    "魔鬼"
+   ]
+  },
+  {
+   "id": "MOTIF.09",
+   "cn": "处所象征",
+   "open": true,
+   "example_count": 4,
+   "examples": [
+    "山",
+    "城市",
+    "荒野",
+    "石头"
+   ]
+  },
+  {
+   "id": "MOTIF.10",
+   "cn": "抽象符号",
+   "open": true,
+   "example_count": 2,
+   "examples": [
+    "梦",
+    "符号"
+   ]
+  },
+  {
+   "id": "MOTIF.99",
+   "cn": "其它母题(开放)",
+   "open": true,
+   "example_count": 1,
+   "examples": [
+    "龟裂"
+   ]
+  }
+ ]
+};
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const fc=document.getElementById('facets');
+F.facets.forEach(f=>{
+  const link=f.link?` · <a href="${f.link}">查看 →</a>`:'';
+  fc.appendChild($(`<div class="fc ${f.color}"><div class="fh"><span class="fn">${f.cn}</span><span class="ct">${f.count} 原子</span></div><div class="row"><span class="l">来源</span>${f.src}</div><span class="mech">${f.mech}</span><div class="row" style="margin-top:6px"><span class="l">状态</span>${f.status}${link}</div></div>`));
+});
+const mo=document.getElementById('motifs');
+F.motif_nodes.forEach(n=>{
+  mo.appendChild($(`<div class="mn" title="${n.examples.join('、')}"><span class="mname">${n.cn}</span><span class="opb">open</span><span class="exc">${n.example_count}</span><div class="ex">${n.examples.slice(0,8).join('、')}</div></div>`));
+});
+document.getElementById('princ').innerHTML='🔬 <b>结论</b>:一个"层"不一定一种机制。把混杂的画外音/感知拆成六面后——情感用VAD、象征用母题节点、叙事/感官/哲思用闭集枚举、时间用坐标——每一面都干净、可推敲。这就解决了上轮"非情绪项被粗略塞进VAD"的问题。';
+</script>
+</body></html>

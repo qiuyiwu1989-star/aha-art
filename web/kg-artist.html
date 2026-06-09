@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 艺术家</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--blue:#5b7596;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding:30px 18px 90px}
+  .breadcrumb{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}.breadcrumb a{color:var(--accent);text-decoration:none}
+  /* header */
+  .nh{display:flex;align-items:baseline;gap:11px;flex-wrap:wrap;margin-top:10px;border-bottom:2px solid var(--accent);padding-bottom:9px}
+  .nh.east{border-bottom-color:var(--green)}
+  .nh .cn{font-family:var(--serif);font-size:clamp(24px,5vw,34px);font-weight:700}
+  .nh .en{font-family:var(--mono);font-size:12px;color:var(--ink-faint)}
+  .nh .badges{margin-left:auto;display:flex;gap:5px;flex-wrap:wrap}
+  .bd{font-family:var(--mono);font-size:10px;border-radius:6px;padding:3px 9px}
+  .bd.mode{color:#fff}.bd.mode.居于{background:var(--green)}.bd.mode.跨越{background:var(--blue)}.bd.mode.立区{background:var(--gold)}
+  .bd.wm{background:var(--accent);color:#fff}.bd.id{background:var(--paper-2);color:var(--ink-mute)}
+  .idline{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:8px}
+  .pavatar{display:flex;justify-content:center;margin-top:8px}
+  .pavatar img,.pavatar .mono{width:108px;height:108px;border-radius:50%;object-fit:cover;object-position:center top;box-shadow:0 4px 16px rgba(0,0,0,.2);border:3px solid #fff;background:var(--paper-2)}
+  .pavatar .mono{display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:44px;font-weight:600;color:#fff}
+  .pcredit{text-align:center;font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-top:6px}
+  .headline{font-family:var(--serif);font-size:17px;font-style:italic;color:var(--accent);text-align:center;margin-top:14px;line-height:1.7}
+  /* group band */
+  .band{margin-top:30px}
+  .band-h{display:flex;align-items:baseline;gap:9px;margin-bottom:10px}
+  .band-h .tag{font-family:var(--mono);font-size:12px;font-weight:600;color:#fff;border-radius:6px;padding:2px 9px}
+  .band-h .t{font-family:var(--serif);font-size:17px;font-weight:600}
+  .band.A .tag{background:var(--accent)}.band.B .tag{background:var(--blue)}.band.C .tag{background:var(--green)}
+  .band-h .nt{font-size:11.5px;color:var(--ink-faint);margin-left:auto;font-style:italic}
+  .bio{font-size:14px;color:var(--ink-soft);line-height:1.9;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  /* generic card + sub head */
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:10px}
+  .sh{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.03em;margin-bottom:8px;border-bottom:1px dashed var(--line);padding-bottom:5px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{font-size:12.5px;color:var(--ink-soft);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:3px 10px;text-decoration:none}
+  a.chip:hover{border-color:var(--accent);color:var(--accent)}
+  .kv{font-size:13px;color:var(--ink-soft);line-height:1.9}.kv .l{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-right:6px}.kv b{color:var(--ink)}
+  /* worldview plane */
+  .planewrap{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px}
+  .planebox{position:relative;background:#fcfaf5;border:1px solid var(--line);border-radius:12px;overflow:hidden;touch-action:none;cursor:grab}
+  .planebox .plane{display:block;width:100%;height:auto}
+  .plabels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+  .plbl{position:absolute;white-space:nowrap;line-height:1.05;text-shadow:0 0 3px #fcfaf5,0 0 3px #fcfaf5,0 0 2px #fcfaf5,0 0 2px #fcfaf5}
+  .paxis{position:absolute;font-family:var(--mono);font-size:11px;font-weight:600;pointer-events:none;z-index:2}
+  .pzhint{position:absolute;left:50%;transform:translateX(-50%);bottom:6px;font-family:var(--mono);font-size:9px;color:var(--ink-faint);background:rgba(255,255,255,.72);border-radius:6px;padding:2px 8px;pointer-events:none;z-index:2}
+  .pzreset{position:absolute;top:8px;right:8px;width:26px;height:26px;border:1px solid var(--line);background:#fff;border-radius:7px;font-size:13px;color:var(--ink-soft);cursor:pointer;z-index:3}
+  .pzreset:hover{border-color:var(--accent);color:var(--accent)}
+  .lb{position:fixed;inset:0;z-index:9998;background:rgba(29,27,24,.86);display:flex;align-items:center;justify-content:center;padding:3vh 3vw;cursor:zoom-out;backdrop-filter:blur(3px)}
+  .lb .lbsvg{width:min(94vw,1100px);height:auto;max-height:94vh;background:#fcfaf5;border-radius:12px;box-shadow:0 12px 50px rgba(0,0,0,.5);cursor:grab;touch-action:none}
+  .lb .lbx{position:fixed;top:16px;right:18px;font-family:var(--mono);font-size:13px;color:#fff;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:7px 14px}
+  .lb .lbhint{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;color:#f4f1ea;background:rgba(0,0,0,.4);border-radius:999px;padding:5px 13px;pointer-events:none}
+  .readout{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}@media(max-width:600px){.readout{grid-template-columns:1fr 1fr}}
+  .ro{background:var(--paper-2);border-radius:9px;padding:9px 11px;text-align:center}
+  .ro .rl{font-family:var(--mono);font-size:9.5px;color:var(--ink-faint)}
+  .ro .rv{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--ink);margin-top:3px}
+  .ro .rv small{font-family:var(--mono);font-size:10px;color:var(--ink-mute);font-weight:400}
+  .note{font-size:12.5px;color:var(--ink-soft);line-height:1.7;margin-top:10px;background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:8px;padding:9px 12px}
+  .note b{color:var(--accent)}
+  /* fingerprint */
+  .frow{display:flex;align-items:center;gap:9px;margin:6px 0;font-size:11.5px}
+  .frow .fl,.frow .fr{width:40px;font-family:var(--mono);font-size:10.5px;color:var(--ink-soft)}.frow .fl{text-align:right}
+  .ft{flex:1;height:7px;background:var(--paper-2);border-radius:4px;position:relative}
+  .fd{position:absolute;top:50%;width:13px;height:13px;border-radius:50%;background:var(--accent);transform:translate(-50%,-50%);border:2px solid #fff}
+  .fk{width:34px;font-family:var(--serif);font-size:12px;color:var(--ink-mute);text-align:right}
+  /* VAD circumplex */
+  .cplex{margin:2px 0 12px}
+  .vnum{font-family:var(--mono);font-size:10px;color:var(--ink-mute);width:32px;text-align:right}
+  /* trajectory timeline */
+  .tl{display:flex;flex-direction:column;gap:0}
+  .tp{display:flex;gap:12px;position:relative;padding:0 0 14px 18px;border-left:2px solid var(--line)}
+  .tp:last-child{border-left-color:transparent;padding-bottom:0}
+  .tp::before{content:"";position:absolute;left:-7px;top:2px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid #fff}
+  .tp .ti{flex:1}
+  .tp .tph{font-family:var(--serif);font-size:14px;font-weight:600;color:var(--ink)}
+  .tp .tyr{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-left:6px}
+  .tp .tnt{font-size:12px;color:var(--ink-soft);line-height:1.55;margin-top:2px}
+  .tp .txy{font-family:var(--mono);font-size:10px;color:var(--accent);margin-top:3px}
+  /* works */
+  .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-bottom:10px}
+  .ga{display:block;text-decoration:none;background:var(--paper);border:1px solid var(--line);border-radius:9px;overflow:hidden}
+  .ga img{width:100%;height:120px;object-fit:cover;display:block;background:var(--paper-2)}
+  .ga .gt{display:block;font-size:11px;color:var(--ink-soft);padding:5px 7px;line-height:1.3}
+  .ga:hover{border-color:var(--accent)}.ga:hover .gt{color:var(--accent)}
+  .worklist{display:flex;flex-direction:column;gap:6px}
+  .wn{display:flex;align-items:baseline;gap:8px;font-size:14px;color:var(--ink-soft);background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:8px 12px}
+  .wn .wt{font-family:var(--serif);flex:1}.wn .wy{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}.wn .wxy{font-family:var(--mono);font-size:10px;color:var(--accent)}
+  /* quote */
+  .quote{font-family:var(--serif);font-size:16px;font-style:italic;color:var(--ink-soft);text-align:center;padding:6px 4px 2px;line-height:1.85}
+  /* style relation */
+  .srel{border-top:3px solid var(--green)}
+  .srel.立区{border-top-color:var(--gold)}.srel.跨越{border-top-color:var(--blue)}
+  .srel .sm{font-family:var(--serif);font-size:20px;font-weight:700}
+  .srel.居于 .sm{color:var(--green)}.srel.立区 .sm{color:var(--gold)}.srel.跨越 .sm{color:var(--blue)}
+  .srel .se{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-left:6px}
+  .srel .sd{font-size:13px;color:var(--ink-soft);line-height:1.7;margin-top:6px}
+  .back{display:block;text-align:center;margin-top:34px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .empty{font-size:13px;color:var(--ink-faint);padding:40px;text-align:center}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-artist">实例·艺术家</a> › <b style="color:var(--ink-soft)">艺术家页</b></div>
+  <div id="body"><div class="empty">加载中…</div></div>
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+// 点击放大:全屏浮层 + 可滚轮放大「细节」、拖动平移(改 viewBox,把挤叠的标签拉开)
+// 细节版世界观平面:大画布 + 每件作品/每期/每区单独标注 + 贪心避让(标签不叠加)+ 引线
+function bigPlane(a,WV){
+  const NS='http://www.w3.org/2000/svg',E=(n,o)=>{const e=document.createElementNS(NS,n);for(const k in o)e.setAttribute(k,o[k]);return e;};
+  const W=1120,H=760,pad=78, svg=E('svg',{viewBox:`0 0 ${W} ${H}`});
+  const sx=v=>pad+v*(W-2*pad), sy=v=>H-pad-v*(H-2*pad), AC=a.region==='east'?'#5a7d6f':'#b0673a';
+  svg.appendChild(E('rect',{x:0,y:0,width:W,height:H,fill:'#fcfaf5'}));
+  svg.appendChild(E('rect',{x:pad,y:pad,width:W-2*pad,height:H-2*pad,fill:'none',stroke:'#e8e0d0'}));
+  [0.25,0.5,0.75].forEach(t=>{svg.appendChild(E('line',{x1:sx(t),y1:pad,x2:sx(t),y2:H-pad,stroke:'#f0eadd'}));svg.appendChild(E('line',{x1:pad,y1:sy(t),x2:W-pad,y2:sy(t),stroke:'#f0eadd'}));});
+  const placed=[], hit=b=>placed.some(p=>!(b.x+b.w<p.x||b.x>p.x+p.w||b.y+b.h<p.y||b.y>p.y+p.h));
+  const txt=(x,y,s,o={})=>{const e=E('text',{x,y,'font-family':o.f||'Noto Sans SC','font-size':o.fs||12,fill:o.fill||'#857d6f','text-anchor':o.a||'start'});e.textContent=s;if(o.w)e.setAttribute('font-weight',o.w);e.setAttribute('paint-order','stroke');e.setAttribute('stroke','#fcfaf5');e.setAttribute('stroke-width',o.sw||3);svg.appendChild(e);};
+  const W_=(s,fs)=>[...s].reduce((t,ch)=>t+(ch.charCodeAt(0)>255?fs:fs*0.56),0)+6;
+  function label(px,py,s,fs,col,bold){
+    const w=W_(s,fs),h=fs+5;
+    const cand=[[px+10,py+fs*0.34],[px+10,py+h+1],[px-w-10,py+fs*0.34],[px-w-10,py+h+1],[px+10,py-h+2],[px-w-10,py-h+2],[px-w/2,py-h-5],[px-w/2,py+h+12]];
+    let c=null; for(const [lx,ly] of cand){const b={x:lx-2,y:ly-fs,w,h}; if(lx<4||lx+w>W-4||ly<fs||ly>H-2)continue; if(!hit(b)){c=[lx,ly];placed.push(b);break;}}
+    if(!c){c=[px+10,py+fs*0.34];placed.push({x:c[0]-2,y:c[1]-fs,w,h});}
+    if(Math.hypot(c[0]-px,c[1]-py)>14) svg.appendChild(E('line',{x1:px,y1:py,x2:c[0]<px?c[0]+w:c[0],y2:c[1]-fs*0.3,stroke:'#cfc6b4','stroke-width':0.8}));
+    txt(c[0],c[1],s,{fs,fill:col||'#4b463e',w:bold?700:400,f:bold?'Noto Serif SC':'Noto Sans SC'});
+  }
+  txt(sx(.01),H-pad+26,'← 再现',{a:'start',fill:'#5a7d6f',w:600,fs:15}); txt(sx(.99),H-pad+26,'表现 →',{a:'end',fill:'#b0673a',w:600,fs:15});
+  txt(pad-16,sy(.01),'结构',{a:'end',fill:'#5a7d6f',w:600,fs:15}); txt(pad-16,sy(.985),'感知',{a:'end',fill:'#b0673a',w:600,fs:15});
+  (WV.regions||[]).forEach(r=>{const x=sx(r.cx),y=sy(r.cy);svg.appendChild(E('circle',{cx:x,cy:y,r:9,fill:'none',stroke:'#cfc6b4','stroke-width':1.3,'stroke-dasharray':'3 3'}));label(x,y,r.name,13,'#bcb3a2',true);});
+  const cx=sx(a.wv.x),cy=sy(a.wv.y);
+  if(a.wv.spread) svg.appendChild(E('circle',{cx,cy,r:a.wv.spread*(W-2*pad),fill:AC,'fill-opacity':.06,stroke:AC,'stroke-opacity':.25,'stroke-dasharray':'3 3'}));
+  (a.works||[]).forEach(wk=>{if(wk.x==null)return;const x=sx(wk.x),y=sy(wk.y);svg.appendChild(E('circle',{cx:x,cy:y,r:6,fill:AC,'fill-opacity':.42,stroke:'#fff','stroke-width':.8}));label(x,y,`${wk.t}${wk.year?' · '+wk.year:''}`,11.5,'#6b6456',false);});
+  const tj=a.trajectory||[];
+  if(tj.length){const P=tj.map(p=>[sx(p.x),sy(p.y)]);
+    svg.appendChild(E('path',{d:P.map((q,i)=>`${i?'L':'M'}${q[0]},${q[1]}`).join(' '),fill:'none',stroke:AC,'stroke-opacity':.5,'stroke-width':2,'stroke-dasharray':'1 5'}));
+    tj.forEach((p,i)=>{const x=sx(p.x),y=sy(p.y);svg.appendChild(E('circle',{cx:x,cy:y,r:4+i/Math.max(1,tj.length-1)*2.4,fill:i===tj.length-1?AC:'#fff',stroke:AC,'stroke-width':1.5}));label(x,y,`${p.phase} · ${p.year}`,11.5,AC,false);});}
+  svg.appendChild(E('circle',{cx,cy,r:10,fill:AC,stroke:'#fff','stroke-width':2.5}));
+  label(cx,cy,a.cn,17,'#1d1b18',true);
+  return svg;
+}
+function openLB(svgEl,clone){
+  const o=document.createElement('div'); o.className='lb';
+  const c=(clone===false)?svgEl:svgEl.cloneNode(true); c.removeAttribute('style'); c.classList.add('lbsvg');
+  let vb=(c.getAttribute('viewBox')||'0 0 640 470').split(/\s+/).map(Number);
+  const base=vb.slice(), apply=()=>c.setAttribute('viewBox',vb.join(' '));
+  c.addEventListener('click',e=>e.stopPropagation());
+  c.addEventListener('wheel',e=>{e.preventDefault();e.stopPropagation();
+    const r=c.getBoundingClientRect(), mx=vb[0]+(e.clientX-r.left)/r.width*vb[2], my=vb[1]+(e.clientY-r.top)/r.height*vb[3];
+    const f=e.deltaY<0?0.8:1.25, nw=Math.max(base[2]*0.12,Math.min(base[2],vb[2]*f)), k=nw/vb[2];
+    vb[2]=nw; vb[3]*=k; vb[0]=mx-(mx-vb[0])*k; vb[1]=my-(my-vb[1])*k; apply();},{passive:false});
+  let dr=null;
+  c.addEventListener('pointerdown',e=>{e.stopPropagation();dr={x:e.clientX,y:e.clientY,vx:vb[0],vy:vb[1]};c.style.cursor='grabbing';});
+  c.addEventListener('pointermove',e=>{if(!dr)return;const r=c.getBoundingClientRect();vb[0]=dr.vx-(e.clientX-dr.x)/r.width*vb[2];vb[1]=dr.vy-(e.clientY-dr.y)/r.height*vb[3];apply();});
+  const end=()=>{dr=null;c.style.cursor='grab';}; c.addEventListener('pointerup',end); c.addEventListener('pointerleave',end);
+  o.appendChild(c);
+  o.appendChild($(`<div class="lbx">✕ 关闭</div>`));
+  o.appendChild($(`<div class="lbhint">滚轮放大细节 · 拖动平移 · 点背景关闭</div>`));
+  o.addEventListener('click',()=>o.remove());
+  document.body.appendChild(o);
+}
+const NS='http://www.w3.org/2000/svg';
+const E=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+const qid=new URLSearchParams(location.search).get('id')||'ARTIST.repin';
+const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+Promise.all([
+  fetch('data/kg_artists.json').then(r=>r.json()),
+  fetch('data/kg_worldview_v3.json').then(r=>r.json()).catch(()=>({regions:[],axes:[]})),
+  fetch('data/kg_style.json').then(r=>r.json()).catch(()=>({nodes:[]})),
+  fetch('data/kg_artist_images.json').then(r=>r.json()).catch(()=>({})),
+  fetch('data/kg_artist_pixels.json').then(r=>r.json()).catch(()=>({})),
+  fetch('data/kg_artist_lineage.json').then(r=>r.json()).catch(()=>({by_artist:{}})),
+  fetch('data/kg_relations.json').then(r=>r.json()).catch(()=>({edges:[]})),
+  fetch('data/kg_context.json').then(r=>r.json()).catch(()=>({events:[],lanes:[]})),
+  fetch('data/kg_artist_portraits.json').then(r=>r.json()).catch(()=>({}))
+]).then(([A,WV,STY,IMG,PIX,LINAG,REL,CTX,PORTS])=>{
+  const cn2id={}; (STY.nodes||[]).forEach(n=>cn2id[n.cn]=n.id);
+  // 三层连通辅助:艺术家名→id、师承名内联链接、风格→风格详情
+  const artId={}; Object.values(A.artists).forEach(x=>{ if(x.cn&&!artId[x.cn]) artId[x.cn]=x.id; });
+  const aLink=nm=>{const id=artId[nm]; return id?`<a href="kg-artist.html?id=${id}" style="color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--line)">${nm}</a>`:nm;};
+  const GLIN=(LINAG.by_artist)||{};
+  const idCn=id=>(A.artists[id]||{}).cn||id;
+  const aLinkId=id=>`<a href="kg-artist.html?id=${id}" style="color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--line)">${idCn(id)}</a>`;
+  const styChip=s=>{const id=cn2id[s]||cn2id[s+'风格']; return id?`<a class="chip style" href="kg-style-detail.html?id=${id}">${s} →</a>`:`<span class="chip">${s}</span>`;};
+  const a=A.artists[qid]||Object.values(A.artists)[0];
+  const east=a.region==='east';
+  const AC=east?'var(--green)':'var(--accent)', ACR=east?'#5a7d6f':'#b0673a';
+  const poles=(A.meta&&A.meta.lang_poles)||[];
+  const b=document.getElementById('body'); b.innerHTML='';
+
+  // ===== 派生页(继承自所属风格;知名者带策展生平,深度点云待考究)=====
+  if(a._stub){
+    const wvid=(a.wv&&a.wv.region_id)||'', iv=a.inherited_vector||{};
+    b.appendChild($(`<div class="nh ${east?'east':''}"><span class="cn">${a.cn}</span><span class="badges">${a.style_relation?`<span class="bd mode 居于">居于 · ${(a.styles||[])[0]||''}</span>`:''}${wvid?`<a class="bd wm" href="kg-worldview-region.html?id=${wvid}" style="text-decoration:none">${wvid} ${WVN[wvid]||''}</a>`:''}<span class="bd id">${a.id}</span></span></div>`));
+    const bd=(a.born!=null)?`${a.born}–${a.death||'今'} · ${a.nationality||''} · `:'';
+    b.appendChild($(`<div class="idline">${bd}${east?'东方':'西方'} · 风格实例(继承自所属风格)</div>`));
+    if(a.bio) b.appendChild($(`<div class="headline">“${a.bio}”</div>`));
+    // mini 世界观平面
+    if(a.wv&&a.wv.x!=null){
+      const c=$(`<div class="band B"><div class="band-h"><span class="tag">④</span><span class="t">世界观坐标 · 继承自所属风格</span><span class="nt">再现-表现 ⊥ 结构-感知</span></div></div>`);
+      const W=560,H=400,pad=44, sx=v=>pad+v*(W-2*pad), sy=v=>H-pad-v*(H-2*pad);
+      const svg=E('svg',{viewBox:`0 0 ${W} ${H}`,style:'width:100%;height:auto'});
+      svg.appendChild(E('rect',{x:pad,y:pad,width:W-2*pad,height:H-2*pad,fill:'#fcfaf5',stroke:'#e8e0d0'}));
+      [0.25,0.5,0.75].forEach(t=>{svg.appendChild(E('line',{x1:sx(t),y1:pad,x2:sx(t),y2:H-pad,stroke:'#efe9dc'}));svg.appendChild(E('line',{x1:pad,y1:sy(t),x2:W-pad,y2:sy(t),stroke:'#efe9dc'}));});
+      const T=(x,y,s,o={})=>{const t=E('text',{x,y,'font-family':o.f||'JetBrains Mono','font-size':o.fs||10,fill:o.fill||'#857d6f','text-anchor':o.a||'middle'});t.textContent=s;if(o.w)t.setAttribute('font-weight',o.w);if(o.st){t.setAttribute('paint-order','stroke');t.setAttribute('stroke','#fcfaf5');t.setAttribute('stroke-width',3);}svg.appendChild(t);};
+      T(sx(0.02),sy(0.5)+4,'再现',{a:'start',fill:'#5a7d6f',w:600});T(sx(0.98),sy(0.5)+4,'表现',{a:'end',fill:'#b0673a',w:600});
+      T(sx(0.5),sy(0.02)+11,'结构',{fill:'#5a7d6f',w:600});T(sx(0.5),sy(0.97),'感知',{fill:'#b0673a',w:600});
+      (WV.regions||[]).forEach(rg=>{const here=rg.id===wvid;svg.appendChild(E('circle',{cx:sx(rg.cx),cy:sy(rg.cy),r:here?9:5,fill:here?ACR:'#efe7d8',stroke:'#fff','stroke-width':here?2:1}));if(!here)T(sx(rg.cx),sy(rg.cy)-9,rg.name,{fs:9.5,fill:'#a89f8f',f:'Noto Serif SC',st:1});});
+      svg.appendChild(E('circle',{cx:sx(a.wv.x),cy:sy(a.wv.y),r:8,fill:ACR,stroke:'#fff','stroke-width':2.5}));
+      T(sx(a.wv.x),sy(a.wv.y)-13,a.cn,{f:'Noto Serif SC',fs:13,fill:'#1d1b18',w:700,st:1});
+      c.appendChild($(`<div class="planewrap"></div>`)).appendChild(svg);
+      // vector bars
+      const bars=$(`<div style="margin-top:10px"></div>`);
+      [['再现-表现','再现','表现'],['结构-感知','结构','感知'],['秩序-张力','秩序','张力'],['节制-强度','节制','强度']].forEach(([k,l,r])=>{const v=iv[k];if(v==null)return;
+        bars.appendChild($(`<div style="display:flex;align-items:center;gap:9px;margin:5px 0;font-size:11.5px"><span style="width:32px;text-align:right;font-family:var(--mono);color:var(--ink-soft)">${l}</span><span style="flex:1;height:6px;background:var(--paper-2);border-radius:4px;position:relative"><span style="position:absolute;top:50%;left:${v*100}%;width:11px;height:11px;border-radius:50%;background:${ACR};transform:translate(-50%,-50%);border:2px solid #fff"></span></span><span style="width:32px;font-family:var(--mono);color:var(--ink-soft)">${r}</span><span style="width:30px;font-family:var(--mono);font-size:10px;color:var(--ink-mute)">${(+v).toFixed(2)}</span></div>`));});
+      c.appendChild(bars);
+      b.appendChild(c);
+    }
+    // 题材 + 所属风格
+    const c2=$(`<div class="band B"><div class="band-h"><span class="tag">⑤</span><span class="t">题材与所属风格</span><span class="nt">L1 实现</span></div></div>`);
+    if((a.subjects||[]).length) c2.appendChild($(`<div class="chips">${a.subjects.map(s=>`<span class="chip">${s}</span>`).join('')}</div>`));
+    const chips=$(`<div class="chips" style="margin-top:10px"></div>`);
+    (a.styles||[]).forEach(cn=>{const id=cn2id[cn];chips.appendChild($(id?`<a class="chip" href="kg-style-detail.html?id=${id}" style="text-decoration:none">${cn}</a>`:`<span class="chip">${cn}</span>`));});
+    c2.appendChild($(`<div class="sh" style="margin-top:10px">所属风格(点进风格志)</div>`));c2.appendChild(chips);
+    c2.appendChild($(`<div class="note" style="margin-top:12px">📋 此页为<b>风格实例派生</b>:坐标/题材继承自所属风格;${a.bio?'生平为策展摘要,':''}个人点云·一生轨迹·代表作待逐个深度考究。</div>`));
+    b.appendChild(c2);
+    document.title='aha · '+a.cn;
+    return;
+  }
+
+  // ===== ① identity header =====
+  const mode=(a.style_relation&&a.style_relation.mode)||'';
+  const _port=(PORTS&&PORTS[a.id]&&PORTS[a.id].file)||null;
+  const _ew=east?'#5a7d6f':'#b0673a';
+  b.appendChild($(`<div class="pavatar">${_port?`<img src="${_port}" alt="${a.cn}" onerror="this.parentElement.innerHTML='<div class=&quot;mono&quot; style=&quot;background:${_ew}&quot;>'+[...'${a.cn}'][0]+'</div>'">`:`<div class="mono" style="background:${_ew}">${[...a.cn][0]||'?'}</div>`}</div>`));
+  if(_port){const _P=PORTS[a.id];let _cr;
+    if(_P.source==='WikiArt') _cr='头像 · 来源 WikiArt';
+    else if(_P.score===3) _cr=`头像取自其自画像《${_P.title}》${_P.source?' · '+_P.source:''}`;
+    else _cr=`头像取自肖像《${_P.title}》${_P.by?'(作者:'+_P.by+')':''}${_P.source?' · '+_P.source:''}`;
+    b.appendChild($(`<div class="pcredit">${_cr}</div>`));}
+  b.appendChild($(`<div class="nh ${east?'east':''}"><span class="cn">${a.cn}</span><span class="en">${a.en}</span><span class="badges">
+    ${mode?`<span class="bd mode ${mode}">${mode} · ${a.style_relation.target}</span>`:''}
+    ${a.wv?`<span class="bd wm">${a.wv.region_id} ${a.wv.region_cn}</span>`:''}
+    <span class="bd id">${a.id}</span></span></div>`));
+  b.appendChild($(`<div class="idline">${a.born}–${a.death}  ·  ${a.nationality}  ·  ${(a.titles||[]).join('/')}  ·  ${east?'东方':'西方'}</div>`));
+  if(a.headline) b.appendChild($(`<div class="headline">“${a.headline}”</div>`));
+
+  // ===== Band A · 人源 =====
+  const bA=$(`<div class="band A"><div class="band-h"><span class="tag">A</span><span class="t">人源 · 立场从何而来</span><span class="nt">生平 = 世界观的成因</span></div></div>`);
+  bA.appendChild($(`<div class="bio">${a.bio||''}</div>`));
+  b.appendChild(bA);
+
+  // ===== Band B · 链上签名 =====
+  const bB=$(`<div class="band B"><div class="band-h"><span class="tag">B</span><span class="t">链上签名 · 同一条生成链落在他身上</span><span class="nt">世界观→实现→效应→意义</span></div></div>`);
+
+  // ④ 世界观坐标 + 平面
+  if(a.wv){
+    const c=$(`<div class="card"><div class="sh">④ 世界观坐标 ★ · L0 根(再现-表现 ⊥ 结构-感知)</div></div>`);
+    const box=$(`<div class="planebox"></div>`);
+    const W=640,H=470,pad=48, sx=v=>pad+v*(W-2*pad), sy=v=>H-pad-v*(H-2*pad);
+    const svg=E('svg',{viewBox:`0 0 ${W} ${H}`,class:'plane'});
+    svg.appendChild(E('rect',{x:pad,y:pad,width:W-2*pad,height:H-2*pad,fill:'#fcfaf5',stroke:'#e8e0d0'}));
+    [0.25,0.5,0.75].forEach(t=>{svg.appendChild(E('line',{x1:sx(t),y1:pad,x2:sx(t),y2:H-pad,stroke:'#efe9dc'}));svg.appendChild(E('line',{x1:pad,y1:sy(t),x2:W-pad,y2:sy(t),stroke:'#efe9dc'}));});
+    (WV.regions||[]).forEach(rg2=>{const here=rg2.id===a.wv.region_id;svg.appendChild(E('circle',{cx:sx(rg2.cx),cy:sy(rg2.cy),r:here?11:7,fill:here?'#fff':'#efe7d8',stroke:here?ACR:'#cfc6b4','stroke-width':here?2:1.4}));});
+    const rgh=(WV.regions||[]).find(r=>r.id===a.wv.region_id);
+    if(rgh) svg.appendChild(E('line',{x1:sx(rgh.cx),y1:sy(rgh.cy),x2:sx(a.wv.x),y2:sy(a.wv.y),stroke:ACR,'stroke-width':1.2,'stroke-dasharray':'4 3','opacity':.6}));
+    svg.appendChild(E('circle',{cx:sx(a.wv.x),cy:sy(a.wv.y),r:a.wv.spread*(W-2*pad),fill:ACR,'fill-opacity':.07,stroke:ACR,'stroke-opacity':.25,'stroke-dasharray':'3 3'}));
+    const tj=a.trajectory||[];
+    if(tj.length>1){const P=tj.map(p=>[sx(p.x),sy(p.y)]);
+      svg.appendChild(E('path',{d:P.map((q,i)=>`${i?'L':'M'}${q[0]},${q[1]}`).join(' '),fill:'none',stroke:ACR,'stroke-width':2,'stroke-opacity':.5,'stroke-dasharray':'1 5','stroke-linecap':'round'}));
+      tj.forEach((p,i)=>svg.appendChild(E('circle',{cx:P[i][0],cy:P[i][1],r:3.2+i/(tj.length-1)*2.4,fill:i===tj.length-1?ACR:'#fff',stroke:ACR,'stroke-width':1.5})));}
+    (a.works||[]).forEach(w=>{if(w.x==null)return;svg.appendChild(E('circle',{cx:sx(w.x),cy:sy(w.y),r:5,fill:ACR,'fill-opacity':.42,stroke:'#fff','stroke-width':.8}));});
+    svg.appendChild(E('circle',{cx:sx(a.wv.x),cy:sy(a.wv.y),r:9,fill:ACR,stroke:'#fff','stroke-width':2.5}));
+    box.appendChild(svg);
+    const ov=document.createElement('div');ov.className='plabels';box.appendChild(ov);
+    box.appendChild($(`<div class="paxis" style="left:10px;bottom:6px;color:#5a7d6f">← 再现</div>`));
+    box.appendChild($(`<div class="paxis" style="right:10px;bottom:6px;color:#b0673a">表现 →</div>`));
+    box.appendChild($(`<div class="paxis" style="left:10px;top:6px;color:#b0673a">↑ 感知</div>`));
+    box.appendChild($(`<div class="paxis" style="left:10px;bottom:22px;color:#5a7d6f">结构</div>`));
+    box.appendChild($(`<div class="pzhint">滚轮放大 · 拖动平移 · 标签随比例自动展开</div>`));
+    const zr=$(`<button class="pzreset" title="复位">⟲</button>`);box.appendChild(zr);
+    const items=[{x:a.wv.x,y:a.wv.y,t:a.cn,fs:13,col:'#1d1b18',bold:true,pri:6}];
+    (WV.regions||[]).forEach(rg2=>items.push({x:rg2.cx,y:rg2.cy,t:rg2.name,fs:11,col:rg2.id===a.wv.region_id?ACR:'#a89f8f',bold:rg2.id===a.wv.region_id,pri:rg2.id===a.wv.region_id?5:2}));
+    tj.forEach(p=>items.push({x:p.x,y:p.y,t:`${p.phase}·${p.year}`,fs:10.5,col:ACR,bold:false,pri:3}));
+    (a.works||[]).forEach(w=>{if(w.x!=null)items.push({x:w.x,y:w.y,t:`${w.t}·${w.year}`,fs:10.5,col:'#6b6456',bold:false,pri:1});});
+    let vb=[0,0,W,H],raf=null;
+    const tW=(s,fs)=>[...s].reduce((t,ch)=>t+(ch.charCodeAt(0)>255?fs:fs*0.56),0)+4;
+    function render(){const r=box.getBoundingClientRect();if(!r.width){requestAnimationFrame(render);return;}
+      svg.setAttribute('viewBox',vb.join(' '));ov.textContent='';
+      const placed=[];
+      items.slice().sort((m,n)=>n.pri-m.pri).forEach(it=>{
+        const cxp=(sx(it.x)-vb[0])/vb[2]*r.width, cyp=(sy(it.y)-vb[1])/vb[3]*r.height;
+        if(cxp<-30||cxp>r.width+30||cyp<-20||cyp>r.height+20)return;
+        const w=tW(it.t,it.fs),h=it.fs+4;
+        const cd=[[cxp+8,cyp-h/2],[cxp+8,cyp+2],[cxp-w-8,cyp-h/2],[cxp-w/2,cyp-h-6],[cxp-w/2,cyp+8],[cxp+8,cyp-h-6],[cxp-w-8,cyp+2]];
+        let pos=null;for(const cc of cd){const lx=cc[0],ly=cc[1];if(lx<2||lx+w>r.width-2||ly<2||ly+h>r.height-2)continue;const b={x:lx,y:ly,w,h};if(!placed.some(p=>!(b.x+b.w<p.x||b.x>p.x+p.w||b.y+b.h<p.y||b.y>p.y+p.h))){pos=[lx,ly];placed.push(b);break;}}
+        if(!pos)return;
+        const d=document.createElement('div');d.className='plbl';d.textContent=it.t;
+        d.style.cssText=`left:${pos[0]}px;top:${pos[1]}px;font-size:${it.fs}px;color:${it.col};font-weight:${it.bold?700:400};font-family:${it.bold?"'Noto Serif SC',serif":"'Noto Sans SC',sans-serif"}`;
+        ov.appendChild(d);});
+    }
+    const sched=()=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=null;render();});};
+    box.addEventListener('wheel',e=>{e.preventDefault();const r=box.getBoundingClientRect();const mx=vb[0]+(e.clientX-r.left)/r.width*vb[2],my=vb[1]+(e.clientY-r.top)/r.height*vb[3];const f=e.deltaY<0?0.85:1.18,nw=Math.max(W*0.16,Math.min(W,vb[2]*f)),k=nw/vb[2];vb[2]=nw;vb[3]=nw*(H/W);vb[0]=mx-(mx-vb[0])*k;vb[1]=my-(my-vb[1])*k;vb[0]=Math.max(-40,Math.min(vb[0],W-vb[2]+40));vb[1]=Math.max(-30,Math.min(vb[1],H-vb[3]+30));sched();},{passive:false});
+    let dr=null;
+    box.addEventListener('pointerdown',e=>{dr={x:e.clientX,y:e.clientY,vx:vb[0],vy:vb[1]};box.style.cursor='grabbing';});
+    box.addEventListener('pointermove',e=>{if(!dr)return;const r=box.getBoundingClientRect();vb[0]=dr.vx-(e.clientX-dr.x)/r.width*vb[2];vb[1]=dr.vy-(e.clientY-dr.y)/r.height*vb[3];vb[0]=Math.max(-40,Math.min(vb[0],W-vb[2]+40));vb[1]=Math.max(-30,Math.min(vb[1],H-vb[3]+30));sched();});
+    const dend=()=>{dr=null;box.style.cursor='grab';};box.addEventListener('pointerup',dend);box.addEventListener('pointerleave',dend);
+    zr.addEventListener('click',e=>{e.stopPropagation();vb=[0,0,W,H];sched();});
+    c.appendChild(box);requestAnimationFrame(render);
+    // readout
+    const ro=$(`<div class="readout">
+      <div class="ro"><div class="rl">个人重心</div><div class="rv">${a.wv.x.toFixed(2)}<small> 再现-表现</small></div></div>
+      <div class="ro"><div class="rl">·</div><div class="rv">${a.wv.y.toFixed(2)}<small> 结构-感知</small></div></div>
+      <div class="ro"><div class="rl">离散 σ</div><div class="rv">${a.wv.spread.toFixed(2)}<small> 点云幅度</small></div></div>
+      <div class="ro"><div class="rl">所属区</div><div class="rv" style="font-size:13px">${a.wv.region_cn}</div></div>
+    </div>`);
+    c.appendChild(ro);
+    c.appendChild($(`<div class="note"><b>个人偏移:</b>${a.wv.offset}<br><b>读法:</b>${a.wv.read}</div>`));
+    bB.appendChild(c);
+  }
+  // ⑤ 题材
+  if(a.subjects&&a.subjects.length){const c=$(`<div class="card"><div class="sh">⑤ 题材母题 · L1 实现</div></div>`);c.appendChild($(`<div class="chips">${a.subjects.map(s=>`<span class="chip">${s}</span>`).join('')}</div>`));bB.appendChild(c);}
+  // ⑥ 个人语言指纹
+  if(a.lang){const c=$(`<div class="card"><div class="sh">⑥ 个人语言指纹 · L2 实现(7 大构成)</div></div>`);
+    poles.forEach(p=>{const v=a.lang[p.k];if(v==null)return;c.appendChild($(`<div class="frow"><span class="fk">${p.k}</span><span class="fl">${p.l}</span><span class="ft"><span class="fd" style="left:${v*100}%;background:${ACR}"></span></span><span class="fr">${p.r}</span></div>`));});
+    if(a.language)c.appendChild($(`<div class="kv" style="margin-top:8px"><span class="l">技法</span>${a.language}</div>`));
+    if(a.color)c.appendChild($(`<div class="kv"><span class="l">色彩</span>${a.color}</div>`));
+    bB.appendChild(c);}
+  // ⑥.5 像素实测(取自真迹的客观特征,只在有真图时显示)
+  if(PIX[a.id]){const px=PIX[a.id];const c=$(`<div class="card"><div class="sh">⑥· 像素实测 · 取自真迹的客观特征</div></div>`);
+    [['明度','brightness'],['饱和度','saturation'],['对比','contrast'],['色彩丰富','colorful'],['边缘密度','edge'],['暖色','warmth']].forEach(([cn,k])=>{
+      const v=px[k]; if(v==null)return;
+      c.appendChild($(`<div class="frow"><span class="fk" style="width:54px">${cn}</span><span class="ft"><span class="fd" style="left:${v*100}%;background:${ACR}"></span></span><span class="vnum">${(+v).toFixed(2)}</span></div>`));});
+    c.appendChild($(`<div class="kv" style="font-size:11px;color:var(--ink-faint);margin-top:6px">↑ 从代表作真迹直接量出(全库归一)。<b style="color:var(--ink-mute)">实测显示:色彩/明暗可测,但情绪(⑦VAD)无法由颜色直推</b>——故 ⑦ 为诠释。</div>`));
+    bB.appendChild(c);}
+  // ⑦ 感知效应 · 情绪环(愉悦×唤起)+ 支配=点径
+  if(a.affect){const f=a.affect;
+    const c=$(`<div class="card"><div class="sh">⑦ 感知效应 · L3 · VAD 情绪(诠释性 · 不可由像素直推)</div></div>`);
+    const cw=$(`<div class="cplex"></div>`);
+    const S=360,pd=42, half=(S-2*pd)/2;
+    const svg=E('svg',{viewBox:`0 0 ${S} ${S}`,style:'width:100%;max-width:340px;height:auto;display:block;margin:0 auto'});
+    const cx=v=>pd+v*(S-2*pd), cy=v=>S-pd-v*(S-2*pd);
+    const T=(x,y,s,o={})=>{const e=E('text',{x,y,'font-family':o.f||'Noto Sans SC','font-size':o.fs||11,fill:o.fill||'#a89f8f','text-anchor':o.a||'middle'});e.textContent=s;if(o.w)e.setAttribute('font-weight',o.w);if(o.st){e.setAttribute('paint-order','stroke');e.setAttribute('stroke',o.st);e.setAttribute('stroke-width',o.sw||3);}svg.appendChild(e);};
+    // 四象限(左下角坐标,half×half)
+    const quads=[
+      {name:'紧张·悲怆', col:'#a8443a', x0:pd,      y0:pd     }, // 上左:低愉悦+高唤起
+      {name:'昂扬·欢腾', col:'#c98a1a', x0:pd+half, y0:pd     }, // 上右:高愉悦+高唤起
+      {name:'宁静·惬意', col:'#5a7d6f', x0:pd+half, y0:pd+half}, // 下右:高愉悦+低唤起
+      {name:'忧郁·萧索', col:'#5b7596', x0:pd,      y0:pd+half}  // 下左:低愉悦+低唤起
+    ];
+    const aq=(f.v>=0.5?(f.a>=0.5?1:2):(f.a>=0.5?0:3));
+    quads.forEach((q,i)=>svg.appendChild(E('rect',{x:q.x0,y:q.y0,width:half,height:half,fill:q.col,'fill-opacity':i===aq?0.16:0.05})));
+    svg.appendChild(E('rect',{x:pd,y:pd,width:S-2*pd,height:S-2*pd,fill:'none',stroke:'#e0d8c8'}));
+    svg.appendChild(E('line',{x1:cx(0.5),y1:pd,x2:cx(0.5),y2:S-pd,stroke:'#e8e0d0'}));
+    svg.appendChild(E('line',{x1:pd,y1:cy(0.5),x2:S-pd,y2:cy(0.5),stroke:'#e8e0d0'}));
+    quads.forEach((q,i)=>T(q.x0+half/2,q.y0+half/2,q.name,{fs:12.5,f:'Noto Serif SC',fill:i===aq?q.col:'#c3baa8',w:i===aq?700:400,st:'#fcfaf5',sw:2.5}));
+    // 轴
+    T(cx(0.98),cy(0.5)-7,'愉悦 →',{a:'end',fill:'#857d6f',fs:10.5,w:600,st:'#fcfaf5',sw:2.5});
+    T(cx(0.02),cy(0.5)-7,'沉郁',{a:'start',fill:'#857d6f',fs:10.5,st:'#fcfaf5',sw:2.5});
+    T(cx(0.5)+5,pd-11,'↑ 唤起',{a:'start',fill:'#857d6f',fs:10.5,w:600});
+    T(cx(0.5)+5,S-pd+15,'平静',{a:'start',fill:'#857d6f',fs:10.5});
+    // 逐张作品 VAD(VLM 读图)——浅点,显示该画家作品的情绪散布
+    const _wvad=((IMG[a.id]&&IMG[a.id].items)||[]).filter(it=>it.vad&&it.vad.v!=null);
+    _wvad.forEach(it=>{const q=(it.vad.v>=0.5?(it.vad.a>=0.5?1:2):(it.vad.a>=0.5?0:3));svg.appendChild(E('circle',{cx:cx(it.vad.v),cy:cy(it.vad.a),r:4,fill:quads[q].col,'fill-opacity':0.45,stroke:'#fff','stroke-width':0.6}));});
+    // 支配 = 点径 + 外环
+    const r=7+f.d*15;
+    svg.appendChild(E('circle',{cx:cx(f.v),cy:cy(f.a),r:r+5,fill:'none',stroke:ACR,'stroke-opacity':0.3,'stroke-dasharray':'3 3'}));
+    svg.appendChild(E('circle',{cx:cx(f.v),cy:cy(f.a),r:r,fill:ACR,'fill-opacity':0.85,stroke:'#fff','stroke-width':2}));
+    T(cx(f.v),cy(f.a)-r-7,a.cn,{f:'Noto Serif SC',fs:13,fill:'#1d1b18',w:700,st:'#fcfaf5',sw:3});
+    cw.appendChild(svg); c.appendChild(cw);
+    cw.style.cursor='zoom-in'; cw.title='点击放大'; cw.addEventListener('click',()=>openLB(svg));
+    // 三轴双极读数
+    const VADP=[['愉悦','沉郁','明亮',f.v],['唤起','平静','激越',f.a],['支配','沉浸','压迫',f.d]];
+    VADP.forEach(([k,l,r2,v])=> c.appendChild($(`<div class="frow"><span class="fk">${k}</span><span class="fl">${l}</span><span class="ft"><span class="fd" style="left:${v*100}%;background:${ACR}"></span></span><span class="fr">${r2}</span><span class="vnum">${v.toFixed(2)}</span></div>`)));
+    const dread=f.d<0.45?'小 = 沉浸/被吸入':(f.d>0.6?'大 = 压迫/纪念碑':'中等');
+    c.appendChild($(`<div class="note">落在「<b>${quads[aq].name}</b>」象限 · 点径=支配(${dread})。${f.note||''}${_wvad.length?` <span style="color:var(--ink-faint)">浅点=该画家 ${_wvad.length} 张真迹各自的情绪(VLM 逐张读图)——看情绪在作品间如何散布。</span>`:''}</div>`));
+    bB.appendChild(c);}
+  // ⑧ 画外音 —— 有可靠自述则示自述;无则以史家推断的意义为主(绝不编造引文)。始终回扣 ④
+  if(a.quote||a.meaning||a.voice_echo){const c=$(`<div class="card"><div class="sh">⑧ 画外音 / 创作观 · L4 意义(链末·需推理,非像素可测)</div></div>`);
+    if(a.quote){
+      c.appendChild($(`<div class="quote">“${a.quote}”</div>`));
+      c.appendChild($(`<div class="kv" style="text-align:center;font-size:11px;color:var(--ink-faint);margin-top:2px">— 画家亲口说出的画外音(类做不到,只有实例会说话)</div>`));
+    }
+    // 回扣 ④:创作观 = L0 立场的口语版(优先用 voice_echo,否则由 wv 坐标推导)
+    let echo=a.voice_echo;
+    if(!echo&&a.wv){const sxw=a.wv.x<0.5?'再现':'表现', syw=a.wv.y<0.5?'结构':'感知';echo=`这位的立场落在 ④【${sxw} × ${syw}】。`;}
+    if(echo)c.appendChild($(`<div class="note" style="background:#f3f6f4;border-left-color:var(--green)">↘ <b style="color:var(--green)">回扣 ④ 世界观:</b>${echo.replace(/【([^】]*)】/g,'<b>【$1】</b>')}</div>`));
+    if(a.meaning)c.appendChild($(`<div class="note" style="background:#fbf7f0;border-left-color:var(--gold)"><b>意义指向(${a.quote?'被推断':'史家推断 · 暂无可靠亲述'}):</b>${a.meaning}</div>`));
+    bB.appendChild(c);}
+  b.appendChild(bB);
+
+  // ===== Band C · 唯一属于艺术家 =====
+  const bC=$(`<div class="band C"><div class="band-h"><span class="tag">C</span><span class="t">唯一属于艺术家 · 风格做不到的维度</span><span class="nt">点云 · 漂移 · 谱系</span></div></div>`);
+  // ⑨ 轨迹
+  if(a.trajectory&&a.trajectory.length){const c=$(`<div class="card"><div class="sh">⑨ 一生的轨迹 ★ · 在世界观平面上的漂移</div></div>`);
+    const tl=$(`<div class="tl"></div>`);
+    a.trajectory.forEach(p=>tl.appendChild($(`<div class="tp"><div class="ti"><div class="tph">${p.phase}<span class="tyr">${p.year}</span></div><div class="tnt">${p.note||''}</div><div class="txy">(${p.x.toFixed(2)}, ${p.y.toFixed(2)})</div></div></div>`)));
+    c.appendChild(tl);bC.appendChild(c);}
+  // ⑩ 代表作=点云(+ 公共领域真图,若有)
+  if(a.works&&a.works.length){const c=$(`<div class="card"><div class="sh">⑩ 代表作 = 点云 · 每件名作即链上的实例点</div></div>`);
+    const gal=IMG[a.id];
+    if(gal&&gal.items&&gal.items.length){
+      const g=$(`<div class="gal"></div>`);
+      gal.items.forEach(it=>g.appendChild($(`<a class="ga" href="${it.file}" target="_blank" title="${it.title}（${it.source}）"><img loading="lazy" src="${it.file}" alt="${it.title}"/><span class="gt">${it.title}</span></a>`)));
+      c.appendChild(g);
+      c.appendChild($(`<div class="kv" style="font-size:10.5px;color:var(--ink-faint);margin:2px 0 8px">真迹图 · ${gal.credit||'公共领域'}</div>`));
+    }
+    const wl=$(`<div class="worklist"></div>`);
+    a.works.forEach(w=>wl.appendChild($(`<div class="wn"><span class="wt">${w.t}</span><span class="wy">${w.year}</span>${w.x!=null?`<span class="wxy">(${w.x.toFixed(2)}, ${w.y.toFixed(2)})</span>`:''}</div>`)));
+    c.appendChild(wl);bC.appendChild(c);}
+  // ⑪ 谱系
+  {const c=$(`<div class="card"><div class="sh">⑪ 谱系 GENEALOGY · 世界观的繁殖网络</div></div>`);
+    const g=$(`<div class="kv"></div>`);
+    const gl=GLIN[a.id]||{};
+    const upd=(label,ids,raw)=>{const set=[...new Set((ids||[]).map(idCn))]; // 物化边集(已逆向补全)
+      const links=(ids&&ids.length)?[...new Set(ids)].map(aLinkId).join('、'):((raw&&raw.length)?raw.map(aLink).join('、'):'');
+      if(links)g.appendChild($(`<div><span class="l">${label}</span>${links}</div>`));};
+    upd('师承',gl.承师,a.teachers);
+    upd('同侪',gl.同侪,a.peers);
+    upd('学生',gl.授徒,a.students);
+    if(a.influence&&a.influence.length)g.appendChild($(`<div><span class="l">影响</span>${a.influence.map(aLink).join('、')}</div>`));
+    if(a.institutions&&a.institutions.length)g.appendChild($(`<div><span class="l">主要收藏</span>${a.institutions.join('、')}</div>`));
+    c.appendChild(g);bC.appendChild(c);}
+  // ⑫ 风格关系(+ 所属风格链接到风格详情)
+  if(a.style_relation){const s=a.style_relation;const c=$(`<div class="card srel ${s.mode}"><div class="sh">⑫ 风格关系 · 不是 belongs_to,是一种姿态</div></div>`);
+    c.appendChild($(`<div><span class="sm">${s.mode}</span><span class="se">${s.en} · ${s.target}</span></div>`));
+    c.appendChild($(`<div class="sd">${s.note}</div>`));
+    if(a.styles&&a.styles.length)c.appendChild($(`<div class="chips" style="margin-top:9px">${a.styles.map(styChip).join('')}</div>`));
+    bC.appendChild(c);}
+  // ⚔️ TA 参与的力(关系力 + 推动 TA 的语境力)—— 反向渗透自「力的体系」
+  {const FCOL={'反叛':'#c0492f','复兴':'#5a7d6f','跨文化':'#5b7596','综合':'#b8893a','推演':'#8a5fa3','致敬':'#3f8f8a','竞争':'#a8567f','结社':'#8a6d4f'};
+   const edges=(REL.edges||[]).filter(e=>e.from===a.id||e.to===a.id);
+   const evs=(CTX.events||[]).filter(ev=>(ev.artists||[]).some(x=>x.id===a.id));
+   const lcol={},lcn={};(CTX.lanes||[]).forEach(l=>{lcol[l.key]=l.col;lcn[l.key]=l.cn.split(' · ')[0].split(' / ')[0];});
+   if(edges.length||evs.length){
+     const c=$(`<div class="card"><div class="sh">⚔️ TA 参与的力 · 关系层 / 语境层</div></div>`);
+     const bdg=(t,col)=>`<span style="font-family:var(--mono);font-size:10px;color:#fff;background:${col};border-radius:5px;padding:1px 7px;white-space:nowrap">${t}</span>`;
+     if(edges.length){const g=$(`<div class="kv"></div>`);
+       edges.forEach(e=>{const out=e.from===a.id,other=out?e.to:e.from,otherCn=out?e.to_cn:e.from_cn,col=FCOL[e.type]||'#857d6f';
+         const verb=e.bidir?'与':(out?'→':'←');
+         const oL=(A.artists[other]&&!A.artists[other]._stub)?aLinkId(other):`<span style="color:#857d6f">${otherCn}</span>`;
+         g.appendChild($(`<div style="margin:4px 0;font-size:13px;line-height:1.6"><a href="kg-dynamics.html?force=${encodeURIComponent(e.type)}" style="text-decoration:none">${bdg(e.type,col)}</a> ${verb} ${oL} <span style="color:#857d6f;font-size:12px">· ${e.note}</span></div>`));});
+       c.appendChild(g);}
+     if(evs.length){const g=$(`<div class="kv" style="margin-top:9px"></div>`);
+       g.appendChild($(`<div style="font-size:11px;color:#a89f8f;margin-bottom:3px">推动 TA 的语境力(场)</div>`));
+       evs.forEach(ev=>{const col=lcol[ev.lane]||'#857d6f';
+         g.appendChild($(`<div style="margin:4px 0;font-size:13px;line-height:1.6"><a href="kg-context.html?lane=${ev.lane}" style="text-decoration:none">${bdg(lcn[ev.lane]||'',col)}</a> <b>${ev.title}</b> <span style="color:#857d6f;font-size:12px">· ${ev.effect}</span></div>`));});
+       c.appendChild(g);}
+     c.appendChild($(`<div class="chips" style="margin-top:10px"><a class="chip" href="kg-forces.html">🧭 力的总图</a><a class="chip" href="kg-dynamics.html">⚔️ 关系层</a><a class="chip" href="kg-context.html">🌗 语境层</a></div>`));
+     bC.appendChild(c);
+   }}
+  // ↔ 连通:同区艺术家 / 星图 / 所属区 / 名单
+  {const rid=a.wv&&a.wv.region_id;
+   const sib=Object.values(A.artists).filter(x=>x.id!==a.id&&x.wv&&x.wv.region_id===rid);
+   const sibRich=sib.filter(x=>!x._stub).slice(0,8);
+   const c=$(`<div class="card"><div class="sh">↔ 连通 · 同区 / 星图 / 风格</div></div>`);
+   if(sibRich.length)c.appendChild($(`<div class="kv"><span class="l">同区已考究</span>${sibRich.map(x=>aLink(x.cn)).join('、')}</div>`));
+   c.appendChild($(`<div class="chips" style="margin-top:9px"><a class="chip" href="kg-artist-atlas.html">🌌 在星图中查看</a>${rid?`<a class="chip" href="kg-worldview-region.html?id=${rid}">🗺 所属区 ${WVN[rid]||''}</a>`:''}<a class="chip" href="kg-artist-roster.html">🗂️ 艺术家名单</a></div>`));
+   bC.appendChild(c);}
+  b.appendChild(bC);
+
+  document.title='aha · '+a.cn;
+}).catch(e=>{document.getElementById('body').innerHTML='<div class="empty">加载失败(需通过服务器打开):'+e+'</div>';});
+</script>
+</body></html>

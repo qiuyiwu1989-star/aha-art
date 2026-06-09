@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 审美定位 · 你在这里</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding:30px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(22px,4.4vw,30px);font-weight:700;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.7;max-width:640px;margin:6px auto}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .prog{font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-align:center;margin:18px 0 4px}
+  .prog b{color:var(--accent)}
+  .ask{font-family:var(--serif);font-size:17px;text-align:center;color:var(--ink-soft);margin:6px 0 14px}
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:760px;margin:0 auto}
+  .pick{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .12s,border-color .12s;box-shadow:0 3px 14px rgba(0,0,0,.06)}
+  .pick:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 8px 24px rgba(0,0,0,.14)}
+  .pick img{width:100%;height:300px;object-fit:cover;display:block;background:var(--paper-2)}
+  @media(max-width:560px){.pick img{height:200px}}
+  .pick .cap{padding:9px 12px;font-size:12px;color:var(--ink-mute)}
+  .pick .cap b{font-family:var(--serif);font-size:14px;color:var(--ink);font-weight:600}
+  .skip{display:block;margin:16px auto 0;font-family:var(--mono);font-size:12px;color:var(--ink-faint);background:none;border:none;cursor:pointer}
+  /* result */
+  .res{display:none}
+  .planewrap{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px;margin-top:10px}
+  svg{width:100%;height:auto;display:block}
+  .youbox{background:var(--accent-soft);border:1px solid #e5d3c2;border-radius:12px;padding:14px 16px;margin-top:14px;text-align:center}
+  .youbox .yc{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--accent)}
+  .youbox .yr{font-family:var(--mono);font-size:12px;color:var(--ink-mute);margin-top:5px}
+  .youbox .yd{font-size:13px;color:var(--ink-soft);margin-top:8px;line-height:1.7}
+  .card2{background:linear-gradient(140deg,#fff,#f6efe5);border:1px solid #e5d3c2;border-top:4px solid var(--accent);border-radius:14px;padding:18px 18px 16px;margin-top:14px;text-align:center}
+  .card2 .c2k{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase}
+  .card2 .c2region{font-family:var(--serif);font-size:clamp(24px,5vw,32px);font-weight:700;color:var(--accent);margin:4px 0 2px}
+  .card2 .c2quad{font-family:var(--serif);font-size:15px;color:var(--ink-soft)}
+  .card2 .c2coord{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:6px}
+  .card2 .c2desc{font-size:13px;color:var(--ink-soft);line-height:1.75;margin-top:9px;max-width:560px;margin-left:auto;margin-right:auto}
+  .card2 .c2top{font-size:13px;color:var(--ink-soft);margin-top:9px}.card2 .c2top b{color:var(--accent)}
+  .sharebtn{margin-top:13px;font-family:var(--mono);font-size:12px;color:#fff;background:var(--accent);border:none;border-radius:999px;padding:9px 18px;cursor:pointer}
+  .sharebtn:hover{background:#9a5730}
+  .rh{font-family:var(--serif);font-size:18px;font-weight:600;border-bottom:2px solid var(--accent);padding-bottom:7px;margin:26px 0 12px}
+  .recs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .rec{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;text-decoration:none;transition:border-color .12s}
+  .rec:hover{border-color:var(--accent)}
+  .rec img{width:100%;height:130px;object-fit:cover;display:block;background:var(--paper-2)}
+  .rec .ri{padding:8px 10px}
+  .rec .rn{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--ink)}
+  .rec .rm{font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-top:3px}
+  .rec .rd{font-family:var(--mono);font-size:9.5px;color:var(--accent);margin-top:3px}
+  .retake{display:block;margin:28px auto 0;font-family:var(--mono);font-size:12px;color:var(--ink-mute);background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 20px;cursor:pointer}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .empty{text-align:center;color:var(--ink-faint);padding:50px}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 审美定位 · art that finds you</div>
+  <h1>看几对画,让美来找你</h1>
+  <p class="lead">每对里点你更喜欢的一张。aha 会把你的口味落到<b>世界观平面</b>(再现-表现 ⊥ 结构-感知),给出「你在这里」并推荐最合你的艺术家。</p>
+  <div class="breadcrumb"><a href="kg-artist-atlas.html">全员星图</a> · <a href="kg-artist-framework.html">这套坐标是什么</a> · 当前:审美定位</div>
+  <div id="play">
+    <div class="prog" id="prog"></div>
+    <div class="ask">你更喜欢哪一张?</div>
+    <div class="pair" id="pair"></div>
+    <button class="skip" id="skip">说不清 · 换一对 →</button>
+  </div>
+  <div class="res" id="res"></div>
+  <div id="loading" class="empty">加载名画中…</div>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const NS='http://www.w3.org/2000/svg',E=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+const ROUNDS=8;
+let POOL=[],RICH=[],REG=[],chosen=[],round=0,WVN={};
+Promise.all([
+  fetch('data/kg_artists.json').then(r=>r.json()),
+  fetch('data/kg_artist_images.json').then(r=>r.json()),
+  fetch('data/kg_worldview_v3.json').then(r=>r.json()).catch(()=>({regions:[]}))
+]).then(([A,IMG,WV])=>{
+  REG=WV.regions||[]; REG.forEach(r=>WVN[r.id]=r.name);
+  const arts=A.artists;
+  RICH=Object.values(arts).filter(a=>!a._stub&&a.wv&&a.wv.x!=null);
+  // 候选池:有真图 + 有坐标
+  Object.keys(IMG).forEach(id=>{const a=arts[id]; if(!a||!a.wv||a.wv.x==null)return;
+    const its=(IMG[id].items||[]).filter(x=>x.file);
+    if(its.length) POOL.push({id,cn:a.cn,wv:a.wv,region:a.region,wvid:a.wv.region_id,aff:a.affect,imgs:its});});
+  if(POOL.length<6){document.getElementById('loading').textContent='真图不足,无法定位';return;}
+  document.getElementById('loading').style.display='none';
+  nextRound();
+}).catch(e=>{document.getElementById('loading').textContent='加载失败:'+e;});
+
+const D=(p,q)=>Math.hypot(p.x-q.x,p.y-q.y);
+const recent=a=>chosen.slice(-3).some(c=>c.id===a.id);
+function pickPair(){
+  let best=null,bd=-1;
+  for(let i=0;i<24;i++){
+    const a=POOL[Math.floor(Math.random()*POOL.length)],b=POOL[Math.floor(Math.random()*POOL.length)];
+    if(a.id===b.id||recent(a)||recent(b))continue;
+    const d=D(a.wv,b.wv); if(d>bd){bd=d;best=[a,b];}
+  }
+  return best||[POOL[0],POOL[1]];
+}
+function card(a){
+  const im=a.imgs[Math.floor(Math.random()*a.imgs.length)];
+  const c=$(`<div class="pick"><img loading="lazy" src="${im.file}" alt="${a.cn}"/><div class="cap"><b>${a.cn}</b> · ${a.region==='east'?'东方':'西方'}「${WVN[a.wvid]||''}」<br><span style="color:var(--ink-faint)">${im.title}</span></div></div>`);
+  c.addEventListener('click',()=>choose(a));
+  return c;
+}
+function nextRound(){
+  round++;
+  if(round>ROUNDS){return finish();}
+  document.getElementById('prog').innerHTML=`第 <b>${round}</b> / ${ROUNDS} 对`;
+  const [a,b]=pickPair();
+  const pair=document.getElementById('pair');pair.innerHTML='';
+  pair.appendChild(card(a));pair.appendChild(card(b));
+}
+function choose(a){chosen.push(a);nextRound();}
+document.getElementById('skip').addEventListener('click',()=>{round--;nextRound();});
+
+function finish(){
+  document.getElementById('play').style.display='none';
+  const res=document.getElementById('res');res.style.display='block';
+  // 口味坐标 = 所选艺术家 wv 的(近期加权)均值
+  let sx=0,sy=0,sw=0;
+  chosen.forEach((a,i)=>{const w=1+i*0.25; sx+=a.wv.x*w; sy+=a.wv.y*w; sw+=w;});
+  const tx=sx/sw, ty=sy/sw;
+  // 最近的世界观区
+  let nr=null,nd=1e9; REG.forEach(r=>{const d=Math.hypot(r.cx-tx,r.cy-ty); if(d<nd){nd=d;nr=r;}});
+  // 平面
+  const W=620,H=460,pad=46, sxf=v=>pad+v*(W-2*pad), syf=v=>H-pad-v*(H-2*pad);
+  const wrap=$(`<div class="planewrap"></div>`);const svg=E('svg',{viewBox:`0 0 ${W} ${H}`});
+  svg.appendChild(E('rect',{x:pad,y:pad,width:W-2*pad,height:H-2*pad,fill:'#fcfaf5',stroke:'#e8e0d0'}));
+  const T=(x,y,s,o={})=>{const e=E('text',{x,y,'font-family':o.f||'Noto Sans SC','font-size':o.fs||11,fill:o.fill||'#a89f8f','text-anchor':o.a||'middle'});e.textContent=s;if(o.w)e.setAttribute('font-weight',o.w);if(o.st){e.setAttribute('paint-order','stroke');e.setAttribute('stroke',o.st);e.setAttribute('stroke-width',o.sw||3);}svg.appendChild(e);};
+  T(sxf(.02),H-pad+16,'再现',{a:'start',fill:'#5a7d6f',w:600});T(sxf(.98),H-pad+16,'表现→',{a:'end',fill:'#b0673a',w:600});
+  T(pad-9,syf(.02),'结构',{a:'end',fill:'#5a7d6f',w:600});T(pad-9,syf(.96),'感知',{a:'end',fill:'#b0673a',w:600});
+  REG.forEach(r=>{svg.appendChild(E('circle',{cx:sxf(r.cx),cy:syf(r.cy),r:r===nr?12:7,fill:'none',stroke:r===nr?'#b0673a':'#cfc6b4','stroke-width':r===nr?2:1.3,'stroke-dasharray':'3 3'}));
+    T(sxf(r.cx),syf(r.cy)-14,r.name,{f:'Noto Serif SC',fs:r===nr?12.5:10.5,fill:r===nr?'#b0673a':'#bcb3a2',w:r===nr?600:400,st:'#fcfaf5'});});
+  RICH.forEach(a=>svg.appendChild(E('circle',{cx:sxf(a.wv.x),cy:syf(a.wv.y),r:3,fill:a.region==='east'?'#aac3b8':'#d8b9a3','fill-opacity':.5})));
+  // 你
+  svg.appendChild(E('circle',{cx:sxf(tx),cy:syf(ty),r:24,fill:'#b0673a','fill-opacity':.10,stroke:'#b0673a','stroke-opacity':.3,'stroke-dasharray':'3 3'}));
+  svg.appendChild(E('circle',{cx:sxf(tx),cy:syf(ty),r:8,fill:'#b0673a',stroke:'#fff','stroke-width':2.5}));
+  T(sxf(tx),syf(ty)-14,'你在这里',{f:'Noto Serif SC',fs:14,fill:'#1d1b18',w:700,st:'#fcfaf5'});
+  wrap.appendChild(svg);res.appendChild(wrap);
+  // 情绪偏好(所选艺术家 VAD 加权均值)
+  let av=0,aa=0,aw=0; chosen.forEach((a,i)=>{if(!a.aff)return;const w=1+i*0.25;av+=a.aff.v*w;aa+=a.aff.a*w;aw+=w;});
+  const tv=aw?av/aw:0.5, ta=aw?aa/aw:0.5;
+  const quad=ta>=0.5?(tv>=0.5?'昂扬·欢腾':'紧张·悲怆'):(tv>=0.5?'宁静·惬意':'忧郁·萧索');
+  // 情绪环(愉悦×唤起)+ 你的点
+  const cs=260,cp=34,csx=v=>cp+v*(cs-2*cp),csy=v=>cs-cp-v*(cs-2*cp),half=(cs-2*cp)/2;
+  const cw=$(`<div class="planewrap" style="max-width:300px;margin:10px auto 0"></div>`);
+  cw.appendChild($(`<div style="font-family:var(--mono);font-size:10px;color:var(--ink-faint);text-align:center;margin-bottom:4px">你的情绪偏好 · 愉悦 × 唤起</div>`));
+  const cv=E('svg',{viewBox:`0 0 ${cs} ${cs}`});
+  [['紧张·悲怆','#a8443a',cp,cp],['昂扬·欢腾','#c98a1a',cp+half,cp],['宁静·惬意','#5a7d6f',cp+half,cp+half],['忧郁·萧索','#5b7596',cp,cp+half]].forEach(q=>{
+    cv.appendChild(E('rect',{x:q[2],y:q[3],width:half,height:half,fill:q[1],'fill-opacity':q[0]===quad?0.16:0.05}));
+    const t=E('text',{x:q[2]+half/2,y:q[3]+half/2,'font-family':'Noto Serif SC','font-size':10.5,fill:q[0]===quad?q[1]:'#c3baa8','text-anchor':'middle','font-weight':q[0]===quad?600:400});t.textContent=q[0];cv.appendChild(t);});
+  cv.appendChild(E('rect',{x:cp,y:cp,width:cs-2*cp,height:cs-2*cp,fill:'none',stroke:'#e0d8c8'}));
+  cv.appendChild(E('line',{x1:csx(.5),y1:cp,x2:csx(.5),y2:cs-cp,stroke:'#e8e0d0'}));cv.appendChild(E('line',{x1:cp,y1:csy(.5),x2:cs-cp,y2:csy(.5),stroke:'#e8e0d0'}));
+  cv.appendChild(E('circle',{cx:csx(tv),cy:csy(ta),r:8,fill:'#b0673a',stroke:'#fff','stroke-width':2.5}));
+  cw.appendChild(cv);res.appendChild(cw);
+  // 解读 + 综合推荐
+  const xside=tx<0.5?'忠于眼睛所见(再现)':'忠于内心所感(表现)';
+  const yside=ty<0.5?'底层的结构与秩序':'即时的光色与感受';
+  const IMGmap=window.__IMG||{};
+  const recs=RICH.map(a=>{const dp=Math.hypot(a.wv.x-tx,a.wv.y-ty);const da=a.affect?Math.hypot(a.affect.v-tv,a.affect.a-ta):0.3;return{a,dp,score:dp+0.5*da};}).sort((p,q)=>p.score-q.score).slice(0,8);
+  const top3=recs.slice(0,3).map(r=>r.a.cn).join('、');
+  // 审美名片
+  res.appendChild($(`<div class="card2"><div class="c2k">你的审美定位 · art that finds you</div><div class="c2region">${nr?nr.name:''}</div><div class="c2quad">情绪偏好:${quad}</div><div class="c2coord">再现-表现 ${tx.toFixed(2)} · 结构-感知 ${ty.toFixed(2)}</div><div class="c2desc">你偏向${xside}、看重${yside}。${nr&&nr.essence?nr.essence:''}</div><div class="c2top">最合你:<b>${top3}</b> …</div><button class="sharebtn" id="sharebtn">📋 复制分享文案</button> <button class="sharebtn" id="dlbtn" style="background:#5a7d6f">🖼️ 下载审美名片</button></div>`));
+  document.getElementById('sharebtn').onclick=function(){
+    const txt=`我的 aha 审美定位:最靠近「${nr?nr.name:''}」,情绪偏「${quad}」,坐标(再现-表现 ${tx.toFixed(2)}·结构-感知 ${ty.toFixed(2)})。最合我的艺术家:${top3}。— aha,让美来找你`;
+    if(navigator.clipboard)navigator.clipboard.writeText(txt);this.textContent='✓ 已复制,去分享吧';};
+  document.getElementById('dlbtn').onclick=function(){
+    this.textContent='⏳ 生成中…';drawCard({tx,ty,tv,ta,quad,nr,xside,yside,recs}).then(()=>{this.textContent='✓ 已下载名片';}).catch(e=>{this.textContent='生成失败';console.error(e);});};
+  // 就近推荐
+  res.appendChild($(`<div class="rh">最合你的艺术家 · 位置 + 情绪 综合</div>`));
+  const rc=$(`<div class="recs"></div>`);
+  recs.forEach(({a,dp})=>{const im=(IMGmap[a.id]&&IMGmap[a.id].items&&IMGmap[a.id].items[0])||null;
+    rc.appendChild($(`<a class="rec" href="kg-artist.html?id=${a.id}">${im?`<img loading="lazy" src="${im.file}">`:''}<div class="ri"><div class="rn">${a.cn}</div><div class="rm">${a.region==='east'?'东':'西'} · ${WVN[a.wv.region_id]||''}</div><div class="rd">契合 ${(100-dp*100).toFixed(0)}%</div></div></a>`));});
+  res.appendChild(rc);
+  res.appendChild($(`<button class="retake" onclick="location.reload()">↺ 重新测一次</button>`));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+// ===== 审美名片:canvas 竖版 PNG =====
+function loadImg(src){return new Promise(res=>{const im=new Image();im.crossOrigin='anonymous';im.onload=()=>res(im);im.onerror=()=>res(null);im.src=src;});}
+async function drawCard(o){
+  await (document.fonts?document.fonts.ready:Promise.resolve());
+  const W=1080,H=1440,dpr=2;
+  const cv=document.createElement('canvas');cv.width=W*dpr;cv.height=H*dpr;
+  const x=cv.getContext('2d');x.scale(dpr,dpr);
+  const SERIF='"Noto Serif SC",serif',SANS='"Noto Sans SC",sans-serif',MONO='"JetBrains Mono",monospace';
+  const AC='#b0673a',GR='#5a7d6f',INK='#1d1b18',SOFT='#4b463e',MUTE='#857d6f',FAINT='#a89f8f';
+  // 背景
+  const g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,'#f6f2ea');g.addColorStop(1,'#efe7da');x.fillStyle=g;x.fillRect(0,0,W,H);
+  x.fillStyle=AC;x.fillRect(0,0,W,12);
+  const C=(t,X,Y,f,s,col,al)=>{x.font=`${f}`;x.fillStyle=col;x.textAlign=al||'center';x.fillText(t,X,Y);};
+  // 头
+  C('aha.',W/2,90,`600 46px ${SERIF}`,INK);
+  C('让美,来找你 · art that finds you',W/2,124,`400 20px ${SERIF}`,AC);
+  C('你的审美定位',W/2,180,`500 22px ${SANS}`,MUTE);
+  // 平面
+  const PX=90,PY=215,PW=W-180,PH=720; // 平面(矩形,留出下方文字)
+  const sx=v=>PX+v*PW, sy=v=>PY+PH-v*PH;
+  x.fillStyle='#fcfaf5';x.strokeStyle='#e3dac9';x.lineWidth=1.5;x.fillRect(PX,PY,PW,PH);x.strokeRect(PX,PY,PW,PH);
+  x.strokeStyle='#efe9dc';[.25,.5,.75].forEach(t=>{x.beginPath();x.moveTo(sx(t),PY);x.lineTo(sx(t),PY+PH);x.moveTo(PX,sy(t));x.lineTo(PX+PW,sy(t));x.stroke();});
+  C('← 再现',PX+4,PY+PH+30,`600 19px ${SANS}`,GR,'left');
+  C('表现 →',PX+PW-4,PY+PH+30,`600 19px ${SANS}`,AC,'right');
+  x.save();x.translate(PX-26,PY+8);C('结构',0,0,`600 18px ${SANS}`,GR,'left');x.restore();
+  x.save();x.translate(PX-26,PY+PH);C('感知',0,0,`600 18px ${SANS}`,AC,'left');x.restore();
+  // 全员淡点
+  RICH.forEach(a=>{x.beginPath();x.fillStyle=a.region==='east'?'rgba(120,160,145,.45)':'rgba(190,140,110,.45)';x.arc(sx(a.wv.x),sy(a.wv.y),4,0,7);x.fill();});
+  // 区地标
+  (REG||[]).forEach(r=>{const here=o.nr&&r.id===o.nr.id;x.beginPath();x.setLineDash([4,4]);x.strokeStyle=here?AC:'#cfc6b4';x.lineWidth=here?2.5:1.4;x.arc(sx(r.cx),sy(r.cy),here?22:13,0,7);x.stroke();x.setLineDash([]);
+    C(r.name,sx(r.cx),sy(r.cy)-here*4-18,`${here?600:400} ${here?22:17}px ${SERIF}`,here?AC:'#b6ac9a');});
+  // 你
+  x.beginPath();x.fillStyle='rgba(176,103,58,.12)';x.arc(sx(o.tx),sy(o.ty),44,0,7);x.fill();
+  x.beginPath();x.fillStyle=AC;x.strokeStyle='#fff';x.lineWidth=4;x.arc(sx(o.tx),sy(o.ty),15,0,7);x.fill();x.stroke();
+  C('你在这里',sx(o.tx),sy(o.ty)-26,`700 22px ${SERIF}`,INK);
+  // 卡片文字区
+  let ty=PY+PH+90;
+  C(o.nr?o.nr.name:'',W/2,ty,`700 50px ${SERIF}`,AC);ty+=44;
+  C('情绪偏好 · '+o.quad,W/2,ty,`500 26px ${SERIF}`,SOFT);ty+=40;
+  C(`再现-表现 ${o.tx.toFixed(2)}　·　结构-感知 ${o.ty.toFixed(2)}`,W/2,ty,`400 20px ${MONO}`,MUTE);ty+=48;
+  // 描述(自动换行)
+  x.textAlign='center';x.fillStyle=SOFT;x.font=`400 22px ${SANS}`;
+  const desc=`你偏向${o.xside}、看重${o.yside}。`;
+  wrap(x,desc,W/2,ty,W-200,34);ty+=70;
+  const top3=o.recs.slice(0,3).map(r=>r.a.cn).join('、');
+  C('最合你的艺术家',W/2,ty,`400 18px ${MONO}`,FAINT);ty+=34;
+  C(top3,W/2,ty,`600 28px ${SERIF}`,GR);
+  // 页脚
+  C('aha · 懂你的人类美术馆 · ai.zaowuyun.com/aha',W/2,H-40,`400 18px ${MONO}`,FAINT);
+  // 下载
+  return new Promise(res=>{cv.toBlob(b=>{const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=`aha-审美名片-${o.nr?o.nr.name:'定位'}.png`;a.click();setTimeout(()=>URL.revokeObjectURL(u),2000);res();},'image/png');});
+}
+function wrap(ctx,text,cx,y,maxw,lh){
+  const chars=[...text];let line='',yy=y;
+  for(const ch of chars){const t=line+ch;if(ctx.measureText(t).width>maxw&&line){ctx.fillText(line,cx,yy);line=ch;yy+=lh;}else line=t;}
+  if(line)ctx.fillText(line,cx,yy);
+}
+// 让推荐能取到图
+fetch('data/kg_artist_images.json').then(r=>r.json()).then(d=>window.__IMG=d).catch(()=>{});
+</script>
+</body></html>

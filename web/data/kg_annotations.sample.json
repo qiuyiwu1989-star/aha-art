@@ -1,0 +1,5 @@
+[
+  { "_README": "把你们 KG 的真实标注按此格式放进 data/kg_annotations.json,再运行 scripts/merge_kg.py。slug = 'm'+Met objectID;没有 slug 就给 title+artist 匹配。styleVec=[再现↔表现,结构↔感知,秩序↔张力,节制↔强度] 各 −1..1。worldModel=W1–W6/东方谱系码。voice=5类画外音之一。只填你有的字段。" },
+  { "slug": "m436965", "styleVec": [0.55, 0.35, 0.45, 0.40], "worldModel": "W3", "voice": "情绪表达型", "themes": ["光", "家庭"] },
+  { "title": "View of Toledo", "artist": "El Greco", "styleVec": [0.70, -0.30, 0.85, 0.80], "worldModel": "W2", "voice": "存在感知型" }
+]

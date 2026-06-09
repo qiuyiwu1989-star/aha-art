@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 知识图谱 · 全局搜索</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:38px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(22px,4vw,32px);font-weight:700;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13px;line-height:1.7;max-width:680px;margin:6px auto}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .searchbar{position:sticky;top:0;background:var(--paper);padding:16px 0 10px;z-index:20}
+  #q{display:block;width:100%;max-width:560px;margin:0 auto;font-family:var(--sans);font-size:16px;color:var(--ink);background:#fff;border:2px solid var(--line);border-radius:999px;padding:13px 22px;outline:none}
+  #q:focus{border-color:var(--accent)}
+  .seg{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+  .seg button{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer}
+  .seg button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .stat{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:8px}
+  .grp{margin-top:22px}
+  .grp-h{font-family:var(--serif);font-size:16px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px;display:flex;align-items:baseline;gap:8px}
+  .grp-h .ct{font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-left:auto}
+  .hits{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}@media(max-width:600px){.hits{grid-template-columns:1fr}}
+  .hit{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 12px;text-decoration:none;color:inherit;border-left:3px solid var(--c,var(--accent))}
+  .hit:hover{box-shadow:0 2px 10px rgba(176,103,58,.12)}
+  .hit .hn{font-family:var(--serif);font-size:14.5px;font-weight:600;color:var(--ink)}
+  .hit .hm{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-top:2px}
+  .hit .tp{font-family:var(--mono);font-size:9px;color:#fff;border-radius:5px;padding:1px 6px;margin-left:auto;white-space:nowrap;align-self:flex-start}
+  .hit mark{background:#fbe3c8;border-radius:3px;padding:0 1px}
+  .empty{text-align:center;color:var(--ink-faint);font-size:13px;padding:38px;line-height:1.8}
+  .ex{font-family:var(--mono);font-size:12px}.ex a{color:var(--accent);text-decoration:none;background:var(--accent-soft);border-radius:6px;padding:2px 9px;margin:0 3px}
+  .back{display:block;text-align:center;margin-top:40px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 全局搜索</div>
+  <h1>一个框,搜遍整张图谱</h1>
+  <p class="lead">风格 · 艺术家 · 世界观区 · 情绪锚点 —— <b id="tot">…</b> 个知识节点,输入即搜、点击直达。</p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <b style="color:var(--ink-soft)">全局搜索</b></div>
+  <div class="searchbar">
+    <input id="q" type="search" placeholder="🔍 搜风格/艺术家/区/情绪,如「印象」「八大」「经验之光」「忧伤」…" autocomplete="off"/>
+    <div class="seg" id="seg"><button data-t="all" class="on">全部</button><button data-t="风格">风格</button><button data-t="艺术家">艺术家</button><button data-t="世界观区">世界观区</button><button data-t="情绪">情绪</button></div>
+    <div class="stat" id="stat"></div>
+  </div>
+  <div id="out"></div>
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const WVC={WV1:'#b0673a',WV2:'#9a7b3a',WV3:'#5a7d6f',WV4:'#5b7596',WV5:'#8a5a7a',WV6:'#4a6a8a'};
+const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+const TC={'风格':'#b0673a','艺术家':'#5b7596','世界观区':'#5a7d6f','情绪':'#8a5a7a'};
+let IDX=[], filt='all', q='';
+Promise.all([
+  fetch('data/kg_style.json').then(r=>r.json()),
+  fetch('data/kg_artists.json').then(r=>r.json()),
+  fetch('data/kg_worldview_regions.json').then(r=>r.json()),
+  fetch('data/kg_affect_keys.json').then(r=>r.json()).catch(()=>({anchors:[]}))
+]).then(([sty,art,reg,aff])=>{
+  sty.nodes.forEach(n=>{const lo=n.lore||{};IDX.push({t:'风格',name:n.cn,
+    keys:[n.cn,lo.en,...(n.aka||[]),(n.people||lo.people||[]).join(''),lo.essence].filter(Boolean).join(' '),
+    sub:`${WVN[n.wv]||''} · ${n.region==='east'?'东方':'西方'}${n.year!=null?' · '+(n.year<0?'前'+(-n.year):n.year):''}`,
+    href:`kg-style-detail.html?id=${n.id}`,c:WVC[n.wv]||'#b0673a'});});
+  (art.roster||[]).forEach(r=>{const a=art.artists[r.id]||{};IDX.push({t:'艺术家',name:r.cn,
+    keys:[r.cn,a.en,a.nationality,(r.styles||[]).join('')].filter(Boolean).join(' '),
+    sub:`${WVN[r.wv]||''} · ${r.region==='east'?'东':'西'}${r.era!=null?' · '+(r.era<0?'前'+(-r.era):r.era):''}${r.authored?' · ✓考究':''}`,
+    href:`kg-artist.html?id=${r.id}`,c:WVC[r.wv]||'#5b7596'});});
+  (reg.regions||[]).forEach(r=>IDX.push({t:'世界观区',name:`${r.id} ${r.name}`,
+    keys:[r.id,r.name,r.alt,r.q,r.essence].filter(Boolean).join(' '),sub:r.alt+' · '+(r.n||'')+'风格',
+    href:`kg-worldview-region.html?id=${r.id}`,c:WVC[r.id]||'#5a7d6f'}));
+  (aff.anchors||[]).forEach(a=>IDX.push({t:'情绪',name:a.cn,
+    keys:[a.cn,...(a.examples||[]).slice(0,8)].join(' '),sub:`VAD 效价${a.vad.valence}/唤醒${a.vad.arousal}`,
+    href:`kg-affect.html`,c:'#8a5a7a'}));
+  document.getElementById('tot').textContent=IDX.length;
+  document.getElementById('q').focus(); render();
+});
+document.getElementById('q').addEventListener('input',e=>{q=e.target.value.trim();render();});
+document.getElementById('seg').addEventListener('click',e=>{if(!e.target.dataset.t)return;filt=e.target.dataset.t;[...e.currentTarget.children].forEach(b=>b.classList.toggle('on',b===e.target));render();});
+function hl(s){if(!q)return s;return s.split(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','i')).map((p,i)=>i%2?`<mark>${p}</mark>`:p).join('');}
+function render(){
+  const out=document.getElementById('out');out.innerHTML='';
+  if(!q){out.appendChild($(`<div class="empty">输入关键词开始。试试 <span class="ex"><a onclick="document.getElementById('q').value='印象';document.getElementById('q').dispatchEvent(new Event('input'))">印象</a><a onclick="document.getElementById('q').value='八大';document.getElementById('q').dispatchEvent(new Event('input'))">八大</a><a onclick="document.getElementById('q').value='经验之光';document.getElementById('q').dispatchEvent(new Event('input'))">经验之光</a><a onclick="document.getElementById('q').value='忧伤';document.getElementById('q').dispatchEvent(new Event('input'))">忧伤</a></span></div>`));
+    document.getElementById('stat').textContent='';return;}
+  const ql=q.toLowerCase();
+  let hits=IDX.filter(x=>(filt==='all'||x.t===filt)&&(x.name.toLowerCase().includes(ql)||x.keys.toLowerCase().includes(ql)));
+  // 名称命中优先
+  hits.sort((a,b)=>{const an=a.name.toLowerCase().includes(ql)?0:1,bn=b.name.toLowerCase().includes(ql)?0:1;return an-bn||a.name.length-b.name.length;});
+  document.getElementById('stat').innerHTML=`命中 <b style="color:var(--accent)">${hits.length}</b> 个节点`;
+  if(!hits.length){out.appendChild($(`<div class="empty">没找到「${q}」。换个词试试。</div>`));return;}
+  ['风格','艺术家','世界观区','情绪'].forEach(T=>{
+    const hs=hits.filter(x=>x.t===T);if(!hs.length)return;
+    const sec=$(`<div class="grp"><div class="grp-h">${T}<span class="ct">${hs.length}</span></div><div class="hits"></div></div>`);
+    const h=sec.querySelector('.hits');
+    hs.slice(0,60).forEach(x=>h.appendChild($(`<a class="hit" style="--c:${x.c}" href="${x.href}"><div><div class="hn">${hl(x.name)}</div><div class="hm">${x.sub}</div></div><span class="tp" style="background:${TC[x.t]}">${x.t}</span></a>`)));
+    out.appendChild(sec);
+  });
+}
+</script>
+</body></html>

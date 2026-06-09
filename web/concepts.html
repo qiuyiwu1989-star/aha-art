@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 概念实验场</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/aha.css?v=3"/>
+<style>
+  body{background:var(--paper);overflow:auto}
+  .wrap{max-width:900px;margin:0 auto;padding:60px 22px 80px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  h1{font-family:var(--serif);font-size:clamp(28px,5vw,40px);font-weight:500;text-align:center}
+  .sub{text-align:center;color:var(--ink-mute);font-size:14.5px;line-height:1.7;margin:12px auto 6px;max-width:600px}
+  .note{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-bottom:34px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;transition:all .22s var(--ease)}
+  .card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 16px 40px -20px rgba(40,30,20,.4)}
+  .c-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+  .c-name{font-family:var(--serif);font-size:23px;font-weight:500;color:var(--ink);margin:6px 0 2px}
+  .c-en{font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-bottom:12px}
+  .c-desc{font-size:13.5px;line-height:1.7;color:var(--ink-soft)}
+  .c-go{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:14px}
+  .card:hover .c-go{color:var(--accent)}
+  .foot{text-align:center;margin-top:30px}
+  .foot a{font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none;margin:0 10px}
+  .foot a:hover{color:var(--accent)}
+  @media(max-width:620px){.grid{grid-template-columns:1fr}}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · concept playground</div>
+  <h1>四个概念实验</h1>
+  <p class="sub">同一批名画、同一张知识图谱,试四种"逛法之外"的玩法。前两个特别吃细粒度的母题标注——也正是别人做不出的护城河。</p>
+  <p class="note">数据仍是 18 件公共领域名画的小样本 · 等你们的打标语料灌进来,每个都会立刻变厚变准</p>
+  <div class="grid">
+    <a class="card" href="concept-river.html"><div class="c-tag">🏷 母题驱动</div><div class="c-name">母题之河</div><div class="c-en">Motif River</div>
+      <div class="c-desc">选一个母题(光/孤独/海),顺流而下——看同一种东西如何穿越几百年、不同文明被反复打动。</div><div class="c-go">进入 →</div></a>
+    <a class="card" href="concept-latent.html"><div class="c-tag">🏷 signature</div><div class="c-name">审美潜空间</div><div class="c-en">Latent Space</div>
+      <div class="c-desc">明暗 / 动静 / 冷暖 / 秩序——拖换两个维度,整片人类名作就重新排列;还标出"你的审美落点"。</div><div class="c-go">进入 →</div></a>
+    <a class="card" href="concept-path.html"><div class="c-tag">🕸 图谱原生</div><div class="c-name">两画之间</div><div class="c-en">Six Degrees</div>
+      <div class="c-desc">任选两幅,看它们隔几步——沿影响/母题/流派的连线,给出最短的那条路。每步都顿悟。</div><div class="c-go">进入 →</div></a>
+    <a class="card" href="concept-curator.html"><div class="c-tag">UGC · 创作</div><div class="c-name">策展台</div><div class="c-en">Curator</div>
+      <div class="c-desc">挑 2–7 幅、起个名,攒一个可分享的小型个展。把"逛"变成"创作"——零生成、零成本、天然传播。</div><div class="c-go">进入 →</div></a>
+  </div>
+  <div class="foot">
+    <a href="compare.html">← 四种交互方案</a> · <a href="index.html">经典完整版</a> · <a href="concept-curator.html">策展台</a>
+  </div>
+</div>
+</body></html>

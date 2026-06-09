@@ -1,0 +1,124 @@
+{
+ "n_vlm": 119,
+ "anchors": {
+  "沉思": 30,
+  "平静": 25,
+  "崇高": 16,
+  "张力": 12,
+  "忧伤": 8,
+  "神秘": 8,
+  "鲜活": 5,
+  "怀旧": 5,
+  "喜悦": 4,
+  "空灵": 3,
+  "恐惧": 2,
+  "孤独": 1
+ },
+ "mean_conf": 0.82,
+ "corr": {
+  "VLM唤起~art_a": {
+   "r": 0.326,
+   "n": 32,
+   "desc": "独立人工考据·唤起 ★关键"
+  },
+  "VLM唤起~sat": {
+   "r": -0.347,
+   "n": 57,
+   "desc": "像素·饱和度"
+  },
+  "VLM唤起~mood_a": {
+   "r": -0.279,
+   "n": 57,
+   "desc": "语料mood唤起(颜色派生)"
+  },
+  "VLM愉悦~art_v": {
+   "r": -0.131,
+   "n": 32,
+   "desc": "独立人工考据·愉悦 ★关键"
+  },
+  "VLM愉悦~val": {
+   "r": 0.139,
+   "n": 57,
+   "desc": "像素·明度"
+  },
+  "VLM愉悦~mood_v": {
+   "r": 0.089,
+   "n": 57,
+   "desc": "语料mood愉悦"
+  },
+  "VLM支配~ord_ten": {
+   "r": 0.011,
+   "n": 57,
+   "desc": "E向量·秩序张力"
+  }
+ },
+ "baseline_pixel_arousal_vs_curated": {
+  "r": 0.2,
+  "n": 32
+ },
+ "examples": [
+  {
+   "slug": "m729644",
+   "artist": "José Guadalupe Posada",
+   "title": "In proof of true love, a watercarrier skeleton arguing with a woman (Posada); two skeleton angels in upper corners (Manilla)",
+   "scene": "一群骷髅人物在街头争执，其中一个骷髅指着另一个，其他骷髅围观。",
+   "vad": {
+    "valence": 0.3,
+    "arousal": 0.7,
+    "dominance": 0.5
+   },
+   "anchor": "张力",
+   "ch_subject": "骷髅象征死亡，但在此以幽默讽刺方式呈现，代表对人类争执的嘲讽。",
+   "ch_composition": "构图以中心争执的骷髅为主，姿态活跃，视线集中，增强冲突感和戏剧性。",
+   "ch_lightcolor": "黑白插图在蓝色背景上，光线平淡，色彩冷调，营造出忧郁而讽刺的氛围。",
+   "evidence": [
+    "骷髅人物的争执姿态显示冲突",
+    "标题结合爱情与争执暗示讽刺",
+    "构图聚焦中心人物增强张力"
+   ],
+   "confidence": 0.8
+  },
+  {
+   "slug": "m436965",
+   "artist": "Edouard Manet",
+   "title": "The Monet Family in Their Garden at Argenteuil",
+   "scene": "一个家庭在花园里享受宁静的时刻，男人喂鸡，女人和孩子坐在草地上。",
+   "vad": {
+    "valence": 0.7,
+    "arousal": 0.3,
+    "dominance": 0.2
+   },
+   "anchor": "平静",
+   "ch_subject": "关键题材为田园家庭生活，符号如鸡代表日常劳作，花朵象征美好，传达出简单幸福的情绪。",
+   "ch_composition": "构图平衡，人物分散但互动温暖，男人低头喂鸡，女人微笑注视孩子，视线引导至中心家庭场景，增强平和感。",
+   "ch_lightcolor": "光线柔和均匀，色彩以绿色草地和蓝色衣物为主，红色花朵点缀，营造出清新、宁静的氛围。",
+   "evidence": [
+    "人物表情放松微笑，姿态自然",
+    "色彩柔和以绿色为主导，无强烈对比",
+    "场景元素如鸡和花园暗示日常平静生活"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "slug": "m437984",
+   "artist": "Vincent van Gogh",
+   "title": "La Berceuse (Woman Rocking a Cradle; Augustine-Alix Pellicot Roulin, 1851–1930)",
+   "scene": "一个女人坐在椅子上，双手握着链子，背景是深色花卉图案。",
+   "vad": {
+    "valence": 0.2,
+    "arousal": 0.3,
+    "dominance": 0.2
+   },
+   "anchor": "忧伤",
+   "ch_subject": "女人肖像和链子符号；链子可能象征束缚或情感依赖，花卉背景象征装饰或生命，与人物形成对比。",
+   "ch_composition": "女人居中坐着，双手交叉握链子，表情平静略带忧郁，视线直视前方但空洞，构图静态，推动内省和忧伤情绪。",
+   "ch_lightcolor": "光线较暗，色彩对比强烈：绿色衣服、红色地面、深色花卉背景，整体偏暗色调，给人忧郁和紧张感。",
+   "evidence": [
+    "女人的忧郁面部表情",
+    "双手握着的链子象征束缚",
+    "暗色调和对比色彩营造忧郁氛围"
+   ],
+   "confidence": 0.75
+  }
+ ]
+}

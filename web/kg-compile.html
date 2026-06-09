@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 意图编译器 · 一句话 → 结构化 Prompt</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--purple:#7a6a9a;--blue:#5b7596;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:34px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(21px,4vw,31px);font-weight:600;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.7;max-width:710px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .inbox{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap}
+  .inbox input{flex:1;min-width:200px;font-family:var(--sans);font-size:15px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 16px;outline:none}
+  .inbox input:focus{border-color:var(--accent)}
+  .inbox button{font-family:var(--sans);font-size:14px;color:#fff;background:var(--accent);border:none;border-radius:10px;padding:0 22px;cursor:pointer;font-weight:500}
+  .presets{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;justify-content:center}
+  .preset{font-size:12px;color:var(--ink-soft);background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer}
+  .preset:hover{border-color:var(--accent);color:var(--accent)}
+  .stage{margin-top:22px}
+  .st-h{font-family:var(--mono);font-size:11px;color:#fff;border-radius:6px;padding:3px 10px;display:inline-block;margin-bottom:9px}
+  .st1 .st-h{background:var(--green)}.st2 .st-h{background:var(--blue)}.st3 .st-h{background:var(--accent)}
+  .layerrow{background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 13px;margin-bottom:7px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+  .layerrow .ll{font-family:var(--serif);font-size:14px;font-weight:600;min-width:70px}
+  .hit{font-size:12.5px;color:var(--ink-soft);background:var(--paper-2);border-radius:6px;padding:2px 9px;display:inline-flex;gap:5px;align-items:baseline}
+  .hit .hid{font-family:var(--mono);font-size:8.5px;color:var(--ink-faint)}
+  .hit .via{color:var(--ink-mute);font-size:10px}
+  .exp{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 15px;font-size:13px;color:var(--ink-soft);line-height:1.9}
+  .exp b{color:var(--ink)}.exp .tag{font-family:var(--mono);font-size:10px;color:var(--blue)}
+  .jsonbox{background:#1d1b18;border-radius:12px;padding:15px 17px;overflow:auto}
+  .jsonbox pre{font-family:var(--mono);font-size:12.5px;line-height:1.95;color:#e7ddc8;white-space:pre-wrap;word-break:break-word}
+  .jk{color:#d9a679}.jv{color:#bcd0c4}.jid{color:#7fa8c9}
+  .empty{color:var(--ink-faint);font-size:13px;padding:14px;text-align:center}
+  .note{font-size:12px;color:var(--ink-mute);background:#fff;border:1px solid var(--line);border-left:3px solid var(--green);border-radius:10px;padding:11px 14px;margin-top:16px;line-height:1.7}.note b{color:var(--green)}
+  .back{display:block;text-align:center;margin-top:42px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .home-fab:hover{color:var(--accent)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 意图编译器</div>
+  <h1>一句话 → 结构化 Prompt</h1>
+  <p class="lead">这是整张图谱的<b>应用落点</b>:输入一句话 → <b>命中知识节点</b>(跨五层)→ <b>推理扩写</b>(据风格典型剖面补全)→ 产出<b>结构化生成语言</b>。这就是"图谱当编译器"。</p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-apply">应用·工具</a> › <b style="color:var(--ink-soft)">意图编译器</b></div>
+
+  <div class="inbox">
+    <input id="q" type="text" placeholder="比如:画一片宁静的宋代山水,云雾留白" value="画一片宁静的宋代山水,云雾留白"/>
+    <button id="go">编译 →</button>
+  </div>
+  <div class="presets" id="presets"></div>
+
+  <div id="out"></div>
+
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+let IDX=null;
+const PRESETS=["印象派笔下的花园,阳光与瞬间","北宋山水的云雾留白,可游可居","巴洛克的宗教场景,戏剧光影","大写意的墨荷,孤愤与酣畅","极简主义,几何与留白","超现实主义的梦境,孤独与门"];
+const pe=document.getElementById('presets');
+PRESETS.forEach(p=> pe.appendChild($(`<span class="preset">${p}</span>`)));
+pe.addEventListener('click',e=>{if(e.target.classList.contains('preset')){document.getElementById('q').value=e.target.textContent;compile();}});
+
+function esc(s){return (s||'').replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));}
+
+async function load(){
+  try{ const r=await fetch('data/kg_compile_index.json'); IDX=await r.json(); compile(); }
+  catch(e){ document.getElementById('out').innerHTML='<div class="empty">索引加载失败(需在服务器上打开)。</div>'; }
+}
+function compile(){
+  if(!IDX) return;
+  const q=document.getElementById('q').value.trim();
+  const out=document.getElementById('out'); out.innerHTML='';
+  if(!q){ out.innerHTML='<div class="empty">输入一句话试试。</div>'; return; }
+  // 匹配:长词优先,去重 by id
+  const sorted=[...IDX.terms].sort((a,b)=>b.t.length-a.t.length);
+  const seenId={}, hitsByLayer={};
+  for(const t of sorted){
+    if(t.t.length<1) continue;
+    if(q.includes(t.t)){
+      if(seenId[t.id]) continue; seenId[t.id]=1;
+      (hitsByLayer[t.layer]=hitsByLayer[t.layer]||[]).push(t);
+    }
+  }
+  const order=['风格','题材','绘画语言','画外音','象征','世界观'];
+  // STAGE 1 命中
+  const s1=$('<div class="stage st1"><span class="st-h">① 命中知识节点</span><div id="hits"></div></div>');
+  const hc=s1.querySelector('#hits'); let any=false;
+  order.forEach(L=>{
+    const hs=hitsByLayer[L]; if(!hs||!hs.length) return; any=true;
+    const row=$(`<div class="layerrow"><span class="ll">${L}</span></div>`);
+    hs.slice(0,8).forEach(t=> row.appendChild($(`<span class="hit">${t.cn}${t.meta&&t.meta.via&&t.meta.via!==t.cn?`<span class="via">(经"${t.meta.via}")</span>`:''}<span class="hid">${t.id}</span></span>`)));
+    hc.appendChild(row);
+  });
+  if(!any) hc.appendChild($('<div class="empty">没命中节点——换个含 风格/题材/情绪 的说法。</div>'));
+  out.appendChild(s1);
+
+  // pick primary style
+  const style=(hitsByLayer['风格']||[])[0];
+  const prof=style? IDX.profiles[style.cn.replace('风格','')]||IDX.profiles[style.cn] : null;
+
+  // STAGE 2 扩写
+  const s2=$('<div class="stage st2"><span class="st-h">② 推理扩写</span><div class="exp" id="exp"></div></div>');
+  const ex=s2.querySelector('#exp'); let lines=[];
+  if(style){
+    const m=style.meta;
+    lines.push(`命中风格 <b>${style.cn}</b> → 世界观「<span class="tag">${m.region_cn||''}</span>」(${m.wv||''}),坐标 再现-表现 ${m.coord?m.coord.rep_exp:'–'}、结构-感知 ${m.coord?m.coord.struct_perc:'–'}`);
+    if(prof) lines.push(`据其典型剖面补全:<b>${prof['绘画类型']}</b> · 语言「${prof['语言']}」${prof['题材']?' · 常见题材「'+prof['题材']+'」':''}`);
+  } else if((hitsByLayer['世界观']||[]).length){
+    const wv=hitsByLayer['世界观'][0];
+    lines.push(`命中世界观区 <b>${wv.cn}</b>(${wv.id})——把世界看成:${wv.meta&&wv.meta.q||''}。可据此区的代表风格扩写。`);
+  }
+  const subj=(hitsByLayer['题材']||[]).map(t=>t.cn);
+  if(subj.length) lines.push(`题材切入:<b>${subj.join('、')}</b>`);
+  const aff=(hitsByLayer['画外音']||[])[0];
+  if(aff&&aff.meta.vad) lines.push(`情绪基调:<b>${aff.cn}</b> → VAD 效价${aff.meta.vad.valence}/唤醒${aff.meta.vad.arousal}/支配${aff.meta.vad.dominance}`);
+  const motif=(hitsByLayer['象征']||[]).map(t=>t.cn);
+  if(motif.length) lines.push(`象征母题:<b>${motif.join('、')}</b>`);
+  if(!lines.length) lines.push('未命中风格,按字面题材/情绪扩写。');
+  ex.innerHTML=lines.map(l=>'· '+l).join('<br/>');
+  out.appendChild(s2);
+
+  // STAGE 3 结构化 Prompt (6字段)
+  const subjTxt=subj.join('、')||'(未指定)';
+  const langTxt=prof?prof['语言']:(hitsByLayer['绘画语言']||[]).map(t=>t.cn).join('、')||'(据风格默认)';
+  const voiceTxt=prof?prof['画外音']:(aff?aff.cn:'(留白)');
+  const typeTxt=prof?prof['绘画类型']:'(油画/水墨待定)';
+  const styleTxt=style?style.cn:'(自由)';
+  const desc=`一幅以「${subjTxt}」为题材的${typeTxt}，呈现${styleTxt}的语言：${langTxt}。${aff?'整体基调'+aff.cn+'。':''}${motif.length?'画面含象征母题'+motif.join('、')+'。':''}`;
+  const wvTxt=style&&style.meta?`${style.meta.region_cn||''}(${style.meta.wv||''})`:((hitsByLayer['世界观']||[])[0]?`${hitsByLayer['世界观'][0].cn}(${hitsByLayer['世界观'][0].id})`:'(自由)');
+  const J={
+    "绘画类型":typeTxt,"画面题材":subjTxt,"世界观区":wvTxt,"绘画风格":styleTxt+(style?` [${style.id}]`:''),
+    "具体画面描述":desc,"绘画语言":langTxt,"画外音":voiceTxt
+  };
+  const jhtml=Object.entries(J).map(([k,v])=>`  <span class="jk">"${k}"</span>: <span class="jv">"${esc(String(v)).replace(/\[(STYLE[^\]]+)\]/,'<span class=jid>[$1]</span>')}"</span>`).join(',\n');
+  const s3=$(`<div class="stage st3"><span class="st-h">③ 结构化生成语言 · 7字段(可直接喂生成)</span><div class="jsonbox"><pre>{\n${jhtml}\n}</pre></div></div>`);
+  out.appendChild(s3);
+
+  // STAGE 4 出图(闭环验证)
+  const cleanStyle=styleTxt.replace(/\s*\[STYLE[^\]]*\]/,'');
+  const genPrompt=`${desc} 绘画语言:${langTxt}。${(voiceTxt&&!String(voiceTxt).includes('留白'))?'整体意境:'+voiceTxt+'。':''}媒介:${typeTxt}。${cleanStyle!=='(自由)'?cleanStyle+'风格,':''}构图讲究,色彩层次丰富,质感真实,专业绘画作品`;
+  const meta={query:(document.getElementById('q').value||'').trim(),style_id:style?style.id:'',style_cn:style?style.cn:'',fields:J};
+  const s4=$(`<div class="stage st4"><span class="st-h">④ 出图 · 把这份 Prompt 喂给生成模型(闭环)</span>
+    <div style="margin:6px 0 10px;font-size:12.5px;color:var(--ink-mute);line-height:1.7">理解→生成的最后一环:用上面的结构化语言驱动<b>火山方舟</b>实际出图,验证"图谱不只是能解释,还能生成"。每次出图都会<b>自动连同这份结构化数据存进图库</b>(图链 24h 失效,出图即自托管)。 <a href="kg-gallery.html" style="color:var(--accent);text-decoration:none">🖼 看图库 →</a></div>
+    <button id="genbtn" style="font-family:var(--mono);font-size:14px;color:#fff;background:var(--accent);border:none;border-radius:9px;padding:9px 18px;cursor:pointer">🎨 生成这张</button>
+    <div id="genstat" style="font-size:12px;color:var(--ink-mute);margin-top:9px"></div>
+    <div id="genimg" style="margin-top:10px"></div></div>`);
+  out.appendChild(s4);
+  document.getElementById('genbtn').addEventListener('click',()=>doGen(genPrompt,meta));
+
+  out.appendChild($('<div class="note">🔬 <b>这就是图谱的价值</b>:输出的每个字段都<b>挂着真实节点 id</b>(可追溯、可推敲),风格被拆成语言原子(<b>能组合不靠抄</b>)。同一句话换个风格节点,整份 Prompt 自动重写——这是"分类表"做不到的。</div>'));
+}
+async function doGen(prompt,meta){
+  const st=document.getElementById('genstat'),box=document.getElementById('genimg'),btn=document.getElementById('genbtn');
+  btn.disabled=true;btn.style.opacity=.6;box.innerHTML='';st.textContent='⏳ 生成中…约 10–25 秒,出图后自动存入图库';
+  try{
+    const r=await fetch('api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt,meta})});
+    const d=await r.json();
+    if(d.url){
+      const src=d.file?d.file:d.url;  // 优先用已自托管的本地图
+      const savemsg=d.saved?'✅ 已自动存入图库':(d.save_error?'⚠️ 自动保存失败:'+esc(d.save_error):'');
+      st.innerHTML='✅ 已生成 · 模型 '+esc(d.model||'')+' · '+savemsg+(d.saved?' · <a href="kg-gallery.html" style="color:var(--accent)">去图库 →</a>':'');
+      box.innerHTML='<img src="'+src+'" style="max-width:100%;border-radius:12px;border:1px solid var(--line);display:block"/>'+
+        '<div style="font-size:11px;color:var(--ink-faint);margin:6px 0;line-height:1.6">驱动提示词:'+esc(prompt)+'</div>';
+    }else{ st.textContent='⚠️ 生成失败:'+(d.error||'未知'); }
+  }catch(e){ st.textContent='⚠️ 请求失败:'+e; }
+  finally{ btn.disabled=false;btn.style.opacity=1; }
+}
+document.getElementById('go').addEventListener('click',compile);
+document.getElementById('q').addEventListener('keydown',e=>{if(e.key==='Enter')compile();});
+load();
+</script>
+</body></html>

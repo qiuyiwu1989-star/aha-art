@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 风格星辰大海 · 路线图</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--green-soft:#eef3f0;--blue:#5b6f9c;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:40px 18px 110px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(23px,4.4vw,34px);font-weight:600;text-align:center;margin:8px 0 2px}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.75;max-width:760px;margin:8px auto 0}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:10px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .legend{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:20px 0 4px}
+  .lg{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);border:1px solid var(--line);border-radius:7px;padding:3px 9px;background:#fff}
+  .lg b{color:var(--ink-soft)}
+  .eff{display:inline-block;font-family:var(--mono);font-size:9.5px;border-radius:5px;padding:1px 6px;color:#fff}
+  .eff.S{background:#6a9a6a}.eff.M{background:#c98a1a}.eff.L{background:#b0673a}
+  .sec{margin-top:38px}
+  .sec-h{display:flex;align-items:baseline;gap:10px;border-bottom:1.5px solid var(--accent);padding-bottom:8px;margin-bottom:4px}
+  .sec-h .n{font-family:var(--mono);font-size:12px;color:#fff;background:var(--accent);border-radius:6px;padding:2px 9px}
+  .sec-h.green .n{background:var(--green)}.sec-h.blue .n{background:var(--blue)}
+  .sec-h.green{border-bottom-color:var(--green)}.sec-h.blue{border-bottom-color:var(--blue)}
+  .sec-h .t{font-family:var(--serif);font-size:20px;font-weight:600}
+  .sec-h .d{font-size:12px;color:var(--ink-mute);margin-left:auto}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:14px}@media(max-width:720px){.grid{grid-template-columns:1fr}}
+  .card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:13px 15px;border-top:3px solid var(--accent);position:relative}
+  .card.green{border-top-color:var(--green)}.card.blue{border-top-color:var(--blue)}
+  .card.done{border-top-color:#6a9a6a;background:#f7faf6}
+  .card .ch{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .card .ci{font-size:17px}
+  .card .ct{font-family:var(--serif);font-size:16px;font-weight:600}
+  .card .cs{margin-left:auto;display:flex;gap:5px;align-items:center}
+  .card .cd{font-size:12.5px;color:var(--ink-soft);line-height:1.65;margin-top:7px}
+  .card .cv{font-size:11.5px;color:var(--green);margin-top:7px;line-height:1.5}.card .cv::before{content:"价值 · ";font-family:var(--mono);font-size:9.5px;color:var(--ink-faint)}
+  .card .cn2{font-size:11px;color:var(--accent);margin-top:5px;line-height:1.5}.card .cn2::before{content:"依赖 · ";font-family:var(--mono);font-size:9.5px;color:var(--ink-faint)}
+  .card.done .ct{color:#3f6b3f}
+  .tag-done{font-family:var(--mono);font-size:9px;color:#fff;background:#6a9a6a;border-radius:5px;padding:1px 7px}
+  .note{font-size:12.5px;color:var(--ink-mute);background:#fff;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:9px;padding:12px 15px;line-height:1.75;margin-top:16px}
+  .note b{color:var(--accent)}
+  .pri{background:linear-gradient(180deg,#fff,#fbf4ec);border:1px solid #e6d3c0;border-radius:13px;padding:16px 18px;margin-top:18px}
+  .pri h3{font-family:var(--serif);font-size:17px;color:var(--accent);margin-bottom:8px}
+  .pri ol{margin:0 0 0 20px;font-size:13px;color:var(--ink-soft);line-height:1.95}
+  .pri ol b{color:var(--ink)}
+  .back{display:block;text-align:center;margin-top:44px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:50;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.92);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+  .star-fab{position:fixed;right:14px;bottom:14px;z-index:50;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:#fff;background:var(--accent);border-radius:999px;padding:9px 15px;box-shadow:0 4px 16px rgba(176,103,58,.4)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html">🏠 首页</a>
+<a class="star-fab" href="kg-galaxy.html">🌌 进星辰大海</a>
+<div class="wrap">
+  <div class="kick">aha · 风格星辰大海 · Roadmap</div>
+  <h1>星辰大海 · 路线图</h1>
+  <p class="lead">把这件「<b>艺术人类史的汇总</b>」一步步做成能震撼世界的交互作品。下面是<b>已完成</b>、<b>可继续做</b>、<b>能更上一层</b>的全部清单——按期排布，标注价值与工作量，随做随更新。</p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-graph">图谱·关系</a> › <b style="color:var(--ink-soft)">星空 Roadmap</b></div>
+
+  <div class="legend">
+    <span class="lg"><span class="eff S">S</span> <b>小</b>·半天内</span>
+    <span class="lg"><span class="eff M">M</span> <b>中</b>·1–2 天</span>
+    <span class="lg"><span class="eff L">L</span> <b>大</b>·需数据/多日</span>
+    <span class="lg">★ = 我推荐优先</span>
+  </div>
+
+  <!-- 已完成 -->
+  <div class="sec">
+    <div class="sec-h green"><span class="n">0</span><span class="t">已完成 · 第一期</span><span class="d">现在线上的能力</span></div>
+    <div class="grid" id="done"></div>
+  </div>
+
+  <!-- 第二期 -->
+  <div class="sec">
+    <div class="sec-h"><span class="n">2</span><span class="t">第二期 · 动效与叙事</span><span class="d">让它"活"起来、"能读"起来</span></div>
+    <div class="grid" id="p2"></div>
+  </div>
+
+  <!-- 第三期 -->
+  <div class="sec">
+    <div class="sec-h blue"><span class="n">3</span><span class="t">第三期 · 深度与规模</span><span class="d">艺术家·作品·大屏装置</span></div>
+    <div class="grid" id="p3"></div>
+  </div>
+
+  <!-- 数据侧 -->
+  <div class="sec">
+    <div class="sec-h"><span class="n">D</span><span class="t">数据侧 · 让"真实"更厚</span><span class="d">最值钱的一笔投入</span></div>
+    <div class="grid" id="data"></div>
+  </div>
+
+  <!-- 学术/可信 -->
+  <div class="sec">
+    <div class="sec-h green"><span class="n">A</span><span class="t">可信度与学术性</span><span class="d">配得上"人类史汇总"四个字</span></div>
+    <div class="grid" id="acad"></div>
+  </div>
+
+  <div class="pri">
+    <h3>★ 接下来怎么走</h3>
+    <ol>
+      <li><b>团队并行补真实语料</b> — 下载下方两份清单,关系理由 + 作品真图边填边亮(纯数据,不挡前端)。</li>
+      <li><b>真实作品缩略图</b>(L,只放可核实真图) — 拿到作品图后,第四层"作品宇宙"点亮,四层真正打通。</li>
+      <li><b>来源引用 + 中英双语</b>(M) — 配得上"人类史汇总",且让世界看得懂。</li>
+    </ol>
+  </div>
+
+  <div class="pri" style="background:linear-gradient(180deg,#fff,#eef3f0);border-color:#cfe0d6">
+    <h3 style="color:var(--green)">📥 待补清单下载(给团队并行填)</h3>
+    <ol style="list-style:none;margin-left:0">
+      <li>① <a href="exports/缺why关系清单.csv" style="color:var(--accent)">缺 why 关系清单.csv</a> — 394 条,附两端 born/def,写一句真实出处即可。</li>
+      <li>② <a href="exports/艺术家作品待补图清单.csv" style="color:var(--accent)">艺术家作品待补图清单.csv</a> — 562 行,填可核实真图 URL 与来源。</li>
+      <li>③ <a href="exports/README.txt" style="color:var(--ink-mute)">填写说明 README.txt</a></li>
+    </ol>
+  </div>
+
+  <div class="note">说明:工作量是<b>前端实现</b>估时;标「数据侧」的项需要团队补真实语料(born/def/作品真图)才能落地,清单已导出、边填边亮。所有动效与数据都坚持<b>真实、可追溯、不编造</b>。</div>
+
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const ITEMS={
+ done:[
+  {i:'🌠',t:'六种排布·飞重组',d:'星系团/谱系星河(力导向)/时间螺旋/三轴坐标/穹顶星天/放射星系,切换时全星补间飞到新位置。',v:'同一片星辰,六种"看艺术史"的方式。'},
+  {i:'🔗',t:'777 条真实关系',d:'承自/影响/对抗,全部来自风格志手写史实(非作品共现);带置信度(高/中),可只看精确边。',v:'这件作品的命脉:真实、可追溯。'},
+  {i:'✨',t:'Bloom 辉光 + 亮度可调',d:'恒星真实发光;辉光强度滑杆实时调,密集时不糊。',v:'电影级质感,且可控。'},
+  {i:'📖',t:'关系带"理由"',d:'点一颗星,逐条列出它的真实关系;383 条已附确证出处,其余 394 条诚实留空(已导出待补清单,见下)。',v:'把"连线"变成"能读的艺术史"。'},
+  {i:'💫',t:'关系流光',d:'沿影响方向流动的光点,看见史脉的流向。',v:'静图变动图,史脉可见。'},
+  {i:'🎛',t:'筛选即重组',d:'按文化(东/西属性)/世界观区/搜索点亮子集;点一颗星只亮它的关系网。',v:'换筛选=换星空。'},
+  {i:'🌐',t:'V3 世界观结构',d:'已对齐 V3:6 个文化横断世界观区(WV1–6,无东西对称),东/西降为属性;6 色按区上色。完全数据驱动,补数据重跑即更新。',v:'结构正确,后续零返工。'},
+  {i:'🌟',t:'流星待机',d:'无人操作时,自动沿真实影响边放拖尾流星划过,配一句史脉浮现;可开关。',v:'让画面"会呼吸",吸引力/截图拉满。'},
+  {i:'🧭',t:'顺艺术史走·路径飞行',d:'选两个流派,镜头沿真实关系最短路飞行穿越,逐站点亮、逐句讲述关系与理由。',v:'最强"叙事感",像看一部艺术史短片。'},
+  {i:'✨',t:'质感打磨',d:'6 区+关系三色图例(可收起)、ACES 色调映射(高光优雅滚降·重叠不再发白掉色)、背景星轻微闪烁+缓慢漂移、双击复位视角;星雲过大导致的"白门板"已修。',v:'电影级质感 + 视觉一致性。'},
+  {i:'⏳',t:'时间长河 · 按年代生长',d:'东西双轨、x 严格按真实年代对齐(文艺复兴 vs 同期宋画派同刻度);播放时星辰按时序一颗颗点亮,镜头锁定"最新涌现"前沿平顺平移,景深固定不缩。',v:'一眼看尽人类绘画的演化。'},
+  {i:'🌱',t:'关系线随历史生长',d:'播放时某流派出现,它承自/影响"已出现前人"的真实谱系线自动从老星牵到新星、一根根亮起;只留当前前沿几条,不成斑马线。',v:'让"创新涌现"被看见。'},
+  {i:'🗺',t:'东西播报 + 播完归位',d:'左下角实时报"此刻东西两方各在画什么";播完自动平顺拉回长河全貌。',v:'叙事完整,首尾呼应。'},
+  {i:'🪐',t:'艺术家可点 · 打通详情页',d:'开启艺术家层后,冷白十字星可点:弹出名字+定位+所属流派(可跳风格),并直达该艺术家完整页(271 位中 269 位已对上)。',v:'风格→艺术家两层真正打通。'},
+  {i:'💠',t:'个人之星 · 千人千面',d:'6 题测出你的审美落点,化作一颗专属的星落进星空;近你者更亮、远你者隐,生成你的专属星座与分享图。',v:'别人和你看到的星空不一样——aha 独门。'},
+  {i:'📸',t:'一键截图 / 分享 / 引导',d:'当前视角与筛选导出高清图或带状态参数的分享链接;首次进入有轻引导。',v:'人人能晒"我的星图"。'},
+  {i:'🪐',t:'艺术家行星 · 绕星运行',d:'点一颗风格星,其旗下真实代表人物化作暖金行星浮现、沿轨道环绕星缓旋(朝相机的椭圆盘);行星本身可点,直达艺术家详情页。',v:'风格→艺术家两层"活"了起来。'},
+  {i:'🎚',t:'关系类型筛选',d:'承自/影响/对抗 三类边各自开关、或只看一类(按类着色),看清某种史脉。',v:'把复杂关系网拆成可读的层。'},
+  {i:'🔭',t:'搜索即飞',d:'搜索框输入流派名回车,镜头平顺飞到那颗星、选中点亮。',v:'从"找"变成"被带到"。'},
+  {i:'📚',t:'来源引用脚注',d:'每条关系理由下方标注真实出处(据 风格志·某流派·源起/定义),383 条可追溯;不可追溯的诚实留空。',v:'配得上"人类史汇总",可被采信。'},
+  {i:'🔬',t:'数据自检面板',d:'面板🔬一键打开:实时显示节点/边/按类/按置信、理由与出处覆盖率、艺术家打通率;透明承认缺口。',v:'透明承认边界,反而更可信。'},
+  {i:'🌐',t:'界面中英双语切换',d:'左下角 EN/中 一键切换:标题/面板/布局名/区名/按钮/帮助/自检/引导全部双语;风格名与长描述等已撰写中文内容暂保持中文(无英文数据,不机器硬译)。',v:'全球观众看得懂界面。'}
+ ],
+ p2:[],
+ p3:[
+  {i:'🖼',t:'真实作品缩略图',e:'L',star:1,d:'推近到艺术家,其代表作以真图光尘浮起、可翻阅。<b>只放可核实存在的真图</b>,存疑一律不放(待补清单已导出)。',v:'从"知识"落到"看见画"——四层宇宙最后一层。',dep:'需作品真图与版权核实。'},
+  {i:'🖐',t:'大屏 / 手势 / Kiosk',e:'L',d:'多点触控、捏合缩放、待机吸引、一台 iPad 当遥控;为展陈装置优化。',v:'走进美术馆/展会的"装置级"形态。'},
+  {i:'⚡',t:'性能 · 扩到上千点',e:'M',d:'InstancedMesh + 预算布局,支撑未来上千流派/艺术家不掉帧。',v:'为"全人类艺术史"的规模留好底座。'},
+  {i:'🎭',t:'情感透镜(VAD)',e:'M',d:'再加一种排布:按情绪(效价×唤醒)重排成"情绪天空",接 kg-affect。',v:'不只按史脉,也能按"感觉"逛。',dep:'风格×VAD 标注。'}
+ ],
+ data:[
+  {i:'📝',t:'补关系的"理由"',e:'L',star:1,d:'现 383 条已带确证理由,余 394 条留空。照清单(附两端 born/def)各补一句真实出处即可,边填边亮。',v:'"可读性"指数级提升,投入产出比最高。',dep:'清单已导出 → 见下方「待补清单下载」。'},
+  {i:'🔍',t:'关系校验与补全',e:'M',d:'人工过一遍 167 条中置信(伞展开/上位)边,确认/修正;补漏掉的真实影响关系。',v:'把可信度从"高"推到"可发表"。'},
+  {i:'👤',t:'艺术家坐标与小传',e:'M',d:'给更多艺术家补 wv 重心/轨迹与一句小传(现 31 精写),让艺术家层更厚。',v:'艺术家从"点"变成"有故事的人"。'},
+  {i:'🖼',t:'作品真图库 + 版权',e:'L',d:'核实、收齐可公开的代表作真图(public domain 优先),建立 风格/艺术家→真图 的可信映射。',v:'三期"看见画"的前置。',dep:'版权与来源核实。'}
+ ],
+ acad:[
+  {i:'🌐',t:'中英双语 · 内容层',e:'L',d:'界面骨架双语已上线;此项是把 202 风格的描述、777 条关系理由也译成英文(翻译既有真实中文,不另造内容)。',v:'让世界真正读懂内容,不止界面。',dep:'需英文译稿(翻译工程)。'},
+  {i:'📚',t:'来源引用·深化',e:'M',d:'在已有"据 风格志·X·字段"脚注之上,再补撰写者署名与权威辞书外链,形成完整学术引用。',v:'从"可追溯"推到"可被学界采信"。'}
+ ]
+};
+function eff(e){return e?`<span class="eff ${e}">${e}</span>`:'';}
+function card(it,cls){
+  return `<div class="card ${cls||''}${it.done?' done':''}">
+    <div class="ch"><span class="ci">${it.i}</span><span class="ct">${it.star?'★ ':''}${it.t}</span>
+      <span class="cs">${it.done?'<span class="tag-done">已上线</span>':eff(it.e)}</span></div>
+    <div class="cd">${it.d}</div>
+    ${it.v?`<div class="cv">${it.v}</div>`:''}
+    ${it.dep?`<div class="cn2">${it.dep}</div>`:''}
+  </div>`;
+}
+ITEMS.done.forEach(x=>x.done=1);
+function fill(id,arr,cls){const el=document.getElementById(id);el.innerHTML=arr.map(x=>card(x,cls)).join('');if(!arr.length){const sec=el.closest('.sec');if(sec)sec.style.display='none';}}
+document.getElementById('done').innerHTML=ITEMS.done.map(x=>card(x,'green')).join('');
+fill('p2',ITEMS.p2,'');
+document.getElementById('p3').innerHTML=ITEMS.p3.map(x=>card(x,'blue')).join('');
+document.getElementById('data').innerHTML=ITEMS.data.map(x=>card(x,'')).join('');
+document.getElementById('acad').innerHTML=ITEMS.acad.map(x=>card(x,'green')).join('');
+</script>
+</body></html>

@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · V2 统一正交基 + 跨五层标注模板</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--green-soft:#eef3f0;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:38px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(21px,4vw,31px);font-weight:600;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.7;max-width:700px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .sec{margin-top:38px}
+  .sec-h{font-family:var(--serif);font-size:20px;font-weight:500;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:6px}
+  .sec-h .en{font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-left:8px}
+  .sec-d{font-size:13px;color:var(--ink-mute);margin:6px 0 14px;line-height:1.6}.sec-d b{color:var(--ink-soft)}
+  /* axes */
+  .ax{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;margin-bottom:9px;border-left:4px solid var(--accent)}
+  .ax .ah{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+  .ax .k{font-family:var(--mono);font-size:12px;font-weight:600;color:#fff;background:var(--accent);border-radius:5px;padding:1px 8px}
+  .ax .cn{font-family:var(--serif);font-size:16px;font-weight:600}
+  .ax .en{font-family:var(--mono);font-size:10px;color:var(--ink-faint)}
+  .ax .op{font-size:12.5px;color:var(--ink-soft);line-height:1.6;margin-top:5px}.ax .op b{color:var(--accent)}
+  .ax .from{margin-top:6px;display:flex;flex-wrap:wrap;gap:5px}
+  .ax .fc{font-family:var(--mono);font-size:9.5px;color:var(--ink-mute);background:var(--paper-2);border-radius:5px;padding:1px 7px}
+  /* vad */
+  .vad{background:var(--green-soft);border:1px solid #d7e3dc;border-radius:12px;padding:13px 16px}
+  .vad .vr{display:flex;gap:10px;font-size:12.5px;color:var(--ink-soft);line-height:1.7;padding:4px 0;border-bottom:1px dashed #cdddd4}
+  .vad .vr:last-child{border-bottom:none}
+  .vad .vk{font-family:var(--mono);font-size:11px;color:var(--green);min-width:96px;flex-shrink:0;font-weight:600}
+  /* heatmap */
+  .heat{overflow-x:auto}
+  table.hm{border-collapse:collapse;font-family:var(--mono);font-size:11px;margin:0 auto}
+  table.hm th{padding:5px 7px;color:var(--ink-soft);font-weight:500;font-size:10px}
+  table.hm td{width:46px;height:36px;text-align:center;border:1px solid #fff;border-radius:3px;color:var(--ink);font-size:10.5px}
+  table.hm td.diag{color:var(--ink-faint)}
+  .hmnote{font-size:12px;color:var(--ink-mute);line-height:1.7;margin-top:10px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--green);border-radius:8px;padding:10px 13px}
+  .hmnote b{color:var(--green)}
+  /* sample json */
+  .jsonbox{background:#1d1b18;border-radius:12px;padding:15px 17px;overflow:auto;margin-top:8px}
+  .jsonbox pre{font-family:var(--mono);font-size:11.5px;line-height:1.85;color:#e7ddc8;white-space:pre-wrap;word-break:break-word}
+  .jk{color:#d9a679}.jv{color:#bcd0c4}.jid{color:#7fa8c9}.jc{color:#857d6f}
+  /* flow */
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}
+  .fstep{flex:1;min-width:150px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 13px}
+  .fstep .fn{font-family:var(--mono);font-size:10px;color:var(--accent)}
+  .fstep .ft{font-family:var(--serif);font-size:14px;font-weight:600;margin:2px 0 4px}
+  .fstep .fd{font-size:11.5px;color:var(--ink-soft);line-height:1.5}
+  .back{display:block;text-align:center;margin-top:44px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .home-fab:hover{color:var(--accent)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 统一正交基 + 标注模板</div>
+  <h1>一组正交基 · 跨五层标注</h1>
+  <p class="lead">解决审核里的 ③(维度基不统一)与"如何让卖点可证伪":把<b>世界观3轴 + 风格8维 + VAD</b> 合并成<b>一组正交基</b>,并给出<b>跨五层标注模板</b>——存量标注按它灌入,就能跑正交性检验。</p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-apply">应用·工具</a> › <b style="color:var(--ink-soft)">正交基/标注</b></div>
+  <div style="max-width:780px;margin:14px auto 0;background:#fbf3ec;border:1px solid #e6c9b0;border-left:4px solid var(--accent);border-radius:10px;padding:11px 15px;font-size:12.5px;color:#6a4a33;line-height:1.7">⏳ <b>历史记录(v0.3)</b>:本页把「世界观3轴+风格8维+VAD」合并成 5 轴正交基,是 V3 的前身。<b>V3 进一步实证后收敛为更精简的 2 条真轴</b>(再现-表现 ⊥ 结构-感知;余者下放为语言/效应)——见 <a href="kg-worldview-science.html" style="color:var(--accent);font-weight:600;text-decoration:none">科学性自检</a>。本页的<b>标注模板与正交性检验方法仍然有效</b>,只需把基换成 V3 两轴。</div>
+
+  <!-- 基 -->
+  <div class="sec">
+    <div class="sec-h">① 统一正交基 · 5 轴<span class="en">canonical basis</span></div>
+    <div class="sec-d">原来世界观 3 轴、风格 8 维的 E 向量 4 轴、VAD 3 维——共 ~10 个名字、有重复有同义。合并去重成 <b>5 条尽量独立的轴</b>,每条给可操作定义。一切(画/风格/世界模型)都投影到它。</div>
+    <div id="axes"></div>
+  </div>
+
+  <!-- VAD -->
+  <div class="sec">
+    <div class="sec-h">② 情感(VAD)不是第 6 套,是共享/派生<span class="en">affect linkage</span></div>
+    <div class="sec-d">这是因果链<b>可计算</b>的关键:情感坐标与视觉轴共享维度,而非另起炉灶。</div>
+    <div class="vad" id="vad"></div>
+  </div>
+
+  <!-- 经验证据 -->
+  <div class="sec">
+    <div class="sec-h">③ 经验证据:119 件作品的维度相关矩阵<span class="en">empirical · live</span></div>
+    <div class="sec-d">正交性检验的<b>真实预演</b>(用已有像素特征跑)。颜色越红=越相关(可能冗余),越淡=越独立。这是"卖点可证伪"的方法演示。</div>
+    <div class="heat"><table class="hm" id="hm"></table></div>
+    <div class="hmnote" id="hmnote"></div>
+  </div>
+
+  <!-- 标注模板 -->
+  <div class="sec">
+    <div class="sec-h">④ 跨五层标注模板 · 真实样本<span class="en">annotation schema</span></div>
+    <div class="sec-d">一幅画 = 在 5 层各连真实节点 + 5 轴坐标 + VAD。下面是填好的样本(马奈《花园中的莫奈一家》),<b>id 均指向真实节点、可被校验</b>(解析率 <span id="resrate"></span>)。</div>
+    <div class="jsonbox"><pre id="sample"></pre></div>
+  </div>
+
+  <!-- 导入流程 -->
+  <div class="sec">
+    <div class="sec-h">⑤ 存量标注导入流程<span class="en">import flow</span></div>
+    <div class="sec-d">你那套自研打标 + 已标注名画,按这条流水线灌进来,就能跑出自检页的三个实验。</div>
+    <div class="flow" id="flow"></div>
+  </div>
+
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+
+<script>
+const BASIS={
+ "meta": {
+  "title": "V2 统一正交基 · Canonical Basis",
+  "version": "v0.3",
+  "note": "把世界观3轴 + 风格8维E向量4轴 + VAD 三套坐标,合并去重成 5 条尽量独立的轴。每条给可操作定义;能量轴=VAD唤醒,可从像素测。",
+  "principle": "一组正交基 → 一切(画/风格/世界模型)都投影到它;不再各层各报各的。"
+ },
+ "axes": [
+  {
+   "k": "X1",
+   "cn": "再现 ↔ 表现",
+   "en": "representation↔expression",
+   "op": "忠于眼睛所见 vs 忠于内心所感(光学保真度)",
+   "from": [
+    "世界观:再现-表现",
+    "风格:再现-表现"
+   ]
+  },
+  {
+   "k": "X2",
+   "cn": "具象 ↔ 抽象",
+   "en": "figurative↔abstract",
+   "op": "物象是否可辨认(从写实物象到纯形式)。注意:与X1独立——表现主义仍具象",
+   "from": [
+    "风格:结构-感知(精化)"
+   ]
+  },
+  {
+   "k": "X3",
+   "cn": "秩序 ↔ 张力",
+   "en": "order↔tension",
+   "op": "对称/平衡/规整 vs 动势/冲突/不稳。(合并了原'稳定-流动'与'秩序-张力'两个同义轴)",
+   "from": [
+    "世界观:稳定-流动",
+    "风格:秩序-张力"
+   ]
+  },
+  {
+   "k": "X4",
+   "cn": "节制 ↔ 强度",
+   "en": "restraint↔intensity",
+   "op": "色彩/对比/笔触的能量。★=VAD唤醒度,可测:N=119 中 与饱和度 r=0.65",
+   "from": [
+    "风格:节制-强度",
+    "VAD:唤醒"
+   ]
+  },
+  {
+   "k": "X5",
+   "cn": "卷入 ↔ 抽离",
+   "en": "immersion↔detachment",
+   "op": "观者被卷入画中 vs 站在画外旁观(东亚偏卷入、西方古典偏抽离,只是倾向)",
+   "from": [
+    "世界观:卷入度(原'东西轴'修订)"
+   ]
+  }
+ ],
+ "vad_link": {
+  "note": "VAD情感坐标不是独立第6套,而是与视觉轴共享/派生——这正是因果链可计算的关键。",
+  "map": [
+   {
+    "vad": "唤醒 Arousal",
+    "to": "= X4 能量(直接同一轴);实测可由饱和度代理 r=0.65"
+   },
+   {
+    "vad": "效价 Valence",
+    "to": "派生量:实测 ~明度 r=0.49、~色相 r=−0.50,叠加题材/画外音语义"
+   },
+   {
+    "vad": "支配 Dominance",
+    "to": "≈ X3 秩序 + X5 卷入 的组合(规整/抽离=高支配)"
+   }
+  ]
+ },
+ "empirical": {
+  "src": "119 件已标注作品的像素特征",
+  "key_findings": [
+   "唤醒~饱和度 r=0.65 ⚠️后续判定为循环(语料唤起=颜色派生);独立人工唤起重测仅≈0.2,见 kg-affect",
+   "效价~明度 r=0.49、~色相 r=−0.50:效价是组合量,非单一视觉轴",
+   "年代~所有视觉维度 r≈0:时间轴与风格空间正交 → 数据支持'时间边⊥世界模型边'的双边设计"
+  ]
+ }
+}, ORTHO={
+ "n": 119,
+ "dims": [
+  "valence",
+  "arousal",
+  "lightness",
+  "saturation",
+  "hue",
+  "year"
+ ],
+ "matrix": [
+  [
+   1.0,
+   0.35,
+   0.493,
+   -0.086,
+   -0.499,
+   -0.047
+  ],
+  [
+   0.35,
+   1.0,
+   -0.178,
+   0.649,
+   -0.211,
+   0.129
+  ],
+  [
+   0.493,
+   -0.178,
+   1.0,
+   -0.473,
+   0.254,
+   -0.162
+  ],
+  [
+   -0.086,
+   0.649,
+   -0.473,
+   1.0,
+   0.065,
+   0.113
+  ],
+  [
+   -0.499,
+   -0.211,
+   0.254,
+   0.065,
+   1.0,
+   -0.009
+  ],
+  [
+   -0.047,
+   0.129,
+   -0.162,
+   0.113,
+   -0.009,
+   1.0
+  ]
+ ]
+}, TPL={
+ "schema": {
+  "required": [
+   "artwork_id",
+   "title",
+   "subject",
+   "language",
+   "worldview_coord",
+   "style",
+   "subtext",
+   "vad"
+  ],
+  "worldview_coord_axes": [
+   "X1_再现表现",
+   "X2_具象抽象",
+   "X3_秩序张力",
+   "X4_能量",
+   "X5_卷入"
+  ],
+  "note": "每个层字段填该层真实节点ID(可被校验);worldview_coord填5条正交基[0,1];vad的arousal应≈X4。"
+ },
+ "sample": {
+  "artwork_id": "m_manet_garden",
+  "title": "The Monet Family in Their Garden at Argenteuil",
+  "artist": "Édouard Manet",
+  "year": 1874,
+  "culture": "西方/法国",
+  "_comment": "跨五层标注样本;id 均指向真实节点,可被校验脚本验证",
+  "subject": [
+   {
+    "cn": "群像",
+    "id": "SUBJECT.figure.03"
+   },
+   {
+    "cn": "家庭场景",
+    "id": "SUBJECT.figure.42"
+   },
+   {
+    "cn": "花卉静物",
+    "id": "SUBJECT.bird-flower.48"
+   }
+  ],
+  "language": {
+   "构图与组织": [
+    {
+     "cn": "散点",
+     "id": null
+    },
+    {
+     "cn": "对角构图",
+     "id": "LANG.composition.09"
+    }
+   ],
+   "色彩系统": [
+    {
+     "cn": "冷暖",
+     "id": "LANG.color.01"
+    }
+   ],
+   "笔触与肌理": [
+    {
+     "cn": "厚涂",
+     "id": "LANG.texture.01"
+    }
+   ]
+  },
+  "worldview_coord": {
+   "X1_再现表现": 0.55,
+   "X2_具象抽象": 0.3,
+   "X3_秩序张力": 0.62,
+   "X4_能量": 0.39,
+   "X5_卷入": 0.55,
+   "_note": "X4=0.39 与该画实测 arousal 0.386 对齐(取自 mood)"
+  },
+  "style": [
+   {
+    "cn": "印象派",
+    "id": "STYLE.west.029",
+    "primary": true
+   }
+  ],
+  "subtext": {
+   "画外音": [
+    {
+     "cn": "宁静",
+     "id": "VOICE.psyche.01"
+    }
+   ],
+   "感知效应": [
+    {
+     "cn": "温度",
+     "id": "PERC.sense.02"
+    }
+   ]
+  },
+  "vad": {
+   "valence": 0.157,
+   "arousal": 0.386,
+   "dominance": 0.5,
+   "_src": "valence/arousal 取自 artworks.json mood(像素实测)"
+  },
+  "provenance": {
+   "annotator": "draft-sample",
+   "confidence": "med",
+   "image_features_from": "recompute_features.py"
+  }
+ },
+ "sample_id_resolution": "9/10"
+};
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+
+// axes
+const ax=document.getElementById('axes');
+BASIS.axes.forEach(a=>{
+  const from=a.from.map(f=>`<span class="fc">← ${f}</span>`).join('');
+  ax.appendChild($(`<div class="ax"><div class="ah"><span class="k">${a.k}</span><span class="cn">${a.cn}</span><span class="en">${a.en}</span></div><div class="op">${a.op.replace(/★(.+)/,'<b>★$1</b>')}</div><div class="from">${from}</div></div>`));
+});
+// vad
+const vad=document.getElementById('vad');
+vad.appendChild($(`<div style="font-size:12px;color:var(--ink-mute);margin-bottom:6px">${BASIS.vad_link.note}</div>`));
+BASIS.vad_link.map.forEach(m=> vad.appendChild($(`<div class="vr"><span class="vk">${m.vad}</span><span>${m.to}</span></div>`)));
+
+// heatmap
+const dims=ORTHO.dims, M=ORTHO.matrix;
+const short={valence:'效价',arousal:'唤醒',lightness:'明度',saturation:'饱和',hue:'色相',year:'年代'};
+function cellColor(r){const a=Math.abs(r); // 0淡->1红
+  return `rgba(176,71,58,${(a*0.85).toFixed(2)})`;}
+const hm=document.getElementById('hm');
+let head='<tr><th></th>'+dims.map(d=>`<th>${short[d]||d}</th>`).join('')+'</tr>';
+let body='';
+dims.forEach((d1,i)=>{
+  body+=`<tr><th>${short[d1]||d1}</th>`+dims.map((d2,j)=>{
+    const r=M[i][j]; const diag=i===j;
+    const col=diag?'#ece7db':cellColor(r);
+    const txt=diag?'#a89f8f':(Math.abs(r)>0.45?'#fff':'#1d1b18');
+    return `<td class="${diag?'diag':''}" style="background:${col};color:${txt}">${r.toFixed(2)}</td>`;
+  }).join('')+'</tr>';
+});
+hm.innerHTML=head+body;
+document.getElementById('hmnote').innerHTML=`<b>读出三条结论:</b><br/>· 唤醒 ~ 饱和 r=0.65 ⚠️ <b>后续判定为循环</b>:该"唤醒"系从主色派生(唤醒×主色饱和 r=0.80),换独立人工唤起重测仅≈0.2,此条已纠偏 → 见 <a href="kg-affect.html" style="color:var(--accent)">L3 感知效应</a><br/>· 效价 ~ 明度 0.49、~ 色相 −0.50 → 效价是<b>组合量</b>,非单一视觉轴(故归为派生)<br/>· 年代 ~ 所有视觉维度 r≈0 → <b>时间轴与风格空间正交</b>,数据支持"时间边 ⊥ 世界模型边"的双边设计`;
+
+// sample json (pretty + colorize)
+function render(o,ind){
+  const pad='  '.repeat(ind);
+  if(Array.isArray(o)) return '['+o.map(v=>'\n'+pad+'  '+render(v,ind+1)).join(',')+'\n'+pad+']';
+  if(o&&typeof o==='object'){
+    const ks=Object.keys(o);
+    return '{'+ks.map(k=>{
+      const kc=k.startsWith('_')?'jc':'jk';
+      return '\n'+pad+'  '+`<span class="${kc}">"${k}"</span>: `+render(o[k],ind+1);
+    }).join(',')+'\n'+pad+'}';
+  }
+  if(typeof o==='string'){
+    const cls=/^(SUBJECT|LANG|STYLE|VOICE|PERC)\./.test(o)?'jid':'jv';
+    return `<span class="${cls}">"${o}"</span>`;
+  }
+  return `<span class="jv">${o}</span>`;
+}
+document.getElementById('sample').innerHTML=render(TPL.sample,0);
+document.getElementById('resrate').textContent=TPL.sample_id_resolution;
+
+// flow
+const FLOW=[
+ {n:'01',t:'字段映射',d:'你的打标维度 → 对到 5 层节点 + 5 轴 + VAD(给一张对照表)'},
+ {n:'02',t:'对齐键',d:'每画用 slug 或 标题+艺术家+年代 当主键,接 artworks.json'},
+ {n:'03',t:'校验',d:'脚本验 id 是否命中真实节点、坐标是否∈[0,1]、arousal≈X4'},
+ {n:'04',t:'入库',d:'并入 artworks.json 的五层标注字段'},
+ {n:'05',t:'跑实验',d:'自检页三检验:正交性 / 坐标信度ICC / 往返重建'},
+];
+const fl=document.getElementById('flow');
+FLOW.forEach(f=> fl.appendChild($(`<div class="fstep"><div class="fn">${f.n}</div><div class="ft">${f.t}</div><div class="fd">${f.d}</div></div>`)));
+</script>
+</body></html>

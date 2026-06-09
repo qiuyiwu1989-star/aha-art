@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 艺术绘画知识图谱 V3 · 导览</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--blue:#5b7596;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:860px;margin:0 auto;padding:0 18px 100px}
+  /* hero */
+  .hero{text-align:center;padding:70px 0 40px}
+  .hero .kick{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+  .hero h1{font-family:var(--serif);font-size:clamp(28px,6vw,46px);font-weight:700;margin:12px 0;line-height:1.25}
+  .hero .sub{font-size:15px;color:var(--ink-mute);line-height:1.8;max-width:620px;margin:10px auto}.hero .sub b{color:var(--ink-soft)}
+  .formula{font-family:var(--serif);font-size:clamp(14px,2.8vw,18px);font-weight:600;color:var(--accent);margin-top:18px;line-height:1.8}
+  .scrollhint{font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:22px}
+  /* chapter */
+  .ch{margin-top:46px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 26px 24px;border-top:4px solid var(--cc,var(--accent));position:relative}
+  .ch .no{position:absolute;top:-15px;left:24px;font-family:var(--mono);font-size:12px;font-weight:600;color:#fff;background:var(--cc,var(--accent));border-radius:999px;padding:4px 12px}
+  .ch .ct{font-family:var(--mono);font-size:11px;color:var(--cc,var(--accent));letter-spacing:.06em;margin-top:4px}
+  .ch h2{font-family:var(--serif);font-size:clamp(20px,3.6vw,26px);font-weight:700;margin:3px 0 10px}
+  .ch .big{font-family:var(--serif);font-size:clamp(30px,7vw,52px);font-weight:700;color:var(--cc,var(--accent));line-height:1;float:right;margin:-6px 0 8px 18px}
+  .ch .big small{display:block;font-family:var(--mono);font-size:11px;color:var(--ink-faint);font-weight:400;text-align:right;margin-top:4px}
+  .ch p{font-size:14px;color:var(--ink-soft);line-height:1.9;margin:8px 0}.ch p b{color:var(--ink)}
+  .ch .cta{display:inline-flex;flex-wrap:wrap;gap:7px;margin-top:14px;clear:both}
+  .ch .cta a{font-family:var(--mono);font-size:12px;color:#fff;background:var(--cc,var(--accent));border-radius:8px;padding:7px 13px;text-decoration:none}
+  .ch .cta a.alt{background:#fff;color:var(--cc,var(--accent));border:1px solid var(--cc,var(--accent))}
+  .pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .pill{font-family:var(--mono);font-size:11px;color:var(--ink-soft);background:var(--paper-2);border-radius:6px;padding:3px 9px}
+  .quote{font-family:var(--serif);font-style:italic;color:var(--accent);font-size:15px;text-align:center;margin:8px 0}
+  .end{text-align:center;margin-top:50px}
+  .end a{font-family:var(--mono);font-size:13px;color:var(--accent);text-decoration:none;border:1px solid var(--accent);border-radius:999px;padding:10px 20px;display:inline-block;margin:5px}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="hero">
+    <div class="kick">aha · 艺术绘画知识图谱 V3 · 导览</div>
+    <h1>一条线,读懂这张<br>经得起推敲的艺术图谱</h1>
+  <div class="breadcrumb" style="text-align:center;font-family:monospace;font-size:11px;color:#a89f8f;margin-top:8px"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <b style="color:var(--ink-soft)">一条线导览</b></div>
+    <div class="sub">不是一张标签表,而是一套从<b>第一性原理</b>长出来的体系:世界观是根,风格是它的投影,艺术家是风格的实例,关系有据可考。下面七章,一条线走完。</div>
+    <div class="formula">风格 = 世界模型 × 感知策略 × 造型方法 × 语言参数 × 意义指向</div>
+    <div class="scrollhint">↓ 向下滚动</div>
+  </div>
+
+  <div class="ch" style="--cc:var(--accent)"><div class="no">公理</div>
+    <div class="ct">FIRST PRINCIPLES</div>
+    <h2>先问:一幅画是什么?</h2>
+    <p>一幅画 = 一组<b>被刻意安排、供人观看、且对某个世界有所主张</b>的二维痕迹。由此逼出七个不可再分的问题,天然分四档:<b>立场(世界观)→ 实现(题材+语言)→ 效应(感知)→ 意义(画外音)</b>。</p>
+    <p>关键结论:<b>世界观是因,其余皆果;五层不是并列,而是一条生成因果链;而「风格」不是一层,是这条链上反复出现、被命名的涌现签名。</b></p>
+    <div class="cta"><a href="kg-first-principles.html">看第一性原理推导 →</a></div>
+  </div>
+
+  <div class="ch" style="--cc:#5a7d6f"><div class="no">第一章 · 根</div>
+    <div class="ct">WORLDVIEW · 把世界看成什么</div>
+    <div class="big" id="b-wv">6<small>世界观区 · 2 真轴</small></div>
+    <h2>世界观:两条真轴,六个区</h2>
+    <p>立场经数据检验只剩<b>两条正交真轴</b>:再现↔表现、结构↔感知。其上<b>数据发现 6 个区</b>(摹写之眼/礼制图式/写意寄情/经验之光/表现外化/形式建构)——非先验、非东西镜像,而是同一平面上的两种密度。</p>
+    <p>它经得起推敲:我们诚实自检过——旧的「12 个东西对称模型」被实测<b>证伪</b>(镜像最近邻 0/6),于是收敛为这套。</p>
+    <div class="cta"><a href="kg-worldview-map.html">世界观地图(2D)→</a><a class="alt" href="kg-worldview-science.html">科学性自检 →</a></div>
+  </div>
+
+  <div class="ch" style="--cc:#b0673a"><div class="no">第二章 · 投影</div>
+    <div class="ct">STYLE · 风格是世界观的投影</div>
+    <div class="big" id="b-style">202<small>风格 · 满考究</small></div>
+    <h2>风格库:202 颗种子</h2>
+    <p>每个风格都精准落在世界观平面上,是世界观沿生成链的一次投影。<b>202 个风格 100% 满考究</b>:E向量 + 7大构成 + 代表作 + 精髓 + 正式定义俱全;可按<b>世界观区 / 时间线 / 体系</b>三种导航对照着逛。</p>
+    <div class="pills"><span class="pill">E向量 202/202</span><span class="pill">7大构成 202/202</span><span class="pill">正式定义 202/202</span></div>
+    <div class="cta"><a href="kg-style.html">进风格库(多模态导航)→</a><a class="alt" href="kg-style-3d.html">三维空间 →</a></div>
+  </div>
+
+  <div class="ch" style="--cc:#8a6a3a"><div class="no">第三章 · 关系</div>
+    <div class="ct">LINEAGE · 承自 / 影响 / 对抗</div>
+    <div class="big" id="b-lin">474<small>关系链 · 带论证</small></div>
+    <h2>关系:每条都有依据</h2>
+    <p>风格之间 <b>承自 / 影响 / 对抗</b> 474 条关系,全部<b>解析到真实节点、承自↔影响双向一致、对抗仅风格间</b>。每条的<b>科学依据 = 两风格在世界观四轴上的实测位移 / 对立</b>——比如「现实主义→印象派:结构-感知 0.30→0.85,从理性结构走向感官光色」。</p>
+    <div class="cta"><a href="kg-lineage.html">关系考究文档 →</a><a class="alt" href="kg-galaxy.html">星空关系网 →</a></div>
+  </div>
+
+  <div class="ch" style="--cc:#5b7596"><div class="no">第四章 · 实例</div>
+    <div class="ct">ARTISTS · 风格的生成源</div>
+    <div class="big" id="b-art">276<small>艺术家 · 73 深度</small></div>
+    <h2>艺术家:链上会动的点云</h2>
+    <p>艺术家是风格的<b>实例 / 生成源</b>——其作品在世界观平面上铺成<b>有重心、有离散、有一生轨迹</b>的点云,与风格区是<b>居于 / 跨越 / 立区</b>三种姿态。从全部风格代表人物自动抽取 <b>276 位</b>,已深度考究 73 位(其余继承所属风格)。</p>
+    <div class="cta"><a href="kg-artists.html">艺术家索引(映射+时间)→</a><a class="alt" href="kg-artist.html?id=ARTIST.monet">范本:莫奈 →</a></div>
+  </div>
+
+  <div class="ch" style="--cc:#a8443a"><div class="no">第五章 · 可推敲</div>
+    <div class="ct">FALSIFIABLE · 经得起推敲</div>
+    <h2>不回避:哪段成立、哪段待验证</h2>
+    <p>这套图谱的底色是<b>诚实</b>。我们用 57 幅真实作品的像素正面检验整条链,连自己都查:发现那条流行的"饱和→唤起 r≈0.78"<b>其实是循环论证</b>(语料的唤起本就从颜色算来),已<b>当众撤掉</b>;真正站得住的是<b>世界观位置在像素上留下的中等指纹</b>(再现-表现轴、6 区可分)。该证伪的证伪(东西镜像)、该撤回的撤回——把不确定、甚至把自己的错也摆上桌,才叫经得起推敲。</p>
+    <div class="cta"><a href="kg-affect.html">L3 像素实测 →</a><a href="kg-validate.html">链路验证 →</a><a class="alt" href="kg-audit.html">科学化审核(历史)→</a></div>
+  </div>
+
+  <div class="ch" style="--cc:var(--gold)"><div class="no">第六章 · 能用</div>
+    <div class="ct">APPLICATION · 既能理解,也能创作</div>
+    <h2>当编译器用:一句话 → 结构化生成语言</h2>
+    <p>层间正交 → 可重组。输入一句话 → 命中跨层节点(含 6 世界观区)→ 据风格 V3 剖面沿生成链扩写 → 产出 <b>7 字段结构化 Prompt</b>(每字段挂真实节点 id)。换个风格,整份 Prompt 自动重写——这是分类表做不到的。整张图谱还可<b>一键导出为数据资产</b>。</p>
+    <div class="cta"><a href="kg-compile.html">意图编译器 →</a><a class="alt" href="kg-data.html">数据资产 →</a></div>
+  </div>
+
+  <div class="end">
+    <div class="quote">"经得起推敲的,不是没有不确定,而是把不确定也摆上桌。"</div>
+    <a href="kg-v2.html">艺术图谱 · 全站导航</a>
+    <a href="kg-search.html">🔍 全局搜索</a>
+    <a href="home.html">返回首页</a>
+  </div>
+</div>
+<script>
+// 用实时数据校正几个数字(失败则用页面内默认)
+Promise.all([
+  fetch('data/kg_style_stats.json').then(r=>r.json()).catch(()=>null),
+  fetch('data/kg_artists.json').then(r=>r.json()).catch(()=>null),
+  fetch('data/kg_lineage.json').then(r=>r.json()).catch(()=>null)
+]).then(([s,a,l])=>{
+  if(s) document.getElementById('b-style').innerHTML=`${s.total}<small>风格 · 满考究</small>`;
+  if(a){const tot=(a.roster||[]).length,au=(a.roster||[]).filter(r=>r.authored).length;
+    document.getElementById('b-art').innerHTML=`${tot}<small>艺术家 · ${au} 深度</small>`;}
+  if(l) document.getElementById('b-lin').innerHTML=`${(l.edges||[]).length}<small>关系链 · 带论证</small>`;
+}).catch(()=>{});
+</script>
+</body></html>

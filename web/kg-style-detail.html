@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 风格详情</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:30px 18px 90px}
+  .breadcrumb{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .std{font-family:var(--mono);font-size:10px;color:var(--ink-mute);background:var(--accent-soft);border:1px solid #e5d3c2;border-radius:6px;padding:2px 8px;display:inline-block;margin-top:8px}
+  .nh{display:flex;align-items:baseline;gap:11px;flex-wrap:wrap;margin-top:10px;border-bottom:2px solid var(--accent);padding-bottom:9px}
+  .nh.east{border-bottom-color:var(--green)}
+  .nh .cn{font-family:var(--serif);font-size:clamp(24px,5vw,34px);font-weight:600}
+  .nh .en{font-family:var(--mono);font-size:12px;color:var(--ink-faint)}
+  .nh .badges{margin-left:auto;display:flex;gap:5px;flex-wrap:wrap}
+  .bd{font-family:var(--mono);font-size:10px;border-radius:6px;padding:2px 8px}
+  .bd.wm{background:var(--accent);color:#fff}.nh.east .bd.wm{background:var(--green)}
+  .bd.id{background:var(--paper-2);color:var(--ink-mute)}.bd.gold{background:#c98a1a;color:#fff}
+  .bd.wv{background:#fff;border:1px solid var(--accent);color:var(--accent);text-decoration:none}.nh.east .bd.wv{border-color:var(--green);color:var(--green)}.bd.wv:hover{background:var(--accent-soft)}
+  .idline{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:8px}
+  .essence{font-family:var(--serif);font-size:17px;font-style:italic;color:var(--accent);text-align:center;margin-top:14px;line-height:1.7}
+  .voice{font-size:12.5px;color:var(--ink-mute);text-align:center;margin-top:6px}.voice b{font-family:var(--serif);color:var(--ink-soft);font-style:italic}
+  .decomp{margin-top:14px;background:#fbf9f4;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+  .dechead{font-family:var(--mono);font-size:10.5px;color:var(--accent);text-align:center;margin-bottom:9px}.east .dechead{color:var(--green)}
+  .decrow{display:flex;align-items:stretch;gap:4px;justify-content:center;flex-wrap:wrap}
+  .dcell{flex:1;min-width:90px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:7px 8px;text-align:center;display:flex;flex-direction:column;justify-content:center}
+  .dcell .dck{font-family:var(--serif);font-size:12px;font-weight:600;color:var(--ink);line-height:1.4}
+  .dcell .dcl{font-family:var(--mono);font-size:8.5px;color:var(--ink-faint);margin-top:4px;letter-spacing:.04em}
+  .dtimes{display:flex;align-items:center;font-family:var(--serif);font-size:16px;color:var(--accent);font-weight:600}
+  @media(max-width:600px){.dtimes{display:none}.dcell{min-width:44%}}
+  .def{font-size:14px;color:var(--ink-soft);line-height:1.85;margin-top:12px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .def .draft{font-family:var(--mono);font-size:10px;color:#c98a1a}
+  .sec{margin-top:22px}
+  .sh{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.04em;margin-bottom:7px;border-bottom:1px dashed var(--line);padding-bottom:4px}
+  .east .sh{color:var(--green)}
+  .kv{font-size:13px;color:var(--ink-soft);line-height:1.8}.kv .l{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-right:5px}.kv b{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:3px}
+  .chip{font-size:12.5px;color:var(--ink-soft);background:#fff;border:1px solid var(--line);border-radius:8px;padding:3px 10px;text-decoration:none}
+  a.chip:hover{border-color:var(--accent);color:var(--accent)}
+  .chip .w{font-family:var(--mono);font-size:9px;color:#fff;background:var(--accent);border-radius:4px;padding:0 5px;margin-left:4px}
+  .lin{display:flex;gap:9px;align-items:baseline;margin:5px 0;flex-wrap:wrap}.lin .ll{font-family:var(--mono);font-size:10px;color:var(--ink-faint);min-width:42px}
+  .lin .ll.self{color:var(--accent)}.lin .ll.ag{color:#b0473a}
+  .lineage{display:flex;flex-direction:column;gap:7px}
+  .lrow{background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 11px;border-left:3px solid var(--lc,var(--accent))}
+  .lrow .lk{font-family:var(--serif);font-size:13.5px;font-weight:600;text-decoration:none;color:var(--ink)}
+  .lrow .lk.p{--x:0}.lrow .lk.p{color:#5a7d6f}.lrow .lk.d{color:#5b7596}.lrow .lk.i{color:#8a6a3a}.lrow .lk.a{color:#a8443a}
+  .lrow.p{border-left-color:#5a7d6f}
+  .lrow .lwhy{font-size:11.5px;color:var(--ink-mute);line-height:1.55;margin-top:3px}
+  .lrow:has(.lk.p){border-left-color:#5a7d6f}.lrow:has(.lk.d){border-left-color:#5b7596}.lrow:has(.lk.i){border-left-color:#8a6a3a}.lrow:has(.lk.a){border-left-color:#a8443a}
+  .selfchip{background:var(--accent-soft);border-color:#e5d3c2;color:var(--accent);font-weight:600}
+  .vrow{display:flex;align-items:center;gap:9px;margin:5px 0;font-size:11.5px}
+  .vrow .vl,.vrow .vr{width:34px;font-family:var(--mono);font-size:10px;color:var(--ink-soft)}.vrow .vl{text-align:right}
+  .vt{flex:1;height:7px;background:var(--paper-2);border-radius:4px;position:relative}
+  .vd{position:absolute;top:50%;width:13px;height:13px;border-radius:50%;background:var(--accent);transform:translate(-50%,-50%);border:2px solid #fff}
+  .east .vd{background:var(--green)}.vnum{width:30px;font-family:var(--mono);font-size:10px;color:var(--ink-mute)}
+  .langgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}@media(max-width:600px){.langgrid{grid-template-columns:1fr}}
+  .lc{background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px 12px}.lc .lk{font-family:var(--mono);font-size:9.5px;color:var(--accent);margin-bottom:3px}.lc .lv{font-size:12.5px;color:var(--ink-soft);line-height:1.55}
+  .lang7{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .l7{display:flex;gap:11px;padding:8px 13px;border-bottom:1px solid var(--paper-2)}.l7:last-child{border-bottom:none}
+  .l7k{font-family:var(--serif);font-size:13px;font-weight:600;color:var(--accent);min-width:84px;flex-shrink:0;text-decoration:none}
+  .east .l7k{color:var(--green)}.l7k:hover{text-decoration:underline}
+  .l7v{font-size:12.5px;color:var(--ink-soft);line-height:1.55}
+  .worklist{display:flex;flex-direction:column;gap:5px}
+  .wn{font-family:var(--serif);font-size:14px;color:var(--ink-soft);background:#fff;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:8px 12px}
+  .east .wn{border-left-color:var(--green)}
+  .worknote{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-top:4px}
+  .miniw{font-size:12px;color:var(--ink-mute);line-height:1.7}
+  .awgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+  .aw{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+  .aw img{width:100%;height:96px;object-fit:cover;display:block}
+  .aw .awt{display:block;font-size:10.5px;color:var(--ink-mute);padding:4px 7px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .aw:hover{border-color:var(--accent)}
+  .empty{font-size:12px;color:var(--ink-faint);padding:6px 0}
+  .back{display:block;text-align:center;margin-top:34px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">风格详情</b></div>
+  <div id="body"><div class="empty" style="padding:40px;text-align:center">加载中…</div></div>
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const qid=new URLSearchParams(location.search).get('id')||'STYLE.west.029';
+const GOLD=new Set(['STYLE.west.029']); // 印象派 (巡回画派节点动态判断)
+Promise.all([
+  fetch('data/kg_style.json').then(r=>r.json()),
+  fetch('data/kg_graph.json').then(r=>r.json()).catch(()=>({membership:{},cooccur:[]})),
+  fetch('data/artworks.json').then(r=>r.json()).catch(()=>[]),
+  fetch('data/kg_worldview_v3.json').then(r=>r.json()).catch(()=>({regions:[]})),
+  fetch('data/kg_lineage.json').then(r=>r.json()).catch(()=>({edges:[]})),
+  fetch('data/kg_language_vectors.json').then(r=>r.json()).catch(()=>({style_vectors:{},meta:{dims:[]}})),
+  fetch('data/kg_artist_index.json').then(r=>r.json()).catch(()=>({})),
+  fetch('data/kg_subject_style_edges.json').then(r=>r.json()).catch(()=>({by_style:{}})),
+  fetch('data/kg_subtext_style_edges.json').then(r=>r.json()).catch(()=>({by_style:{}}))
+]).then(([sty,graph,arts,wv,lineage,langv,aidx,subjE,subtE])=>{
+  const SUBJ=(subjE.by_style)||{}; const SUBT=(subtE.by_style)||{};
+  const L2V=(langv.style_vectors||{}); const L2DIM=(langv.meta&&langv.meta.dims)||[];
+  const L2BY={}; L2DIM.forEach(d=>L2BY[d.short]=d);
+  // 人名 → 艺术家详情页链接(规范化:去间隔点/括号/空格)
+  const normName=s=>(s||'').replace(/[（(].*?[)）]/g,'').replace(/[·・•\s]/g,'').trim();
+  const artLink=cn=>{const hit=aidx[normName(cn)];
+    return hit?`<a href="kg-artist.html?id=${hit.id}" style="color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--accent)" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink)'" title="看 ${cn} 的艺术家页">${cn}</a>`:`<span style="color:var(--ink-soft)">${cn}</span>`;};
+  const wvById=Object.fromEntries((wv.regions||[]).map(r=>[r.id,r]));
+  const LIN=lineage.edges||[];
+  const byId=Object.fromEntries(sty.nodes.map(n=>[n.id,n]));
+  const styByName={}; sty.nodes.forEach(x=>{styByName[x.cn]=x.id;styByName[x.cn.replace('风格','')]=x.id;});
+  const n=byId[qid]||sty.nodes[0];
+  const lo=n.lore||{};
+  const east=n.region==='east';
+  const cn=n.cn_alt||n.cn;
+  const art=Object.fromEntries(arts.map(a=>[a.slug,a]));
+  const b=document.getElementById('body'); b.innerHTML='';
+  const gold=GOLD.has(n.id)||cn==='俄罗斯巡回画派';
+  const wvr=wvById[n.wv];
+  const SEC=(label,inner)=>{const s=$(`<div class="sec ${east?'east':''}"><div class="sh">${label}</div></div>`);s.appendChild(typeof inner==='string'?$(`<div>${inner}</div>`):inner);return s;};
+  const linkOrText=nm=> styByName[nm]?`<a class="chip" href="kg-style-detail.html?id=${styByName[nm]}">${nm}</a>`:`<span class="chip">${nm}</span>`;
+
+  // ① 身份
+  b.appendChild($(`<div class="nh ${east?'east':''}"><span class="cn">${cn}</span>${lo.en?`<span class="en">${lo.en}</span>`:''}<span class="badges">${gold?'<span class="bd gold">黄金范本</span>':''}${wvr?`<a class="bd wv" href="kg-worldview-region.html?id=${wvr.id}" title="V3 世界观区:${wvr.essence||''}">🏛 ${wvr.id} ${wvr.name}</a>`:''}<span class="bd id">${n.id}</span></span></div>`));
+  const idbits=[];
+  if(lo.aka&&lo.aka.length) idbits.push('别名 '+lo.aka.join('、'));
+  idbits.push((lo.type||'风格原子流')+' · '+(lo.level||'风格层'));
+  if(lo.period) idbits.push('时期 '+lo.period);
+  if(lo.origin) idbits.push('发源 '+lo.origin);
+  idbits.push('体系 '+n.xi); idbits.push(east?'东方':'西方');
+  b.appendChild($(`<div class="idline">${idbits.join('  ·  ')}</div>`));
+
+  // ② 精髓 + 画外音
+  if(lo.essence) b.appendChild($(`<div class="essence">"${lo.essence}"</div>`));
+  if(lo.voice){const se=SUBT[n.id]; let tail='';
+    if(se&&se.vad) tail=` <span style="font-family:var(--mono);font-size:10px;color:var(--ink-faint)">· 画外音锚点 <b style="color:var(--accent)">${se.anchor}</b> · VAD ${se.vad.v}/${se.vad.a}/${se.vad.d}(由代表艺术家/作品推得)</span>`;
+    else if(se&&se.atoms&&se.atoms.length) tail=` <span style="font-family:var(--mono);font-size:10px;color:var(--ink-faint)">· 画外音 <b style="color:var(--accent)">${se.atoms.slice(0,3).join(' / ')}</b></span>`;
+    b.appendChild($(`<div class="voice">画外音·价值 ｜ <b>${lo.voice}</b>${tail}</div>`));}
+
+  // ★ 风格分解式 = 世界模型 × 感知策略 × 造型方法 × 语言参数 × 意义指向
+  (function(){
+    const v=lo.vector||{}, l7=lo.lang7||{};
+    const jg=v['结构-感知'], re=v['再现-表现'];
+    const f_world=wvr?`${wvr.name}·${wvr.alt}`:(n.model_cn||'').replace('世界模型','');
+    const f_perc = jg==null? '—' : (jg>=0.6?'重感知·光色经验':(jg<=0.4?'重结构·理性建构':'结构感知并重'));
+    const f_form = l7['形状与造型'] || (re==null?'—':(re>=0.6?'主观/抽象造型':(re<=0.35?'写实造型':'意象造型')));
+    const f_lang = l7['色彩系统']||lo.color||'—';
+    const f_mean = lo.voice ? lo.voice.split(/[——,，]/)[0] : (lo.essence||'—');
+    const cells=[['世界模型',f_world],['感知策略',f_perc],['造型方法',f_form],['语言参数',f_lang],['意义指向',f_mean]];
+    const dec=$(`<div class="decomp ${east?'east':''}"></div>`);
+    dec.appendChild($(`<div class="dechead">风格 = 世界模型 × 感知策略 × 造型方法 × 语言参数 × 意义指向</div>`));
+    const row=$(`<div class="decrow"></div>`);
+    cells.forEach((c,i)=>{ row.appendChild($(`<div class="dcell"><div class="dck">${c[1]==='—'?'<span style=color:var(--ink-faint)>待考究</span>':c[1]}</div><div class="dcl">${c[0]}</div></div>`)); if(i<4) row.appendChild($(`<div class="dtimes">×</div>`)); });
+    dec.appendChild(row);
+    b.appendChild(dec);
+  })();
+  // ③ 定义
+  b.appendChild($(`<div class="def">${n.def||lo.def||'(定义待考究)'}${n.def_src==='templated'?' <span class="draft">〔草案〕</span>':''}</div>`));
+
+  // ④ 历史锚点
+  if(lo.born||(n.people&&n.people.length)){
+    const inner=$('<div class="kv"></div>');
+    if(lo.born) inner.appendChild($(`<div>${lo.born}</div>`));
+    if(n.people&&n.people.length) inner.appendChild($(`<div><span class="l">代表人物</span><span style="font-family:var(--serif);font-weight:600">${n.people.map(artLink).join('<span style="color:var(--ink-faint);font-weight:400"> · </span>')}</span></div>`));
+    b.appendChild(SEC('④ 历史锚点 ANCHOR',inner));
+  }
+  // ⑤ 源流 · 前因后果(向量论证)—— 每条关系给出基于实测四轴的科学依据
+  const rel=(kind,oid,why)=>({cn:byId[oid]?byId[oid].cn:oid,id:oid,why});
+  const up=[],down=[],infl=[],opp=[];
+  LIN.forEach(e=>{
+    if(e.k==='parent'&&e.t===n.id) up.push(rel('p',e.s,e.why));
+    else if((e.k==='parent'||e.k==='influence')&&e.s===n.id) down.push({...rel('d',e.t,e.why),孕育:e.k==='parent'});
+    else if(e.k==='influence'&&e.t===n.id) infl.push(rel('i',e.s,e.why));
+    else if(e.k==='against'&&(e.s===n.id||e.t===n.id)) opp.push(rel('a',e.s===n.id?e.t:e.s,e.why));
+  });
+  if(up.length||down.length||infl.length||opp.length){
+    const inner=$('<div class="lineage"></div>');
+    // 关系可视化:直接落在「世界观平面」(再现-表现 × 结构-感知)真实坐标上,连线=关系与位移方向
+    const WVC={WV1:'#b0673a',WV2:'#9a7b3a',WV3:'#5a7d6f',WV4:'#5b7596',WV5:'#8a5a7a',WV6:'#4a6a8a'};
+    const WVNM={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+    function hull(P){if(P.length<3)return P.slice();P=P.slice().sort((a,b)=>a[0]-b[0]||a[1]-b[1]);
+      const cr=(o,a,b)=>(a[0]-o[0])*(b[1]-o[1])-(a[1]-o[1])*(b[0]-o[0]);
+      const lo=[];for(const q of P){while(lo.length>=2&&cr(lo[lo.length-2],lo[lo.length-1],q)<=0)lo.pop();lo.push(q);}
+      const u=[];for(let i=P.length-1;i>=0;i--){const q=P[i];while(u.length>=2&&cr(u[u.length-2],u[u.length-1],q)<=0)u.pop();u.push(q);}
+      lo.pop();u.pop();return lo.concat(u);}
+    function lineagePlane(){
+      const cur=n.coord; if(!cur||cur.rep_exp==null) return '';
+      const cap=6;
+      const items=[
+        ...up.slice(0,cap).map(r=>({...r,c:'#5a7d6f',dir:'in',t:'承自'})),
+        ...infl.slice(0,cap).map(r=>({...r,c:'#5b7596',dir:'in',t:'受影响'})),
+        ...down.slice(0,cap).map(r=>({...r,c:r.孕育?'#5a7d6f':'#5b7596',dir:'out',t:r.孕育?'孕育':'影响了'})),
+        ...opp.slice(0,cap).map(r=>({...r,c:'#a8443a',dir:'against',t:'对抗'})),
+      ].filter(r=>byId[r.id]&&byId[r.id].coord&&byId[r.id].coord.rep_exp!=null);
+      const W=380,H=280,p=32, sx=v=>p+v*(W-2*p), sy=v=>H-p-v*(H-2*p);
+      const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+      const cx=sx(cur.rep_exp),cyy=sy(cur.struct_perc);
+      let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block">`
+        +`<defs>`+['#5a7d6f','#5b7596','#a8443a'].map(c=>`<marker id="lm${c.slice(1)}" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0.5,0.5 L5.5,3 L0.5,5.5" fill="none" stroke="${c}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></marker>`).join('')+`</defs>`;
+      // 框 + 网格
+      s+=`<rect x="${sx(0)}" y="${sy(1)}" width="${sx(1)-sx(0)}" height="${sy(0)-sy(1)}" fill="#fcfaf5" stroke="#e8e0d0"/>`;
+      [.25,.5,.75].forEach(t=>{s+=`<line x1="${sx(t)}" y1="${sy(0)}" x2="${sx(t)}" y2="${sy(1)}" stroke="#efe9dc"/><line x1="${sx(0)}" y1="${sy(t)}" x2="${sx(1)}" y2="${sy(t)}" stroke="#efe9dc"/>`;});
+      // 6 区虚线色块 + 淡区名(同母版)
+      ['WV1','WV2','WV3','WV4','WV5','WV6'].forEach(wv=>{
+        const ps=sty.nodes.filter(m=>m.wv===wv&&m.coord&&m.coord.rep_exp!=null).map(m=>[sx(m.coord.rep_exp),sy(m.coord.struct_perc)]);
+        if(ps.length<3)return; const col=WVC[wv];
+        const c=[ps.reduce((a,q)=>a+q[0],0)/ps.length,ps.reduce((a,q)=>a+q[1],0)/ps.length];
+        const hl=hull(ps).map(pt=>{const dx=pt[0]-c[0],dy=pt[1]-c[1],d=Math.hypot(dx,dy)||1;return [pt[0]+dx/d*7,pt[1]+dy/d*7];});
+        s+=`<polygon points="${hl.map(pt=>pt.join(',')).join(' ')}" fill="${col}" fill-opacity="0.05" stroke="${col}" stroke-opacity="0.28" stroke-dasharray="4 4" stroke-width="1" stroke-linejoin="round"/>`;
+        const ty=Math.min(...hl.map(pt=>pt[1]));
+        s+=`<text x="${c[0]}" y="${ty-3}" text-anchor="middle" font-family="Noto Serif SC" font-size="8" fill="${col}" fill-opacity="0.55" paint-order="stroke" stroke="#fcfaf5" stroke-width="2">${WVNM[wv]}</text>`;
+      });
+      // 全部风格极淡点
+      sty.nodes.forEach(m=>{if(m.coord&&m.coord.rep_exp!=null){s+=`<circle cx="${sx(m.coord.rep_exp)}" cy="${sy(m.coord.struct_perc)}" r="2" fill="${WVC[m.wv]||'#c9bda8'}" fill-opacity="0.16"/>`;}});
+      // 关系连线(本风格 ↔ 相关风格的真实位置)
+      items.forEach(r=>{const rc=byId[r.id].coord,rx=sx(rc.rep_exp),ry=sy(rc.struct_perc);
+        if(r.dir==='against'){s+=`<line x1="${cx}" y1="${cyy}" x2="${rx}" y2="${ry}" stroke="${r.c}" stroke-width="1.2" stroke-opacity="0.55" stroke-dasharray="3 3"/>`;}
+        else if(r.dir==='in'){s+=`<line x1="${rx}" y1="${ry}" x2="${cx}" y2="${cyy}" stroke="${r.c}" stroke-width="1.2" stroke-opacity="0.45" marker-end="url(#lm${r.c.slice(1)})"/>`;}
+        else {s+=`<line x1="${cx}" y1="${cyy}" x2="${rx}" y2="${ry}" stroke="${r.c}" stroke-width="1.2" stroke-opacity="0.45" marker-end="url(#lm${r.c.slice(1)})"/>`;}
+      });
+      // 相关风格的点 + 标签(可点)
+      const seen={};
+      items.forEach(r=>{if(seen[r.id])return; seen[r.id]=1; const rc=byId[r.id].coord,rx=sx(rc.rep_exp),ry=sy(rc.struct_perc);
+        const lab=esc((r.cn||'').replace('风格','').replace('主义','').slice(0,5));
+        s+=`<a href="kg-style-detail.html?id=${r.id}" style="cursor:pointer"><circle cx="${rx}" cy="${ry}" r="5" fill="${r.c}" stroke="#fff" stroke-width="1.5"/>`
+          +`<text x="${rx}" y="${ry-8}" text-anchor="middle" font-family="Noto Serif SC" font-size="9.5" fill="${r.c}" paint-order="stroke" stroke="#fcfaf5" stroke-width="2.5">${lab}</text>`
+          +`<title>${r.t}:${esc(r.cn)}${r.why?' — '+esc(r.why):''}</title></circle></a>`;});
+      // 本风格(焦点)
+      s+=`<circle cx="${cx}" cy="${cyy}" r="8.5" fill="#b0673a" stroke="#fff" stroke-width="2.2"/>`
+        +`<text x="${cx}" y="${cyy-12}" text-anchor="middle" font-family="Noto Serif SC" font-size="12" font-weight="700" fill="#9a532c" paint-order="stroke" stroke="#fcfaf5" stroke-width="3">${esc((n.cn||'').replace('风格','').slice(0,7))}</text>`;
+      // 轴标(与母版一致:左再现/右表现 · 上感知/下结构)
+      s+=`<text x="6" y="${sy(.5)+4}" font-family="Noto Serif SC" font-size="10" fill="#857d6f">再现</text>`
+        +`<text x="${W-6}" y="${sy(.5)+4}" text-anchor="end" font-family="Noto Serif SC" font-size="10" fill="#857d6f">表现</text>`
+        +`<text x="${sx(.5)}" y="${sy(1)-8}" text-anchor="middle" font-family="Noto Serif SC" font-size="10.5" fill="#857d6f">感知</text>`
+        +`<text x="${sx(.5)}" y="${sy(0)+18}" text-anchor="middle" font-family="Noto Serif SC" font-size="10.5" fill="#857d6f">结构</text>`;
+      return s+'</svg>';
+    }
+    const plane=lineagePlane();
+    if(plane){
+      const lg=`<span style="display:inline-flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:#b0673a"></span>本风格</span> <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:#5a7d6f"></span>承自/孕育</span> <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:#5b7596"></span>影响</span> <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:#a8443a"></span>对抗</span>`;
+      inner.appendChild($(`<div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 10px 8px">${plane}<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;font-family:var(--mono);font-size:9.5px;color:var(--ink-mute);margin-top:4px;border-top:1px solid var(--line);padding-top:7px">${lg}<span style="color:var(--ink-faint)">箭头=影响方向 · 虚线=对抗 · 点跳转</span></div></div>`));
+    }
+    const row=(tag,cls,r)=>`<div class="lrow"><a class="lk ${cls}" href="kg-style-detail.html?id=${r.id}">${tag} ${r.cn}</a><div class="lwhy">${r.why||''}</div></div>`;
+    up.forEach(r=>inner.appendChild($(row('承自','p',r))));
+    infl.forEach(r=>inner.appendChild($(row('受其影响','i',r))));
+    down.forEach(r=>inner.appendChild($(row(r.孕育?'孕育':'影响了','d',r))));
+    opp.forEach(r=>inner.appendChild($(row('对抗','a',r))));
+    b.appendChild(SEC('⑤ 源流图谱 LINEAGE <span style="font-family:var(--mono);font-size:9px;color:var(--ink-faint)">承自/影响/对抗,落在世界观平面上看位移</span> <a href="kg-lineage.html" style="font-family:var(--mono);font-size:9px;color:var(--accent);text-decoration:none">· 全部关系考究→</a>',inner));
+  } else if(lo.parents||lo.influences){ // 回退:无解析边时显示原始chip
+    const inner=$('<div></div>');
+    if(lo.parents&&lo.parents.length) inner.appendChild($(`<div class="lin"><span class="ll">承自</span><span class="chips">${lo.parents.map(linkOrText).join('')}</span></div>`));
+    if(lo.influences&&lo.influences.length) inner.appendChild($(`<div class="lin"><span class="ll">影响了</span><span class="chips">${lo.influences.map(linkOrText).join('')}</span></div>`));
+    b.appendChild(SEC('⑤ 源流 LINEAGE',inner));
+  }
+  if(lo.family_big) b.appendChild(SEC('· 风格家族',$(`<div class="kv">${lo.family_big}${lo.near&&lo.near.length?' · 邻:'+lo.near.join('、'):''}</div>`)));
+  // ⑥ E向量
+  if(lo.vector){
+    const inner=$('<div></div>');
+    Object.entries(lo.vector).forEach(([k,v])=>{const [l,r]=k.split('-');inner.appendChild($(`<div class="vrow"><span class="vl">${l}</span><span class="vt"><span class="vd" style="left:${v*100}%"></span></span><span class="vr">${r}</span><span class="vnum">${(+v).toFixed(2)}</span></div>`));});
+    if(n.coord) inner.appendChild($(`<div class="kv" style="margin-top:5px"><span class="l">世界坐标</span>再现/表现 ${(n.coord.rep_exp||0).toFixed(2)} · 稳定/流动 ${(n.coord.sta_flu||0).toFixed(2)}${n.coord.east_west!=null?` · 卷入/抽离 ${(n.coord.east_west).toFixed(2)}`:''} · <a href="kg-style-3d.html?id=${n.id}" style="color:var(--accent);text-decoration:none">在三维空间定位 🧊</a></div>`));
+    b.appendChild(SEC('⑥ E 风格轴向量 ★ <a href="kg-style-vectors.html" style="color:var(--accent);text-decoration:none">· 二维落点</a> · <a href="kg-style-3d.html?id='+n.id+'" style="color:var(--accent);text-decoration:none">三维落点</a>',inner));
+  }
+  // ⑦ 主题题材
+  if(lo.themes||lo.motifs||lo.unfit){
+    const inner=$('<div class="kv"></div>');
+    if(lo.themes&&lo.themes.length) inner.appendChild($(`<div><span class="l">代表主题</span>${lo.themes.join('、')}</div>`));
+    else if(lo.motifs) inner.appendChild($(`<div><span class="l">代表母题</span>${lo.motifs}</div>`));
+    if(lo.unfit&&lo.unfit.length) inner.appendChild($(`<div><span class="l">不适合</span>${lo.unfit.join(' / ')}</div>`));
+    const se=SUBJ[n.id];
+    if(se&&se.atoms&&se.atoms.length){
+      const chips=se.atoms.map(a=>`<a href="kg-subject.html" title="题材层原子:${a.cn}(via ${a.motif})" style="display:inline-block;font-size:11.5px;color:var(--ink-soft);background:var(--paper-2);border-radius:7px;padding:2px 9px;margin:2px 3px 2px 0;text-decoration:none">${a.cn}</a>`).join('');
+      inner.appendChild($(`<div style="margin-top:5px"><span class="l">连题材层</span>${chips}</div>`));
+    }
+    b.appendChild(SEC('⑦ 主题与题材 THEME',inner));
+  }
+  // ⑧ 绘画语言 · 7大构成剖面(对齐绘画语言层)
+  if(lo.lang7){
+    const SEVEN=["构图与组织","透视与空间","形状与造型","光影与明暗","色彩系统","笔触与肌理","边缘与节奏"];
+    const wrap=$('<div></div>');
+    // L2 数值指纹(若有)
+    const lv=(L2V[n.id]||{}).vec;
+    if(lv){const ORD=['构图','空间','造型','光影','色彩','笔触','边缘'];
+      const fp=$('<div style="background:#fbf9f4;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:10px"></div>');
+      fp.appendChild($('<div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-bottom:6px">L2 语言指纹(0→1 连续轴 · <a href="kg-language.html" style="color:var(--accent);text-decoration:none">语言层</a>)</div>'));
+      ORD.forEach(s=>{const val=lv[s],d=L2BY[s]||{};
+        fp.appendChild($(`<div style="display:flex;align-items:center;gap:7px;margin:3px 0;font-size:11.5px"><span style="width:30px;font-family:var(--serif);font-weight:600;color:var(--ink-soft)">${s}</span><span style="flex:1;height:11px;background:var(--paper-2);border-radius:6px;position:relative;overflow:hidden"><span style="position:absolute;left:0;top:0;height:100%;width:${val*100}%;background:var(--accent);border-radius:6px"></span></span><span style="width:30px;text-align:right;font-family:var(--mono);font-size:10px;color:var(--ink-mute)">${val.toFixed(2)}</span><span style="width:96px;font-size:9.5px;color:var(--ink-faint)">${val>=0.5?(d.high||''):(d.low||'')}</span></div>`));});
+      wrap.appendChild(fp);}
+    const g=$('<div class="lang7"></div>');
+    SEVEN.forEach(k=>{const v=lo.lang7[k]; g.appendChild($(`<div class="l7"><a class="l7k" href="kg-language.html" title="去绘画语言层看「${k}」">${k}</a><div class="l7v">${v||'<span style="color:var(--ink-faint)">—</span>'}</div></div>`));});
+    wrap.appendChild(g);
+    b.appendChild(SEC('⑧ 绘画语言 · 7大构成剖面 <a href="kg-language.html" style="color:var(--accent);text-decoration:none;font-size:10px">· 语言层</a>',wrap));
+  } else if(lo.color||lo.language||lo.technique){
+    const g=$('<div class="langgrid"></div>');
+    const add=(k,v)=> v&&g.appendChild($(`<div class="lc"><div class="lk">${k}</div><div class="lv">${v}</div></div>`));
+    add('色彩倾向',lo.color||lo.palette); add('用色',lo.use); add('光影',lo.light); add('典型技法',lo.technique||lo.language);
+    b.appendChild(SEC('⑧ 绘画语言 LANGUAGE <span style="font-family:var(--mono);font-size:9px;color:var(--ink-faint)">(7大构成剖面待补)</span>',g));
+  }
+  // ⑨ 代表作
+  const named=lo.works_named||[];
+  const wl=$('<div class="worklist"></div>');
+  if(named.length){named.forEach(w=>wl.appendChild($(`<div class="wn">${w}</div>`)));wl.appendChild($(`<div class="worknote">（图片待后续补充与匹配,先列权威作品名）</div>`));}
+  else wl.appendChild($(`<div class="empty">代表作待考究补全。</div>`));
+  b.appendChild(SEC('⑨ 代表作 WORKS',wl));
+  // ⑨ 关联
+  const inner=$('<div></div>');
+  const co=(graph.cooccur||[]).filter(e=>e.a===n.id||e.b===n.id).sort((x,y)=>y.w-x.w).slice(0,10);
+  if(co.length){const cc=$('<div class="chips" style="margin-bottom:8px"></div>');co.forEach(e=>{const o=e.a===n.id?e.b:e.a,oc=e.a===n.id?e.b_cn:e.a_cn,isS=o.startsWith('STYLE');cc.appendChild($(`${isS?`<a class="chip" href="kg-style-detail.html?id=${o}">`:`<span class="chip">`}${oc}<span class="w">${e.w}</span>${isS?'</a>':'</span>'}`));});inner.appendChild($(`<div class="kv"><span class="l">数据派生共现</span></div>`));inner.appendChild(cc);}
+  const sib=sty.nodes.filter(x=>x.wv===n.wv&&x.id!==n.id).slice(0,14);
+  const sc=$('<div class="chips"></div>'); sib.forEach(x=>sc.appendChild($(`<a class="chip" href="kg-style-detail.html?id=${x.id}">${x.cn}</a>`)));
+  inner.appendChild($(`<div class="kv" style="margin-top:6px"><span class="l">同区邻居</span></div>`)); inner.appendChild(sc);
+  b.appendChild(SEC('⑩ 关联 EDGES',inner));
+  // 馆藏相关(缩略图)
+  const cw=(graph.membership||{})[n.id]||[];
+  if(cw.length){
+    const g=$('<div class="awgrid"></div>');
+    cw.slice(0,12).forEach(s=>{const a=art[s];if(!a||!a.thumb)return;
+      g.appendChild($(`<a class="aw" href="${a.image||a.thumb}" target="_blank" title="${(a.title||'')} · ${(a.artist||'')}"><img loading="lazy" src="${a.thumb}" alt="${a.title||''}" style="${a.lqip?`background:url(${a.lqip}) center/cover`:''}"/><span class="awt">${a.title||''}</span></a>`));});
+    if(g.children.length) b.appendChild(SEC('· 本馆藏相关作品(自动归类,真实画作)',g));
+  }
+  document.title='aha · '+cn;
+}).catch(e=>{document.getElementById('body').innerHTML='<div class="empty" style="padding:40px;text-align:center">加载失败(需服务器):'+e+'</div>';});
+</script>
+</body></html>

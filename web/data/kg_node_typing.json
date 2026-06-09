@@ -1,0 +1,61 @@
+{
+ "meta": {
+  "title": "节点开放性规范 · 闭集 vs 开集",
+  "version": "v1",
+  "principle": "知识图谱不该追求穷举。能无限往下分的'开集'层,只立关键节点(属级),具体物象/情绪降为实例,靠三种机制泛化,而非写尽。"
+ },
+ "mechanisms": [
+  {
+   "k": "实例上卷",
+   "cn": "Instance roll-up",
+   "desc": "关键节点=属(植物/禽鸟);具体'玫瑰/麻雀'是画上的标签实例,自动归到最近关键节点。不为每个物种建节点。"
+  },
+  {
+   "k": "连续坐标",
+   "cn": "Continuous coordinate",
+   "desc": "画外音情绪不必列尽:任何情绪=VAD空间一个点;风格之间=插值。坐标本身就是泛化器。"
+  },
+  {
+   "k": "开放标记",
+   "cn": "Open flag",
+   "desc": "关键节点标 open:true='它下面还能更细,但图谱到此为止',更细交给实例,不污染图结构。"
+  }
+ ],
+ "layers": [
+  {
+   "layer": "题材",
+   "kind": "开集 open",
+   "mech": "实例上卷",
+   "status": "已收:518原子 → 90关键节点,原子降为examples",
+   "color": "open"
+  },
+  {
+   "layer": "画外音 / 感知",
+   "kind": "开集 open",
+   "mech": "连续坐标(VAD)+关键锚点",
+   "status": "已收:398原子 → 14情绪锚点(各带VAD坐标),具体情绪=VAD一点",
+   "color": "open"
+  },
+  {
+   "layer": "7大构成",
+   "kind": "半闭 semi",
+   "mech": "有界技法词表",
+   "status": "基本可控,关键节点为主(可适度收)",
+   "color": "semi"
+  },
+  {
+   "layer": "风格",
+   "kind": "半开 semi",
+   "mech": "aka合并 + 坐标插值",
+   "status": "已合并296(当代变体→aka);融合/当代靠插值",
+   "color": "semi"
+  },
+  {
+   "layer": "世界观 W/E",
+   "kind": "闭集 closed",
+   "mech": "艺术史有界",
+   "status": "12模型,可列全,不泛化",
+   "color": "closed"
+  }
+ ]
+}

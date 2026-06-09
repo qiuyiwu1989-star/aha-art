@@ -1,0 +1,5654 @@
+{
+ "ARTIST.vangogh": {
+  "items": [
+   {
+    "title": "Wheat Field with Cypresses",
+    "date": "1889",
+    "file": "img/artists/vangogh/0.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.85,
+     "y": 0.9
+    },
+    "lang": {
+     "构图": 0.9,
+     "空间": 0.5,
+     "造型": 0.4,
+     "光影": 0.8,
+     "色彩": 0.9,
+     "笔触": 1.0,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.8,
+     "d": 0.8
+    },
+    "emo": "鲜活"
+   },
+   {
+    "title": "Shoes",
+    "date": "1888",
+    "file": "img/artists/vangogh/1.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.85,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.7,
+     "造型": 0.5,
+     "光影": 0.3,
+     "色彩": 0.4,
+     "笔触": 1.0,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.4,
+     "d": 0.2
+    },
+    "emo": "怀旧"
+   },
+   {
+    "title": "L'Arlésienne: Madame Joseph-Michel Ginoux (Marie Julien, 1848–1911)",
+    "date": "1888–89",
+    "file": "img/artists/vangogh/2.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.8,
+     "y": 0.75
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.8,
+     "造型": 0.6,
+     "光影": 0.2,
+     "色彩": 0.9,
+     "笔触": 0.95,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.1,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "La Berceuse (Woman Rocking a Cradle; Augustine-Alix Pellicot Roulin, 1851–1930)",
+    "date": "1889",
+    "file": "img/artists/vangogh/3.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.8,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.5,
+     "空间": 0.8,
+     "造型": 0.6,
+     "光影": 0.4,
+     "色彩": 0.9,
+     "笔触": 0.9,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.7,
+     "d": 0.6
+    },
+    "emo": "张力"
+   }
+  ],
+  "credit": "The Met, Open Access (CC0)"
+ },
+ "ARTIST.rembrandt": {
+  "items": [
+   {
+    "title": "Aristotle with a Bust of Homer",
+    "date": "1653",
+    "file": "img/artists/rembrandt/0.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.62,
+     "y": 0.82
+    },
+    "lang": {
+     "构图": 0.7,
+     "空间": 0.3,
+     "造型": 0.2,
+     "光影": 0.8,
+     "色彩": 0.2,
+     "笔触": 0.6,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.4,
+     "d": 0.8
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Flora",
+    "date": "ca. 1654",
+    "file": "img/artists/rembrandt/1.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.1,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.8,
+     "造型": 0.4,
+     "光影": 0.7,
+     "色彩": 0.3,
+     "笔触": 0.2,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.3,
+     "d": 0.4
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Hendrickje Stoffels (1626–1663)",
+    "date": "mid-1650s",
+    "file": "img/artists/rembrandt/2.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.1,
+     "空间": 0.9,
+     "造型": 0.4,
+     "光影": 0.5,
+     "色彩": 0.1,
+     "笔触": 0.8,
+     "边缘": 0.9
+    },
+    "vad": {
+     "v": 0.2,
+     "a": 0.2,
+     "d": 0.1
+    },
+    "emo": "沉思"
+   }
+  ],
+  "credit": "The Met, Open Access (CC0)"
+ },
+ "ARTIST.renoir": {
+  "items": [
+   {
+    "title": "Madame Georges Charpentier (Marguerite-Louise Lemonnier, 1848–1904) and Her Children, Georgette-Berthe (1872–1945) and Paul-Emile-Charles (1875–1895)",
+    "date": "1878",
+    "file": "img/artists/renoir/0.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.35,
+     "y": 0.65
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.7,
+     "造型": 0.8,
+     "光影": 0.2,
+     "色彩": 0.7,
+     "笔触": 0.8,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.8,
+     "a": 0.3,
+     "d": 0.2
+    },
+    "emo": "鲜活"
+   },
+   {
+    "title": "Romaine Lacaux",
+    "file": "img/artists/renoir/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.4,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.6,
+     "造型": 0.6,
+     "光影": 0.1,
+     "色彩": 0.6,
+     "笔触": 0.8,
+     "边缘": 0.9
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.1,
+     "d": 0.3
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "Laundress and Her Child (Aline and Pierre)",
+    "file": "img/artists/renoir/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.4,
+     "y": 0.75
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.8,
+     "造型": 0.7,
+     "光影": 0.2,
+     "色彩": 0.8,
+     "笔触": 0.7,
+     "边缘": 0.9
+    },
+    "vad": {
+     "v": 0.8,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "喜悦"
+   },
+   {
+    "title": "Young Woman Arranging Her Earring",
+    "file": "img/artists/renoir/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.9
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.4,
+     "造型": 0.5,
+     "光影": 0.2,
+     "色彩": 0.4,
+     "笔触": 0.7,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.2
+    },
+    "emo": "平静"
+   }
+  ],
+  "credit": "The Met · CC0"
+ },
+ "ARTIST.degas": {
+  "items": [
+   {
+    "title": "Dancer with a Fan",
+    "date": "ca. 1880",
+    "file": "img/artists/degas/0.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.6,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.8,
+     "造型": 0.2,
+     "光影": 0.1,
+     "色彩": 0.1,
+     "笔触": 0.8,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.2,
+     "d": 0.2
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "The Rehearsal of the Ballet Onstage",
+    "date": "ca. 1874",
+    "file": "img/artists/degas/1.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.4,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.7,
+     "空间": 0.4,
+     "造型": 0.6,
+     "光影": 0.65,
+     "色彩": 0.5,
+     "笔触": 0.75,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.45,
+     "a": 0.35,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "The Dance Class",
+    "date": "1874",
+    "file": "img/artists/degas/2.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.35,
+     "y": 0.6
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.3,
+     "造型": 0.4,
+     "光影": 0.3,
+     "色彩": 0.7,
+     "笔触": 0.6,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.4,
+     "d": 0.5
+    },
+    "emo": "鲜活"
+   },
+   {
+    "title": "Sulking",
+    "date": "ca. 1870",
+    "file": "img/artists/degas/3.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.4,
+     "y": 0.25
+    },
+    "lang": {
+     "构图": 0.7,
+     "空间": 0.3,
+     "造型": 0.2,
+     "光影": 0.3,
+     "色彩": 0.2,
+     "笔触": 0.55,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.2,
+     "d": 0.6
+    },
+    "emo": "沉思"
+   }
+  ],
+  "credit": "The Met, Open Access (CC0)"
+ },
+ "ARTIST.seurat": {
+  "items": [
+   {
+    "title": "Circus Sideshow (Parade de cirque)",
+    "date": "1887–88",
+    "file": "img/artists/seurat/0.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.5,
+     "空间": 0.7,
+     "造型": 0.8,
+     "光影": 0.2,
+     "色彩": 0.3,
+     "笔触": 0.9,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.4,
+     "d": 0.2
+    },
+    "emo": "忧伤"
+   },
+   {
+    "title": "At the Concert Parisien",
+    "file": "img/artists/seurat/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.8,
+     "y": 0.9
+    },
+    "lang": {
+     "构图": 0.5,
+     "空间": 0.8,
+     "造型": 0.9,
+     "光影": 0.7,
+     "色彩": 0.2,
+     "笔触": 0.8,
+     "边缘": 0.9
+    },
+    "vad": {
+     "v": 0.2,
+     "a": 0.3,
+     "d": 0.2
+    },
+    "emo": "神秘"
+   },
+   {
+    "title": "Study for \"Bathers at Asnières\"",
+    "file": "img/artists/seurat/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.4,
+     "y": 0.75
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.4,
+     "造型": 0.7,
+     "光影": 0.2,
+     "色彩": 0.5,
+     "笔触": 0.9,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Gray Weather, Grande Jatte",
+    "file": "img/artists/seurat/3.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.85
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.4,
+     "造型": 0.6,
+     "光影": 0.2,
+     "色彩": 0.7,
+     "笔触": 0.9,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.2,
+     "d": 0.1
+    },
+    "emo": "平静"
+   }
+  ],
+  "credit": "The Met · CC0"
+ },
+ "ARTIST.gauguin": {
+  "items": [
+   {
+    "title": "Ia Orana Maria (Hail Mary)",
+    "date": "1891",
+    "file": "img/artists/gauguin/0.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.85,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.5,
+     "空间": 0.8,
+     "造型": 0.7,
+     "光影": 0.2,
+     "色彩": 1.0,
+     "笔触": 0.6,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.8,
+     "a": 0.5,
+     "d": 0.6
+    },
+    "emo": "鲜活"
+   },
+   {
+    "title": "The Siesta",
+    "date": "ca. 1892–94",
+    "file": "img/artists/gauguin/1.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.9,
+     "y": 0.9
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.9,
+     "造型": 0.8,
+     "光影": 0.2,
+     "色彩": 0.9,
+     "笔触": 0.7,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.8,
+     "a": 0.3,
+     "d": 0.2
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "In the Waves (Dans les Vagues)",
+    "file": "img/artists/gauguin/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.85,
+     "y": 0.75
+    },
+    "lang": {
+     "构图": 0.8,
+     "空间": 0.7,
+     "造型": 0.6,
+     "光影": 0.4,
+     "色彩": 0.8,
+     "笔触": 0.9,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.7,
+     "d": 0.6
+    },
+    "emo": "鲜活"
+   },
+   {
+    "title": "The Large Tree",
+    "file": "img/artists/gauguin/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.85,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.7,
+     "造型": 0.6,
+     "光影": 0.2,
+     "色彩": 0.4,
+     "笔触": 0.8,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "神秘"
+   }
+  ],
+  "credit": "The Met · CC0"
+ },
+ "ARTIST.vaneyck": {
+  "items": [
+   {
+    "title": "The Crucifixion; The Last Judgment",
+    "date": "ca. 1436–38",
+    "file": "img/artists/vaneyck/0.jpg",
+    "source": "The Met · CC0",
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.4,
+     "造型": 0.3,
+     "光影": 0.2,
+     "色彩": 0.3,
+     "笔触": 0.1,
+     "边缘": 0.2
+    },
+    "vad": {
+     "v": 0.2,
+     "a": 0.8,
+     "d": 0.7
+    },
+    "emo": "恐惧"
+   },
+   {
+    "title": "Virgin and Child in a Niche",
+    "date": "ca. 1440–50",
+    "file": "img/artists/vaneyck/1.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.3,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.3,
+     "造型": 0.1,
+     "光影": 0.1,
+     "色彩": 0.4,
+     "笔触": 0.05,
+     "边缘": 0.1
+    },
+    "vad": {
+     "v": 0.8,
+     "a": 0.2,
+     "d": 0.5
+    },
+    "emo": "平静"
+   }
+  ],
+  "credit": "The Met · CC0"
+ },
+ "ARTIST.vermeer": {
+  "items": [
+   {
+    "title": "A Maid Asleep",
+    "date": "ca. 1656–57",
+    "file": "img/artists/vermeer/0.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.3,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.3,
+     "造型": 0.2,
+     "光影": 0.2,
+     "色彩": 0.2,
+     "笔触": 0.1,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.1,
+     "d": 0.2
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Study of a Young Woman",
+    "date": "ca. 1665–67",
+    "file": "img/artists/vermeer/1.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.2,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.1,
+     "空间": 0.3,
+     "造型": 0.1,
+     "光影": 0.2,
+     "色彩": 0.2,
+     "笔触": 0.1,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.1
+    },
+    "emo": "沉思"
+   }
+  ],
+  "credit": "The Met, Open Access (CC0)"
+ },
+ "ARTIST.courbet": {
+  "items": [
+   {
+    "title": "The Woman in the Waves",
+    "date": "1868",
+    "file": "img/artists/courbet/0.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.2,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.3,
+     "造型": 0.15,
+     "光影": 0.35,
+     "色彩": 0.3,
+     "笔触": 0.1,
+     "边缘": 0.65
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.3,
+     "d": 0.35
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Young Ladies of the Village",
+    "date": "1851–52",
+    "file": "img/artists/courbet/1.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.1,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.4,
+     "造型": 0.2,
+     "光影": 0.3,
+     "色彩": 0.5,
+     "笔触": 0.6,
+     "边缘": 0.5
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "怀旧"
+   },
+   {
+    "title": "Jo, La Belle Irlandaise",
+    "date": "1865–66",
+    "file": "img/artists/courbet/2.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.6,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.5,
+     "造型": 0.2,
+     "光影": 0.2,
+     "色彩": 0.4,
+     "笔触": 0.2,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.3,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Woman with a Parrot",
+    "date": "1866",
+    "file": "img/artists/courbet/3.jpg",
+    "source": "The Met · CC0",
+    "lang": {
+     "构图": 0.62,
+     "空间": 0.32,
+     "造型": 0.18,
+     "光影": 0.33,
+     "色彩": 0.22,
+     "笔触": 0.12,
+     "边缘": 0.23
+    },
+    "vad": {
+     "v": 0.58,
+     "a": 0.28,
+     "d": 0.56
+    },
+    "emo": "沉思"
+   }
+  ],
+  "credit": "The Met, Open Access (CC0)"
+ },
+ "ARTIST.pissarro": {
+  "items": [
+   {
+    "title": "Fan Mount: The Cabbage Gatherers",
+    "date": "ca. 1878–79",
+    "file": "img/artists/pissarro/0.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.5,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.7,
+     "造型": 0.7,
+     "光影": 0.6,
+     "色彩": 0.6,
+     "笔触": 0.8,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.3,
+     "d": 0.4
+    },
+    "emo": "怀旧"
+   },
+   {
+    "title": "The Boulevard Montmartre on a Winter Morning",
+    "date": "1897",
+    "file": "img/artists/pissarro/1.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.6,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.4,
+     "造型": 0.7,
+     "光影": 0.3,
+     "色彩": 0.4,
+     "笔触": 0.8,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.3,
+     "d": 0.4
+    },
+    "emo": "怀旧"
+   },
+   {
+    "title": "Jalais Hill, Pontoise",
+    "date": "1867",
+    "file": "img/artists/pissarro/2.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.3,
+     "y": 0.75
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.6,
+     "造型": 0.4,
+     "光影": 0.2,
+     "色彩": 0.8,
+     "笔触": 0.7,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.8,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "平静"
+   }
+  ],
+  "credit": "The Met, Open Access (CC0)"
+ },
+ "ARTIST.cezanne": {
+  "items": [
+   {
+    "title": "The Card Players",
+    "file": "img/artists/cezanne/0.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.55,
+     "y": 0.35
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.8,
+     "造型": 0.5,
+     "光影": 0.3,
+     "色彩": 0.4,
+     "笔触": 0.8,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "Still Life with a Ginger Jar and Eggplants",
+    "file": "img/artists/cezanne/1.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.6
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.7,
+     "造型": 0.3,
+     "光影": 0.2,
+     "色彩": 0.5,
+     "笔触": 0.8,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.5,
+     "a": 0.2,
+     "d": 0.4
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Madame Cézanne (Hortense Fiquet, 1850–1922) in the Conservatory",
+    "file": "img/artists/cezanne/2.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.6,
+     "y": 0.4
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.9,
+     "造型": 0.7,
+     "光影": 0.2,
+     "色彩": 0.6,
+     "笔触": 0.95,
+     "边缘": 0.9
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.1,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Rocks at Fontainebleau",
+    "file": "img/artists/cezanne/3.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.2
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.6,
+     "造型": 0.5,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.7,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.2,
+     "a": 0.3,
+     "d": 0.3
+    },
+    "emo": "孤独"
+   }
+  ],
+  "credit": "The Met, Open Access (CC0)"
+ },
+ "ARTIST.monet": {
+  "items": [
+   {
+    "title": "Water Lilies (Agapanthus)",
+    "file": "img/artists/monet/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.9
+    },
+    "lang": {
+     "构图": 0.7,
+     "空间": 0.9,
+     "造型": 0.9,
+     "光影": 0.2,
+     "色彩": 0.4,
+     "笔触": 0.8,
+     "边缘": 0.9
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.2
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "The Red Kerchief",
+    "file": "img/artists/monet/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.85
+    }
+   },
+   {
+    "title": "Gardener's House at Antibes",
+    "file": "img/artists/monet/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.35,
+     "y": 0.85
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.4,
+     "造型": 0.3,
+     "光影": 0.5,
+     "色彩": 0.7,
+     "笔触": 0.9,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.8,
+     "a": 0.5,
+     "d": 0.3
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "Low Tide at Pourville, near Dieppe, 1882",
+    "file": "img/artists/monet/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.4,
+     "y": 0.9
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.2,
+     "造型": 0.7,
+     "光影": 0.5,
+     "色彩": 0.7,
+     "笔触": 0.8,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.3,
+     "d": 0.4
+    },
+    "emo": "崇高"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.nizan": {
+  "items": [
+   {
+    "title": "Mountains of the Immortals",
+    "file": "img/artists/nizan/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.4,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.3,
+     "造型": 0.6,
+     "光影": 0.3,
+     "色彩": 0.4,
+     "笔触": 0.3,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.5,
+     "a": 0.3,
+     "d": 0.4
+    },
+    "emo": "怀旧"
+   },
+   {
+    "title": "Bamboo, Rock, and Tall Tree",
+    "file": "img/artists/nizan/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.9,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.4,
+     "造型": 0.6,
+     "光影": 0.1,
+     "色彩": 0.1,
+     "笔触": 0.4,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "孤独"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.badashanren": {
+  "items": [
+   {
+    "title": "Fish and Rocks",
+    "file": "img/artists/badashanren/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.95,
+     "y": 0.9
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.8,
+     "造型": 0.75,
+     "光影": 0.15,
+     "色彩": 0.1,
+     "笔触": 0.85,
+     "边缘": 0.65
+    },
+    "vad": {
+     "v": 0.35,
+     "a": 0.25,
+     "d": 0.5
+    },
+    "emo": "孤独"
+   },
+   {
+    "title": "Landscape after Guo Zhongshu",
+    "file": "img/artists/badashanren/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.85,
+     "y": 0.9
+    },
+    "lang": {
+     "构图": 0.7,
+     "空间": 0.3,
+     "造型": 0.5,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.8,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.2,
+     "d": 0.4
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Letters to Fang Shiguan",
+    "file": "img/artists/badashanren/2.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.9,
+     "y": 0.6
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.9,
+     "造型": 0.3,
+     "光影": 0.1,
+     "色彩": 0.1,
+     "笔触": 1.0,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.4,
+     "d": 0.8
+    },
+    "emo": "空灵"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.davinci": {
+  "items": [
+   {
+    "title": "The Death of Count Ugolino della Gherardesca a",
+    "file": "img/artists/davinci/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.32,
+     "y": 0.25
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.35,
+     "造型": 0.2,
+     "光影": 0.35,
+     "色彩": 0.15,
+     "笔触": 0.1,
+     "边缘": 0.15
+    },
+    "vad": {
+     "v": 0.25,
+     "a": 0.8,
+     "d": 0.7
+    },
+    "emo": "张力"
+   },
+   {
+    "title": "Virgin and Child",
+    "file": "img/artists/davinci/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.3,
+     "y": 0.4
+    },
+    "lang": {
+     "构图": 0.1,
+     "空间": 0.2,
+     "造型": 0.3,
+     "光影": 0.4,
+     "色彩": 0.2,
+     "笔触": 0.1,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Leonardo da Vinci",
+    "file": "img/artists/davinci/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.2,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.3,
+     "造型": 0.1,
+     "光影": 0.7,
+     "色彩": 0.0,
+     "笔触": 0.9,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.2,
+     "d": 0.8
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Allegorical Theme:  Combat of Animals",
+    "file": "img/artists/davinci/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "lang": {
+     "构图": 0.45,
+     "空间": 0.35,
+     "造型": 0.2,
+     "光影": 0.8,
+     "色彩": 0.1,
+     "笔触": 0.85,
+     "边缘": 0.2
+    },
+    "vad": {
+     "v": 0.45,
+     "a": 0.75,
+     "d": 0.7
+    },
+    "emo": "神秘"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.caravaggio": {
+  "items": [
+   {
+    "title": "The Crucifixion of Saint Andrew",
+    "file": "img/artists/caravaggio/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "lang": {
+     "构图": 0.8,
+     "空间": 0.7,
+     "造型": 0.8,
+     "光影": 0.9,
+     "色彩": 0.4,
+     "笔触": 0.2,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.1,
+     "a": 0.9,
+     "d": 0.8
+    },
+    "emo": "张力"
+   },
+   {
+    "title": "The Musicians",
+    "file": "img/artists/caravaggio/1.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.3,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.55,
+     "空间": 0.4,
+     "造型": 0.15,
+     "光影": 0.55,
+     "色彩": 0.5,
+     "笔触": 0.2,
+     "边缘": 0.5
+    },
+    "vad": {
+     "v": 0.45,
+     "a": 0.3,
+     "d": 0.35
+    },
+    "emo": "沉思"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.velazquez": {
+  "items": [
+   {
+    "title": "Portrait of the Jester Calabazas",
+    "file": "img/artists/velazquez/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.2,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.4,
+     "造型": 0.2,
+     "光影": 0.1,
+     "色彩": 0.1,
+     "笔触": 0.2,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.1,
+     "d": 0.7
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "Aesop",
+    "file": "img/artists/velazquez/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.1,
+     "y": 0.2
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.5,
+     "造型": 0.4,
+     "光影": 0.6,
+     "色彩": 0.2,
+     "笔触": 0.7,
+     "边缘": 0.5
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.3,
+     "d": 0.6
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Juan de Pareja (ca. 1608–1670)",
+    "file": "img/artists/velazquez/2.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.35,
+     "y": 0.72
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.2,
+     "造型": 0.2,
+     "光影": 0.6,
+     "色彩": 0.1,
+     "笔触": 0.6,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.2,
+     "a": 0.3,
+     "d": 0.7
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Philip IV (1605–1665), King of Spain",
+    "file": "img/artists/velazquez/3.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.2,
+     "y": 0.4
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.4,
+     "造型": 0.3,
+     "光影": 0.5,
+     "色彩": 0.2,
+     "笔触": 0.1,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.2,
+     "a": 0.3,
+     "d": 0.7
+    },
+    "emo": "沉思"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.raphael": {
+  "items": [
+   {
+    "title": "Studies of a Seated Female, Child's Head, and ",
+    "file": "img/artists/raphael/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.6,
+     "y": 0.4
+    },
+    "lang": {
+     "构图": 0.5,
+     "空间": 0.7,
+     "造型": 0.3,
+     "光影": 0.3,
+     "色彩": 0.1,
+     "笔触": 0.7,
+     "边缘": 0.4
+    },
+    "vad": {
+     "v": 0.5,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "The Wine Press",
+    "file": "img/artists/raphael/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.35,
+     "y": 0.25
+    },
+    "lang": {
+     "构图": 0.7,
+     "空间": 0.6,
+     "造型": 0.3,
+     "光影": 0.8,
+     "色彩": 0.2,
+     "笔触": 0.9,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.5,
+     "d": 0.5
+    },
+    "emo": "鲜活"
+   },
+   {
+    "title": "Apollo on Parnassus",
+    "file": "img/artists/raphael/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.35,
+     "y": 0.15
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.8,
+     "造型": 0.1,
+     "光影": 0.6,
+     "色彩": 0.1,
+     "笔触": 0.9,
+     "边缘": 0.1
+    },
+    "vad": {
+     "v": 0.8,
+     "a": 0.3,
+     "d": 0.2
+    },
+    "emo": "喜悦"
+   },
+   {
+    "title": "Descent from the Cross",
+    "file": "img/artists/raphael/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.2,
+     "y": 0.1
+    },
+    "lang": {
+     "构图": 0.8,
+     "空间": 0.4,
+     "造型": 0.4,
+     "光影": 0.8,
+     "色彩": 0.1,
+     "笔触": 0.9,
+     "边缘": 0.2
+    },
+    "vad": {
+     "v": 0.1,
+     "a": 0.8,
+     "d": 0.7
+    },
+    "emo": "崇高"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.durer": {
+  "items": [
+   {
+    "title": "Arm of Eve",
+    "file": "img/artists/durer/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.0,
+     "y": 0.0
+    },
+    "lang": {
+     "构图": 0.8,
+     "空间": 0.5,
+     "造型": 0.2,
+     "光影": 0.3,
+     "色彩": 0.1,
+     "笔触": 0.7,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.1,
+     "d": 0.6
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Adam and Eve",
+    "file": "img/artists/durer/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.4,
+     "造型": 0.15,
+     "光影": 0.75,
+     "色彩": 0.3,
+     "笔触": 0.85,
+     "边缘": 0.15
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.35,
+     "d": 0.75
+    },
+    "emo": "神秘"
+   },
+   {
+    "title": "St. Jerome Seated near a Pollard Willow",
+    "file": "img/artists/durer/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.3,
+     "y": 0.2
+    },
+    "lang": {
+     "构图": 0.7,
+     "空间": 0.2,
+     "造型": 0.1,
+     "光影": 0.8,
+     "色彩": 0.1,
+     "笔触": 0.9,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.2,
+     "d": 0.7
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Melencolia I",
+    "file": "img/artists/durer/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.4
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.3,
+     "造型": 0.2,
+     "光影": 0.8,
+     "色彩": 0.1,
+     "笔触": 0.9,
+     "边缘": 0.2
+    },
+    "vad": {
+     "v": 0.2,
+     "a": 0.5,
+     "d": 0.6
+    },
+    "emo": "忧伤"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.millet": {
+  "items": [
+   {
+    "title": "First Steps",
+    "file": "img/artists/millet/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.5,
+     "y": 0.65
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.4,
+     "造型": 0.5,
+     "光影": 0.3,
+     "色彩": 0.2,
+     "笔触": 0.6,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.3,
+     "d": 0.2
+    },
+    "emo": "怀旧"
+   },
+   {
+    "title": "Return from the Fields",
+    "file": "img/artists/millet/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "lang": {
+     "构图": 0.8,
+     "空间": 0.6,
+     "造型": 0.3,
+     "光影": 0.6,
+     "色彩": 0.6,
+     "笔触": 0.2,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.6,
+     "d": 0.5
+    },
+    "emo": "鲜活"
+   },
+   {
+    "title": "Liberty",
+    "file": "img/artists/millet/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.6,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.7,
+     "造型": 0.4,
+     "光影": 0.8,
+     "色彩": 0.2,
+     "笔触": 0.6,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.1,
+     "a": 0.7,
+     "d": 0.5
+    },
+    "emo": "崇高"
+   },
+   {
+    "title": "Monsieur Martin",
+    "file": "img/artists/millet/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.2,
+     "y": 0.4
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.35,
+     "造型": 0.1,
+     "光影": 0.45,
+     "色彩": 0.2,
+     "笔触": 0.4,
+     "边缘": 0.5
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.35,
+     "d": 0.5
+    },
+    "emo": "沉思"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.fankuan": {
+  "items": [
+   {
+    "title": "Fan-shaped Album Painting",
+    "file": "img/artists/fankuan/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.6
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.3,
+     "造型": 0.4,
+     "光影": 0.2,
+     "色彩": 0.3,
+     "笔触": 0.3,
+     "边缘": 0.4
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "平静"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.guoxi": {
+  "items": [
+   {
+    "title": "Old Trees, Level Distance",
+    "file": "img/artists/guoxi/0.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.8,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.3,
+     "造型": 0.7,
+     "光影": 0.1,
+     "色彩": 0.1,
+     "笔触": 0.8,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.2,
+     "a": 0.1,
+     "d": 0.1
+    },
+    "emo": "沉思"
+   }
+  ],
+  "credit": "The Met · CC0"
+ },
+ "ARTIST.qiuying": {
+  "items": [
+   {
+    "title": "Zhao Mengfu Writing the Heart (Hridaya) Sutra ",
+    "file": "img/artists/qiuying/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.45,
+     "y": 0.55
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.8,
+     "造型": 0.9,
+     "光影": 0.1,
+     "色彩": 0.2,
+     "笔触": 0.1,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.1,
+     "d": 0.2
+    },
+    "emo": "怀旧"
+   },
+   {
+    "title": "Garden for Solitary Enjoyment",
+    "file": "img/artists/qiuying/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.65,
+     "y": 0.55
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.4,
+     "造型": 0.7,
+     "光影": 0.1,
+     "色彩": 0.2,
+     "笔触": 0.6,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Palace Ladies",
+    "file": "img/artists/qiuying/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.2,
+     "y": 0.1
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.7,
+     "造型": 0.6,
+     "光影": 0.1,
+     "色彩": 0.6,
+     "笔触": 0.1,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.8,
+     "a": 0.4,
+     "d": 0.3
+    },
+    "emo": "鲜活"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.munch": {
+  "items": [
+   {
+    "title": "Woman with Red Hair and Green Eyes (The Sin)",
+    "file": "img/artists/munch/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.85,
+     "y": 0.75
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.8,
+     "造型": 0.7,
+     "光影": 0.2,
+     "色彩": 0.3,
+     "笔触": 0.8,
+     "边缘": 0.5
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.6,
+     "d": 0.5
+    },
+    "emo": "孤独"
+   },
+   {
+    "title": "Evening, Melancholy I",
+    "file": "img/artists/munch/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.9,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.7,
+     "空间": 0.8,
+     "造型": 0.7,
+     "光影": 0.4,
+     "色彩": 0.2,
+     "笔触": 0.8,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.3,
+     "d": 0.4
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "From Max Linde's House: Theodor Linde",
+    "file": "img/artists/munch/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.2,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.9,
+     "造型": 0.8,
+     "光影": 0.1,
+     "色彩": 0.2,
+     "笔触": 0.9,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.1,
+     "d": 0.2
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "Summer Night  (The Voice)",
+    "file": "img/artists/munch/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.8,
+     "y": 0.75
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.8,
+     "造型": 0.7,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.8,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.2,
+     "d": 0.5
+    },
+    "emo": "空灵"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.picasso": {
+  "items": [
+   {
+    "title": "The Frugal Meal",
+    "file": "img/artists/picasso/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "lang": {
+     "构图": 0.5,
+     "空间": 0.7,
+     "造型": 0.4,
+     "光影": 0.8,
+     "色彩": 0.2,
+     "笔触": 0.9,
+     "边缘": 0.2
+    },
+    "vad": {
+     "v": 0.2,
+     "a": 0.3,
+     "d": 0.2
+    },
+    "emo": "孤独"
+   },
+   {
+    "title": "Salomé",
+    "file": "img/artists/picasso/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.8,
+     "造型": 0.3,
+     "光影": 0.4,
+     "色彩": 0.0,
+     "笔触": 0.9,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.5,
+     "a": 0.2,
+     "d": 0.4
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "The Poor",
+    "file": "img/artists/picasso/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.6,
+     "造型": 0.6,
+     "光影": 0.8,
+     "色彩": 0.1,
+     "笔触": 0.9,
+     "边缘": 0.65
+    },
+    "vad": {
+     "v": 0.2,
+     "a": 0.5,
+     "d": 0.3
+    },
+    "emo": "孤独"
+   },
+   {
+    "title": "The Mother at Her Toilette",
+    "file": "img/artists/picasso/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "lang": {
+     "构图": 0.5,
+     "空间": 0.8,
+     "造型": 0.7,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.8,
+     "边缘": 0.2
+    },
+    "vad": {
+     "v": 0.5,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "平静"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.mondrian": {
+  "items": [
+   {
+    "title": "Composition with Red, Yellow, and Blue",
+    "file": "img/artists/mondrian/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.1
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 1.0,
+     "造型": 1.0,
+     "光影": 0.0,
+     "色彩": 0.9,
+     "笔触": 0.1,
+     "边缘": 0.0
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.7
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "Field with Young Trees in the Foreground",
+    "file": "img/artists/mondrian/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.4,
+     "造型": 0.6,
+     "光影": 0.2,
+     "色彩": 0.3,
+     "笔触": 0.9,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "忧伤"
+   },
+   {
+    "title": "Landscape at Loosduinen",
+    "file": "img/artists/mondrian/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.1,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.2,
+     "造型": 0.3,
+     "光影": 0.4,
+     "色彩": 0.1,
+     "笔触": 0.6,
+     "边缘": 0.4
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.1,
+     "d": 0.3
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "Chrysanthemum",
+    "file": "img/artists/mondrian/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.8,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.9,
+     "造型": 0.8,
+     "光影": 0.1,
+     "色彩": 0.6,
+     "笔触": 0.8,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "平静"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.huanggongwang": {
+  "items": [
+   {
+    "title": "Summer Mountains (after Dong Yuan [active c. 9",
+    "file": "img/artists/huanggongwang/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.8,
+     "y": 0.6
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.6,
+     "造型": 0.8,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.3,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.wangmeng": {
+  "items": [
+   {
+    "title": "Writing Books under the Pine Trees",
+    "file": "img/artists/wangmeng/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.6
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.3,
+     "造型": 0.4,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.5,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.1,
+     "d": 0.3
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "River Village:  Fisherman's Joy",
+    "file": "img/artists/wangmeng/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.6,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.4,
+     "造型": 0.6,
+     "光影": 0.1,
+     "色彩": 0.2,
+     "笔触": 0.6,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.1,
+     "d": 0.4
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "Bamboo, Rocks and Lonely Orchids",
+    "file": "img/artists/wangmeng/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.9,
+     "造型": 0.8,
+     "光影": 0.1,
+     "色彩": 0.1,
+     "笔触": 0.7,
+     "边缘": 0.9
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.1,
+     "d": 0.2
+    },
+    "emo": "平静"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.shenzhou": {
+  "items": [
+   {
+    "title": "The Thousand Acres of Clouds, from Twelve View",
+    "file": "img/artists/shenzhou/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.2,
+     "造型": 0.8,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.9,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.2,
+     "d": 0.2
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Distant View of Tiger Hill from the Canal Moor",
+    "file": "img/artists/shenzhou/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.6,
+     "y": 0.4
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.3,
+     "造型": 0.7,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.7,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "Flowering Crab Apple",
+    "file": "img/artists/shenzhou/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.8,
+     "造型": 0.9,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.8,
+     "边缘": 0.9
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "The Five Sages Terrace, from Twelve Views of T",
+    "file": "img/artists/shenzhou/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.6,
+     "y": 0.5
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.3,
+     "造型": 0.5,
+     "光影": 0.2,
+     "色彩": 0.4,
+     "笔触": 0.6,
+     "边缘": 0.5
+    },
+    "vad": {
+     "v": 0.8,
+     "a": 0.2,
+     "d": 0.5
+    },
+    "emo": "平静"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.wenzhengming": {
+  "items": [
+   {
+    "title": "Playing the Qin in a Secluded Valley",
+    "file": "img/artists/wenzhengming/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.5
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.3,
+     "造型": 0.4,
+     "光影": 0.2,
+     "色彩": 0.3,
+     "笔触": 0.7,
+     "边缘": 0.5
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.2,
+     "d": 0.4
+    },
+    "emo": "崇高"
+   },
+   {
+    "title": "Old Trees by a Wintry Brook",
+    "file": "img/artists/wenzhengming/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.8,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.6,
+     "造型": 0.5,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.8,
+     "边缘": 0.4
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.4
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Poem on Imperial Gift of an Embroidered Silk: ",
+    "file": "img/artists/wenzhengming/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.85,
+     "y": 0.75
+    },
+    "lang": {
+     "构图": 0.5,
+     "空间": 1.0,
+     "造型": 1.0,
+     "光影": 0.0,
+     "色彩": 0.0,
+     "笔触": 1.0,
+     "边缘": 0.5
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.2,
+     "d": 0.5
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "Old Pine Tree",
+    "file": "img/artists/wenzhengming/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.8,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.8,
+     "空间": 0.7,
+     "造型": 0.3,
+     "光影": 0.1,
+     "色彩": 0.1,
+     "笔触": 0.8,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.7
+    },
+    "emo": "崇高"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.shitao": {
+  "items": [
+   {
+    "title": "Reminiscences of Qinhuai River",
+    "file": "img/artists/shitao/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.6
+    },
+    "lang": {
+     "构图": 0.65,
+     "空间": 0.5,
+     "造型": 0.4,
+     "光影": 0.3,
+     "色彩": 0.3,
+     "笔触": 0.72,
+     "边缘": 0.48
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.35,
+     "d": 0.55
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Spring Mist over Jiangnan",
+    "file": "img/artists/shitao/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.7,
+     "造型": 0.8,
+     "光影": 0.2,
+     "色彩": 0.2,
+     "笔触": 0.8,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.4
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Rocks, Orchid, and Bamboo",
+    "file": "img/artists/shitao/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.8,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.65,
+     "造型": 0.75,
+     "光影": 0.35,
+     "色彩": 0.25,
+     "笔触": 0.8,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.55,
+     "a": 0.25,
+     "d": 0.45
+    },
+    "emo": "空灵"
+   },
+   {
+    "title": "Outing to Zhang Gong's Grotto",
+    "file": "img/artists/shitao/3.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.85,
+     "y": 0.75
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.4,
+     "造型": 0.5,
+     "光影": 0.2,
+     "色彩": 0.3,
+     "笔触": 0.7,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.4
+    },
+    "emo": "空灵"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.michelangelo": {
+  "items": [
+   {
+    "title": "Study for the Nude Youth over the Prophet Dani",
+    "file": "img/artists/michelangelo/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.6,
+     "y": 0.2
+    },
+    "lang": {
+     "构图": 0.7,
+     "空间": 0.55,
+     "造型": 0.3,
+     "光影": 0.45,
+     "色彩": 0.35,
+     "笔触": 0.7,
+     "边缘": 0.5
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.35,
+     "d": 0.65
+    },
+    "emo": "崇高"
+   },
+   {
+    "title": "Figure Studies for the Sistine Ceiling (verso)",
+    "file": "img/artists/michelangelo/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.15,
+     "y": 0.2
+    },
+    "lang": {
+     "构图": 0.8,
+     "空间": 0.8,
+     "造型": 0.4,
+     "光影": 0.2,
+     "色彩": 0.2,
+     "笔触": 0.7,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.2,
+     "d": 0.4
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "The Climbers (Three Figures from Michelangelo'",
+    "file": "img/artists/michelangelo/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.2,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.45,
+     "空间": 0.2,
+     "造型": 0.1,
+     "光影": 0.8,
+     "色彩": 0.55,
+     "笔触": 0.85,
+     "边缘": 0.15
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.25,
+     "d": 0.65
+    },
+    "emo": "崇高"
+   },
+   {
+    "title": "The Prophet Joel",
+    "file": "img/artists/michelangelo/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.05,
+     "y": 0.1
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.4,
+     "造型": 0.1,
+     "光影": 0.9,
+     "色彩": 0.0,
+     "笔触": 0.7,
+     "边缘": 0.1
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.3,
+     "d": 0.8
+    },
+    "emo": "崇高"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.dongqichang": {
+  "items": [
+   {
+    "title": "Mt. Qingbian",
+    "file": "img/artists/dongqichang/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.7,
+     "空间": 0.6,
+     "造型": 0.5,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.8,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.3,
+     "d": 0.6
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "River and Mountains on a Clear Autumn Day",
+    "file": "img/artists/dongqichang/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.75,
+     "y": 0.65
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.3,
+     "造型": 0.7,
+     "光影": 0.1,
+     "色彩": 0.1,
+     "笔触": 0.7,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.2,
+     "d": 0.2
+    },
+    "emo": "平静"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.turner": {
+  "items": [
+   {
+    "title": "The Burning of the Houses of Lords and Commons",
+    "file": "img/artists/turner/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.8,
+     "y": 0.9
+    },
+    "lang": {
+     "构图": 0.8,
+     "空间": 0.7,
+     "造型": 0.9,
+     "光影": 0.9,
+     "色彩": 0.8,
+     "笔触": 0.9,
+     "边缘": 0.9
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.8,
+     "d": 0.7
+    },
+    "emo": "崇高"
+   },
+   {
+    "title": "Flüelen, from the Lake of Lucerne",
+    "file": "img/artists/turner/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.85,
+     "y": 0.9
+    },
+    "lang": {
+     "构图": 0.7,
+     "空间": 0.3,
+     "造型": 0.8,
+     "光影": 0.8,
+     "色彩": 0.7,
+     "笔触": 0.7,
+     "边缘": 0.9
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.8,
+     "d": 0.7
+    },
+    "emo": "崇高"
+   },
+   {
+    "title": "Queen Mab's Cave",
+    "file": "img/artists/turner/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.85,
+     "y": 0.9
+    },
+    "lang": {
+     "构图": 0.7,
+     "空间": 0.6,
+     "造型": 0.8,
+     "光影": 0.9,
+     "色彩": 0.5,
+     "笔触": 0.8,
+     "边缘": 0.9
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.6,
+     "d": 0.5
+    },
+    "emo": "空灵"
+   },
+   {
+    "title": "Liber Studiorum:  Dumblain Abbey, Scotland",
+    "file": "img/artists/turner/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.4,
+     "y": 0.7
+    }
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.giotto": {
+  "items": [
+   {
+    "title": "The Adoration of the Magi",
+    "file": "img/artists/giotto/0.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.35,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.15,
+     "空间": 0.3,
+     "造型": 0.5,
+     "光影": 0.2,
+     "色彩": 0.85,
+     "笔触": 0.3,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.4,
+     "d": 0.6
+    },
+    "emo": "崇高"
+   }
+  ],
+  "credit": "The Met · CC0"
+ },
+ "ARTIST.botticelli": {
+  "items": [
+   {
+    "title": "Virgin and Child with the Young Saint John the",
+    "file": "img/artists/botticelli/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.3,
+     "y": 0.2
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.3,
+     "造型": 0.2,
+     "光影": 0.2,
+     "色彩": 0.6,
+     "笔触": 0.1,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.9,
+     "a": 0.2,
+     "d": 0.4
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "The Assumption of the Virgin",
+    "file": "img/artists/botticelli/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.1,
+     "y": 0.1
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.2,
+     "造型": 0.3,
+     "光影": 0.4,
+     "色彩": 0.1,
+     "笔触": 0.7,
+     "边缘": 0.2
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.5,
+     "d": 0.6
+    },
+    "emo": "崇高"
+   },
+   {
+    "title": "The Last Communion of Saint Jerome",
+    "file": "img/artists/botticelli/2.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.25,
+     "y": 0.35
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.35,
+     "造型": 0.2,
+     "光影": 0.2,
+     "色彩": 0.7,
+     "笔触": 0.2,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.2,
+     "d": 0.4
+    },
+    "emo": "崇高"
+   },
+   {
+    "title": "The Annunciation",
+    "file": "img/artists/botticelli/3.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.1,
+     "y": 0.2
+    },
+    "lang": {
+     "构图": 0.5,
+     "空间": 0.2,
+     "造型": 0.3,
+     "光影": 0.3,
+     "色彩": 0.4,
+     "笔触": 0.2,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.5,
+     "d": 0.4
+    },
+    "emo": "神秘"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.rubens": {
+  "items": [
+   {
+    "title": "Diana and Her Nymphs Departing for the Hunt",
+    "file": "img/artists/rubens/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.2,
+     "造型": 0.1,
+     "光影": 0.3,
+     "色彩": 0.8,
+     "笔触": 0.2,
+     "边缘": 0.1
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.5,
+     "d": 0.3
+    },
+    "emo": "鲜活"
+   },
+   {
+    "title": "Portrait of Isabella Brant",
+    "file": "img/artists/rubens/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.2,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.3,
+     "造型": 0.1,
+     "光影": 0.8,
+     "色彩": 0.2,
+     "笔触": 0.2,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.3,
+     "d": 0.6
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "The Feast of Herod (recto); Tomyris with the H",
+    "file": "img/artists/rubens/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.7,
+     "空间": 0.6,
+     "造型": 0.7,
+     "光影": 0.3,
+     "色彩": 0.1,
+     "笔触": 0.8,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.5,
+     "a": 0.7,
+     "d": 0.7
+    },
+    "emo": "张力"
+   },
+   {
+    "title": "Study for \"The Bear Hunt\" (for the Alcázar, Ma",
+    "file": "img/artists/rubens/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.45,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.8,
+     "空间": 0.7,
+     "造型": 0.3,
+     "光影": 0.8,
+     "色彩": 0.7,
+     "笔触": 0.9,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.9,
+     "d": 0.8
+    },
+    "emo": "张力"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.zhaomengfu": {
+  "items": [
+   {
+    "title": "Bamboo, Rocks and Lonely Orchids",
+    "file": "img/artists/zhaomengfu/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.8,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.8,
+     "造型": 0.9,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.7,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "River Village:  Fisherman's Joy",
+    "file": "img/artists/zhaomengfu/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.3
+    }
+   },
+   {
+    "title": "Grooms and horses",
+    "file": "img/artists/zhaomengfu/2.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.3,
+     "y": 0.2
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.2,
+     "造型": 0.2,
+     "光影": 0.1,
+     "色彩": 0.1,
+     "笔触": 0.6,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.5,
+     "a": 0.3,
+     "d": 0.5
+    },
+    "emo": "张力"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.ligonglin": {
+  "items": [
+   {
+    "title": "Dwelling in the Longmian (\"Sleeping Dragon\") M",
+    "file": "img/artists/ligonglin/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.5,
+     "空间": 0.2,
+     "造型": 0.3,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.8,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.2,
+     "d": 0.5
+    },
+    "emo": "孤独"
+   },
+   {
+    "title": "The Classic of Filial Piety",
+    "file": "img/artists/ligonglin/1.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.6,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.1,
+     "空间": 0.9,
+     "造型": 0.8,
+     "光影": 0.05,
+     "色彩": 0.05,
+     "笔触": 0.15,
+     "边缘": 0.2
+    },
+    "vad": {
+     "v": 0.65,
+     "a": 0.1,
+     "d": 0.6
+    },
+    "emo": "平静"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.renbonian": {
+  "items": [
+   {
+    "title": "Scholar on a rock",
+    "file": "img/artists/renbonian/0.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.6,
+     "y": 0.2
+    },
+    "lang": {
+     "构图": 0.5,
+     "空间": 0.8,
+     "造型": 0.4,
+     "光影": 0.2,
+     "色彩": 0.2,
+     "笔触": 0.7,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.2,
+     "d": 0.4
+    },
+    "emo": "平静"
+   }
+  ],
+  "credit": "The Met · CC0"
+ },
+ "ARTIST.zhengxie": {
+  "items": [
+   {
+    "title": "Bamboo and Rock",
+    "file": "img/artists/zhengxie/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.75,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.8,
+     "造型": 0.7,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.9,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.3,
+     "d": 0.5
+    },
+    "emo": "空灵"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.chenhongshou": {
+  "items": [
+   {
+    "title": "Paintings after Ancient Masters",
+    "file": "img/artists/chenhongshou/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.25
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.9,
+     "造型": 0.4,
+     "光影": 0.1,
+     "色彩": 0.2,
+     "笔触": 0.1,
+     "边缘": 0.2
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.1,
+     "d": 0.6
+    },
+    "emo": "怀旧"
+   },
+   {
+    "title": "Paintings after Ancient Masters: A Lohan [afte",
+    "file": "img/artists/chenhongshou/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.75,
+     "y": 0.15
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.7,
+     "造型": 0.4,
+     "光影": 0.2,
+     "色彩": 0.3,
+     "笔触": 0.2,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.3,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Paintings after Ancient Masters: Portrait of T",
+    "file": "img/artists/chenhongshou/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.6
+    },
+    "lang": {
+     "构图": 0.45,
+     "空间": 0.9,
+     "造型": 0.75,
+     "光影": 0.15,
+     "色彩": 0.3,
+     "笔触": 0.6,
+     "边缘": 0.4
+    },
+    "vad": {
+     "v": 0.75,
+     "a": 0.2,
+     "d": 0.5
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Lady Xuanwen Giving Instruction on the Rites o",
+    "file": "img/artists/chenhongshou/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.2,
+     "y": 0.1
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.3,
+     "造型": 0.8,
+     "光影": 0.1,
+     "色彩": 0.6,
+     "笔触": 0.2,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "平静"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.mayuan": {
+  "items": [
+   {
+    "title": "Drinking in the Moonlight",
+    "file": "img/artists/mayuan/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.6
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.7,
+     "造型": 0.6,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.8,
+     "边缘": 0.4
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "空灵"
+   },
+   {
+    "title": "Watching the Deer by a Pine Shaded Stream",
+    "file": "img/artists/mayuan/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.6
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.15,
+     "造型": 0.4,
+     "光影": 0.2,
+     "色彩": 0.15,
+     "笔触": 0.65,
+     "边缘": 0.4
+    },
+    "vad": {
+     "v": 0.5,
+     "a": 0.1,
+     "d": 0.3
+    },
+    "emo": "空灵"
+   },
+   {
+    "title": "Bamboo and Ducks by a Rushing Stream",
+    "file": "img/artists/mayuan/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.75,
+     "y": 0.6
+    },
+    "lang": {
+     "构图": 0.7,
+     "空间": 0.8,
+     "造型": 0.7,
+     "光影": 0.1,
+     "色彩": 0.1,
+     "笔触": 0.6,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "孤独"
+   },
+   {
+    "title": "The Football Players",
+    "file": "img/artists/mayuan/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.5,
+     "空间": 0.7,
+     "造型": 0.7,
+     "光影": 0.1,
+     "色彩": 0.2,
+     "笔触": 0.4,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.5,
+     "a": 0.2,
+     "d": 0.5
+    },
+    "emo": "沉思"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.litang": {
+  "items": [
+   {
+    "title": "Mount Hua",
+    "file": "img/artists/litang/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.6,
+     "y": 0.5
+    },
+    "lang": {
+     "构图": 0.7,
+     "空间": 0.2,
+     "造型": 0.3,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.4,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.5,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Scholar-Hermits in the Autumn Mountains",
+    "file": "img/artists/litang/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.8,
+     "y": 0.2
+    },
+    "lang": {
+     "构图": 0.1,
+     "空间": 0.2,
+     "造型": 0.8,
+     "光影": 0.1,
+     "色彩": 0.2,
+     "笔触": 0.1,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "怀旧"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.watteau": {
+  "items": [
+   {
+    "title": "Study for \"The Romancer\" (Le Conteur)",
+    "file": "img/artists/watteau/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.3,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.7,
+     "空间": 0.6,
+     "造型": 0.45,
+     "光影": 0.4,
+     "色彩": 0.3,
+     "笔触": 0.8,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.55,
+     "a": 0.45,
+     "d": 0.5
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Antoine Watteau",
+    "file": "img/artists/watteau/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.6,
+     "y": 0.65
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.8,
+     "造型": 0.2,
+     "光影": 0.3,
+     "色彩": 0.1,
+     "笔触": 0.9,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.2,
+     "d": 0.7
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "The Clothes are Italian",
+    "file": "img/artists/watteau/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.3,
+     "y": 0.4
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.7,
+     "造型": 0.4,
+     "光影": 0.8,
+     "色彩": 0.2,
+     "笔触": 0.9,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.5,
+     "a": 0.6,
+     "d": 0.6
+    },
+    "emo": "张力"
+   },
+   {
+    "title": "Woman Standing",
+    "file": "img/artists/watteau/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.05,
+     "y": 0.0
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.3,
+     "造型": 0.2,
+     "光影": 0.4,
+     "色彩": 0.1,
+     "笔触": 0.8,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.1,
+     "d": 0.2
+    },
+    "emo": "孤独"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.delacroix": {
+  "items": [
+   {
+    "title": "Greek Cavalry Men Resting in Forest",
+    "file": "img/artists/delacroix/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.5,
+     "空间": 0.6,
+     "造型": 0.4,
+     "光影": 0.3,
+     "色彩": 0.2,
+     "笔触": 0.7,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.2,
+     "d": 0.4
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Two Boats at the Harbor of Dieppe",
+    "file": "img/artists/delacroix/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.4,
+     "y": 0.7
+    }
+   },
+   {
+    "title": "Mlle. Alexandrine-Julie de la Boutraye",
+    "file": "img/artists/delacroix/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.3,
+     "造型": 0.2,
+     "光影": 0.4,
+     "色彩": 0.3,
+     "笔触": 0.1,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.5,
+     "a": 0.3,
+     "d": 0.4
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "A Young Black Woman Fetching Water",
+    "file": "img/artists/delacroix/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.42,
+     "y": 0.68
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.1,
+     "造型": 0.1,
+     "光影": 0.1,
+     "色彩": 0.2,
+     "笔触": 0.1,
+     "边缘": 0.1
+    },
+    "vad": {
+     "v": 0.5,
+     "a": 0.2,
+     "d": 0.5
+    },
+    "emo": "怀旧"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.corot": {
+  "items": [
+   {
+    "title": "La Cervara, the Roman Campagna",
+    "file": "img/artists/corot/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.35,
+     "y": 0.4
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.2,
+     "造型": 0.3,
+     "光影": 0.4,
+     "色彩": 0.6,
+     "笔触": 0.5,
+     "边缘": 0.4
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "Lormes:  Goat-Girl Sitting Beside a Stream in ",
+    "file": "img/artists/corot/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.3,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.25,
+     "空间": 0.35,
+     "造型": 0.3,
+     "光影": 0.2,
+     "色彩": 0.25,
+     "笔触": 0.3,
+     "边缘": 0.15
+    },
+    "vad": {
+     "v": 0.25,
+     "a": 0.15,
+     "d": 0.2
+    },
+    "emo": "孤独"
+   },
+   {
+    "title": "Pond at Ville-d'Avray",
+    "file": "img/artists/corot/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.35,
+     "y": 0.78
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.2,
+     "造型": 0.3,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.2,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.2,
+     "d": 0.4
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "Willows and Farmhouse at Sainte-Catherine-lès-",
+    "file": "img/artists/corot/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.3,
+     "造型": 0.75,
+     "光影": 0.1,
+     "色彩": 0.2,
+     "笔触": 0.45,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.1,
+     "d": 0.3
+    },
+    "emo": "怀旧"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.constable": {
+  "items": [
+   {
+    "title": "Branch Hill Pond, Hampstead",
+    "file": "img/artists/constable/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.3,
+     "y": 0.4
+    },
+    "lang": {
+     "构图": 0.65,
+     "空间": 0.3,
+     "造型": 0.35,
+     "光影": 0.75,
+     "色彩": 0.35,
+     "笔触": 0.6,
+     "边缘": 0.55
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.65,
+     "d": 0.7
+    },
+    "emo": "崇高"
+   },
+   {
+    "title": "Hampstead Heath, Looking Toward Harrow",
+    "file": "img/artists/constable/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.65,
+     "y": 0.75
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.3,
+     "造型": 0.4,
+     "光影": 0.8,
+     "色彩": 0.2,
+     "笔触": 0.7,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.5,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Landscape with Trees Surrounding a Pond",
+    "file": "img/artists/constable/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.6,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.35,
+     "空间": 0.4,
+     "造型": 0.45,
+     "光影": 0.25,
+     "色彩": 0.2,
+     "笔触": 0.7,
+     "边缘": 0.75
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.25,
+     "d": 0.3
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "Landscape",
+    "file": "img/artists/constable/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.35,
+     "y": 0.65
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.1,
+     "造型": 0.3,
+     "光影": 0.2,
+     "色彩": 0.3,
+     "笔触": 0.5,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "平静"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.sisley": {
+  "items": [
+   {
+    "title": "Saint-Mammès, Loing Canal",
+    "file": "img/artists/sisley/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.3,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.2,
+     "造型": 0.8,
+     "光影": 0.2,
+     "色彩": 0.6,
+     "笔触": 0.7,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "The River Bank or Geese",
+    "file": "img/artists/sisley/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.35,
+     "y": 0.75
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.3,
+     "造型": 0.7,
+     "光影": 0.3,
+     "色彩": 0.6,
+     "笔触": 0.8,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "On the Banks of the Loing",
+    "file": "img/artists/sisley/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.45,
+     "y": 0.85
+    },
+    "lang": {
+     "构图": 0.5,
+     "空间": 0.3,
+     "造型": 0.4,
+     "光影": 0.4,
+     "色彩": 0.3,
+     "笔触": 0.8,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.5,
+     "a": 0.3,
+     "d": 0.4
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "Bords du Loing, près Saint-Mammès",
+    "file": "img/artists/sisley/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.4,
+     "y": 0.75
+    },
+    "lang": {
+     "构图": 0.35,
+     "空间": 0.6,
+     "造型": 0.7,
+     "光影": 0.8,
+     "色彩": 0.2,
+     "笔触": 1.0,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.2,
+     "d": 0.4
+    },
+    "emo": "沉思"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.yunshouping": {
+  "items": [
+   {
+    "title": "Herbaceous Peony",
+    "file": "img/artists/yunshouping/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.1,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.1,
+     "空间": 0.9,
+     "造型": 0.2,
+     "光影": 0.1,
+     "色彩": 0.3,
+     "笔触": 0.1,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.8,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.liangkai": {
+  "items": [
+   {
+    "title": "Sericulture (The Process of Making Silk)",
+    "file": "img/artists/liangkai/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.2,
+     "y": 0.1
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.7,
+     "造型": 0.4,
+     "光影": 0.2,
+     "色彩": 0.3,
+     "笔触": 0.2,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.3,
+     "d": 0.2
+    },
+    "emo": "怀旧"
+   },
+   {
+    "title": "Waterfowl and Reeds",
+    "file": "img/artists/liangkai/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.8,
+     "造型": 0.9,
+     "光影": 0.1,
+     "色彩": 0.1,
+     "笔触": 0.6,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.2,
+     "a": 0.2,
+     "d": 0.2
+    },
+    "emo": "孤独"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.friedrich": {
+  "items": [
+   {
+    "title": "The Woman with the Spider Web between Bare Tre",
+    "file": "img/artists/friedrich/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.52,
+     "y": 0.56
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.3,
+     "造型": 0.2,
+     "光影": 0.8,
+     "色彩": 0.2,
+     "笔触": 0.7,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.2,
+     "a": 0.3,
+     "d": 0.2
+    },
+    "emo": "孤独"
+   },
+   {
+    "title": "Footbridge with Cross before Trees at a River",
+    "file": "img/artists/friedrich/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.1,
+     "y": 0.6
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.3,
+     "造型": 0.35,
+     "光影": 0.6,
+     "色彩": 0.5,
+     "笔触": 0.65,
+     "边缘": 0.4
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.25,
+     "d": 0.35
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "Two Men Contemplating the Moon",
+    "file": "img/artists/friedrich/2.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.65,
+     "y": 0.35
+    },
+    "lang": {
+     "构图": 0.65,
+     "空间": 0.2,
+     "造型": 0.4,
+     "光影": 0.2,
+     "色彩": 0.2,
+     "笔触": 0.1,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.2,
+     "a": 0.3,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Self-Portrait (Caspar David Friedrich)",
+    "file": "img/artists/friedrich/3.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.7,
+     "造型": 0.4,
+     "光影": 0.8,
+     "色彩": 0.0,
+     "笔触": 0.9,
+     "边缘": 0.2
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.2,
+     "d": 0.4
+    },
+    "emo": "沉思"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.holbein": {
+  "items": [
+   {
+    "title": "Terminus, the Device of Erasmus",
+    "file": "img/artists/holbein/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.5,
+     "造型": 0.5,
+     "光影": 0.8,
+     "色彩": 0.2,
+     "笔触": 0.3,
+     "边缘": 0.4
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.5,
+     "d": 0.7
+    },
+    "emo": "神秘"
+   },
+   {
+    "title": "Sir Thomas More",
+    "file": "img/artists/holbein/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.1,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.3,
+     "造型": 0.3,
+     "光影": 0.3,
+     "色彩": 0.2,
+     "笔触": 0.1,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.2,
+     "d": 0.6
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Dance of Death:  The Count",
+    "file": "img/artists/holbein/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.2
+    },
+    "lang": {
+     "构图": 0.8,
+     "空间": 0.9,
+     "造型": 0.8,
+     "光影": 0.9,
+     "色彩": 0.1,
+     "笔触": 0.9,
+     "边缘": 0.2
+    },
+    "vad": {
+     "v": 0.2,
+     "a": 0.8,
+     "d": 0.7
+    },
+    "emo": "恐惧"
+   },
+   {
+    "title": "Dance of Death:  The Sailor",
+    "file": "img/artists/holbein/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.8,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.8,
+     "空间": 0.9,
+     "造型": 0.6,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.8,
+     "边缘": 0.2
+    },
+    "vad": {
+     "v": 0.1,
+     "a": 0.9,
+     "d": 0.2
+    },
+    "emo": "恐惧"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.daumier": {
+  "items": [
+   {
+    "title": "The Troubadour",
+    "file": "img/artists/daumier/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.6
+    },
+    "lang": {
+     "构图": 0.7,
+     "空间": 0.8,
+     "造型": 0.6,
+     "光影": 0.4,
+     "色彩": 0.2,
+     "笔触": 0.9,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.4,
+     "d": 0.7
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Art Lovers",
+    "file": "img/artists/daumier/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.6
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.7,
+     "造型": 0.7,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.8,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Rue Transnonain, April 15, 1834",
+    "file": "img/artists/daumier/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "lang": {
+     "构图": 0.7,
+     "空间": 0.6,
+     "造型": 0.2,
+     "光影": 0.8,
+     "色彩": 0.1,
+     "笔触": 0.3,
+     "边缘": 0.2
+    },
+    "vad": {
+     "v": 0.1,
+     "a": 0.9,
+     "d": 0.7
+    },
+    "emo": "恐惧"
+   },
+   {
+    "title": "Washerwomen Descending a Quai Staircase",
+    "file": "img/artists/daumier/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.75,
+     "y": 0.65
+    },
+    "lang": {
+     "构图": 0.7,
+     "空间": 0.2,
+     "造型": 0.1,
+     "光影": 0.8,
+     "色彩": 0.1,
+     "笔触": 0.6,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.2,
+     "a": 0.6,
+     "d": 0.3
+    },
+    "emo": "忧伤"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.signac": {
+  "items": [
+   {
+    "title": "Saint-Tropez:  The Port",
+    "file": "img/artists/signac/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.3,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.8,
+     "造型": 0.9,
+     "光影": 0.4,
+     "色彩": 0.9,
+     "笔触": 1.0,
+     "边缘": 0.9
+    },
+    "vad": {
+     "v": 0.8,
+     "a": 0.3,
+     "d": 0.2
+    },
+    "emo": "鲜活"
+   },
+   {
+    "title": "Ships near the Trieux River",
+    "file": "img/artists/signac/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.75,
+     "y": 0.8
+    }
+   },
+   {
+    "title": "Boats",
+    "file": "img/artists/signac/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.65,
+     "y": 0.75
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.7,
+     "造型": 0.8,
+     "光影": 0.2,
+     "色彩": 0.6,
+     "笔触": 0.9,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "空灵"
+   },
+   {
+    "title": "Harmonious Times",
+    "file": "img/artists/signac/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.2,
+     "造型": 0.2,
+     "光影": 0.2,
+     "色彩": 0.6,
+     "笔触": 0.1,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.4,
+     "d": 0.3
+    },
+    "emo": "鲜活"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.schiele": {
+  "items": [
+   {
+    "title": "Portrait of a Child (Anton Peschka Jr.)",
+    "file": "img/artists/schiele/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.9,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.9,
+     "空间": 0.9,
+     "造型": 0.9,
+     "光影": 0.1,
+     "色彩": 0.8,
+     "笔触": 0.9,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.7,
+     "d": 0.6
+    },
+    "emo": "鲜活"
+   },
+   {
+    "title": "Nude Man with Raised Arms (recto) Seated Man (",
+    "file": "img/artists/schiele/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.8,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.9,
+     "造型": 0.9,
+     "光影": 0.0,
+     "色彩": 0.1,
+     "笔触": 0.8,
+     "边缘": 0.2
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Nude Man with Raised Arms (recto)",
+    "file": "img/artists/schiele/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.78,
+     "y": 0.68
+    },
+    "lang": {
+     "构图": 0.9,
+     "空间": 1.0,
+     "造型": 0.6,
+     "光影": 0.3,
+     "色彩": 0.5,
+     "笔触": 0.9,
+     "边缘": 0.4
+    },
+    "vad": {
+     "v": 0.2,
+     "a": 0.5,
+     "d": 0.8
+    },
+    "emo": "张力"
+   },
+   {
+    "title": "Seated Man (verso)",
+    "file": "img/artists/schiele/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.8,
+     "y": 0.2
+    },
+    "lang": {
+     "构图": 0.7,
+     "空间": 0.8,
+     "造型": 0.7,
+     "光影": 0.3,
+     "色彩": 0.1,
+     "笔触": 0.8,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.angelico": {
+  "items": [
+   {
+    "title": "Coronation of the Virgin",
+    "file": "img/artists/angelico/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.9,
+     "造型": 0.4,
+     "光影": 0.2,
+     "色彩": 0.7,
+     "笔触": 0.1,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.4
+    },
+    "emo": "崇高"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.boucher": {
+  "items": [
+   {
+    "title": "The Presentation in the Temple",
+    "file": "img/artists/boucher/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.8
+    },
+    "lang": {
+     "构图": 0.8,
+     "空间": 0.2,
+     "造型": 0.3,
+     "光影": 0.9,
+     "色彩": 0.4,
+     "笔触": 0.8,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.65,
+     "a": 0.75,
+     "d": 0.8
+    },
+    "emo": "崇高"
+   },
+   {
+    "title": "The Departure of Jacob",
+    "file": "img/artists/boucher/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.8,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.8,
+     "空间": 0.2,
+     "造型": 0.5,
+     "光影": 0.9,
+     "色彩": 0.2,
+     "笔触": 0.9,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.2,
+     "a": 0.7,
+     "d": 0.6
+    },
+    "emo": "张力"
+   },
+   {
+    "title": "Fountain with Two Tritons Blowing Conch Shells",
+    "file": "img/artists/boucher/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.8,
+     "y": 0.75
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.3,
+     "造型": 0.4,
+     "光影": 0.5,
+     "色彩": 0.1,
+     "笔触": 0.9,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.5,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "神秘"
+   },
+   {
+    "title": "Music and Dance and Cupids in Conspiracy ",
+    "file": "img/artists/boucher/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.3,
+     "造型": 0.3,
+     "光影": 0.2,
+     "色彩": 0.7,
+     "笔触": 0.2,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.9,
+     "a": 0.3,
+     "d": 0.2
+    },
+    "emo": "鲜活"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.fragonard": {
+  "items": [
+   {
+    "title": "Invocation to Love",
+    "file": "img/artists/fragonard/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "lang": {
+     "构图": 0.9,
+     "空间": 0.4,
+     "造型": 0.5,
+     "光影": 0.6,
+     "色彩": 0.1,
+     "笔触": 0.8,
+     "边缘": 0.9
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.8,
+     "d": 0.7
+    },
+    "emo": "张力"
+   },
+   {
+    "title": "A Boy in a Red-lined Cloak",
+    "file": "img/artists/fragonard/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.65,
+     "y": 0.75
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.4,
+     "造型": 0.3,
+     "光影": 0.4,
+     "色彩": 0.2,
+     "笔触": 0.6,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.2,
+     "d": 0.4
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Bacchanales: The Satyr's Dance ",
+    "file": "img/artists/fragonard/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.4,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.7,
+     "空间": 0.6,
+     "造型": 0.4,
+     "光影": 0.8,
+     "色彩": 0.1,
+     "笔触": 0.9,
+     "边缘": 0.5
+    },
+    "vad": {
+     "v": 0.8,
+     "a": 0.6,
+     "d": 0.6
+    },
+    "emo": "鲜活"
+   },
+   {
+    "title": "Bacchanales: Nymph Supported by Two Satyrs ",
+    "file": "img/artists/fragonard/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.4,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.5,
+     "空间": 0.2,
+     "造型": 0.2,
+     "光影": 0.8,
+     "色彩": 0.1,
+     "笔触": 0.9,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "鲜活"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.gris": {
+  "items": [
+   {
+    "title": "Marcelle la Blonde",
+    "file": "img/artists/gris/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.2
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.9,
+     "造型": 0.8,
+     "光影": 0.1,
+     "色彩": 0.2,
+     "笔触": 0.9,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.2,
+     "d": 0.6
+    },
+    "emo": "沉思"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.licheng": {
+  "items": [
+   {
+    "title": "Chrysanthemums and Cabbage",
+    "file": "img/artists/licheng/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.8,
+     "造型": 0.7,
+     "光影": 0.2,
+     "色彩": 0.3,
+     "笔触": 0.5,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.dongyuan": {
+  "items": [
+   {
+    "title": "Landscape after Ni Zan",
+    "file": "img/artists/dongyuan/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.8,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.7,
+     "造型": 0.3,
+     "光影": 0.1,
+     "色彩": 0.3,
+     "笔触": 0.8,
+     "边缘": 0.2
+    },
+    "vad": {
+     "v": 0.8,
+     "a": 0.2,
+     "d": 0.5
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "Wangchuan Villa",
+    "file": "img/artists/dongyuan/1.jpg",
+    "source": "The Met · CC0"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.huangshen": {
+  "items": [
+   {
+    "title": "Eagle on a Tree Trunk",
+    "file": "img/artists/huangshen/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.85,
+     "y": 0.9
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.8,
+     "造型": 0.6,
+     "光影": 0.3,
+     "色彩": 0.1,
+     "笔触": 0.9,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.1,
+     "d": 0.4
+    },
+    "emo": "孤独"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.martini": {
+  "items": [
+   {
+    "title": "Saint Ansanus",
+    "file": "img/artists/martini/0.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.8,
+     "y": 0.25
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.8,
+     "造型": 0.7,
+     "光影": 0.3,
+     "色彩": 0.6,
+     "笔触": 0.1,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.2,
+     "d": 0.4
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Madonna and Child",
+    "file": "img/artists/martini/1.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.4,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.1,
+     "空间": 0.85,
+     "造型": 0.3,
+     "光影": 0.2,
+     "色彩": 0.5,
+     "笔触": 0.0,
+     "边缘": 0.4
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.1,
+     "d": 0.7
+    },
+    "emo": "忧伤"
+   },
+   {
+    "title": "Saint Andrew",
+    "file": "img/artists/martini/2.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.4
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 1.0,
+     "造型": 0.7,
+     "光影": 0.2,
+     "色彩": 0.3,
+     "笔触": 0.1,
+     "边缘": 0.2
+    },
+    "vad": {
+     "v": 0.2,
+     "a": 0.1,
+     "d": 0.7
+    },
+    "emo": "沉思"
+   }
+  ],
+  "credit": "The Met · CC0"
+ },
+ "ARTIST.zhangwo": {
+  "items": [
+   {
+    "title": "Nine Songs",
+    "file": "img/artists/zhangwo/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.75,
+     "y": 0.65
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.7,
+     "造型": 0.6,
+     "光影": 0.1,
+     "色彩": 0.1,
+     "笔触": 0.6,
+     "边缘": 0.4
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.1,
+     "d": 0.3
+    },
+    "emo": "平静"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.wuzhen": {
+  "items": [
+   {
+    "title": "Su Wu the Shepherd",
+    "file": "img/artists/wuzhen/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.8,
+     "y": 0.7
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.8,
+     "造型": 0.7,
+     "光影": 0.3,
+     "色彩": 0.2,
+     "笔触": 0.8,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.2,
+     "d": 0.5
+    },
+    "emo": "孤独"
+   },
+   {
+    "title": "Poetic Feeling in a Thatched Pavilion",
+    "file": "img/artists/wuzhen/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.8,
+     "y": 0.6
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.4,
+     "造型": 0.7,
+     "光影": 0.2,
+     "色彩": 0.2,
+     "笔触": 0.8,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Su Dongpo",
+    "file": "img/artists/wuzhen/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.85,
+     "y": 0.75
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.9,
+     "造型": 0.7,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.9,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.1,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Peaches",
+    "file": "img/artists/wuzhen/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.82,
+     "y": 0.65
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.8,
+     "造型": 0.7,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.8,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "平静"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.tangyin": {
+  "items": [
+   {
+    "title": "Mount Hua",
+    "file": "img/artists/tangyin/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.4
+    },
+    "lang": {
+     "构图": 0.7,
+     "空间": 0.2,
+     "造型": 0.3,
+     "光影": 0.2,
+     "色彩": 0.4,
+     "笔触": 0.6,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.5,
+     "a": 0.2,
+     "d": 0.6
+    },
+    "emo": "崇高"
+   },
+   {
+    "title": "Listening to the Qin",
+    "file": "img/artists/tangyin/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.3
+    }
+   },
+   {
+    "title": "Scholar-Hermits in the Autumn Mountains",
+    "file": "img/artists/tangyin/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.6
+    },
+    "lang": {
+     "构图": 0.6,
+     "空间": 0.4,
+     "造型": 0.3,
+     "光影": 0.2,
+     "色彩": 0.3,
+     "笔触": 0.2,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.5
+    },
+    "emo": "沉思"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.kuncan": {
+  "items": [
+   {
+    "title": "Spring Landscape",
+    "file": "img/artists/kuncan/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.82,
+     "y": 0.91
+    },
+    "lang": {
+     "构图": 0.55,
+     "空间": 0.45,
+     "造型": 0.7,
+     "光影": 0.2,
+     "色彩": 0.2,
+     "笔触": 0.65,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.25,
+     "d": 0.35
+    },
+    "emo": "沉思"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.jinnong": {
+  "items": [
+   {
+    "title": "Plum blossoms",
+    "file": "img/artists/jinnong/0.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.75,
+     "y": 0.6
+    },
+    "lang": {
+     "构图": 0.5,
+     "空间": 0.8,
+     "造型": 0.7,
+     "光影": 0.1,
+     "色彩": 0.0,
+     "笔触": 0.8,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   }
+  ],
+  "credit": "The Met · CC0"
+ },
+ "ARTIST.langshining": {
+  "items": [
+   {
+    "title": "Portraits of the Qianlong Emperor and His Twel",
+    "file": "img/artists/langshining/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.1,
+     "y": 0.15
+    },
+    "lang": {
+     "构图": 0.1,
+     "空间": 0.7,
+     "造型": 0.2,
+     "光影": 0.1,
+     "色彩": 0.6,
+     "笔触": 0.1,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.7
+    },
+    "emo": "崇高"
+   },
+   {
+    "title": "A Vignette of Life on the Frontier",
+    "file": "img/artists/langshining/1.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.1,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.5,
+     "空间": 0.8,
+     "造型": 0.2,
+     "光影": 0.1,
+     "色彩": 0.2,
+     "笔触": 0.1,
+     "边缘": 0.1
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.5
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "Attacking the Camp at Gatan Ola: from Battle S",
+    "file": "img/artists/langshining/2.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.1,
+     "y": 0.2
+    },
+    "lang": {
+     "构图": 0.8,
+     "空间": 0.7,
+     "造型": 0.5,
+     "光影": 0.8,
+     "色彩": 0.2,
+     "笔触": 0.8,
+     "边缘": 0.2
+    },
+    "vad": {
+     "v": 0.2,
+     "a": 0.8,
+     "d": 0.8
+    },
+    "emo": "张力"
+   },
+   {
+    "title": "Receiving Surrender from the Eli: from Battle ",
+    "file": "img/artists/langshining/3.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.1,
+     "y": 0.2
+    },
+    "lang": {
+     "构图": 0.5,
+     "空间": 0.1,
+     "造型": 0.2,
+     "光影": 0.4,
+     "色彩": 0.1,
+     "笔触": 0.3,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.3,
+     "a": 0.6,
+     "d": 0.8
+    },
+    "emo": "崇高"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.zhangyu": {
+  "items": [
+   {
+    "title": "Pure Tones among Hills and Waters",
+    "file": "img/artists/zhangyu/0.jpg",
+    "source": "Cleveland Museum of Art · CC0",
+    "wv": {
+     "x": 0.35,
+     "y": 0.15
+    },
+    "lang": {
+     "构图": 0.8,
+     "空间": 0.2,
+     "造型": 0.3,
+     "光影": 0.2,
+     "色彩": 0.3,
+     "笔触": 0.2,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.3,
+     "d": 0.7
+    },
+    "emo": "崇高"
+   },
+   {
+    "title": "Song of the Stone Drums",
+    "file": "img/artists/zhangyu/1.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.9,
+     "y": 0.1
+    },
+    "lang": {
+     "构图": 0.8,
+     "空间": 1.0,
+     "造型": 1.0,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 1.0,
+     "边缘": 0.6
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.5,
+     "d": 0.7
+    },
+    "emo": "张力"
+   },
+   {
+    "title": "Wangchuan Villa",
+    "file": "img/artists/zhangyu/2.jpg",
+    "source": "The Met · CC0",
+    "wv": {
+     "x": 0.7,
+     "y": 0.5
+    },
+    "lang": {
+     "构图": 0.5,
+     "空间": 0.6,
+     "造型": 0.6,
+     "光影": 0.3,
+     "色彩": 0.6,
+     "笔触": 0.7,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.3,
+     "d": 0.4
+    },
+    "emo": "沉思"
+   }
+  ],
+  "credit": "Cleveland Museum of Art · CC0"
+ },
+ "ARTIST.byzantineicon": {
+  "items": [
+   {
+    "title": "Icon of the New Testament Trinity",
+    "file": "img/artists/byzantineicon/0.jpg",
+    "source": "Cleveland Museum of Art (CC0)",
+    "wv": {
+     "x": 0.9,
+     "y": 0.1
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.9,
+     "造型": 0.8,
+     "光影": 0.1,
+     "色彩": 0.2,
+     "笔触": 0.1,
+     "边缘": 0.2
+    },
+    "vad": {
+     "v": 0.1,
+     "a": 0.1,
+     "d": 0.3
+    },
+    "emo": "神秘"
+   },
+   {
+    "title": "Icon of the Virgin and Child",
+    "file": "img/artists/byzantineicon/1.jpg",
+    "source": "Cleveland Museum of Art (CC0)",
+    "wv": {
+     "x": 0.35,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.9,
+     "造型": 0.85,
+     "光影": 0.1,
+     "色彩": 0.3,
+     "笔触": 0.8,
+     "边缘": 0.2
+    },
+    "vad": {
+     "v": 0.2,
+     "a": 0.2,
+     "d": 0.7
+    },
+    "emo": "崇高"
+   },
+   {
+    "title": "Icon of the Mother of God and Infant Christ (Virgin Eleousa)",
+    "file": "img/artists/byzantineicon/2.jpg",
+    "source": "Cleveland Museum of Art (CC0)",
+    "wv": {
+     "x": 0.8,
+     "y": 0.3
+    },
+    "lang": {
+     "构图": 0.4,
+     "空间": 0.1,
+     "造型": 0.3,
+     "光影": 0.2,
+     "色彩": 0.6,
+     "笔触": 0.1,
+     "边缘": 0.2
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.3,
+     "d": 0.7
+    },
+    "emo": "崇高"
+   }
+  ],
+  "credit": "拜占庭圣像真迹 · Cleveland Museum of Art (CC0)"
+ },
+ "ARTIST.dunhuang": {
+  "items": [
+   {
+    "title": "Ascetic Holding a Skull",
+    "file": "img/artists/dunhuang/0.jpg",
+    "source": "Cleveland Museum of Art (CC0)",
+    "wv": {
+     "x": 0.8,
+     "y": 0.6
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.3,
+     "造型": 0.1,
+     "光影": 0.2,
+     "色彩": 0.5,
+     "笔触": 0.0,
+     "边缘": 0.3
+    },
+    "vad": {
+     "v": 0.6,
+     "a": 0.2,
+     "d": 0.6
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "Buddhist Retreat by Stream and Mountains",
+    "file": "img/artists/dunhuang/1.jpg",
+    "source": "Cleveland Museum of Art (CC0)",
+    "wv": {
+     "x": 0.5,
+     "y": 0.48
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.2,
+     "造型": 0.2,
+     "光影": 0.1,
+     "色彩": 0.1,
+     "笔触": 0.2,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.4,
+     "a": 0.2,
+     "d": 0.3
+    },
+    "emo": "沉思"
+   },
+   {
+    "title": "Dragon",
+    "file": "img/artists/dunhuang/2.jpg",
+    "source": "Cleveland Museum of Art (CC0)",
+    "wv": {
+     "x": 0.8,
+     "y": 0.6
+    },
+    "lang": {
+     "构图": 0.8,
+     "空间": 0.3,
+     "造型": 0.6,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.2,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.2,
+     "a": 0.3,
+     "d": 0.8
+    },
+    "emo": "神秘"
+   }
+  ],
+  "credit": "题材相近的公共领域作品(示意,非该址原作)· Cleveland Museum of Art (CC0)"
+ },
+ "ARTIST.qianlongacademy": {
+  "items": [
+   {
+    "title": "Screen with European Figures (obverse)",
+    "file": "img/artists/qianlongacademy/0.jpg",
+    "source": "Cleveland Museum of Art (CC0)",
+    "wv": {
+     "x": 0.4,
+     "y": 0.75
+    },
+    "lang": {
+     "构图": 0.3,
+     "空间": 0.7,
+     "造型": 0.2,
+     "光影": 0.2,
+     "色彩": 0.8,
+     "笔触": 0.2,
+     "边缘": 0.7
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.3,
+     "d": 0.4
+    },
+    "emo": "怀旧"
+   },
+   {
+    "title": "Vase with Golden Pheasants",
+    "file": "img/artists/qianlongacademy/1.jpg",
+    "source": "Cleveland Museum of Art (CC0)",
+    "wv": {
+     "x": 0.15,
+     "y": 0.25
+    },
+    "lang": {
+     "构图": 0.2,
+     "空间": 0.8,
+     "造型": 0.7,
+     "光影": 0.1,
+     "色彩": 0.9,
+     "笔触": 0.2,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.8,
+     "a": 0.2,
+     "d": 0.2
+    },
+    "emo": "平静"
+   },
+   {
+    "title": "Screen with European Figures (obverse) and Landscape (revers",
+    "file": "img/artists/qianlongacademy/2.jpg",
+    "source": "Cleveland Museum of Art (CC0)",
+    "wv": {
+     "x": 0.3,
+     "y": 0.6
+    },
+    "lang": {
+     "构图": 0.45,
+     "空间": 0.4,
+     "造型": 0.35,
+     "光影": 0.2,
+     "色彩": 0.82,
+     "笔触": 0.12,
+     "边缘": 0.42
+    },
+    "vad": {
+     "v": 0.68,
+     "a": 0.48,
+     "d": 0.62
+    },
+    "emo": "怀旧"
+   }
+  ],
+  "credit": "题材相近的公共领域作品(示意,非该址原作)· Cleveland Museum of Art (CC0)"
+ },
+ "ARTIST.yonglegong": {
+  "items": [
+   {
+    "title": "Cup with Daoist Figures",
+    "file": "img/artists/yonglegong/0.jpg",
+    "source": "Cleveland Museum of Art (CC0)",
+    "wv": {
+     "x": 0.65,
+     "y": 0.25
+    },
+    "lang": {
+     "构图": 0.1,
+     "空间": 0.8,
+     "造型": 0.1,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.1,
+     "边缘": 0.2
+    },
+    "vad": {
+     "v": 0.7,
+     "a": 0.2,
+     "d": 0.5
+    },
+    "emo": "怀旧"
+   },
+   {
+    "title": "Li Tieguai",
+    "file": "img/artists/yonglegong/1.jpg",
+    "source": "Cleveland Museum of Art (CC0)",
+    "wv": {
+     "x": 0.8,
+     "y": 0.75
+    },
+    "lang": {
+     "构图": 0.7,
+     "空间": 0.7,
+     "造型": 0.5,
+     "光影": 0.2,
+     "色彩": 0.1,
+     "笔触": 0.8,
+     "边缘": 0.8
+    },
+    "vad": {
+     "v": 0.2,
+     "a": 0.5,
+     "d": 0.4
+    },
+    "emo": "孤独"
+   }
+  ],
+  "credit": "题材相近的公共领域作品(示意,非该址原作)· Cleveland Museum of Art (CC0)"
+ }
+}

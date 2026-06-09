@@ -1,0 +1,197 @@
+{
+  "typeLabels": {
+    "influence": "影响",
+    "theme": "同母题",
+    "formal": "形式呼应",
+    "artist": "同艺术家",
+    "movement": "同流派"
+  },
+  "edges": [
+    {
+      "a": "great-wave",
+      "b": "vg-bedroom",
+      "type": "influence",
+      "why": "梵高痴迷浮世绘:《大浪》的平涂色块与硬朗轮廓,正是《卧室》里大胆色彩与简化空间的来源。"
+    },
+    {
+      "a": "great-wave",
+      "b": "moulin-rouge",
+      "type": "influence",
+      "why": "劳特累克的画面美学直接学自浮世绘——平面色块、果断的轮廓线,都来自《大浪》这类版画。"
+    },
+    {
+      "a": "great-wave",
+      "b": "gauguin-day",
+      "type": "influence",
+      "why": "高更的平涂色块与装饰性轮廓,同样吸收了日本版画的语言。"
+    },
+    {
+      "a": "great-wave",
+      "b": "toulouse-jane",
+      "type": "influence",
+      "why": "《简·阿弗丽尔》海报里的平面与轮廓,延续着浮世绘对劳特累克的影响。"
+    },
+    {
+      "a": "hiroshige",
+      "b": "waterlilies",
+      "type": "influence",
+      "why": "莫奈收藏了大量广重与北斋的版画;他铺满画面、取消地平线的水面,呼应着浮世绘的平面构图。"
+    },
+    {
+      "a": "hiroshige",
+      "b": "childs-bath",
+      "type": "influence",
+      "why": "卡萨特从日本版画学来高视角与压平的空间——《沐浴》俯视的构图正是这种影响。"
+    },
+    {
+      "a": "great-wave",
+      "b": "hiroshige",
+      "type": "movement",
+      "why": "同属浮世绘——日本江户时代的木刻版画,描绘'浮世'的风景与人生。"
+    },
+    {
+      "a": "waterlilies",
+      "b": "haystacks",
+      "type": "artist",
+      "why": "同是莫奈——他用成组的画,追逐同一对象在不同光线下的瞬间。"
+    },
+    {
+      "a": "waterlilies",
+      "b": "monet-cliff",
+      "type": "artist",
+      "why": "同是莫奈——从海崖到睡莲,他一生都在追光。"
+    },
+    {
+      "a": "haystacks",
+      "b": "monet-cliff",
+      "type": "artist",
+      "why": "同是莫奈的户外之作,都是对光与瞬间的执着记录。"
+    },
+    {
+      "a": "two-sisters",
+      "b": "renoir-lunch",
+      "type": "artist",
+      "why": "同是雷诺阿——印象派里最擅长画明媚、温暖、欢愉时刻的人。"
+    },
+    {
+      "a": "monet-cliff",
+      "b": "two-sisters",
+      "type": "movement",
+      "why": "同属印象派——捕捉户外光线与现代生活的瞬间。"
+    },
+    {
+      "a": "paris-rainy",
+      "b": "renoir-lunch",
+      "type": "movement",
+      "why": "卡耶博特既是印象派画家,也是他们的赞助人;与雷诺阿同属这场捕捉现代巴黎生活的运动。"
+    },
+    {
+      "a": "paris-rainy",
+      "b": "grande-jatte",
+      "type": "theme",
+      "why": "两幅都画'现代巴黎人的闲暇',相隔七年——卡耶博特用写实的雨天街道,修拉用点彩的午后岛屿:同一主题,两种手法。"
+    },
+    {
+      "a": "grande-jatte",
+      "b": "renoir-lunch",
+      "type": "theme",
+      "why": "都是河边/岛上的休闲时光——印象派一代对'现代生活'的共同迷恋。"
+    },
+    {
+      "a": "haystacks",
+      "b": "grande-jatte",
+      "type": "influence",
+      "why": "修拉把印象派对光的直觉,升级成一套科学的点彩方法——新印象主义由此诞生。"
+    },
+    {
+      "a": "seurat-study",
+      "b": "grande-jatte",
+      "type": "artist",
+      "why": "这就是《大碗岛》的种子——修拉为那幅巨作所画的习作,你能看见方法正在成形。"
+    },
+    {
+      "a": "seurat-study",
+      "b": "monet-cliff",
+      "type": "theme",
+      "why": "都是对户外、光与自然瞬间的观察,印象派一代共同的功课。"
+    },
+    {
+      "a": "vg-bedroom",
+      "b": "gauguin-day",
+      "type": "influence",
+      "why": "梵高与高更1888年在阿尔同住两月,亦师亦敌;两人都把色彩从'描摹'推向'表达'。"
+    },
+    {
+      "a": "vg-selfportrait",
+      "b": "vg-bedroom",
+      "type": "artist",
+      "why": "同是梵高、同一时期——你能在自画像与卧室里认出同一双手、同一种躁动的笔触。"
+    },
+    {
+      "a": "basket-apples",
+      "b": "grande-jatte",
+      "type": "movement",
+      "why": "塞尚、修拉、高更、梵高同属后印象派——都在印象派之后,寻找比'瞬间光线'更恒久的结构与情感。"
+    },
+    {
+      "a": "basket-apples",
+      "b": "gauguin-day",
+      "type": "movement",
+      "why": "同属后印象派——一个用结构、一个用色彩与象征,各自越过印象派往前走。"
+    },
+    {
+      "a": "basket-apples",
+      "b": "vg-bedroom",
+      "type": "movement",
+      "why": "同属后印象派——塞尚求'形'的恒久,梵高求'情'的炽烈。"
+    },
+    {
+      "a": "el-greco-assump",
+      "b": "basket-apples",
+      "type": "influence",
+      "why": "塞尚推崇埃尔·格列柯——这位16世纪画家拉长的形体与结构性的色彩,启发了塞尚对'形'的重新构造。"
+    },
+    {
+      "a": "el-greco-assump",
+      "b": "vg-selfportrait",
+      "type": "theme",
+      "why": "相隔三百年的同一种东西:灵性的、情感过载的强度,与不安分、被拉长扭曲的形。"
+    },
+    {
+      "a": "great-wave",
+      "b": "monet-cliff",
+      "type": "theme",
+      "why": "同样面对海与自然之力,东西方各自的答案:北斋程式化的巨浪,莫奈瞬间的光色。"
+    },
+    {
+      "a": "great-wave",
+      "b": "waterlilies",
+      "type": "theme",
+      "why": "同是'水'——一个把它画成吞天的力量,一个把它画成无边的宁静。"
+    },
+    {
+      "a": "hiroshige",
+      "b": "haystacks",
+      "type": "theme",
+      "why": "都把'自然中一个寻常的片刻'郑重对待:广重的夏月红梅,莫奈的麦垛黄昏。"
+    },
+    {
+      "a": "moulin-rouge",
+      "b": "toulouse-jane",
+      "type": "artist",
+      "why": "同是劳特累克、同一个蒙马特的夜——他画夜生活里的人,不美化、也不评判。"
+    },
+    {
+      "a": "moulin-rouge",
+      "b": "paris-rainy",
+      "type": "theme",
+      "why": "同是现代都市里的人——卡耶博特画雨中擦肩的疏离,劳特累克画夜场人群里的孤独。"
+    },
+    {
+      "a": "childs-bath",
+      "b": "two-sisters",
+      "type": "theme",
+      "why": "同是温柔的注视——卡萨特的母与子,雷诺阿的姐妹,印象派里少见的亲密。"
+    }
+  ]
+}

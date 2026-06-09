@@ -1,0 +1,602 @@
+{
+ "ARTIST.vangogh": {
+  "brightness": 0.403,
+  "saturation": 0.747,
+  "contrast": 0.688,
+  "warmth": 0.554,
+  "colorful": 0.874,
+  "edge": 0.614
+ },
+ "ARTIST.rembrandt": {
+  "brightness": 0.0,
+  "saturation": 0.868,
+  "contrast": 0.276,
+  "warmth": 0.336,
+  "colorful": 0.209,
+  "edge": 0.042
+ },
+ "ARTIST.renoir": {
+  "brightness": 0.438,
+  "saturation": 0.369,
+  "contrast": 0.514,
+  "warmth": 0.417,
+  "colorful": 0.429,
+  "edge": 0.263
+ },
+ "ARTIST.degas": {
+  "brightness": 0.341,
+  "saturation": 0.541,
+  "contrast": 0.429,
+  "warmth": 0.473,
+  "colorful": 0.35,
+  "edge": 0.287
+ },
+ "ARTIST.seurat": {
+  "brightness": 0.376,
+  "saturation": 0.343,
+  "contrast": 0.546,
+  "warmth": 0.28,
+  "colorful": 0.327,
+  "edge": 0.533
+ },
+ "ARTIST.gauguin": {
+  "brightness": 0.353,
+  "saturation": 0.734,
+  "contrast": 0.498,
+  "warmth": 0.389,
+  "colorful": 0.807,
+  "edge": 0.487
+ },
+ "ARTIST.vaneyck": {
+  "brightness": 0.254,
+  "saturation": 0.771,
+  "contrast": 0.544,
+  "warmth": 0.6,
+  "colorful": 0.762,
+  "edge": 0.86
+ },
+ "ARTIST.vermeer": {
+  "brightness": 0.041,
+  "saturation": 0.685,
+  "contrast": 0.506,
+  "warmth": 0.288,
+  "colorful": 0.249,
+  "edge": 0.176
+ },
+ "ARTIST.courbet": {
+  "brightness": 0.159,
+  "saturation": 0.788,
+  "contrast": 0.544,
+  "warmth": 0.43,
+  "colorful": 0.384,
+  "edge": 0.334
+ },
+ "ARTIST.pissarro": {
+  "brightness": 0.454,
+  "saturation": 0.329,
+  "contrast": 1.0,
+  "warmth": 0.322,
+  "colorful": 0.461,
+  "edge": 0.616
+ },
+ "ARTIST.cezanne": {
+  "brightness": 0.253,
+  "saturation": 0.479,
+  "contrast": 0.457,
+  "warmth": 0.201,
+  "colorful": 0.446,
+  "edge": 0.49
+ },
+ "ARTIST.monet": {
+  "brightness": 0.449,
+  "saturation": 0.287,
+  "contrast": 0.204,
+  "warmth": 0.0,
+  "colorful": 0.384,
+  "edge": 0.24
+ },
+ "ARTIST.nizan": {
+  "brightness": 0.558,
+  "saturation": 0.452,
+  "contrast": 0.409,
+  "warmth": 0.564,
+  "colorful": 0.281,
+  "edge": 0.244
+ },
+ "ARTIST.badashanren": {
+  "brightness": 0.876,
+  "saturation": 0.229,
+  "contrast": 0.315,
+  "warmth": 0.475,
+  "colorful": 0.205,
+  "edge": 0.368
+ },
+ "ARTIST.davinci": {
+  "brightness": 0.461,
+  "saturation": 0.23,
+  "contrast": 0.68,
+  "warmth": 0.318,
+  "colorful": 0.162,
+  "edge": 0.373
+ },
+ "ARTIST.caravaggio": {
+  "brightness": 0.1,
+  "saturation": 1.0,
+  "contrast": 0.53,
+  "warmth": 0.471,
+  "colorful": 0.376,
+  "edge": 0.384
+ },
+ "ARTIST.velazquez": {
+  "brightness": 0.262,
+  "saturation": 0.414,
+  "contrast": 0.203,
+  "warmth": 0.282,
+  "colorful": 0.085,
+  "edge": 0.028
+ },
+ "ARTIST.raphael": {
+  "brightness": 0.719,
+  "saturation": 0.2,
+  "contrast": 0.545,
+  "warmth": 0.411,
+  "colorful": 0.146,
+  "edge": 0.707
+ },
+ "ARTIST.durer": {
+  "brightness": 0.58,
+  "saturation": 0.112,
+  "contrast": 0.653,
+  "warmth": 0.229,
+  "colorful": 0.028,
+  "edge": 0.658
+ },
+ "ARTIST.millet": {
+  "brightness": 0.251,
+  "saturation": 0.556,
+  "contrast": 0.35,
+  "warmth": 0.393,
+  "colorful": 0.193,
+  "edge": 0.153
+ },
+ "ARTIST.fankuan": {
+  "brightness": 0.747,
+  "saturation": 0.35,
+  "contrast": 0.721,
+  "warmth": 0.549,
+  "colorful": 0.212,
+  "edge": 0.13
+ },
+ "ARTIST.guoxi": {
+  "brightness": 0.497,
+  "saturation": 0.621,
+  "contrast": 0.31,
+  "warmth": 0.726,
+  "colorful": 0.458,
+  "edge": 0.0
+ },
+ "ARTIST.qiuying": {
+  "brightness": 0.707,
+  "saturation": 0.379,
+  "contrast": 0.353,
+  "warmth": 0.566,
+  "colorful": 0.295,
+  "edge": 0.46
+ },
+ "ARTIST.munch": {
+  "brightness": 0.659,
+  "saturation": 0.372,
+  "contrast": 0.411,
+  "warmth": 0.539,
+  "colorful": 0.363,
+  "edge": 0.253
+ },
+ "ARTIST.picasso": {
+  "brightness": 0.696,
+  "saturation": 0.253,
+  "contrast": 0.376,
+  "warmth": 0.464,
+  "colorful": 0.135,
+  "edge": 0.289
+ },
+ "ARTIST.mondrian": {
+  "brightness": 0.614,
+  "saturation": 0.406,
+  "contrast": 0.368,
+  "warmth": 0.523,
+  "colorful": 0.424,
+  "edge": 0.246
+ },
+ "ARTIST.huanggongwang": {
+  "brightness": 0.335,
+  "saturation": 0.64,
+  "contrast": 0.283,
+  "warmth": 0.572,
+  "colorful": 0.218,
+  "edge": 0.067
+ },
+ "ARTIST.wangmeng": {
+  "brightness": 0.629,
+  "saturation": 0.362,
+  "contrast": 0.463,
+  "warmth": 0.522,
+  "colorful": 0.219,
+  "edge": 0.293
+ },
+ "ARTIST.shenzhou": {
+  "brightness": 0.712,
+  "saturation": 0.16,
+  "contrast": 0.403,
+  "warmth": 0.352,
+  "colorful": 0.083,
+  "edge": 0.519
+ },
+ "ARTIST.wenzhengming": {
+  "brightness": 0.814,
+  "saturation": 0.208,
+  "contrast": 0.414,
+  "warmth": 0.426,
+  "colorful": 0.128,
+  "edge": 0.571
+ },
+ "ARTIST.shitao": {
+  "brightness": 0.756,
+  "saturation": 0.258,
+  "contrast": 0.447,
+  "warmth": 0.479,
+  "colorful": 0.217,
+  "edge": 0.622
+ },
+ "ARTIST.michelangelo": {
+  "brightness": 0.729,
+  "saturation": 0.273,
+  "contrast": 0.506,
+  "warmth": 0.489,
+  "colorful": 0.262,
+  "edge": 0.568
+ },
+ "ARTIST.dongqichang": {
+  "brightness": 0.896,
+  "saturation": 0.27,
+  "contrast": 0.349,
+  "warmth": 0.548,
+  "colorful": 0.296,
+  "edge": 0.63
+ },
+ "ARTIST.turner": {
+  "brightness": 0.619,
+  "saturation": 0.435,
+  "contrast": 0.402,
+  "warmth": 0.534,
+  "colorful": 0.402,
+  "edge": 0.197
+ },
+ "ARTIST.giotto": {
+  "brightness": 0.294,
+  "saturation": 0.994,
+  "contrast": 0.663,
+  "warmth": 0.873,
+  "colorful": 1.0,
+  "edge": 0.576
+ },
+ "ARTIST.botticelli": {
+  "brightness": 0.445,
+  "saturation": 0.43,
+  "contrast": 0.527,
+  "warmth": 0.407,
+  "colorful": 0.429,
+  "edge": 0.478
+ },
+ "ARTIST.rubens": {
+  "brightness": 0.369,
+  "saturation": 0.575,
+  "contrast": 0.48,
+  "warmth": 0.547,
+  "colorful": 0.359,
+  "edge": 0.37
+ },
+ "ARTIST.zhaomengfu": {
+  "brightness": 0.74,
+  "saturation": 0.393,
+  "contrast": 0.383,
+  "warmth": 0.6,
+  "colorful": 0.234,
+  "edge": 0.101
+ },
+ "ARTIST.ligonglin": {
+  "brightness": 0.455,
+  "saturation": 0.791,
+  "contrast": 0.207,
+  "warmth": 0.824,
+  "colorful": 0.325,
+  "edge": 0.162
+ },
+ "ARTIST.renbonian": {
+  "brightness": 1.0,
+  "saturation": 0.118,
+  "contrast": 0.436,
+  "warmth": 0.37,
+  "colorful": 0.124,
+  "edge": 0.159
+ },
+ "ARTIST.zhengxie": {
+  "brightness": 0.891,
+  "saturation": 0.163,
+  "contrast": 0.439,
+  "warmth": 0.409,
+  "colorful": 0.134,
+  "edge": 0.655
+ },
+ "ARTIST.chenhongshou": {
+  "brightness": 0.633,
+  "saturation": 0.441,
+  "contrast": 0.43,
+  "warmth": 0.578,
+  "colorful": 0.353,
+  "edge": 0.31
+ },
+ "ARTIST.mayuan": {
+  "brightness": 0.47,
+  "saturation": 0.585,
+  "contrast": 0.312,
+  "warmth": 0.618,
+  "colorful": 0.248,
+  "edge": 0.03
+ },
+ "ARTIST.litang": {
+  "brightness": 0.717,
+  "saturation": 0.276,
+  "contrast": 0.527,
+  "warmth": 0.447,
+  "colorful": 0.181,
+  "edge": 0.42
+ },
+ "ARTIST.watteau": {
+  "brightness": 0.865,
+  "saturation": 0.233,
+  "contrast": 0.355,
+  "warmth": 0.47,
+  "colorful": 0.147,
+  "edge": 0.433
+ },
+ "ARTIST.delacroix": {
+  "brightness": 0.452,
+  "saturation": 0.572,
+  "contrast": 0.362,
+  "warmth": 0.438,
+  "colorful": 0.253,
+  "edge": 0.142
+ },
+ "ARTIST.corot": {
+  "brightness": 0.302,
+  "saturation": 0.32,
+  "contrast": 0.507,
+  "warmth": 0.191,
+  "colorful": 0.153,
+  "edge": 0.235
+ },
+ "ARTIST.constable": {
+  "brightness": 0.483,
+  "saturation": 0.337,
+  "contrast": 0.52,
+  "warmth": 0.404,
+  "colorful": 0.202,
+  "edge": 0.358
+ },
+ "ARTIST.sisley": {
+  "brightness": 0.613,
+  "saturation": 0.192,
+  "contrast": 0.613,
+  "warmth": 0.278,
+  "colorful": 0.123,
+  "edge": 0.6
+ },
+ "ARTIST.yunshouping": {
+  "brightness": 0.856,
+  "saturation": 0.638,
+  "contrast": 0.306,
+  "warmth": 1.0,
+  "colorful": 0.463,
+  "edge": 0.184
+ },
+ "ARTIST.liangkai": {
+  "brightness": 0.382,
+  "saturation": 0.552,
+  "contrast": 0.383,
+  "warmth": 0.496,
+  "colorful": 0.2,
+  "edge": 0.395
+ },
+ "ARTIST.friedrich": {
+  "brightness": 0.609,
+  "saturation": 0.338,
+  "contrast": 0.588,
+  "warmth": 0.413,
+  "colorful": 0.168,
+  "edge": 0.487
+ },
+ "ARTIST.holbein": {
+  "brightness": 0.436,
+  "saturation": 0.254,
+  "contrast": 0.669,
+  "warmth": 0.318,
+  "colorful": 0.171,
+  "edge": 0.979
+ },
+ "ARTIST.daumier": {
+  "brightness": 0.521,
+  "saturation": 0.098,
+  "contrast": 0.759,
+  "warmth": 0.237,
+  "colorful": 0.045,
+  "edge": 0.429
+ },
+ "ARTIST.signac": {
+  "brightness": 0.912,
+  "saturation": 0.224,
+  "contrast": 0.181,
+  "warmth": 0.469,
+  "colorful": 0.394,
+  "edge": 0.284
+ },
+ "ARTIST.schiele": {
+  "brightness": 0.92,
+  "saturation": 0.407,
+  "contrast": 0.276,
+  "warmth": 0.734,
+  "colorful": 0.409,
+  "edge": 0.144
+ },
+ "ARTIST.angelico": {
+  "brightness": 0.293,
+  "saturation": 0.669,
+  "contrast": 0.305,
+  "warmth": 0.415,
+  "colorful": 0.678,
+  "edge": 0.417
+ },
+ "ARTIST.boucher": {
+  "brightness": 0.514,
+  "saturation": 0.424,
+  "contrast": 0.513,
+  "warmth": 0.484,
+  "colorful": 0.333,
+  "edge": 0.635
+ },
+ "ARTIST.fragonard": {
+  "brightness": 0.509,
+  "saturation": 0.354,
+  "contrast": 0.463,
+  "warmth": 0.436,
+  "colorful": 0.179,
+  "edge": 0.61
+ },
+ "ARTIST.gris": {
+  "brightness": 0.933,
+  "saturation": 0.0,
+  "contrast": 0.0,
+  "warmth": 0.21,
+  "colorful": 0.0,
+  "edge": 0.011
+ },
+ "ARTIST.licheng": {
+  "brightness": 0.751,
+  "saturation": 0.162,
+  "contrast": 0.241,
+  "warmth": 0.368,
+  "colorful": 0.064,
+  "edge": 0.693
+ },
+ "ARTIST.dongyuan": {
+  "brightness": 0.754,
+  "saturation": 0.314,
+  "contrast": 0.396,
+  "warmth": 0.548,
+  "colorful": 0.239,
+  "edge": 0.701
+ },
+ "ARTIST.huangshen": {
+  "brightness": 0.831,
+  "saturation": 0.342,
+  "contrast": 0.432,
+  "warmth": 0.601,
+  "colorful": 0.363,
+  "edge": 0.324
+ },
+ "ARTIST.martini": {
+  "brightness": 0.345,
+  "saturation": 0.934,
+  "contrast": 0.754,
+  "warmth": 0.934,
+  "colorful": 0.952,
+  "edge": 0.988
+ },
+ "ARTIST.zhangwo": {
+  "brightness": 0.837,
+  "saturation": 0.232,
+  "contrast": 0.223,
+  "warmth": 0.471,
+  "colorful": 0.226,
+  "edge": 0.538
+ },
+ "ARTIST.wuzhen": {
+  "brightness": 0.919,
+  "saturation": 0.201,
+  "contrast": 0.362,
+  "warmth": 0.451,
+  "colorful": 0.172,
+  "edge": 0.354
+ },
+ "ARTIST.tangyin": {
+  "brightness": 0.618,
+  "saturation": 0.373,
+  "contrast": 0.402,
+  "warmth": 0.49,
+  "colorful": 0.233,
+  "edge": 0.321
+ },
+ "ARTIST.kuncan": {
+  "brightness": 0.755,
+  "saturation": 0.238,
+  "contrast": 0.473,
+  "warmth": 0.45,
+  "colorful": 0.148,
+  "edge": 0.634
+ },
+ "ARTIST.jinnong": {
+  "brightness": 0.881,
+  "saturation": 0.218,
+  "contrast": 0.465,
+  "warmth": 0.484,
+  "colorful": 0.215,
+  "edge": 1.0
+ },
+ "ARTIST.langshining": {
+  "brightness": 0.714,
+  "saturation": 0.229,
+  "contrast": 0.495,
+  "warmth": 0.427,
+  "colorful": 0.225,
+  "edge": 0.539
+ },
+ "ARTIST.zhangyu": {
+  "brightness": 0.76,
+  "saturation": 0.226,
+  "contrast": 0.445,
+  "warmth": 0.444,
+  "colorful": 0.19,
+  "edge": 0.919
+ },
+ "ARTIST.byzantineicon": {
+  "brightness": 0.326,
+  "saturation": 0.706,
+  "contrast": 0.535,
+  "warmth": 0.613,
+  "colorful": 0.678,
+  "edge": 0.558
+ },
+ "ARTIST.dunhuang": {
+  "brightness": 0.257,
+  "saturation": 0.3,
+  "contrast": 0.515,
+  "warmth": 0.325,
+  "colorful": 0.279,
+  "edge": 0.142
+ },
+ "ARTIST.qianlongacademy": {
+  "brightness": 0.383,
+  "saturation": 0.145,
+  "contrast": 0.968,
+  "warmth": 0.165,
+  "colorful": 0.278,
+  "edge": 0.357
+ },
+ "ARTIST.yonglegong": {
+  "brightness": 0.412,
+  "saturation": 0.241,
+  "contrast": 0.559,
+  "warmth": 0.333,
+  "colorful": 0.143,
+  "edge": 0.061
+ }
+}

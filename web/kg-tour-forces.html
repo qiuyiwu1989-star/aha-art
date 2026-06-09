@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 力的导览路线</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;
+    --serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:26px 16px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(20px,3.6vw,28px);font-weight:700;text-align:center;margin:7px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13px;line-height:1.7;max-width:720px;margin:6px auto}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:18px 0 6px}
+  .tab{font-family:var(--sans);font-size:13px;color:var(--ink-soft);background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer}
+  .tab.on{background:var(--ink-soft);color:#fff;border-color:var(--ink-soft)}
+  .intro{background:#fbf9f3;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:10px}
+  .intro .it{font-family:var(--serif);font-size:18px;font-weight:700}
+  .intro .is{font-size:12.5px;color:var(--ink-mute);margin-top:3px}
+  .intro .id{font-size:13px;color:var(--ink-soft);line-height:1.8;margin-top:8px}
+  .steps{position:relative;margin:18px 0 0 0;padding-left:30px}
+  .steps::before{content:"";position:absolute;left:10px;top:6px;bottom:24px;width:2px;background:var(--line)}
+  .step{position:relative;margin-bottom:16px}
+  .step .dot{position:absolute;left:-30px;top:2px;width:22px;height:22px;border-radius:50%;background:#fff;border:2px solid var(--accent);color:var(--accent);font-family:var(--mono);font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:600}
+  .step .top{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .step .yr{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);background:var(--paper-2);border-radius:5px;padding:1px 7px}
+  .step .bdg{font-family:var(--mono);font-size:10px;color:#fff;border-radius:5px;padding:1px 8px}
+  .step .who{font-family:var(--serif);font-size:15px;font-weight:700}
+  .step .who a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+  .step .tx{font-size:13px;color:var(--ink-soft);line-height:1.8;margin-top:5px}.step .tx b{color:var(--ink)}
+  .take{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:11px;padding:13px 15px;margin-top:6px}
+  .take .tk{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--accent);text-transform:uppercase}
+  .take .td{font-size:13.5px;color:var(--ink);line-height:1.85;margin-top:5px}.take .td b{color:var(--accent)}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 导览路线</div>
+  <h1>力的导览路线 —— 把散点串成故事</h1>
+  <p class="lead">关系层与语境层是地图,这里是<b>路线</b>:四条策展好的线索,把离散的边与事件,串成可以一口气读完的艺术史小故事。</p>
+  <div class="breadcrumb"><span style="color:var(--ink-mute)">艺术史动力学</span> · <a href="kg-forces.html">总图</a> · <a href="kg-dynamics.html">关系层</a> · <a href="kg-context.html">语境层</a> · <a href="kg-contingency.html">个体偶发</a> · <a href="kg-force-timeline.html">时间线</a> · <b style="color:var(--ink)">导览</b> · <a href="kg-artist-atlas.html">师承</a> · <a href="kg-drift.html">漂移</a></div>
+  <div class="tabs" id="tabs"></div>
+  <div id="tour"></div>
+</div>
+<script>
+const C={reb:'#c0492f',rev:'#5a7d6f',cro:'#5b7596',syn:'#b8893a',psh:'#8a5fa3',hom:'#3f8f8a',riv:'#a8567f',soc:'#8a6d4f',
+  ctxT:'#b8893a',ctxI:'#5b7596',ctxS:'#c0492f',ctxC:'#3f8f8a',ctxG:'#5a7d6f'};
+const A=(id,cn)=>`<a href="kg-artist.html?id=${id}">${cn}</a>`;
+const TOURS=[
+ {id:'rebel',title:'一条反叛的接力',sub:'每一代踩着上一代再反一次',
+  intro:'反叛从来不是一次性的。四百年里,每一代都踩着上一代的肩膀再反一次,把"画得像"一步步逼到墙角。',
+  steps:[
+   {n:1,yr:'约1600',bdg:['反叛',C.reb],who:A('ARTIST.caravaggio','卡拉瓦乔')+' 反 '+A('ARTIST.raphael','拉斐尔'),
+    tx:'用长着脏脚的圣徒和强烈明暗,把拉斐尔式的理想美<b>拉回血肉</b>。神圣第一次有了汗味。'},
+   {n:2,yr:'约1850',bdg:['反叛',C.reb],who:A('ARTIST.courbet','库尔贝')+' 反 学院',
+    tx:'"我没见过天使,所以不画天使。"把农民、石工、葬礼搬上历史画的<b>巨幅尺寸</b>,掀翻题材的等级制。'},
+   {n:3,yr:'约1905',bdg:['反叛',C.reb],who:A('ARTIST.matisse','马蒂斯')+' 反 '+A('ARTIST.monet','莫奈'),
+    tx:'绿色的鼻梁、任意的色块——色彩不再为"<b>看见</b>"服务,而为情感。野兽派剪断了再现的最后一根缆绳。'},
+   {n:4,yr:'约1915',bdg:['反叛',C.reb],who:A('ARTIST.malevich','马列维奇')+' 反 '+A('ARTIST.repin','列宾'),
+    tx:'一块<b>黑方块</b>,取消一切可辨认的物象。"画什么"的问题被逼到尽头:什么都不画。'},
+  ],
+  take:'四百年,一条接力的反叛把"再现"逼成了"零"。再往前无路可退——于是 20 世纪干脆转身,拥抱抽象。'},
+
+ {id:'ukiyoe',title:'浮世绘如何征服西方',sub:'一个异域传统的注入波',
+  intro:'一个异域传统,如何在三十年里改写了西方的眼睛。这是"跨文化"这一种力的一次完整发作。',
+  steps:[
+   {n:1,yr:'约1853',bdg:['语境 · 开国',C.ctxG],who:'日本开国',
+    tx:'随着漆器瓷器涌入欧洲的,还有当包装纸用的<b>浮世绘</b>。"日本趣味"(Japonisme)迅速成风。'},
+   {n:2,yr:'约1875',bdg:['跨文化',C.cro],who:A('ARTIST.monet','莫奈')+' ← 浮世绘',
+    tx:'家里挂满浮世绘,从中借来<b>不对称的裁切</b>与平面化的空间——画面可以只是被随意截下的一角。'},
+   {n:3,yr:'约1880',bdg:['跨文化',C.cro],who:A('ARTIST.degas','德加')+' ← 浮世绘',
+    tx:'高视点、被画框<b>拦腰切断</b>的舞女:这些"瞬间一瞥"的构图,全是从浮世绘学来的。'},
+   {n:4,yr:'约1887',bdg:['跨文化',C.cro],who:A('ARTIST.vangogh','梵高')+' ← 浮世绘',
+    tx:'直接临摹广重,把<b>平涂色块</b>与清晰轮廓吸进笔触,甚至把日本当作"南方的乌托邦"去阿尔勒寻光。'},
+  ],
+  take:'平面化的浮世绘,帮西方卸下了透视的包袱——它是通往现代与抽象的一道<b>侧门</b>。(有意思的是:西方把浮世绘"误读"成了纯装饰、纯形式,而这场美丽的误会,反而成了创造。)'},
+
+ {id:'literati',title:'文人画八百年',sub:'复兴+综合+推演,被制度托起的长河',
+  intro:'没有一次"革命",却靠复兴、综合与推演的反复叠加,加上一个制度的托举,文人画稳居"写意"八百年。',
+  steps:[
+   {n:1,yr:'约1085',bdg:['理论/竞争',C.riv],who:A('ARTIST.sushi','苏轼')+' · '+A('ARTIST.wentong','文同'),
+    tx:'"论画以形似,见与儿童邻。"文人把<b>写意</b>立为高于形似的价值,与院体的格物精工分道。'},
+   {n:2,yr:'约1300',bdg:['语境 · 制度',C.ctxI],who:'文人在野',
+    tx:'元废画院,士大夫退居林泉。脱离体制的绘画,变成自娱的"<b>逸笔</b>"——写意从此有了社会土壤。'},
+   {n:3,yr:'约1300',bdg:['复兴+综合',C.syn],who:A('ARTIST.zhaomengfu','赵孟頫'),
+    tx:'倡"古意"、主张<b>书画同源</b>,上追晋唐北宋,为元代文人画重立根基。复古在他这里是为了求新。'},
+   {n:4,yr:'约1340',bdg:['复兴',C.rev],who:A('ARTIST.huanggongwang','黄公望')+' ← 董源',
+    tx:'元四家上溯董巨的平远山水,《富春山居图》以披麻皴接续<b>江南画风</b>。'},
+   {n:5,yr:'约1600',bdg:['复兴',C.rev],who:A('ARTIST.dongqichang','董其昌'),
+    tx:'"南北宗论"把董源、巨然<b>追认</b>为文人画正脉之祖——以一套理论重写了整部画史。'},
+   {n:6,yr:'约1690',bdg:['推演',C.psh],who:A('ARTIST.badashanren','八大山人'),
+    tx:'把大写意推到<b>极简冷逸</b>:一鱼一鸟、寥寥数笔、白眼向天。写意的"少",被推到了尽头。'},
+  ],
+  take:'东方没有靠"反叛"狂飙,而靠复兴与推演的层层叠加,早早抵达"表现"并稳居八百年——与西方<b>完全不同的节奏</b>(见 <a href="kg-drift.html" style="color:var(--accent)">漂移</a>)。'},
+
+ {id:'1910',title:'现代主义的总爆发 · 1905–1915',sub:'多种力在同一个十年合流',
+  intro:'同一个十年,多种力一起引爆——这正是"力的时间线"上最密的那一簇。看它,就懂了"合力"是什么意思。',
+  steps:[
+   {n:1,yr:'1900–05',bdg:['语境 · 科学',C.ctxC],who:'精神分析 · 相对论',
+    tx:'弗洛伊德掀开潜意识、相对论动摇绝对时空——<b>理性的自我与确定的世界</b>同时被质疑。'},
+   {n:2,yr:'先于',bdg:['语境 · 技术',C.ctxT],who:'照相术早已就位',
+    tx:'相机抽走了"如实记录"的饭碗,逼绘画<b>另寻出路</b>。土,在前几十年就被松好了。'},
+   {n:3,yr:'1905',bdg:['反叛',C.reb],who:A('ARTIST.matisse','马蒂斯')+' 野兽派',
+    tx:'色彩彻底<b>解放</b>,挣脱再现。'},
+   {n:4,yr:'1907',bdg:['反叛 + 跨文化',C.cro],who:A('ARTIST.picasso','毕加索')+' ← 非洲',
+    tx:'《亚维农少女》借非洲面具的几何,<b>打碎了透视</b>。'},
+   {n:5,yr:'1909',bdg:['结社',C.soc],who:A('ARTIST.picasso','毕加索')+' ⇄ '+A('ARTIST.braque','布拉克'),
+    tx:'立体派不是一个人的发明,是一对搭档像"连在一根绳上的登山者"<b>合奏</b>出来的。'},
+   {n:6,yr:'1915',bdg:['反叛 + 推演',C.psh],who:A('ARTIST.malevich','马列维奇'),
+    tx:'至上主义把减法推到<b>零形象</b>。'},
+  ],
+  take:'语境力先松了土(技术+科学),关系力随即集中爆发(反叛+跨文化+结社+推演)。现代艺术不是某个天才的灵光,<b>是一次合力</b>。'},
+];
+
+const tabs=document.getElementById('tabs');
+TOURS.forEach((t,i)=>{const b=document.createElement('button');b.className='tab'+(i===0?' on':'');b.textContent=t.title;
+  b.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));b.classList.add('on');show(i);});tabs.appendChild(b);});
+function show(i){
+  const t=TOURS[i],box=document.getElementById('tour');
+  box.innerHTML=`<div class="intro"><div class="it">${t.title}</div><div class="is">${t.sub}</div><div class="id">${t.intro}</div></div>
+    <div class="steps">${t.steps.map(s=>`<div class="step"><div class="dot">${s.n}</div>
+      <div class="top"><span class="yr">${s.yr}</span><span class="bdg" style="background:${s.bdg[1]}">${s.bdg[0]}</span><span class="who">${s.who}</span></div>
+      <div class="tx">${s.tx}</div></div>`).join('')}</div>
+    <div class="take"><div class="tk">这条线索说明</div><div class="td">${t.take}</div></div>`;
+}
+show(0);
+</script>
+</body></html>

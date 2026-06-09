@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 风格关系考究 · 承自 / 影响 / 对抗</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--blue:#5b7596;--brown:#8a6a3a;--red:#a8443a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:34px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(22px,4vw,32px);font-weight:700;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13px;line-height:1.7;max-width:760px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .method{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:12px 15px;margin-top:18px;font-size:12.5px;color:var(--ink-soft);line-height:1.75}.method b{color:var(--accent)}
+  .axes{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}@media(max-width:600px){.axes{grid-template-columns:1fr}}
+  .axc{font-family:var(--mono);font-size:11px;color:var(--ink-mute);background:var(--paper-2);border-radius:6px;padding:5px 9px}
+  .bar{position:sticky;top:0;z-index:30;background:var(--paper);padding:13px 0 9px;margin-top:16px;border-bottom:1px solid var(--line)}
+  #q{display:block;width:100%;max-width:480px;margin:0 auto;font-size:14px;border:1px solid var(--line);border-radius:999px;padding:9px 17px;outline:none;background:#fff}#q:focus{border-color:var(--accent)}
+  .seg{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:9px}
+  .seg button{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 13px;cursor:pointer}
+  .seg button.on{color:#fff}
+  .stat{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:8px}
+  .grp-h{font-family:var(--serif);font-size:17px;font-weight:600;margin-top:24px;border-bottom:2px solid var(--gc);padding-bottom:6px;display:flex;align-items:baseline;gap:8px}
+  .grp-h .ct{font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-left:auto}
+  .lrow{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin-top:8px;border-left:3px solid var(--gc)}
+  .lhead{font-family:var(--serif);font-size:14px;font-weight:600;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .lhead a{color:var(--ink);text-decoration:none}.lhead a:hover{color:var(--accent)}
+  .lhead .rel{font-family:var(--mono);font-size:10px;color:#fff;border-radius:5px;padding:1px 7px}
+  .lhead .arr{color:var(--ink-faint)}
+  .lwhy{font-size:12px;color:var(--ink-mute);line-height:1.6;margin-top:5px}
+  .lwhy b{color:var(--ink-soft)}
+  mark{background:#fbe3c8;border-radius:3px;padding:0 1px}
+  .empty{text-align:center;color:var(--ink-faint);padding:36px}
+  .back{display:block;text-align:center;margin-top:40px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 风格关系考究</div>
+  <h1>承自 · 影响 · 对抗 —— 每条关系都有依据</h1>
+  <p class="lead">风格之间的 <b id="tot">…</b> 条关系链,逐条<b>可推敲</b>:每条都解析到真实节点、承自↔影响双向一致、对抗仅风格间。<b>论证的科学依据 = 两风格在世界观四轴上的实测位移 / 对立</b>。</p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-graph">图谱·关系</a> › <b style="color:var(--ink-soft)">关系考究</b></div>
+
+  <div class="method">📐 <b>方法 · 关系怎么来、依据是什么</b><br>
+    <b>承自</b>(祖先→后代)与<b>影响</b>(本风格→被影响者)是一对互逆关系,二者在世界观平面上表现为<b>沿某条轴的位移</b>;<b>对抗</b>是两风格在某条轴上<b>分居两端</b>。伞名(如「文艺复兴」「巴洛克」)统一解析到代表节点;机构(如皇家美术学院)与纯概念(如「理性主义」)不强行成边。四轴解读:
+    <div class="axes">
+      <div class="axc">再现 ↔ 表现:忠于眼睛所见 ↔ 忠于内心所感</div>
+      <div class="axc">结构 ↔ 感知:理性结构/秩序 ↔ 感官光色经验</div>
+      <div class="axc">秩序 ↔ 张力:平衡安定 ↔ 动势冲突</div>
+      <div class="axc">节制 ↔ 强度:内敛克制 ↔ 高能外放</div>
+    </div>
+  </div>
+
+  <div class="bar">
+    <input id="q" type="search" placeholder="🔍 搜风格名,看它与谁有关系…如「印象」「八大」「立体」"/>
+    <div class="seg" id="seg"><button data-k="all" class="on" style="background:var(--accent);border-color:var(--accent)">全部</button><button data-k="parent">承自</button><button data-k="influence">影响</button><button data-k="against">对抗</button></div>
+    <div class="stat" id="stat"></div>
+  </div>
+  <div id="out"></div>
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const KMETA={parent:{cn:'承自 / 孕育',color:'var(--green)',c:'#5a7d6f',word:'孕育'},influence:{cn:'影响',color:'var(--brown)',c:'#8a6a3a',word:'影响'},against:{cn:'对抗',color:'var(--red)',c:'#a8443a',word:'⟷ 对抗'}};
+let E=[],CN={},WV={},filt='all',q='';
+Promise.all([
+  fetch('data/kg_lineage.json').then(r=>r.json()),
+  fetch('data/kg_style.json').then(r=>r.json())
+]).then(([lin,sty])=>{
+  sty.nodes.forEach(n=>{CN[n.id]=n.cn;WV[n.id]=n.wv;});
+  E=lin.edges||[];
+  document.getElementById('tot').textContent=E.length;
+  document.getElementById('seg').addEventListener('click',e=>{if(!e.target.dataset.k)return;filt=e.target.dataset.k;[...e.currentTarget.children].forEach(b=>{b.classList.toggle('on',b===e.target);b.style.background=b===e.target?(b.dataset.k==='all'?'var(--accent)':KMETA[b.dataset.k].color):'#fff';b.style.borderColor=b===e.target?'transparent':'var(--line)';b.style.color=b===e.target?'#fff':'var(--ink-soft)';});render();});
+  document.getElementById('q').addEventListener('input',e=>{q=e.target.value.trim();render();});
+  render();
+});
+function hl(s){if(!q)return s;return s.split(q).join(`<mark>${q}</mark>`);}
+function render(){
+  const out=document.getElementById('out');out.innerHTML='';
+  let hits=E.filter(e=>(filt==='all'||e.k===filt)&&(!q||(CN[e.s]||'').includes(q)||(CN[e.t]||'').includes(q)));
+  document.getElementById('stat').innerHTML=`命中 <b style="color:var(--accent)">${hits.length}</b> 条关系`;
+  if(!hits.length){out.appendChild($(`<div class="empty">没找到「${q}」相关的关系。</div>`));return;}
+  ['parent','influence','against'].forEach(K=>{
+    const hs=hits.filter(e=>e.k===K);if(!hs.length)return;
+    const m=KMETA[K];
+    out.appendChild($(`<div class="grp-h" style="--gc:${m.color}">${m.cn}<span class="ct">${hs.length}</span></div>`));
+    hs.sort((a,b)=>(CN[a.s]||'').localeCompare(CN[b.s]||''));
+    hs.forEach(e=>{
+      const sCn=CN[e.s]||e.s,tCn=CN[e.t]||e.t;
+      const head=K==='against'
+        ? `<a href="kg-style-detail.html?id=${e.s}">${hl(sCn)}</a> <span class="rel" style="background:${m.color}">对抗</span> <a href="kg-style-detail.html?id=${e.t}">${hl(tCn)}</a>`
+        : `<a href="kg-style-detail.html?id=${e.s}">${hl(sCn)}</a> <span class="rel" style="background:${m.color}">${m.word}</span> <span class="arr">→</span> <a href="kg-style-detail.html?id=${e.t}">${hl(tCn)}</a>`;
+      out.appendChild($(`<div class="lrow" style="--gc:${m.color}"><div class="lhead">${head}</div><div class="lwhy">${e.why||''}</div></div>`));
+    });
+  });
+}
+</script>
+</body></html>

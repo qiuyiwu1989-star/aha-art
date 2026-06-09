@@ -1,0 +1,2221 @@
+{
+ "meta": {
+  "total": 296,
+  "note": "风格层取舍+增补评审。verdict: keep保留/demote降为人物/move移到技法层/cut删并/merge并入关键节点"
+ },
+ "rows": [
+  {
+   "cn": "古希腊",
+   "model": "W1",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "古罗马",
+   "model": "W1",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "拜占庭",
+   "model": "W1",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "罗马式",
+   "model": "W1",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "哥特式",
+   "model": "W2",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "中世纪",
+   "model": "W1",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "古埃及",
+   "model": "W1",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "早期文艺复兴",
+   "model": "W1",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "高文艺复兴",
+   "model": "W1",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "晚期文艺复兴",
+   "model": "W1",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "佛罗伦萨画派",
+   "model": "W1",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "威尼斯画派",
+   "model": "W1",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "北方文艺复兴",
+   "model": "W1",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "锡耶纳画派",
+   "model": "W1",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "意大利巴洛克",
+   "model": "W2",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "西班牙巴洛克",
+   "model": "W2",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "荷兰黄金时代",
+   "model": "W2",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "法国巴洛克",
+   "model": "W2",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "法国洛可可",
+   "model": "W2",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "德国洛可可",
+   "model": "W2",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "英国洛可可",
+   "model": "W2",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "新古典主义",
+   "model": "W1",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "法国浪漫主义",
+   "model": "W2",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "英国浪漫主义",
+   "model": "W2",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "德国浪漫主义",
+   "model": "W2",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "现实主义",
+   "model": "W1",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "自然主义",
+   "model": "W1",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "社会现实主义",
+   "model": "W2",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "印象派",
+   "model": "W3",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "新印象派",
+   "model": "W3",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "点彩派",
+   "model": "W3",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "后印象派",
+   "model": "W3",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "纳比派",
+   "model": "W3",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "象征主义",
+   "model": "W2",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "新艺术运动",
+   "model": "W2",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "野兽派",
+   "model": "W2",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "表现主义",
+   "model": "W2",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "蓝骑士派",
+   "model": "W2",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "桥社",
+   "model": "W2",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "立体主义",
+   "model": "W4",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "分析立体主义",
+   "model": "W4",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "综合立体主义",
+   "model": "W4",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "未来主义",
+   "model": "W4",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "形而上绘画",
+   "model": "W5",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "至上主义",
+   "model": "W4",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "构成主义",
+   "model": "W4",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "新造型主义",
+   "model": "W4",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "苏黎世达达",
+   "model": "W5",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "柏林达达",
+   "model": "W5",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "自动主义",
+   "model": "W5",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "超现实主义",
+   "model": "W5",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "抽象主义",
+   "model": "W4",
+   "region": "west",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "几何抽象",
+   "model": "W4",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "抒情抽象",
+   "model": "W5",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "非形式艺术",
+   "model": "W5",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "动作绘画",
+   "model": "W5",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "抽象表现主义",
+   "model": "W5",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "色域绘画",
+   "model": "W5",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "硬边绘画",
+   "model": "W4",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "欧普艺术",
+   "model": "W4",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "极简主义",
+   "model": "W4",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "光效应艺术",
+   "model": "W4",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "魔幻现实主义",
+   "model": "W3",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "照相写实主义",
+   "model": "W1",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "超写实主义",
+   "model": "W1",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "观念艺术",
+   "model": "W6",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "系统抽象",
+   "model": "W4",
+   "region": "west",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "素人绘画",
+   "model": "W1",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "社会介入艺术",
+   "model": "W6",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "工业抽象",
+   "model": "W4",
+   "region": "west",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "科学抽象",
+   "model": "W4",
+   "region": "west",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "情感抽象",
+   "model": "W5",
+   "region": "west",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "音乐抽象",
+   "model": "W4",
+   "region": "west",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "实验构成",
+   "model": "W4",
+   "region": "west",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "算法与生成艺术",
+   "model": "W6",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "波普艺术",
+   "model": "W6",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "超写实主义",
+   "model": "W1",
+   "region": "west",
+   "v": "cut",
+   "reason": "与同名节点重复 → 合并去重"
+  },
+  {
+   "cn": "新表现主义",
+   "model": "W6",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "后现代拼贴绘画",
+   "model": "W6",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "街头与涂鸦艺术",
+   "model": "W6",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "数字绘画",
+   "model": "W6",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "沉浸与环境艺术",
+   "model": "W6",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "网络与后互联网艺术",
+   "model": "W6",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "区块链与NFT艺术",
+   "model": "W6",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "当代具象",
+   "model": "W6",
+   "region": "west",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "岩画",
+   "model": "E1",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "青铜纹饰",
+   "model": "E1",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "汉代画像石",
+   "model": "E1",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "壁画",
+   "model": "E1",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "宗庙绘画",
+   "model": "E1",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "彩陶装饰",
+   "model": "E1",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "战国帛画",
+   "model": "E1",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "汉帛画",
+   "model": "E1",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "汉代画像砖",
+   "model": "E1",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "墓室壁画",
+   "model": "E1",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "佛教壁画",
+   "model": "E1",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "唐代宫廷绘画",
+   "model": "E2",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "唐代写意",
+   "model": "E4",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "山水萌芽",
+   "model": "E3",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "花鸟起源",
+   "model": "E4",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "人物写神",
+   "model": "E4",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "张璪气韵",
+   "model": "E2",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "吴带当风",
+   "model": "E2",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "金碧山水",
+   "model": "E3",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "水墨萌芽",
+   "model": "E3",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "唐代仕女",
+   "model": "E2",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "佛像造像",
+   "model": "E1",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "道教图像",
+   "model": "E1",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "唐代青绿",
+   "model": "E3",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "李思训派",
+   "model": "E3",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "北宋院体",
+   "model": "E3",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "文人画",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "山水正宗",
+   "model": "E3",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "北宋山水",
+   "model": "E3",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "南宋山水",
+   "model": "E3",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "小景山水",
+   "model": "E3",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "写意山水",
+   "model": "E3",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "墨韵山水",
+   "model": "E5",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "青绿山水",
+   "model": "E3",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "水墨山水",
+   "model": "E3",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "治平山水",
+   "model": "E3",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "文人水墨",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "意境",
+   "model": "E5",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "气韵生动",
+   "model": "E4",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "写意人物",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "写生",
+   "model": "E3",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "写心",
+   "model": "E5",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "墨戏",
+   "model": "E5",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "泼墨",
+   "model": "E5",
+   "region": "east",
+   "v": "move",
+   "reason": "笔法技法 → 移到「绘画语言·笔触与肌理」层"
+  },
+  {
+   "cn": "米点皴",
+   "model": "E3",
+   "region": "east",
+   "v": "move",
+   "reason": "笔法技法 → 移到「绘画语言·笔触与肌理」层"
+  },
+  {
+   "cn": "水墨意象",
+   "model": "E5",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "写意花鸟",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "沈周派",
+   "model": "E4",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "牧溪",
+   "model": "E5",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "元代文人",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "倪瓒",
+   "model": "E3",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "黄公望",
+   "model": "E3",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "王蒙",
+   "model": "E3",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "赵孟頫",
+   "model": "E4",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "禅意绘画",
+   "model": "E5",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "墨竹",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "墨梅",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "浙派",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "吴派",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "松江派",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "南宗画风",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "北宗画风",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "董其昌",
+   "model": "E4",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "沈周",
+   "model": "E4",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "文徵明",
+   "model": "E4",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "仇英",
+   "model": "E4",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "唐寅",
+   "model": "E4",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "陈洪绶",
+   "model": "E4",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "八大山人",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": "画风极独特,作为风格保留"
+  },
+  {
+   "cn": "石涛",
+   "model": "E4",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "髡残",
+   "model": "E4",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "四僧",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "扬州八怪",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "金农",
+   "model": "E4",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "罗聘",
+   "model": "E4",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "黄慎",
+   "model": "E4",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "高其佩",
+   "model": "E4",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "恽寿平",
+   "model": "E4",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "工笔花鸟",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "写意花鸟",
+   "model": "E4",
+   "region": "east",
+   "v": "cut",
+   "reason": "与同名节点重复 → 合并去重"
+  },
+  {
+   "cn": "文人花鸟",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "宫廷画风",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "乾隆院体",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "清代正统",
+   "model": "E4",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "仿古",
+   "model": "E4",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "独创",
+   "model": "E4",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "文人逸品",
+   "model": "E4",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "山水诗画",
+   "model": "E3",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "墨气",
+   "model": "E4",
+   "region": "east",
+   "v": "move",
+   "reason": "笔法技法 → 移到「绘画语言·笔触与肌理」层"
+  },
+  {
+   "cn": "留白",
+   "model": "E5",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "水墨抒情",
+   "model": "E5",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "写实主义",
+   "model": "E2",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "现代水墨",
+   "model": "E6",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "徐悲鸿",
+   "model": "E2",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "齐白石",
+   "model": "E4",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "张大千",
+   "model": "E4",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "林风眠",
+   "model": "E4",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "傅抱石",
+   "model": "E3",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "黄宾虹",
+   "model": "E3",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "潘天寿",
+   "model": "E4",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "刘海粟",
+   "model": "E4",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "吴冠中",
+   "model": "E4",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "李可染",
+   "model": "E3",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "关良",
+   "model": "E4",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "陈师曾",
+   "model": "E4",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "徐燕荪",
+   "model": "E2",
+   "region": "east",
+   "v": "demote",
+   "reason": "个人画家 → 降为所属流派的代表人物"
+  },
+  {
+   "cn": "现代花鸟",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "现代山水",
+   "model": "E3",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "泼彩泼墨",
+   "model": "E5",
+   "region": "east",
+   "v": "move",
+   "reason": "笔法技法 → 移到「绘画语言·笔触与肌理」层"
+  },
+  {
+   "cn": "重彩",
+   "model": "E3",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "现代工笔",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "学院派",
+   "model": "E2",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "革新文人画",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "抽象水墨",
+   "model": "E6",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "现代人物画",
+   "model": "E2",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "都市",
+   "model": "E2",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "改良派",
+   "model": "E3",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "表现水墨",
+   "model": "E6",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "现代写意",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "新中国画",
+   "model": "E2",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "政治题材",
+   "model": "E2",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "宣传画",
+   "model": "E2",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "海派",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "岭南画派",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "白描人物",
+   "model": "E2",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "新民俗",
+   "model": "E1",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "观念水墨",
+   "model": "E6",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "实验水墨",
+   "model": "E6",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "极简水墨",
+   "model": "E5",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "数字与AI水墨",
+   "model": "E6",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "书写性水墨",
+   "model": "E6",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "行为与影像水墨",
+   "model": "E6",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "社会与生态水墨",
+   "model": "E6",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "禅性水墨",
+   "model": "E5",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "多媒介水墨",
+   "model": "E6",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "年画",
+   "model": "E1",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "剪纸",
+   "model": "E1",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "壁画",
+   "model": "E1",
+   "region": "east",
+   "v": "cut",
+   "reason": "与同名节点重复 → 合并去重"
+  },
+  {
+   "cn": "敦煌壁画",
+   "model": "E1",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "永乐宫壁画",
+   "model": "E1",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "唐卡",
+   "model": "E1",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "藏传绘画",
+   "model": "E1",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "苗族绘画",
+   "model": "E1",
+   "region": "east",
+   "v": "merge",
+   "reason": "地域/民族过细 → 并入「少数民族/地方民俗绘画」关键节点"
+  },
+  {
+   "cn": "壮族绘画",
+   "model": "E1",
+   "region": "east",
+   "v": "merge",
+   "reason": "地域/民族过细 → 并入「少数民族/地方民俗绘画」关键节点"
+  },
+  {
+   "cn": "侗族绘画",
+   "model": "E1",
+   "region": "east",
+   "v": "merge",
+   "reason": "地域/民族过细 → 并入「少数民族/地方民俗绘画」关键节点"
+  },
+  {
+   "cn": "彝族绘画",
+   "model": "E1",
+   "region": "east",
+   "v": "merge",
+   "reason": "地域/民族过细 → 并入「少数民族/地方民俗绘画」关键节点"
+  },
+  {
+   "cn": "白族绘画",
+   "model": "E1",
+   "region": "east",
+   "v": "merge",
+   "reason": "地域/民族过细 → 并入「少数民族/地方民俗绘画」关键节点"
+  },
+  {
+   "cn": "纳西东巴绘画",
+   "model": "E1",
+   "region": "east",
+   "v": "merge",
+   "reason": "地域/民族过细 → 并入「少数民族/地方民俗绘画」关键节点"
+  },
+  {
+   "cn": "客家壁画",
+   "model": "E1",
+   "region": "east",
+   "v": "merge",
+   "reason": "地域/民族过细 → 并入「少数民族/地方民俗绘画」关键节点"
+  },
+  {
+   "cn": "湘绣",
+   "model": "E1",
+   "region": "east",
+   "v": "merge",
+   "reason": "地域/民族过细 → 并入「少数民族/地方民俗绘画」关键节点"
+  },
+  {
+   "cn": "漆画",
+   "model": "E1",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "彩陶纹绘",
+   "model": "E1",
+   "region": "east",
+   "v": "merge",
+   "reason": "地域/民族过细 → 并入「少数民族/地方民俗绘画」关键节点"
+  },
+  {
+   "cn": "江南文人地域",
+   "model": "E4",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "西北岩彩",
+   "model": "E3",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "闽南庙宇绘画",
+   "model": "E1",
+   "region": "east",
+   "v": "merge",
+   "reason": "地域/民族过细 → 并入「少数民族/地方民俗绘画」关键节点"
+  },
+  {
+   "cn": "台湾民俗绘画",
+   "model": "E1",
+   "region": "east",
+   "v": "merge",
+   "reason": "地域/民族过细 → 并入「少数民族/地方民俗绘画」关键节点"
+  },
+  {
+   "cn": "海南黎族绘画",
+   "model": "E1",
+   "region": "east",
+   "v": "merge",
+   "reason": "地域/民族过细 → 并入「少数民族/地方民俗绘画」关键节点"
+  },
+  {
+   "cn": "西藏民间绘画",
+   "model": "E1",
+   "region": "east",
+   "v": "merge",
+   "reason": "地域/民族过细 → 并入「少数民族/地方民俗绘画」关键节点"
+  },
+  {
+   "cn": "西南壁画",
+   "model": "E1",
+   "region": "east",
+   "v": "merge",
+   "reason": "地域/民族过细 → 并入「少数民族/地方民俗绘画」关键节点"
+  },
+  {
+   "cn": "陕北年画",
+   "model": "E1",
+   "region": "east",
+   "v": "merge",
+   "reason": "地域/民族过细 → 并入「少数民族/地方民俗绘画」关键节点"
+  },
+  {
+   "cn": "四川民间绘画",
+   "model": "E1",
+   "region": "east",
+   "v": "merge",
+   "reason": "地域/民族过细 → 并入「少数民族/地方民俗绘画」关键节点"
+  },
+  {
+   "cn": "山东民间绘画",
+   "model": "E1",
+   "region": "east",
+   "v": "merge",
+   "reason": "地域/民族过细 → 并入「少数民族/地方民俗绘画」关键节点"
+  },
+  {
+   "cn": "甘肃地域绘画",
+   "model": "E1",
+   "region": "east",
+   "v": "merge",
+   "reason": "地域/民族过细 → 并入「少数民族/地方民俗绘画」关键节点"
+  },
+  {
+   "cn": "云南少数民族绘画",
+   "model": "E1",
+   "region": "east",
+   "v": "merge",
+   "reason": "地域/民族过细 → 并入「少数民族/地方民俗绘画」关键节点"
+  },
+  {
+   "cn": "中国装饰绘画",
+   "model": "E1",
+   "region": "east",
+   "v": "merge",
+   "reason": "地域/民族过细 → 并入「少数民族/地方民俗绘画」关键节点"
+  },
+  {
+   "cn": "庙堂壁饰",
+   "model": "E1",
+   "region": "east",
+   "v": "merge",
+   "reason": "地域/民族过细 → 并入「少数民族/地方民俗绘画」关键节点"
+  },
+  {
+   "cn": "乡土写意",
+   "model": "E4",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "工笔人物",
+   "model": "E2",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "工笔花鸟",
+   "model": "E4",
+   "region": "east",
+   "v": "cut",
+   "reason": "与同名节点重复 → 合并去重"
+  },
+  {
+   "cn": "工笔山水",
+   "model": "E3",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "写意人物",
+   "model": "E4",
+   "region": "east",
+   "v": "cut",
+   "reason": "与同名节点重复 → 合并去重"
+  },
+  {
+   "cn": "写意山水",
+   "model": "E3",
+   "region": "east",
+   "v": "cut",
+   "reason": "与同名节点重复 → 合并去重"
+  },
+  {
+   "cn": "写意花鸟",
+   "model": "E4",
+   "region": "east",
+   "v": "cut",
+   "reason": "与同名节点重复 → 合并去重"
+  },
+  {
+   "cn": "小写意",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "大写意",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "白描",
+   "model": "E2",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "重彩工笔",
+   "model": "E3",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "青绿工笔",
+   "model": "E3",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "淡彩工笔",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "没骨工笔",
+   "model": "E4",
+   "region": "east",
+   "v": "move",
+   "reason": "笔法技法 → 移到「绘画语言·笔触与肌理」层"
+  },
+  {
+   "cn": "没骨写意",
+   "model": "E4",
+   "region": "east",
+   "v": "move",
+   "reason": "笔法技法 → 移到「绘画语言·笔触与肌理」层"
+  },
+  {
+   "cn": "双勾填彩",
+   "model": "E4",
+   "region": "east",
+   "v": "move",
+   "reason": "笔法技法 → 移到「绘画语言·笔触与肌理」层"
+  },
+  {
+   "cn": "渲染工笔",
+   "model": "E4",
+   "region": "east",
+   "v": "move",
+   "reason": "笔法技法 → 移到「绘画语言·笔触与肌理」层"
+  },
+  {
+   "cn": "渲染写意",
+   "model": "E4",
+   "region": "east",
+   "v": "move",
+   "reason": "笔法技法 → 移到「绘画语言·笔触与肌理」层"
+  },
+  {
+   "cn": "墨线写意",
+   "model": "E4",
+   "region": "east",
+   "v": "move",
+   "reason": "笔法技法 → 移到「绘画语言·笔触与肌理」层"
+  },
+  {
+   "cn": "破墨",
+   "model": "E4",
+   "region": "east",
+   "v": "move",
+   "reason": "笔法技法 → 移到「绘画语言·笔触与肌理」层"
+  },
+  {
+   "cn": "破笔",
+   "model": "E4",
+   "region": "east",
+   "v": "move",
+   "reason": "笔法技法 → 移到「绘画语言·笔触与肌理」层"
+  },
+  {
+   "cn": "泼墨",
+   "model": "E5",
+   "region": "east",
+   "v": "move",
+   "reason": "笔法技法 → 移到「绘画语言·笔触与肌理」层"
+  },
+  {
+   "cn": "泼彩",
+   "model": "E3",
+   "region": "east",
+   "v": "move",
+   "reason": "笔法技法 → 移到「绘画语言·笔触与肌理」层"
+  },
+  {
+   "cn": "意笔",
+   "model": "E4",
+   "region": "east",
+   "v": "move",
+   "reason": "笔法技法 → 移到「绘画语言·笔触与肌理」层"
+  },
+  {
+   "cn": "寫形風格",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "寫神風格",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "情绪笔墨",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "自然笔墨",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "文人笔墨",
+   "model": "E4",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "雅逸",
+   "model": "E4",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "粗犷",
+   "model": "E4",
+   "region": "east",
+   "v": "cut",
+   "reason": "非公认流派/模糊词 → 删或并入邻近风格"
+  },
+  {
+   "cn": "枯笔",
+   "model": "E4",
+   "region": "east",
+   "v": "move",
+   "reason": "笔法技法 → 移到「绘画语言·笔触与肌理」层"
+  },
+  {
+   "cn": "滴墨",
+   "model": "E4",
+   "region": "east",
+   "v": "move",
+   "reason": "笔法技法 → 移到「绘画语言·笔触与肌理」层"
+  },
+  {
+   "cn": "叠墨",
+   "model": "E4",
+   "region": "east",
+   "v": "move",
+   "reason": "笔法技法 → 移到「绘画语言·笔触与肌理」层"
+  },
+  {
+   "cn": "飞白",
+   "model": "E4",
+   "region": "east",
+   "v": "move",
+   "reason": "笔法技法 → 移到「绘画语言·笔触与肌理」层"
+  },
+  {
+   "cn": "篆籀笔法",
+   "model": "E4",
+   "region": "east",
+   "v": "move",
+   "reason": "笔法技法 → 移到「绘画语言·笔触与肌理」层"
+  },
+  {
+   "cn": "行草笔法",
+   "model": "E4",
+   "region": "east",
+   "v": "move",
+   "reason": "笔法技法 → 移到「绘画语言·笔触与肌理」层"
+  },
+  {
+   "cn": "独墨",
+   "model": "E4",
+   "region": "east",
+   "v": "move",
+   "reason": "笔法技法 → 移到「绘画语言·笔触与肌理」层"
+  },
+  {
+   "cn": "混合笔法",
+   "model": "E4",
+   "region": "east",
+   "v": "move",
+   "reason": "笔法技法 → 移到「绘画语言·笔触与肌理」层"
+  },
+  {
+   "cn": "综合材料绘画",
+   "model": "E6",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "装置与空间绘画",
+   "model": "E6",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "观念绘画",
+   "model": "E6",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "新媒体绘画",
+   "model": "E6",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "科技山水",
+   "model": "E3",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  },
+  {
+   "cn": "虚空绘画",
+   "model": "E5",
+   "region": "east",
+   "v": "keep",
+   "reason": ""
+  }
+ ],
+ "add": {
+  "西方": [
+   [
+    "矫饰主义",
+    "文艺复兴与巴洛克之间的关键过渡,极重要却缺失"
+   ],
+   [
+    "拉斐尔前派",
+    "19世纪英国,极具识别度"
+   ],
+   [
+    "巴比松画派",
+    "印象派的直接前驱,已被引用却无节点"
+   ],
+   [
+    "新即物主义",
+    "一战后德国,与表现主义对照"
+   ],
+   [
+    "巴黎画派",
+    "20世纪初莫迪里阿尼等,缺"
+   ],
+   [
+    "贫穷艺术",
+    "战后意大利,材料观念,缺"
+   ],
+   [
+    "大地艺术",
+    "1960s,缺"
+   ],
+   [
+    "国际哥特式",
+    "哥特与文艺复兴之间"
+   ]
+  ],
+  "东方·中国": [
+   [
+    "没骨(作为风格)",
+    "区别于笔法的没骨一派"
+   ],
+   [
+    "界画",
+    "工细建筑画,独立一格"
+   ],
+   [
+    "金陵画派",
+    "龚贤等,缺"
+   ],
+   [
+    "新安画派",
+    "渐江等,缺"
+   ],
+   [
+    "常州画派/恽派",
+    "恽寿平没骨花卉一派"
+   ],
+   [
+    "金石画派",
+    "赵之谦吴昌硕,以金石入画"
+   ]
+  ],
+  "东方·日本朝鲜(若纳入)": [
+   [
+    "浮世绘",
+    "东亚绕不开的大宗,强烈建议加"
+   ],
+   [
+    "琳派",
+    "尾形光琳装饰传统"
+   ],
+   [
+    "狩野派",
+    "日本官方画派"
+   ],
+   [
+    "大和绘",
+    "日本本土叙事画"
+   ],
+   [
+    "日本南画(文人画)",
+    "中国文人画的日本变体"
+   ],
+   [
+    "朝鲜民画",
+    "民间吉祥画"
+   ]
+  ]
+ },
+ "summary": {
+  "W1": {
+   "keep": 19,
+   "cut": 1
+  },
+  "W2": {
+   "keep": 18
+  },
+  "W3": {
+   "keep": 6
+  },
+  "W4": {
+   "keep": 12,
+   "cut": 6
+  },
+  "W5": {
+   "keep": 10,
+   "cut": 1
+  },
+  "W6": {
+   "keep": 12
+  },
+  "E1": {
+   "keep": 20,
+   "cut": 2,
+   "merge": 21
+  },
+  "E2": {
+   "keep": 11,
+   "cut": 3,
+   "demote": 2
+  },
+  "E3": {
+   "cut": 6,
+   "keep": 19,
+   "move": 2,
+   "demote": 6
+  },
+  "E4": {
+   "cut": 16,
+   "keep": 33,
+   "demote": 23,
+   "move": 18
+  },
+  "E5": {
+   "cut": 6,
+   "move": 3,
+   "keep": 6
+  },
+  "E6": {
+   "keep": 14
+  }
+ }
+}

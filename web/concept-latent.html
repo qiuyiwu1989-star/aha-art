@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 审美潜空间</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/aha.css?v=3"/><link rel="stylesheet" href="css/concept.css"/>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="cbar"><a href="concepts.html">← 概念</a><span class="cname">审美潜空间</span><a href="compare.html">交互版本 →</a></div>
+<div class="cwrap">
+  <div class="chead"><div class="ckick">Latent Space · 在整片人类名作里飞行</div>
+    <div class="ch1">换两个维度,整片画布就重新排列</div>
+    <div class="csub">明暗、动静、冷暖、秩序——把全人类的名作放进一个连续的审美空间。这是只有富标注才做得出的导航。还标出了「你的审美落点」。</div></div>
+  <div class="axes">
+    <div class="axis-grp"><span class="lbl">横轴 X</span><span id="xaxis"></span></div>
+    <div class="axis-grp"><span class="lbl">纵轴 Y</span><span id="yaxis"></span></div>
+  </div>
+  <div class="plot" id="plot"></div>
+  <div class="csub" style="margin-top:12px">悬停看名字 · 点开进入漫游。维度由每件作品真实的色彩(HSL)与情绪算出,已覆盖全部样本;日后接入你们的打标语料会更准。</div>
+</div>
+<script type="module" src="js/latent.js?v=2"></script>
+</body></html>

@@ -1,0 +1,111 @@
+/* ═══ 概念 demo 共享样式(浅色画廊感)═══ */
+html,body{height:auto;background:var(--paper);overflow-x:hidden}
+.cbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;
+  padding:12px 18px;background:rgba(244,241,234,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.cbar a{font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+.cbar a:hover{color:var(--accent)}
+.cbar .cname{font-family:var(--serif);font-size:17px;color:var(--ink);font-weight:500}
+.cwrap{max-width:1080px;margin:0 auto;padding:22px 18px 80px}
+.chead{margin:6px 0 18px}
+.ckick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.ch1{font-family:var(--serif);font-size:clamp(22px,3.4vw,30px);font-weight:500;margin-top:6px;line-height:1.3}
+.csub{font-size:13.5px;color:var(--ink-mute);margin-top:8px;line-height:1.6;max-width:600px}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px}
+.chip{font-family:var(--sans);font-size:13px;color:var(--ink-soft);background:#fff;border:1px solid var(--line);
+  border-radius:999px;padding:6px 14px;cursor:pointer;transition:all .18s var(--ease)}
+.chip:hover{border-color:var(--accent)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.chip .ct{font-family:var(--mono);font-size:10px;opacity:.7;margin-left:5px}
+
+/* 共用:小图卡 */
+.mini{position:relative;border-radius:6px;overflow:hidden;border:1px solid var(--line);background:var(--paper-2);cursor:pointer;
+  transition:transform .2s var(--ease),border-color .2s}
+.mini:hover{transform:translateY(-3px);border-color:var(--accent)}
+.mini .artframe{height:100%}
+.mini .cap{position:absolute;left:0;right:0;bottom:0;color:#fff;font-family:var(--latin);font-size:11px;
+  padding:16px 8px 6px;background:linear-gradient(to top,rgba(0,0,0,.72),transparent);line-height:1.3}
+.mini .yr{position:absolute;top:6px;left:8px;font-family:var(--mono);font-size:10px;color:#fff;
+  text-shadow:0 1px 4px rgba(0,0,0,.6)}
+
+/* ── 母题之河 ── */
+.river{display:flex;gap:0;overflow-x:auto;padding:18px 4px 26px;scroll-snap-type:x proximity}
+.river-stop{flex:0 0 auto;width:230px;scroll-snap-align:center;display:flex;flex-direction:column;align-items:center;position:relative}
+.river-stop .mini{width:200px;aspect-ratio:4/5}
+.river-stop .ryr{font-family:var(--mono);font-size:12px;color:var(--accent);margin-top:10px}
+.river-stop .rart{font-family:var(--latin);font-style:italic;font-size:12px;color:var(--ink-mute);text-align:center;padding:0 6px}
+.river-stop::after{content:"〜";position:absolute;right:-6px;top:90px;color:var(--line);font-size:22px}
+.river-stop:last-child::after{display:none}
+.river-meta{font-family:var(--serif);font-size:15px;color:var(--ink-soft);margin:4px 0 0}
+
+/* ── 潜空间散点 ── */
+.axes{display:flex;gap:18px;flex-wrap:wrap;margin:8px 0 14px}
+.axis-grp{font-family:var(--mono);font-size:11px;color:var(--ink-mute)}
+.axis-grp .lbl{margin-right:8px;text-transform:uppercase;letter-spacing:.08em}
+.axis-grp button{font-family:var(--sans);font-size:12px;border:1px solid var(--line);background:#fff;color:var(--ink-soft);
+  border-radius:6px;padding:4px 10px;margin-right:5px;cursor:pointer}
+.axis-grp button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.plot{position:relative;width:100%;aspect-ratio:1.4;background:#fff;border:1px solid var(--line);border-radius:12px;
+  margin-top:6px;overflow:hidden}
+.plot .axlabel{position:absolute;font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);letter-spacing:.06em}
+.plot .ax-x{bottom:8px;right:12px}.plot .ax-x0{bottom:8px;left:12px}
+.plot .ax-y{top:10px;left:12px}.plot .ax-y0{bottom:26px;left:12px}
+.dot{position:absolute;width:46px;height:46px;border-radius:50%;overflow:hidden;border:2px solid #fff;
+  box-shadow:0 3px 10px rgba(0,0,0,.2);transform:translate(-50%,50%);cursor:pointer;transition:transform .18s var(--ease),z-index 0s}
+.dot:hover{transform:translate(-50%,50%) scale(1.7);z-index:9}
+.dot img{width:100%;height:100%;object-fit:cover}
+.dot .dlab{position:absolute;left:50%;top:-8px;transform:translate(-50%,-100%);white-space:nowrap;
+  font-family:var(--latin);font-style:italic;font-size:11px;background:var(--ink);color:var(--paper);
+  padding:2px 8px;border-radius:4px;opacity:0;pointer-events:none;transition:opacity .15s}
+.dot:hover .dlab{opacity:1}
+.you{position:absolute;transform:translate(-50%,50%);font-family:var(--mono);font-size:11px;color:var(--accent);
+  background:var(--accent-soft);border:1px dashed var(--accent);border-radius:999px;padding:4px 10px;z-index:8}
+
+/* ── 两画之间 ── */
+.pickrow{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:10px 0 18px}
+.pickrow select{font-family:var(--sans);font-size:14px;padding:9px 12px;border:1px solid var(--line);
+  border-radius:8px;background:#fff;color:var(--ink);max-width:260px}
+.pickrow .go{font-family:var(--sans);font-size:14px;background:var(--ink);color:var(--paper);border:none;
+  border-radius:8px;padding:10px 20px;cursor:pointer}
+.pathline{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding:8px 2px 20px}
+.pstep{flex:0 0 auto;display:flex;align-items:center}
+.pstep .mini{width:150px;height:180px}
+.plink{flex:0 0 auto;width:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 8px;text-align:center}
+.plink .pl-chip{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.plink .pl-why{font-family:var(--serif);font-size:12.5px;line-height:1.5;color:var(--ink-soft);margin-top:6px}
+.plink .pl-arr{color:var(--ink-faint);font-size:18px;margin:6px 0}
+.path-head{font-family:var(--serif);font-size:17px;color:var(--ink);margin:6px 0 4px}
+
+/* ── 策展台 ── */
+.cur-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-top:10px}
+.cur-grid .mini{aspect-ratio:1}
+.cur-grid .mini.picked{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.cur-grid .mini.picked::after{content:"✓";position:absolute;top:5px;right:7px;color:#fff;background:var(--accent);
+  width:18px;height:18px;border-radius:50%;font-size:11px;display:flex;align-items:center;justify-content:center}
+.tray{position:sticky;bottom:0;z-index:20;background:rgba(244,241,234,.95);backdrop-filter:blur(8px);
+  border-top:1px solid var(--line);padding:12px 18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:0 -18px -80px}
+.tray input{flex:1;min-width:180px;font-family:var(--serif);font-size:15px;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:#fff}
+.tray .tcount{font-family:var(--mono);font-size:12px;color:var(--ink-mute)}
+.tray .build{font-family:var(--sans);font-size:14px;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:10px 22px;cursor:pointer}
+.tray .build[disabled]{opacity:.4;cursor:default}
+.exhibit{text-align:center}
+.exhibit .ex-title{font-family:var(--serif);font-size:clamp(24px,4vw,36px);font-weight:500;margin:20px 0 4px}
+.exhibit .ex-by{font-family:var(--mono);font-size:12px;color:var(--ink-mute);margin-bottom:24px}
+.exhibit .ex-wall{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px}
+.exhibit .ex-w .artframe{border:1px solid var(--line);border-radius:4px;box-shadow:0 12px 30px -16px rgba(40,30,20,.4)}
+.exhibit .ex-cap{font-family:var(--latin);font-style:italic;font-size:12.5px;color:var(--ink-mute);margin-top:8px}
+.exhibit .ex-actions{margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.exhibit .ex-actions button{font-family:var(--sans);font-size:13.5px;border:1px solid var(--line);background:#fff;
+  border-radius:999px;padding:10px 20px;cursor:pointer}
+
+/* 详情浮层(河/散点共用) */
+.lightbox{position:fixed;inset:0;z-index:60;background:rgba(20,16,11,.82);display:none;align-items:center;justify-content:center;padding:24px}
+.lightbox.open{display:flex}
+.lb-card{max-width:520px;background:var(--paper);border-radius:12px;overflow:hidden}
+.lb-card .artframe{max-height:54vh}
+.lb-body{padding:18px 20px 22px}
+.lb-title{font-family:var(--serif);font-size:20px}
+.lb-by{font-family:var(--latin);font-style:italic;font-size:13px;color:var(--ink-mute);margin:3px 0 10px}
+.lb-one{font-family:var(--serif);font-size:15px;line-height:1.6;color:var(--ink-soft);border-left:3px solid var(--accent);padding-left:12px}
+.lb-x{position:absolute;top:18px;right:22px;color:#fff;font-size:26px;cursor:pointer;background:none;border:none}

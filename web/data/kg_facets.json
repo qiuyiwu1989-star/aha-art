@@ -1,0 +1,202 @@
+{
+ "meta": {
+  "title": "画外音/感知层 · 多面解构",
+  "version": "v1",
+  "note": "原'画外音/感知'398原子混了≥6种不同性质的'面';各应用不同泛化机制,而非一律VAD。"
+ },
+ "facets": [
+  {
+   "cn": "情感 Affect",
+   "src": "心理语言 + 哲学/氛围的情感部分",
+   "mech": "VAD 连续坐标",
+   "status": "已做:14情绪锚点(kg-affect)",
+   "color": "affect",
+   "count": 51,
+   "link": "kg-affect.html"
+  },
+  {
+   "cn": "象征母题 Motif",
+   "src": "象征语言",
+   "mech": "母题关键节点 + 实例上卷(开集)",
+   "status": "已收:50 → 11母题",
+   "color": "motif",
+   "count": 50
+  },
+  {
+   "cn": "叙事结构 Narrative",
+   "src": "叙事语言",
+   "mech": "封闭枚举(叙事弧 + 叙事模式)",
+   "status": "已收:闭集3组(叙事弧/模式/手法)",
+   "color": "narr",
+   "count": 46,
+   "link": "kg-facets-detail.html"
+  },
+  {
+   "cn": "哲思概念 Concept",
+   "src": "哲学语言",
+   "mech": "概念锚点(小闭集)",
+   "status": "已收:10对立轴(存在↔虚无…)",
+   "color": "concept",
+   "count": 50,
+   "link": "kg-facets-detail.html"
+  },
+  {
+   "cn": "感官通道 Sensory",
+   "src": "感官语言 + 空气氛围",
+   "mech": "五感通道枚举(闭集)+ 强度",
+   "status": "已收:六通道(视/触/听/嗅味/体感/大气)",
+   "color": "sense",
+   "count": 104,
+   "link": "kg-facets-detail.html"
+  },
+  {
+   "cn": "时间性 Temporality",
+   "src": "时间语言 + 时间记忆",
+   "mech": "时间性坐标(瞬间↔永恒)+ 模式",
+   "status": "已收:坐标(瞬间↔永恒)+5模式",
+   "color": "time",
+   "count": 97,
+   "link": "kg-facets-detail.html"
+  }
+ ],
+ "motif_nodes": [
+  {
+   "id": "MOTIF.01",
+   "cn": "光与天体",
+   "open": true,
+   "example_count": 8,
+   "examples": [
+    "光",
+    "暗影",
+    "月亮",
+    "太阳",
+    "天空",
+    "阴影",
+    "烛光",
+    "光环"
+   ]
+  },
+  {
+   "id": "MOTIF.02",
+   "cn": "水与火",
+   "open": true,
+   "example_count": 6,
+   "examples": [
+    "水",
+    "火",
+    "血",
+    "海",
+    "河流",
+    "烟雾"
+   ]
+  },
+  {
+   "id": "MOTIF.03",
+   "cn": "草木生灵",
+   "open": true,
+   "example_count": 11,
+   "examples": [
+    "鸟",
+    "树",
+    "花",
+    "蝴蝶",
+    "蛇",
+    "鸽子",
+    "鸟笼",
+    "枯木",
+    "鱼",
+    "羽毛",
+    "果实"
+   ]
+  },
+  {
+   "id": "MOTIF.04",
+   "cn": "生死符号",
+   "open": true,
+   "example_count": 2,
+   "examples": [
+    "沙漏",
+    "骷髅"
+   ]
+  },
+  {
+   "id": "MOTIF.05",
+   "cn": "门径与界限",
+   "open": true,
+   "example_count": 6,
+   "examples": [
+    "门",
+    "门槛",
+    "十字路口",
+    "天梯",
+    "桥",
+    "迷宫"
+   ]
+  },
+  {
+   "id": "MOTIF.06",
+   "cn": "镜与面具",
+   "open": true,
+   "example_count": 6,
+   "examples": [
+    "镜子",
+    "面具",
+    "眼睛",
+    "镜像",
+    "剪影",
+    "面纱"
+   ]
+  },
+  {
+   "id": "MOTIF.07",
+   "cn": "囚禁束缚",
+   "open": true,
+   "example_count": 1,
+   "examples": [
+    "镣铐"
+   ]
+  },
+  {
+   "id": "MOTIF.08",
+   "cn": "圣俗符号",
+   "open": true,
+   "example_count": 3,
+   "examples": [
+    "十字",
+    "天使",
+    "魔鬼"
+   ]
+  },
+  {
+   "id": "MOTIF.09",
+   "cn": "处所象征",
+   "open": true,
+   "example_count": 4,
+   "examples": [
+    "山",
+    "城市",
+    "荒野",
+    "石头"
+   ]
+  },
+  {
+   "id": "MOTIF.10",
+   "cn": "抽象符号",
+   "open": true,
+   "example_count": 2,
+   "examples": [
+    "梦",
+    "符号"
+   ]
+  },
+  {
+   "id": "MOTIF.99",
+   "cn": "其它母题(开放)",
+   "open": true,
+   "example_count": 1,
+   "examples": [
+    "龟裂"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 两画之间</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/aha.css?v=3"/><link rel="stylesheet" href="css/concept.css"/>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="cbar"><a href="concepts.html">← 概念</a><span class="cname">两画之间</span><a href="compare.html">交互版本 →</a></div>
+<div class="cwrap">
+  <div class="chead"><div class="ckick">Six Degrees · 图谱里的最短路径</div>
+    <div class="ch1">任选两幅,看它们隔几步</div>
+    <div class="csub">"怎么从北斋的大浪,走到雨天的巴黎?" —— 沿着影响、母题、流派的连线,aha 给出最短的那条路。每一步都是一次"原来如此"。</div></div>
+  <div class="pickrow">
+    <select id="selA"></select><span style="color:var(--ink-mute)">→</span><select id="selB"></select>
+    <button class="go" id="goPath">找路</button>
+  </div>
+  <div class="path-head" id="phead"></div>
+  <div class="pathline" id="pathline"></div>
+</div>
+<script type="module" src="js/path.js"></script>
+</body></html>

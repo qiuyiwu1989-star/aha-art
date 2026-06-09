@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 艺术家页面 · 第一性原理架构 V3</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--red:#a8443a;--blue:#5b7596;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:940px;margin:0 auto;padding:34px 18px 96px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(22px,4.4vw,33px);font-weight:700;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:14px;line-height:1.8;max-width:760px;margin:8px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:8px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .sec{margin-top:42px}
+  .sec-h{font-family:var(--serif);font-size:21px;font-weight:600;border-bottom:2px solid var(--accent);padding-bottom:8px;margin-bottom:4px}
+  .sec-h .nx{font-family:var(--mono);font-size:12px;color:var(--accent);margin-right:8px}
+  .sec-d{font-size:13.5px;color:var(--ink-mute);margin:10px 0 16px;line-height:1.8}.sec-d b{color:var(--ink-soft)}
+  .axiom{background:#fff;border:1px solid var(--line);border-left:4px solid var(--ink);border-radius:10px;padding:15px 18px;margin-top:14px}
+  .axiom .at{font-family:var(--serif);font-size:15.5px;font-weight:600;line-height:1.7;margin-bottom:6px}
+  .axiom p{font-size:13.5px;color:var(--ink-soft);line-height:1.85}.axiom p b{color:var(--accent)}
+  /* four facts of a point cloud */
+  .parties{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:14px}@media(max-width:640px){.parties{grid-template-columns:1fr 1fr}}
+  .party{background:var(--paper-2);border-radius:10px;padding:11px 12px;text-align:center}
+  .party .pn{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--accent)}
+  .party .pd{font-size:11px;color:var(--ink-mute);margin-top:4px;line-height:1.45}
+  /* vs-style table */
+  table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top;line-height:1.6}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:11px;color:var(--ink-soft);font-weight:500}
+  td.kk{font-family:var(--serif);font-weight:600;color:var(--ink-soft);width:18%}
+  td.st{color:var(--ink-mute);width:41%}td.ar{color:var(--ink-soft);width:41%}td.ar b{color:var(--accent)}
+  /* chain */
+  .chain{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:8px}
+  .flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center}
+  .node{border-radius:10px;padding:10px 13px;text-align:center;min-width:100px}
+  .node .nn{font-family:var(--serif);font-size:14px;font-weight:600}
+  .node .nd{font-size:10px;margin-top:3px;opacity:.9}
+  .node.root{background:var(--accent);color:#fff}.node.real{background:var(--green);color:#fff}.node.eff{background:var(--blue);color:#fff}.node.mean{background:var(--gold);color:#fff}
+  .arrow{font-family:var(--serif);font-size:20px;color:var(--ink-faint)}
+  .emerge{margin-top:14px;text-align:center;font-size:13px;color:var(--ink-soft);background:var(--accent-soft);border:1px dashed var(--accent);border-radius:10px;padding:11px 14px;line-height:1.7}.emerge b{color:var(--accent)}
+  /* dimension groups */
+  .grp{margin-top:18px}
+  .grp-h{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
+  .grp-h .gtag{font-family:var(--mono);font-size:13px;font-weight:600;color:#fff;background:var(--accent);border-radius:7px;padding:2px 9px}
+  .grp-h .gt{font-family:var(--serif);font-size:17px;font-weight:600}
+  .grp-h.gA .gtag{background:var(--accent)}.grp-h.gB .gtag{background:var(--blue)}.grp-h.gC .gtag{background:var(--green)}
+  .grp-note{font-size:12.5px;color:var(--ink-mute);margin:2px 0 10px;line-height:1.6;font-style:italic}
+  .row{display:flex;gap:12px;background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 15px;margin-bottom:8px}
+  .grp.gB .row{border-left:3px solid var(--blue)}.grp.gC .row{border-left:3px solid var(--green)}.grp.gA .row{border-left:3px solid var(--accent)}
+  .row .rk{font-family:var(--serif);font-size:14.5px;font-weight:600;color:var(--ink-soft);min-width:165px;flex-shrink:0}
+  .row .rf{font-size:12.5px;color:var(--ink-soft);line-height:1.65}
+  /* style relation cards */
+  .srel{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}@media(max-width:640px){.srel{grid-template-columns:1fr}}
+  .sc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 15px;border-top:3px solid var(--green)}
+  .sc .sm{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--green)}.sc .se{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-left:6px}
+  .sc .sd{font-size:12.5px;color:var(--ink-soft);margin-top:6px;line-height:1.6}
+  .sc .sg{font-family:var(--mono);font-size:11px;color:var(--accent);margin-top:8px;border-top:1px dashed var(--line);padding-top:7px}
+  /* vad standard */
+  .qgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px;max-width:420px}
+  .qcell{border-radius:10px;padding:12px 13px;border:1px solid var(--line)}
+  .qcell .qn{font-family:var(--serif);font-size:15px;font-weight:600}
+  .qcell .qq{font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-top:3px}
+  .vaxc{margin-top:10px}
+  .vaxc tr td:first-child{font-family:var(--serif);font-weight:600;color:var(--ink-soft);width:24%}
+  .vaxc td.pp{font-family:var(--mono);font-size:11.5px;color:var(--accent);width:30%}
+  .vaxc td.px{color:var(--ink-mute);font-size:12px}
+  /* live 范本 figures */
+  .figpair{display:grid;grid-template-columns:1.18fr 1fr;gap:12px;margin-top:10px}@media(max-width:700px){.figpair{grid-template-columns:1fr}}
+  .fig{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px}
+  .fig svg{width:100%;height:auto;display:block}
+  .figt{font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-bottom:4px;text-align:center}
+  .leg{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+  .lgi{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink-soft)}
+  .lgi .dt{width:11px;height:11px;border-radius:50%;flex-shrink:0}
+  .lgi .mo{font-family:var(--mono);font-size:9px;color:#fff;border-radius:4px;padding:1px 6px}
+  .lgi a{color:var(--ink-soft);text-decoration:none;border-bottom:1px dashed var(--line)}.lgi a:hover{color:var(--accent)}
+  /* formula */
+  .formula{background:#fbf9f4;border:1px solid var(--line);border-radius:12px;padding:15px;margin-top:10px;text-align:center}
+  .formula .ft{font-family:var(--serif);font-size:clamp(14px,2.7vw,18px);font-weight:600;line-height:1.9}
+  .formula .fm{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:8px;line-height:1.7}
+  /* golden examples */
+  .gold{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+  .gb{display:block;background:#fff;border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:12px;padding:12px 18px;text-decoration:none;text-align:center}.gb:hover{border-color:var(--accent)}
+  .gb .gl{font-family:var(--mono);font-size:9.5px;color:var(--gold)}.gb .gn{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--ink);margin-top:3px}.gb .gd{font-size:11px;color:var(--ink-mute);margin-top:2px}
+  /* delta table */
+  td.old{color:var(--ink-mute)}td.new{color:var(--ink-soft)}td.new b{color:var(--accent)}
+  .pill{display:inline-block;font-family:var(--mono);font-size:11px;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:3px 12px;margin-top:10px}
+  .back{display:block;text-align:center;margin-top:46px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .home-fab:hover{color:var(--accent)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 艺术家页面架构(第一性原理)</div>
+  <h1>艺术家是什么 —— 链上的一片点云</h1>
+  <p class="lead">旧框架把艺术家当成「<b>风格类下的一个条目</b>」,套一个 4 轴向量、10 段并列。但 V3 已证明:风格不是类、是<b>涌现的区</b>;那两条多余的轴也被下放了。这一页从公理重推:艺术家就是<b>作者</b>那一方 —— 一个在生成链上持续产出作品的人格源,他的作品在世界观平面上铺成一片<b>有重心、有离散、会漂移</b>的点云。</p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-artist">实例·艺术家</a> › <b style="color:var(--ink-soft)">艺术家标准</b></div>
+
+  <!-- 公理 -->
+  <div class="sec">
+    <div class="sec-h"><span class="nx">公理</span>回到「画是什么」,艺术家落在哪一方</div>
+    <div class="axiom">
+      <div class="at">画 = 一组被刻意安排、供人观看、且对某个世界有所主张的二维痕迹。四参与方:世界 · <b style="color:var(--accent)">作者</b> · 痕迹 · 观者。</div>
+      <p><b>艺术家 = 作者那一方。</b>但一幅画只持有一个作者立场;艺术家是做了很多画、且有一生的人。所以艺术家不是一个点 —— 而是一个<b>持续产出作品的人格源</b>,他的作品在世界观平面上形成一片点云。这片点云有四个量,正是后面所有维度的来源:</p>
+    </div>
+    <div class="parties">
+      <div class="party"><div class="pn">重心</div><div class="pd">他惯常的<b>立场</b>(世界观坐标)</div></div>
+      <div class="party"><div class="pn">离散</div><div class="pd">他变化的<b>幅度</b>(一招鲜还是多变)</div></div>
+      <div class="party"><div class="pn">轨迹</div><div class="pd">他一生的<b>漂移</b>(早→中→晚期)</div></div>
+      <div class="party"><div class="pn">人源</div><div class="pd">他立场的<b>成因</b>(生平、师承)</div></div>
+    </div>
+  </div>
+
+  <!-- 艺术家 vs 风格 -->
+  <div class="sec">
+    <div class="sec-h"><span class="nx">推导</span>艺术家与风格的根本区别(为什么不能共用一套架构)</div>
+    <div class="sec-d">风格是<b>类</b>、是静态的区;艺术家是<b>实例 / 生成源</b>。这五条区别决定了艺术家页必须有风格页没有的维度 —— 尤其是<b>时间(轨迹)</b>与<b>因果(人源)</b>。</div>
+    <table><thead><tr><th style="width:18%">维度</th><th style="width:41%">风格(类)</th><th style="width:41%">艺术家(实例)</th></tr></thead>
+    <tbody id="vsrows"></tbody></table>
+  </div>
+
+  <!-- 同一条链 -->
+  <div class="sec">
+    <div class="sec-h"><span class="nx">架构</span>同一条生成链,只是落在一个人身上</div>
+    <div class="sec-d">不重起炉灶:艺术家页沿用 V3 的生成因果链,只是每一环都给出<b>这个人的取值</b>。世界观(他的立场)→ 实现(他画什么、怎么画)→ 效应(他的画对人做了什么)→ 意义(他亲口说的 + 被推断的)。</div>
+    <div class="chain">
+      <div class="flow">
+        <div class="node root"><div class="nn">世界观坐标</div><div class="nd">他的立场 · L0</div></div>
+        <span class="arrow">→</span>
+        <div class="node real"><div class="nn">题材 + 个人语言</div><div class="nd">他的实现 · L1·L2</div></div>
+        <span class="arrow">→</span>
+        <div class="node eff"><div class="nn">感知效应</div><div class="nd">他的画做了什么 · L3</div></div>
+        <span class="arrow">→</span>
+        <div class="node mean"><div class="nn">画外音</div><div class="nd">创作观 + 意义 · L4</div></div>
+      </div>
+      <div class="emerge" style="margin-top:16px">艺术家不在链之外 —— 他<b>就是这条链的源头</b>,在每一环留下个人签名;再叠加风格做不到的<b>轨迹、离散、谱系</b>。</div>
+    </div>
+  </div>
+
+  <!-- 维度详解 -->
+  <div class="sec">
+    <div class="sec-h"><span class="nx">维度</span>艺术家页 · 三组 12 维</div>
+    <div class="sec-d">不再是 10 段并列,而是三组:<b>A 人源</b>(立场从何而来)→ <b>B 链上签名</b>(沿生成链逐环取值)→ <b>C 唯一属于艺术家</b>(风格做不到的维度)。</div>
+    <div id="groups"></div>
+  </div>
+
+  <!-- 风格关系三态 -->
+  <div class="sec">
+    <div class="sec-h"><span class="nx">关系</span>艺术家 ↔ 风格:不是归类,是三种姿态</div>
+    <div class="sec-d">V3 里风格是涌现的命名区。所以艺术家不「belongs_to 一个类」—— 而是他的<b>点云</b>与命名区发生三种关系:</div>
+    <div class="srel" id="srel"></div>
+  </div>
+
+  <!-- 公式 -->
+  <div class="sec">
+    <div class="sec-h"><span class="nx">公式</span>个人向量 = 区重心 + 带符号偏移 + 离散 + 漂移</div>
+    <div class="formula" id="formula"></div>
+    <div class="sec-d" style="margin-top:12px">和 V2 的「风格向量 ± 个人偏移」相比,关键变了三点:① 基底换成 V3 的<b>两条真轴</b>(扔掉秩序-张力/节制-强度);② 偏移<b>带符号</b>(他比同区更偏链的哪一端);③ 加上<b>离散</b>与<b>漂移</b> —— 把艺术家从「点」升级为「会动的点云」。</div>
+  </div>
+
+  <!-- 感知效应标准 · 情绪环 -->
+  <div class="sec">
+    <div class="sec-h"><span class="nx">⑦ 标准</span>感知效应 · 情绪环(诠释性 · 情绪不可由像素直推)</div>
+    <div class="sec-d" id="vadnote"></div>
+    <div class="qgrid" id="vadquads"></div>
+    <table class="vaxc"><thead><tr><th style="width:24%">轴(双极)</th><th style="width:30%">两端</th><th>像素侧可测信号</th></tr></thead><tbody id="vadaxes"></tbody></table>
+    <div class="sec-d" style="margin-top:10px">落点掉进哪个象限 = 这位画家作品惯常给人的情绪;<b>支配</b>不占轴、编码为<b>点径</b>(大=压迫/纪念碑,小=沉浸/被吸入)。范本:列宾→<b style="color:#a8443a">紧张·悲怆</b>(大点)、莫奈→<b style="color:#5a7d6f">宁静·惬意</b>(小点),对角相反。</div>
+  </div>
+
+  <!-- 活范本 -->
+  <div class="sec">
+    <div class="sec-h"><span class="nx">活范本</span>四位画家落在同一张图(数据驱动·实时生成)</div>
+    <div class="sec-d">把范本直接画进标准。左 = ④ 世界观平面(点=个人重心,虚线=一生轨迹);右 = ⑦ 情绪环(点径=支配)。<b>列宾·莫奈·倪瓒·徐悲鸿</b>恰好分占不同区、且各落一个情绪象限 —— 一眼看清 <b>居于/立区/跨越</b> 与 VAD 的差别,也压住了模板对东方/跨越/极端的边界。</div>
+    <div class="figpair">
+      <div class="fig"><div class="figt">④ 世界观平面 · 再现-表现 ⊥ 结构-感知</div><svg id="fwplane" viewBox="0 0 480 430"></svg></div>
+      <div class="fig"><div class="figt">⑦ 情绪环 · 愉悦 × 唤起(支配=点径)</div><svg id="fwcplex" viewBox="0 0 420 430"></svg></div>
+    </div>
+    <div class="leg" id="fwleg"></div>
+  </div>
+
+  <!-- 变更 delta -->
+  <div class="sec">
+    <div class="sec-h"><span class="nx">变更</span>相对旧 V2 艺术家框架,改了什么</div>
+    <table>
+      <thead><tr><th style="width:20%">维度</th><th style="width:40%">旧 V2 框架</th><th style="width:40%">第一性原理 V3</th></tr></thead>
+      <tbody>
+        <tr><td class="kk">页面骨架</td><td class="old">10 段并列(身份/小传/向量/题材…)</td><td class="new"><b>沿生成链的三组 12 维</b>(人源→链上签名→艺术家独有)</td></tr>
+        <tr><td class="kk">个人向量</td><td class="old">4 轴(含秩序-张力/节制-强度)</td><td class="new"><b>2 条经检验真轴</b>(再现-表现 ⊥ 结构-感知);余者下放为语言/效应</td></tr>
+        <tr><td class="kk">与风格关系</td><td class="old">belongs_to 一个/多个风格类</td><td class="new"><b>点云 居于/跨越/立区</b>命名区(风格是涌现的区,不是类)</td></tr>
+        <tr><td class="kk">艺术家几何</td><td class="old">一个点(风格向量±偏移)</td><td class="new"><b>点云</b>:重心 + 离散σ + 一生的漂移</td></tr>
+        <tr><td class="kk">生平</td><td class="old">事实清单(出身→成名→晚年)</td><td class="new"><b>世界观的成因</b>(什么经历塑造了他的立场)</td></tr>
+        <tr><td class="kk">新增维度</td><td class="old">—</td><td class="new"><b>轨迹</b>(生涯漂移)· <b>代表作=点云</b> · <b>感知效应</b>(VAD,可测)</td></tr>
+      </tbody>
+    </table>
+    <span class="pill">✅ 艺术家 = 链上的会动的点云 · 从风格降下的 31 画家(倪瓒/董其昌/齐白石…)均按此架构落地</span>
+  </div>
+
+  <!-- 范本 -->
+  <div class="sec">
+    <div class="sec-h"><span class="nx">范本</span>四个样板 · 覆盖三种姿态 + 东西方</div>
+    <div class="sec-d"><b>居于</b>(列宾·倪瓒)、<b>立区</b>(莫奈)、<b>跨越</b>(徐悲鸿)三种风格关系全覆盖;倪瓒(东方·一招封神、近零漂移)与徐悲鸿(东方·横跨写实↔写意)压住了东方与跨越的模板边界。</div>
+    <div class="gold">
+      <a class="gb" href="kg-artist.html?id=ARTIST.repin"><div class="gl">俄国 · 居于写实区</div><div class="gn">列宾</div><div class="gd">为人生而艺术</div></a>
+      <a class="gb" href="kg-artist.html?id=ARTIST.monet"><div class="gl">法国 · 立区印象</div><div class="gn">莫奈</div><div class="gd">追逐光与瞬间</div></a>
+      <a class="gb" href="kg-artist.html?id=ARTIST.nizan"><div class="gl">元 · 居于写意寄情</div><div class="gn">倪瓒</div><div class="gd">写胸中逸气</div></a>
+      <a class="gb" href="kg-artist.html?id=ARTIST.xubeihong"><div class="gl">中国 · 跨越写实↔写意</div><div class="gn">徐悲鸿</div><div class="gd">中西合璧</div></a>
+    </div>
+  </div>
+
+  <!-- 考究规范 -->
+  <div class="sec">
+    <div class="sec-h"><span class="nx">规范</span>考究填写标准 · 一位艺术家怎么从「派生」升级为「深度」</div>
+    <div class="sec-d">艺术家深化是慢工。为保证一致,逐个考究时<b>严格按下表填字段</b>。当前 <b>276 位全有页</b>:深度考究者带完整点云/轨迹,其余为<b>风格实例派生页</b>(继承所属风格的坐标/题材)。把一位从派生升级为深度 = 把下表「深度必填」逐项补上、去掉 <code>_stub</code>。</div>
+    <table>
+      <thead><tr><th style="width:18%">字段</th><th style="width:14%">层级</th><th style="width:32%">含义</th><th>怎么定 / 取值</th></tr></thead>
+      <tbody>
+        <tr><td class="kk">cn / en / born / death / nationality / titles</td><td>身份</td><td>姓名·生卒·国别·身份</td><td>查证生卒年(派生页可缺,深度必填真实年代)</td></tr>
+        <tr><td class="kk">headline</td><td>身份</td><td>一句话定位</td><td>提炼其立场/独创(≤20字)</td></tr>
+        <tr><td class="kk">bio</td><td>A 人源</td><td><b>世界观的成因</b>:什么经历塑造了他的立场</td><td>3–5 句,重因果而非流水账</td></tr>
+        <tr><td class="kk">wv.region_id / region_cn</td><td>B·L0</td><td>所属世界观区</td><td>由个人重心 (x,y) 最近的 6 区质心定</td></tr>
+        <tr><td class="kk">wv.x / wv.y</td><td>B·L0 ★</td><td>个人重心(再现-表现 / 结构-感知)</td><td><b>深度必填</b>:在所属风格向量基础上给带符号个人偏移</td></tr>
+        <tr><td class="kk">wv.spread</td><td>B·L0</td><td>点云离散 σ(风格幅度)</td><td>0.04 窄(一招封神)→ 0.16 宽(一生多变)</td></tr>
+        <tr><td class="kk">wv.offset / read</td><td>B·L0</td><td>个人偏移说明 / 读法</td><td>一句:他比同区更偏链的哪一端</td></tr>
+        <tr><td class="kk">style_relation.mode</td><td>关系</td><td><b>居于 / 跨越 / 立区</b></td><td>居于=稳在一区;跨越=横跨两区;立区=他几乎定义了该区</td></tr>
+        <tr><td class="kk">trajectory[]</td><td>C 独有 ★</td><td>一生漂移:{phase, year, x, y, note}</td><td><b>深度必填</b>:2–3 个时期,早→晚的 (x,y) 漂移</td></tr>
+        <tr><td class="kk">works[]</td><td>C 独有 ★</td><td>代表作点云:{t, year, x, y}</td><td><b>深度必填</b>:3–4 件真迹,坐标贴近各期重心</td></tr>
+        <tr><td class="kk">subjects[]</td><td>B·L1</td><td>题材母题</td><td>派生页继承所属风格 themes;深度填个人偏好</td></tr>
+        <tr><td class="kk">lang{7极}</td><td>B·L2</td><td>个人语言指纹(构图/空间/造型/光影/色彩/笔触/边缘 各 0–1)</td><td><b>深度必填</b>:对照 7 极双端打分</td></tr>
+        <tr><td class="kk">language / color</td><td>B·L2</td><td>技法 / 用色一句话</td><td>深度填</td></tr>
+        <tr><td class="kk">affect{v,a,d}</td><td>B·L3</td><td>VAD 情绪(愉悦/唤起/支配 各 0–1)</td><td><b>深度必填</b>:作品惯常给人的情绪;支配=点径</td></tr>
+        <tr><td class="kk">quote / meaning</td><td>B·L4</td><td>亲口名言 / 被推断的意义指向</td><td>引真实名言;meaning 一句</td></tr>
+        <tr><td class="kk">teachers / students / peers / influence</td><td>源流</td><td>师承·门生·同侪·影响谁</td><td>填可考者,可空</td></tr>
+      </tbody>
+    </table>
+    <div class="sec-d" style="margin-top:14px"><b>升级清单(派生 → 深度)</b>:① 查实 born/death/nationality;② 写 bio(成因式);③ 定个人重心 wv.x/y(带符号偏移)+ spread;④ 给 2–3 点 trajectory;⑤ 列 3–4 件 works 并定坐标;⑥ 打 7 极 lang + VAD;⑦ 引一句 quote、写 meaning;⑧ 删 <code>_stub</code>、roster 标 authored。<b>质量底线</b>:坐标须能自圆其说(读法成立)、works 为真迹、quote 为信而有据。schema 范本见 <a href="kg-artist.html?id=ARTIST.monet" style="color:var(--accent)">莫奈</a> / <a href="kg-artist.html?id=ARTIST.repin" style="color:var(--accent)">列宾</a>。</div>
+    <span class="pill">📋 慢车道:每批 8–10 位、优先 ≥2 风格的核心;当前深度 49 / 276</span>
+  </div>
+
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const NS='http://www.w3.org/2000/svg', E=(n,o)=>{const e=document.createElementNS(NS,n);for(const k in o)e.setAttribute(k,o[k]);return e;};
+Promise.all([
+  fetch('data/kg_artist_framework.json').then(r=>r.json()),
+  fetch('data/kg_artists.json').then(r=>r.json()).catch(()=>({artists:{}})),
+  fetch('data/kg_worldview_v3.json').then(r=>r.json()).catch(()=>({regions:[]}))
+]).then(([F,A,WV])=>{
+  // vs-style table
+  const vr=document.getElementById('vsrows');
+  F.vs_style.forEach(r=> vr.appendChild($(`<tr><td class="kk">${r.k}</td><td class="st">${r.style}</td><td class="ar">${r.artist}</td></tr>`)));
+  // groups
+  const gw=document.getElementById('groups');
+  F.groups.forEach(g=>{
+    const box=$(`<div class="grp g${g.g}"></div>`);
+    box.appendChild($(`<div class="grp-h g${g.g}"><span class="gtag">${g.g}</span><span class="gt">${g.cn}</span></div>`));
+    box.appendChild($(`<div class="grp-note">${g.note}</div>`));
+    g.dims.forEach(d=> box.appendChild($(`<div class="row"><div class="rk">${d.cn}</div><div class="rf">${d.fields}</div></div>`)));
+    gw.appendChild(box);
+  });
+  // style relation
+  const sw=document.getElementById('srel');
+  F.style_relation.forEach(s=> sw.appendChild($(`<div class="sc"><div><span class="sm">${s.mode}</span><span class="se">${s.en}</span></div><div class="sd">${s.desc}</div><div class="sg">例:${s.eg}</div></div>`)));
+  // formula
+  document.getElementById('formula').appendChild($(`<div><div class="ft">${F.formula.ft.replace(/(区重心|带符号个人偏移|离散σ|一生的漂移)/g,'<span style="color:var(--accent)">$1</span>')}</div><div class="fm">${F.formula.fm}</div></div>`));
+  // vad standard
+  if(F.vad){
+    document.getElementById('vadnote').innerHTML=F.vad.note;
+    const qg=document.getElementById('vadquads');
+    F.vad.quadrants.forEach(q=> qg.appendChild($(`<div class="qcell" style="border-top:3px solid ${q.col};background:${q.col}0f"><div class="qn" style="color:${q.col}">${q.name}</div><div class="qq">${q.q}</div></div>`)));
+    const va=document.getElementById('vadaxes');
+    F.vad.axes.forEach(a=> va.appendChild($(`<tr><td>${a.k}</td><td class="pp">${a.pole}</td><td class="px">${a.pixel}</td></tr>`)));
+  }
+  // ===== 活范本:四位画家落在同一张图 =====
+  const SHOW=[
+    {id:'ARTIST.repin',     col:'#a8443a'},
+    {id:'ARTIST.monet',     col:'#b0673a'},
+    {id:'ARTIST.nizan',     col:'#5b7596'},
+    {id:'ARTIST.xubeihong', col:'#c98a1a'}
+  ].map(s=>({...s,a:(A.artists||{})[s.id]})).filter(s=>s.a);
+  const MODECOL={'居于':'#5a7d6f','立区':'#c98a1a','跨越':'#5b7596'};
+  const TX=(svg,x,y,s,o={})=>{const e=E('text',{x,y,'font-family':o.f||'Noto Sans SC','font-size':o.fs||10,fill:o.fill||'#a89f8f','text-anchor':o.a||'middle'});e.textContent=s;if(o.w)e.setAttribute('font-weight',o.w);if(o.st){e.setAttribute('paint-order','stroke');e.setAttribute('stroke',o.st);e.setAttribute('stroke-width',o.sw||2.5);}svg.appendChild(e);};
+  // ④ 平面
+  (function(){const svg=document.getElementById('fwplane');if(!svg)return;const W=480,H=430,pad=42;
+    const sx=v=>pad+v*(W-2*pad), sy=v=>H-pad-v*(H-2*pad);
+    svg.appendChild(E('rect',{x:pad,y:pad,width:W-2*pad,height:H-2*pad,fill:'#fcfaf5',stroke:'#e8e0d0'}));
+    svg.appendChild(E('line',{x1:sx(.5),y1:pad,x2:sx(.5),y2:H-pad,stroke:'#efe9dc'}));
+    svg.appendChild(E('line',{x1:pad,y1:sy(.5),x2:W-pad,y2:sy(.5),stroke:'#efe9dc'}));
+    (WV.regions||[]).forEach(rg=>{svg.appendChild(E('circle',{cx:sx(rg.cx),cy:sy(rg.cy),r:6,fill:'#efe7d8',stroke:'#cfc6b4','stroke-width':1.2}));TX(svg,sx(rg.cx),sy(rg.cy)-9,rg.name,{fs:9.5,f:'Noto Serif SC',fill:'#bcb3a2',st:'#fcfaf5'});});
+    TX(svg,sx(.02),H-pad+15,'再现',{a:'start',fill:'#5a7d6f',fs:9.5,w:600});TX(svg,sx(.98),H-pad+15,'表现→',{a:'end',fill:'#b0673a',fs:9.5,w:600});
+    TX(svg,pad-8,sy(.03),'结构',{a:'end',fill:'#5a7d6f',fs:9.5});TX(svg,pad-8,sy(.96),'感知',{a:'end',fill:'#b0673a',fs:9.5});
+    SHOW.forEach(s=>{const w=s.a.wv;if(!w)return;const tj=s.a.trajectory||[];
+      if(tj.length>1){const P=tj.map(p=>[sx(p.x),sy(p.y)]);
+        svg.appendChild(E('path',{d:P.map((q,i)=>`${i?'L':'M'}${q[0]},${q[1]}`).join(' '),fill:'none',stroke:s.col,'stroke-width':1.5,'stroke-opacity':.45,'stroke-dasharray':'1 4'}));
+        const p1=P[P.length-2],p2=P[P.length-1],ang=Math.atan2(p2[1]-p1[1],p2[0]-p1[0]),mx=p1[0]+(p2[0]-p1[0])*.72,my=p1[1]+(p2[1]-p1[1])*.72,ss=5;
+        svg.appendChild(E('path',{d:`M${mx+ss*Math.cos(ang+2.6)},${my+ss*Math.sin(ang+2.6)} L${mx},${my} L${mx+ss*Math.cos(ang-2.6)},${my+ss*Math.sin(ang-2.6)}`,fill:'none',stroke:s.col,'stroke-width':1.4,'stroke-opacity':.65,'stroke-linejoin':'round'}));}
+      svg.appendChild(E('circle',{cx:sx(w.x),cy:sy(w.y),r:7,fill:s.col,'fill-opacity':.92,stroke:'#fff','stroke-width':2}));
+      TX(svg,sx(w.x),sy(w.y)-11,s.a.cn,{f:'Noto Serif SC',fs:11.5,fill:'#1d1b18',w:700,st:'#fcfaf5',sw:3});});
+  })();
+  // ⑦ 情绪环
+  (function(){const svg=document.getElementById('fwcplex');if(!svg)return;const S=420,pd=44,half=(S-2*pd)/2;
+    const sx=v=>pd+v*(S-2*pd), sy=v=>S-pd-v*(S-2*pd);
+    const quads=[
+      {name:'紧张·悲怆',col:'#a8443a',x0:pd,y0:pd,lx:pd+8,ly:pd+16,la:'start'},
+      {name:'昂扬·欢腾',col:'#c98a1a',x0:pd+half,y0:pd,lx:pd+2*half-8,ly:pd+16,la:'end'},
+      {name:'宁静·惬意',col:'#5a7d6f',x0:pd+half,y0:pd+half,lx:pd+2*half-8,ly:pd+2*half-8,la:'end'},
+      {name:'忧郁·萧索',col:'#5b7596',x0:pd,y0:pd+half,lx:pd+8,ly:pd+2*half-8,la:'start'}];
+    quads.forEach(q=>svg.appendChild(E('rect',{x:q.x0,y:q.y0,width:half,height:half,fill:q.col,'fill-opacity':.06})));
+    svg.appendChild(E('rect',{x:pd,y:pd,width:S-2*pd,height:S-2*pd,fill:'none',stroke:'#e0d8c8'}));
+    svg.appendChild(E('line',{x1:sx(.5),y1:pd,x2:sx(.5),y2:S-pd,stroke:'#e8e0d0'}));
+    svg.appendChild(E('line',{x1:pd,y1:sy(.5),x2:S-pd,y2:sy(.5),stroke:'#e8e0d0'}));
+    quads.forEach(q=>TX(svg,q.lx,q.ly,q.name,{fs:11,f:'Noto Serif SC',fill:q.col,w:600,a:q.la,st:'#fcfaf5'}));
+    TX(svg,sx(.98),sy(.5)-6,'愉悦→',{a:'end',fs:9.5,fill:'#857d6f',st:'#fcfaf5'});TX(svg,sx(.02),sy(.5)-6,'沉郁',{a:'start',fs:9.5,fill:'#857d6f',st:'#fcfaf5'});
+    TX(svg,sx(.5)+4,pd-8,'↑唤起',{a:'start',fs:9.5,fill:'#857d6f'});
+    SHOW.forEach(s=>{const f=s.a.affect;if(!f)return;const r=5+f.d*12;
+      svg.appendChild(E('circle',{cx:sx(f.v),cy:sy(f.a),r:r,fill:s.col,'fill-opacity':.85,stroke:'#fff','stroke-width':2}));
+      TX(svg,sx(f.v),sy(f.a)-r-5,s.a.cn,{f:'Noto Serif SC',fs:11,fill:'#1d1b18',w:700,st:'#fcfaf5',sw:3});});
+  })();
+  // 图例
+  const lg=document.getElementById('fwleg');
+  if(lg) SHOW.forEach(s=>{const m=(s.a.style_relation||{}).mode||'';const mc=MODECOL[m]||'#857d6f';
+    lg.appendChild($(`<div class="lgi"><span class="dt" style="background:${s.col}"></span><a href="kg-artist.html?id=${s.a.id}">${s.a.cn}</a><span class="mo" style="background:${mc}">${m}</span><span style="color:var(--ink-faint);font-size:10.5px">${(s.a.wv||{}).region_cn||''}</span></div>`));});
+}).catch(e=>{document.getElementById('groups').innerHTML='加载失败:'+e;});
+</script>
+</body></html>

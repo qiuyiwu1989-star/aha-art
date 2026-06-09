@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 作品层 · 全部真迹</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans)}
+  .wrap{max-width:1080px;margin:0 auto;padding:30px 16px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(22px,4.4vw,30px);font-weight:700;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13px;line-height:1.7;max-width:680px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center;margin:16px 0 6px}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff}
+  .seg button{border:none;background:#fff;font-family:var(--sans);font-size:12px;color:var(--ink-mute);padding:6px 11px;cursor:pointer;border-left:1px solid var(--line)}
+  .seg button:first-child{border-left:none}.seg button.on{background:var(--accent);color:#fff}.seg.e button.on{background:var(--green)}
+  .srch{font-family:var(--sans);font-size:12.5px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:9px;padding:7px 11px;outline:none;width:160px}
+  .stat{font-family:var(--mono);font-size:11.5px;color:var(--ink-mute);text-align:center;margin:2px 0 10px}.stat b{color:var(--accent)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .w{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:border-color .12s,transform .12s}
+  .w:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .w img{width:100%;height:150px;object-fit:cover;display:block;background:var(--paper-2)}
+  .w .wi{padding:8px 10px}
+  .w .wt{font-family:var(--serif);font-size:12.5px;color:var(--ink-soft);line-height:1.3;max-height:2.6em;overflow:hidden}
+  .w .wa{font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-top:4px}
+  .w .wa .reg{color:var(--accent)}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .empty{text-align:center;color:var(--ink-faint);padding:40px}
+  #planebox{background:#fff;border:1px solid var(--line);border-radius:13px;padding:10px;position:relative}
+  #planebox svg{width:100%;height:auto;display:block}
+  .pt{cursor:pointer}
+  .ptip{position:fixed;z-index:50;pointer-events:none;background:rgba(29,27,24,.94);color:#f4f1ea;font-size:12px;padding:5px 9px;border-radius:7px;opacity:0;transition:opacity .08s;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+  .ptip .t{font-family:var(--serif);font-weight:600}.ptip .s{font-family:var(--mono);font-size:10px;color:#c9bfae;margin-top:1px}
+  .planenote{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);text-align:center;margin-top:8px}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 作品层</div>
+  <h1>全部真迹 · 作品层</h1>
+  <p class="lead">已收录的<b>公共领域名画</b>(Met / 克利夫兰 CC0)。按 东西 / 世界观区 / 艺术家筛,点一张进其作者主页与解读。</p>
+  <div class="breadcrumb"><a href="kg-artist-atlas.html">全员星图</a> · <a href="kg-explain.html">一画解读</a> · <a href="kg-artist-roster.html">名单</a> · 当前:作品层</div>
+  <div class="bar">
+    <span class="seg" id="segView"><button data-v="grid" class="on">网格</button><button data-v="plane">作品平面</button></span>
+    <span class="seg e" id="segSide"><button data-v="all" class="on">东+西</button><button data-v="east">东方</button><button data-v="west">西方</button></span>
+    <span class="seg" id="segReg"><button data-v="all" class="on">全部区</button><button data-v="WV1">摹写</button><button data-v="WV2">礼制</button><button data-v="WV3">写意</button><button data-v="WV4">经验</button><button data-v="WV5">表现</button><button data-v="WV6">形式</button></span>
+    <input class="srch" id="srch" placeholder="搜艺术家…"/>
+  </div>
+  <div class="stat" id="stat"></div>
+  <div class="grid" id="grid"></div>
+  <div id="planebox" style="display:none"></div>
+  <div id="loading" class="empty">加载中…</div>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+const NS='http://www.w3.org/2000/svg',SE=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+let WORKS=[],REG=[],filt={side:'all',reg:'all',q:''},view='grid';
+Promise.all([
+  fetch('data/kg_artists.json').then(r=>r.json()),
+  fetch('data/kg_artist_images.json').then(r=>r.json()),
+  fetch('data/kg_worldview_v3.json').then(r=>r.json()).catch(()=>({regions:[]}))
+]).then(([A,IMG,WV])=>{
+  const d=A.artists; REG=WV.regions||[];
+  Object.keys(IMG).forEach(id=>{const a=d[id]; if(!a)return; const awv=a.wv||{};
+    (IMG[id].items||[]).forEach(it=>WORKS.push({file:it.file,title:it.title,id,cn:a.cn,en:a.en||'',region:a.region,wvid:awv.region_id||'',era:a.born||0,src:it.source||'',
+      x:(it.wv&&it.wv.x!=null)?it.wv.x:awv.x, y:(it.wv&&it.wv.y!=null)?it.wv.y:awv.y, own:!!(it.wv&&it.wv.x!=null)}));});
+  WORKS.sort((p,q)=>(p.era||9999)-(q.era||9999));
+  document.getElementById('loading').style.display='none';
+  render();
+}).catch(e=>{document.getElementById('loading').textContent='加载失败:'+e;});
+function curList(){const q=filt.q.trim().toLowerCase();
+  return WORKS.filter(w=>(filt.side==='all'||w.region===filt.side)&&(filt.reg==='all'||w.wvid===filt.reg)&&(!q||w.cn.toLowerCase().includes(q)||(w.en||'').toLowerCase().includes(q)));}
+function render(){
+  const list=curList();
+  const coordN=list.filter(w=>w.own).length;
+  document.getElementById('stat').innerHTML=`<b>${list.length}</b> 张真迹 · 共 ${WORKS.length} 张 / ${new Set(WORKS.map(w=>w.id)).size} 位画家${view==='plane'?` · <b>${coordN}</b> 张有逐张读图坐标`:''}`;
+  const g=document.getElementById('grid'),pb=document.getElementById('planebox');
+  if(view==='grid'){pb.style.display='none';g.style.display='';g.textContent='';
+    list.forEach(w=>g.appendChild($(`<a class="w" href="kg-artist.html?id=${w.id}"><img loading="lazy" src="${w.file}" alt="${w.title}"><div class="wi"><div class="wt">${w.title}</div><div class="wa">${w.cn} · <span class="reg">${w.region==='east'?'东':'西'}「${WVN[w.wvid]||''}」</span></div></div></a>`)));
+  }else{g.style.display='none';pb.style.display='';renderPlane(list);}
+}
+let tipEl;
+function renderPlane(list){
+  const pb=document.getElementById('planebox');pb.textContent='';
+  if(!tipEl){tipEl=document.createElement('div');tipEl.className='ptip';document.body.appendChild(tipEl);}
+  const W=1000,H=720,pad=70,sx=v=>pad+v*(W-2*pad),sy=v=>H-pad-v*(H-2*pad);
+  const svg=SE('svg',{viewBox:`0 0 ${W} ${H}`});
+  svg.appendChild(SE('rect',{x:pad,y:pad,width:W-2*pad,height:H-2*pad,fill:'#fcfaf5',stroke:'#e8e0d0'}));
+  [.25,.5,.75].forEach(t=>{svg.appendChild(SE('line',{x1:sx(t),y1:pad,x2:sx(t),y2:H-pad,stroke:'#efe9dc'}));svg.appendChild(SE('line',{x1:pad,y1:sy(t),x2:W-pad,y2:sy(t),stroke:'#efe9dc'}));});
+  const T=(x,y,s,o={})=>{const e=SE('text',{x,y,'font-family':o.f||'Noto Sans SC','font-size':o.fs||12,fill:o.fill||'#857d6f','text-anchor':o.a||'middle'});e.textContent=s;if(o.w)e.setAttribute('font-weight',o.w);if(o.st){e.setAttribute('paint-order','stroke');e.setAttribute('stroke',o.st);e.setAttribute('stroke-width',o.sw||3);}svg.appendChild(e);};
+  T(sx(.01),H-pad+24,'← 再现',{a:'start',fill:'#5a7d6f',w:600,fs:13});T(sx(.99),H-pad+24,'表现 →',{a:'end',fill:'#b0673a',w:600,fs:13});
+  T(pad-12,sy(.01),'结构',{a:'end',fill:'#5a7d6f',w:600,fs:13});T(pad-12,sy(.985),'感知',{a:'end',fill:'#b0673a',w:600,fs:13});
+  REG.forEach(r=>{svg.appendChild(SE('circle',{cx:sx(r.cx),cy:sy(r.cy),r:14,fill:'none',stroke:'#cfc6b4','stroke-width':1.4,'stroke-dasharray':'3 3'}));T(sx(r.cx),sy(r.cy)-19,r.name,{f:'Noto Serif SC',fs:14,fill:'#bcb3a2',w:600,st:'#fcfaf5',sw:4});});
+  list.forEach(w=>{if(w.x==null||w.y==null)return;
+    const c=SE('circle',{cx:sx(w.x),cy:sy(w.y),r:w.own?5:3.5,fill:w.region==='east'?'#5a7d6f':'#b0673a','fill-opacity':w.own?0.82:0.4,stroke:'#fff','stroke-width':w.own?1:0.5,class:'pt'});
+    c.addEventListener('mousemove',ev=>{tipEl.style.opacity=1;tipEl.style.left=(ev.clientX+12)+'px';tipEl.style.top=(ev.clientY+12)+'px';tipEl.innerHTML=`<div class="t">${w.title}</div><div class="s">${w.cn} · ${w.region==='east'?'东':'西'}「${WVN[w.wvid]||''}」 · ${w.own?'逐张坐标':'画家重心'}</div>`;});
+    c.addEventListener('mouseleave',()=>tipEl.style.opacity=0);
+    c.addEventListener('click',()=>location.href='kg-artist.html?id='+w.id);
+    svg.appendChild(c);});
+  pb.appendChild(svg);
+  pb.appendChild($(`<div class="planenote">每个点是一张画(实心=逐张读图坐标 · 半透明=回退画家重心)。东绿西赭,6 地标是世界观区。hover 看名,点进作者主页。</div>`));
+}
+function wire(id,key){const s=document.getElementById(id);s.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{s.querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on');filt[key]=b.dataset.v;render();}));}
+wire('segSide','side');wire('segReg','reg');
+{const s=document.getElementById('segView');s.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{s.querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on');view=b.dataset.v;render();}));}
+document.getElementById('srch').addEventListener('input',e=>{filt.q=e.target.value;render();});
+</script>
+</body></html>

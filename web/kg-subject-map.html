@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 题材地图 · 题材是世界观的投影</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:26px 16px 80px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(20px,3.6vw,28px);font-weight:700;text-align:center;margin:7px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13px;line-height:1.7;max-width:780px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .bar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;justify-content:center;margin:16px 0 6px}
+  .chip{font-family:var(--sans);font-size:12px;color:var(--ink-mute);background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer}
+  .chip.on{color:#fff}
+  .stat{font-family:var(--mono);font-size:11.5px;color:var(--ink-mute);text-align:center;margin:2px 0 8px}.stat b{color:var(--accent)}
+  .stagewrap{background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px;position:relative}
+  svg{width:100%;height:auto;display:block}
+  .nd{cursor:pointer}
+  .ndl{font-family:var(--serif);pointer-events:none}
+  .tip{position:fixed;z-index:50;pointer-events:none;background:rgba(29,27,24,.94);color:#f4f1ea;font-size:12px;padding:6px 10px;border-radius:8px;opacity:0;transition:opacity .08s;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+  .tip .t{font-family:var(--serif);font-weight:600;font-size:13px}.tip .s{font-family:var(--mono);font-size:10px;color:#c9bfae;margin-top:1px}
+  .panel{background:#fff;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;padding:14px 16px;margin-top:14px;display:none}
+  .panel .pn{font-family:var(--serif);font-size:19px;font-weight:700}
+  .panel .pm{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:3px}
+  .panel .pd{font-size:13px;color:var(--ink-soft);line-height:1.7;margin-top:9px}.panel .pd b{color:var(--accent)}
+  .panel .arts{margin-top:10px;display:flex;gap:7px;flex-wrap:wrap}
+  .panel .arts a{font-size:12px;color:var(--green);background:#eef3f0;border:1px solid #cfe0d7;border-radius:8px;padding:3px 10px;text-decoration:none}
+  .panel .arts a.w{color:var(--accent);background:#f6ebe2;border-color:#e5d3c2}
+  .reading{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:14px;font-size:13px;line-height:1.8;color:var(--ink-soft)}.reading b{color:var(--accent)}.reading .hd{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--ink);margin-bottom:6px}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="tip" id="tip"></div>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 题材层</div>
+  <h1>题材地图 —— 题材是世界观的投影</h1>
+  <p class="lead">把每个<b>题材</b>放到 V3 世界观平面上它的<b>重心</b>(画它的艺术家落点均值)。点越大=画的人越多;<b>离散圈越大=同一题材被画得越不同</b>。于是能看见:肖像/静物人人都画却画法横跨全谱,而墨竹/佛像几乎只属于一个世界观。</p>
+  <div class="breadcrumb"><a href="kg-subject.html">题材层标准</a> · <a href="kg-artist-atlas.html">全员星图</a> · <a href="kg-works.html">作品层</a> · 当前:题材地图</div>
+  <div class="bar" id="cats"></div>
+  <div class="stat" id="stat"></div>
+  <div class="stagewrap"><svg id="stage" viewBox="0 0 1000 720"></svg></div>
+  <div class="panel" id="panel"></div>
+  <div class="reading" id="reading"></div>
+</div>
+<script>
+const NS='http://www.w3.org/2000/svg',E=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+const CATS=[['SUBJECT.figure','人物','#b0673a'],['SUBJECT.landscape','山水','#5a7d6f'],['SUBJECT.bird-flower','花鸟','#7a9b3e'],['SUBJECT.animal','动物','#c08a2e'],['SUBJECT.still-life','静物','#9a6a8c'],['SUBJECT.myth','宗教神话','#b8524a'],['SUBJECT.history','历史社会','#5b7596'],['SUBJECT.abstract','抽象观念','#4a8a8a'],['SUBJECT.folk','民俗','#bb7a3a'],['SUBJECT.urban','都市未来','#7d6fb0']];
+const CC={};CATS.forEach(c=>CC[c[0]]=c[2]);
+const W=1000,H=720,pad=72,sx=v=>pad+v*(W-2*pad),sy=v=>H-pad-v*(H-2*pad);
+const svg=document.getElementById('stage'),tip=document.getElementById('tip');
+let NODES=[],A,catFilter='all';
+Promise.all([
+  fetch('data/kg_subject_artist_edges.json').then(r=>r.json()),
+  fetch('data/kg_artists.json').then(r=>r.json())
+]).then(([Ed,Aj])=>{
+  A=Aj.artists;
+  Object.entries(Ed.nodes).forEach(([kid,nd])=>{
+    const pts=nd.artists.map(a=>A[a]&&A[a].wv).filter(w=>w&&w.x!=null);
+    if(pts.length<2)return;
+    const cx=pts.reduce((s,p)=>s+p.x,0)/pts.length, cy=pts.reduce((s,p)=>s+p.y,0)/pts.length;
+    const spread=pts.reduce((s,p)=>s+Math.hypot(p.x-cx,p.y-cy),0)/pts.length;
+    const east=nd.artists.filter(a=>A[a]&&A[a].region==='east').length;
+    NODES.push({kid,cn:nd.cn,cat:nd.cat,cx,cy,spread,n:pts.length,artists:nd.artists,east,west:nd.artists.length-east});
+  });
+  NODES.sort((a,b)=>a.n-b.n);
+  buildCats();render();reading();
+}).catch(e=>{svg.innerHTML='<text x="40" y="40" fill="#a8443a">加载失败:'+e+'</text>';});
+
+function buildCats(){
+  const box=document.getElementById('cats');
+  const mk=(id,cn,col,on)=>{const c=document.createElement('div');c.className='chip'+(on?' on':'');c.textContent=cn;if(on)c.style.background=col||'#857d6f';
+    c.onclick=()=>{catFilter=id;document.querySelectorAll('#cats .chip').forEach(x=>{x.classList.remove('on');x.style.background='';});c.classList.add('on');c.style.background=col||'#857d6f';render();};box.appendChild(c);};
+  mk('all','全部','#857d6f',true);CATS.forEach(c=>mk(c[0],c[1],c[2],false));
+}
+function render(){
+  svg.textContent='';
+  svg.appendChild(E('rect',{x:pad,y:pad,width:W-2*pad,height:H-2*pad,fill:'#fcfaf5',stroke:'#e8e0d0'}));
+  [.25,.5,.75].forEach(t=>{svg.appendChild(E('line',{x1:sx(t),y1:pad,x2:sx(t),y2:H-pad,stroke:'#efe9dc'}));svg.appendChild(E('line',{x1:pad,y1:sy(t),x2:W-pad,y2:sy(t),stroke:'#efe9dc'}));});
+  const T=(x,y,s,o={})=>{const e=E('text',{x,y,'font-family':o.f||'Noto Sans SC','font-size':o.fs||12,fill:o.fill||'#857d6f','text-anchor':o.a||'middle'});e.textContent=s;if(o.w)e.setAttribute('font-weight',o.w);if(o.st){e.setAttribute('paint-order','stroke');e.setAttribute('stroke',o.st);e.setAttribute('stroke-width',o.sw||3);}svg.appendChild(e);return e;};
+  T(sx(.01),H-pad+24,'← 再现',{a:'start',fill:'#5a7d6f',w:600,fs:13});T(sx(.99),H-pad+24,'表现 →',{a:'end',fill:'#b0673a',w:600,fs:13});
+  T(pad-12,sy(.01),'结构',{a:'end',fill:'#5a7d6f',w:600,fs:13});T(pad-12,sy(.985),'感知',{a:'end',fill:'#b0673a',w:600,fs:13});
+  const list=NODES.filter(n=>catFilter==='all'||n.cat===catFilter);
+  document.getElementById('stat').innerHTML=`<b>${list.length}</b> 个题材落在世界观平面 · 点大小=画家数 · 点选某题材看它的离散圈`;
+  // 仅画"被选中"题材的离散圈(避免糊成一团)
+  if(window.selKid){const n=NODES.find(x=>x.kid===window.selKid);if(n&&(catFilter==='all'||n.cat===catFilter)){const col=CC[n.cat]||'#857d6f';
+    svg.appendChild(E('circle',{cx:sx(n.cx),cy:sy(n.cy),r:n.spread*(W-2*pad),fill:col,'fill-opacity':0.08,stroke:col,'stroke-opacity':0.5,'stroke-dasharray':'4 3'}));}}
+  list.forEach(n=>{const col=CC[n.cat]||'#857d6f',r=5+Math.sqrt(n.n)*2.4;
+    const c=E('circle',{cx:sx(n.cx),cy:sy(n.cy),r,fill:col,'fill-opacity':0.85,stroke:'#fff','stroke-width':1.5,class:'nd'});
+    c.addEventListener('mousemove',ev=>{tip.style.opacity=1;tip.style.left=(ev.clientX+12)+'px';tip.style.top=(ev.clientY+12)+'px';tip.innerHTML=`<div class="t">${n.cn}</div><div class="s">${n.n} 位画家 · 离散 ${n.spread.toFixed(2)} · 东${n.east}/西${n.west}</div>`;});
+    c.addEventListener('mouseleave',()=>tip.style.opacity=0);
+    c.addEventListener('click',()=>select(n));
+    svg.appendChild(c);
+    if(n.n>=4) T(sx(n.cx),sy(n.cy)-r-4,n.cn,{f:'Noto Serif SC',fs:13,fill:'#3a352e',w:600,st:'#fcfaf5',sw:3.5});
+  });
+}
+function select(n){
+  window.selKid=n.kid; render();
+  const p=document.getElementById('panel');p.style.display='block';
+  const col=CC[n.cat]||'#857d6f';
+  const xside=n.cx<0.5?'再现一侧':'表现一侧', yside=n.cy<0.5?'偏结构':'偏感知';
+  const kind=n.spread>=0.18?'<b>世界观中性题材</b>——人人都画,却横跨很不同的画法':n.spread<=0.08?'<b>世界观绑定题材</b>——几乎只在一个世界观里出现':'画法较为集中';
+  p.innerHTML=`<div class="pn" style="color:${col}">${n.cn}</div>`+
+    `<div class="pm">${CATS.find(c=>c[0]===n.cat)[1]} · 重心(再现-表现 ${n.cx.toFixed(2)} · 结构-感知 ${n.cy.toFixed(2)}) · 离散 ${n.spread.toFixed(2)} · ${n.n} 位画家(东${n.east}/西${n.west})</div>`+
+    `<div class="pd">这个题材的重心落在<b>${xside}·${yside}</b>。${kind}。</div>`+
+    `<div class="arts">${n.artists.map(a=>A[a]?`<a class="${A[a].region==='west'?'w':''}" href="kg-artist.html?id=${a}">${A[a].cn}</a>`:'').join('')}</div>`;
+  p.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function reading(){
+  const byS=[...NODES].sort((a,b)=>b.spread-a.spread);
+  const wide=byS.slice(0,4).map(n=>n.cn).join('、');
+  const tight=byS.filter(n=>n.n>=4).slice(-3).map(n=>n.cn).join('、');
+  document.getElementById('reading').innerHTML=`<div class="hd">怎么读这张图</div>题材不是中立的清单——它是<b>世界观选择"看什么"的结果</b>。<br>· <b>${wide}</b>这类题材<b>离散最大</b>:从忠实再现到主观表现都有人画,说明它们是跨时代、跨文化的"母题",每个世界观都用自己的方式重写。<br>· <b>${tight}</b>这类题材<b>最集中</b>:它们几乎被锁定在某一个世界观里(如墨竹之于写意、佛像之于礼制),题材本身就携带了立场。<br>· 点进任一题材,可看是谁在画它、以及他们散落在平面的哪里。`;
+}
+</script>
+</body></html>

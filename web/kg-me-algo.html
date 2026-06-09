@@ -1,0 +1,180 @@
+<!doctype html><html lang="zh"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 推荐内核算法流程图 · KG×美学奖励 v0.6</title>
+<style>
+:root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--blue:#5b7596;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:30px 18px 90px}
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+h1{font-family:var(--serif);font-size:clamp(21px,4vw,30px);font-weight:600;text-align:center;margin:8px 0}
+.lead{text-align:center;color:var(--ink-mute);font-size:13.5px;max-width:760px;margin:6px auto}.lead b{color:var(--ink-soft)}
+.breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+.mono{font-family:var(--mono)}
+.box{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 15px}
+.box h3{font-family:var(--serif);font-size:15px;font-weight:600;margin-bottom:3px}
+.box .d{font-size:12px;color:var(--ink-mute);line-height:1.55}
+.box .f{font-family:var(--mono);font-size:11px;background:var(--paper-2);border-radius:6px;padding:6px 9px;margin-top:7px;color:var(--ink-soft);overflow-x:auto;white-space:nowrap}
+.num{display:inline-flex;width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;font-family:var(--mono);font-size:11px;align-items:center;justify-content:center;margin-right:6px;vertical-align:middle}
+.arrow{text-align:center;color:var(--accent);font-size:18px;line-height:1;margin:4px 0}
+.sec-t{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);text-align:center;margin:26px 0 4px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:6px}
+@media(max-width:780px){.cols{grid-template-columns:1fr}}
+.track-h{font-family:var(--serif);font-size:14px;font-weight:600;text-align:center;padding:6px;border-radius:8px;margin-bottom:8px}
+.th-a{background:#e9efe c;background:#e7eee9;color:var(--green)}
+.th-b{background:var(--accent-soft);color:var(--accent)}
+.chip{display:inline-block;font-family:var(--mono);font-size:10px;border-radius:6px;padding:2px 7px;margin:2px 3px 0 0;background:var(--paper-2);color:var(--ink-soft)}
+.reward{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:8px}
+@media(max-width:780px){.reward{grid-template-columns:1fr 1fr}}
+.rcard{border:1px solid var(--line);border-radius:9px;padding:10px;background:#fff}
+.rcard .t{font-family:var(--serif);font-weight:600;font-size:13.5px}
+.rcard .t small{font-family:var(--mono);font-size:10px;font-weight:400;color:var(--ink-faint)}
+.rcard .x{font-size:11px;color:var(--ink-mute);margin-top:3px;line-height:1.5}
+.rcard .f{font-family:var(--mono);font-size:10px;background:var(--paper-2);border-radius:5px;padding:4px 6px;margin-top:6px;color:var(--ink-soft)}
+table{width:100%;border-collapse:collapse;font-size:12px;margin-top:6px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)}
+th{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint)}
+td.k{font-family:var(--mono);color:var(--accent)}
+.legend{font-size:11px;color:var(--ink-mute);margin-top:6px}
+.cta{text-align:center;margin-top:26px}
+.cta a{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-size:13px;border-radius:22px;padding:9px 22px;font-weight:600}
+</style></head>
+<body><div class="wrap">
+<div class="kick">推荐内核 · 算法流程图 · v0.6</div>
+<h1>「我的审美档案」是怎么选下一帧的</h1>
+<p class="lead">把 <b>brain.js 的美学奖励算法</b>接到<b>新知识图谱的三套真实坐标</b>上。一句话:<b>不是找最像你的,是找最能让你「原来如此」的</b>——落在你惊奇带上、且接得住。把人建模成审美流形上的 <b>N(μ, Σ) + 动态项</b>:μ=12维向量、Σ=各轴椭球、动态=漂移/惊奇带/探索。v0.5–0.6 新增:<b>双时间尺度 · 惊奇带自学习 · 三盏灯+自检 · Σ协方差椭球 · 负反馈语义化</b>。</p>
+<div class="breadcrumb"><a href="home.html">🏠 首页</a> › <a href="kg-v2.html">🧭 艺术图谱</a> › <a href="kg-me.html">🧑‍🎨 我的审美档案</a> › <a href="arch-demo.html">⚙ 老内核v0.3</a> › <b style="color:var(--ink-soft)">算法流程图</b></div>
+
+<!-- 输入 -->
+<div class="sec-t">输入 · 三套真实坐标空间(画与人共用)</div>
+<div class="box">
+  <div class="d" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center">
+    <div><b style="color:var(--ink)">世界观平面</b><br>再现-表现 ⊥ 结构-感知<br><span class="mono" style="font-size:10px">2D · dWV</span></div>
+    <div><b style="color:var(--ink)">语言</b><br>构图/空间/造型/光影/色彩/笔触/边缘<br><span class="mono" style="font-size:10px">7D · dLang</span></div>
+    <div><b style="color:var(--ink)">情绪 VAD</b><br>愉悦 × 唤起<br><span class="mono" style="font-size:10px">2D · dAff</span></div>
+  </div>
+  <div class="f" style="text-align:center;white-space:normal">组合距离　d(a,b) = 0.5·dWV + 0.3·dLang + 0.2·dAff　(各子空间均归一到 0–1)</div>
+  <div class="legend">候选 = <b>226 张真迹</b>,每张在这三套坐标里都有落点;同一套坐标,人也落得上去——所以"匹配"就是在同一空间里算距离。</div>
+</div>
+
+<!-- 两条线 -->
+<div class="cols">
+  <!-- A:画像生成线 -->
+  <div>
+    <div class="track-h th-a">画像生成线 · 事件流 → 你</div>
+    <div class="box"><h3><span class="num" style="background:var(--green)">A1</span>事件流(append-only · 唯一真相)</h3>
+      <div class="d">每次交互记一条;画像永远从事件流<b>回放重算</b>(可解释、可回放)。</div>
+      <div class="f">信号权重 heart/choose +2 · door +1 · view +0.3 · skip −0.5 · reject −0.6</div></div>
+    <div class="arrow">↓</div>
+    <div class="box"><h3><span class="num" style="background:var(--green)">A2</span>双时间尺度 EMA 质心</h3>
+      <div class="d">正权重事件才移动重心。<b>同时</b>维护两套:<b>长期口味 life</b>(慢更新)与<b>此刻心情 sess</b>(快更新)——分清"你是谁"和"你今天什么状态"。三套坐标各一对。</div>
+      <div class="f">life ← ema(·, r=clamp(0.10·w,.04,.35))　|　sess ← ema(·, r=clamp(0.5·w,.25,.7))</div></div>
+    <div class="arrow">↓</div>
+    <div class="box"><h3><span class="num" style="background:var(--green)">A3</span>同时沉淀 + 自学习</h3>
+      <div class="d">
+        <span class="chip">loved 心动集(谱系锚)</span><span class="chip">visited 各区访问</span>
+        <span class="chip">各轴 std → Σ椭球</span><span class="chip">exploreAppetite 探索胃口</span>
+        <span class="chip" style="background:var(--accent-soft);color:var(--accent)">惊奇带 d* 反学习</span><span class="chip" style="background:#f3dcd6;color:#a8443a">aversion 回避向量(负反馈)</span><span class="chip">轨迹快照</span></div>
+      <div class="f">d* ← ema(d*, 你接受的跳跃幅度, 0.15) — 从行为反学你个人惊奇带,不再写死</div></div>
+    <div class="arrow">↓</div>
+    <div class="box" style="border-color:var(--green)"><h3>画像 Person</h3>
+      <div class="d">{ <b>μ=life/sess 双重心</b>、<b>Σ=各轴 std(椭球)</b>、aversion 回避向量、visited、loved、<b>dStarLearned</b>、exploreAppetite、轨迹、三盏灯 } —— 一个审美流形上的 <b>N(μ,Σ)+动态</b>,与艺术家点云同构。</div></div>
+  </div>
+
+  <!-- B:推荐打分线 -->
+  <div>
+    <div class="track-h th-b">推荐打分线 · 你 → 下一帧</div>
+    <div class="box"><h3><span class="num">①</span>多路召回 recall</h3>
+      <div class="d">每路管一种"相似/相关",去重合并成候选池(不全量打分)。</div>
+      <div class="d" style="margin-top:5px">
+        <span class="chip">wv-near 世界观近</span><span class="chip">lang-near 语言近</span><span class="chip">aff-near 情绪近</span>
+        <span class="chip">same-region 常驻区</span><span class="chip" style="background:var(--accent-soft);color:var(--accent)">lineage-bridge 谱系桥</span><span class="chip">far-explore 远探索</span></div>
+      <div class="f">冷启动(n=0):最远点采样铺 8 张 —— 先把你问清楚</div></div>
+    <div class="arrow">↓</div>
+    <div class="box"><h3><span class="num">②</span>打分 = 美学奖励(见下)</h3>
+      <div class="d">每个候选算一个"能给你多大顿悟"的总分。</div>
+      <div class="f">total = (1.0·Aha+0.6·Calm+0.5·Info+0.35·Growth)/Σw − 0.4·回避惩罚</div></div>
+    <div class="arrow">↓</div>
+    <div class="box"><h3><span class="num">③</span>MMR 重排 · 多样 + 疲劳</h3>
+      <div class="d">挑分高的,但扣掉"和已选太像"与"同区/同画家连续出现"。</div>
+      <div class="f">挑选值 = score − 0.3·最大相似 − 疲劳(同区×0.12 / 同画家 0.15)</div></div>
+    <div class="arrow">↓</div>
+    <div class="box" style="border-color:var(--accent)"><h3><span class="num">④</span>选 top + 探索位 → 下一帧真迹</h3>
+      <div class="d">默认给顿悟带里最稳的一帧;按探索胃口,偶尔故意丢一个更野的。已看过的进 shown,永不重复。</div>
+      <div class="f">若候选&gt;3 且 random() &lt; 探索胃口 → 改取队尾(标"探索位")</div></div>
+  </div>
+</div>
+
+<!-- 奖励函数详解 -->
+<div class="sec-t">打分核心 · 美学奖励四项(brain.js 的灵魂,重接 KG)</div>
+<div class="reward">
+  <div class="rcard" style="border-color:var(--accent)"><div class="t">① Aha 顿悟 <small>倒U×可消解</small></div>
+    <div class="x">落在你<b>惊奇带 d*</b> 上(不近不远)× <b>接得住</b>(谱系/某轴很贴)。这是不返回最近邻的根本原因。</div>
+    <div class="f">exp(−(d−d*)²/2σ²)·(0.4+0.6·anchor)</div></div>
+  <div class="rcard" style="border-color:var(--green)"><div class="t">② Calm 安静</div>
+    <div class="x">唤起贴近低设定点 + 轨迹平滑(不忽高忽低)。低唤醒护栏。</div>
+    <div class="f">(1−|唤起−0.34|) − 0.5·|唤起−上一帧|</div></div>
+  <div class="rcard" style="border-color:var(--blue)"><div class="t">③ Info 信息</div>
+    <div class="x">越不懂你 → 越想用一个远点来"问"你。不确定性 = 答题数 + 区覆盖 + <b>各轴方差</b>三者合成。</div>
+    <div class="f">不确定性(.45cnt+.30cov+.25轴方差)·(0.3+0.7·d)</div></div>
+  <div class="rcard" style="border-color:var(--gold)"><div class="t">④ Growth 成长</div>
+    <div class="x">向没去过的世界观区 + 没见过的母题扩张。6 区当课程。</div>
+    <div class="f">0.6·(新区?1:0) + 0.4·新母题占比</div></div>
+</div>
+
+<!-- 顿悟带曲线 -->
+<div class="box" style="margin-top:16px">
+  <h3>为什么是"倒 U",不是"越近越好"</h3>
+  <div class="d">横轴 = 候选离你多远 d,纵轴 = Aha 得分。峰在 <b>d*</b>:太近(你已知,没惊喜)、太远(接不住,看不懂)都低分,<b>"刚好新"才高</b>。anchor(谱系/轴贴近)再把这条曲线整体抬高 —— 远但有谱系接得住时,顿悟最强。</div>
+  <svg viewBox="0 0 720 200" style="width:100%;height:auto;margin-top:8px">
+    <line x1="50" y1="170" x2="700" y2="170" stroke="#ddd5c6"/><line x1="50" y1="20" x2="50" y2="170" stroke="#ddd5c6"/>
+    <text x="700" y="188" font-family="JetBrains Mono" font-size="11" fill="#857d6f" text-anchor="end">距离 d →</text>
+    <text x="44" y="28" font-family="JetBrains Mono" font-size="11" fill="#857d6f" text-anchor="end">Aha</text>
+    <!-- 高斯曲线 峰在 d*=0.34 -->
+    <path id="g" fill="none" stroke="#b0673a" stroke-width="2.5"/>
+    <line id="dl" stroke="#b0673a" stroke-dasharray="3 4" stroke-opacity=".6"/>
+    <text id="dt" font-family="JetBrains Mono" font-size="11" fill="#b0673a" text-anchor="middle">d*(因人学习)</text>
+    <text x="110" y="160" font-family="Noto Serif SC" font-size="12" fill="#a89f8f" text-anchor="middle">太近·已知</text>
+    <text x="620" y="160" font-family="Noto Serif SC" font-size="12" fill="#a89f8f" text-anchor="middle">太远·接不住</text>
+    <text x="295" y="44" font-family="Noto Serif SC" font-size="12.5" fill="#b0673a" font-weight="600">刚好新 → 顿悟</text>
+  </svg>
+</div>
+
+<!-- 闭环 -->
+<div class="sec-t">闭环 · 自学习 + 自检 + 负反馈(v0.5–0.6)</div>
+<div class="cols">
+  <div class="box"><h3>① 惊奇带自学习</h3><div class="d">推荐时记下预测,你 ♥/✕ 后把"实际接受的跳跃幅度"回灌 d*。<b>有人爱大跳、有人只小步</b>——d* 因人而异、越逛越准,不再写死 0.34。</div></div>
+  <div class="box"><h3>② 三盏灯(整段旅程质量)</h3><div class="d"><b>顿悟密度</b>=心动里落在新异上的比例 · <b>审美成长</b>=区覆盖熵+确定度 · <b>安静感</b>=序列唤起贴设定点且平顺。衡量体验,不是单帧。</div></div>
+  <div class="box"><h3>③ 算法自检</h3><div class="d">把每次推荐的"预测四项分"对照真实 ♥/✕,算<b>每项对你♥的预测力(lift)</b>+ 校准(高分帧是否真更受爱)。能诚实暴露"哪项对你没用"。</div></div>
+  <div class="box" style="border-color:#a8443a"><h3>④ 负反馈语义化(v0.6)</h3><div class="d">跳过时推断<b>你嫌它哪条轴</b>(被跳过的画在各轴相对你重心的偏向,EMA 成 aversion 向量)。打分只<b>惩罚朝该轴方向</b>的候选,<b>不是整张画扣分</b>。喜欢会让回避慢慢淡化。</div></div>
+  <div class="box" style="border-color:var(--blue)"><h3>⑤ Σ 协方差椭球(v0.6)</h3><div class="d">离散从"一个半径"升级为"<b>各轴各自的 std</b>"——世界观平面画成<b>椭圆</b>(横长=在再现↔表现上摇摆、纵长=在结构↔感知上摇摆),并报出你<b>最笃定/最摇摆</b>的轴。即 N(μ,<b>Σ</b>) 里的 Σ。</div></div>
+  <div class="box" style="border-color:var(--accent)"><h3>这意味着</h3><div class="d">内核从"我们手调参数"走向<b>"数据定参数"</b>:预测 → 记录真实反应 → 自检/校准/学惊奇带/学回避 → 调整。<b>可证伪、正在自我检验。</b></div></div>
+</div>
+
+<!-- 参数表 -->
+<div class="sec-t">可调参数(页面旋钮 / 代码常量)</div>
+<div class="box"><table>
+  <tr><th>参数</th><th>含义</th><th>默认</th></tr>
+  <tr><td class="k">weights.aha / calm / info / growth</td><td>四个奖励项权重(旋钮可调)</td><td>1.0 / 0.6 / 0.5 / 0.35</td></tr>
+  <tr><td class="k">dStar 惊奇带半径</td><td><b>从你接受的跳跃幅度反学</b>(再随探索胃口微调)</td><td>学习·初始0.34</td></tr>
+  <tr><td class="k">sigma</td><td>惊奇带宽度(越小越挑剔)</td><td>0.20</td></tr>
+  <tr><td class="k">arousalSet</td><td>安静设定点(低唤醒)</td><td>0.34</td></tr>
+  <tr><td class="k">子空间权重</td><td>世界观 : 语言 : 情绪</td><td>0.5 : 0.3 : 0.2</td></tr>
+  <tr><td class="k">EMA r(life / sess)</td><td>长期慢 / 此刻快 两套质心更新速率</td><td>0.10·w / 0.5·w</td></tr>
+</table>
+<div class="legend">三处用新 KG 做强(相对 v0.3):① 顿悟锚用<b>211 条真实谱系边</b>;② 成长用<b>6 个世界观区</b>当课程;③ 打分空间用<b>语言7轴/世界观/VAD 真坐标</b>替代旧的 4 维代理。<br><b>v0.5–0.6 再加五层:</b>① 状态/特质双时间尺度;② 惊奇带 d* 自学习;③ 三盏灯 + 算法自检闭环;④ 负反馈语义化(只避一条轴);⑤ Σ 协方差椭球。</div>
+</div>
+
+<div class="cta"><a href="kg-me.html">→ 去「我的审美档案」实跑这套算法</a></div>
+
+<script>
+// 画顿悟带高斯曲线:峰在 d*,σ=0.20;x:[0,1]→[50,700],y:aha[0,1]→[170,30]
+(function(){const dS=0.34,sig=0.20;const X0=50,X1=700,Y0=170,Y1=30;
+  const sx=d=>X0+d*(X1-X0), sy=a=>Y0-a*(Y0-Y1);
+  let d='';for(let i=0;i<=100;i++){const x=i/100;const a=Math.exp(-((x-dS)**2)/(2*sig*sig));d+=(i?'L':'M')+sx(x).toFixed(1)+' '+sy(a).toFixed(1)+' ';}
+  document.getElementById('g').setAttribute('d',d);
+  const dl=document.getElementById('dl');dl.setAttribute('x1',sx(dS));dl.setAttribute('x2',sx(dS));dl.setAttribute('y1',sy(1));dl.setAttribute('y2',Y0);
+  const dt=document.getElementById('dt');dt.setAttribute('x',sx(dS));dt.setAttribute('y',sy(1)-6);
+})();
+</script>
+</div></body></html>

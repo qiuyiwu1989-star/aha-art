@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 艺术绘画知识图谱 V3 · 总览</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--blue:#5b7596;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:940px;margin:0 auto;padding:34px 18px 96px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(23px,4.4vw,34px);font-weight:700;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:14px;line-height:1.8;max-width:740px;margin:8px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .banner{max-width:790px;margin:16px auto 0;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--ink-soft);line-height:1.75}.banner b{color:var(--accent)}.banner a{color:var(--accent);text-decoration:none;font-weight:600}
+  .sec{margin-top:42px}
+  .sec-h{font-family:var(--serif);font-size:21px;font-weight:600;border-bottom:2px solid var(--accent);padding-bottom:8px;margin-bottom:4px}
+  .sec-h .nx{font-family:var(--mono);font-size:12px;color:var(--accent);margin-right:8px}
+  .sec-d{font-size:13.5px;color:var(--ink-mute);margin:10px 0 16px;line-height:1.8}.sec-d b{color:var(--ink-soft)}
+  .chain{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 16px}
+  .flow{display:flex;align-items:stretch;gap:6px;flex-wrap:wrap;justify-content:center}
+  .node{border-radius:11px;padding:12px 13px;text-align:center;min-width:118px;text-decoration:none;color:#fff;display:flex;flex-direction:column;justify-content:center;transition:transform .12s}
+  .node:hover{transform:translateY(-2px)}
+  .node .nn{font-family:var(--serif);font-size:15px;font-weight:600}
+  .node .nd{font-size:10.5px;margin-top:3px;opacity:.9}
+  .node.root{background:var(--accent)}.node.real{background:var(--green)}.node.eff{background:var(--blue)}.node.mean{background:var(--gold)}
+  .arrow{display:flex;align-items:center;font-family:var(--serif);font-size:22px;color:var(--ink-faint)}
+  .emerge{margin-top:16px;text-align:center;font-size:13.5px;color:var(--ink-soft);background:var(--accent-soft);border:1px dashed var(--accent);border-radius:10px;padding:12px 15px;line-height:1.75}.emerge b{color:var(--accent)}.emerge a{color:var(--accent);font-weight:600;text-decoration:none}
+  .formula{background:#fbf9f4;border:1px solid var(--line);border-radius:12px;padding:15px;margin-top:10px;text-align:center}
+  .formula .ft{font-family:var(--serif);font-size:clamp(14px,2.7vw,18px);font-weight:600;line-height:1.9}.formula .ft .v{color:var(--accent)}
+  .formula .fm{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:8px;line-height:1.7}
+  .wvgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:6px}@media(max-width:640px){.wvgrid{grid-template-columns:1fr 1fr}}
+  .wvc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;border-top:3px solid var(--c);text-decoration:none;display:block}
+  .wvc:hover{box-shadow:0 3px 12px rgba(176,103,58,.12)}
+  .wvc .wn{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--ink)}
+  .wvc .wq{font-size:11px;color:var(--ink-mute);margin-top:3px;line-height:1.4}
+  .wvc .wm{font-family:var(--mono);font-size:9.5px;color:var(--ink-faint);margin-top:5px}
+  .nav{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:640px){.nav{grid-template-columns:1fr}}
+  .ng{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .ng .gh{font-family:var(--serif);font-size:15px;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:7px}
+  .ng .gi{font-size:11px;color:#fff;border-radius:5px;padding:1px 7px;font-family:var(--mono)}
+  .ng .links{display:flex;flex-wrap:wrap;gap:6px}
+  .ng a{font-size:12.5px;color:var(--ink-soft);background:var(--paper-2);border-radius:7px;padding:4px 10px;text-decoration:none}
+  .ng a:hover{background:var(--accent-soft);color:var(--accent)}
+  .vlist{display:grid;grid-template-columns:1fr 1fr;gap:9px}@media(max-width:640px){.vlist{grid-template-columns:1fr}}
+  .vc{background:#fff;border:1px solid var(--line);border-left:3px solid var(--green);border-radius:10px;padding:11px 14px}
+  .vc .vt{font-family:var(--serif);font-size:14px;font-weight:600}.vc .vd{font-size:12px;color:var(--ink-mute);line-height:1.6;margin-top:4px}
+  .back{display:block;text-align:center;margin-top:46px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 艺术绘画知识图谱 V3 · 总览</div>
+  <h1>一条生成因果链,不是五层并列</h1>
+  <p class="lead">V3 从「一幅画是什么」的<b>第一性原理</b>重构:五层不是并列的兄弟,而是一条有方向的<b>生成因果链</b>——<b>世界观是根,其余皆由它生</b>;而「风格」不是一层,是这条链上反复出现、被历史命名的<b>涌现签名</b>。</p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <b style="color:var(--ink-soft)">🧭 艺术图谱</b></div>
+  <div class="banner">🏛️ <b>方法论已升级为 V3</b>。旧 V2 的"五层并列 / 东西 12 镜像模型 / 三轴空间"经实测崩塌、已替换。完整推导见 <a href="kg-first-principles.html">第一性原理页 →</a>,世界观新基(2 真轴 + 6 区)见 <a href="kg-worldview.html">世界观层 →</a></div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="nx">骨架</span>生成因果链 · 点开任一环</div>
+    <div class="sec-d">从根到意义:世界观决定怎么画 → 落成可观测的题材与语言 → 被感知为效应 → 被推断为意义。每一环都是可点开的子层。</div>
+    <div class="chain">
+      <div class="flow">
+        <a class="node root" href="kg-worldview.html"><div class="nn">世界观</div><div class="nd">立场·根 · 2轴6区</div></a>
+        <span class="arrow">→</span>
+        <a class="node real" href="kg-subject.html"><div class="nn">题材</div><div class="nd">画什么 · 开集关键点</div></a>
+        <a class="node real" href="kg-language.html"><div class="nn">7大构成</div><div class="nd">怎么画 · 可观测</div></a>
+        <span class="arrow">→</span>
+        <a class="node eff" href="kg-affect.html"><div class="nn">感知效应</div><div class="nd">VAD·像素实测</div></a>
+        <span class="arrow">→</span>
+        <a class="node mean" href="kg-subtext.html"><div class="nn">画外音</div><div class="nd">意义·涌现</div></a>
+      </div>
+      <div class="emerge">风格 = 在 <b>世界观 × 题材 × 语言</b> 这段链上反复出现的被命名签名(投影,非独立层)→ <a href="kg-style.html">风格层(202)</a> · <a href="kg-style-detail.html?id=STYLE.west.029">看一个风格如何分解</a></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="nx">公式</span>核心公式 = 这条链从左读到右</div>
+    <div class="formula">
+      <div class="ft">风格 = <span class="v">世界模型</span> × <span class="v">感知策略</span> × <span class="v">造型方法</span> × <span class="v">语言参数</span> × <span class="v">意义指向</span></div>
+      <div class="fm">世界模型=世界观坐标 · 感知策略=结构↔感知轴 · 造型方法=形状与造型 · 语言参数=色彩/光影/笔触/边缘 · 意义指向=画外音</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="nx">根</span>世界观:两条真轴 · 六个区</div>
+    <div class="sec-d">立场经数据检验只有两条正交真轴(<b>再现-表现 ⊥ 结构-感知</b>),其上数据发现 6 个区(非先验、非东西镜像)。这是整条链的源头,点开任一区看区志。</div>
+    <div class="wvgrid" id="wvgrid"></div>
+    <div class="sec-d" style="margin-top:12px;text-align:center"><a href="kg-worldview-map.html" style="color:var(--accent);text-decoration:none;font-weight:600">🗺️ 世界观地图(2D 交互)</a> · <a href="kg-worldview.html" style="color:var(--accent);text-decoration:none">世界观层</a> · <a href="kg-style-3d.html" style="color:var(--accent);text-decoration:none">三维探索</a></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="nx">导航</span>全部子层与工具</div>
+    <div class="nav">
+      <div class="ng" id="g-root"><div class="gh"><span class="gi" style="background:var(--accent)">根</span>世界观</div><div class="links"><a href="kg-first-principles.html">第一性原理</a><a href="kg-worldview.html">世界观层</a><a href="kg-worldview-map.html">世界观地图 2D</a><a href="kg-worldview-region.html?id=WV1">6 区志</a><a href="kg-worldview-science.html">科学性自检</a><a href="kg-plane-standard.html">逻辑图标准</a><a href="kg-style-3d.html">三维探索</a></div></div>
+      <div class="ng" id="g-impl"><div class="gh"><span class="gi" style="background:var(--green)">实现</span>题材 · 语言</div><div class="links"><a href="kg-subject.html">题材层 518</a><a href="kg-language.html">7大构成·连续轴</a><a href="kg-openness.html">闭集/开集</a></div></div>
+      <div class="ng" id="g-style"><div class="gh"><span class="gi" style="background:var(--accent)">涌现</span>风格(投影)</div><div class="links"><a href="kg-style.html">风格层 202</a><a href="kg-style-detail.html?id=STYLE.west.029">风格详情</a><a href="kg-style-compare.html">风格对比(看差异)</a><a href="kg-projection.html">沿链投影(看聚集)</a><a href="kg-timeline.html">演化时间线</a><a href="kg-style-vectors.html">E向量散点</a><a href="kg-style-framework.html">详情标准框架</a><a href="kg-style-stats.html">统计</a></div></div>
+      <div class="ng" id="g-effect"><div class="gh"><span class="gi" style="background:var(--blue)">效应</span>感知 · 画外音</div><div class="links"><a href="kg-affect.html">感知效应·像素实测</a><a href="kg-artworks.html">真迹读图(VLM)</a><a href="kg-facets.html">多面解构</a><a href="kg-facets-detail.html">四面收口</a><a href="kg-subtext.html">画外音层</a></div></div>
+      <div class="ng" id="g-graph"><div class="gh"><span class="gi" style="background:var(--gold)">图谱</span>关系与归类</div><div class="links"><a href="kg-lineage.html">关系考究(承自/影响/对抗)</a><a href="kg-galaxy.html">星空关系网</a><a href="kg-graph.html">数据派生边</a><a href="kg-node.html">节点样板</a><a href="kg-schema.html">正交基/标注</a><a href="kg-audit.html">科学化审核</a></div></div>
+      <div class="ng" id="g-artist"><div class="gh"><span class="gi" style="background:var(--accent)">实例</span>艺术家</div><div class="links"><a href="kg-artists.html">艺术家索引 276</a><a href="kg-artist.html?id=ARTIST.monet">艺术家页</a><a href="kg-artist-framework.html">艺术家标准</a></div></div>
+      <div class="ng" id="g-apply"><div class="gh"><span class="gi" style="background:var(--accent)">应用</span>生成 · 资产</div><div class="links"><a href="kg-foryou.html">为你生成</a><a href="kg-compile-v2.html">意图编译器 v2</a><a href="kg-compile.html">编译器 v1</a><a href="kg-gallery.html">生成图库</a><a href="kg-backtest.html">生成回测</a><a href="kg-ontology.html">权威本体(说明书)</a><a href="kg-health.html">完备性体检</a><a href="kg-milestone.html">阶段性总结</a><a href="kg-data.html">数据资产/字典</a><a href="kg-graph.html">跨层共现网</a></div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="nx">价值</span>为什么值得做厚</div>
+    <div class="sec-d">总开关一句话:<b>层间正交 → 可重组</b>。题材 × 世界观 × 语言分布,组合空间远大于语料本身——所以能既理解又创作。</div>
+    <div class="vlist">
+      <div class="vc"><div class="vt">① 理解 / 标注引擎</div><div class="vd">任一画 → 命中跨层节点,沿链定位它的世界观、语言、意义。</div></div>
+      <div class="vc"><div class="vt">② 生成编译器</div><div class="vd">一句话 → 命中节点 → 据风格剖面扩写 → 结构化 Prompt(每字段挂真实节点)。</div></div>
+      <div class="vc"><div class="vt">③ 匹配 / 插值推荐</div><div class="vd">连续向量 → 风格之间可插值,千人千面的内核。</div></div>
+      <div class="vc"><div class="vt">④ 可导航的艺术史</div><div class="vd">讲世界观逻辑而非扁平标签;东西在同一平面按密度分布。</div></div>
+    </div>
+  </div>
+
+  <a class="back" href="home.html">← 回到全部体验导航</a>
+</div>
+<script>
+const WVC={WV1:'#b0673a',WV2:'#9a7b3a',WV3:'#5a7d6f',WV4:'#5b7596',WV5:'#8a5a7a',WV6:'#4a6a8a'};
+fetch('data/kg_worldview_regions.json').then(r=>r.json()).then(D=>{
+  const g=document.getElementById('wvgrid');
+  D.regions.forEach(r=>{const a=document.createElement('a');a.className='wvc';a.href='kg-worldview-region.html?id='+r.id;a.style.setProperty('--c',WVC[r.id]);
+    a.innerHTML=`<div class="wn">${r.name}</div><div class="wq">${r.q}</div><div class="wm">${r.id} · ${r.alt} · ${r.n}风格 西${r.west}/东${r.east}</div>`;g.appendChild(a);});
+}).catch(()=>{document.getElementById('wvgrid').innerHTML='<div style="color:#a89f8f;font-size:12px">需服务器加载</div>';});
+</script>
+</body></html>

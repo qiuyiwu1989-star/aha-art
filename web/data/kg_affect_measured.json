@@ -1,0 +1,1836 @@
+{
+ "meta": {
+  "n_mapped": 57,
+  "source": "PIL 像素实测;风格坐标/考据VAD=人工考据(独立于像素)",
+  "circularity": {
+   "mood_a_vs_colorsat": {
+    "r": 0.796,
+    "n": 57
+   },
+   "note": "mood唤起与作品主色饱和度高相关 → mood系颜色派生,其与饱和度的相关属循环,仅作参照"
+  },
+  "independent": {
+   "measured_sat_vs_curated_arousal": {
+    "r": 0.2,
+    "n": 32
+   }
+  },
+  "features": {
+   "sat": "平均饱和度 HSV-S",
+   "val": "平均明度 HSV-V",
+   "contrast": "灰度对比度(std)",
+   "colorful": "色彩丰富度 Hasler-Süsstrunk",
+   "warm": "暖色像素占比(S>40且色相<60°或>300°)",
+   "edge": "边缘密度(相邻灰度差均值)"
+  },
+  "axes": {
+   "rep_exp": "再现→表现",
+   "struct_perc": "结构→感知",
+   "ord_ten": "秩序→张力",
+   "res_int": "节制→强度",
+   "art_a": "考据唤起",
+   "art_v": "考据愉悦",
+   "mood_a": "mood唤起",
+   "mood_v": "mood愉悦"
+  }
+ },
+ "corr": {
+  "sat": {
+   "rep_exp": {
+    "r": -0.378,
+    "n": 57
+   },
+   "struct_perc": {
+    "r": -0.384,
+    "n": 57
+   },
+   "ord_ten": {
+    "r": 0.011,
+    "n": 57
+   },
+   "res_int": {
+    "r": -0.087,
+    "n": 57
+   },
+   "art_a": {
+    "r": 0.2,
+    "n": 32
+   },
+   "art_v": {
+    "r": -0.493,
+    "n": 32
+   },
+   "mood_a": {
+    "r": 0.723,
+    "n": 57
+   },
+   "mood_v": {
+    "r": 0.045,
+    "n": 57
+   }
+  },
+  "val": {
+   "rep_exp": {
+    "r": 0.402,
+    "n": 57
+   },
+   "struct_perc": {
+    "r": 0.14,
+    "n": 57
+   },
+   "ord_ten": {
+    "r": 0.014,
+    "n": 57
+   },
+   "res_int": {
+    "r": 0.176,
+    "n": 57
+   },
+   "art_a": {
+    "r": 0.229,
+    "n": 32
+   },
+   "art_v": {
+    "r": 0.199,
+    "n": 32
+   },
+   "mood_a": {
+    "r": -0.111,
+    "n": 57
+   },
+   "mood_v": {
+    "r": 0.627,
+    "n": 57
+   }
+  },
+  "contrast": {
+   "rep_exp": {
+    "r": 0.059,
+    "n": 57
+   },
+   "struct_perc": {
+    "r": 0.184,
+    "n": 57
+   },
+   "ord_ten": {
+    "r": -0.227,
+    "n": 57
+   },
+   "res_int": {
+    "r": -0.162,
+    "n": 57
+   },
+   "art_a": {
+    "r": -0.212,
+    "n": 32
+   },
+   "art_v": {
+    "r": 0.436,
+    "n": 32
+   },
+   "mood_a": {
+    "r": 0.359,
+    "n": 57
+   },
+   "mood_v": {
+    "r": 0.251,
+    "n": 57
+   }
+  },
+  "colorful": {
+   "rep_exp": {
+    "r": 0.216,
+    "n": 57
+   },
+   "struct_perc": {
+    "r": -0.095,
+    "n": 57
+   },
+   "ord_ten": {
+    "r": -0.204,
+    "n": 57
+   },
+   "res_int": {
+    "r": -0.05,
+    "n": 57
+   },
+   "art_a": {
+    "r": 0.209,
+    "n": 32
+   },
+   "art_v": {
+    "r": -0.031,
+    "n": 32
+   },
+   "mood_a": {
+    "r": 0.656,
+    "n": 57
+   },
+   "mood_v": {
+    "r": 0.144,
+    "n": 57
+   }
+  },
+  "warm": {
+   "rep_exp": {
+    "r": -0.482,
+    "n": 57
+   },
+   "struct_perc": {
+    "r": -0.329,
+    "n": 57
+   },
+   "ord_ten": {
+    "r": 0.298,
+    "n": 57
+   },
+   "res_int": {
+    "r": 0.172,
+    "n": 57
+   },
+   "art_a": {
+    "r": -0.156,
+    "n": 32
+   },
+   "art_v": {
+    "r": -0.333,
+    "n": 32
+   },
+   "mood_a": {
+    "r": 0.173,
+    "n": 57
+   },
+   "mood_v": {
+    "r": 0.301,
+    "n": 57
+   }
+  },
+  "edge": {
+   "rep_exp": {
+    "r": 0.431,
+    "n": 57
+   },
+   "struct_perc": {
+    "r": 0.202,
+    "n": 57
+   },
+   "ord_ten": {
+    "r": -0.259,
+    "n": 57
+   },
+   "res_int": {
+    "r": -0.15,
+    "n": 57
+   },
+   "art_a": {
+    "r": 0.297,
+    "n": 32
+   },
+   "art_v": {
+    "r": 0.068,
+    "n": 32
+   },
+   "mood_a": {
+    "r": 0.268,
+    "n": 57
+   },
+   "mood_v": {
+    "r": 0.104,
+    "n": 57
+   }
+  }
+ },
+ "rows": [
+  {
+   "slug": "m436965",
+   "title": "The Monet Family in Their Garden at Argenteuil",
+   "artist": "Edouard Manet",
+   "style_id": "STYLE.west.029",
+   "style_cn": "印象派",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.85,
+   "ord_ten": 0.45,
+   "res_int": 0.55,
+   "mood_v": 0.157,
+   "mood_a": 0.386,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.355,
+   "feat": {
+    "sat": 0.2900118719362745,
+    "val": 0.34881089154411765,
+    "contrast": 0.14983973420483063,
+    "colorful": 0.10720728814900543,
+    "warm": 0.11064453125,
+    "edge": 0.038653250305645155
+   }
+  },
+  {
+   "slug": "m435882",
+   "title": "Still Life with Apples and a Pot of Primroses",
+   "artist": "Paul Cézanne",
+   "style_id": "STYLE.west.032",
+   "style_cn": "后印象派",
+   "wv": "WV5",
+   "rep_exp": 0.65,
+   "struct_perc": 0.6,
+   "ord_ten": 0.6,
+   "res_int": 0.7,
+   "mood_v": 0.134,
+   "mood_a": 0.759,
+   "art_a": 0.32,
+   "art_v": 0.52,
+   "col_sat": 0.439,
+   "feat": {
+    "sat": 0.3634967724713648,
+    "val": 0.504084461754999,
+    "contrast": 0.19890769796175747,
+    "colorful": 0.19877337651732752,
+    "warm": 0.12925433168316833,
+    "edge": 0.04268838610013704
+   }
+  },
+  {
+   "slug": "m671456",
+   "title": "Chrysanthemums in the Garden at Petit-Gennevilliers",
+   "artist": "Gustave Caillebotte",
+   "style_id": "STYLE.west.029",
+   "style_cn": "印象派",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.85,
+   "ord_ten": 0.45,
+   "res_int": 0.55,
+   "mood_v": 0.599,
+   "mood_a": 0.538,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.382,
+   "feat": {
+    "sat": 0.36990994973938945,
+    "val": 0.33144196760982875,
+    "contrast": 0.13874302692242085,
+    "colorful": 0.12098325547257079,
+    "warm": 0.5035601265822784,
+    "edge": 0.03493964189262434
+   }
+  },
+  {
+   "slug": "m436947",
+   "title": "Boating",
+   "artist": "Edouard Manet",
+   "style_id": "STYLE.west.029",
+   "style_cn": "印象派",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.85,
+   "ord_ten": 0.45,
+   "res_int": 0.55,
+   "mood_v": 0.142,
+   "mood_a": 0.683,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.44,
+   "feat": {
+    "sat": 0.35681410450778245,
+    "val": 0.40151228016979984,
+    "contrast": 0.16221084449922157,
+    "colorful": 0.1864728687667071,
+    "warm": 0.28447164948453607,
+    "edge": 0.035178469541186176
+   }
+  },
+  {
+   "slug": "m437422",
+   "title": "Charity",
+   "artist": "Guido Reni",
+   "style_id": "STYLE.west.015",
+   "style_cn": "意大利巴洛克",
+   "wv": "WV1",
+   "rep_exp": 0.3,
+   "struct_perc": 0.45,
+   "ord_ten": 0.75,
+   "res_int": 0.8,
+   "mood_v": 0.744,
+   "mood_a": 0.919,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.486,
+   "feat": {
+    "sat": 0.4850871598639456,
+    "val": 0.39243228541416564,
+    "contrast": 0.20978842414897136,
+    "colorful": 0.19614792212109666,
+    "warm": 0.9445950255102041,
+    "edge": 0.03674548937586355
+   }
+  },
+  {
+   "slug": "m436535",
+   "title": "Wheat Field with Cypresses",
+   "artist": "Vincent van Gogh",
+   "style_id": "STYLE.west.032",
+   "style_cn": "后印象派",
+   "wv": "WV5",
+   "rep_exp": 0.65,
+   "struct_perc": 0.6,
+   "ord_ten": 0.6,
+   "res_int": 0.7,
+   "mood_v": 0.408,
+   "mood_a": 0.637,
+   "art_a": 0.85,
+   "art_v": 0.48,
+   "col_sat": 0.431,
+   "feat": {
+    "sat": 0.29923922539312753,
+    "val": 0.48159914337021936,
+    "contrast": 0.19048269310116248,
+    "colorful": 0.17288380967032285,
+    "warm": 0.1338954207920792,
+    "edge": 0.0409551955390175
+   }
+  },
+  {
+   "slug": "m436533",
+   "title": "Shoes",
+   "artist": "Vincent van Gogh",
+   "style_id": "STYLE.west.032",
+   "style_cn": "后印象派",
+   "wv": "WV5",
+   "rep_exp": 0.65,
+   "struct_perc": 0.6,
+   "ord_ten": 0.6,
+   "res_int": 0.7,
+   "mood_v": 0.904,
+   "mood_a": 0.82,
+   "art_a": 0.85,
+   "art_v": 0.48,
+   "col_sat": 0.42,
+   "feat": {
+    "sat": 0.40455836540223566,
+    "val": 0.6285997342862378,
+    "contrast": 0.1755363831220614,
+    "colorful": 0.15830534420915035,
+    "warm": 0.9620327102803738,
+    "edge": 0.05319349909422803
+   }
+  },
+  {
+   "slug": "m436529",
+   "title": "L'Arlésienne: Madame Joseph-Michel Ginoux (Marie Julien, 1848–1911)",
+   "artist": "Vincent van Gogh",
+   "style_id": "STYLE.west.032",
+   "style_cn": "后印象派",
+   "wv": "WV5",
+   "rep_exp": 0.65,
+   "struct_perc": 0.6,
+   "ord_ten": 0.6,
+   "res_int": 0.7,
+   "mood_v": 0.881,
+   "mood_a": 0.95,
+   "art_a": 0.85,
+   "art_v": 0.48,
+   "col_sat": 0.537,
+   "feat": {
+    "sat": 0.4838113958454669,
+    "val": 0.5934369539895166,
+    "contrast": 0.23936254500879933,
+    "colorful": 0.3337614227749527,
+    "warm": 0.1530785891089109,
+    "edge": 0.034361880736998425
+   }
+  },
+  {
+   "slug": "m437984",
+   "title": "La Berceuse (Woman Rocking a Cradle; Augustine-Alix Pellicot Roulin, 1851–1930)",
+   "artist": "Vincent van Gogh",
+   "style_id": "STYLE.west.032",
+   "style_cn": "后印象派",
+   "wv": "WV5",
+   "rep_exp": 0.65,
+   "struct_perc": 0.6,
+   "ord_ten": 0.6,
+   "res_int": 0.7,
+   "mood_v": 0.386,
+   "mood_a": 0.935,
+   "art_a": 0.85,
+   "art_v": 0.48,
+   "col_sat": 0.627,
+   "feat": {
+    "sat": 0.5996384197243254,
+    "val": 0.2940051082314114,
+    "contrast": 0.1229264898870196,
+    "colorful": 0.2321341749639619,
+    "warm": 0.3354733910891089,
+    "edge": 0.0365253497192371
+   }
+  },
+  {
+   "slug": "m436528",
+   "title": "Irises",
+   "artist": "Vincent van Gogh",
+   "style_id": "STYLE.west.032",
+   "style_cn": "后印象派",
+   "wv": "WV5",
+   "rep_exp": 0.65,
+   "struct_perc": 0.6,
+   "ord_ten": 0.6,
+   "res_int": 0.7,
+   "mood_v": 0.172,
+   "mood_a": 0.264,
+   "art_a": 0.85,
+   "art_v": 0.48,
+   "col_sat": 0.339,
+   "feat": {
+    "sat": 0.16083952145214522,
+    "val": 0.7099097869345758,
+    "contrast": 0.18067493818010025,
+    "colorful": 0.12685152818777387,
+    "warm": 0.03627784653465346,
+    "edge": 0.051453824359571194
+   }
+  },
+  {
+   "slug": "m437394",
+   "title": "Aristotle with a Bust of Homer",
+   "artist": "Rembrandt (Rembrandt van Rijn)",
+   "style_id": "STYLE.west.015",
+   "style_cn": "意大利巴洛克",
+   "wv": "WV1",
+   "rep_exp": 0.3,
+   "struct_perc": 0.45,
+   "ord_ten": 0.75,
+   "res_int": 0.8,
+   "mood_v": 0.393,
+   "mood_a": 0.622,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.604,
+   "feat": {
+    "sat": 0.6054438097553071,
+    "val": 0.09431818181818181,
+    "contrast": 0.06921675398240942,
+    "colorful": 0.059325380197386354,
+    "warm": 0.9917355371900827,
+    "edge": 0.010505945017378957
+   }
+  },
+  {
+   "slug": "m436536",
+   "title": "Women Picking Olives",
+   "artist": "Vincent van Gogh",
+   "style_id": "STYLE.west.032",
+   "style_cn": "后印象派",
+   "wv": "WV5",
+   "rep_exp": 0.65,
+   "struct_perc": 0.6,
+   "ord_ten": 0.6,
+   "res_int": 0.7,
+   "mood_v": 0.66,
+   "mood_a": 0.531,
+   "art_a": 0.85,
+   "art_v": 0.48,
+   "col_sat": 0.324,
+   "feat": {
+    "sat": 0.27395654863887303,
+    "val": 0.4991070578716924,
+    "contrast": 0.19120049078991092,
+    "colorful": 0.11857436790165674,
+    "warm": 0.4935527912621359,
+    "edge": 0.03920006436671979
+   }
+  },
+  {
+   "slug": "m436526",
+   "title": "First Steps, after Millet",
+   "artist": "Vincent van Gogh",
+   "style_id": "STYLE.west.032",
+   "style_cn": "后印象派",
+   "wv": "WV5",
+   "rep_exp": 0.65,
+   "struct_perc": 0.6,
+   "ord_ten": 0.6,
+   "res_int": 0.7,
+   "mood_v": 0.698,
+   "mood_a": 0.271,
+   "art_a": 0.85,
+   "art_v": 0.48,
+   "col_sat": 0.291,
+   "feat": {
+    "sat": 0.251518212483013,
+    "val": 0.5777261090079596,
+    "contrast": 0.114148070965642,
+    "colorful": 0.1253173522183454,
+    "warm": 0.07387066831683169,
+    "edge": 0.04578374967577621
+   }
+  },
+  {
+   "slug": "m436530",
+   "title": "Oleanders",
+   "artist": "Vincent van Gogh",
+   "style_id": "STYLE.west.032",
+   "style_cn": "后印象派",
+   "wv": "WV5",
+   "rep_exp": 0.65,
+   "struct_perc": 0.6,
+   "ord_ten": 0.6,
+   "res_int": 0.7,
+   "mood_v": 0.805,
+   "mood_a": 0.836,
+   "art_a": 0.85,
+   "art_v": 0.48,
+   "col_sat": 0.497,
+   "feat": {
+    "sat": 0.46071691176470586,
+    "val": 0.5415271942110178,
+    "contrast": 0.13188223100922147,
+    "colorful": 0.21403863636754789,
+    "warm": 0.27529761904761907,
+    "edge": 0.04553728727877947
+   }
+  },
+  {
+   "slug": "m437980",
+   "title": "Cypresses",
+   "artist": "Vincent van Gogh",
+   "style_id": "STYLE.west.032",
+   "style_cn": "后印象派",
+   "wv": "WV5",
+   "rep_exp": 0.65,
+   "struct_perc": 0.6,
+   "ord_ten": 0.6,
+   "res_int": 0.7,
+   "mood_v": 0.592,
+   "mood_a": 0.782,
+   "art_a": 0.85,
+   "art_v": 0.48,
+   "col_sat": 0.408,
+   "feat": {
+    "sat": 0.35263723063482816,
+    "val": 0.4734945277615997,
+    "contrast": 0.20518582852769615,
+    "colorful": 0.16178667949852607,
+    "warm": 0.10581683168316831,
+    "edge": 0.05270633010374011
+   }
+  },
+  {
+   "slug": "m436534",
+   "title": "Roses",
+   "artist": "Vincent van Gogh",
+   "style_id": "STYLE.west.032",
+   "style_cn": "后印象派",
+   "wv": "WV5",
+   "rep_exp": 0.65,
+   "struct_perc": 0.6,
+   "ord_ten": 0.6,
+   "res_int": 0.7,
+   "mood_v": 0.553,
+   "mood_a": 0.21,
+   "art_a": 0.85,
+   "art_v": 0.48,
+   "col_sat": 0.309,
+   "feat": {
+    "sat": 0.22908051834595225,
+    "val": 0.5785475514463211,
+    "contrast": 0.10277880288120694,
+    "colorful": 0.11769681581949452,
+    "warm": 0.01655321782178218,
+    "edge": 0.040363877405646106
+   }
+  },
+  {
+   "slug": "m436176",
+   "title": "Christ Asleep during the Tempest",
+   "artist": "Eugène Delacroix",
+   "style_id": "STYLE.west.023",
+   "style_cn": "法国浪漫主义",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.65,
+   "ord_ten": 0.8,
+   "res_int": 0.82,
+   "mood_v": 0.187,
+   "mood_a": 0.218,
+   "art_a": 0.78,
+   "art_v": 0.45,
+   "col_sat": 0.394,
+   "feat": {
+    "sat": 0.31005952380952384,
+    "val": 0.21004435107376285,
+    "contrast": 0.07558744721275697,
+    "colorful": 0.07961574713712533,
+    "warm": 0.29456845238095236,
+    "edge": 0.02754557986514992
+   }
+  },
+  {
+   "slug": "m437398",
+   "title": "Flora",
+   "artist": "Rembrandt (Rembrandt van Rijn)",
+   "style_id": "STYLE.west.015",
+   "style_cn": "意大利巴洛克",
+   "wv": "WV1",
+   "rep_exp": 0.3,
+   "struct_perc": 0.45,
+   "ord_ten": 0.75,
+   "res_int": 0.8,
+   "mood_v": 0.637,
+   "mood_a": 0.721,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.498,
+   "feat": {
+    "sat": 0.49169651835093015,
+    "val": 0.259177036199095,
+    "contrast": 0.13800909303621042,
+    "colorful": 0.09760866387953841,
+    "warm": 0.9833066239316239,
+    "edge": 0.019172109564193414
+   }
+  },
+  {
+   "slug": "m437396",
+   "title": "Hendrickje Stoffels (1626–1663)",
+   "artist": "Rembrandt (Rembrandt van Rijn)",
+   "style_id": "STYLE.west.015",
+   "style_cn": "意大利巴洛克",
+   "wv": "WV1",
+   "rep_exp": 0.3,
+   "struct_perc": 0.45,
+   "ord_ten": 0.75,
+   "res_int": 0.8,
+   "mood_v": 0.347,
+   "mood_a": 0.401,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.457,
+   "feat": {
+    "sat": 0.4371816979003991,
+    "val": 0.15574001171264967,
+    "contrast": 0.08984031003111645,
+    "colorful": 0.07077198068020751,
+    "warm": 0.9319690265486725,
+    "edge": 0.018979403801816994
+   }
+  },
+  {
+   "slug": "m436543",
+   "title": "Josefa de Castilla Portugal y van Asbrock de Garcini (1775–about 1850)",
+   "artist": "Goya (Francisco de Goya y Lucientes)",
+   "style_id": "STYLE.west.023",
+   "style_cn": "法国浪漫主义",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.65,
+   "ord_ten": 0.8,
+   "res_int": 0.82,
+   "mood_v": 0.225,
+   "mood_a": 0.439,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.383,
+   "feat": {
+    "sat": 0.2862159123358081,
+    "val": 0.2240321007043594,
+    "contrast": 0.1842946957510341,
+    "colorful": 0.10248921381089693,
+    "warm": 0.8136377427184466,
+    "edge": 0.017148211347897273
+   }
+  },
+  {
+   "slug": "m438821",
+   "title": "Ia Orana Maria (Hail Mary)",
+   "artist": "Paul Gauguin",
+   "style_id": "STYLE.west.032",
+   "style_cn": "后印象派",
+   "wv": "WV5",
+   "rep_exp": 0.65,
+   "struct_perc": 0.6,
+   "ord_ten": 0.6,
+   "res_int": 0.7,
+   "mood_v": 0.614,
+   "mood_a": 0.454,
+   "art_a": 0.45,
+   "art_v": 0.48,
+   "col_sat": 0.39,
+   "feat": {
+    "sat": 0.3075419730392157,
+    "val": 0.4920821078431372,
+    "contrast": 0.11848366182633414,
+    "colorful": 0.19068749193416693,
+    "warm": 0.2478125,
+    "edge": 0.045553484774011756
+   }
+  },
+  {
+   "slug": "m437878",
+   "title": "A Maid Asleep",
+   "artist": "Johannes Vermeer",
+   "style_id": "STYLE.west.015",
+   "style_cn": "意大利巴洛克",
+   "wv": "WV1",
+   "rep_exp": 0.3,
+   "struct_perc": 0.45,
+   "ord_ten": 0.75,
+   "res_int": 0.8,
+   "mood_v": 0.332,
+   "mood_a": 0.431,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.43,
+   "feat": {
+    "sat": 0.386633600512277,
+    "val": 0.1964394541600424,
+    "contrast": 0.11194612462297968,
+    "colorful": 0.09210688405931089,
+    "warm": 0.8339667792792793,
+    "edge": 0.02290462030288734
+   }
+  },
+  {
+   "slug": "m438817",
+   "title": "The Dance Class",
+   "artist": "Edgar Degas",
+   "style_id": "STYLE.west.029",
+   "style_cn": "印象派",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.85,
+   "ord_ten": 0.45,
+   "res_int": 0.55,
+   "mood_v": 0.469,
+   "mood_a": 0.355,
+   "art_a": 0.48,
+   "art_v": 0.5,
+   "col_sat": 0.37,
+   "feat": {
+    "sat": 0.3321885904785643,
+    "val": 0.3539545426221336,
+    "contrast": 0.13145401466260487,
+    "colorful": 0.09252059911815605,
+    "warm": 0.5023834745762712,
+    "edge": 0.0317813128001333
+   }
+  },
+  {
+   "slug": "m437879",
+   "title": "Study of a Young Woman",
+   "artist": "Johannes Vermeer",
+   "style_id": "STYLE.west.015",
+   "style_cn": "意大利巴洛克",
+   "wv": "WV1",
+   "rep_exp": 0.3,
+   "struct_perc": 0.45,
+   "ord_ten": 0.75,
+   "res_int": 0.8,
+   "mood_v": 0.355,
+   "mood_a": 0.645,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.497,
+   "feat": {
+    "sat": 0.41096544977640176,
+    "val": 0.193140479876161,
+    "contrast": 0.18207595644937485,
+    "colorful": 0.07462043234356806,
+    "warm": 0.4008360745614035,
+    "edge": 0.024128126164430524
+   }
+  },
+  {
+   "slug": "m383001",
+   "title": "Juvenile Tricks (Liber Studiorum, part V, plate 22)",
+   "artist": "Joseph Mallord William Turner",
+   "style_id": "STYLE.west.023",
+   "style_cn": "法国浪漫主义",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.65,
+   "ord_ten": 0.8,
+   "res_int": 0.82,
+   "mood_v": 0.935,
+   "mood_a": 0.668,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.399,
+   "feat": {
+    "sat": 0.3249048289528577,
+    "val": 0.7259653994576555,
+    "contrast": 0.2309258547145983,
+    "colorful": 0.1114924613338127,
+    "warm": 0.8641954787234043,
+    "edge": 0.03738464383991858
+   }
+  },
+  {
+   "slug": "m382925",
+   "title": "Juvenile Tricks, part V, plate 22 from \"Liber Studiorum\"",
+   "artist": "Joseph Mallord William Turner",
+   "style_id": "STYLE.west.023",
+   "style_cn": "法国浪漫主义",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.65,
+   "ord_ten": 0.8,
+   "res_int": 0.82,
+   "mood_v": 0.874,
+   "mood_a": 0.508,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.342,
+   "feat": {
+    "sat": 0.2779505008525149,
+    "val": 0.6481317934782609,
+    "contrast": 0.22353834985628568,
+    "colorful": 0.08748536813278722,
+    "warm": 0.7166270380434783,
+    "edge": 0.037775743824015266
+   }
+  },
+  {
+   "slug": "m435868",
+   "title": "The Card Players",
+   "artist": "Paul Cézanne",
+   "style_id": "STYLE.west.032",
+   "style_cn": "后印象派",
+   "wv": "WV5",
+   "rep_exp": 0.65,
+   "struct_perc": 0.6,
+   "ord_ten": 0.6,
+   "res_int": 0.7,
+   "mood_v": 0.126,
+   "mood_a": 0.317,
+   "art_a": 0.32,
+   "art_v": 0.52,
+   "col_sat": 0.38,
+   "feat": {
+    "sat": 0.23230501358959427,
+    "val": 0.3884081974373908,
+    "contrast": 0.15332692916676316,
+    "colorful": 0.11604613773350456,
+    "warm": 0.3310643564356436,
+    "edge": 0.04466850265918888
+   }
+  },
+  {
+   "slug": "m435876",
+   "title": "Madame Cézanne (Hortense Fiquet, 1850–1922) in a Red Dress",
+   "artist": "Paul Cézanne",
+   "style_id": "STYLE.west.032",
+   "style_cn": "后印象派",
+   "wv": "WV5",
+   "rep_exp": 0.65,
+   "struct_perc": 0.6,
+   "ord_ten": 0.6,
+   "res_int": 0.7,
+   "mood_v": 0.164,
+   "mood_a": 0.302,
+   "art_a": 0.32,
+   "art_v": 0.52,
+   "col_sat": 0.358,
+   "feat": {
+    "sat": 0.3117706457583033,
+    "val": 0.33834158663465386,
+    "contrast": 0.09208660745460415,
+    "colorful": 0.1286516642632586,
+    "warm": 0.41996173469387754,
+    "edge": 0.0340616952243033
+   }
+  },
+  {
+   "slug": "m436135",
+   "title": "Dancer with a Fan",
+   "artist": "Edgar Degas",
+   "style_id": "STYLE.west.029",
+   "style_cn": "印象派",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.85,
+   "ord_ten": 0.45,
+   "res_int": 0.55,
+   "mood_v": 0.897,
+   "mood_a": 0.225,
+   "art_a": 0.48,
+   "art_v": 0.5,
+   "col_sat": 0.295,
+   "feat": {
+    "sat": 0.27435628097392806,
+    "val": 0.6812109459168283,
+    "contrast": 0.1032256502588246,
+    "colorful": 0.09998947816616488,
+    "warm": 0.8775755494505495,
+    "edge": 0.02009641379626742
+   }
+  },
+  {
+   "slug": "m436155",
+   "title": "The Rehearsal of the Ballet Onstage",
+   "artist": "Edgar Degas",
+   "style_id": "STYLE.west.029",
+   "style_cn": "印象派",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.85,
+   "ord_ten": 0.45,
+   "res_int": 0.55,
+   "mood_v": 0.706,
+   "mood_a": 0.569,
+   "art_a": 0.48,
+   "art_v": 0.5,
+   "col_sat": 0.391,
+   "feat": {
+    "sat": 0.3436935629514964,
+    "val": 0.4074264705882353,
+    "contrast": 0.1572162038675756,
+    "colorful": 0.12469271751247299,
+    "warm": 0.4499177631578947,
+    "edge": 0.042602938613297704
+   }
+  },
+  {
+   "slug": "m436120",
+   "title": "The Old Italian Woman",
+   "artist": "Edgar Degas",
+   "style_id": "STYLE.west.029",
+   "style_cn": "印象派",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.85,
+   "ord_ten": 0.45,
+   "res_int": 0.55,
+   "mood_v": 0.775,
+   "mood_a": 0.858,
+   "art_a": 0.48,
+   "art_v": 0.5,
+   "col_sat": 0.524,
+   "feat": {
+    "sat": 0.4758001036953243,
+    "val": 0.4263362556561086,
+    "contrast": 0.17202328270258252,
+    "colorful": 0.15204467640025934,
+    "warm": 0.8960336538461539,
+    "edge": 0.02616261374510174
+   }
+  },
+  {
+   "slug": "m436143",
+   "title": "Fan Mount: The Ballet",
+   "artist": "Edgar Degas",
+   "style_id": "STYLE.west.029",
+   "style_cn": "印象派",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.85,
+   "ord_ten": 0.45,
+   "res_int": 0.55,
+   "mood_v": 0.721,
+   "mood_a": 0.492,
+   "art_a": 0.48,
+   "art_v": 0.5,
+   "col_sat": 0.259,
+   "feat": {
+    "sat": 0.13044036548442908,
+    "val": 0.5745071006343714,
+    "contrast": 0.3091350893434728,
+    "colorful": 0.06386542111508083,
+    "warm": 0.0059742647058823525,
+    "edge": 0.038799797450934224
+   }
+  },
+  {
+   "slug": "m436142",
+   "title": "Fan Mount: Dancers",
+   "artist": "Edgar Degas",
+   "style_id": "STYLE.west.029",
+   "style_cn": "印象派",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.85,
+   "ord_ten": 0.45,
+   "res_int": 0.55,
+   "mood_v": 0.508,
+   "mood_a": 0.576,
+   "art_a": 0.48,
+   "art_v": 0.5,
+   "col_sat": 0.41,
+   "feat": {
+    "sat": 0.26715314913844324,
+    "val": 0.3551150289661319,
+    "contrast": 0.23171319956117908,
+    "colorful": 0.10848593181305763,
+    "warm": 0.4552556818181818,
+    "edge": 0.035177385120015336
+   }
+  },
+  {
+   "slug": "m437315",
+   "title": "Fan Mount: The Cabbage Gatherers",
+   "artist": "Camille Pissarro",
+   "style_id": "STYLE.west.029",
+   "style_cn": "印象派",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.85,
+   "ord_ten": 0.45,
+   "res_int": 0.55,
+   "mood_v": 0.729,
+   "mood_a": 0.874,
+   "art_a": 0.42,
+   "art_v": 0.62,
+   "col_sat": 0.435,
+   "feat": {
+    "sat": 0.22457921645220588,
+    "val": 0.5709285960477941,
+    "contrast": 0.3071231198887375,
+    "colorful": 0.19068374263681098,
+    "warm": 0.3380126953125,
+    "edge": 0.043028314151747425
+   }
+  },
+  {
+   "slug": "m437310",
+   "title": "The Boulevard Montmartre on a Winter Morning",
+   "artist": "Camille Pissarro",
+   "style_id": "STYLE.west.029",
+   "style_cn": "印象派",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.85,
+   "ord_ten": 0.45,
+   "res_int": 0.55,
+   "mood_v": 0.416,
+   "mood_a": 0.187,
+   "art_a": 0.42,
+   "art_v": 0.62,
+   "col_sat": 0.298,
+   "feat": {
+    "sat": 0.13570935655815725,
+    "val": 0.414046735198934,
+    "contrast": 0.1730703980902244,
+    "colorful": 0.06178654771143853,
+    "warm": 0.2398361650485437,
+    "edge": 0.04115835893373094
+   }
+  },
+  {
+   "slug": "m437299",
+   "title": "Jalais Hill, Pontoise",
+   "artist": "Camille Pissarro",
+   "style_id": "STYLE.west.029",
+   "style_cn": "印象派",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.85,
+   "ord_ten": 0.45,
+   "res_int": 0.55,
+   "mood_v": 0.653,
+   "mood_a": 0.79,
+   "art_a": 0.42,
+   "art_v": 0.62,
+   "col_sat": 0.39,
+   "feat": {
+    "sat": 0.2943880129371336,
+    "val": 0.4948570472003234,
+    "contrast": 0.26234435890110824,
+    "colorful": 0.13952649479690382,
+    "warm": 0.08070231958762887,
+    "edge": 0.04562738053972933
+   }
+  },
+  {
+   "slug": "m436449",
+   "title": "The Siesta",
+   "artist": "Paul Gauguin",
+   "style_id": "STYLE.west.032",
+   "style_cn": "后印象派",
+   "wv": "WV5",
+   "rep_exp": 0.65,
+   "struct_perc": 0.6,
+   "ord_ten": 0.6,
+   "res_int": 0.7,
+   "mood_v": 0.828,
+   "mood_a": 0.912,
+   "art_a": 0.45,
+   "art_v": 0.48,
+   "col_sat": 0.532,
+   "feat": {
+    "sat": 0.45447585284113645,
+    "val": 0.5871623649459784,
+    "contrast": 0.17080817577180818,
+    "colorful": 0.29721950298343536,
+    "warm": 0.6196588010204082,
+    "edge": 0.046495413269482075
+   }
+  },
+  {
+   "slug": "m436950",
+   "title": "The Dead Christ with Angels",
+   "artist": "Edouard Manet",
+   "style_id": "STYLE.west.029",
+   "style_cn": "印象派",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.85,
+   "ord_ten": 0.45,
+   "res_int": 0.55,
+   "mood_v": 0.302,
+   "mood_a": 0.698,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.465,
+   "feat": {
+    "sat": 0.34916643544210135,
+    "val": 0.2862169926933037,
+    "contrast": 0.2036841531491566,
+    "colorful": 0.10155050779480186,
+    "warm": 0.4143573113207547,
+    "edge": 0.04026616141958635
+   }
+  },
+  {
+   "slug": "m436004",
+   "title": "The Woman in the Waves",
+   "artist": "Gustave Courbet",
+   "style_id": "STYLE.west.026",
+   "style_cn": "现实主义",
+   "wv": "WV1",
+   "rep_exp": 0.18,
+   "struct_perc": 0.3,
+   "ord_ten": 0.45,
+   "res_int": 0.35,
+   "mood_v": 0.477,
+   "mood_a": 0.309,
+   "art_a": 0.55,
+   "art_v": 0.44,
+   "col_sat": 0.302,
+   "feat": {
+    "sat": 0.21630252100840336,
+    "val": 0.3714300303454715,
+    "contrast": 0.187134188564764,
+    "colorful": 0.08053194656134725,
+    "warm": 0.4617559523809524,
+    "edge": 0.03380442959035247
+   }
+  },
+  {
+   "slug": "m438820",
+   "title": "Young Ladies of the Village",
+   "artist": "Gustave Courbet",
+   "style_id": "STYLE.west.026",
+   "style_cn": "现实主义",
+   "wv": "WV1",
+   "rep_exp": 0.18,
+   "struct_perc": 0.3,
+   "ord_ten": 0.45,
+   "res_int": 0.35,
+   "mood_v": 0.797,
+   "mood_a": 0.927,
+   "art_a": 0.55,
+   "art_v": 0.44,
+   "col_sat": 0.759,
+   "feat": {
+    "sat": 0.6152770252837978,
+    "val": 0.3861284184726522,
+    "contrast": 0.1531806662041662,
+    "colorful": 0.20304567861042783,
+    "warm": 0.7087993421052632,
+    "edge": 0.036213252809110356
+   }
+  },
+  {
+   "slug": "m436001",
+   "title": "Jo, La Belle Irlandaise",
+   "artist": "Gustave Courbet",
+   "style_id": "STYLE.west.026",
+   "style_cn": "现实主义",
+   "wv": "WV1",
+   "rep_exp": 0.18,
+   "struct_perc": 0.3,
+   "ord_ten": 0.45,
+   "res_int": 0.35,
+   "mood_v": 0.485,
+   "mood_a": 0.592,
+   "art_a": 0.55,
+   "art_v": 0.44,
+   "col_sat": 0.484,
+   "feat": {
+    "sat": 0.44878188543936093,
+    "val": 0.23929483251633987,
+    "contrast": 0.11269829194802124,
+    "colorful": 0.09731173701985255,
+    "warm": 0.7977430555555556,
+    "edge": 0.0260031523334549
+   }
+  },
+  {
+   "slug": "m436002",
+   "title": "Woman with a Parrot",
+   "artist": "Gustave Courbet",
+   "style_id": "STYLE.west.026",
+   "style_cn": "现实主义",
+   "wv": "WV1",
+   "rep_exp": 0.18,
+   "struct_perc": 0.3,
+   "ord_ten": 0.45,
+   "res_int": 0.35,
+   "mood_v": 0.454,
+   "mood_a": 0.881,
+   "art_a": 0.55,
+   "art_v": 0.44,
+   "col_sat": 0.62,
+   "feat": {
+    "sat": 0.5845834045827634,
+    "val": 0.16846179605563155,
+    "contrast": 0.16406442658936254,
+    "colorful": 0.07930752952333062,
+    "warm": 0.7276526162790697,
+    "edge": 0.031140262361249182
+   }
+  },
+  {
+   "slug": "m435962",
+   "title": "Hagar in the Wilderness",
+   "artist": "Camille Corot",
+   "style_id": "STYLE.west.A04",
+   "style_cn": "巴比松画派",
+   "wv": "WV1",
+   "rep_exp": 0.2,
+   "struct_perc": 0.45,
+   "ord_ten": 0.3,
+   "res_int": 0.35,
+   "mood_v": 0.752,
+   "mood_a": 0.797,
+   "art_a": 0.3,
+   "art_v": 0.6,
+   "col_sat": 0.454,
+   "feat": {
+    "sat": 0.3446003467876513,
+    "val": 0.45982966989987484,
+    "contrast": 0.23692159758017758,
+    "colorful": 0.14304441003031532,
+    "warm": 0.31840093085106386,
+    "edge": 0.03460611361397001
+   }
+  },
+  {
+   "slug": "m435991",
+   "title": "A Woman Reading",
+   "artist": "Camille Corot",
+   "style_id": "STYLE.west.A04",
+   "style_cn": "巴比松画派",
+   "wv": "WV1",
+   "rep_exp": 0.2,
+   "struct_perc": 0.45,
+   "ord_ten": 0.3,
+   "res_int": 0.35,
+   "mood_v": 0.317,
+   "mood_a": 0.424,
+   "art_a": 0.3,
+   "art_v": 0.6,
+   "col_sat": 0.377,
+   "feat": {
+    "sat": 0.2678671199662661,
+    "val": 0.2705905413240565,
+    "contrast": 0.18908399470602164,
+    "colorful": 0.08408998062453148,
+    "warm": 0.5938340053763441,
+    "edge": 0.02784441479478837
+   }
+  },
+  {
+   "slug": "m436545",
+   "title": "Manuel Osorio Manrique de Zuñiga (1784–1792)",
+   "artist": "Goya (Francisco de Goya y Lucientes)",
+   "style_id": "STYLE.west.023",
+   "style_cn": "法国浪漫主义",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.65,
+   "ord_ten": 0.8,
+   "res_int": 0.82,
+   "mood_v": 0.515,
+   "mood_a": 0.294,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.331,
+   "feat": {
+    "sat": 0.30785715216937837,
+    "val": 0.3201726767834794,
+    "contrast": 0.11098467092672813,
+    "colorful": 0.11577734385842472,
+    "warm": 0.46866688829787234,
+    "edge": 0.016676660564400994
+   }
+  },
+  {
+   "slug": "m435844",
+   "title": "The Musicians",
+   "artist": "Caravaggio (Michelangelo Merisi)",
+   "style_id": "STYLE.west.015",
+   "style_cn": "意大利巴洛克",
+   "wv": "WV1",
+   "rep_exp": 0.3,
+   "struct_perc": 0.45,
+   "ord_ten": 0.75,
+   "res_int": 0.8,
+   "mood_v": 0.714,
+   "mood_a": 0.866,
+   "art_a": 0.78,
+   "art_v": 0.32,
+   "col_sat": 0.597,
+   "feat": {
+    "sat": 0.5570623514557338,
+    "val": 0.29870054713804717,
+    "contrast": 0.1582197531270958,
+    "colorful": 0.10414308345694302,
+    "warm": 0.8950441919191919,
+    "edge": 0.039010278484922986
+   }
+  },
+  {
+   "slug": "m436542",
+   "title": "Ignacio Garcini y Queralt (1752–1825), Brigadier of Engineers",
+   "artist": "Goya (Francisco de Goya y Lucientes)",
+   "style_id": "STYLE.west.023",
+   "style_cn": "法国浪漫主义",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.65,
+   "ord_ten": 0.8,
+   "res_int": 0.82,
+   "mood_v": 0.119,
+   "mood_a": 0.172,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.32,
+   "feat": {
+    "sat": 0.2158010898534171,
+    "val": 0.1494431753283838,
+    "contrast": 0.10784399430071072,
+    "colorful": 0.06687148074678434,
+    "warm": 0.6636832524271845,
+    "edge": 0.018513010254413455
+   }
+  },
+  {
+   "slug": "m334030",
+   "title": "A radiant female figure beset by dark spirits; page 45 from the \"Images of Spain\" Album (F)",
+   "artist": "Goya (Francisco de Goya y Lucientes)",
+   "style_id": "STYLE.west.023",
+   "style_cn": "法国浪漫主义",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.65,
+   "ord_ten": 0.8,
+   "res_int": 0.82,
+   "mood_v": 0.919,
+   "mood_a": 0.393,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.288,
+   "feat": {
+    "sat": 0.2379265118968936,
+    "val": 0.7422608228684733,
+    "contrast": 0.20722191039881813,
+    "colorful": 0.08338462684943798,
+    "warm": 0.7535112359550562,
+    "edge": 0.04358370342952465
+   }
+  },
+  {
+   "slug": "m436554",
+   "title": "Bullfight in a Divided Ring",
+   "artist": "Goya (Francisco de Goya y Lucientes)",
+   "style_id": "STYLE.west.023",
+   "style_cn": "法国浪漫主义",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.65,
+   "ord_ten": 0.8,
+   "res_int": 0.82,
+   "mood_v": 0.622,
+   "mood_a": 0.653,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.456,
+   "feat": {
+    "sat": 0.38976533682780046,
+    "val": 0.3392620971655989,
+    "contrast": 0.15918702021930528,
+    "colorful": 0.12042698570377858,
+    "warm": 0.6969368811881188,
+    "edge": 0.03213832592310155
+   }
+  },
+  {
+   "slug": "m360413",
+   "title": "Plate 7 from \"Los Caprichos\": Even thus he cannot make her out (Ni asi la distingue)",
+   "artist": "Goya (Francisco de Goya y Lucientes)",
+   "style_id": "STYLE.west.023",
+   "style_cn": "法国浪漫主义",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.65,
+   "ord_ten": 0.8,
+   "res_int": 0.82,
+   "mood_v": 0.95,
+   "mood_a": 0.111,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.247,
+   "feat": {
+    "sat": 0.11846872392574051,
+    "val": 0.8617174462870255,
+    "contrast": 0.1467507007424315,
+    "colorful": 0.06031257584910753,
+    "warm": 0.265625,
+    "edge": 0.021602068519715925
+   }
+  },
+  {
+   "slug": "m334025",
+   "title": "A partly naked woman seated by a stream; page 32 from the \"Images of Spain\" Album (F)",
+   "artist": "Goya (Francisco de Goya y Lucientes)",
+   "style_id": "STYLE.west.023",
+   "style_cn": "法国浪漫主义",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.65,
+   "ord_ten": 0.8,
+   "res_int": 0.82,
+   "mood_v": 0.836,
+   "mood_a": 0.515,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.331,
+   "feat": {
+    "sat": 0.2989548909451421,
+    "val": 0.5821680849306015,
+    "contrast": 0.20199957958249304,
+    "colorful": 0.08311618955389827,
+    "warm": 0.8880793539325843,
+    "edge": 0.04616270625944067
+   }
+  },
+  {
+   "slug": "m397771",
+   "title": "Funereal Folly, from \"The Disparates\" (Follies / Irrationalities)",
+   "artist": "Goya (Francisco de Goya y Lucientes)",
+   "style_id": "STYLE.west.023",
+   "style_cn": "法国浪漫主义",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.65,
+   "ord_ten": 0.8,
+   "res_int": 0.82,
+   "mood_v": 0.858,
+   "mood_a": 0.325,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.231,
+   "feat": {
+    "sat": 0.1307114109848485,
+    "val": 0.7189390457887701,
+    "contrast": 0.2849262475256186,
+    "colorful": 0.03573342376081843,
+    "warm": 0.37357954545454547,
+    "edge": 0.017635812611168408
+   }
+  },
+  {
+   "slug": "m334013",
+   "title": "Humility versus Pride; a young man imploring an older man with other figures in front of them; folio 75 (recto) from the Madrid Album \"B\"",
+   "artist": "Goya (Francisco de Goya y Lucientes)",
+   "style_id": "STYLE.west.023",
+   "style_cn": "法国浪漫主义",
+   "wv": "WV4",
+   "rep_exp": 0.55,
+   "struct_perc": 0.65,
+   "ord_ten": 0.8,
+   "res_int": 0.82,
+   "mood_v": 0.866,
+   "mood_a": 0.149,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.216,
+   "feat": {
+    "sat": 0.15589537377450982,
+    "val": 0.7097771139705882,
+    "contrast": 0.13193209542602796,
+    "colorful": 0.052196460072191864,
+    "warm": 0.42314453125,
+    "edge": 0.030470167293436757
+   }
+  },
+  {
+   "slug": "m437423",
+   "title": "The Immaculate Conception",
+   "artist": "Guido Reni",
+   "style_id": "STYLE.west.015",
+   "style_cn": "意大利巴洛克",
+   "wv": "WV1",
+   "rep_exp": 0.3,
+   "struct_perc": 0.45,
+   "ord_ten": 0.75,
+   "res_int": 0.8,
+   "mood_v": 0.767,
+   "mood_a": 0.805,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.476,
+   "feat": {
+    "sat": 0.4116122080854814,
+    "val": 0.57218515917603,
+    "contrast": 0.1448668876172274,
+    "colorful": 0.24541525194802116,
+    "warm": 0.8632373595505618,
+    "edge": 0.034488116519263465
+   }
+  },
+  {
+   "slug": "m44634",
+   "title": "Drunken Asaina",
+   "artist": "Katsushika Hokusai",
+   "style_id": "STYLE.east.A15",
+   "style_cn": "浮世绘",
+   "wv": "WV2",
+   "rep_exp": 0.4,
+   "struct_perc": 0.35,
+   "ord_ten": 0.45,
+   "res_int": 0.7,
+   "mood_v": 0.927,
+   "mood_a": 0.485,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.382,
+   "feat": {
+    "sat": 0.3595996732026144,
+    "val": 0.6931069367851308,
+    "contrast": 0.14301536673444123,
+    "colorful": 0.14037505695939337,
+    "warm": 0.9163411458333334,
+    "edge": 0.014189044665172049
+   }
+  },
+  {
+   "slug": "m53449",
+   "title": "Six Jewel Rivers from Various Provinces",
+   "artist": "Utagawa Hiroshige",
+   "style_id": "STYLE.east.A15",
+   "style_cn": "浮世绘",
+   "wv": "WV2",
+   "rep_exp": 0.4,
+   "struct_perc": 0.35,
+   "ord_ten": 0.45,
+   "res_int": 0.7,
+   "mood_v": 0.111,
+   "mood_a": 0.744,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.478,
+   "feat": {
+    "sat": 0.23734553717320261,
+    "val": 0.5960340711805555,
+    "contrast": 0.26543108656324055,
+    "colorful": 0.19415736422095028,
+    "warm": 0.1083984375,
+    "edge": 0.03658524178067982
+   }
+  },
+  {
+   "slug": "m36742",
+   "title": "Wild Geese Flying under the Full Moon",
+   "artist": "Utagawa Hiroshige",
+   "style_id": "STYLE.east.A15",
+   "style_cn": "浮世绘",
+   "wv": "WV2",
+   "rep_exp": 0.4,
+   "struct_perc": 0.35,
+   "ord_ten": 0.45,
+   "res_int": 0.7,
+   "mood_v": 0.813,
+   "mood_a": 0.447,
+   "art_a": null,
+   "art_v": null,
+   "col_sat": 0.298,
+   "feat": {
+    "sat": 0.250869680258467,
+    "val": 0.7671471145276293,
+    "contrast": 0.18921068978656896,
+    "colorful": 0.17377006703590606,
+    "warm": 0.6658380681818182,
+    "edge": 0.04388322267240846
+   }
+  }
+ ],
+ "by_region": {
+  "WV1": {
+   "n": 14,
+   "sat": 0.447,
+   "val": 0.29,
+   "contrast": 0.153,
+   "colorful": 0.116,
+   "warm": 0.747,
+   "edge": 0.028
+  },
+  "WV2": {
+   "n": 3,
+   "sat": 0.283,
+   "val": 0.685,
+   "contrast": 0.199,
+   "colorful": 0.169,
+   "warm": 0.564,
+   "edge": 0.032
+  },
+  "WV4": {
+   "n": 25,
+   "sat": 0.276,
+   "val": 0.475,
+   "contrast": 0.183,
+   "colorful": 0.102,
+   "warm": 0.495,
+   "edge": 0.033
+  },
+  "WV5": {
+   "n": 15,
+   "sat": 0.346,
+   "val": 0.513,
+   "contrast": 0.159,
+   "colorful": 0.18,
+   "warm": 0.289,
+   "edge": 0.044
+  }
+ },
+ "by_style": {
+  "印象派": {
+   "n": 13,
+   "wv": "WV4",
+   "sat": 0.296,
+   "val": 0.434,
+   "contrast": 0.192,
+   "colorful": 0.119,
+   "warm": 0.397,
+   "edge": 0.036
+  },
+  "后印象派": {
+   "n": 15,
+   "wv": "WV5",
+   "sat": 0.346,
+   "val": 0.513,
+   "contrast": 0.159,
+   "colorful": 0.18,
+   "warm": 0.289,
+   "edge": 0.044
+  },
+  "意大利巴洛克": {
+   "n": 8,
+   "wv": "WV1",
+   "sat": 0.473,
+   "val": 0.27,
+   "contrast": 0.138,
+   "colorful": 0.118,
+   "warm": 0.856,
+   "edge": 0.026
+  },
+  "法国浪漫主义": {
+   "n": 12,
+   "wv": "WV4",
+   "sat": 0.255,
+   "val": 0.519,
+   "contrast": 0.172,
+   "colorful": 0.083,
+   "warm": 0.602,
+   "edge": 0.029
+  },
+  "现实主义": {
+   "n": 4,
+   "wv": "WV1",
+   "sat": 0.466,
+   "val": 0.291,
+   "contrast": 0.154,
+   "colorful": 0.115,
+   "warm": 0.674,
+   "edge": 0.032
+  },
+  "巴比松画派": {
+   "n": 2,
+   "wv": "WV1",
+   "sat": 0.306,
+   "val": 0.365,
+   "contrast": 0.213,
+   "colorful": 0.114,
+   "warm": 0.456,
+   "edge": 0.031
+  },
+  "浮世绘": {
+   "n": 3,
+   "wv": "WV2",
+   "sat": 0.283,
+   "val": 0.685,
+   "contrast": 0.199,
+   "colorful": 0.169,
+   "warm": 0.564,
+   "edge": 0.032
+  }
+ },
+ "significant": [
+  {
+   "feat": "sat",
+   "axis": "考据愉悦",
+   "r": -0.493,
+   "n": 32
+  },
+  {
+   "feat": "warm",
+   "axis": "再现→表现",
+   "r": -0.482,
+   "n": 57
+  },
+  {
+   "feat": "contrast",
+   "axis": "考据愉悦",
+   "r": 0.436,
+   "n": 32
+  },
+  {
+   "feat": "edge",
+   "axis": "再现→表现",
+   "r": 0.431,
+   "n": 57
+  },
+  {
+   "feat": "val",
+   "axis": "再现→表现",
+   "r": 0.402,
+   "n": 57
+  },
+  {
+   "feat": "sat",
+   "axis": "结构→感知",
+   "r": -0.384,
+   "n": 57
+  },
+  {
+   "feat": "sat",
+   "axis": "再现→表现",
+   "r": -0.378,
+   "n": 57
+  },
+  {
+   "feat": "warm",
+   "axis": "考据愉悦",
+   "r": -0.333,
+   "n": 32
+  },
+  {
+   "feat": "warm",
+   "axis": "结构→感知",
+   "r": -0.329,
+   "n": 57
+  }
+ ]
+}

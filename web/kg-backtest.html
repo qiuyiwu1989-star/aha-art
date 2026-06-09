@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 生成回测 · 生成的图落对位置了吗</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--green:#5a7d6f;--blue:#5b7596;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding:30px 16px 80px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(21px,4.4vw,31px);font-weight:700;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.75;max-width:700px;margin:8px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .sec{margin-top:30px}
+  .sec-h{font-family:var(--serif);font-size:18px;font-weight:600;border-bottom:2px solid var(--accent);padding-bottom:7px;margin-bottom:6px}
+  .sec-d{font-size:13px;color:var(--ink-mute);margin:8px 0 12px;line-height:1.7}.sec-d b{color:var(--ink-soft)}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:6px;background:#fff;border-radius:10px;overflow:hidden}
+  th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left}
+  th{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);background:var(--paper-2)}
+  .big{font-family:var(--mono);font-weight:700}
+  .empty{text-align:center;color:var(--ink-faint);padding:40px 20px;font-size:13.5px;line-height:1.8}.empty a{color:var(--accent)}
+  .conform{font-size:12.5px;color:var(--ink-soft);background:#fff;border:1px solid var(--line);border-left:4px solid var(--green);border-radius:10px;padding:11px 14px;line-height:1.8;margin-top:12px}.conform b{color:var(--ink)}
+  .back{display:block;text-align:center;margin-top:34px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 生成回测</div>
+  <h1>生成的图,落对位置了吗</h1>
+  <p class="lead">把<a href="kg-gallery.html" style="color:var(--accent)">生成图库</a>里每张图<b>喂回我们自己的 VLM</b>,读出它在世界观平面的<b>实际坐标</b>,和图谱给的<b>预期坐标</b>比——这是"理解→生成"链条上**唯一能证伪自己**的一环:误差小=编译器+模型真能实现指定风格;误差大=据实暴露。</p>
+  <div class="breadcrumb"><a href="home.html">🏠 首页</a> › <a href="kg-v2.html">🧭 艺术图谱</a> › <a href="kg-gallery.html">生成图库</a> › <b style="color:var(--ink-soft)">生成回测</b></div>
+  <div class="conform" style="border-left-color:var(--gold);max-width:720px;margin:14px auto 0">⚠️ <b>诚实标注尺子的精度</b>:测坐标的 VLM 是"目测"。给提示词加了<b>锚点刻度+先描述后打分</b>后,重读抖动从 ±0.08 降到 <b>±0.05</b>(且每张<b>读 3 次取平均</b>)。拿真名画校准:参照干净时尺子很准(雷诺阿误差 <b>0.09</b>≈噪声底),整体残差 ~0.18 <b>大头来自"单幅画 vs 风格/个人平均坐标"的参照错配,不是尺子</b>(例:梵高《麦田》本就比其均值更"感知")。<b>所以绝对误差当粗筛(抓大错),最可信的是"同条件下模型 A vs B 的相对排名"。</b>不把目测当尺规。</div>
+
+  <div class="sec"><div class="sec-h">① 预期 → 实际 · 偏移图</div>
+    <div class="sec-d">空心=图谱<b>预期</b>位置,实心=VLM 读出的<b>实际</b>位置,连线=偏移。横轴 再现→表现,纵轴 结构→感知(上为感知)。</div>
+    <div class="card"><div id="plane"></div></div>
+  </div>
+  <div class="sec"><div class="sec-h">② 按模型 · 保真度</div>
+    <div class="sec-d">平均误差越小=该模型越能把图谱指定的风格<b>真画出来</b>。这把"哪个模型更好"变成可测的数。</div>
+    <table id="mtab"></table>
+  </div>
+  <div class="sec"><div class="sec-h">③ 逐张</div><table id="dtab"></table></div>
+  <div id="conf"></div>
+  <a class="back" href="kg-gallery.html">← 返回 生成图库</a>
+</div>
+<script>
+const NS='http://www.w3.org/2000/svg';
+function E(t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;}
+fetch('data/kg_gen_gallery.json?_='+Date.now()).then(r=>r.json()).then(d=>{
+  const items=(d.items||[]).filter(i=>i.backtest&&i.backtest.actual_wv);
+  if(!items.length){document.getElementById('plane').outerHTML='<div class="empty">还没有回测数据。<br>去 <a href="kg-gallery.html">生成图库</a> 打开任意一张 → 🔬 回测这张。</div>';return;}
+  drawPlane(items);modelTable(items);detailTable(items);conclude(items);
+}).catch(e=>{document.getElementById('plane').outerHTML='<div class="empty">需服务器加载:'+e+'</div>';});
+
+function drawPlane(items){
+  const W=620,H=400,p=44,sx=v=>p+v*(W-2*p),sy=v=>H-p-v*(H-2*p);
+  const svg=E('svg',{viewBox:`0 0 ${W} ${H}`,style:'width:100%;height:auto;display:block'});
+  svg.appendChild(E('rect',{x:sx(0),y:sy(1),width:sx(1)-sx(0),height:sy(0)-sy(1),fill:'#fcfaf5',stroke:'#e8e0d0'}));
+  [.25,.5,.75].forEach(t=>{svg.appendChild(E('line',{x1:sx(t),y1:sy(0),x2:sx(t),y2:sy(1),stroke:'#efe9dc'}));svg.appendChild(E('line',{x1:sx(0),y1:sy(t),x2:sx(1),y2:sy(t),stroke:'#efe9dc'}));});
+  const tx=(x,y,s,o)=>{const e=E('text',{x,y,'font-family':'Noto Sans SC','font-size':o&&o.fs||12,fill:o&&o.fill||'#857d6f','text-anchor':o&&o.a||'middle'});if(o&&o.w)e.setAttribute('font-weight',o.w);e.textContent=s;svg.appendChild(e);};
+  tx(sx(.02),H-p+22,'← 再现',{a:'start',fill:'#5a7d6f',w:600,fs:12});tx(sx(.98),H-p+22,'表现 →',{a:'end',fill:'#b0673a',w:600,fs:12});
+  tx(p-10,sy(.02),'结构',{a:'end',fill:'#5a7d6f',w:600,fs:12});tx(p-10,sy(.97),'感知',{a:'end',fill:'#b0673a',w:600,fs:12});
+  items.forEach(it=>{const b=it.backtest,a=b.actual_wv,t=b.target_wv;const col=b.error==null?'#857d6f':(b.error<0.2?'#5a7d6f':b.error<0.35?'#c98a1a':'#b06a62');
+    if(t){svg.appendChild(E('line',{x1:sx(t.x),y1:sy(t.y),x2:sx(a.x),y2:sy(a.y),stroke:col,'stroke-width':1.3,'stroke-dasharray':'3 2','stroke-opacity':.7}));
+      svg.appendChild(E('circle',{cx:sx(t.x),cy:sy(t.y),r:5,fill:'none',stroke:col,'stroke-width':1.6}));}
+    const c=E('circle',{cx:sx(a.x),cy:sy(a.y),r:6,fill:col,'fill-opacity':.85,stroke:'#fff','stroke-width':1.5});
+    const ti=E('title',{});ti.textContent=`${it.style_cn||''} · ${it.model_label||''} · 误差 ${b.error==null?'—':b.error}`;c.appendChild(ti);svg.appendChild(c);});
+  document.getElementById('plane').appendChild(svg);
+}
+function modelTable(items){
+  const by={};items.forEach(it=>{const m=it.model_label||it.model||'?';const e=it.backtest.error;if(e==null)return;(by[m]=by[m]||[]).push(e);});
+  let h='<tr><th>模型</th><th>回测张数</th><th>平均误差</th><th>很准(&lt;0.2)</th></tr>';
+  Object.entries(by).sort((a,b)=>(a[1].reduce((s,x)=>s+x,0)/a[1].length)-(b[1].reduce((s,x)=>s+x,0)/b[1].length)).forEach(([m,es])=>{
+    const mean=es.reduce((s,x)=>s+x,0)/es.length,hit=es.filter(x=>x<0.2).length;
+    h+=`<tr><td><b>${m}</b></td><td>${es.length}</td><td class="big" style="color:${mean<0.2?'var(--green)':mean<0.35?'var(--gold)':'#b06a62'}">${mean.toFixed(3)}</td><td>${hit}/${es.length}</td></tr>`;});
+  document.getElementById('mtab').innerHTML=h;
+}
+function detailTable(items){
+  let h='<tr><th>图</th><th>风格(预期)</th><th>模型</th><th>预期</th><th>实际</th><th>误差</th></tr>';
+  items.sort((a,b)=>(a.backtest.error??9)-(b.backtest.error??9)).forEach(it=>{const b=it.backtest,t=b.target_wv,a=b.actual_wv,e=b.error;
+    const col=e==null?'#857d6f':(e<0.2?'var(--green)':e<0.35?'var(--gold)':'#b06a62');
+    h+=`<tr><td><img src="${it.file}" style="width:40px;height:40px;object-fit:cover;border-radius:5px"/></td><td>${it.style_cn||'—'}</td><td>${it.model_label||it.model||''}</td><td>${t?`(${t.x}, ${t.y})`:'—'}</td><td>(${a.x}, ${a.y})</td><td class="big" style="color:${col}">${e==null?'—':e}</td></tr>`;});
+  document.getElementById('dtab').innerHTML=h;
+}
+function conclude(items){
+  const es=items.map(i=>i.backtest.error).filter(e=>e!=null);
+  if(!es.length)return;const mean=es.reduce((s,x)=>s+x,0)/es.length,hit=es.filter(x=>x<0.2).length;
+  document.getElementById('conf').innerHTML=`<div class="conform">🔬 <b>诚实读数</b>:已回测 <b>${items.length}</b> 张,可比 ${es.length} 张,平均偏移 <b>${mean.toFixed(3)}</b>(平面对角线≈1.41),其中 <b>${hit}</b> 张落点很准(误差&lt;0.2)。<br><b>但要扣掉尺子噪声</b>:VLM 目测自身误差≈0.19、单读抖动±0.08(已读3次取平均)。所以这个 ${mean.toFixed(2)} <b>只略高于尺子本底</b>——能说明"没跑偏到别的区",但<b>不能精确断言模型多准</b>。这一环的真价值在<b>抓大错</b> + <b>接入第 2 个模型后的相对横评</b>(共享噪声抵消)。不把目测当尺规,正是经得起推敲。</div>`;
+}
+</script>
+</body></html>

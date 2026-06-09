@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 个体 / 偶发</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;
+    --mis:#5b7596;--sing:#b0673a;--chance:#8a7d6f;--foil:#c0492f;--model:#5a7d6f;--y:#a8567f;
+    --serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding:26px 16px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(20px,3.6vw,28px);font-weight:700;text-align:center;margin:7px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13px;line-height:1.75;max-width:780px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .sec{margin-top:32px}
+  .sh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:2px solid;padding-bottom:8px;margin-bottom:6px}
+  .sh .no{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
+  .sh .nm{font-family:var(--serif);font-size:19px;font-weight:700}
+  .sh .tag{font-family:var(--mono);font-size:10px;color:#fff;border-radius:5px;padding:1px 8px;margin-left:auto}
+  .intro{font-size:13px;color:var(--ink-soft);line-height:1.9;margin:11px 0 16px}.intro b{color:var(--ink)}.intro .q{color:var(--ink-mute);font-style:italic}
+  /* 误读三段链 */
+  .mcard{background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 14px;margin-bottom:10px}
+  .mhd{font-family:var(--serif);font-size:15px;font-weight:700;margin-bottom:9px}
+  .mhd a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+  .mhd .ar{color:var(--mis);font-family:var(--mono);font-size:13px;margin:0 5px}
+  .mhd .f{font-family:var(--mono);font-size:10px;color:#fff;background:var(--mis);border-radius:5px;padding:1px 7px;margin-left:6px;vertical-align:1px}
+  .mflow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+  .mb{flex:1;min-width:150px;padding:8px 10px;border-radius:9px;font-size:12.5px;line-height:1.6}
+  .mb .k{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.06em;margin-bottom:3px;opacity:.85}
+  .mb.x{background:#f1efe8;color:var(--ink-soft)}.mb.x .k{color:var(--model)}
+  .mb.y{background:#f7eef2;color:var(--ink-soft)}.mb.y .k{color:var(--y)}
+  .mb.z{background:#f6ece2;color:var(--ink)}.mb.z .k{color:var(--accent)}
+  .marr{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;color:var(--ink-faint);padding:0 7px;white-space:nowrap}
+  @media(max-width:620px){.mflow{flex-direction:column}.marr{padding:4px 0;transform:rotate(90deg)}}
+  .mnote{background:#fbf9f3;border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:12.5px;line-height:1.8;color:var(--ink-soft);margin-top:4px}.mnote b{color:var(--accent)}
+  /* 奇点 双向柱 */
+  .singh{font-size:13px;color:var(--ink-soft);line-height:1.9;margin-bottom:12px}.singh b{color:var(--ink)}
+  .types{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+  .ty{flex:1;min-width:200px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:12.5px;line-height:1.6}
+  .ty .tt{font-family:var(--serif);font-weight:700;font-size:14px}.ty .td{color:var(--ink-soft);margin-top:3px}
+  .ty.foil{border-left:4px solid var(--foil)}.ty.model{border-left:4px solid var(--model)}
+  .bars{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .dleg{display:grid;grid-template-columns:1fr 116px 1fr;font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-bottom:8px}
+  .dleg .l{text-align:right;color:var(--foil)}.dleg .c{text-align:center}.dleg .r{text-align:left;color:var(--model)}
+  .dgrid{display:grid;grid-template-columns:1fr 116px 1fr;align-items:center;row-gap:5px;column-gap:6px}
+  .dleft{display:flex;justify-content:flex-end;align-items:center;gap:6px}
+  .dleft .num{font-family:var(--mono);font-size:10px;color:var(--foil)}
+  .dleft .bar{height:14px;background:var(--foil);opacity:.82;border-radius:3px 0 0 3px}
+  .dname{text-align:center;font-family:var(--serif);font-weight:700;font-size:13px;white-space:nowrap}
+  .dname a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+  .dright{display:flex;align-items:center;gap:6px}
+  .dright .bar{height:14px;background:var(--model);opacity:.82;border-radius:0 3px 3px 0}
+  .dright .num{font-family:var(--mono);font-size:10px;color:var(--model)}
+  .singnote{font-size:12px;color:var(--ink-soft);margin-top:11px;line-height:1.85}.singnote b{color:var(--ink)}
+  .canonh{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);letter-spacing:.03em;margin:18px 0 9px;border-top:1px dashed var(--line);padding-top:13px;line-height:1.6}
+  .canon{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:8px}
+  .cn2{background:#fff;border:1px solid var(--line);border-left:3px solid var(--sing);border-radius:9px;padding:9px 11px}
+  .cn2.east{border-left-color:var(--model)}
+  .cn2 .nm{font-family:var(--serif);font-weight:700;font-size:14px}.cn2 .nm a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+  .cn2 .wy{font-size:11.5px;color:var(--ink-soft);line-height:1.55;margin-top:3px}
+  /* 偶然 */
+  .ccard{background:#fff;border:1px solid var(--line);border-left:4px solid var(--chance);border-radius:11px;padding:12px 14px;margin-bottom:9px}
+  .ccard .ct{font-family:var(--serif);font-size:15px;font-weight:700}.ccard .ct .ty{font-family:var(--mono);font-size:10px;color:#fff;background:var(--chance);border-radius:5px;padding:1px 7px;margin-left:6px;vertical-align:1px}
+  .ccard .cd{font-size:12.5px;color:var(--ink-soft);line-height:1.75;margin-top:6px}.ccard .cd a{color:var(--ink)}.ccard .cd b{color:var(--ink)}
+  .ccard .cf{font-size:12.5px;line-height:1.7;margin-top:8px;border-top:1px dashed var(--line);padding-top:7px;color:var(--ink)}
+  .ccard .cf b{color:var(--accent)}
+  .lg{font-family:var(--mono);font-size:9px;color:#9a6a2f;background:#f3e9d8;border:1px dashed #cdab78;border-radius:4px;padding:0 4px;margin:0 3px;vertical-align:1px;white-space:nowrap}
+  /* 回路 */
+  .loopwrap{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:14px}
+  .loop{display:flex;align-items:center;gap:7px;flex-wrap:wrap;justify-content:center}
+  .lc{font-size:12px;border-radius:999px;padding:5px 12px;white-space:nowrap;font-weight:500}
+  .lc.ctx{background:#eef2f4;color:#3f6b80}.lc.ind{background:#f7eef2;color:#8a3f6a}.lc.sing{background:#f6ece2;color:#9a5a2f}.lc.coord{background:#eef2ee;color:#3f6b55}
+  .la{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
+  .loopd{font-size:12.5px;color:var(--ink-soft);line-height:1.85;margin-top:10px;text-align:center}.loopd b{color:var(--accent)}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-top:22px}
+  .chip{font-size:12px;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 12px}.chip:hover{border-color:var(--accent);color:var(--accent)}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .loading{text-align:center;color:var(--ink-faint);padding:20px}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 家族③</div>
+  <h1>个体 / 偶发 —— 不可还原的那一半</h1>
+  <p class="lead">关系力与语境力都假设艺术"有规律"。但历史不是决定论。这一家收的是<b>规律之外的三种力</b>——而且它们的<b>逻辑各不相同</b>:误读有一条清晰的因果链,奇点能被网络客观定位,偶然则只能指认、不能解释。</p>
+  <div class="breadcrumb"><span style="color:var(--ink-mute)">艺术史动力学</span> · <a href="kg-forces.html">总图</a> · <a href="kg-dynamics.html">关系层</a> · <a href="kg-context.html">语境层</a> · <b style="color:var(--ink)">个体偶发</b> · <a href="kg-force-timeline.html">时间线</a> · <a href="kg-tour-forces.html">导览</a> · <a href="kg-artist-atlas.html">师承</a> · <a href="kg-drift.html">漂移</a></div>
+
+  <!-- ① 误读 -->
+  <div class="sec">
+    <div class="sh" style="border-color:var(--mis)"><span class="no">①</span><span class="nm" style="color:var(--mis)">创造性的误读</span><span class="tag" style="background:var(--mis)">逻辑:本义 → 误读 → 成果</span></div>
+    <div class="intro">影响很少是<b>准确</b>的传递。接收者带着<b>自己的问题</b>去看来源,于是把对方读成了<b>自己需要的样子</b>。<b>"本义"与"被读成"之间的那道裂缝,正是创造发生的地方</b>。误读不是失败的影响,而是影响的<span class="q">引擎</span>。<br>下面每条都拆成同一条逻辑链:来源<b style="color:var(--model)">本义 X</b> → 被<b style="color:var(--y)">误读为 Y</b> → 于是<b style="color:var(--accent)">催生 Z</b>。注意箭头:永远是 <b>接收者 ← 来源</b>。</div>
+    <div id="misread"></div>
+    <div class="mnote">↳ 看出门道了吗?<b>"复兴"其实也是一种误读</b>——新古典从拉斐尔与希腊"读"出的"秩序",从来不是真实的拉斐尔与希腊。关系层里每一条<b>跨文化</b>与<b>复兴</b>边,翻到背面,都是一次创造性的误会。</div>
+  </div>
+
+  <!-- ② 奇点 -->
+  <div class="sec">
+    <div class="sh" style="border-color:var(--sing)"><span class="no">②</span><span class="nm" style="color:var(--sing)">天才奇点</span><span class="tag" style="background:var(--sing)">逻辑:谁被最多力指向</span></div>
+    <div class="singh">奇点不是"画得最好的人",而是<b>改写了坐标系的人</b>:他出现后,所有人都得<b>相对他</b>来定位自己。怎么客观找出这种人?<b>看谁被最多的力指向</b>——但"指向"有两个<b>相反</b>的方向:</div>
+    <div class="types">
+      <div class="ty model"><div class="tt" style="color:var(--model)">典范型 · 被趋向 →</div><div class="td">后人<b>想成为他</b>:被复兴、被致敬、被推演、被跨文化追慕。</div></div>
+      <div class="ty foil"><div class="tt" style="color:var(--foil)">← 标靶型 · 被反对</div><div class="td">后人<b>想推翻他</b>:被反叛。是一个时代要挣脱的"正统"。</div></div>
+    </div>
+    <div class="bars" id="singular"><div class="loading">从 69 条边实时计算…</div></div>
+    <div class="singnote" id="singread"></div>
+    <div class="canonh">▸ 美术史公认的奇点 · 从历史上找(上面的柱状图只算了本板块 69 条边;真正改写过坐标系的人更多,这里补一批公认的——<span style="color:var(--sing)">赭=西</span> · <span style="color:var(--model)">绿=东</span>)</div>
+    <div class="canon" id="canon"></div>
+  </div>
+
+  <!-- ③ 偶然 -->
+  <div class="sec">
+    <div class="sh" style="border-color:var(--chance)"><span class="no">③</span><span class="nm" style="color:var(--chance)">偶然</span><span class="tag" style="background:var(--chance)">逻辑:反事实「若非 → 则无」</span></div>
+    <div class="intro">前两种还能被<b>逻辑与网络</b>照亮,第三种不能。偶然的本质是<b>反事实</b>:它本可以不发生,而历史会<b>因此完全不同</b>。我们不解释它,只<b>指认</b>它——并按它<b>拐弯的方式</b>分四类(最后一类,会反咬上一节的奇点榜)。每条都给出那句<b style="color:var(--accent)">"若非 X,则无 Y"</b>。<br><span style="color:var(--ink-faint)">标注约定:<span class="lg">传说</span>=广为流传却学界存疑的轶事 · <span class="lg">推测</span>=史家的合理推断 · 其余为信史。</span></div>
+    <div id="chance"></div>
+  </div>
+
+  <!-- 回路:三家其实连成一条环 -->
+  <div class="sec">
+    <div class="sh" style="border-color:var(--ink-soft)"><span class="no">合</span><span class="nm">三家不是并列,是一条回路</span></div>
+    <div class="loopwrap">
+      <div class="loop">
+        <span class="lc ctx">语境力 · <b>积淀</b>出条件</span><span class="la">→</span>
+        <span class="lc ind">个体 · 误读 / 突破 / 撞上偶然</span><span class="la">→</span>
+        <span class="lc sing">偶尔长成新<b>奇点</b></span><span class="la">→</span>
+        <span class="lc coord">改写世界观坐标</span><span class="la">↺</span>
+      </div>
+      <div class="loopd"><b>关系力</b>给规律、<b>语境力</b>给条件(积淀)、<b>个体/偶发</b>留裂缝——而裂缝里冒出的新奇点,又<b>重写了规律、成为下一代的语境</b>。承认这条回路,这套体系才既<b>诚实</b>、又会<b>动</b>。</div>
+    </div>
+    <div class="chips"><a class="chip" href="kg-forces.html">🧭 回力的总图</a><a class="chip" href="kg-dynamics.html">⚔️ 关系层</a><a class="chip" href="kg-context.html">🌗 语境层</a></div>
+  </div>
+</div>
+<script>
+const A=(id,cn)=>`<a href="kg-artist.html?id=${id}">${cn}</a>`;
+
+/* ① 误读:本义 X → 误读 Y → 成果 Z(箭头永远 接收者 ← 来源) */
+const MIS=[
+ {recv:`${A('ARTIST.monet','莫奈')} · ${A('ARTIST.degas','德加')} · ${A('ARTIST.vangogh','梵高')}`,src:'日本浮世绘',f:'跨文化',
+  x:'满载叙事、时事与情色的<b>市民商品版画</b>。',
+  y:'一种<b>纯粹的平面装饰</b>与构图法。',
+  z:'不对称裁切、平面色块——西方就此<b>卸下透视的包袱</b>,走向现代构图。'},
+ {recv:A('ARTIST.picasso','毕加索'),src:'非洲面具',f:'跨文化',
+  x:'有<b>精确仪式功能</b>的宗教法器。',
+  y:'"原始的"、未经文明的<b>纯造型几何</b>。',
+  z:'《亚维农少女》对形体的拆解——<b>立体派由此发端</b>。'},
+ {recv:A('ARTIST.gauguin','高更'),src:'大溪地',f:'跨文化',
+  x:'早已被<b>殖民与传教深改</b>的社会。',
+  y:'未被文明腐蚀的<b>"本真"乐园</b>。',
+  z:'浓色平涂的<b>综合主义与象征</b>,一场逃离欧洲精致的远征。'},
+ {recv:A('ARTIST.ingres','安格尔'),src:A('ARTIST.raphael','拉斐尔'),f:'复兴',
+  x:'色彩<b>同样丰润</b>、并不只靠素描的画家。',
+  y:'"<b>线条至上</b>"、冷峻精确的化身。',
+  z:'新古典主义的<b>素描信条</b>,统治学院近百年。'},
+ {recv:A('ARTIST.zaowuji','赵无极'),src:`${A('ARTIST.fankuan','范宽')}·${A('ARTIST.guoxi','郭熙')}的宋山水`,f:'跨文化',
+  x:'有具体丘壑、<b>可游可居</b>的写实山水。',
+  y:'可直通现代抽象的"<b>气</b>"与"<b>空</b>"。',
+  z:'旅法抒情抽象里的<b>中西融合</b>——以现代的眼回收传统。'},
+ {recv:`${A('ARTIST.jldavid','大卫')}的新古典`,src:'古希腊罗马',f:'复兴',
+  x:'多彩的、宗教与世俗<b>混杂鲜活</b>的古代。',
+  y:'理想化的、<b>洁白大理石</b>般的秩序。',
+  z:'新古典的<b>英雄崇高</b>,为大革命造像——复兴,正是一次对过去的误读。'},
+ {recv:A('ARTIST.matisse','马蒂斯'),src:'伊斯兰纹样(摩洛哥)',f:'跨文化',
+  x:'有宗教秩序、不可具象的<b>满铺装饰</b>。',
+  y:'一套可自由挪用的<b>纯平面图案</b>。',
+  z:'室内画里图案<b>反客为主</b>,空间被压成一张装饰的织毯。'},
+ {recv:`${A('ARTIST.balla','巴拉')}的未来派`,src:'连续摄影(马雷)',f:'跨文化',
+  x:'分解运动的<b>科学记录</b>。',
+  y:'绘画也能<b>画出"速度"</b>本身。',
+  z:'未来主义的动感线条与"运动中的物象"。'},
+ {recv:`${A('ARTIST.kline','克莱因')}的抽象表现`,src:'东方书法 / 禅',f:'跨文化',
+  x:'有数十年功力与法度的<b>中锋书写</b>。',
+  y:'纯粹的、当下的<b>身体姿态</b>。',
+  z:'黑白行动绘画的<b>巨幅笔触</b>。'},
+ {recv:A('ARTIST.dubuffet','杜布菲'),src:'精神病人与素人画(原生艺术)',f:'跨文化',
+  x:'边缘者真实的<b>病痛与处境</b>。',
+  y:'未受文化污染的<b>"本真表达"</b>。',
+  z:'原生艺术——粗野稚拙的<b>反美学</b>。'},
+ {recv:'20 世纪表现主义',src:A('ARTIST.elgreco','格列柯'),f:'重估',
+  x:'拜占庭 + 矫饰 + 宗教狂热的<b>拉长变形</b>。',
+  y:'现代"<b>表现主义</b>"的先驱。',
+  z:'被冷落三百年的格列柯,<b>一夜被追认</b>为大师(也是一次声誉的偶然)。'},
+ {recv:A('ARTIST.dongqichang','董其昌'),src:A('ARTIST.dongyuan','董源'),f:'复兴',
+  x:'五代江南的<b>一位</b>画家。',
+  y:'文人画<b>唯一正脉</b>之祖。',
+  z:'"南北宗论"——以一套谱系<b>重写整部画史</b>。'},
+ {recv:`${A('ARTIST.boucher','布歇')}的中国风`,src:'中国(经瓷器与外销画)',f:'跨文化',
+  x:'有自己礼制与山水的<b>真实中国</b>。',
+  y:'一座异国情调的<b>装饰幻境</b>(Chinoiserie)。',
+  z:'洛可可里轻盈甜美的"中国"——一个被欧洲<b>想象出来</b>的东方。'},
+ {recv:A('ARTIST.kandinsky','康定斯基'),src:'音乐',f:'跨域',
+  x:'听觉的、非视觉的<b>时间艺术</b>。',
+  y:'绘画也能像音乐一样<b>纯抽象地"奏响"</b>。',
+  z:'第一批纯抽象——《构成》把色彩当音符。'},
+ {recv:A('ARTIST.dali','达利'),src:'弗洛伊德 / 精神分析',f:'跨域',
+  x:'一套关于潜意识的<b>临床理论</b>。',
+  y:'潜意识可被<b>逐帧图解</b>成画面。',
+  z:'超现实主义照相般精确的"<b>梦境</b>"。'},
+ {recv:`${A('ARTIST.ikenotaiga','池大雅')}的日本南画`,src:'中国文人画',f:'跨文化',
+  x:'士大夫"<b>聊写胸中逸气</b>"的笔墨。',
+  y:'一种可移植的<b>诗意风格</b>。',
+  z:'隔海生出的"南画"一派——文人画的<b>日本变体</b>。'},
+ {recv:A('ARTIST.cezanne','塞尚'),src:'普桑',f:'复兴',
+  x:'讲究叙事与理性的<b>古典大师</b>。',
+  y:'纯粹的<b>几何结构骨架</b>。',
+  z:'"用圆柱、圆锥、球体处理自然"——<b>通向立体派</b>。'},
+ {recv:'现代主义设计 / 包豪斯',src:'日本(数寄屋 · 禅)',f:'跨文化',
+  x:'有禅与茶道语境的<b>"空"</b>。',
+  y:'功能主义的<b>"少即是多"</b>。',
+  z:'去装饰的极简——成了<b>现代设计的信条</b>。'},
+ {recv:A('ARTIST.picasso','毕加索'),src:'古伊比利亚石雕',f:'跨文化',
+  x:'西班牙本土的<b>还愿石像</b>。',
+  y:'一种"原始"的<b>简化面具感</b>。',
+  z:'《亚维农少女》左脸的几何化(与非洲面具并行发力)。'},
+];
+document.getElementById('misread').innerHTML=MIS.map(m=>`<div class="mcard">
+  <div class="mhd">${m.recv}<span class="ar">←</span>${m.src}<span class="f">${m.f}</span></div>
+  <div class="mflow">
+    <div class="mb x"><span class="k">来源本义 X</span>${m.x}</div>
+    <div class="marr">被误读为 →</div>
+    <div class="mb y"><span class="k">被读成 Y</span>${m.y}</div>
+    <div class="marr">于是 →</div>
+    <div class="mb z"><span class="k">催生 Z</span>${m.z}</div>
+  </div></div>`).join('');
+
+/* ② 奇点:被指向度,拆成 标靶(反叛) vs 典范(其余) */
+const COLLECTIVE=new Set(['ARTIST.academy','ARTIST.qianlongacademy','ARTIST.yuanti','ARTIST.dunhuang','ARTIST.yonglegong','ARTIST.byzantineicon','ARTIST.yamatoe','ARTIST.minhwa']);
+const MODELT=new Set(['复兴','致敬','综合','推演','跨文化']);
+fetch('data/kg_relations.json').then(r=>r.json()).then(REL=>{
+  const m={};
+  REL.edges.forEach(e=>{if(e.bidir||!e.to.startsWith('ARTIST.')||COLLECTIVE.has(e.to))return;
+    const t=m[e.to]=m[e.to]||{id:e.to,cn:e.to_cn,foil:0,model:0};
+    if(e.type==='反叛')t.foil++;else if(MODELT.has(e.type))t.model++;});
+  const rows=Object.values(m).map(v=>({...v,total:v.foil+v.model})).sort((a,b)=>b.total-a.total).slice(0,8);
+  const mx=Math.max(1,...rows.map(r=>Math.max(r.foil,r.model)));
+  const w=n=>n?Math.round(n/mx*118)+6:0;
+  document.getElementById('singular').innerHTML=
+    `<div class="dleg"><span class="l">被反对(标靶)←</span><span class="c">谁</span><span class="r">→ 被趋向(典范)</span></div>`+
+    `<div class="dgrid">`+rows.map(r=>`
+      <div class="dleft">${r.foil?`<span class="num">${r.foil}</span><span class="bar" style="width:${w(r.foil)}px"></span>`:''}</div>
+      <div class="dname">${A(r.id,r.cn)}</div>
+      <div class="dright">${r.model?`<span class="bar" style="width:${w(r.model)}px"></span><span class="num">${r.model}</span>`:''}</div>`).join('')+`</div>`;
+  const foilD=rows.filter(r=>r.foil>r.model).map(r=>r.cn);
+  const modelD=rows.filter(r=>r.model>r.foil).map(r=>r.cn);
+  const both=rows.filter(r=>r.foil===r.model&&r.total).map(r=>r.cn);
+  document.getElementById('singread').innerHTML=
+    `读这张图:<b style="color:var(--foil)">标靶型</b>(被反对为主)——${foilD.join('、')||'—'}:一个时代要挣脱的正统靶子。`+
+    `<b style="color:var(--model)">典范型</b>(被趋向为主)——${modelD.join('、')||'—'}:后人想成为他。`+
+    `<b>两面型</b>(爱恨相当)——${both.join('、')||'—'}:<b>最强的奇点,连反对者都绕不开</b>。<br>注意:它衡量的是"<b>绕不开</b>"而非"伟大"——所以榜首是被反叛最多的<b>正统标靶</b>(董其昌),而非画得最好的人。`;
+}).catch(e=>{document.getElementById('singular').innerHTML='<div class="loading">加载失败:'+e+'</div>';});
+
+/* 公认奇点(人工策展,补数据榜之外的历史) */
+const SINGS=[
+ {id:'ARTIST.giotto',cn:'乔托',wy:'把神带回人间——此后人人画"有体积、有情绪的人"。'},
+ {id:'ARTIST.davinci',cn:'达·芬奇',wy:'晕涂与"画即科学",立起全才范式。'},
+ {id:'ARTIST.michelangelo',cn:'米开朗基罗',wy:'把人体推到神性顶点,后世无从回避。'},
+ {id:'ARTIST.caravaggio',cn:'卡拉瓦乔',wy:'明暗革命 + 市井自然主义,一夜改写欧洲。'},
+ {id:'ARTIST.velazquez',cn:'委拉斯开兹',wy:'"画家中的画家",马奈、毕加索都回望他。'},
+ {id:'ARTIST.cezanne',cn:'塞尚',wy:'"现代艺术之父",立体派与抽象的共同源头。'},
+ {id:'ARTIST.picasso',cn:'毕加索',wy:'一人之力,反复改写 20 世纪的范式。'},
+ {id:'ARTIST.rembrandt',cn:'伦勃朗',wy:'把光变成心理与时间,肖像深度的顶点。'},
+ {id:'ARTIST.malevich',cn:'马列维奇',wy:'《黑方块》——"零形象",抽象的终点与起点。'},
+ {id:'ARTIST.turner',cn:'透纳',wy:'光的先知,把大气与光本身画成主角,预告印象派与抽象。'},
+ {id:'ARTIST.veronese',cn:'委罗内塞',wy:'威尼斯盛宴的色彩与场面,巴洛克装饰的源头。'},
+ {id:'ARTIST.gukaizhi',cn:'顾恺之',e:1,wy:'"以形写神",中国人物画的开山。'},
+ {id:'ARTIST.wudaozi',cn:'吴道子',e:1,wy:'"画圣"、"吴带当风",线描的顶点。'},
+ {id:'ARTIST.wangwei',cn:'王维',e:1,wy:'"诗中有画",文人画的精神始祖。'},
+ {id:'ARTIST.dongyuan',cn:'董源',e:1,wy:'平淡天真,被奉为"南宗"山水之祖。'},
+ {id:'ARTIST.sushi',cn:'苏轼',e:1,wy:'立"士人画"之论,把写意置于形似之上。'},
+ {id:'ARTIST.zhaomengfu',cn:'赵孟頫',e:1,wy:'"古意"与书画同源,开元代文人画。'},
+ {id:'ARTIST.dongqichang',cn:'董其昌',e:1,wy:'"南北宗论",以理论重写整部画史。'},
+ {id:'ARTIST.fankuan',cn:'范宽',e:1,wy:'《溪山行旅》——北宋全景山水的纪念碑。'},
+ {id:'ARTIST.shitao',cn:'石涛',e:1,wy:'"搜尽奇峰打草稿",个性解放的先声。'},
+ {id:'ARTIST.wangximeng',cn:'王希孟',e:1,wy:'《千里江山图》——青绿山水的巅峰,十八岁的孤篇定标。'},
+ {id:'ARTIST.huanggongwang',cn:'黄公望',e:1,wy:'《富春山居图》——元代文人山水的标杆。'},
+];
+document.getElementById('canon').innerHTML=SINGS.map(s=>`<div class="cn2 ${s.e?'east':''}"><div class="nm">${A(s.id,s.cn)}</div><div class="wy">${s.wy}</div></div>`).join('');
+
+/* ③ 偶然:三类 + 反事实 */
+const CH=[
+ {ty:'材料的偶然',t:'媒介自己跳了出来',
+  d:`${A('ARTIST.vaneyck','凡·艾克')}反复试错、<b>碰巧</b>调出能层层透明罩染的油膜<span class="lg">传说</span>(他"发明"油画是瓦萨里的旧说,实为集大成);${A('ARTIST.pollock','波洛克')}让颜料<b>滴洒泼溅</b>成了行动绘画;威尼斯因气候潮湿、湿壁画总剥落,被迫改用油彩与画布,反倒成全了${A('ARTIST.titian','提香')}、${A('ARTIST.giorgione','乔尔乔内')}的丰润色彩;一件杰作的存亡也靠运气——${A('ARTIST.huanggongwang','黄公望')}《富春山居图》被收藏家临终焚以殉葬,被侄子从火中抢出,已<b>烧成两段</b>(今分藏两岸)。而王羲之《兰亭序》真迹据传随唐太宗<b>陪葬昭陵</b>失传,后世奉为"天下第一行书"的,其实只是<b>摹本</b><span class="lg">传说</span>。(东方的另一种:瓷器入窑那不可控的"<b>窑变</b>"。)`,
+  cf:`<b>若非</b>偶得那层可叠加的透明油彩,<b>则无</b>尼德兰的纤毫写实——连一个画派的气质,都半由材料的运气决定。`},
+ {ty:'机缘的偶然',t:'人撞上了物,或人',
+  d:`${A('ARTIST.picasso','毕加索')}在博物馆<b>偶然</b>撞见非洲面具,当场改写《亚维农少女》;${A('ARTIST.vangogh','梵高')}拆开裹瓷器的废纸,正是浮世绘;${A('ARTIST.kandinsky','康定斯基')}某天黄昏看见一幅<b>放倒的画</b>,认不出物象却觉得极美,抽象的门被这一眼推开<span class="lg">传说</span>;${A('ARTIST.cezanne','塞尚')}与挚友、作家${A('ARTIST.zola','左拉')}因后者写失败画家的小说《杰作》而<b>绝交</b>,一段友谊的破裂塑造了他的孤绝;就连${A('ARTIST.pollock','波洛克')}的成名,也始于赞助人佩吉·古根海姆在众人里<b>偶然</b>选中了他;在东方,一桩 1499 年的<b>科场舞弊冤案</b>废黜了${A('ARTIST.tangyin','唐寅')}的功名、断其仕途,反而逼出了"江南第一才子"的卖画生涯。`,
+  cf:`<b>若非</b>那一瞥、那一撞、那一次被选中,这些转折也许会晚许多年、由另一个人点燃,甚至<b>不曾发生</b>。`},
+ {ty:'历史的偶然',t:'大事拐走了河道',
+  d:`普法战争把${A('ARTIST.monet','莫奈')}、${A('ARTIST.pissarro','毕沙罗')}赶到伦敦,他们在那儿撞见${A('ARTIST.turner','透纳')}的光、带回印象派的亮;纳粹的"<a href="kg-context.html?lane=soc">堕落艺术</a>"清算把现代主义者赶出欧洲;黑死病(1348)很可能夺走了${A('ARTIST.lorenzetti','洛伦采蒂兄弟')}<span class="lg">推测</span>,把意大利的早熟现代性<b>推迟近一代</b>;拿破仑掠夺全欧名画集中卢浮宫,<b>无意中</b>催生了公共美术馆与"艺术朝圣";君士坦丁堡陷落(1453)逼拜占庭学者携古籍西流,<b>助推</b>文艺复兴;庞贝的发掘(1748)又点燃了${A('ARTIST.jldavid','新古典')}的考古热;在中国,靖康之变(1127)把宋画院从汴京一路赶到临安,北宋的<b>全景山水</b>就此让位于${A('ARTIST.mayuan','马远')}式的"<b>边角</b>"诗意;明清易代又把${A('ARTIST.shitao','石涛')}、${A('ARTIST.badashanren','八大山人')}逼成遗民,反激出个性解放的笔墨;更早,安史之乱(755)把${A('ARTIST.wangwei','王维')}一代的长安画坛<b>拦腰打断</b>,盛唐气象戛然而止。`,
+  cf:`<b>若非</b>这些战争、瘟疫与发掘,<b>则无</b>纽约接棒——艺术之都也许仍是巴黎、文艺复兴也许早来一代。历史的拐点,常是<b>非艺术的暴力</b>。`},
+ {ty:'声誉的偶然',t:'连"谁算大师"也是偶然',
+  d:`${A('ARTIST.vermeer','维米尔')}死后被遗忘<b>两百年</b>,19 世纪才被偶然"挖"出追认为大师;${A('ARTIST.vangogh','梵高')}生前只卖一画、死后成神;${A('ARTIST.elgreco','格列柯')}被冷落三百年才被追认为先驱;${A('ARTIST.davinci','达·芬奇')}的《蒙娜丽莎》本只是名作之一,直到 <b>1911 年被盗</b>、举世搜寻,才一夜成为世界第一名画;${A('ARTIST.pollock','波洛克')}被《生活》杂志一篇报道(1949)捧成明星;${A('ARTIST.kusama','草间弥生')}沉寂数十年后才被重新发现;1900 年道士偶然叩开<b>敦煌藏经洞</b>,唐代的绢画与重彩重见天日,才有了后来${A('ARTIST.zhangdaqian','张大千')}的面壁取经;而梵高能从无名到封神,靠的是他<b>弟媳乔安娜</b>多年整理书信、奔走办展。`,
+  cf:`<b>若非</b>那几次偶然的重估(甚至一桩盗窃),维米尔也许至今默默无闻——而上一节那张"<b>奇点</b>"榜,本身就是被无数次身后重估<b>塑造出来</b>的:连"绕不开"都不是天定的。`},
+];
+document.getElementById('chance').innerHTML=CH.map(c=>`<div class="ccard">
+  <div class="ct">${c.t}<span class="ty">${c.ty}</span></div>
+  <div class="cd">${c.d}</div>
+  <div class="cf">↳ ${c.cf}</div></div>`).join('');
+</script>
+</body></html>

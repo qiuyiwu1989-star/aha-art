@@ -1,0 +1,167 @@
+{
+ "meta": {
+  "title": "aha 世界观平面 · 逻辑图标准(单一事实源)",
+  "desc": "所有把风格/艺术家落到二维平面的图,必须遵此标准:同坐标系、同配色、同区质心、同数据源。母版=kg-worldview-map.html。",
+  "canonical_page": "kg-worldview-map.html",
+  "data_source": "data/kg_style.json → nodes[].coord{rep_exp,struct_perc} + nodes[].wv"
+ },
+ "axes": {
+  "x": {
+   "field": "rep_exp",
+   "left": "再现",
+   "right": "表现",
+   "range": [
+    0,
+    1
+   ]
+  },
+  "y": {
+   "field": "struct_perc",
+   "bottom": "结构",
+   "top": "感知",
+   "range": [
+    0,
+    1
+   ],
+   "note": "绘制时 y 向上为感知(sy=H-pad-v*..)"
+  }
+ },
+ "regions": [
+  {
+   "id": "WV1",
+   "name": "摹写之眼",
+   "color": "#b0673a",
+   "centroid": [
+    0.232,
+    0.389
+   ],
+   "n": 48
+  },
+  {
+   "id": "WV2",
+   "name": "礼制图式",
+   "color": "#9a7b3a",
+   "centroid": [
+    0.41,
+    0.287
+   ],
+   "n": 40
+  },
+  {
+   "id": "WV3",
+   "name": "写意寄情",
+   "color": "#5a7d6f",
+   "centroid": [
+    0.528,
+    0.457
+   ],
+   "n": 49
+  },
+  {
+   "id": "WV4",
+   "name": "经验之光",
+   "color": "#5b7596",
+   "centroid": [
+    0.533,
+    0.733
+   ],
+   "n": 6
+  },
+  {
+   "id": "WV5",
+   "name": "表现外化",
+   "color": "#8a5a7a",
+   "centroid": [
+    0.775,
+    0.512
+   ],
+   "n": 41
+  },
+  {
+   "id": "WV6",
+   "name": "形式建构",
+   "color": "#4a6a8a",
+   "centroid": [
+    0.82,
+    0.207
+   ],
+   "n": 18
+  }
+ ],
+ "render_rules": [
+  "淡点=全部202风格按区着色(WVC),透明度~0.22",
+  "区块=成员点凸包(虚线,区色)",
+  "焦点/选中=大点+描边+标签",
+  "轴标:左再现/右表现/下结构/上感知"
+ ],
+ "border_cases": [
+  {
+   "cn": "法国洛可可",
+   "id": "STYLE.west.019",
+   "assigned": "WV3",
+   "nearest": "WV1",
+   "coord": [
+    0.35,
+    0.55
+   ]
+  },
+  {
+   "cn": "德国洛可可",
+   "id": "STYLE.west.020",
+   "assigned": "WV3",
+   "nearest": "WV1",
+   "coord": [
+    0.35,
+    0.55
+   ]
+  },
+  {
+   "cn": "英国洛可可",
+   "id": "STYLE.west.021",
+   "assigned": "WV3",
+   "nearest": "WV1",
+   "coord": [
+    0.35,
+    0.55
+   ]
+  },
+  {
+   "cn": "唐代宫廷绘画",
+   "id": "STYLE.east.012",
+   "assigned": "WV2",
+   "nearest": "WV1",
+   "coord": [
+    0.3,
+    0.32
+   ]
+  },
+  {
+   "cn": "唐代仕女风格",
+   "id": "STYLE.east.021",
+   "assigned": "WV2",
+   "nearest": "WV1",
+   "coord": [
+    0.28,
+    0.3
+   ]
+  },
+  {
+   "cn": "朝鲜民画",
+   "id": "STYLE.east.A20",
+   "assigned": "WV3",
+   "nearest": "WV2",
+   "coord": [
+    0.55,
+    0.3
+   ]
+  }
+ ],
+ "audit": {
+  "total": 202,
+  "missing_coord": 0,
+  "out_of_range": 0,
+  "clean_in_region": 196,
+  "border_ties": 6,
+  "note": "边界点为近平局(Δ≤0.03),艺术史两可,保留k-means归属、不强改。"
+ }
+}

@@ -1,0 +1,122 @@
+/* ═══ 沉浸舞台 · 三个新版本共用 ═══ */
+html,body{height:100%;background:#15130f;overflow:hidden}
+.stage{position:fixed;inset:0;display:flex;flex-direction:column;background:transparent}
+/* 情绪化背景:每幅画的主色染整个空间,平滑过渡 */
+.moodbg{position:fixed;inset:0;z-index:0;background-color:#15130f;transition:background-color .9s var(--ease)}
+.moodbg::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(125% 115% at 50% 20%,transparent 28%,rgba(0,0,0,.58) 100%)}
+.vbar,.canvas,.controls,.panel,.linkflash,.diptych,.heartburst,.sheet{position:relative;z-index:2}
+/* 画面:微视差用 transform(JS 控制),呼吸用 brightness(不抢 transform)*/
+.canvas .artframe,.diptych .dwork.big .artframe{transition:transform .35s var(--ease),box-shadow .4s var(--ease);
+  transform-style:preserve-3d;will-change:transform}
+.artframe.breath{animation:breath 9s ease-in-out infinite}
+@keyframes breath{0%,100%{filter:brightness(1)}50%{filter:brightness(1.035)}}
+/* 尊重减少动态偏好 */
+@media (prefers-reduced-motion: reduce){
+  .dissolve,.artframe.breath,.heartburst.go{animation:none!important}
+  .canvas .artframe,.diptych .dwork.big .artframe{transition:none!important;transform:none!important}
+  #view,.fade-out,.moodbg{transition:none!important}
+}
+
+/* 极简顶条 */
+.vbar{position:fixed;top:0;left:0;right:0;height:50px;z-index:30;display:flex;align-items:center;
+  justify-content:space-between;padding:0 16px;color:#cfc7b6;
+  background:linear-gradient(to bottom,rgba(0,0,0,.35),transparent);font-family:var(--mono);font-size:12px}
+.vbar a,.vbar button{color:#cfc7b6;background:none;border:none;cursor:pointer;font-family:var(--mono);
+  font-size:12px;text-decoration:none;opacity:.8;transition:opacity .2s}
+.vbar a:hover,.vbar button:hover{opacity:1;color:#fff}
+.vbar .vname{font-family:var(--serif);font-size:15px;color:#f3ead7;letter-spacing:.02em}
+.vmeta{font-family:var(--mono);font-size:10.5px;color:#9a917f;letter-spacing:.04em}
+
+/* 画的舞台 */
+.canvas{flex:1;position:relative;display:flex;align-items:center;justify-content:center;padding:58px 20px 20px;min-height:0}
+.canvas .artframe{max-width:min(96vw,1100px);max-height:100%;width:auto;height:auto;background:transparent;
+  box-shadow:0 30px 80px -30px rgba(0,0,0,.8);border-radius:3px}
+.canvas .artframe img.full{max-height:78vh;width:auto}
+.canvas .artframe .fallback{background:#1c1a15}
+.canvas .artframe .ft{color:#f3ead7}.canvas .artframe .fa{color:#b5ab97}
+
+/* 过渡:溶解 */
+.dissolve{animation:dissolve .5s var(--ease)}
+@keyframes dissolve{from{opacity:0;transform:scale(1.02)}to{opacity:1;transform:none}}
+.fade-out{opacity:0!important;transition:opacity .22s var(--ease)}
+
+/* 一句点破(浮层) */
+.whisper{position:absolute;left:0;right:0;bottom:26px;text-align:center;pointer-events:none;
+  font-family:var(--serif);font-size:clamp(15px,2.2vw,20px);color:#f3ead7;
+  text-shadow:0 2px 18px rgba(0,0,0,.7);padding:0 24px;opacity:0;transition:opacity .5s var(--ease)}
+.whisper.show{opacity:1}
+.whisper .wsrc{display:block;font-family:var(--mono);font-size:11px;color:#cdbf9c;margin-top:8px;letter-spacing:.06em}
+
+/* 连接 · 过渡里被看见的瞬间 */
+.linkflash{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(10,8,6,.78);z-index:20;opacity:0;pointer-events:none;transition:opacity .3s var(--ease);padding:24px}
+.linkflash.show{opacity:1}
+.linkflash .lf-inner{max-width:560px;text-align:center}
+.linkflash .lf-chip{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:#d9a679;margin-bottom:14px}
+.linkflash .lf-why{font-family:var(--serif);font-size:clamp(17px,2.6vw,23px);line-height:1.5;color:#f5ecd9}
+
+/* 信息面板(轻点浮现) */
+.panel{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(to top,rgba(8,6,4,.94),rgba(8,6,4,.0));
+  color:#efe6d3;padding:60px 24px 26px;transform:translateY(100%);transition:transform .4s var(--ease);z-index:15}
+.panel.open{transform:none}
+.panel .p-title{font-family:var(--serif);font-size:22px}
+.panel .p-by{font-family:var(--latin);font-style:italic;font-size:13px;color:#b5ab97;margin-top:3px}
+.panel .p-one{font-family:var(--serif);font-size:16px;line-height:1.6;margin:14px 0;color:#e7ddc8;
+  border-left:3px solid #b0673a;padding-left:13px;text-align:left}
+.panel .p-look{font-size:13px;line-height:1.6;color:#c3b9a3}
+.panel .p-look b{color:#d9a679;font-weight:500}
+
+/* 控制点(底部手势/按钮)*/
+.controls{position:fixed;bottom:0;left:0;right:0;z-index:25;display:flex;align-items:center;
+  justify-content:center;gap:14px;padding:18px;pointer-events:none}
+.controls>*{pointer-events:auto}
+.cbtn{font-family:var(--sans);font-size:13.5px;color:#efe6d3;background:rgba(40,34,26,.7);
+  border:1px solid rgba(220,200,160,.25);border-radius:999px;padding:11px 22px;cursor:pointer;
+  backdrop-filter:blur(6px);transition:all .2s var(--ease)}
+.cbtn:hover{border-color:#b0673a;background:rgba(60,46,32,.85)}
+.cbtn.primary{background:#b0673a;border-color:#b0673a;color:#fff}
+.reason-pill{font-family:var(--mono);font-size:11px;color:#d9a679;letter-spacing:.04em;
+  background:rgba(40,34,26,.5);border-radius:999px;padding:6px 14px;backdrop-filter:blur(4px)}
+.reason-pill.explore{color:#9fc4b2}
+
+/* 双击心动:♥ 爆 */
+.heartburst{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);
+  font-size:90px;color:#fff;text-shadow:0 4px 20px rgba(0,0,0,.6);pointer-events:none;z-index:18}
+.heartburst.go{animation:hb .8s var(--ease) forwards}
+@keyframes hb{0%{transform:translate(-50%,-50%) scale(0);opacity:0}
+  25%{transform:translate(-50%,-50%) scale(1.1);opacity:1}100%{transform:translate(-50%,-60%) scale(1);opacity:0}}
+
+/* 门 · 底部抽屉(岔路版)*/
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:26;background:rgba(20,16,11,.96);
+  border-top:1px solid rgba(220,200,160,.2);padding:18px 16px calc(18px + env(safe-area-inset-bottom));
+  transform:translateY(100%);transition:transform .35s var(--ease);backdrop-filter:blur(10px)}
+.sheet.open{transform:none}
+.sheet-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:#9a917f;text-align:center;margin-bottom:12px}
+.sheet-doors{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:9px}
+.sdoor{text-align:left;background:rgba(40,34,26,.6);border:1px solid rgba(220,200,160,.18);border-radius:10px;
+  padding:13px 16px;cursor:pointer;color:#e7ddc8;transition:all .2s var(--ease)}
+.sdoor:hover{border-color:#b0673a;background:rgba(60,46,32,.7)}
+.sdoor .sd-chip{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#d9a679}
+.sdoor.explore .sd-chip{color:#9fc4b2}
+.sdoor .sd-why{font-family:var(--serif);font-size:14.5px;line-height:1.55;margin-top:6px;color:#efe6d3}
+
+/* 并置版:双联 */
+.diptych{flex:1;display:flex;align-items:center;justify-content:center;gap:clamp(14px,3vw,40px);
+  padding:62px 18px 90px;min-height:0;flex-wrap:wrap}
+.dwork{display:flex;flex-direction:column;align-items:center;gap:10px;max-width:46%}
+.dwork.small{opacity:.92;cursor:pointer;transition:transform .25s var(--ease)}
+.dwork.small:hover{transform:translateY(-4px)}
+.dwork .artframe{box-shadow:0 24px 60px -28px rgba(0,0,0,.8);border-radius:3px}
+.dwork.big .artframe img.full{max-height:64vh}
+.dwork.small .artframe img.full{max-height:40vh}
+.dwork .dw-cap{font-family:var(--latin);font-style:italic;font-size:12.5px;color:#b5ab97;text-align:center}
+.dlink{align-self:center;text-align:center;max-width:230px}
+.dlink .dl-chip{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#d9a679;margin-bottom:8px}
+.dlink .dl-why{font-family:var(--serif);font-size:14px;line-height:1.55;color:#e7ddc8}
+.dlink .dl-arrow{color:#9a917f;font-size:22px;margin:10px 0}
+@media(max-width:760px){.diptych{flex-direction:column;gap:8px}.dwork,.dwork.small{max-width:90%}.dwork.small .artframe img.full{max-height:26vh}}
+
+@media(max-width:560px){.canvas .artframe img.full{max-height:62vh}}

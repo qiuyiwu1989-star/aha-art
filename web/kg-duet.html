@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 双画对读 · 坐标即比较</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--blue:#5b7596;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:980px;margin:0 auto;padding:30px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(22px,4.4vw,30px);font-weight:700;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.7;max-width:680px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .slots{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+  .slot{background:#fff;border:1px solid var(--line);border-radius:13px;overflow:hidden}
+  .slot.A{border-top:4px solid var(--accent)}.slot.B{border-top:4px solid var(--green)}
+  .slot img{width:100%;height:230px;object-fit:cover;display:block;background:var(--paper-2)}
+  @media(max-width:560px){.slot img{height:150px}}
+  .slot .si{padding:9px 12px}
+  .slot .st{font-family:var(--serif);font-size:15px;font-weight:600}
+  .slot .sm{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:3px}
+  .slot .stag{font-family:var(--mono);font-size:10px;color:#fff;border-radius:5px;padding:2px 7px;float:right}
+  .slot.A .stag{background:var(--accent)}.slot.B .stag{background:var(--green)}
+  .planewrap{background:#fff;border:1px solid var(--line);border-radius:13px;padding:10px;margin-top:14px}
+  svg{width:100%;height:auto;display:block}
+  .cmp{margin-top:14px;border:1px solid var(--line);border-radius:13px;overflow:hidden;background:#fff}
+  .crow{display:grid;grid-template-columns:1fr 96px 1fr;border-top:1px solid var(--line)}
+  .crow:first-child{border-top:none}
+  .crow .cc{padding:10px 13px;font-size:13px;line-height:1.6;color:var(--ink-soft)}
+  .crow .cc.a{text-align:right}.crow .cc.b{text-align:left}
+  .crow .ck{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);background:var(--paper);text-align:center;padding:4px}
+  .crow .cc b{color:var(--ink)}.crow .cc .hi{color:var(--accent);font-weight:600}.crow.bdim .cc.b .hi{color:var(--green)}
+  .synth{background:var(--accent-soft);border:1px solid #e5d3c2;border-radius:12px;padding:14px 16px;margin-top:14px;font-size:13.5px;line-height:1.9;color:var(--ink-soft)}.synth b{color:var(--accent)}
+  .picker{margin-top:22px}
+  .pkbar{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff}
+  .seg button{border:none;background:#fff;font-family:var(--sans);font-size:12px;color:var(--ink-mute);padding:6px 12px;cursor:pointer;border-left:1px solid var(--line)}
+  .seg button:first-child{border-left:none}.seg button.onA{background:var(--accent);color:#fff}.seg button.onB{background:var(--green);color:#fff}
+  .srch{font-family:var(--sans);font-size:12.5px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:9px;padding:7px 11px;outline:none;width:150px}
+  .pkhint{font-family:var(--mono);font-size:11px;color:var(--ink-mute);text-align:center;margin-bottom:8px}
+  .pkhint b{color:var(--accent)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px}
+  .gi{cursor:pointer;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--paper-2);transition:border-color .12s,transform .12s}
+  .gi:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .gi img{width:100%;height:78px;object-fit:cover;display:block}
+  .gi .gl{font-size:10px;color:var(--ink-mute);padding:3px 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .empty{text-align:center;color:var(--ink-faint);padding:40px}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 坐标即比较</div>
+  <h1>双画对读 —— 两张画,差在哪里</h1>
+  <p class="lead">任选两张真迹,aha 沿 V3 <b>生成链</b>把它们逐层并置:世界观坐标、题材、绘画语言、情绪、意义——让你看见两种<b>看世界的方式</b>差在何处。</p>
+  <div class="breadcrumb"><a href="kg-explain.html">一画解读</a> · <a href="kg-works.html">作品层</a> · <a href="kg-artist-atlas.html">全员星图</a> · 当前:双画对读</div>
+
+  <div class="slots">
+    <div class="slot A" id="slotA"></div>
+    <div class="slot B" id="slotB"></div>
+  </div>
+  <div class="planewrap" id="pm"></div>
+  <div class="synth" id="synth"></div>
+  <div class="cmp" id="cmp"></div>
+
+  <div class="picker">
+    <div class="pkbar">
+      <span class="seg" id="segWhich"><button data-v="A" class="onA">← 选左图(A)</button><button data-v="B">选右图(B) →</button></span>
+      <span class="seg" id="segSide"><button data-v="all" class="onA">东+西</button><button data-v="east">东</button><button data-v="west">西</button></span>
+      <input class="srch" id="srch" placeholder="搜艺术家…"/>
+    </div>
+    <div class="pkhint" id="pkhint"></div>
+    <div class="grid" id="grid"></div>
+  </div>
+  <div id="loading" class="empty">加载名画中…</div>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const NS='http://www.w3.org/2000/svg',E=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+let A,IMG,REG=[],POLES=[],RICH=[],WVN={},LIST=[],which='A',sel={A:null,B:null},filt={side:'all',q:''};
+Promise.all([
+  fetch('data/kg_artists.json').then(r=>r.json()),
+  fetch('data/kg_artist_images.json').then(r=>r.json()),
+  fetch('data/kg_worldview_v3.json').then(r=>r.json()).catch(()=>({regions:[]}))
+]).then(([a,img,wv])=>{
+  A=a.artists;IMG=img;REG=wv.regions||[];POLES=(a.meta&&a.meta.lang_poles)||[];
+  REG.forEach(r=>WVN[r.id]=r.name);
+  RICH=Object.values(A).filter(x=>!x._stub&&x.wv&&x.wv.x!=null);
+  Object.keys(IMG).forEach(id=>{const ar=A[id];if(!ar||!ar.wv||ar.wv.x==null)return;
+    (IMG[id].items||[]).forEach((it,i)=>LIST.push({id,ar,it,key:id+'#'+i,
+      // 每图坐标:优先 item.wv(VLM 逐张),否则退回艺术家重心
+      x:(it.wv&&it.wv.x!=null)?it.wv.x:ar.wv.x, y:(it.wv&&it.wv.y!=null)?it.wv.y:ar.wv.y}));});
+  document.getElementById('loading').style.display='none';
+  renderGrid();
+  // 默认:挑两张坐标差最大的(一再现一表现)
+  let best=null,bd=-1;
+  for(let i=0;i<LIST.length;i+=7)for(let j=i+1;j<LIST.length;j+=11){
+    const d=Math.hypot(LIST[i].x-LIST[j].x,LIST[i].y-LIST[j].y);if(d>bd){bd=d;best=[LIST[i],LIST[j]];}}
+  if(best){sel.A=best[0];sel.B=best[1];redraw();}
+}).catch(e=>{document.getElementById('loading').textContent='加载失败:'+e;});
+
+function langTop(lang,n){
+  return POLES.map(p=>({k:p.k,l:p.l,r:p.r,v:lang[p.k]})).filter(o=>o.v!=null)
+    .map(o=>({...o,dev:Math.abs(o.v-0.5),side:o.v<0.5?o.l:o.r}))
+    .sort((x,y)=>y.dev-x.dev).slice(0,n).map(o=>o.k+'偏'+o.side);
+}
+function quadOf(aff){if(!aff||aff.v==null)return'';return aff.a>=0.5?(aff.v>=0.5?'昂扬·欢腾':'紧张·悲怆'):(aff.v>=0.5?'宁静·惬意':'忧郁·萧索');}
+function slotHTML(L,tag){
+  if(!L)return `<div class="si"><div class="sm">未选择</div></div>`;
+  const a=L.ar;
+  return `<img src="${L.it.file}" alt="${L.it.title}"><div class="si"><span class="stag">${tag}</span><div class="st">${a.cn}<span style="font-family:var(--mono);font-size:11px;color:var(--accent);margin-left:6px">${a.en||''}</span></div><div class="sm">${L.it.title} · ${a.region==='east'?'东':'西'}「${WVN[a.wv.region_id]||''}」 · ${a.born||''}</div></div>`;
+}
+function redraw(){
+  document.getElementById('slotA').innerHTML=slotHTML(sel.A,'A · 左');
+  document.getElementById('slotB').innerHTML=slotHTML(sel.B,'B · 右');
+  if(!sel.A||!sel.B){document.getElementById('cmp').innerHTML='';document.getElementById('synth').innerHTML='';document.getElementById('pm').innerHTML='';return;}
+  drawPlane();drawCmp();drawSynth();
+}
+function drawPlane(){
+  const pm=document.getElementById('pm');pm.innerHTML='';
+  const W=640,H=400,pad=46,sx=v=>pad+v*(W-2*pad),sy=v=>H-pad-v*(H-2*pad);
+  const svg=E('svg',{viewBox:`0 0 ${W} ${H}`});
+  svg.appendChild(E('rect',{x:pad,y:pad,width:W-2*pad,height:H-2*pad,fill:'#fcfaf5',stroke:'#e8e0d0'}));
+  const T=(x,y,s,o={})=>{const e=E('text',{x,y,'font-family':o.f||'Noto Sans SC','font-size':o.fs||10,fill:o.fill||'#a89f8f','text-anchor':o.a||'middle'});e.textContent=s;if(o.w)e.setAttribute('font-weight',o.w);if(o.st){e.setAttribute('paint-order','stroke');e.setAttribute('stroke',o.st);e.setAttribute('stroke-width',o.sw||3);}svg.appendChild(e);};
+  T(sx(.02),H-pad+15,'再现',{a:'start',fill:'#5a7d6f',w:600});T(sx(.98),H-pad+15,'表现→',{a:'end',fill:'#b0673a',w:600});
+  T(pad-8,sy(.03),'结构',{a:'end',fill:'#5a7d6f',w:600});T(pad-8,sy(.95),'感知',{a:'end',fill:'#b0673a',w:600});
+  REG.forEach(r=>{svg.appendChild(E('circle',{cx:sx(r.cx),cy:sy(r.cy),r:7,fill:'none',stroke:'#cfc6b4','stroke-width':1.2,'stroke-dasharray':'3 3'}));T(sx(r.cx),sy(r.cy)-11,r.name,{f:'Noto Serif SC',fs:10,fill:'#bcb3a2',st:'#fcfaf5'});});
+  RICH.forEach(r=>svg.appendChild(E('circle',{cx:sx(r.wv.x),cy:sy(r.wv.y),r:2.4,fill:r.region==='east'?'#aac3b8':'#d8b9a3','fill-opacity':.45})));
+  const a=sel.A,b=sel.B;
+  svg.appendChild(E('line',{x1:sx(a.x),y1:sy(a.y),x2:sx(b.x),y2:sy(b.y),stroke:'#9a8f7d','stroke-width':1.5,'stroke-dasharray':'5 4'}));
+  const dot=(L,col,lab)=>{svg.appendChild(E('circle',{cx:sx(L.x),cy:sy(L.y),r:9,fill:col,stroke:'#fff','stroke-width':2.5}));T(sx(L.x),sy(L.y)-14,lab,{f:'Noto Serif SC',fs:12.5,fill:col,w:700,st:'#fcfaf5'});};
+  dot(a,'#b0673a','A · '+a.ar.cn);dot(b,'#5a7d6f','B · '+b.ar.cn);
+  pm.appendChild(svg);
+}
+function row(k,av,bv,bdim){return `<div class="crow${bdim?' bdim':''}"><div class="cc a">${av}</div><div class="ck">${k}</div><div class="cc b">${bv}</div></div>`;}
+function drawCmp(){
+  const a=sel.A.ar,b=sel.B.ar,ax=sel.A.x,ay=sel.A.y,bx=sel.B.x,by=sel.B.y;
+  const la=a.lang?langTop(a.lang,2):[],lb=b.lang?langTop(b.lang,2):[];
+  let h='';
+  h+=row('世界观区',`<span class="hi">${WVN[a.wv.region_id]||''}</span>`,`<span class="hi">${WVN[b.wv.region_id]||''}</span>`,true);
+  h+=row('再现-表现',`${ax<0.5?'再现':'表现'} <b>${ax.toFixed(2)}</b>`,`<b>${bx.toFixed(2)}</b> ${bx<0.5?'再现':'表现'}`,true);
+  h+=row('结构-感知',`${ay<0.5?'结构':'感知'} <b>${ay.toFixed(2)}</b>`,`<b>${by.toFixed(2)}</b> ${by<0.5?'结构':'感知'}`,true);
+  h+=row('画什么',(a.subjects||[]).slice(0,3).join('、'),(b.subjects||[]).slice(0,3).join('、'),true);
+  h+=row('怎么画',la.join('<br>'),lb.join('<br>'),true);
+  h+=row('情绪',`<span class="hi">${quadOf(a.affect)}</span>`,`<span class="hi">${quadOf(b.affect)}</span>`,true);
+  h+=row('最终在说',(a.meaning||'').replace(/。$/,''),(b.meaning||'').replace(/。$/,''),true);
+  document.getElementById('cmp').innerHTML=h;
+}
+function drawSynth(){
+  const a=sel.A,b=sel.B,dx=Math.abs(a.x-b.x),dy=Math.abs(a.y-b.y);
+  const axis=dx>=dy?'再现-表现':'结构-感知';
+  const gap=dx>=dy
+    ? `一个更<b>${a.x<b.x?'忠于眼睛(再现)':'忠于内心(表现)'}</b>,另一个更<b>${a.x<b.x?'走向表现':'回到再现'}</b>`
+    : `一个更看重<b>${a.y<b.y?'结构与秩序':'光色与感受'}</b>,另一个更<b>${a.y<b.y?'诉诸感知':'诉诸结构'}</b>`;
+  const same=a.ar.wv.region_id===b.ar.wv.region_id;
+  document.getElementById('synth').innerHTML=
+    `<b>${a.ar.cn}</b>(${WVN[a.ar.wv.region_id]})与 <b>${b.ar.cn}</b>(${WVN[b.ar.wv.region_id]})${same?'落在<b>同一个世界观区</b>,是近邻——':'分处不同世界观区——'}两者最大的分歧在<b>${axis}</b>轴上:${gap}。情绪上一个是「${quadOf(a.ar.affect)}」,一个是「${quadOf(b.ar.affect)}」。它们是<b>两种看世界的方式</b>。`;
+}
+// 选画
+function renderGrid(){
+  const q=filt.q.trim().toLowerCase();
+  const list=LIST.filter(L=>(filt.side==='all'||L.ar.region===filt.side)&&(!q||L.ar.cn.toLowerCase().includes(q)||(L.ar.en||'').toLowerCase().includes(q)));
+  const g=document.getElementById('grid');g.textContent='';
+  document.getElementById('pkhint').innerHTML=`正在选 <b>${which==='A'?'左图 A':'右图 B'}</b> · 点一张填入 · 共 ${list.length} 张`;
+  list.slice(0,160).forEach(L=>{const el=$(`<div class="gi" title="${L.it.title} · ${L.ar.cn}"><img loading="lazy" src="${L.it.file}"><div class="gl">${L.ar.cn}</div></div>`);
+    el.addEventListener('click',()=>{sel[which]=L;which=which==='A'?'B':'A';syncWhich();redraw();renderGrid();window.scrollTo({top:0,behavior:'smooth'});});
+    g.appendChild(el);});
+}
+function syncWhich(){const s=document.getElementById('segWhich');s.querySelectorAll('button').forEach(b=>{b.classList.remove('onA','onB');if(b.dataset.v===which)b.classList.add(which==='A'?'onA':'onB');});}
+document.getElementById('segWhich').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{which=b.dataset.v;syncWhich();renderGrid();}));
+document.getElementById('segSide').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{document.getElementById('segSide').querySelectorAll('button').forEach(x=>x.classList.remove('onA'));b.classList.add('onA');filt.side=b.dataset.v;renderGrid();}));
+document.getElementById('srch').addEventListener('input',e=>{filt.q=e.target.value;renderGrid();});
+</script>
+</body></html>

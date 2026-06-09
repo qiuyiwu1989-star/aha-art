@@ -1,0 +1,4636 @@
+{
+ "meta": {
+  "artists_connected": 268,
+  "atoms_used": 133,
+  "note": "282艺术家subjects归一到题材原子",
+  "format": "node_to_artists(新)+nodes(兼容kg-subject-map)"
+ },
+ "node_to_artists": {
+  "SUBJECT.history.11": [
+   "ARTIST.repin"
+  ],
+  "SUBJECT.figure.03": [
+   "ARTIST.masaccio",
+   "ARTIST.rembrandt",
+   "ARTIST.repin",
+   "ARTIST.surikov",
+   "ARTIST.xubeihong"
+  ],
+  "SUBJECT.figure.01": [
+   "ARTIST.academy",
+   "ARTIST.chuckclose",
+   "ARTIST.courbet",
+   "ARTIST.davinci",
+   "ARTIST.derain",
+   "ARTIST.elgreco",
+   "ARTIST.freud",
+   "ARTIST.hals",
+   "ARTIST.henrirousseau",
+   "ARTIST.holbein",
+   "ARTIST.ingres",
+   "ARTIST.jiangzhaohe",
+   "ARTIST.klimt",
+   "ARTIST.kramskoi",
+   "ARTIST.langshining",
+   "ARTIST.millais",
+   "ARTIST.modigliani",
+   "ARTIST.munter",
+   "ARTIST.parmigianino",
+   "ARTIST.pontormo",
+   "ARTIST.qianlongacademy",
+   "ARTIST.raphael",
+   "ARTIST.rembrandt",
+   "ARTIST.renbonian",
+   "ARTIST.renoir",
+   "ARTIST.repin",
+   "ARTIST.rossetti",
+   "ARTIST.rubens",
+   "ARTIST.schnabel",
+   "ARTIST.serov",
+   "ARTIST.soutine",
+   "ARTIST.tintoretto",
+   "ARTIST.titian",
+   "ARTIST.vaneyck",
+   "ARTIST.velazquez",
+   "ARTIST.vuillard",
+   "ARTIST.warhol",
+   "ARTIST.xubeihong"
+  ],
+  "SUBJECT.history.x55": [
+   "ARTIST.repin",
+   "ARTIST.vangogh",
+   "ARTIST.zola"
+  ],
+  "SUBJECT.landscape.x51": [
+   "ARTIST.monet"
+  ],
+  "SUBJECT.landscape.x52": [
+   "ARTIST.bonnard",
+   "ARTIST.monet"
+  ],
+  "SUBJECT.landscape.03": [
+   "ARTIST.nizan",
+   "ARTIST.zhaolingrang"
+  ],
+  "SUBJECT.bird-flower.x54": [
+   "ARTIST.nizan",
+   "ARTIST.sushi",
+   "ARTIST.wentong",
+   "ARTIST.wuzhen"
+  ],
+  "SUBJECT.animal.01": [
+   "ARTIST.degas",
+   "ARTIST.gaoqifeng",
+   "ARTIST.jldavid",
+   "ARTIST.langshining",
+   "ARTIST.ligonglin",
+   "ARTIST.signac",
+   "ARTIST.xubeihong",
+   "ARTIST.zhangxuan",
+   "ARTIST.zhaomengfu"
+  ],
+  "SUBJECT.history.x54": [
+   "ARTIST.academy",
+   "ARTIST.davinci",
+   "ARTIST.delacroix",
+   "ARTIST.kiefer",
+   "ARTIST.kounellis",
+   "ARTIST.litang",
+   "ARTIST.mathieu",
+   "ARTIST.qiuying",
+   "ARTIST.renbonian",
+   "ARTIST.richter",
+   "ARTIST.rubens",
+   "ARTIST.schnabel",
+   "ARTIST.serov",
+   "ARTIST.surikov",
+   "ARTIST.tuymans",
+   "ARTIST.xubeihong"
+  ],
+  "SUBJECT.still-life.x54": [
+   "ARTIST.baselitz",
+   "ARTIST.chenhongshou",
+   "ARTIST.corot",
+   "ARTIST.daijin",
+   "ARTIST.dingguanpeng",
+   "ARTIST.fangzengxian",
+   "ARTIST.fanqi",
+   "ARTIST.freud",
+   "ARTIST.friedrich",
+   "ARTIST.giorgione",
+   "ARTIST.gukaizhi",
+   "ARTIST.heckel",
+   "ARTIST.hejiaying",
+   "ARTIST.huangzhou",
+   "ARTIST.ikenotaiga",
+   "ARTIST.jiangcaiping",
+   "ARTIST.jinnong",
+   "ARTIST.kirchner",
+   "ARTIST.lengmei",
+   "ARTIST.liangkai",
+   "ARTIST.ligonglin",
+   "ARTIST.linfengmian",
+   "ARTIST.masaccio",
+   "ARTIST.modigliani",
+   "ARTIST.picasso",
+   "ARTIST.qibaishi",
+   "ARTIST.renbonian",
+   "ARTIST.schmidtrottluff",
+   "ARTIST.wudaozi",
+   "ARTIST.wuwei",
+   "ARTIST.wuzongyuan",
+   "ARTIST.xubeihong",
+   "ARTIST.xuyang",
+   "ARTIST.zhangdaqian",
+   "ARTIST.zhaoboju"
+  ],
+  "SUBJECT.landscape.14": [
+   "ARTIST.demaria",
+   "ARTIST.kiefer",
+   "ARTIST.levitan",
+   "ARTIST.millet",
+   "ARTIST.pissarro",
+   "ARTIST.smithson",
+   "ARTIST.vangogh"
+  ],
+  "SUBJECT.landscape.21": [
+   "ARTIST.vangogh"
+  ],
+  "SUBJECT.bird-flower.17": [
+   "ARTIST.vangogh"
+  ],
+  "SUBJECT.figure.02": [
+   "ARTIST.chuckclose",
+   "ARTIST.durer",
+   "ARTIST.rembrandt",
+   "ARTIST.schiele",
+   "ARTIST.vangogh"
+  ],
+  "SUBJECT.figure.09": [
+   "ARTIST.vangogh"
+  ],
+  "SUBJECT.landscape.01": [
+   "ARTIST.cezanne",
+   "ARTIST.dongyuan",
+   "ARTIST.fragonard",
+   "ARTIST.gongxian",
+   "ARTIST.hokusai",
+   "ARTIST.huangbinhong",
+   "ARTIST.kuncan",
+   "ARTIST.pantianshou",
+   "ARTIST.wangmeng",
+   "ARTIST.wangximeng",
+   "ARTIST.watteau",
+   "ARTIST.xiagui"
+  ],
+  "SUBJECT.still-life.x53": [
+   "ARTIST.bonnard",
+   "ARTIST.braque",
+   "ARTIST.caravaggio",
+   "ARTIST.cezanne",
+   "ARTIST.courbet",
+   "ARTIST.derain",
+   "ARTIST.destael",
+   "ARTIST.gris",
+   "ARTIST.leger",
+   "ARTIST.linfengmian",
+   "ARTIST.picasso",
+   "ARTIST.soutine",
+   "ARTIST.velazquez",
+   "ARTIST.vlaminck"
+  ],
+  "SUBJECT.figure.17": [
+   "ARTIST.bonnard",
+   "ARTIST.boucher",
+   "ARTIST.cezanne",
+   "ARTIST.degas",
+   "ARTIST.freud",
+   "ARTIST.kirchner",
+   "ARTIST.modigliani",
+   "ARTIST.renoir",
+   "ARTIST.schiele"
+  ],
+  "SUBJECT.landscape.x50": [
+   "ARTIST.bastienlepage",
+   "ARTIST.cezanne",
+   "ARTIST.corot",
+   "ARTIST.courbet",
+   "ARTIST.dekooning",
+   "ARTIST.derain",
+   "ARTIST.destael",
+   "ARTIST.frankenthaler",
+   "ARTIST.gauguin",
+   "ARTIST.giorgione",
+   "ARTIST.guanshanyue",
+   "ARTIST.heckel",
+   "ARTIST.hokusai",
+   "ARTIST.kirchner",
+   "ARTIST.levitan",
+   "ARTIST.linfengmian",
+   "ARTIST.marc",
+   "ARTIST.moses",
+   "ARTIST.munter",
+   "ARTIST.richter",
+   "ARTIST.rousseau",
+   "ARTIST.ruisdael",
+   "ARTIST.schmidtrottluff",
+   "ARTIST.signac",
+   "ARTIST.soutine",
+   "ARTIST.vlaminck"
+  ],
+  "SUBJECT.animal.x54": [
+   "ARTIST.badashanren"
+  ],
+  "SUBJECT.bird-flower.x59": [
+   "ARTIST.badashanren"
+  ],
+  "SUBJECT.landscape.x54": [
+   "ARTIST.badashanren",
+   "ARTIST.buson",
+   "ARTIST.chenjiru",
+   "ARTIST.chenshuren",
+   "ARTIST.daijin",
+   "ARTIST.dongqichang",
+   "ARTIST.fankuan",
+   "ARTIST.fanqi",
+   "ARTIST.fubaoshi",
+   "ARTIST.gaojianfu",
+   "ARTIST.gongxian",
+   "ARTIST.guanshanyue",
+   "ARTIST.guoxi",
+   "ARTIST.hongren",
+   "ARTIST.huangbinhong",
+   "ARTIST.huanggongwang",
+   "ARTIST.huichong",
+   "ARTIST.ikenotaiga",
+   "ARTIST.juran",
+   "ARTIST.kuncan",
+   "ARTIST.likeran",
+   "ARTIST.litang",
+   "ARTIST.liuguosong",
+   "ARTIST.mayuan",
+   "ARTIST.qibaishi",
+   "ARTIST.qiuying",
+   "ARTIST.shenzhou",
+   "ARTIST.tangyin",
+   "ARTIST.tanyu",
+   "ARTIST.wangtiande",
+   "ARTIST.wangwei",
+   "ARTIST.wenzhengming",
+   "ARTIST.wuwei",
+   "ARTIST.wuzhen",
+   "ARTIST.xiagui",
+   "ARTIST.zhangdaqian",
+   "ARTIST.zhanziqian",
+   "ARTIST.zhaoboju",
+   "ARTIST.zhaozuo",
+   "ARTIST.zhashibiao"
+  ],
+  "SUBJECT.myth.x65": [
+   "ARTIST.caravaggio",
+   "ARTIST.davinci",
+   "ARTIST.denis",
+   "ARTIST.durer",
+   "ARTIST.elgreco",
+   "ARTIST.gauguin",
+   "ARTIST.gentile",
+   "ARTIST.holbein",
+   "ARTIST.hunt",
+   "ARTIST.kramskoi",
+   "ARTIST.limbourg",
+   "ARTIST.lorenzetti",
+   "ARTIST.majunxiang",
+   "ARTIST.masaccio",
+   "ARTIST.michelangelo",
+   "ARTIST.nolde",
+   "ARTIST.parmigianino",
+   "ARTIST.pontormo",
+   "ARTIST.raphael",
+   "ARTIST.redon",
+   "ARTIST.rembrandt",
+   "ARTIST.rubens",
+   "ARTIST.schnabel",
+   "ARTIST.tintoretto",
+   "ARTIST.titian",
+   "ARTIST.vaneyck",
+   "ARTIST.veronese",
+   "ARTIST.wuzongyuan"
+  ],
+  "SUBJECT.myth.33": [
+   "ARTIST.angelico",
+   "ARTIST.botticelli",
+   "ARTIST.byzantineicon",
+   "ARTIST.cimabue",
+   "ARTIST.davinci",
+   "ARTIST.duccio",
+   "ARTIST.martini",
+   "ARTIST.raphael"
+  ],
+  "SUBJECT.figure.23": [
+   "ARTIST.caravaggio",
+   "ARTIST.hals",
+   "ARTIST.huangshen"
+  ],
+  "SUBJECT.myth.x64": [
+   "ARTIST.academy",
+   "ARTIST.beuys",
+   "ARTIST.botticelli",
+   "ARTIST.boucher",
+   "ARTIST.caravaggio",
+   "ARTIST.gauguin",
+   "ARTIST.kiefer",
+   "ARTIST.masson",
+   "ARTIST.moreau",
+   "ARTIST.picasso",
+   "ARTIST.redon",
+   "ARTIST.rubens",
+   "ARTIST.serov",
+   "ARTIST.tintoretto",
+   "ARTIST.titian",
+   "ARTIST.velazquez",
+   "ARTIST.veronese"
+  ],
+  "SUBJECT.history.06": [
+   "ARTIST.holbein",
+   "ARTIST.martini",
+   "ARTIST.qianlongacademy",
+   "ARTIST.velazquez",
+   "ARTIST.yamatoe"
+  ],
+  "SUBJECT.figure.14": [
+   "ARTIST.dekooning",
+   "ARTIST.miro",
+   "ARTIST.velazquez"
+  ],
+  "SUBJECT.urban.x52": [
+   "ARTIST.daumier",
+   "ARTIST.velazquez"
+  ],
+  "SUBJECT.still-life.01": [
+   "ARTIST.durer",
+   "ARTIST.huichong",
+   "ARTIST.xuchongsi",
+   "ARTIST.yuanti",
+   "ARTIST.yunshouping"
+  ],
+  "SUBJECT.history.45": [
+   "ARTIST.courbet"
+  ],
+  "SUBJECT.folk.x52": [
+   "ARTIST.bastienlepage",
+   "ARTIST.bruegel",
+   "ARTIST.fangzengxian",
+   "ARTIST.millet"
+  ],
+  "SUBJECT.landscape.31": [
+   "ARTIST.fankuan",
+   "ARTIST.lisixun",
+   "ARTIST.lizhaodao",
+   "ARTIST.wangximeng"
+  ],
+  "SUBJECT.landscape.33": [
+   "ARTIST.fankuan",
+   "ARTIST.guoxi",
+   "ARTIST.licheng"
+  ],
+  "SUBJECT.bird-flower.x61": [
+   "ARTIST.chenchun",
+   "ARTIST.chenhongshou",
+   "ARTIST.gaojianfu",
+   "ARTIST.gaoqifeng",
+   "ARTIST.hokusai",
+   "ARTIST.huizong",
+   "ARTIST.langshining",
+   "ARTIST.pantianshou",
+   "ARTIST.qiaoshiguang",
+   "ARTIST.renbonian",
+   "ARTIST.shenzhou",
+   "ARTIST.tanyu",
+   "ARTIST.yuanti",
+   "ARTIST.zhangdaqian"
+  ],
+  "SUBJECT.bird-flower.01": [
+   "ARTIST.chenjiru",
+   "ARTIST.huizong",
+   "ARTIST.jinnong",
+   "ARTIST.wangmian",
+   "ARTIST.yangwujiu"
+  ],
+  "SUBJECT.figure.24": [
+   "ARTIST.fubaoshi",
+   "ARTIST.lengmei",
+   "ARTIST.linfengmian",
+   "ARTIST.qiuying",
+   "ARTIST.tangyin",
+   "ARTIST.zhangxuan",
+   "ARTIST.zhoufang"
+  ],
+  "SUBJECT.bird-flower.x52": [
+   "ARTIST.chenchun",
+   "ARTIST.chenshuren",
+   "ARTIST.fanqi",
+   "ARTIST.huangquan",
+   "ARTIST.jiangcaiping",
+   "ARTIST.korin",
+   "ARTIST.nolde",
+   "ARTIST.qibaishi",
+   "ARTIST.redon",
+   "ARTIST.renoir",
+   "ARTIST.shitao",
+   "ARTIST.xuchongsi",
+   "ARTIST.xuwei",
+   "ARTIST.yunshouping",
+   "ARTIST.zhaozhiqian"
+  ],
+  "SUBJECT.urban.06": [
+   "ARTIST.dubuffet",
+   "ARTIST.estes",
+   "ARTIST.haring",
+   "ARTIST.pissarro"
+  ],
+  "SUBJECT.still-life.02": [
+   "ARTIST.magritte",
+   "ARTIST.pissarro"
+  ],
+  "SUBJECT.urban.x55": [
+   "ARTIST.leger",
+   "ARTIST.seurat",
+   "ARTIST.xuyang"
+  ],
+  "SUBJECT.landscape.04": [
+   "ARTIST.friedrich",
+   "ARTIST.lissitzky",
+   "ARTIST.mucha",
+   "ARTIST.rodchenko",
+   "ARTIST.seurat",
+   "ARTIST.turner"
+  ],
+  "SUBJECT.abstract.x55": [
+   "ARTIST.bonnard",
+   "ARTIST.matisse",
+   "ARTIST.munter",
+   "ARTIST.vermeer",
+   "ARTIST.vuillard"
+  ],
+  "SUBJECT.figure.x51": [
+   "ARTIST.academy",
+   "ARTIST.dechirico",
+   "ARTIST.matisse",
+   "ARTIST.michelangelo",
+   "ARTIST.phidias",
+   "ARTIST.salle"
+  ],
+  "SUBJECT.folk.19": [
+   "ARTIST.matisse"
+  ],
+  "SUBJECT.abstract.x58": [
+   "ARTIST.kandinsky",
+   "ARTIST.reinhardt",
+   "ARTIST.vandoesburg"
+  ],
+  "SUBJECT.abstract.01": [
+   "ARTIST.arp",
+   "ARTIST.balla",
+   "ARTIST.chudehchun",
+   "ARTIST.demaria",
+   "ARTIST.destael",
+   "ARTIST.frankenthaler",
+   "ARTIST.kandinsky",
+   "ARTIST.lewitt",
+   "ARTIST.lissitzky",
+   "ARTIST.malevich",
+   "ARTIST.mathieu",
+   "ARTIST.mohr",
+   "ARTIST.mondrian",
+   "ARTIST.nees",
+   "ARTIST.rodchenko",
+   "ARTIST.severini",
+   "ARTIST.vasarely",
+   "ARTIST.wuguanzhong",
+   "ARTIST.zaowuji"
+  ],
+  "SUBJECT.history.01": [
+   "ARTIST.banksy",
+   "ARTIST.dix",
+   "ARTIST.heartfield",
+   "ARTIST.picasso"
+  ],
+  "SUBJECT.abstract.03": [
+   "ARTIST.chudehchun",
+   "ARTIST.kelly",
+   "ARTIST.martin",
+   "ARTIST.newman",
+   "ARTIST.rothko",
+   "ARTIST.rousseau",
+   "ARTIST.vandoesburg",
+   "ARTIST.vasarely",
+   "ARTIST.zaowuji",
+   "ARTIST.zhaomengfu"
+  ],
+  "SUBJECT.landscape.34": [
+   "ARTIST.huanggongwang"
+  ],
+  "SUBJECT.abstract.x64": [
+   "ARTIST.shenzhou",
+   "ARTIST.wenzhengming"
+  ],
+  "SUBJECT.bird-flower.x58": [
+   "ARTIST.muqi",
+   "ARTIST.qibaishi",
+   "ARTIST.shenzhou",
+   "ARTIST.shitao",
+   "ARTIST.zhaozhiqian"
+  ],
+  "SUBJECT.bird-flower.03": [
+   "ARTIST.wenzhengming",
+   "ARTIST.zhaomengfu",
+   "ARTIST.zhengxie"
+  ],
+  "SUBJECT.landscape.x55": [
+   "ARTIST.shitao",
+   "ARTIST.zhaozuo"
+  ],
+  "SUBJECT.landscape.x59": [
+   "ARTIST.hongren",
+   "ARTIST.shitao"
+  ],
+  "SUBJECT.bird-flower.44": [
+   "ARTIST.qibaishi"
+  ],
+  "SUBJECT.bird-flower.x55": [
+   "ARTIST.wuchangshuo"
+  ],
+  "SUBJECT.bird-flower.16": [
+   "ARTIST.wuchangshuo"
+  ],
+  "SUBJECT.figure.32": [
+   "ARTIST.jldavid",
+   "ARTIST.michelangelo",
+   "ARTIST.phidias"
+  ],
+  "SUBJECT.landscape.x58": [
+   "ARTIST.sushi",
+   "ARTIST.zhashibiao"
+  ],
+  "SUBJECT.still-life.04": [
+   "ARTIST.chudehchun",
+   "ARTIST.dongqichang",
+   "ARTIST.masson",
+   "ARTIST.wangdongling",
+   "ARTIST.xubing",
+   "ARTIST.zhengxie"
+  ],
+  "SUBJECT.myth.x63": [
+   "ARTIST.chagall",
+   "ARTIST.giotto",
+   "ARTIST.moreau"
+  ],
+  "SUBJECT.figure.28": [
+   "ARTIST.langshining",
+   "ARTIST.qianlongacademy",
+   "ARTIST.yanliben"
+  ],
+  "SUBJECT.figure.07": [
+   "ARTIST.yanliben"
+  ],
+  "SUBJECT.bird-flower.x53": [
+   "ARTIST.zhoufang"
+  ],
+  "SUBJECT.myth.06": [
+   "ARTIST.muqi",
+   "ARTIST.zhoufang"
+  ],
+  "SUBJECT.figure.05": [
+   "ARTIST.gentile",
+   "ARTIST.licheng",
+   "ARTIST.muqi",
+   "ARTIST.vaneyck",
+   "ARTIST.wudaozi",
+   "ARTIST.wuzongyuan"
+  ],
+  "SUBJECT.myth.31": [
+   "ARTIST.wudaozi"
+  ],
+  "SUBJECT.bird-flower.05": [
+   "ARTIST.eitoku",
+   "ARTIST.hongren",
+   "ARTIST.likuchan",
+   "ARTIST.litang"
+  ],
+  "SUBJECT.folk.x51": [
+   "ARTIST.chagall",
+   "ARTIST.watteau"
+  ],
+  "SUBJECT.history.02": [
+   "ARTIST.delacroix",
+   "ARTIST.jldavid"
+  ],
+  "SUBJECT.abstract.x68": [
+   "ARTIST.corot",
+   "ARTIST.guanshanyue",
+   "ARTIST.huangquan",
+   "ARTIST.hunt",
+   "ARTIST.millais",
+   "ARTIST.yunshouping"
+  ],
+  "SUBJECT.landscape.18": [
+   "ARTIST.constable",
+   "ARTIST.ruisdael",
+   "ARTIST.sisley"
+  ],
+  "SUBJECT.landscape.08": [
+   "ARTIST.hiroshige",
+   "ARTIST.sisley",
+   "ARTIST.wangwei",
+   "ARTIST.wuguanzhong"
+  ],
+  "SUBJECT.landscape.02": [
+   "ARTIST.qiaoshiguang",
+   "ARTIST.sisley",
+   "ARTIST.vandoesburg",
+   "ARTIST.wuguanzhong",
+   "ARTIST.zhaolingrang"
+  ],
+  "SUBJECT.animal.24": [
+   "ARTIST.miro"
+  ],
+  "SUBJECT.abstract.27": [
+   "ARTIST.basquiat",
+   "ARTIST.haring",
+   "ARTIST.miro",
+   "ARTIST.tapies"
+  ],
+  "SUBJECT.still-life.06": [
+   "ARTIST.braque",
+   "ARTIST.gris",
+   "ARTIST.vermeer"
+  ],
+  "SUBJECT.abstract.x76": [
+   "ARTIST.braque",
+   "ARTIST.ernst",
+   "ARTIST.gris",
+   "ARTIST.salle"
+  ],
+  "SUBJECT.abstract.x57": [
+   "ARTIST.braque",
+   "ARTIST.judd",
+   "ARTIST.kelly",
+   "ARTIST.kounellis",
+   "ARTIST.lissitzky",
+   "ARTIST.masaccio",
+   "ARTIST.matta",
+   "ARTIST.teamlab"
+  ],
+  "SUBJECT.landscape.x53": [
+   "ARTIST.guozhongshu",
+   "ARTIST.lisixun",
+   "ARTIST.lizhaodao",
+   "ARTIST.wangximeng",
+   "ARTIST.yuanti",
+   "ARTIST.zhaoboju"
+  ],
+  "SUBJECT.myth.x78": [
+   "ARTIST.lisixun",
+   "ARTIST.lizhaodao"
+  ],
+  "SUBJECT.folk.25": [
+   "ARTIST.wangximeng"
+  ],
+  "SUBJECT.bird-flower.x60": [
+   "ARTIST.yuanti",
+   "ARTIST.yufeian",
+   "ARTIST.yunshouping"
+  ],
+  "SUBJECT.animal.x55": [
+   "ARTIST.huangquan",
+   "ARTIST.yufeian"
+  ],
+  "SUBJECT.history.05": [
+   "ARTIST.daumier"
+  ],
+  "SUBJECT.figure.x54": [
+   "ARTIST.dekooning",
+   "ARTIST.hanson",
+   "ARTIST.schiele",
+   "ARTIST.zhangyu"
+  ],
+  "SUBJECT.myth.35": [
+   "ARTIST.cimabue"
+  ],
+  "SUBJECT.folk.26": [
+   "ARTIST.boucher",
+   "ARTIST.chavannes",
+   "ARTIST.giorgione"
+  ],
+  "SUBJECT.abstract.25": [
+   "ARTIST.gris"
+  ],
+  "SUBJECT.landscape.x57": [
+   "ARTIST.dongyuan",
+   "ARTIST.licheng",
+   "ARTIST.zhaolingrang"
+  ],
+  "SUBJECT.landscape.x56": [
+   "ARTIST.dongyuan",
+   "ARTIST.juran"
+  ],
+  "SUBJECT.bird-flower.09": [
+   "ARTIST.yufeian"
+  ],
+  "SUBJECT.figure.x53": [
+   "ARTIST.hejiaying",
+   "ARTIST.hoch",
+   "ARTIST.klimt",
+   "ARTIST.rossetti",
+   "ARTIST.serov",
+   "ARTIST.utamaro"
+  ],
+  "SUBJECT.figure.25": [
+   "ARTIST.hejiaying",
+   "ARTIST.utamaro"
+  ],
+  "SUBJECT.urban.x56": [
+   "ARTIST.boccioni",
+   "ARTIST.dix",
+   "ARTIST.estes",
+   "ARTIST.grosz",
+   "ARTIST.hejiaying",
+   "ARTIST.kirchner"
+  ],
+  "SUBJECT.myth.32": [
+   "ARTIST.martini"
+  ],
+  "SUBJECT.figure.x56": [
+   "ARTIST.fubaoshi",
+   "ARTIST.tangyin",
+   "ARTIST.zhangwo"
+  ],
+  "SUBJECT.landscape.22": [
+   "ARTIST.fubaoshi"
+  ],
+  "SUBJECT.landscape.07": [
+   "ARTIST.qiaoshiguang",
+   "ARTIST.rossetti",
+   "ARTIST.tangyin",
+   "ARTIST.wuguanzhong"
+  ],
+  "SUBJECT.figure.30": [
+   "ARTIST.jinnong"
+  ],
+  "SUBJECT.landscape.16": [
+   "ARTIST.cuibai"
+  ],
+  "SUBJECT.bird-flower.06": [
+   "ARTIST.cuibai",
+   "ARTIST.likuchan"
+  ],
+  "SUBJECT.myth.x70": [
+   "ARTIST.dunhuang"
+  ],
+  "SUBJECT.figure.x55": [
+   "ARTIST.dunhuang"
+  ],
+  "SUBJECT.myth.x72": [
+   "ARTIST.dunhuang"
+  ],
+  "SUBJECT.myth.x75": [
+   "ARTIST.majunxiang",
+   "ARTIST.yonglegong"
+  ],
+  "SUBJECT.myth.x62": [
+   "ARTIST.majunxiang",
+   "ARTIST.phidias",
+   "ARTIST.sotatsu",
+   "ARTIST.yonglegong"
+  ],
+  "SUBJECT.myth.34": [
+   "ARTIST.byzantineicon",
+   "ARTIST.duccio"
+  ],
+  "SUBJECT.myth.40": [
+   "ARTIST.byzantineicon",
+   "ARTIST.duccio"
+  ],
+  "SUBJECT.abstract.x77": [
+   "ARTIST.bruegel",
+   "ARTIST.mucha",
+   "ARTIST.yamatoe"
+  ],
+  "SUBJECT.landscape.06": [
+   "ARTIST.ruisdael"
+  ],
+  "SUBJECT.landscape.15": [
+   "ARTIST.ernst",
+   "ARTIST.rousseau",
+   "ARTIST.ruisdael"
+  ],
+  "SUBJECT.figure.42": [
+   "ARTIST.denis",
+   "ARTIST.vuillard"
+  ],
+  "SUBJECT.abstract.x67": [
+   "ARTIST.denis",
+   "ARTIST.klimt",
+   "ARTIST.korin",
+   "ARTIST.vuillard"
+  ],
+  "SUBJECT.figure.18": [
+   "ARTIST.severini"
+  ],
+  "SUBJECT.abstract.x75": [
+   "ARTIST.kounellis",
+   "ARTIST.tatlin"
+  ],
+  "SUBJECT.still-life.36": [
+   "ARTIST.heartfield",
+   "ARTIST.hoch",
+   "ARTIST.richter"
+  ],
+  "SUBJECT.abstract.02": [
+   "ARTIST.mathieu",
+   "ARTIST.wangdongling"
+  ],
+  "SUBJECT.abstract.x69": [
+   "ARTIST.dubuffet",
+   "ARTIST.fautrier"
+  ],
+  "SUBJECT.abstract.x59": [
+   "ARTIST.estes"
+  ],
+  "SUBJECT.folk.x53": [
+   "ARTIST.moses"
+  ],
+  "SUBJECT.history.33": [
+   "ARTIST.warhol"
+  ],
+  "SUBJECT.history.x53": [
+   "ARTIST.basquiat",
+   "ARTIST.tuymans"
+  ],
+  "SUBJECT.abstract.28": [
+   "ARTIST.arcangel",
+   "ARTIST.teamlab"
+  ],
+  "SUBJECT.abstract.26": [
+   "ARTIST.teamlab"
+  ],
+  "SUBJECT.landscape.27": [
+   "ARTIST.wangwei"
+  ],
+  "SUBJECT.animal.x56": [
+   "ARTIST.gaoqifeng"
+  ],
+  "SUBJECT.abstract.x60": [
+   "ARTIST.minhwa",
+   "ARTIST.wangtiande"
+  ],
+  "SUBJECT.myth.02": [
+   "ARTIST.mianlhadunzhu"
+  ],
+  "SUBJECT.figure.08": [
+   "ARTIST.limbourg"
+  ],
+  "SUBJECT.abstract.x74": [
+   "ARTIST.kounellis"
+  ]
+ },
+ "artist_to_nodes": {
+  "ARTIST.repin": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.03",
+   "SUBJECT.history.11",
+   "SUBJECT.history.x55"
+  ],
+  "ARTIST.monet": [
+   "SUBJECT.landscape.x51",
+   "SUBJECT.landscape.x52"
+  ],
+  "ARTIST.nizan": [
+   "SUBJECT.bird-flower.x54",
+   "SUBJECT.landscape.03"
+  ],
+  "ARTIST.xubeihong": [
+   "SUBJECT.animal.01",
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.03",
+   "SUBJECT.history.x54",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.vangogh": [
+   "SUBJECT.bird-flower.17",
+   "SUBJECT.figure.02",
+   "SUBJECT.figure.09",
+   "SUBJECT.history.x55",
+   "SUBJECT.landscape.14",
+   "SUBJECT.landscape.21"
+  ],
+  "ARTIST.cezanne": [
+   "SUBJECT.figure.17",
+   "SUBJECT.landscape.01",
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x53"
+  ],
+  "ARTIST.badashanren": [
+   "SUBJECT.animal.x54",
+   "SUBJECT.bird-flower.x59",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.davinci": [
+   "SUBJECT.figure.01",
+   "SUBJECT.history.x54",
+   "SUBJECT.myth.33",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.caravaggio": [
+   "SUBJECT.figure.23",
+   "SUBJECT.myth.x64",
+   "SUBJECT.myth.x65",
+   "SUBJECT.still-life.x53"
+  ],
+  "ARTIST.velazquez": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.14",
+   "SUBJECT.history.06",
+   "SUBJECT.myth.x64",
+   "SUBJECT.still-life.x53",
+   "SUBJECT.urban.x52"
+  ],
+  "ARTIST.rembrandt": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.02",
+   "SUBJECT.figure.03",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.raphael": [
+   "SUBJECT.figure.01",
+   "SUBJECT.myth.33",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.durer": [
+   "SUBJECT.figure.02",
+   "SUBJECT.myth.x65",
+   "SUBJECT.still-life.01"
+  ],
+  "ARTIST.courbet": [
+   "SUBJECT.figure.01",
+   "SUBJECT.history.45",
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x53"
+  ],
+  "ARTIST.millet": [
+   "SUBJECT.folk.x52",
+   "SUBJECT.landscape.14"
+  ],
+  "ARTIST.fankuan": [
+   "SUBJECT.landscape.31",
+   "SUBJECT.landscape.33",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.guoxi": [
+   "SUBJECT.landscape.33",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.huizong": [
+   "SUBJECT.bird-flower.01",
+   "SUBJECT.bird-flower.x61"
+  ],
+  "ARTIST.qiuying": [
+   "SUBJECT.figure.24",
+   "SUBJECT.history.x54",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.renoir": [
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.17"
+  ],
+  "ARTIST.pissarro": [
+   "SUBJECT.landscape.14",
+   "SUBJECT.still-life.02",
+   "SUBJECT.urban.06"
+  ],
+  "ARTIST.degas": [
+   "SUBJECT.animal.01",
+   "SUBJECT.figure.17"
+  ],
+  "ARTIST.seurat": [
+   "SUBJECT.landscape.04",
+   "SUBJECT.urban.x55"
+  ],
+  "ARTIST.gauguin": [
+   "SUBJECT.landscape.x50",
+   "SUBJECT.myth.x64",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.matisse": [
+   "SUBJECT.abstract.x55",
+   "SUBJECT.figure.x51",
+   "SUBJECT.folk.19"
+  ],
+  "ARTIST.kandinsky": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.abstract.x58"
+  ],
+  "ARTIST.picasso": [
+   "SUBJECT.history.01",
+   "SUBJECT.myth.x64",
+   "SUBJECT.still-life.x53",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.mondrian": [
+   "SUBJECT.abstract.01"
+  ],
+  "ARTIST.malevich": [
+   "SUBJECT.abstract.01"
+  ],
+  "ARTIST.rothko": [
+   "SUBJECT.abstract.03"
+  ],
+  "ARTIST.huanggongwang": [
+   "SUBJECT.landscape.34",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.wangmeng": [
+   "SUBJECT.landscape.01"
+  ],
+  "ARTIST.shenzhou": [
+   "SUBJECT.abstract.x64",
+   "SUBJECT.bird-flower.x58",
+   "SUBJECT.bird-flower.x61",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.wenzhengming": [
+   "SUBJECT.abstract.x64",
+   "SUBJECT.bird-flower.03",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.shitao": [
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.bird-flower.x58",
+   "SUBJECT.landscape.x55",
+   "SUBJECT.landscape.x59"
+  ],
+  "ARTIST.qibaishi": [
+   "SUBJECT.bird-flower.44",
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.bird-flower.x58",
+   "SUBJECT.landscape.x54",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.huangbinhong": [
+   "SUBJECT.landscape.01",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.wuchangshuo": [
+   "SUBJECT.bird-flower.16",
+   "SUBJECT.bird-flower.x55"
+  ],
+  "ARTIST.michelangelo": [
+   "SUBJECT.figure.32",
+   "SUBJECT.figure.x51",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.sushi": [
+   "SUBJECT.bird-flower.x54",
+   "SUBJECT.landscape.x58"
+  ],
+  "ARTIST.dongqichang": [
+   "SUBJECT.landscape.x54",
+   "SUBJECT.still-life.04"
+  ],
+  "ARTIST.xuwei": [
+   "SUBJECT.bird-flower.x52"
+  ],
+  "ARTIST.turner": [
+   "SUBJECT.landscape.04"
+  ],
+  "ARTIST.gukaizhi": [
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.giotto": [
+   "SUBJECT.myth.x63"
+  ],
+  "ARTIST.botticelli": [
+   "SUBJECT.myth.33",
+   "SUBJECT.myth.x64"
+  ],
+  "ARTIST.yanliben": [
+   "SUBJECT.figure.07",
+   "SUBJECT.figure.28"
+  ],
+  "ARTIST.zhangxuan": [
+   "SUBJECT.animal.01",
+   "SUBJECT.figure.24"
+  ],
+  "ARTIST.zhoufang": [
+   "SUBJECT.bird-flower.x53",
+   "SUBJECT.figure.24",
+   "SUBJECT.myth.06"
+  ],
+  "ARTIST.wudaozi": [
+   "SUBJECT.figure.05",
+   "SUBJECT.myth.31",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.rubens": [
+   "SUBJECT.figure.01",
+   "SUBJECT.history.x54",
+   "SUBJECT.myth.x64",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.zhaomengfu": [
+   "SUBJECT.abstract.03",
+   "SUBJECT.animal.01",
+   "SUBJECT.bird-flower.03"
+  ],
+  "ARTIST.ligonglin": [
+   "SUBJECT.animal.01",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.renbonian": [
+   "SUBJECT.bird-flower.x61",
+   "SUBJECT.figure.01",
+   "SUBJECT.history.x54",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.likeran": [
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.xubing": [
+   "SUBJECT.still-life.04"
+  ],
+  "ARTIST.zhengxie": [
+   "SUBJECT.bird-flower.03",
+   "SUBJECT.still-life.04"
+  ],
+  "ARTIST.chenhongshou": [
+   "SUBJECT.bird-flower.x61",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.mayuan": [
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.litang": [
+   "SUBJECT.bird-flower.05",
+   "SUBJECT.history.x54",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.watteau": [
+   "SUBJECT.folk.x51",
+   "SUBJECT.landscape.01"
+  ],
+  "ARTIST.delacroix": [
+   "SUBJECT.history.02",
+   "SUBJECT.history.x54"
+  ],
+  "ARTIST.corot": [
+   "SUBJECT.abstract.x68",
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.constable": [
+   "SUBJECT.landscape.18"
+  ],
+  "ARTIST.sisley": [
+   "SUBJECT.landscape.02",
+   "SUBJECT.landscape.08",
+   "SUBJECT.landscape.18"
+  ],
+  "ARTIST.miro": [
+   "SUBJECT.abstract.27",
+   "SUBJECT.animal.24",
+   "SUBJECT.figure.14"
+  ],
+  "ARTIST.magritte": [
+   "SUBJECT.still-life.02"
+  ],
+  "ARTIST.braque": [
+   "SUBJECT.abstract.x57",
+   "SUBJECT.abstract.x76",
+   "SUBJECT.still-life.06",
+   "SUBJECT.still-life.x53"
+  ],
+  "ARTIST.lisixun": [
+   "SUBJECT.landscape.31",
+   "SUBJECT.landscape.x53",
+   "SUBJECT.myth.x78"
+  ],
+  "ARTIST.wangximeng": [
+   "SUBJECT.folk.25",
+   "SUBJECT.landscape.01",
+   "SUBJECT.landscape.31",
+   "SUBJECT.landscape.x53"
+  ],
+  "ARTIST.yunshouping": [
+   "SUBJECT.abstract.x68",
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.bird-flower.x60",
+   "SUBJECT.still-life.01"
+  ],
+  "ARTIST.huangquan": [
+   "SUBJECT.abstract.x68",
+   "SUBJECT.animal.x55",
+   "SUBJECT.bird-flower.x52"
+  ],
+  "ARTIST.liangkai": [
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.friedrich": [
+   "SUBJECT.landscape.04",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.vaneyck": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.05",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.holbein": [
+   "SUBJECT.figure.01",
+   "SUBJECT.history.06",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.daumier": [
+   "SUBJECT.history.05",
+   "SUBJECT.urban.x52"
+  ],
+  "ARTIST.signac": [
+   "SUBJECT.animal.01",
+   "SUBJECT.landscape.x50"
+  ],
+  "ARTIST.schiele": [
+   "SUBJECT.figure.02",
+   "SUBJECT.figure.17",
+   "SUBJECT.figure.x54"
+  ],
+  "ARTIST.nolde": [
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.vlaminck": [
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x53"
+  ],
+  "ARTIST.leger": [
+   "SUBJECT.still-life.x53",
+   "SUBJECT.urban.x55"
+  ],
+  "ARTIST.newman": [
+   "SUBJECT.abstract.03"
+  ],
+  "ARTIST.surikov": [
+   "SUBJECT.figure.03",
+   "SUBJECT.history.x54"
+  ],
+  "ARTIST.kramskoi": [
+   "SUBJECT.figure.01",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.cimabue": [
+   "SUBJECT.myth.33",
+   "SUBJECT.myth.35"
+  ],
+  "ARTIST.angelico": [
+   "SUBJECT.myth.33"
+  ],
+  "ARTIST.boucher": [
+   "SUBJECT.figure.17",
+   "SUBJECT.folk.26",
+   "SUBJECT.myth.x64"
+  ],
+  "ARTIST.fragonard": [
+   "SUBJECT.landscape.01"
+  ],
+  "ARTIST.gris": [
+   "SUBJECT.abstract.25",
+   "SUBJECT.abstract.x76",
+   "SUBJECT.still-life.06",
+   "SUBJECT.still-life.x53"
+  ],
+  "ARTIST.licheng": [
+   "SUBJECT.figure.05",
+   "SUBJECT.landscape.33",
+   "SUBJECT.landscape.x57"
+  ],
+  "ARTIST.dongyuan": [
+   "SUBJECT.landscape.01",
+   "SUBJECT.landscape.x56",
+   "SUBJECT.landscape.x57"
+  ],
+  "ARTIST.zhanziqian": [
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.yufeian": [
+   "SUBJECT.animal.x55",
+   "SUBJECT.bird-flower.09",
+   "SUBJECT.bird-flower.x60"
+  ],
+  "ARTIST.huangshen": [
+   "SUBJECT.figure.23"
+  ],
+  "ARTIST.lizhaodao": [
+   "SUBJECT.landscape.31",
+   "SUBJECT.landscape.x53",
+   "SUBJECT.myth.x78"
+  ],
+  "ARTIST.hejiaying": [
+   "SUBJECT.figure.25",
+   "SUBJECT.figure.x53",
+   "SUBJECT.still-life.x54",
+   "SUBJECT.urban.x56"
+  ],
+  "ARTIST.martini": [
+   "SUBJECT.history.06",
+   "SUBJECT.myth.32",
+   "SUBJECT.myth.33"
+  ],
+  "ARTIST.zhangwo": [
+   "SUBJECT.figure.x56"
+  ],
+  "ARTIST.vandoesburg": [
+   "SUBJECT.abstract.03",
+   "SUBJECT.abstract.x58",
+   "SUBJECT.landscape.02"
+  ],
+  "ARTIST.fubaoshi": [
+   "SUBJECT.figure.24",
+   "SUBJECT.figure.x56",
+   "SUBJECT.landscape.22",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.pantianshou": [
+   "SUBJECT.bird-flower.x61",
+   "SUBJECT.landscape.01"
+  ],
+  "ARTIST.wuzhen": [
+   "SUBJECT.bird-flower.x54",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.tangyin": [
+   "SUBJECT.figure.24",
+   "SUBJECT.figure.x56",
+   "SUBJECT.landscape.07",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.kuncan": [
+   "SUBJECT.landscape.01",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.hongren": [
+   "SUBJECT.bird-flower.05",
+   "SUBJECT.landscape.x54",
+   "SUBJECT.landscape.x59"
+  ],
+  "ARTIST.jinnong": [
+   "SUBJECT.bird-flower.01",
+   "SUBJECT.figure.30",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.reinhardt": [
+   "SUBJECT.abstract.x58"
+  ],
+  "ARTIST.chuckclose": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.02"
+  ],
+  "ARTIST.langshining": [
+   "SUBJECT.animal.01",
+   "SUBJECT.bird-flower.x61",
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.28"
+  ],
+  "ARTIST.jiangzhaohe": [
+   "SUBJECT.figure.01"
+  ],
+  "ARTIST.cuibai": [
+   "SUBJECT.bird-flower.06",
+   "SUBJECT.landscape.16"
+  ],
+  "ARTIST.zhangyu": [
+   "SUBJECT.figure.x54"
+  ],
+  "ARTIST.likuchan": [
+   "SUBJECT.bird-flower.05",
+   "SUBJECT.bird-flower.06"
+  ],
+  "ARTIST.jiangcaiping": [
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.schnabel": [
+   "SUBJECT.figure.01",
+   "SUBJECT.history.x54",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.wuguanzhong": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.landscape.02",
+   "SUBJECT.landscape.07",
+   "SUBJECT.landscape.08"
+  ],
+  "ARTIST.zaowuji": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.abstract.03"
+  ],
+  "ARTIST.chudehchun": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.abstract.03",
+   "SUBJECT.still-life.04"
+  ],
+  "ARTIST.dunhuang": [
+   "SUBJECT.figure.x55",
+   "SUBJECT.myth.x70",
+   "SUBJECT.myth.x72"
+  ],
+  "ARTIST.yonglegong": [
+   "SUBJECT.myth.x62",
+   "SUBJECT.myth.x75"
+  ],
+  "ARTIST.qianlongacademy": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.28",
+   "SUBJECT.history.06"
+  ],
+  "ARTIST.byzantineicon": [
+   "SUBJECT.myth.33",
+   "SUBJECT.myth.34",
+   "SUBJECT.myth.40"
+  ],
+  "ARTIST.vermeer": [
+   "SUBJECT.abstract.x55",
+   "SUBJECT.still-life.06"
+  ],
+  "ARTIST.jldavid": [
+   "SUBJECT.animal.01",
+   "SUBJECT.figure.32",
+   "SUBJECT.history.02"
+  ],
+  "ARTIST.ingres": [
+   "SUBJECT.figure.01"
+  ],
+  "ARTIST.bruegel": [
+   "SUBJECT.abstract.x77",
+   "SUBJECT.folk.x52"
+  ],
+  "ARTIST.mucha": [
+   "SUBJECT.abstract.x77",
+   "SUBJECT.landscape.04"
+  ],
+  "ARTIST.phidias": [
+   "SUBJECT.figure.32",
+   "SUBJECT.figure.x51",
+   "SUBJECT.myth.x62"
+  ],
+  "ARTIST.masaccio": [
+   "SUBJECT.abstract.x57",
+   "SUBJECT.figure.03",
+   "SUBJECT.myth.x65",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.giorgione": [
+   "SUBJECT.folk.26",
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.titian": [
+   "SUBJECT.figure.01",
+   "SUBJECT.myth.x64",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.veronese": [
+   "SUBJECT.myth.x64",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.tintoretto": [
+   "SUBJECT.figure.01",
+   "SUBJECT.myth.x64",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.duccio": [
+   "SUBJECT.myth.33",
+   "SUBJECT.myth.34",
+   "SUBJECT.myth.40"
+  ],
+  "ARTIST.lorenzetti": [
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.hals": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.23"
+  ],
+  "ARTIST.ruisdael": [
+   "SUBJECT.landscape.06",
+   "SUBJECT.landscape.15",
+   "SUBJECT.landscape.18",
+   "SUBJECT.landscape.x50"
+  ],
+  "ARTIST.bastienlepage": [
+   "SUBJECT.folk.x52",
+   "SUBJECT.landscape.x50"
+  ],
+  "ARTIST.zola": [
+   "SUBJECT.history.x55"
+  ],
+  "ARTIST.levitan": [
+   "SUBJECT.landscape.14",
+   "SUBJECT.landscape.x50"
+  ],
+  "ARTIST.serov": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.x53",
+   "SUBJECT.history.x54",
+   "SUBJECT.myth.x64"
+  ],
+  "ARTIST.bonnard": [
+   "SUBJECT.abstract.x55",
+   "SUBJECT.figure.17",
+   "SUBJECT.landscape.x52",
+   "SUBJECT.still-life.x53"
+  ],
+  "ARTIST.vuillard": [
+   "SUBJECT.abstract.x55",
+   "SUBJECT.abstract.x67",
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.42"
+  ],
+  "ARTIST.denis": [
+   "SUBJECT.abstract.x67",
+   "SUBJECT.figure.42",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.moreau": [
+   "SUBJECT.myth.x63",
+   "SUBJECT.myth.x64"
+  ],
+  "ARTIST.redon": [
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.myth.x64",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.chavannes": [
+   "SUBJECT.folk.26"
+  ],
+  "ARTIST.klimt": [
+   "SUBJECT.abstract.x67",
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.x53"
+  ],
+  "ARTIST.derain": [
+   "SUBJECT.figure.01",
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x53"
+  ],
+  "ARTIST.kirchner": [
+   "SUBJECT.figure.17",
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x54",
+   "SUBJECT.urban.x56"
+  ],
+  "ARTIST.marc": [
+   "SUBJECT.landscape.x50"
+  ],
+  "ARTIST.munter": [
+   "SUBJECT.abstract.x55",
+   "SUBJECT.figure.01",
+   "SUBJECT.landscape.x50"
+  ],
+  "ARTIST.heckel": [
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.schmidtrottluff": [
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.boccioni": [
+   "SUBJECT.urban.x56"
+  ],
+  "ARTIST.balla": [
+   "SUBJECT.abstract.01"
+  ],
+  "ARTIST.severini": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.figure.18"
+  ],
+  "ARTIST.dechirico": [
+   "SUBJECT.figure.x51"
+  ],
+  "ARTIST.tatlin": [
+   "SUBJECT.abstract.x75"
+  ],
+  "ARTIST.rodchenko": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.landscape.04"
+  ],
+  "ARTIST.lissitzky": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.abstract.x57",
+   "SUBJECT.landscape.04"
+  ],
+  "ARTIST.arp": [
+   "SUBJECT.abstract.01"
+  ],
+  "ARTIST.heartfield": [
+   "SUBJECT.history.01",
+   "SUBJECT.still-life.36"
+  ],
+  "ARTIST.hoch": [
+   "SUBJECT.figure.x53",
+   "SUBJECT.still-life.36"
+  ],
+  "ARTIST.masson": [
+   "SUBJECT.myth.x64",
+   "SUBJECT.still-life.04"
+  ],
+  "ARTIST.matta": [
+   "SUBJECT.abstract.x57"
+  ],
+  "ARTIST.ernst": [
+   "SUBJECT.abstract.x76",
+   "SUBJECT.landscape.15"
+  ],
+  "ARTIST.destael": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x53"
+  ],
+  "ARTIST.mathieu": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.abstract.02",
+   "SUBJECT.history.x54"
+  ],
+  "ARTIST.dubuffet": [
+   "SUBJECT.abstract.x69",
+   "SUBJECT.urban.06"
+  ],
+  "ARTIST.fautrier": [
+   "SUBJECT.abstract.x69"
+  ],
+  "ARTIST.tapies": [
+   "SUBJECT.abstract.27"
+  ],
+  "ARTIST.dekooning": [
+   "SUBJECT.figure.14",
+   "SUBJECT.figure.x54",
+   "SUBJECT.landscape.x50"
+  ],
+  "ARTIST.frankenthaler": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.landscape.x50"
+  ],
+  "ARTIST.kelly": [
+   "SUBJECT.abstract.03",
+   "SUBJECT.abstract.x57"
+  ],
+  "ARTIST.vasarely": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.abstract.03"
+  ],
+  "ARTIST.judd": [
+   "SUBJECT.abstract.x57"
+  ],
+  "ARTIST.martin": [
+   "SUBJECT.abstract.03"
+  ],
+  "ARTIST.estes": [
+   "SUBJECT.abstract.x59",
+   "SUBJECT.urban.06",
+   "SUBJECT.urban.x56"
+  ],
+  "ARTIST.hanson": [
+   "SUBJECT.figure.x54"
+  ],
+  "ARTIST.lewitt": [
+   "SUBJECT.abstract.01"
+  ],
+  "ARTIST.henrirousseau": [
+   "SUBJECT.figure.01"
+  ],
+  "ARTIST.moses": [
+   "SUBJECT.folk.x53",
+   "SUBJECT.landscape.x50"
+  ],
+  "ARTIST.beuys": [
+   "SUBJECT.myth.x64"
+  ],
+  "ARTIST.mohr": [
+   "SUBJECT.abstract.01"
+  ],
+  "ARTIST.nees": [
+   "SUBJECT.abstract.01"
+  ],
+  "ARTIST.warhol": [
+   "SUBJECT.figure.01",
+   "SUBJECT.history.33"
+  ],
+  "ARTIST.kiefer": [
+   "SUBJECT.history.x54",
+   "SUBJECT.landscape.14",
+   "SUBJECT.myth.x64"
+  ],
+  "ARTIST.baselitz": [
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.salle": [
+   "SUBJECT.abstract.x76",
+   "SUBJECT.figure.x51"
+  ],
+  "ARTIST.basquiat": [
+   "SUBJECT.abstract.27",
+   "SUBJECT.history.x53"
+  ],
+  "ARTIST.haring": [
+   "SUBJECT.abstract.27",
+   "SUBJECT.urban.06"
+  ],
+  "ARTIST.banksy": [
+   "SUBJECT.history.01"
+  ],
+  "ARTIST.teamlab": [
+   "SUBJECT.abstract.26",
+   "SUBJECT.abstract.28",
+   "SUBJECT.abstract.x57"
+  ],
+  "ARTIST.arcangel": [
+   "SUBJECT.abstract.28"
+  ],
+  "ARTIST.freud": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.17",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.tuymans": [
+   "SUBJECT.history.x53",
+   "SUBJECT.history.x54"
+  ],
+  "ARTIST.richter": [
+   "SUBJECT.history.x54",
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.36"
+  ],
+  "ARTIST.wuzongyuan": [
+   "SUBJECT.figure.05",
+   "SUBJECT.myth.x65",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.juran": [
+   "SUBJECT.landscape.x54",
+   "SUBJECT.landscape.x56"
+  ],
+  "ARTIST.xiagui": [
+   "SUBJECT.landscape.01",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.huichong": [
+   "SUBJECT.landscape.x54",
+   "SUBJECT.still-life.01"
+  ],
+  "ARTIST.zhaolingrang": [
+   "SUBJECT.landscape.02",
+   "SUBJECT.landscape.03",
+   "SUBJECT.landscape.x57"
+  ],
+  "ARTIST.wangwei": [
+   "SUBJECT.landscape.08",
+   "SUBJECT.landscape.27",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.muqi": [
+   "SUBJECT.bird-flower.x58",
+   "SUBJECT.figure.05",
+   "SUBJECT.myth.06"
+  ],
+  "ARTIST.wentong": [
+   "SUBJECT.bird-flower.x54"
+  ],
+  "ARTIST.yangwujiu": [
+   "SUBJECT.bird-flower.01"
+  ],
+  "ARTIST.wangmian": [
+   "SUBJECT.bird-flower.01"
+  ],
+  "ARTIST.daijin": [
+   "SUBJECT.landscape.x54",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.wuwei": [
+   "SUBJECT.landscape.x54",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.chenjiru": [
+   "SUBJECT.bird-flower.01",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.zhaozuo": [
+   "SUBJECT.landscape.x54",
+   "SUBJECT.landscape.x55"
+  ],
+  "ARTIST.chenchun": [
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.bird-flower.x61"
+  ],
+  "ARTIST.lengmei": [
+   "SUBJECT.figure.24",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.dingguanpeng": [
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.xuyang": [
+   "SUBJECT.still-life.x54",
+   "SUBJECT.urban.x55"
+  ],
+  "ARTIST.linfengmian": [
+   "SUBJECT.figure.24",
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x53",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.zhangdaqian": [
+   "SUBJECT.bird-flower.x61",
+   "SUBJECT.landscape.x54",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.liuguosong": [
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.huangzhou": [
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.fangzengxian": [
+   "SUBJECT.folk.x52",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.guanshanyue": [
+   "SUBJECT.abstract.x68",
+   "SUBJECT.landscape.x50",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.gaojianfu": [
+   "SUBJECT.bird-flower.x61",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.gaoqifeng": [
+   "SUBJECT.animal.01",
+   "SUBJECT.animal.x56",
+   "SUBJECT.bird-flower.x61"
+  ],
+  "ARTIST.chenshuren": [
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.wangtiande": [
+   "SUBJECT.abstract.x60",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.wangdongling": [
+   "SUBJECT.abstract.02",
+   "SUBJECT.still-life.04"
+  ],
+  "ARTIST.majunxiang": [
+   "SUBJECT.myth.x62",
+   "SUBJECT.myth.x65",
+   "SUBJECT.myth.x75"
+  ],
+  "ARTIST.mianlhadunzhu": [
+   "SUBJECT.myth.02"
+  ],
+  "ARTIST.qiaoshiguang": [
+   "SUBJECT.bird-flower.x61",
+   "SUBJECT.landscape.02",
+   "SUBJECT.landscape.07"
+  ],
+  "ARTIST.zhaoboju": [
+   "SUBJECT.landscape.x53",
+   "SUBJECT.landscape.x54",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.pontormo": [
+   "SUBJECT.figure.01",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.parmigianino": [
+   "SUBJECT.figure.01",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.elgreco": [
+   "SUBJECT.figure.01",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.limbourg": [
+   "SUBJECT.figure.08",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.gentile": [
+   "SUBJECT.figure.05",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.rossetti": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.x53",
+   "SUBJECT.landscape.07"
+  ],
+  "ARTIST.millais": [
+   "SUBJECT.abstract.x68",
+   "SUBJECT.figure.01"
+  ],
+  "ARTIST.hunt": [
+   "SUBJECT.abstract.x68",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.rousseau": [
+   "SUBJECT.abstract.03",
+   "SUBJECT.landscape.15",
+   "SUBJECT.landscape.x50"
+  ],
+  "ARTIST.dix": [
+   "SUBJECT.history.01",
+   "SUBJECT.urban.x56"
+  ],
+  "ARTIST.grosz": [
+   "SUBJECT.urban.x56"
+  ],
+  "ARTIST.modigliani": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.17",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.chagall": [
+   "SUBJECT.folk.x51",
+   "SUBJECT.myth.x63"
+  ],
+  "ARTIST.soutine": [
+   "SUBJECT.figure.01",
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x53"
+  ],
+  "ARTIST.kounellis": [
+   "SUBJECT.abstract.x57",
+   "SUBJECT.abstract.x74",
+   "SUBJECT.abstract.x75",
+   "SUBJECT.history.x54"
+  ],
+  "ARTIST.smithson": [
+   "SUBJECT.landscape.14"
+  ],
+  "ARTIST.demaria": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.landscape.14"
+  ],
+  "ARTIST.xuchongsi": [
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.still-life.01"
+  ],
+  "ARTIST.guozhongshu": [
+   "SUBJECT.landscape.x53"
+  ],
+  "ARTIST.gongxian": [
+   "SUBJECT.landscape.01",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.fanqi": [
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.landscape.x54",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.zhashibiao": [
+   "SUBJECT.landscape.x54",
+   "SUBJECT.landscape.x58"
+  ],
+  "ARTIST.zhaozhiqian": [
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.bird-flower.x58"
+  ],
+  "ARTIST.hokusai": [
+   "SUBJECT.bird-flower.x61",
+   "SUBJECT.landscape.01",
+   "SUBJECT.landscape.x50"
+  ],
+  "ARTIST.hiroshige": [
+   "SUBJECT.landscape.08"
+  ],
+  "ARTIST.utamaro": [
+   "SUBJECT.figure.25",
+   "SUBJECT.figure.x53"
+  ],
+  "ARTIST.korin": [
+   "SUBJECT.abstract.x67",
+   "SUBJECT.bird-flower.x52"
+  ],
+  "ARTIST.sotatsu": [
+   "SUBJECT.myth.x62"
+  ],
+  "ARTIST.eitoku": [
+   "SUBJECT.bird-flower.05"
+  ],
+  "ARTIST.tanyu": [
+   "SUBJECT.bird-flower.x61",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.ikenotaiga": [
+   "SUBJECT.landscape.x54",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.buson": [
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.yuanti": [
+   "SUBJECT.bird-flower.x60",
+   "SUBJECT.bird-flower.x61",
+   "SUBJECT.landscape.x53",
+   "SUBJECT.still-life.01"
+  ],
+  "ARTIST.yamatoe": [
+   "SUBJECT.abstract.x77",
+   "SUBJECT.history.06"
+  ],
+  "ARTIST.minhwa": [
+   "SUBJECT.abstract.x60"
+  ],
+  "ARTIST.academy": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.x51",
+   "SUBJECT.history.x54",
+   "SUBJECT.myth.x64"
+  ]
+ },
+ "nodes": {
+  "SUBJECT.history.11": {
+   "cn": "历史事件",
+   "cat": "SUBJECT.history",
+   "artists": [
+    "ARTIST.repin"
+   ]
+  },
+  "SUBJECT.figure.03": {
+   "cn": "群像",
+   "cat": "SUBJECT.figure",
+   "artists": [
+    "ARTIST.masaccio",
+    "ARTIST.rembrandt",
+    "ARTIST.repin",
+    "ARTIST.surikov",
+    "ARTIST.xubeihong"
+   ]
+  },
+  "SUBJECT.figure.01": {
+   "cn": "肖像",
+   "cat": "SUBJECT.figure",
+   "artists": [
+    "ARTIST.academy",
+    "ARTIST.chuckclose",
+    "ARTIST.courbet",
+    "ARTIST.davinci",
+    "ARTIST.derain",
+    "ARTIST.elgreco",
+    "ARTIST.freud",
+    "ARTIST.hals",
+    "ARTIST.henrirousseau",
+    "ARTIST.holbein",
+    "ARTIST.ingres",
+    "ARTIST.jiangzhaohe",
+    "ARTIST.klimt",
+    "ARTIST.kramskoi",
+    "ARTIST.langshining",
+    "ARTIST.millais",
+    "ARTIST.modigliani",
+    "ARTIST.munter",
+    "ARTIST.parmigianino",
+    "ARTIST.pontormo",
+    "ARTIST.qianlongacademy",
+    "ARTIST.raphael",
+    "ARTIST.rembrandt",
+    "ARTIST.renbonian",
+    "ARTIST.renoir",
+    "ARTIST.repin",
+    "ARTIST.rossetti",
+    "ARTIST.rubens",
+    "ARTIST.schnabel",
+    "ARTIST.serov",
+    "ARTIST.soutine",
+    "ARTIST.tintoretto",
+    "ARTIST.titian",
+    "ARTIST.vaneyck",
+    "ARTIST.velazquez",
+    "ARTIST.vuillard",
+    "ARTIST.warhol",
+    "ARTIST.xubeihong"
+   ]
+  },
+  "SUBJECT.history.x55": {
+   "cn": "劳动",
+   "cat": "SUBJECT.history",
+   "artists": [
+    "ARTIST.repin",
+    "ARTIST.vangogh",
+    "ARTIST.zola"
+   ]
+  },
+  "SUBJECT.landscape.x51": {
+   "cn": "户外风景",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.monet"
+   ]
+  },
+  "SUBJECT.landscape.x52": {
+   "cn": "花园",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.bonnard",
+    "ARTIST.monet"
+   ]
+  },
+  "SUBJECT.landscape.03": {
+   "cn": "湖泊",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.nizan",
+    "ARTIST.zhaolingrang"
+   ]
+  },
+  "SUBJECT.bird-flower.x54": {
+   "cn": "墨竹",
+   "cat": "SUBJECT.bird-flower",
+   "artists": [
+    "ARTIST.nizan",
+    "ARTIST.sushi",
+    "ARTIST.wentong",
+    "ARTIST.wuzhen"
+   ]
+  },
+  "SUBJECT.animal.01": {
+   "cn": "马",
+   "cat": "SUBJECT.animal",
+   "artists": [
+    "ARTIST.degas",
+    "ARTIST.gaoqifeng",
+    "ARTIST.jldavid",
+    "ARTIST.langshining",
+    "ARTIST.ligonglin",
+    "ARTIST.signac",
+    "ARTIST.xubeihong",
+    "ARTIST.zhangxuan",
+    "ARTIST.zhaomengfu"
+   ]
+  },
+  "SUBJECT.history.x54": {
+   "cn": "历史",
+   "cat": "SUBJECT.history",
+   "artists": [
+    "ARTIST.academy",
+    "ARTIST.davinci",
+    "ARTIST.delacroix",
+    "ARTIST.kiefer",
+    "ARTIST.kounellis",
+    "ARTIST.litang",
+    "ARTIST.mathieu",
+    "ARTIST.qiuying",
+    "ARTIST.renbonian",
+    "ARTIST.richter",
+    "ARTIST.rubens",
+    "ARTIST.schnabel",
+    "ARTIST.serov",
+    "ARTIST.surikov",
+    "ARTIST.tuymans",
+    "ARTIST.xubeihong"
+   ]
+  },
+  "SUBJECT.still-life.x54": {
+   "cn": "人物",
+   "cat": "SUBJECT.still-life",
+   "artists": [
+    "ARTIST.baselitz",
+    "ARTIST.chenhongshou",
+    "ARTIST.corot",
+    "ARTIST.daijin",
+    "ARTIST.dingguanpeng",
+    "ARTIST.fangzengxian",
+    "ARTIST.fanqi",
+    "ARTIST.freud",
+    "ARTIST.friedrich",
+    "ARTIST.giorgione",
+    "ARTIST.gukaizhi",
+    "ARTIST.heckel",
+    "ARTIST.hejiaying",
+    "ARTIST.huangzhou",
+    "ARTIST.ikenotaiga",
+    "ARTIST.jiangcaiping",
+    "ARTIST.jinnong",
+    "ARTIST.kirchner",
+    "ARTIST.lengmei",
+    "ARTIST.liangkai",
+    "ARTIST.ligonglin",
+    "ARTIST.linfengmian",
+    "ARTIST.masaccio",
+    "ARTIST.modigliani",
+    "ARTIST.picasso",
+    "ARTIST.qibaishi",
+    "ARTIST.renbonian",
+    "ARTIST.schmidtrottluff",
+    "ARTIST.wudaozi",
+    "ARTIST.wuwei",
+    "ARTIST.wuzongyuan",
+    "ARTIST.xubeihong",
+    "ARTIST.xuyang",
+    "ARTIST.zhangdaqian",
+    "ARTIST.zhaoboju"
+   ]
+  },
+  "SUBJECT.landscape.14": {
+   "cn": "草原",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.demaria",
+    "ARTIST.kiefer",
+    "ARTIST.levitan",
+    "ARTIST.millet",
+    "ARTIST.pissarro",
+    "ARTIST.smithson",
+    "ARTIST.vangogh"
+   ]
+  },
+  "SUBJECT.landscape.21": {
+   "cn": "夜色",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.vangogh"
+   ]
+  },
+  "SUBJECT.bird-flower.17": {
+   "cn": "向日葵",
+   "cat": "SUBJECT.bird-flower",
+   "artists": [
+    "ARTIST.vangogh"
+   ]
+  },
+  "SUBJECT.figure.02": {
+   "cn": "自画像",
+   "cat": "SUBJECT.figure",
+   "artists": [
+    "ARTIST.chuckclose",
+    "ARTIST.durer",
+    "ARTIST.rembrandt",
+    "ARTIST.schiele",
+    "ARTIST.vangogh"
+   ]
+  },
+  "SUBJECT.figure.09": {
+   "cn": "劳动者",
+   "cat": "SUBJECT.figure",
+   "artists": [
+    "ARTIST.vangogh"
+   ]
+  },
+  "SUBJECT.landscape.01": {
+   "cn": "山岳",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.cezanne",
+    "ARTIST.dongyuan",
+    "ARTIST.fragonard",
+    "ARTIST.gongxian",
+    "ARTIST.hokusai",
+    "ARTIST.huangbinhong",
+    "ARTIST.kuncan",
+    "ARTIST.pantianshou",
+    "ARTIST.wangmeng",
+    "ARTIST.wangximeng",
+    "ARTIST.watteau",
+    "ARTIST.xiagui"
+   ]
+  },
+  "SUBJECT.still-life.x53": {
+   "cn": "静物",
+   "cat": "SUBJECT.still-life",
+   "artists": [
+    "ARTIST.bonnard",
+    "ARTIST.braque",
+    "ARTIST.caravaggio",
+    "ARTIST.cezanne",
+    "ARTIST.courbet",
+    "ARTIST.derain",
+    "ARTIST.destael",
+    "ARTIST.gris",
+    "ARTIST.leger",
+    "ARTIST.linfengmian",
+    "ARTIST.picasso",
+    "ARTIST.soutine",
+    "ARTIST.velazquez",
+    "ARTIST.vlaminck"
+   ]
+  },
+  "SUBJECT.figure.17": {
+   "cn": "裸体",
+   "cat": "SUBJECT.figure",
+   "artists": [
+    "ARTIST.bonnard",
+    "ARTIST.boucher",
+    "ARTIST.cezanne",
+    "ARTIST.degas",
+    "ARTIST.freud",
+    "ARTIST.kirchner",
+    "ARTIST.modigliani",
+    "ARTIST.renoir",
+    "ARTIST.schiele"
+   ]
+  },
+  "SUBJECT.landscape.x50": {
+   "cn": "风景",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.bastienlepage",
+    "ARTIST.cezanne",
+    "ARTIST.corot",
+    "ARTIST.courbet",
+    "ARTIST.dekooning",
+    "ARTIST.derain",
+    "ARTIST.destael",
+    "ARTIST.frankenthaler",
+    "ARTIST.gauguin",
+    "ARTIST.giorgione",
+    "ARTIST.guanshanyue",
+    "ARTIST.heckel",
+    "ARTIST.hokusai",
+    "ARTIST.kirchner",
+    "ARTIST.levitan",
+    "ARTIST.linfengmian",
+    "ARTIST.marc",
+    "ARTIST.moses",
+    "ARTIST.munter",
+    "ARTIST.richter",
+    "ARTIST.rousseau",
+    "ARTIST.ruisdael",
+    "ARTIST.schmidtrottluff",
+    "ARTIST.signac",
+    "ARTIST.soutine",
+    "ARTIST.vlaminck"
+   ]
+  },
+  "SUBJECT.animal.x54": {
+   "cn": "白眼鱼鸟",
+   "cat": "SUBJECT.animal",
+   "artists": [
+    "ARTIST.badashanren"
+   ]
+  },
+  "SUBJECT.bird-flower.x59": {
+   "cn": "枯枝",
+   "cat": "SUBJECT.bird-flower",
+   "artists": [
+    "ARTIST.badashanren"
+   ]
+  },
+  "SUBJECT.landscape.x54": {
+   "cn": "山水",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.badashanren",
+    "ARTIST.buson",
+    "ARTIST.chenjiru",
+    "ARTIST.chenshuren",
+    "ARTIST.daijin",
+    "ARTIST.dongqichang",
+    "ARTIST.fankuan",
+    "ARTIST.fanqi",
+    "ARTIST.fubaoshi",
+    "ARTIST.gaojianfu",
+    "ARTIST.gongxian",
+    "ARTIST.guanshanyue",
+    "ARTIST.guoxi",
+    "ARTIST.hongren",
+    "ARTIST.huangbinhong",
+    "ARTIST.huanggongwang",
+    "ARTIST.huichong",
+    "ARTIST.ikenotaiga",
+    "ARTIST.juran",
+    "ARTIST.kuncan",
+    "ARTIST.likeran",
+    "ARTIST.litang",
+    "ARTIST.liuguosong",
+    "ARTIST.mayuan",
+    "ARTIST.qibaishi",
+    "ARTIST.qiuying",
+    "ARTIST.shenzhou",
+    "ARTIST.tangyin",
+    "ARTIST.tanyu",
+    "ARTIST.wangtiande",
+    "ARTIST.wangwei",
+    "ARTIST.wenzhengming",
+    "ARTIST.wuwei",
+    "ARTIST.wuzhen",
+    "ARTIST.xiagui",
+    "ARTIST.zhangdaqian",
+    "ARTIST.zhanziqian",
+    "ARTIST.zhaoboju",
+    "ARTIST.zhaozuo",
+    "ARTIST.zhashibiao"
+   ]
+  },
+  "SUBJECT.myth.x65": {
+   "cn": "宗教",
+   "cat": "SUBJECT.myth",
+   "artists": [
+    "ARTIST.caravaggio",
+    "ARTIST.davinci",
+    "ARTIST.denis",
+    "ARTIST.durer",
+    "ARTIST.elgreco",
+    "ARTIST.gauguin",
+    "ARTIST.gentile",
+    "ARTIST.holbein",
+    "ARTIST.hunt",
+    "ARTIST.kramskoi",
+    "ARTIST.limbourg",
+    "ARTIST.lorenzetti",
+    "ARTIST.majunxiang",
+    "ARTIST.masaccio",
+    "ARTIST.michelangelo",
+    "ARTIST.nolde",
+    "ARTIST.parmigianino",
+    "ARTIST.pontormo",
+    "ARTIST.raphael",
+    "ARTIST.redon",
+    "ARTIST.rembrandt",
+    "ARTIST.rubens",
+    "ARTIST.schnabel",
+    "ARTIST.tintoretto",
+    "ARTIST.titian",
+    "ARTIST.vaneyck",
+    "ARTIST.veronese",
+    "ARTIST.wuzongyuan"
+   ]
+  },
+  "SUBJECT.myth.33": {
+   "cn": "圣母",
+   "cat": "SUBJECT.myth",
+   "artists": [
+    "ARTIST.angelico",
+    "ARTIST.botticelli",
+    "ARTIST.byzantineicon",
+    "ARTIST.cimabue",
+    "ARTIST.davinci",
+    "ARTIST.duccio",
+    "ARTIST.martini",
+    "ARTIST.raphael"
+   ]
+  },
+  "SUBJECT.figure.23": {
+   "cn": "市井人物",
+   "cat": "SUBJECT.figure",
+   "artists": [
+    "ARTIST.caravaggio",
+    "ARTIST.hals",
+    "ARTIST.huangshen"
+   ]
+  },
+  "SUBJECT.myth.x64": {
+   "cn": "神话",
+   "cat": "SUBJECT.myth",
+   "artists": [
+    "ARTIST.academy",
+    "ARTIST.beuys",
+    "ARTIST.botticelli",
+    "ARTIST.boucher",
+    "ARTIST.caravaggio",
+    "ARTIST.gauguin",
+    "ARTIST.kiefer",
+    "ARTIST.masson",
+    "ARTIST.moreau",
+    "ARTIST.picasso",
+    "ARTIST.redon",
+    "ARTIST.rubens",
+    "ARTIST.serov",
+    "ARTIST.tintoretto",
+    "ARTIST.titian",
+    "ARTIST.velazquez",
+    "ARTIST.veronese"
+   ]
+  },
+  "SUBJECT.history.06": {
+   "cn": "宫廷",
+   "cat": "SUBJECT.history",
+   "artists": [
+    "ARTIST.holbein",
+    "ARTIST.martini",
+    "ARTIST.qianlongacademy",
+    "ARTIST.velazquez",
+    "ARTIST.yamatoe"
+   ]
+  },
+  "SUBJECT.figure.14": {
+   "cn": "少女形象",
+   "cat": "SUBJECT.figure",
+   "artists": [
+    "ARTIST.dekooning",
+    "ARTIST.miro",
+    "ARTIST.velazquez"
+   ]
+  },
+  "SUBJECT.urban.x52": {
+   "cn": "市井",
+   "cat": "SUBJECT.urban",
+   "artists": [
+    "ARTIST.daumier",
+    "ARTIST.velazquez"
+   ]
+  },
+  "SUBJECT.still-life.01": {
+   "cn": "花卉静物",
+   "cat": "SUBJECT.still-life",
+   "artists": [
+    "ARTIST.durer",
+    "ARTIST.huichong",
+    "ARTIST.xuchongsi",
+    "ARTIST.yuanti",
+    "ARTIST.yunshouping"
+   ]
+  },
+  "SUBJECT.history.45": {
+   "cn": "葬礼",
+   "cat": "SUBJECT.history",
+   "artists": [
+    "ARTIST.courbet"
+   ]
+  },
+  "SUBJECT.folk.x52": {
+   "cn": "农民",
+   "cat": "SUBJECT.folk",
+   "artists": [
+    "ARTIST.bastienlepage",
+    "ARTIST.bruegel",
+    "ARTIST.fangzengxian",
+    "ARTIST.millet"
+   ]
+  },
+  "SUBJECT.landscape.31": {
+   "cn": "行旅",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.fankuan",
+    "ARTIST.lisixun",
+    "ARTIST.lizhaodao",
+    "ARTIST.wangximeng"
+   ]
+  },
+  "SUBJECT.landscape.33": {
+   "cn": "寒林",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.fankuan",
+    "ARTIST.guoxi",
+    "ARTIST.licheng"
+   ]
+  },
+  "SUBJECT.bird-flower.x61": {
+   "cn": "花鸟",
+   "cat": "SUBJECT.bird-flower",
+   "artists": [
+    "ARTIST.chenchun",
+    "ARTIST.chenhongshou",
+    "ARTIST.gaojianfu",
+    "ARTIST.gaoqifeng",
+    "ARTIST.hokusai",
+    "ARTIST.huizong",
+    "ARTIST.langshining",
+    "ARTIST.pantianshou",
+    "ARTIST.qiaoshiguang",
+    "ARTIST.renbonian",
+    "ARTIST.shenzhou",
+    "ARTIST.tanyu",
+    "ARTIST.yuanti",
+    "ARTIST.zhangdaqian"
+   ]
+  },
+  "SUBJECT.bird-flower.01": {
+   "cn": "梅花",
+   "cat": "SUBJECT.bird-flower",
+   "artists": [
+    "ARTIST.chenjiru",
+    "ARTIST.huizong",
+    "ARTIST.jinnong",
+    "ARTIST.wangmian",
+    "ARTIST.yangwujiu"
+   ]
+  },
+  "SUBJECT.figure.24": {
+   "cn": "仕女",
+   "cat": "SUBJECT.figure",
+   "artists": [
+    "ARTIST.fubaoshi",
+    "ARTIST.lengmei",
+    "ARTIST.linfengmian",
+    "ARTIST.qiuying",
+    "ARTIST.tangyin",
+    "ARTIST.zhangxuan",
+    "ARTIST.zhoufang"
+   ]
+  },
+  "SUBJECT.bird-flower.x52": {
+   "cn": "花卉",
+   "cat": "SUBJECT.bird-flower",
+   "artists": [
+    "ARTIST.chenchun",
+    "ARTIST.chenshuren",
+    "ARTIST.fanqi",
+    "ARTIST.huangquan",
+    "ARTIST.jiangcaiping",
+    "ARTIST.korin",
+    "ARTIST.nolde",
+    "ARTIST.qibaishi",
+    "ARTIST.redon",
+    "ARTIST.renoir",
+    "ARTIST.shitao",
+    "ARTIST.xuchongsi",
+    "ARTIST.xuwei",
+    "ARTIST.yunshouping",
+    "ARTIST.zhaozhiqian"
+   ]
+  },
+  "SUBJECT.urban.06": {
+   "cn": "霓虹街道",
+   "cat": "SUBJECT.urban",
+   "artists": [
+    "ARTIST.dubuffet",
+    "ARTIST.estes",
+    "ARTIST.haring",
+    "ARTIST.pissarro"
+   ]
+  },
+  "SUBJECT.still-life.02": {
+   "cn": "水果静物",
+   "cat": "SUBJECT.still-life",
+   "artists": [
+    "ARTIST.magritte",
+    "ARTIST.pissarro"
+   ]
+  },
+  "SUBJECT.urban.x55": {
+   "cn": "城市",
+   "cat": "SUBJECT.urban",
+   "artists": [
+    "ARTIST.leger",
+    "ARTIST.seurat",
+    "ARTIST.xuyang"
+   ]
+  },
+  "SUBJECT.landscape.04": {
+   "cn": "海洋",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.friedrich",
+    "ARTIST.lissitzky",
+    "ARTIST.mucha",
+    "ARTIST.rodchenko",
+    "ARTIST.seurat",
+    "ARTIST.turner"
+   ]
+  },
+  "SUBJECT.abstract.x55": {
+   "cn": "室内",
+   "cat": "SUBJECT.abstract",
+   "artists": [
+    "ARTIST.bonnard",
+    "ARTIST.matisse",
+    "ARTIST.munter",
+    "ARTIST.vermeer",
+    "ARTIST.vuillard"
+   ]
+  },
+  "SUBJECT.figure.x51": {
+   "cn": "人体",
+   "cat": "SUBJECT.figure",
+   "artists": [
+    "ARTIST.academy",
+    "ARTIST.dechirico",
+    "ARTIST.matisse",
+    "ARTIST.michelangelo",
+    "ARTIST.phidias",
+    "ARTIST.salle"
+   ]
+  },
+  "SUBJECT.folk.19": {
+   "cn": "剪纸",
+   "cat": "SUBJECT.folk",
+   "artists": [
+    "ARTIST.matisse"
+   ]
+  },
+  "SUBJECT.abstract.x58": {
+   "cn": "纯抽象",
+   "cat": "SUBJECT.abstract",
+   "artists": [
+    "ARTIST.kandinsky",
+    "ARTIST.reinhardt",
+    "ARTIST.vandoesburg"
+   ]
+  },
+  "SUBJECT.abstract.01": {
+   "cn": "几何构成",
+   "cat": "SUBJECT.abstract",
+   "artists": [
+    "ARTIST.arp",
+    "ARTIST.balla",
+    "ARTIST.chudehchun",
+    "ARTIST.demaria",
+    "ARTIST.destael",
+    "ARTIST.frankenthaler",
+    "ARTIST.kandinsky",
+    "ARTIST.lewitt",
+    "ARTIST.lissitzky",
+    "ARTIST.malevich",
+    "ARTIST.mathieu",
+    "ARTIST.mohr",
+    "ARTIST.mondrian",
+    "ARTIST.nees",
+    "ARTIST.rodchenko",
+    "ARTIST.severini",
+    "ARTIST.vasarely",
+    "ARTIST.wuguanzhong",
+    "ARTIST.zaowuji"
+   ]
+  },
+  "SUBJECT.history.01": {
+   "cn": "战争",
+   "cat": "SUBJECT.history",
+   "artists": [
+    "ARTIST.banksy",
+    "ARTIST.dix",
+    "ARTIST.heartfield",
+    "ARTIST.picasso"
+   ]
+  },
+  "SUBJECT.abstract.03": {
+   "cn": "色块关系",
+   "cat": "SUBJECT.abstract",
+   "artists": [
+    "ARTIST.chudehchun",
+    "ARTIST.kelly",
+    "ARTIST.martin",
+    "ARTIST.newman",
+    "ARTIST.rothko",
+    "ARTIST.rousseau",
+    "ARTIST.vandoesburg",
+    "ARTIST.vasarely",
+    "ARTIST.zaowuji",
+    "ARTIST.zhaomengfu"
+   ]
+  },
+  "SUBJECT.landscape.34": {
+   "cn": "春山",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.huanggongwang"
+   ]
+  },
+  "SUBJECT.abstract.x64": {
+   "cn": "雅集",
+   "cat": "SUBJECT.abstract",
+   "artists": [
+    "ARTIST.shenzhou",
+    "ARTIST.wenzhengming"
+   ]
+  },
+  "SUBJECT.bird-flower.x58": {
+   "cn": "蔬果",
+   "cat": "SUBJECT.bird-flower",
+   "artists": [
+    "ARTIST.muqi",
+    "ARTIST.qibaishi",
+    "ARTIST.shenzhou",
+    "ARTIST.shitao",
+    "ARTIST.zhaozhiqian"
+   ]
+  },
+  "SUBJECT.bird-flower.03": {
+   "cn": "竹子",
+   "cat": "SUBJECT.bird-flower",
+   "artists": [
+    "ARTIST.wenzhengming",
+    "ARTIST.zhaomengfu",
+    "ARTIST.zhengxie"
+   ]
+  },
+  "SUBJECT.landscape.x55": {
+   "cn": "云山",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.shitao",
+    "ARTIST.zhaozuo"
+   ]
+  },
+  "SUBJECT.landscape.x59": {
+   "cn": "黄山",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.hongren",
+    "ARTIST.shitao"
+   ]
+  },
+  "SUBJECT.bird-flower.44": {
+   "cn": "虾蟹",
+   "cat": "SUBJECT.bird-flower",
+   "artists": [
+    "ARTIST.qibaishi"
+   ]
+  },
+  "SUBJECT.bird-flower.x55": {
+   "cn": "梅兰",
+   "cat": "SUBJECT.bird-flower",
+   "artists": [
+    "ARTIST.wuchangshuo"
+   ]
+  },
+  "SUBJECT.bird-flower.16": {
+   "cn": "紫藤",
+   "cat": "SUBJECT.bird-flower",
+   "artists": [
+    "ARTIST.wuchangshuo"
+   ]
+  },
+  "SUBJECT.figure.32": {
+   "cn": "英雄",
+   "cat": "SUBJECT.figure",
+   "artists": [
+    "ARTIST.jldavid",
+    "ARTIST.michelangelo",
+    "ARTIST.phidias"
+   ]
+  },
+  "SUBJECT.landscape.x58": {
+   "cn": "枯木竹石",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.sushi",
+    "ARTIST.zhashibiao"
+   ]
+  },
+  "SUBJECT.still-life.04": {
+   "cn": "书本",
+   "cat": "SUBJECT.still-life",
+   "artists": [
+    "ARTIST.chudehchun",
+    "ARTIST.dongqichang",
+    "ARTIST.masson",
+    "ARTIST.wangdongling",
+    "ARTIST.xubing",
+    "ARTIST.zhengxie"
+   ]
+  },
+  "SUBJECT.myth.x63": {
+   "cn": "圣经",
+   "cat": "SUBJECT.myth",
+   "artists": [
+    "ARTIST.chagall",
+    "ARTIST.giotto",
+    "ARTIST.moreau"
+   ]
+  },
+  "SUBJECT.figure.28": {
+   "cn": "帝王",
+   "cat": "SUBJECT.figure",
+   "artists": [
+    "ARTIST.langshining",
+    "ARTIST.qianlongacademy",
+    "ARTIST.yanliben"
+   ]
+  },
+  "SUBJECT.figure.07": {
+   "cn": "历史人物",
+   "cat": "SUBJECT.figure",
+   "artists": [
+    "ARTIST.yanliben"
+   ]
+  },
+  "SUBJECT.bird-flower.x53": {
+   "cn": "簪花",
+   "cat": "SUBJECT.bird-flower",
+   "artists": [
+    "ARTIST.zhoufang"
+   ]
+  },
+  "SUBJECT.myth.06": {
+   "cn": "观音",
+   "cat": "SUBJECT.myth",
+   "artists": [
+    "ARTIST.muqi",
+    "ARTIST.zhoufang"
+   ]
+  },
+  "SUBJECT.figure.05": {
+   "cn": "宗教人物",
+   "cat": "SUBJECT.figure",
+   "artists": [
+    "ARTIST.gentile",
+    "ARTIST.licheng",
+    "ARTIST.muqi",
+    "ARTIST.vaneyck",
+    "ARTIST.wudaozi",
+    "ARTIST.wuzongyuan"
+   ]
+  },
+  "SUBJECT.myth.31": {
+   "cn": "地狱",
+   "cat": "SUBJECT.myth",
+   "artists": [
+    "ARTIST.wudaozi"
+   ]
+  },
+  "SUBJECT.bird-flower.05": {
+   "cn": "松树",
+   "cat": "SUBJECT.bird-flower",
+   "artists": [
+    "ARTIST.eitoku",
+    "ARTIST.hongren",
+    "ARTIST.likuchan",
+    "ARTIST.litang"
+   ]
+  },
+  "SUBJECT.folk.x51": {
+   "cn": "爱情",
+   "cat": "SUBJECT.folk",
+   "artists": [
+    "ARTIST.chagall",
+    "ARTIST.watteau"
+   ]
+  },
+  "SUBJECT.history.02": {
+   "cn": "革命",
+   "cat": "SUBJECT.history",
+   "artists": [
+    "ARTIST.delacroix",
+    "ARTIST.jldavid"
+   ]
+  },
+  "SUBJECT.abstract.x68": {
+   "cn": "写生",
+   "cat": "SUBJECT.abstract",
+   "artists": [
+    "ARTIST.corot",
+    "ARTIST.guanshanyue",
+    "ARTIST.huangquan",
+    "ARTIST.hunt",
+    "ARTIST.millais",
+    "ARTIST.yunshouping"
+   ]
+  },
+  "SUBJECT.landscape.18": {
+   "cn": "天空",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.constable",
+    "ARTIST.ruisdael",
+    "ARTIST.sisley"
+   ]
+  },
+  "SUBJECT.landscape.08": {
+   "cn": "雪景",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.hiroshige",
+    "ARTIST.sisley",
+    "ARTIST.wangwei",
+    "ARTIST.wuguanzhong"
+   ]
+  },
+  "SUBJECT.landscape.02": {
+   "cn": "江河",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.qiaoshiguang",
+    "ARTIST.sisley",
+    "ARTIST.vandoesburg",
+    "ARTIST.wuguanzhong",
+    "ARTIST.zhaolingrang"
+   ]
+  },
+  "SUBJECT.animal.24": {
+   "cn": "鸟",
+   "cat": "SUBJECT.animal",
+   "artists": [
+    "ARTIST.miro"
+   ]
+  },
+  "SUBJECT.abstract.27": {
+   "cn": "符号",
+   "cat": "SUBJECT.abstract",
+   "artists": [
+    "ARTIST.basquiat",
+    "ARTIST.haring",
+    "ARTIST.miro",
+    "ARTIST.tapies"
+   ]
+  },
+  "SUBJECT.still-life.06": {
+   "cn": "乐器",
+   "cat": "SUBJECT.still-life",
+   "artists": [
+    "ARTIST.braque",
+    "ARTIST.gris",
+    "ARTIST.vermeer"
+   ]
+  },
+  "SUBJECT.abstract.x76": {
+   "cn": "拼贴",
+   "cat": "SUBJECT.abstract",
+   "artists": [
+    "ARTIST.braque",
+    "ARTIST.ernst",
+    "ARTIST.gris",
+    "ARTIST.salle"
+   ]
+  },
+  "SUBJECT.abstract.x57": {
+   "cn": "空间",
+   "cat": "SUBJECT.abstract",
+   "artists": [
+    "ARTIST.braque",
+    "ARTIST.judd",
+    "ARTIST.kelly",
+    "ARTIST.kounellis",
+    "ARTIST.lissitzky",
+    "ARTIST.masaccio",
+    "ARTIST.matta",
+    "ARTIST.teamlab"
+   ]
+  },
+  "SUBJECT.landscape.x53": {
+   "cn": "楼阁",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.guozhongshu",
+    "ARTIST.lisixun",
+    "ARTIST.lizhaodao",
+    "ARTIST.wangximeng",
+    "ARTIST.yuanti",
+    "ARTIST.zhaoboju"
+   ]
+  },
+  "SUBJECT.myth.x78": {
+   "cn": "仙山",
+   "cat": "SUBJECT.myth",
+   "artists": [
+    "ARTIST.lisixun",
+    "ARTIST.lizhaodao"
+   ]
+  },
+  "SUBJECT.folk.25": {
+   "cn": "渔村",
+   "cat": "SUBJECT.folk",
+   "artists": [
+    "ARTIST.wangximeng"
+   ]
+  },
+  "SUBJECT.bird-flower.x60": {
+   "cn": "折枝",
+   "cat": "SUBJECT.bird-flower",
+   "artists": [
+    "ARTIST.yuanti",
+    "ARTIST.yufeian",
+    "ARTIST.yunshouping"
+   ]
+  },
+  "SUBJECT.animal.x55": {
+   "cn": "珍禽",
+   "cat": "SUBJECT.animal",
+   "artists": [
+    "ARTIST.huangquan",
+    "ARTIST.yufeian"
+   ]
+  },
+  "SUBJECT.history.05": {
+   "cn": "法庭",
+   "cat": "SUBJECT.history",
+   "artists": [
+    "ARTIST.daumier"
+   ]
+  },
+  "SUBJECT.figure.x54": {
+   "cn": "身体",
+   "cat": "SUBJECT.figure",
+   "artists": [
+    "ARTIST.dekooning",
+    "ARTIST.hanson",
+    "ARTIST.schiele",
+    "ARTIST.zhangyu"
+   ]
+  },
+  "SUBJECT.myth.35": {
+   "cn": "十字架",
+   "cat": "SUBJECT.myth",
+   "artists": [
+    "ARTIST.cimabue"
+   ]
+  },
+  "SUBJECT.folk.26": {
+   "cn": "田园",
+   "cat": "SUBJECT.folk",
+   "artists": [
+    "ARTIST.boucher",
+    "ARTIST.chavannes",
+    "ARTIST.giorgione"
+   ]
+  },
+  "SUBJECT.abstract.25": {
+   "cn": "重构",
+   "cat": "SUBJECT.abstract",
+   "artists": [
+    "ARTIST.gris"
+   ]
+  },
+  "SUBJECT.landscape.x57": {
+   "cn": "平远",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.dongyuan",
+    "ARTIST.licheng",
+    "ARTIST.zhaolingrang"
+   ]
+  },
+  "SUBJECT.landscape.x56": {
+   "cn": "烟岚",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.dongyuan",
+    "ARTIST.juran"
+   ]
+  },
+  "SUBJECT.bird-flower.09": {
+   "cn": "牡丹",
+   "cat": "SUBJECT.bird-flower",
+   "artists": [
+    "ARTIST.yufeian"
+   ]
+  },
+  "SUBJECT.figure.x53": {
+   "cn": "女性",
+   "cat": "SUBJECT.figure",
+   "artists": [
+    "ARTIST.hejiaying",
+    "ARTIST.hoch",
+    "ARTIST.klimt",
+    "ARTIST.rossetti",
+    "ARTIST.serov",
+    "ARTIST.utamaro"
+   ]
+  },
+  "SUBJECT.figure.25": {
+   "cn": "美人",
+   "cat": "SUBJECT.figure",
+   "artists": [
+    "ARTIST.hejiaying",
+    "ARTIST.utamaro"
+   ]
+  },
+  "SUBJECT.urban.x56": {
+   "cn": "都市",
+   "cat": "SUBJECT.urban",
+   "artists": [
+    "ARTIST.boccioni",
+    "ARTIST.dix",
+    "ARTIST.estes",
+    "ARTIST.grosz",
+    "ARTIST.hejiaying",
+    "ARTIST.kirchner"
+   ]
+  },
+  "SUBJECT.myth.32": {
+   "cn": "天使",
+   "cat": "SUBJECT.myth",
+   "artists": [
+    "ARTIST.martini"
+   ]
+  },
+  "SUBJECT.figure.x56": {
+   "cn": "高士",
+   "cat": "SUBJECT.figure",
+   "artists": [
+    "ARTIST.fubaoshi",
+    "ARTIST.tangyin",
+    "ARTIST.zhangwo"
+   ]
+  },
+  "SUBJECT.landscape.22": {
+   "cn": "雨景",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.fubaoshi"
+   ]
+  },
+  "SUBJECT.landscape.07": {
+   "cn": "云雾",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.qiaoshiguang",
+    "ARTIST.rossetti",
+    "ARTIST.tangyin",
+    "ARTIST.wuguanzhong"
+   ]
+  },
+  "SUBJECT.figure.30": {
+   "cn": "佛像",
+   "cat": "SUBJECT.figure",
+   "artists": [
+    "ARTIST.jinnong"
+   ]
+  },
+  "SUBJECT.landscape.16": {
+   "cn": "荒野",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.cuibai"
+   ]
+  },
+  "SUBJECT.bird-flower.06": {
+   "cn": "荷花",
+   "cat": "SUBJECT.bird-flower",
+   "artists": [
+    "ARTIST.cuibai",
+    "ARTIST.likuchan"
+   ]
+  },
+  "SUBJECT.myth.x70": {
+   "cn": "经变",
+   "cat": "SUBJECT.myth",
+   "artists": [
+    "ARTIST.dunhuang"
+   ]
+  },
+  "SUBJECT.figure.x55": {
+   "cn": "供养人",
+   "cat": "SUBJECT.figure",
+   "artists": [
+    "ARTIST.dunhuang"
+   ]
+  },
+  "SUBJECT.myth.x72": {
+   "cn": "飞天",
+   "cat": "SUBJECT.myth",
+   "artists": [
+    "ARTIST.dunhuang"
+   ]
+  },
+  "SUBJECT.myth.x75": {
+   "cn": "朝元",
+   "cat": "SUBJECT.myth",
+   "artists": [
+    "ARTIST.majunxiang",
+    "ARTIST.yonglegong"
+   ]
+  },
+  "SUBJECT.myth.x62": {
+   "cn": "神祇",
+   "cat": "SUBJECT.myth",
+   "artists": [
+    "ARTIST.majunxiang",
+    "ARTIST.phidias",
+    "ARTIST.sotatsu",
+    "ARTIST.yonglegong"
+   ]
+  },
+  "SUBJECT.myth.34": {
+   "cn": "基督",
+   "cat": "SUBJECT.myth",
+   "artists": [
+    "ARTIST.byzantineicon",
+    "ARTIST.duccio"
+   ]
+  },
+  "SUBJECT.myth.40": {
+   "cn": "圣徒",
+   "cat": "SUBJECT.myth",
+   "artists": [
+    "ARTIST.byzantineicon",
+    "ARTIST.duccio"
+   ]
+  },
+  "SUBJECT.abstract.x77": {
+   "cn": "四季",
+   "cat": "SUBJECT.abstract",
+   "artists": [
+    "ARTIST.bruegel",
+    "ARTIST.mucha",
+    "ARTIST.yamatoe"
+   ]
+  },
+  "SUBJECT.landscape.06": {
+   "cn": "瀑布",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.ruisdael"
+   ]
+  },
+  "SUBJECT.landscape.15": {
+   "cn": "森林",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.ernst",
+    "ARTIST.rousseau",
+    "ARTIST.ruisdael"
+   ]
+  },
+  "SUBJECT.figure.42": {
+   "cn": "家庭场景",
+   "cat": "SUBJECT.figure",
+   "artists": [
+    "ARTIST.denis",
+    "ARTIST.vuillard"
+   ]
+  },
+  "SUBJECT.abstract.x67": {
+   "cn": "装饰",
+   "cat": "SUBJECT.abstract",
+   "artists": [
+    "ARTIST.denis",
+    "ARTIST.klimt",
+    "ARTIST.korin",
+    "ARTIST.vuillard"
+   ]
+  },
+  "SUBJECT.figure.18": {
+   "cn": "舞者",
+   "cat": "SUBJECT.figure",
+   "artists": [
+    "ARTIST.severini"
+   ]
+  },
+  "SUBJECT.abstract.x75": {
+   "cn": "材料",
+   "cat": "SUBJECT.abstract",
+   "artists": [
+    "ARTIST.kounellis",
+    "ARTIST.tatlin"
+   ]
+  },
+  "SUBJECT.still-life.36": {
+   "cn": "照片",
+   "cat": "SUBJECT.still-life",
+   "artists": [
+    "ARTIST.heartfield",
+    "ARTIST.hoch",
+    "ARTIST.richter"
+   ]
+  },
+  "SUBJECT.abstract.02": {
+   "cn": "线条节奏",
+   "cat": "SUBJECT.abstract",
+   "artists": [
+    "ARTIST.mathieu",
+    "ARTIST.wangdongling"
+   ]
+  },
+  "SUBJECT.abstract.x69": {
+   "cn": "肌理",
+   "cat": "SUBJECT.abstract",
+   "artists": [
+    "ARTIST.dubuffet",
+    "ARTIST.fautrier"
+   ]
+  },
+  "SUBJECT.abstract.x59": {
+   "cn": "橱窗",
+   "cat": "SUBJECT.abstract",
+   "artists": [
+    "ARTIST.estes"
+   ]
+  },
+  "SUBJECT.folk.x53": {
+   "cn": "农事",
+   "cat": "SUBJECT.folk",
+   "artists": [
+    "ARTIST.moses"
+   ]
+  },
+  "SUBJECT.history.33": {
+   "cn": "灾难",
+   "cat": "SUBJECT.history",
+   "artists": [
+    "ARTIST.warhol"
+   ]
+  },
+  "SUBJECT.history.x53": {
+   "cn": "权力",
+   "cat": "SUBJECT.history",
+   "artists": [
+    "ARTIST.basquiat",
+    "ARTIST.tuymans"
+   ]
+  },
+  "SUBJECT.abstract.28": {
+   "cn": "数字",
+   "cat": "SUBJECT.abstract",
+   "artists": [
+    "ARTIST.arcangel",
+    "ARTIST.teamlab"
+   ]
+  },
+  "SUBJECT.abstract.26": {
+   "cn": "流动",
+   "cat": "SUBJECT.abstract",
+   "artists": [
+    "ARTIST.teamlab"
+   ]
+  },
+  "SUBJECT.landscape.27": {
+   "cn": "山居",
+   "cat": "SUBJECT.landscape",
+   "artists": [
+    "ARTIST.wangwei"
+   ]
+  },
+  "SUBJECT.animal.x56": {
+   "cn": "雄鹰",
+   "cat": "SUBJECT.animal",
+   "artists": [
+    "ARTIST.gaoqifeng"
+   ]
+  },
+  "SUBJECT.abstract.x60": {
+   "cn": "文字",
+   "cat": "SUBJECT.abstract",
+   "artists": [
+    "ARTIST.minhwa",
+    "ARTIST.wangtiande"
+   ]
+  },
+  "SUBJECT.myth.02": {
+   "cn": "菩萨",
+   "cat": "SUBJECT.myth",
+   "artists": [
+    "ARTIST.mianlhadunzhu"
+   ]
+  },
+  "SUBJECT.figure.08": {
+   "cn": "文人形象",
+   "cat": "SUBJECT.figure",
+   "artists": [
+    "ARTIST.limbourg"
+   ]
+  },
+  "SUBJECT.abstract.x74": {
+   "cn": "装置",
+   "cat": "SUBJECT.abstract",
+   "artists": [
+    "ARTIST.kounellis"
+   ]
+  }
+ },
+ "artist_nodes": {
+  "ARTIST.repin": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.03",
+   "SUBJECT.history.11",
+   "SUBJECT.history.x55"
+  ],
+  "ARTIST.monet": [
+   "SUBJECT.landscape.x51",
+   "SUBJECT.landscape.x52"
+  ],
+  "ARTIST.nizan": [
+   "SUBJECT.bird-flower.x54",
+   "SUBJECT.landscape.03"
+  ],
+  "ARTIST.xubeihong": [
+   "SUBJECT.animal.01",
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.03",
+   "SUBJECT.history.x54",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.vangogh": [
+   "SUBJECT.bird-flower.17",
+   "SUBJECT.figure.02",
+   "SUBJECT.figure.09",
+   "SUBJECT.history.x55",
+   "SUBJECT.landscape.14",
+   "SUBJECT.landscape.21"
+  ],
+  "ARTIST.cezanne": [
+   "SUBJECT.figure.17",
+   "SUBJECT.landscape.01",
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x53"
+  ],
+  "ARTIST.badashanren": [
+   "SUBJECT.animal.x54",
+   "SUBJECT.bird-flower.x59",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.davinci": [
+   "SUBJECT.figure.01",
+   "SUBJECT.history.x54",
+   "SUBJECT.myth.33",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.caravaggio": [
+   "SUBJECT.figure.23",
+   "SUBJECT.myth.x64",
+   "SUBJECT.myth.x65",
+   "SUBJECT.still-life.x53"
+  ],
+  "ARTIST.velazquez": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.14",
+   "SUBJECT.history.06",
+   "SUBJECT.myth.x64",
+   "SUBJECT.still-life.x53",
+   "SUBJECT.urban.x52"
+  ],
+  "ARTIST.rembrandt": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.02",
+   "SUBJECT.figure.03",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.raphael": [
+   "SUBJECT.figure.01",
+   "SUBJECT.myth.33",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.durer": [
+   "SUBJECT.figure.02",
+   "SUBJECT.myth.x65",
+   "SUBJECT.still-life.01"
+  ],
+  "ARTIST.courbet": [
+   "SUBJECT.figure.01",
+   "SUBJECT.history.45",
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x53"
+  ],
+  "ARTIST.millet": [
+   "SUBJECT.folk.x52",
+   "SUBJECT.landscape.14"
+  ],
+  "ARTIST.fankuan": [
+   "SUBJECT.landscape.31",
+   "SUBJECT.landscape.33",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.guoxi": [
+   "SUBJECT.landscape.33",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.huizong": [
+   "SUBJECT.bird-flower.01",
+   "SUBJECT.bird-flower.x61"
+  ],
+  "ARTIST.qiuying": [
+   "SUBJECT.figure.24",
+   "SUBJECT.history.x54",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.renoir": [
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.17"
+  ],
+  "ARTIST.pissarro": [
+   "SUBJECT.landscape.14",
+   "SUBJECT.still-life.02",
+   "SUBJECT.urban.06"
+  ],
+  "ARTIST.degas": [
+   "SUBJECT.animal.01",
+   "SUBJECT.figure.17"
+  ],
+  "ARTIST.seurat": [
+   "SUBJECT.landscape.04",
+   "SUBJECT.urban.x55"
+  ],
+  "ARTIST.gauguin": [
+   "SUBJECT.landscape.x50",
+   "SUBJECT.myth.x64",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.matisse": [
+   "SUBJECT.abstract.x55",
+   "SUBJECT.figure.x51",
+   "SUBJECT.folk.19"
+  ],
+  "ARTIST.kandinsky": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.abstract.x58"
+  ],
+  "ARTIST.picasso": [
+   "SUBJECT.history.01",
+   "SUBJECT.myth.x64",
+   "SUBJECT.still-life.x53",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.mondrian": [
+   "SUBJECT.abstract.01"
+  ],
+  "ARTIST.malevich": [
+   "SUBJECT.abstract.01"
+  ],
+  "ARTIST.rothko": [
+   "SUBJECT.abstract.03"
+  ],
+  "ARTIST.huanggongwang": [
+   "SUBJECT.landscape.34",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.wangmeng": [
+   "SUBJECT.landscape.01"
+  ],
+  "ARTIST.shenzhou": [
+   "SUBJECT.abstract.x64",
+   "SUBJECT.bird-flower.x58",
+   "SUBJECT.bird-flower.x61",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.wenzhengming": [
+   "SUBJECT.abstract.x64",
+   "SUBJECT.bird-flower.03",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.shitao": [
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.bird-flower.x58",
+   "SUBJECT.landscape.x55",
+   "SUBJECT.landscape.x59"
+  ],
+  "ARTIST.qibaishi": [
+   "SUBJECT.bird-flower.44",
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.bird-flower.x58",
+   "SUBJECT.landscape.x54",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.huangbinhong": [
+   "SUBJECT.landscape.01",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.wuchangshuo": [
+   "SUBJECT.bird-flower.16",
+   "SUBJECT.bird-flower.x55"
+  ],
+  "ARTIST.michelangelo": [
+   "SUBJECT.figure.32",
+   "SUBJECT.figure.x51",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.sushi": [
+   "SUBJECT.bird-flower.x54",
+   "SUBJECT.landscape.x58"
+  ],
+  "ARTIST.dongqichang": [
+   "SUBJECT.landscape.x54",
+   "SUBJECT.still-life.04"
+  ],
+  "ARTIST.xuwei": [
+   "SUBJECT.bird-flower.x52"
+  ],
+  "ARTIST.turner": [
+   "SUBJECT.landscape.04"
+  ],
+  "ARTIST.gukaizhi": [
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.giotto": [
+   "SUBJECT.myth.x63"
+  ],
+  "ARTIST.botticelli": [
+   "SUBJECT.myth.33",
+   "SUBJECT.myth.x64"
+  ],
+  "ARTIST.yanliben": [
+   "SUBJECT.figure.07",
+   "SUBJECT.figure.28"
+  ],
+  "ARTIST.zhangxuan": [
+   "SUBJECT.animal.01",
+   "SUBJECT.figure.24"
+  ],
+  "ARTIST.zhoufang": [
+   "SUBJECT.bird-flower.x53",
+   "SUBJECT.figure.24",
+   "SUBJECT.myth.06"
+  ],
+  "ARTIST.wudaozi": [
+   "SUBJECT.figure.05",
+   "SUBJECT.myth.31",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.rubens": [
+   "SUBJECT.figure.01",
+   "SUBJECT.history.x54",
+   "SUBJECT.myth.x64",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.zhaomengfu": [
+   "SUBJECT.abstract.03",
+   "SUBJECT.animal.01",
+   "SUBJECT.bird-flower.03"
+  ],
+  "ARTIST.ligonglin": [
+   "SUBJECT.animal.01",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.renbonian": [
+   "SUBJECT.bird-flower.x61",
+   "SUBJECT.figure.01",
+   "SUBJECT.history.x54",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.likeran": [
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.xubing": [
+   "SUBJECT.still-life.04"
+  ],
+  "ARTIST.zhengxie": [
+   "SUBJECT.bird-flower.03",
+   "SUBJECT.still-life.04"
+  ],
+  "ARTIST.chenhongshou": [
+   "SUBJECT.bird-flower.x61",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.mayuan": [
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.litang": [
+   "SUBJECT.bird-flower.05",
+   "SUBJECT.history.x54",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.watteau": [
+   "SUBJECT.folk.x51",
+   "SUBJECT.landscape.01"
+  ],
+  "ARTIST.delacroix": [
+   "SUBJECT.history.02",
+   "SUBJECT.history.x54"
+  ],
+  "ARTIST.corot": [
+   "SUBJECT.abstract.x68",
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.constable": [
+   "SUBJECT.landscape.18"
+  ],
+  "ARTIST.sisley": [
+   "SUBJECT.landscape.02",
+   "SUBJECT.landscape.08",
+   "SUBJECT.landscape.18"
+  ],
+  "ARTIST.miro": [
+   "SUBJECT.abstract.27",
+   "SUBJECT.animal.24",
+   "SUBJECT.figure.14"
+  ],
+  "ARTIST.magritte": [
+   "SUBJECT.still-life.02"
+  ],
+  "ARTIST.braque": [
+   "SUBJECT.abstract.x57",
+   "SUBJECT.abstract.x76",
+   "SUBJECT.still-life.06",
+   "SUBJECT.still-life.x53"
+  ],
+  "ARTIST.lisixun": [
+   "SUBJECT.landscape.31",
+   "SUBJECT.landscape.x53",
+   "SUBJECT.myth.x78"
+  ],
+  "ARTIST.wangximeng": [
+   "SUBJECT.folk.25",
+   "SUBJECT.landscape.01",
+   "SUBJECT.landscape.31",
+   "SUBJECT.landscape.x53"
+  ],
+  "ARTIST.yunshouping": [
+   "SUBJECT.abstract.x68",
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.bird-flower.x60",
+   "SUBJECT.still-life.01"
+  ],
+  "ARTIST.huangquan": [
+   "SUBJECT.abstract.x68",
+   "SUBJECT.animal.x55",
+   "SUBJECT.bird-flower.x52"
+  ],
+  "ARTIST.liangkai": [
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.friedrich": [
+   "SUBJECT.landscape.04",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.vaneyck": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.05",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.holbein": [
+   "SUBJECT.figure.01",
+   "SUBJECT.history.06",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.daumier": [
+   "SUBJECT.history.05",
+   "SUBJECT.urban.x52"
+  ],
+  "ARTIST.signac": [
+   "SUBJECT.animal.01",
+   "SUBJECT.landscape.x50"
+  ],
+  "ARTIST.schiele": [
+   "SUBJECT.figure.02",
+   "SUBJECT.figure.17",
+   "SUBJECT.figure.x54"
+  ],
+  "ARTIST.nolde": [
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.vlaminck": [
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x53"
+  ],
+  "ARTIST.leger": [
+   "SUBJECT.still-life.x53",
+   "SUBJECT.urban.x55"
+  ],
+  "ARTIST.newman": [
+   "SUBJECT.abstract.03"
+  ],
+  "ARTIST.surikov": [
+   "SUBJECT.figure.03",
+   "SUBJECT.history.x54"
+  ],
+  "ARTIST.kramskoi": [
+   "SUBJECT.figure.01",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.cimabue": [
+   "SUBJECT.myth.33",
+   "SUBJECT.myth.35"
+  ],
+  "ARTIST.angelico": [
+   "SUBJECT.myth.33"
+  ],
+  "ARTIST.boucher": [
+   "SUBJECT.figure.17",
+   "SUBJECT.folk.26",
+   "SUBJECT.myth.x64"
+  ],
+  "ARTIST.fragonard": [
+   "SUBJECT.landscape.01"
+  ],
+  "ARTIST.gris": [
+   "SUBJECT.abstract.25",
+   "SUBJECT.abstract.x76",
+   "SUBJECT.still-life.06",
+   "SUBJECT.still-life.x53"
+  ],
+  "ARTIST.licheng": [
+   "SUBJECT.figure.05",
+   "SUBJECT.landscape.33",
+   "SUBJECT.landscape.x57"
+  ],
+  "ARTIST.dongyuan": [
+   "SUBJECT.landscape.01",
+   "SUBJECT.landscape.x56",
+   "SUBJECT.landscape.x57"
+  ],
+  "ARTIST.zhanziqian": [
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.yufeian": [
+   "SUBJECT.animal.x55",
+   "SUBJECT.bird-flower.09",
+   "SUBJECT.bird-flower.x60"
+  ],
+  "ARTIST.huangshen": [
+   "SUBJECT.figure.23"
+  ],
+  "ARTIST.lizhaodao": [
+   "SUBJECT.landscape.31",
+   "SUBJECT.landscape.x53",
+   "SUBJECT.myth.x78"
+  ],
+  "ARTIST.hejiaying": [
+   "SUBJECT.figure.25",
+   "SUBJECT.figure.x53",
+   "SUBJECT.still-life.x54",
+   "SUBJECT.urban.x56"
+  ],
+  "ARTIST.martini": [
+   "SUBJECT.history.06",
+   "SUBJECT.myth.32",
+   "SUBJECT.myth.33"
+  ],
+  "ARTIST.zhangwo": [
+   "SUBJECT.figure.x56"
+  ],
+  "ARTIST.vandoesburg": [
+   "SUBJECT.abstract.03",
+   "SUBJECT.abstract.x58",
+   "SUBJECT.landscape.02"
+  ],
+  "ARTIST.fubaoshi": [
+   "SUBJECT.figure.24",
+   "SUBJECT.figure.x56",
+   "SUBJECT.landscape.22",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.pantianshou": [
+   "SUBJECT.bird-flower.x61",
+   "SUBJECT.landscape.01"
+  ],
+  "ARTIST.wuzhen": [
+   "SUBJECT.bird-flower.x54",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.tangyin": [
+   "SUBJECT.figure.24",
+   "SUBJECT.figure.x56",
+   "SUBJECT.landscape.07",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.kuncan": [
+   "SUBJECT.landscape.01",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.hongren": [
+   "SUBJECT.bird-flower.05",
+   "SUBJECT.landscape.x54",
+   "SUBJECT.landscape.x59"
+  ],
+  "ARTIST.jinnong": [
+   "SUBJECT.bird-flower.01",
+   "SUBJECT.figure.30",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.reinhardt": [
+   "SUBJECT.abstract.x58"
+  ],
+  "ARTIST.chuckclose": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.02"
+  ],
+  "ARTIST.langshining": [
+   "SUBJECT.animal.01",
+   "SUBJECT.bird-flower.x61",
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.28"
+  ],
+  "ARTIST.jiangzhaohe": [
+   "SUBJECT.figure.01"
+  ],
+  "ARTIST.cuibai": [
+   "SUBJECT.bird-flower.06",
+   "SUBJECT.landscape.16"
+  ],
+  "ARTIST.zhangyu": [
+   "SUBJECT.figure.x54"
+  ],
+  "ARTIST.likuchan": [
+   "SUBJECT.bird-flower.05",
+   "SUBJECT.bird-flower.06"
+  ],
+  "ARTIST.jiangcaiping": [
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.schnabel": [
+   "SUBJECT.figure.01",
+   "SUBJECT.history.x54",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.wuguanzhong": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.landscape.02",
+   "SUBJECT.landscape.07",
+   "SUBJECT.landscape.08"
+  ],
+  "ARTIST.zaowuji": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.abstract.03"
+  ],
+  "ARTIST.chudehchun": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.abstract.03",
+   "SUBJECT.still-life.04"
+  ],
+  "ARTIST.dunhuang": [
+   "SUBJECT.figure.x55",
+   "SUBJECT.myth.x70",
+   "SUBJECT.myth.x72"
+  ],
+  "ARTIST.yonglegong": [
+   "SUBJECT.myth.x62",
+   "SUBJECT.myth.x75"
+  ],
+  "ARTIST.qianlongacademy": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.28",
+   "SUBJECT.history.06"
+  ],
+  "ARTIST.byzantineicon": [
+   "SUBJECT.myth.33",
+   "SUBJECT.myth.34",
+   "SUBJECT.myth.40"
+  ],
+  "ARTIST.vermeer": [
+   "SUBJECT.abstract.x55",
+   "SUBJECT.still-life.06"
+  ],
+  "ARTIST.jldavid": [
+   "SUBJECT.animal.01",
+   "SUBJECT.figure.32",
+   "SUBJECT.history.02"
+  ],
+  "ARTIST.ingres": [
+   "SUBJECT.figure.01"
+  ],
+  "ARTIST.bruegel": [
+   "SUBJECT.abstract.x77",
+   "SUBJECT.folk.x52"
+  ],
+  "ARTIST.mucha": [
+   "SUBJECT.abstract.x77",
+   "SUBJECT.landscape.04"
+  ],
+  "ARTIST.phidias": [
+   "SUBJECT.figure.32",
+   "SUBJECT.figure.x51",
+   "SUBJECT.myth.x62"
+  ],
+  "ARTIST.masaccio": [
+   "SUBJECT.abstract.x57",
+   "SUBJECT.figure.03",
+   "SUBJECT.myth.x65",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.giorgione": [
+   "SUBJECT.folk.26",
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.titian": [
+   "SUBJECT.figure.01",
+   "SUBJECT.myth.x64",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.veronese": [
+   "SUBJECT.myth.x64",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.tintoretto": [
+   "SUBJECT.figure.01",
+   "SUBJECT.myth.x64",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.duccio": [
+   "SUBJECT.myth.33",
+   "SUBJECT.myth.34",
+   "SUBJECT.myth.40"
+  ],
+  "ARTIST.lorenzetti": [
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.hals": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.23"
+  ],
+  "ARTIST.ruisdael": [
+   "SUBJECT.landscape.06",
+   "SUBJECT.landscape.15",
+   "SUBJECT.landscape.18",
+   "SUBJECT.landscape.x50"
+  ],
+  "ARTIST.bastienlepage": [
+   "SUBJECT.folk.x52",
+   "SUBJECT.landscape.x50"
+  ],
+  "ARTIST.zola": [
+   "SUBJECT.history.x55"
+  ],
+  "ARTIST.levitan": [
+   "SUBJECT.landscape.14",
+   "SUBJECT.landscape.x50"
+  ],
+  "ARTIST.serov": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.x53",
+   "SUBJECT.history.x54",
+   "SUBJECT.myth.x64"
+  ],
+  "ARTIST.bonnard": [
+   "SUBJECT.abstract.x55",
+   "SUBJECT.figure.17",
+   "SUBJECT.landscape.x52",
+   "SUBJECT.still-life.x53"
+  ],
+  "ARTIST.vuillard": [
+   "SUBJECT.abstract.x55",
+   "SUBJECT.abstract.x67",
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.42"
+  ],
+  "ARTIST.denis": [
+   "SUBJECT.abstract.x67",
+   "SUBJECT.figure.42",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.moreau": [
+   "SUBJECT.myth.x63",
+   "SUBJECT.myth.x64"
+  ],
+  "ARTIST.redon": [
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.myth.x64",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.chavannes": [
+   "SUBJECT.folk.26"
+  ],
+  "ARTIST.klimt": [
+   "SUBJECT.abstract.x67",
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.x53"
+  ],
+  "ARTIST.derain": [
+   "SUBJECT.figure.01",
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x53"
+  ],
+  "ARTIST.kirchner": [
+   "SUBJECT.figure.17",
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x54",
+   "SUBJECT.urban.x56"
+  ],
+  "ARTIST.marc": [
+   "SUBJECT.landscape.x50"
+  ],
+  "ARTIST.munter": [
+   "SUBJECT.abstract.x55",
+   "SUBJECT.figure.01",
+   "SUBJECT.landscape.x50"
+  ],
+  "ARTIST.heckel": [
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.schmidtrottluff": [
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.boccioni": [
+   "SUBJECT.urban.x56"
+  ],
+  "ARTIST.balla": [
+   "SUBJECT.abstract.01"
+  ],
+  "ARTIST.severini": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.figure.18"
+  ],
+  "ARTIST.dechirico": [
+   "SUBJECT.figure.x51"
+  ],
+  "ARTIST.tatlin": [
+   "SUBJECT.abstract.x75"
+  ],
+  "ARTIST.rodchenko": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.landscape.04"
+  ],
+  "ARTIST.lissitzky": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.abstract.x57",
+   "SUBJECT.landscape.04"
+  ],
+  "ARTIST.arp": [
+   "SUBJECT.abstract.01"
+  ],
+  "ARTIST.heartfield": [
+   "SUBJECT.history.01",
+   "SUBJECT.still-life.36"
+  ],
+  "ARTIST.hoch": [
+   "SUBJECT.figure.x53",
+   "SUBJECT.still-life.36"
+  ],
+  "ARTIST.masson": [
+   "SUBJECT.myth.x64",
+   "SUBJECT.still-life.04"
+  ],
+  "ARTIST.matta": [
+   "SUBJECT.abstract.x57"
+  ],
+  "ARTIST.ernst": [
+   "SUBJECT.abstract.x76",
+   "SUBJECT.landscape.15"
+  ],
+  "ARTIST.destael": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x53"
+  ],
+  "ARTIST.mathieu": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.abstract.02",
+   "SUBJECT.history.x54"
+  ],
+  "ARTIST.dubuffet": [
+   "SUBJECT.abstract.x69",
+   "SUBJECT.urban.06"
+  ],
+  "ARTIST.fautrier": [
+   "SUBJECT.abstract.x69"
+  ],
+  "ARTIST.tapies": [
+   "SUBJECT.abstract.27"
+  ],
+  "ARTIST.dekooning": [
+   "SUBJECT.figure.14",
+   "SUBJECT.figure.x54",
+   "SUBJECT.landscape.x50"
+  ],
+  "ARTIST.frankenthaler": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.landscape.x50"
+  ],
+  "ARTIST.kelly": [
+   "SUBJECT.abstract.03",
+   "SUBJECT.abstract.x57"
+  ],
+  "ARTIST.vasarely": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.abstract.03"
+  ],
+  "ARTIST.judd": [
+   "SUBJECT.abstract.x57"
+  ],
+  "ARTIST.martin": [
+   "SUBJECT.abstract.03"
+  ],
+  "ARTIST.estes": [
+   "SUBJECT.abstract.x59",
+   "SUBJECT.urban.06",
+   "SUBJECT.urban.x56"
+  ],
+  "ARTIST.hanson": [
+   "SUBJECT.figure.x54"
+  ],
+  "ARTIST.lewitt": [
+   "SUBJECT.abstract.01"
+  ],
+  "ARTIST.henrirousseau": [
+   "SUBJECT.figure.01"
+  ],
+  "ARTIST.moses": [
+   "SUBJECT.folk.x53",
+   "SUBJECT.landscape.x50"
+  ],
+  "ARTIST.beuys": [
+   "SUBJECT.myth.x64"
+  ],
+  "ARTIST.mohr": [
+   "SUBJECT.abstract.01"
+  ],
+  "ARTIST.nees": [
+   "SUBJECT.abstract.01"
+  ],
+  "ARTIST.warhol": [
+   "SUBJECT.figure.01",
+   "SUBJECT.history.33"
+  ],
+  "ARTIST.kiefer": [
+   "SUBJECT.history.x54",
+   "SUBJECT.landscape.14",
+   "SUBJECT.myth.x64"
+  ],
+  "ARTIST.baselitz": [
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.salle": [
+   "SUBJECT.abstract.x76",
+   "SUBJECT.figure.x51"
+  ],
+  "ARTIST.basquiat": [
+   "SUBJECT.abstract.27",
+   "SUBJECT.history.x53"
+  ],
+  "ARTIST.haring": [
+   "SUBJECT.abstract.27",
+   "SUBJECT.urban.06"
+  ],
+  "ARTIST.banksy": [
+   "SUBJECT.history.01"
+  ],
+  "ARTIST.teamlab": [
+   "SUBJECT.abstract.26",
+   "SUBJECT.abstract.28",
+   "SUBJECT.abstract.x57"
+  ],
+  "ARTIST.arcangel": [
+   "SUBJECT.abstract.28"
+  ],
+  "ARTIST.freud": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.17",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.tuymans": [
+   "SUBJECT.history.x53",
+   "SUBJECT.history.x54"
+  ],
+  "ARTIST.richter": [
+   "SUBJECT.history.x54",
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.36"
+  ],
+  "ARTIST.wuzongyuan": [
+   "SUBJECT.figure.05",
+   "SUBJECT.myth.x65",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.juran": [
+   "SUBJECT.landscape.x54",
+   "SUBJECT.landscape.x56"
+  ],
+  "ARTIST.xiagui": [
+   "SUBJECT.landscape.01",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.huichong": [
+   "SUBJECT.landscape.x54",
+   "SUBJECT.still-life.01"
+  ],
+  "ARTIST.zhaolingrang": [
+   "SUBJECT.landscape.02",
+   "SUBJECT.landscape.03",
+   "SUBJECT.landscape.x57"
+  ],
+  "ARTIST.wangwei": [
+   "SUBJECT.landscape.08",
+   "SUBJECT.landscape.27",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.muqi": [
+   "SUBJECT.bird-flower.x58",
+   "SUBJECT.figure.05",
+   "SUBJECT.myth.06"
+  ],
+  "ARTIST.wentong": [
+   "SUBJECT.bird-flower.x54"
+  ],
+  "ARTIST.yangwujiu": [
+   "SUBJECT.bird-flower.01"
+  ],
+  "ARTIST.wangmian": [
+   "SUBJECT.bird-flower.01"
+  ],
+  "ARTIST.daijin": [
+   "SUBJECT.landscape.x54",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.wuwei": [
+   "SUBJECT.landscape.x54",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.chenjiru": [
+   "SUBJECT.bird-flower.01",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.zhaozuo": [
+   "SUBJECT.landscape.x54",
+   "SUBJECT.landscape.x55"
+  ],
+  "ARTIST.chenchun": [
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.bird-flower.x61"
+  ],
+  "ARTIST.lengmei": [
+   "SUBJECT.figure.24",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.dingguanpeng": [
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.xuyang": [
+   "SUBJECT.still-life.x54",
+   "SUBJECT.urban.x55"
+  ],
+  "ARTIST.linfengmian": [
+   "SUBJECT.figure.24",
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x53",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.zhangdaqian": [
+   "SUBJECT.bird-flower.x61",
+   "SUBJECT.landscape.x54",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.liuguosong": [
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.huangzhou": [
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.fangzengxian": [
+   "SUBJECT.folk.x52",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.guanshanyue": [
+   "SUBJECT.abstract.x68",
+   "SUBJECT.landscape.x50",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.gaojianfu": [
+   "SUBJECT.bird-flower.x61",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.gaoqifeng": [
+   "SUBJECT.animal.01",
+   "SUBJECT.animal.x56",
+   "SUBJECT.bird-flower.x61"
+  ],
+  "ARTIST.chenshuren": [
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.wangtiande": [
+   "SUBJECT.abstract.x60",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.wangdongling": [
+   "SUBJECT.abstract.02",
+   "SUBJECT.still-life.04"
+  ],
+  "ARTIST.majunxiang": [
+   "SUBJECT.myth.x62",
+   "SUBJECT.myth.x65",
+   "SUBJECT.myth.x75"
+  ],
+  "ARTIST.mianlhadunzhu": [
+   "SUBJECT.myth.02"
+  ],
+  "ARTIST.qiaoshiguang": [
+   "SUBJECT.bird-flower.x61",
+   "SUBJECT.landscape.02",
+   "SUBJECT.landscape.07"
+  ],
+  "ARTIST.zhaoboju": [
+   "SUBJECT.landscape.x53",
+   "SUBJECT.landscape.x54",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.pontormo": [
+   "SUBJECT.figure.01",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.parmigianino": [
+   "SUBJECT.figure.01",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.elgreco": [
+   "SUBJECT.figure.01",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.limbourg": [
+   "SUBJECT.figure.08",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.gentile": [
+   "SUBJECT.figure.05",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.rossetti": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.x53",
+   "SUBJECT.landscape.07"
+  ],
+  "ARTIST.millais": [
+   "SUBJECT.abstract.x68",
+   "SUBJECT.figure.01"
+  ],
+  "ARTIST.hunt": [
+   "SUBJECT.abstract.x68",
+   "SUBJECT.myth.x65"
+  ],
+  "ARTIST.rousseau": [
+   "SUBJECT.abstract.03",
+   "SUBJECT.landscape.15",
+   "SUBJECT.landscape.x50"
+  ],
+  "ARTIST.dix": [
+   "SUBJECT.history.01",
+   "SUBJECT.urban.x56"
+  ],
+  "ARTIST.grosz": [
+   "SUBJECT.urban.x56"
+  ],
+  "ARTIST.modigliani": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.17",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.chagall": [
+   "SUBJECT.folk.x51",
+   "SUBJECT.myth.x63"
+  ],
+  "ARTIST.soutine": [
+   "SUBJECT.figure.01",
+   "SUBJECT.landscape.x50",
+   "SUBJECT.still-life.x53"
+  ],
+  "ARTIST.kounellis": [
+   "SUBJECT.abstract.x57",
+   "SUBJECT.abstract.x74",
+   "SUBJECT.abstract.x75",
+   "SUBJECT.history.x54"
+  ],
+  "ARTIST.smithson": [
+   "SUBJECT.landscape.14"
+  ],
+  "ARTIST.demaria": [
+   "SUBJECT.abstract.01",
+   "SUBJECT.landscape.14"
+  ],
+  "ARTIST.xuchongsi": [
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.still-life.01"
+  ],
+  "ARTIST.guozhongshu": [
+   "SUBJECT.landscape.x53"
+  ],
+  "ARTIST.gongxian": [
+   "SUBJECT.landscape.01",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.fanqi": [
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.landscape.x54",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.zhashibiao": [
+   "SUBJECT.landscape.x54",
+   "SUBJECT.landscape.x58"
+  ],
+  "ARTIST.zhaozhiqian": [
+   "SUBJECT.bird-flower.x52",
+   "SUBJECT.bird-flower.x58"
+  ],
+  "ARTIST.hokusai": [
+   "SUBJECT.bird-flower.x61",
+   "SUBJECT.landscape.01",
+   "SUBJECT.landscape.x50"
+  ],
+  "ARTIST.hiroshige": [
+   "SUBJECT.landscape.08"
+  ],
+  "ARTIST.utamaro": [
+   "SUBJECT.figure.25",
+   "SUBJECT.figure.x53"
+  ],
+  "ARTIST.korin": [
+   "SUBJECT.abstract.x67",
+   "SUBJECT.bird-flower.x52"
+  ],
+  "ARTIST.sotatsu": [
+   "SUBJECT.myth.x62"
+  ],
+  "ARTIST.eitoku": [
+   "SUBJECT.bird-flower.05"
+  ],
+  "ARTIST.tanyu": [
+   "SUBJECT.bird-flower.x61",
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.ikenotaiga": [
+   "SUBJECT.landscape.x54",
+   "SUBJECT.still-life.x54"
+  ],
+  "ARTIST.buson": [
+   "SUBJECT.landscape.x54"
+  ],
+  "ARTIST.yuanti": [
+   "SUBJECT.bird-flower.x60",
+   "SUBJECT.bird-flower.x61",
+   "SUBJECT.landscape.x53",
+   "SUBJECT.still-life.01"
+  ],
+  "ARTIST.yamatoe": [
+   "SUBJECT.abstract.x77",
+   "SUBJECT.history.06"
+  ],
+  "ARTIST.minhwa": [
+   "SUBJECT.abstract.x60"
+  ],
+  "ARTIST.academy": [
+   "SUBJECT.figure.01",
+   "SUBJECT.figure.x51",
+   "SUBJECT.history.x54",
+   "SUBJECT.myth.x64"
+  ]
+ }
+}

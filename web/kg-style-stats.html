@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 风格层统计</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--warn:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding:34px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(21px,4vw,31px);font-weight:600;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.7;max-width:680px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}@media(max-width:720px){.cards{grid-template-columns:1fr 1fr}}
+  .c{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px;text-align:center}
+  .c .v{font-family:var(--serif);font-size:25px;font-weight:600;color:var(--green)}
+  .c .l{font-size:11.5px;color:var(--ink-soft);margin-top:3px}
+  .sec{margin-top:30px}.sec-h{font-family:var(--serif);font-size:18px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px}
+  .bar{display:flex;align-items:center;gap:10px;margin:5px 0;font-size:12.5px}
+  .bar .bl{width:120px;flex-shrink:0;color:var(--ink-soft)}.bar .bl .code{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-right:4px}
+  .bar .bt{flex:1;height:18px;background:var(--paper-2);border-radius:4px;overflow:hidden}
+  .bar .bf{height:100%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;font-family:var(--mono);font-size:10px;color:#fff}
+  .bf.w{background:var(--accent)}.bf.e{background:var(--green)}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:18px}@media(max-width:680px){.split{grid-template-columns:1fr}}
+  .lowlist{display:flex;flex-wrap:wrap;gap:6px}
+  .lowchip{font-size:12px;color:#fff;background:var(--warn);border-radius:6px;padding:2px 9px}
+  .note{font-size:12px;color:var(--ink-mute);background:#fff;border:1px solid var(--line);border-left:3px solid var(--green);border-radius:10px;padding:11px 14px;margin-top:14px;line-height:1.7}.note b{color:var(--green)}
+  .back{display:block;text-align:center;margin-top:38px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 风格统计</div>
+  <h1>风格层 · 统计</h1>
+  <p class="lead">对 <b id="tot"></b> 个风格节点做一次盘点:<b>六大世界观区分布</b>、东西方比重、置信度、考究覆盖、作品挂载。<b>去风格层 / 详情页可逐个钻取。</b></p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">风格统计</b></div>
+
+  <div class="cards" id="cards"></div>
+
+  <div class="sec">
+    <div class="sec-h">① 六大世界观区分布(V3 · 西 / 东 密度)</div>
+    <div id="models"></div>
+  </div>
+
+  <div class="split">
+    <div class="sec">
+      <div class="sec-h">② 置信度</div>
+      <div id="conf"></div>
+      <div style="margin-top:10px"><div style="font-family:var(--mono);font-size:10.5px;color:var(--warn);margin-bottom:5px">待核对(低置信):</div><div class="lowlist" id="low"></div></div>
+    </div>
+    <div class="sec">
+      <div class="sec-h">③ 定义覆盖</div>
+      <div id="defcov"></div>
+      <div class="note" id="defnote"></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">④ 按体系/时间线(V1 来源)</div>
+    <div id="xis"></div>
+  </div>
+
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+fetch('data/kg_style_stats.json').then(r=>r.json()).then(S=>{
+  document.getElementById('tot').textContent=S.total;
+  const cards=[['总风格',S.total],['东方',S.by_region.east],['西方',S.by_region.west],['挂作品风格',S.with_works],
+    ['考究定义',S.def_coverage.authored],['合并变体',S.aka_total],['待核对',S.by_conf.low||0],['世界观区',6]];
+  const cc=document.getElementById('cards');
+  cards.slice(0,4).forEach(([l,v])=> cc.appendChild($(`<div class="c"><div class="v">${v}</div><div class="l">${l}</div></div>`)));
+  // worldview regions
+  const WVC={WV1:'#b0673a',WV2:'#9a7b3a',WV3:'#5a7d6f',WV4:'#5b7596',WV5:'#8a5a7a',WV6:'#4a6a8a'};
+  const max=Math.max(...S.by_wv.map(m=>m.n));
+  const mc=document.getElementById('models');
+  S.by_wv.forEach(m=> mc.appendChild($(`<a class="bar" href="kg-worldview-region.html?id=${m.id}" style="text-decoration:none"><span class="bl"><span class="code" style="background:${WVC[m.id]};color:#fff">${m.id}</span>${m.name}</span><span class="bt"><span class="bf" style="width:${Math.max(8,m.n/max*100)}%;background:${WVC[m.id]}">${m.n} <span style="opacity:.85">西${m.west}/东${m.east}</span></span></span></a>`)));
+  // conf
+  const cf=document.getElementById('conf'); const ct=S.total;
+  [['high','高',S.by_conf.high||0],['med','中',S.by_conf.med||0],['low','低·待核',S.by_conf.low||0]].forEach(([k,l,v])=>
+    cf.appendChild($(`<div class="bar"><span class="bl">${l}</span><span class="bt"><span class="bf ${k==='low'?'e':'w'}" style="width:${Math.max(5,v/ct*100)}%;${k==='low'?'background:var(--warn)':''}">${v}</span></span></div>`)));
+  document.getElementById('low').innerHTML=S.low_conf.map(x=>`<span class="lowchip">${x.replace('风格','')}</span>`).join('');
+  // def coverage
+  const dc=document.getElementById('defcov'); const dt=S.def_coverage.authored+S.def_coverage.templated;
+  [['考究',S.def_coverage.authored,'w'],['模板·待考究',S.def_coverage.templated,'e']].forEach(([l,v,cls])=>
+    dc.appendChild($(`<div class="bar"><span class="bl">${l}</span><span class="bt"><span class="bf ${cls}" style="width:${Math.max(5,v/dt*100)}%">${v}</span></span></div>`)));
+  document.getElementById('defnote').innerHTML=`🔬 已<b>考究撰写 ${S.def_coverage.authored}</b> 个主要风格的定义+代表人物;其余 ${S.def_coverage.templated} 个为模板草案,待逐个考究补全。每个风格都有可打开的详情页。`;
+  // xis
+  const xe=Object.entries(S.by_xi).sort((a,b)=>b[1]-a[1]); const xmax=xe[0][1];
+  const xc=document.getElementById('xis');
+  xe.forEach(([x,v])=> xc.appendChild($(`<div class="bar"><span class="bl" style="width:150px">${x}</span><span class="bt"><span class="bf w" style="width:${Math.max(5,v/xmax*100)}%">${v}</span></span></div>`)));
+}).catch(e=>{document.getElementById('cards').innerHTML='<div style="padding:20px;color:var(--ink-faint)">加载失败(需服务器打开)</div>';});
+</script>
+</body></html>

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 风格层 V3(202 风格 · 多模态导航)</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--green-soft:#eef3f0;--warn:#c98a1a;--warn-soft:#fbf0d8;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:38px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(22px,4vw,32px);font-weight:600;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.7;max-width:760px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .bar{position:sticky;top:0;z-index:50;background:var(--paper);padding:13px 0 10px;margin-top:18px;border-bottom:1px solid var(--line)}
+  .search{display:block;width:100%;max-width:520px;margin:0 auto;font-family:var(--sans);font-size:14px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:999px;padding:11px 18px;outline:none}
+  .search:focus{border-color:var(--accent)}
+  .ctrls{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+  .seg{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+  .seg button{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);background:none;border:none;padding:6px 14px;cursor:pointer}
+  .seg button.on{background:var(--accent);color:#fff}
+  .stat{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:9px}.stat b{color:var(--accent)}.stat .lo{color:var(--warn)}
+  .jump{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:10px}
+  .jump a{font-family:var(--mono);font-size:11px;text-decoration:none;color:var(--ink-soft);background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 11px;cursor:pointer}
+  .jump a:hover{border-color:var(--accent);color:var(--accent)}.jump a .c{color:var(--ink-faint)}
+  /* 导航可视化 */
+  .nav{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+  .navtabs{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:6px}
+  .navtabs button{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);background:var(--paper-2);border:none;border-radius:999px;padding:5px 13px;cursor:pointer}
+  .navtabs button.on{background:var(--accent);color:#fff}
+  .navsvg{width:100%;height:auto;display:block}
+  .navhint{font-family:var(--mono);font-size:10px;color:var(--ink-faint);text-align:center;margin-top:5px;line-height:1.5}
+  .tip{position:fixed;z-index:99;pointer-events:none;background:#fff;border:1px solid var(--line);box-shadow:0 4px 14px rgba(80,60,30,.18);border-radius:8px;padding:5px 10px;font-size:12px;opacity:0;transition:opacity .08s}.tip.show{opacity:1}
+  .grp{margin-top:24px;scroll-margin-top:150px}
+  .grp-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:2px solid var(--gc,var(--accent));padding-bottom:7px}
+  .grp-h .code{font-family:var(--mono);font-size:12px;font-weight:600;color:#fff;background:var(--gc,var(--accent));border-radius:6px;padding:2px 9px}
+  .grp-h .cn{font-family:var(--serif);font-size:19px;font-weight:600}
+  .grp-h .q{font-size:12px;color:var(--ink-mute);font-style:italic}
+  .grp-h .ct{font-family:var(--mono);font-size:11px;color:#fff;background:var(--ink-faint);border-radius:999px;padding:1px 9px;margin-left:auto}
+  .styles{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;margin-top:12px}
+  .st{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;border-left:3px solid var(--accent);text-decoration:none;color:inherit;display:block;transition:box-shadow .14s,border-color .14s;scroll-margin-top:160px}
+  a.st:hover{border-color:var(--accent);box-shadow:0 2px 10px rgba(176,103,58,.12)}
+  .st.e{border-left-color:var(--green)}
+  .st.low{background:var(--warn-soft);border-color:#ecd9a8}
+  .st.flash{box-shadow:0 0 0 3px var(--accent);border-color:var(--accent)}
+  .st .sn{font-family:var(--serif);font-size:14.5px;font-weight:600;color:var(--ink)}
+  .st .sd{font-size:11.5px;color:var(--ink-mute);line-height:1.5;margin-top:2px}
+  .st .meta{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;align-items:center}
+  .tag{font-family:var(--mono);font-size:9.5px;border-radius:5px;padding:1px 7px}
+  .tag.wv{color:#fff}.tag.yr{color:var(--ink-soft);background:#fff;border:1px solid var(--line)}.tag.xi{color:var(--ink-soft);background:var(--paper-2)}
+  .tag.reg{color:var(--ink-mute);border:1px solid var(--line)}.tag.conf-low{color:#fff;background:var(--warn)}.tag.conf-med{color:var(--ink-mute);border:1px solid var(--line)}
+  .st mark{background:#fbe3c8;border-radius:3px;padding:0 1px}
+  .empty{text-align:center;color:var(--ink-faint);font-size:13px;padding:40px}
+  .back{display:block;text-align:center;margin-top:44px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .home-fab:hover{color:var(--accent)}
+  .top-fab{position:fixed;right:14px;bottom:14px;z-index:9999;font-family:var(--mono);font-size:12px;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 12px;box-shadow:0 4px 14px rgba(0,0,0,.2);cursor:pointer}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="top-fab" onclick="scrollTo(0,0)">↑ 顶部</div>
+<div class="tip" id="tip"></div>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 风格库</div>
+  <h1>风格库 · 三种导航,一座种子库</h1>
+  <p class="lead"><b>下面是 202 个风格的种子库</b>;上面叠了两种<b>可视化导航</b>——<b>映射</b>(世界观平面)与<b>时间线</b>(东西双带)。点导航里的一颗点 → 库里那张卡<b>滚动高亮</b>;点区/时代标签 → 跳到对应分组。可视化导航 / 时间导航 / 映射导航,三种对照着逛。</p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">风格库</b></div>
+
+  <div class="bar">
+    <input class="search" id="q" type="search" placeholder="🔍 搜风格名,如「印象」「水墨」「立体」「禅」…"/>
+    <div class="ctrls">
+      <div class="seg" id="viewseg"><button data-v="wv" class="on">按世界观区</button><button data-v="time">按时间线</button><button data-v="xi">按体系</button></div>
+      <div class="seg" id="regionseg"><button data-r="all" class="on">东+西</button><button data-r="west">西方</button><button data-r="east">东方</button></div>
+      <div class="seg" id="confseg"><button data-c="all" class="on">全部</button><button data-c="low">仅看待核对</button></div>
+    </div>
+    <div class="stat" id="stat"></div>
+    <div class="jump" id="jump"></div>
+  </div>
+
+  <div class="nav">
+    <div class="navtabs" id="navtabs"><button data-n="map" class="on">🗺️ 映射 · 世界观平面</button><button data-n="time">🕰️ 时间线 · 东西双带</button><button data-n="off">隐藏</button></div>
+    <div id="navbox"></div>
+    <div class="navhint" id="navhint"></div>
+  </div>
+
+  <div id="list"></div>
+  <div class="empty" id="empty" style="display:none">没有匹配的风格,换个词或筛选试试。</div>
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const NS='http://www.w3.org/2000/svg';
+const E=(n,a,t)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(t!=null)e.textContent=t;return e;};
+const WVC={WV1:'#b0673a',WV2:'#9a7b3a',WV3:'#5a7d6f',WV4:'#5b7596',WV5:'#8a5a7a',WV6:'#4a6a8a'};
+const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+const WVQ={};
+const ERAS=[[-1e9,0,'上古 · 史前–汉以前'],[1,900,'古典 · 汉唐'],[901,1300,'中世 · 宋元'],[1301,1600,'近世 · 文艺复兴/明'],[1601,1800,'近世 · 巴洛克/清'],[1801,1900,'19 世纪'],[1901,1980,'现代'],[1981,1e9,'当代']];
+const TICKS=[[-2000,'史前'],[-500,'先秦'],[0,'汉'],[750,'唐'],[1100,'宋'],[1300,'元'],[1500,'明'],[1700,'清'],[1850,'19c'],[1920,'现代'],[2000,'当代']];
+let NODES=[],view='wv',region='all',conf='all',kw='',navMode='map',CENT={};
+Promise.all([
+  fetch('data/kg_style.json').then(r=>r.json()),
+  fetch('data/kg_worldview_regions.json').then(r=>r.json()).catch(()=>({regions:[]}))
+]).then(([sty,wv])=>{
+  (wv.regions||[]).forEach(r=>{WVQ[r.id]=r.q;CENT[r.id]=[r.cx,r.cy];});
+  NODES=sty.nodes.map(n=>({id:n.id,cn:n.cn,wv:n.wv,year:n.year,xi:n.xi||'—',region:n.region,conf:n.conf||'high',
+    rx:(n.coord||{}).rep_exp,sp:(n.coord||{}).struct_perc,aka:n.aka||[],desc:((n.lore||{}).essence)||(n.def||'').slice(0,40)}));
+  document.getElementById('q').addEventListener('input',e=>{kw=e.target.value.trim();render();});
+  document.getElementById('viewseg').addEventListener('click',e=>{if(!e.target.dataset.v)return;view=e.target.dataset.v;seg(e);render();});
+  document.getElementById('regionseg').addEventListener('click',e=>{if(!e.target.dataset.r)return;region=e.target.dataset.r;seg(e);render();});
+  document.getElementById('confseg').addEventListener('click',e=>{if(!e.target.dataset.c)return;conf=e.target.dataset.c;seg(e);render();});
+  document.getElementById('navtabs').addEventListener('click',e=>{if(!e.target.dataset.n)return;navMode=e.target.dataset.n;seg(e);drawNav();});
+  render();
+});
+function seg(e){[...e.currentTarget.children].forEach(b=>b.classList.toggle('on',b===e.target));}
+function pass(n){if(region!=='all'&&n.region!==region)return false;if(conf==='low'&&n.conf!=='low')return false;
+  if(kw&&!(n.cn.includes(kw)||(n.aka||[]).some(a=>a.includes(kw))||(n.desc||'').includes(kw)))return false;return true;}
+function hl(t){if(!kw||!t)return t||'';return t.split(kw).join(`<mark>${kw}</mark>`);}
+function fy(y){return y<0?`公元前${-y}`:`${y}`;}
+const tip=document.getElementById('tip');
+function showTip(ev,html){tip.className='tip show';tip.innerHTML=html;tip.style.left=(ev.clientX+13)+'px';tip.style.top=(ev.clientY-8)+'px';}
+function hideTip(){tip.className='tip';}
+function gotoCard(id){const el=document.getElementById('card-'+id);if(!el){return;}el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),1600);}
+function gotoGroup(predView,key){if(view!==predView){view=predView;document.querySelectorAll('#viewseg button').forEach(b=>b.classList.toggle('on',b.dataset.v===predView));render();}
+  setTimeout(()=>{const idx=lastGroups.findIndex(g=>g.key===key);if(idx>=0){const el=document.getElementById('g'+idx);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}},60);}
+// ---------- 导航可视化 ----------
+function dot(svg,x,y,n,r){const c=E('circle',{cx:x,cy:y,r:r||4.2,fill:WVC[n.wv]||'#999','fill-opacity':.62,stroke:'#fff','stroke-width':.6,style:'cursor:pointer'});
+  c.addEventListener('mouseenter',ev=>showTip(ev,`<b>${n.cn}</b><br><span style="font-family:var(--mono);font-size:10px;color:${WVC[n.wv]}">${n.wv} ${WVN[n.wv]||''} · ${n.region==='east'?'东':'西'} · ${fy(n.year)}</span>`));
+  c.addEventListener('mousemove',ev=>{tip.style.left=(ev.clientX+13)+'px';tip.style.top=(ev.clientY-8)+'px';});
+  c.addEventListener('mouseleave',hideTip);
+  c.addEventListener('click',()=>{hideTip();gotoCard(n.id);});svg.appendChild(c);}
+function drawPlane(items){
+  const W=1000,H=440,pad=46,xv=v=>pad+v*(W-2*pad),yv=v=>H-pad-v*(H-2*pad);
+  const svg=E('svg',{viewBox:`0 0 ${W} ${H}`,class:'navsvg'});
+  svg.appendChild(E('rect',{x:pad,y:pad,width:W-2*pad,height:H-2*pad,fill:'#fcfaf5',stroke:'#e8e0d0'}));
+  [.25,.5,.75].forEach(t=>{svg.appendChild(E('line',{x1:xv(t),y1:pad,x2:xv(t),y2:H-pad,stroke:'#efe9dc'}));svg.appendChild(E('line',{x1:pad,y1:yv(t),x2:W-pad,y2:yv(t),stroke:'#efe9dc'}));});
+  const T=(x,y,s,o={})=>{const t=E('text',{x,y,'font-family':o.f||'JetBrains Mono','font-size':o.fs||11,fill:o.fill||'#857d6f','text-anchor':o.a||'middle'},s);if(o.w)t.setAttribute('font-weight',o.w);if(o.st){t.setAttribute('paint-order','stroke');t.setAttribute('stroke','#fcfaf5');t.setAttribute('stroke-width',3);}if(o.click){t.style.cursor='pointer';t.addEventListener('click',o.click);}svg.appendChild(t);};
+  T(xv(0.02),yv(.5)+4,'再现',{a:'start',fill:'#5a7d6f',w:600});T(xv(.98),yv(.5)+4,'表现',{a:'end',fill:'#b0673a',w:600});
+  T(xv(.5),yv(0)+13,'结构',{fill:'#5a7d6f',w:600});T(xv(.5),yv(1)-6,'感知',{fill:'#b0673a',w:600});
+  items.forEach(n=>{if(n.rx==null)return;dot(svg,xv(n.rx),yv(n.sp),n);});
+  Object.entries(CENT).forEach(([id,c])=>{svg.appendChild(E('circle',{cx:xv(c[0]),cy:yv(c[1]),r:9,fill:WVC[id],stroke:'#fff','stroke-width':2,style:'cursor:pointer'}));
+    T(xv(c[0]),yv(c[1])-13,WVN[id],{f:'Noto Serif SC',fs:12.5,fill:WVC[id],w:600,st:1,click:()=>gotoGroup('wv',id)});});
+  return svg;
+}
+function ts(y){const bx=70,ex=930,split=0.24;return y<1300?bx+(ex-bx)*split*(y-(-2500))/3800:bx+(ex-bx)*(split+(1-split)*(y-1300)/725);}
+function hashv(s){let h=0;for(const c of s)h=(h*131+c.charCodeAt(0))&0xffff;return h/0xffff;}
+function drawTimeline(items){
+  const W=1000,H=340,TOP=44,BOT=H-40,MID=(TOP+BOT)/2;
+  const svg=E('svg',{viewBox:`0 0 ${W} ${H}`,class:'navsvg'});
+  svg.appendChild(E('rect',{x:70,y:TOP-2,width:860,height:MID-TOP-6,fill:'#fbf6ef'}));
+  svg.appendChild(E('rect',{x:70,y:MID+6,width:860,height:BOT-MID-6,fill:'#f1f4f1'}));
+  const T=(x,y,s,o={})=>{const t=E('text',{x,y,'font-family':o.f||'JetBrains Mono','font-size':o.fs||10,fill:o.fill||'#9a917f','text-anchor':o.a||'middle'},s);if(o.w)t.setAttribute('font-weight',o.w);if(o.click){t.style.cursor='pointer';t.addEventListener('click',o.click);}svg.appendChild(t);};
+  T(62,(TOP+MID)/2,'西',{a:'end',f:'Noto Serif SC',fs:14,fill:'#b0673a',w:600});T(62,(MID+BOT)/2,'东',{a:'end',f:'Noto Serif SC',fs:14,fill:'#5a7d6f',w:600});
+  svg.appendChild(E('line',{x1:70,y1:MID,x2:930,y2:MID,stroke:'#d8cfbf','stroke-width':1.2}));
+  TICKS.forEach(([y,lab])=>{const x=ts(y);svg.appendChild(E('line',{x1:x,y1:TOP-2,x2:x,y2:BOT,stroke:'#ece4d4'}));T(x,MID+4,lab);});
+  const sx=ts(1300);svg.appendChild(E('line',{x1:sx,y1:TOP-2,x2:sx,y2:BOT,stroke:'#e0c9b0','stroke-dasharray':'3 3'}));
+  items.forEach(n=>{if(n.year==null)return;const west=n.region!=='east';const c0=west?TOP:MID+14,c1=west?MID-14:BOT;const y=c0+hashv(n.id)*(c1-c0);dot(svg,ts(n.year),y,n,4);});
+  return svg;
+}
+function drawNav(){
+  const box=document.getElementById('navbox'),hint=document.getElementById('navhint');box.innerHTML='';
+  if(navMode==='off'){hint.textContent='导航已隐藏 · 点上方标签重新打开';return;}
+  const items=NODES.filter(pass);
+  if(navMode==='map'){box.appendChild(drawPlane(items));hint.innerHTML='点一颗点 → 跳到库里那张卡 · 点大圆(区名)→ 跳到该世界观区分组 · 横轴再现↔表现 / 纵轴结构↔感知';}
+  else{box.appendChild(drawTimeline(items));hint.innerHTML='点一颗点 → 跳到库里那张卡 · 上带西方/下带东方 · 横轴时间(古代压缩近世展开)· 颜色=世界观区';}
+}
+function card(n){
+  const cf=n.conf==='low'?'<span class="tag conf-low">待核对</span>':(n.conf==='med'?'<span class="tag conf-med">中</span>':'');
+  return `<a class="st ${n.region==='east'?'e':''} ${n.conf==='low'?'low':''}" id="card-${n.id}" href="kg-style-detail.html?id=${n.id}">
+    <div class="sn">${hl(n.cn)}${n.aka.length?` <span class="tag reg">+${n.aka.length}</span>`:''}</div>
+    ${n.desc?`<div class="sd">${hl(n.desc)}</div>`:''}
+    <div class="meta"><span class="tag wv" style="background:${WVC[n.wv]||'#999'}">${n.wv} ${WVN[n.wv]||''}</span><span class="tag yr">${fy(n.year)}</span><span class="tag reg">${n.region==='east'?'东':'西'}</span>${view!=='xi'?`<span class="tag xi">${hl(n.xi)}</span>`:''}${cf}</div></a>`;
+}
+let lastGroups=[];
+function groups(items){
+  if(view==='wv')return ['WV1','WV2','WV3','WV4','WV5','WV6'].map(id=>({key:id,color:WVC[id],
+    head:`<span class="code">${id}</span><span class="cn">${WVN[id]}</span><span class="q">${WVQ[id]||''}</span>`,items:items.filter(n=>n.wv===id)})).filter(g=>g.items.length);
+  if(view==='time')return ERAS.map(([a,b,lab])=>({key:lab,color:'#b0673a',head:`<span class="cn">${lab}</span>`,items:items.filter(n=>n.year>=a&&n.year<=b).sort((x,y)=>x.year-y.year)})).filter(g=>g.items.length);
+  const order=[...new Set(items.map(n=>n.xi))];const cnt={};items.forEach(n=>cnt[n.xi]=(cnt[n.xi]||0)+1);order.sort((a,b)=>cnt[b]-cnt[a]);
+  return order.map(x=>({key:x,color:'#5a7d6f',head:`<span class="cn">${x}</span>`,items:items.filter(n=>n.xi===x)}));
+}
+function render(){
+  const items=NODES.filter(pass);const gs=groups(items);lastGroups=gs;
+  const list=document.getElementById('list');list.innerHTML='';
+  const jump=document.getElementById('jump');jump.innerHTML='';
+  document.getElementById('empty').style.display=items.length?'none':'block';
+  gs.forEach((g,i)=>{const sec=$(`<div class="grp" id="g${i}" style="--gc:${g.color}"></div>`);
+    sec.innerHTML=`<div class="grp-h" style="--gc:${g.color}">${g.head}<span class="ct">${g.items.length}</span></div><div class="styles"></div>`;
+    const grid=sec.querySelector('.styles');g.items.forEach(n=>grid.appendChild($(card(n))));list.appendChild(sec);
+    const j=$(`<a>${g.key.replace(/^WV\d\s*/,'')}<span class="c"> ${g.items.length}</span></a>`);j.onclick=()=>document.getElementById('g'+i).scrollIntoView({behavior:'smooth',block:'start'});jump.appendChild(j);});
+  const lo=items.filter(n=>n.conf==='low').length;
+  document.getElementById('stat').innerHTML=`显示 <b>${items.length}</b> / ${NODES.length} 风格 · 视角:${view==='wv'?'世界观区':view==='time'?'时间线(东西双带)':'体系'}${lo?` · <span class="lo">待核对 ${lo}</span>`:''}`;
+  drawNav();
+}
+</script>
+</body></html>

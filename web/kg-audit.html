@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · V2 科学化自检</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--green-soft:#eef3f0;--red:#b0473a;--warn:#c98a1a;--warn-soft:#fbf0d8;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:38px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(22px,4vw,32px);font-weight:600;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.7;max-width:680px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .sec{margin-top:38px}
+  .sec-h{font-family:var(--serif);font-size:20px;font-weight:500;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:6px}
+  .sec-h .en{font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-left:8px}
+  .sec-d{font-size:13px;color:var(--ink-mute);margin:6px 0 14px;line-height:1.6}.sec-d b{color:var(--ink-soft)}
+  /* metric cards */
+  .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}@media(max-width:720px){.metrics{grid-template-columns:1fr 1fr}}
+  .m{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px;text-align:center}
+  .m .mv{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--green)}
+  .m .mv .b{color:var(--ink-faint);font-size:15px}
+  .m .ml{font-size:11.5px;color:var(--ink-soft);margin-top:3px;line-height:1.4}
+  .m .md{font-family:var(--mono);font-size:9.5px;color:var(--ink-faint);margin-top:3px}
+  /* finding rows */
+  .find{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;margin-bottom:9px;border-left:4px solid var(--line)}
+  .find.fix{border-left-color:var(--green)}.find.todo{border-left-color:var(--warn)}.find.open{border-left-color:var(--red)}
+  .find .fh{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+  .find .sev{font-family:var(--mono);font-size:10px;color:#fff;border-radius:5px;padding:1px 7px;flex-shrink:0}
+  .sev.fix{background:var(--green)}.sev.todo{background:var(--warn)}.sev.open{background:var(--red)}
+  .find .ft{font-family:var(--serif);font-size:15px;font-weight:600}
+  .find .fb{font-size:12.5px;color:var(--ink-soft);line-height:1.65;margin-top:5px}
+  .find .fb b{color:var(--ink)}
+  .find .fr{font-family:var(--mono);font-size:11px;color:var(--green);margin-top:6px}
+  .find.open .fr,.find.todo .fr{color:var(--warn)}
+  /* spanning table */
+  table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
+  th,td{border:1px solid var(--line);padding:6px 9px;text-align:left}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10px;color:var(--ink-soft);font-weight:500}
+  td .codes{font-family:var(--mono);font-size:10.5px;color:var(--accent)}
+  .barwrap{display:inline-block;width:120px;height:8px;background:var(--paper-2);border-radius:4px;vertical-align:middle;overflow:hidden}
+  .bar{height:100%;background:var(--accent)}
+  /* two-col assumption */
+  .epi{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:720px){.epi{grid-template-columns:1fr}}
+  .epi .col{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .epi .col.v{border-top:3px solid var(--green)}.epi .col.a{border-top:3px solid var(--warn)}
+  .epi .ch{font-family:var(--serif);font-size:15px;font-weight:600;margin-bottom:7px}.epi .col.v .ch{color:var(--green)}.epi .col.a .ch{color:var(--warn)}
+  .epi ul{list-style:none}.epi li{font-size:12.5px;color:var(--ink-soft);line-height:1.7;padding-left:15px;position:relative}
+  .epi li::before{content:"·";position:absolute;left:3px;color:var(--ink-faint)}
+  /* falsifiable tests */
+  .test{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 15px;margin-bottom:8px}
+  .test .tt{font-family:var(--serif);font-size:14.5px;font-weight:600}
+  .test .tq{font-size:12px;color:var(--ink-soft);line-height:1.6;margin-top:3px}
+  .test .tf{font-family:var(--mono);font-size:11px;color:var(--accent);margin-top:5px}
+  .test .tf b{color:var(--red)}
+  .back{display:block;text-align:center;margin-top:44px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .home-fab:hover{color:var(--accent)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 科学化自检</div>
+  <h1>科学化自检报告 · v0.2(历史)</h1>
+  <p class="lead">把图谱从"断言"变成"<b>可测量、标清假设</b>"。本页全部数字由真相源 JSON <b>实时统计</b>,不是手写。<b>科学的标准 = 每个结论都可能被证伪。</b></p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-apply">应用·工具</a> › <b style="color:var(--ink-soft)">科学化审核</b></div>
+  <div style="max-width:780px;margin:14px auto 0;background:#fbf3ec;border:1px solid #e6c9b0;border-left:4px solid var(--accent);border-radius:10px;padding:11px 15px;font-size:12.5px;color:#6a4a33;line-height:1.7">⏳ <b>历史记录(v0.2)</b>:本页是 V3 之前的科学化审核,文中「3 轴 / 12 世界模型 / 东西对称」是<b>当时被审视的旧定义</b>。这些审核正是后来催生 V3 的依据——最终结构(2 真轴 + 6 数据发现区、东西非镜像)见 <a href="kg-first-principles.html" style="color:var(--accent);font-weight:600;text-decoration:none">第一性原理</a> 与 <a href="kg-worldview-science.html" style="color:var(--accent);font-weight:600;text-decoration:none">科学性自检</a>。保留此页作为演进谱系。</div>
+
+  <!-- 指标 -->
+  <div class="sec">
+    <div class="sec-h">① 关键指标(实时)<span class="en">live metrics</span></div>
+    <div class="metrics" id="metrics"></div>
+  </div>
+
+  <!-- 已修 / 已决策 -->
+  <div class="sec">
+    <div class="sec-h">② 本轮已修复 / 已拍板<span class="en">fixed & decided</span></div>
+    <div id="fixed"></div>
+  </div>
+
+  <!-- 硬证据: 体系跨模型 -->
+  <div class="sec">
+    <div class="sec-h">③ 硬证据:V1「体系」≠ 世界模型轴<span class="en">cross-cutting</span></div>
+    <div class="sec-d">这是"风格必须按名逐个挂、不能按体系一刀切"的<b>数据证明</b>:每个 V1 体系都<b>横跨多个</b>世界模型。若某体系只落 1 个模型,才说明两轴对齐——但没有一个这样。</div>
+    <table><thead><tr><th>V1 体系</th><th>横跨的世界模型</th><th>跨度</th></tr></thead><tbody id="spanning"></tbody></table>
+  </div>
+
+  <!-- 认知诚实 -->
+  <div class="sec">
+    <div class="sec-h">④ 已验证 vs 仍是假设<span class="en">verified vs assumed</span></div>
+    <div class="sec-d">科学化的前提是<b>分清哪些已被数据支持、哪些只是设计者的判断</b>。</div>
+    <div class="epi">
+      <div class="col v"><div class="ch">✓ 已被数据支持</div><ul id="verified"></ul></div>
+      <div class="col a"><div class="ch">⚠ 仍是假设(待证伪)</div><ul id="assumed"></ul></div>
+    </div>
+  </div>
+
+  <!-- 仍未解决 -->
+  <div class="sec">
+    <div class="sec-h">⑤ 仍未解决(下一步架构)<span class="en">open issues</span></div>
+    <div id="open"></div>
+  </div>
+
+  <!-- 可证伪实验 -->
+  <div class="sec">
+    <div class="sec-h">⑥ 让它可证伪:三个待跑实验<span class="en">falsifiable tests</span></div>
+    <div class="sec-d">把卖点变成实验。需要的是<b>跨 5 层标注过的语料</b>(现有 119 件只标了风格向量,还不够)。</div>
+    <div id="tests"></div>
+  </div>
+
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+
+<script>
+const S = {
+ "coord_distinct_before": 12,
+ "coord_distinct_after": 171,
+ "style_total": 296,
+ "conf": {
+  "high": 210,
+  "med": 74,
+  "low": 12
+ },
+ "edge": {
+  "total": 841,
+  "resolved": 719,
+  "rate": 0.855,
+  "by_kind": {
+   "exact": 492,
+   "alias": 145,
+   "fuzzy": 67,
+   "suffix": 15,
+   "nonpaint": 5,
+   "pending": 117
+  }
+ },
+ "spanning_xi": {
+  "古典体系": [
+   "W1",
+   "W2"
+  ],
+  "新古典与浪漫体系": [
+   "W1",
+   "W2"
+  ],
+  "现代主义体系": [
+   "W1",
+   "W2",
+   "W3",
+   "W4",
+   "W5",
+   "W6"
+  ],
+  "当代体系": [
+   "W1",
+   "W6"
+  ],
+  "先秦与汉唐体系": [
+   "E1",
+   "E2",
+   "E3",
+   "E4"
+  ],
+  "宋元体系": [
+   "E3",
+   "E4",
+   "E5"
+  ],
+  "明清体系": [
+   "E3",
+   "E4",
+   "E5"
+  ],
+  "近现代体系": [
+   "E1",
+   "E2",
+   "E3",
+   "E4",
+   "E5",
+   "E6"
+  ],
+  "当代水墨体系": [
+   "E5",
+   "E6"
+  ],
+  "民间与地域体系": [
+   "E1",
+   "E3",
+   "E4"
+  ],
+  "工笔与写意体系": [
+   "E2",
+   "E3",
+   "E4",
+   "E5"
+  ],
+  "跨媒介与实验体系": [
+   "E3",
+   "E5",
+   "E6"
+  ]
+ },
+ "model_dist": {
+  "W1": 20,
+  "W2": 18,
+  "W3": 6,
+  "W4": 18,
+  "W5": 11,
+  "W6": 12,
+  "E1": 43,
+  "E2": 16,
+  "E4": 90,
+  "E3": 33,
+  "E5": 15,
+  "E6": 14
+ },
+ "consolidation": "当代风格合并去冗:390→296(并 94 个近义变体为 aka 别名,信息保留)"
+};
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+
+// metrics
+const M=[
+  {v:S.coord_distinct_after,b:'/ '+S.style_total,l:'风格不同坐标',d:`去塌缩前仅 ${S.coord_distinct_before}`},
+  {v:(S.edge.rate*100).toFixed(0)+'%',l:'关联风格边可解析',d:`${S.edge.resolved}/${S.edge.total} · 修前 ~25%`},
+  {v:S.conf.high,b:'/'+(S.conf.high+S.conf.med+S.conf.low),l:'风格高置信',d:`中 ${S.conf.med} · 待核 ${S.conf.low}`},
+  {v:Object.keys(S.spanning_xi).length,b:'/12',l:'体系横跨多模型',d:'证明体系≠世界模型轴'}
+];
+const me=document.getElementById('metrics');
+M.forEach(m=> me.appendChild($(`<div class="m"><div class="mv">${m.v}${m.b?`<span class="b">${m.b}</span>`:''}</div><div class="ml">${m.l}</div><div class="md">${m.d}</div></div>`)));
+
+// fixed/decided
+const FIXED=[
+ {t:'风格坐标去塌缩',b:`390 风格原本只有 12 种坐标(同模型不可区分)。现按"模型基点 + 语言信号偏移 + 确定性微抖动"散开到 <b>${S.coord_distinct_after} 种</b>,点真正分开了。`,r:'✓ 已修(仍是草案估计,非测量)'},
+ {t:'分类纠错:都市水墨等 6 个',b:'关键词「都市」误把<b>都市水墨</b>判成 E2人伦;已让"当代水墨/跨媒介"体系默认 E6,仅明确禅/山水/人物信号才改。',r:'✓ 已修'},
+ {t:'关联风格边规范化',b:`Sheet5 自由文本对齐到风格层真实节点(别名表 + 模糊匹配),可解析率 <b>25% → ${(S.edge.rate*100).toFixed(0)}%</b>;非绘画(街头摄影等)与暂无节点的标 pending。`,r:'✓ 已修'},
+ {t:'决策①:东西轴 → 卷入度',b:'原轴把<b>文化来源</b>(东/西)和<b>视觉立场</b>(卷入/抽离)混为一谈。现轴本体=卷入↔抽离(可观测),东/西降为相关的<b>文化属性</b>。',r:'✓ 已落数据'},
+ {t:'决策④:画外音用 4 子系统',b:'放弃硬凑的"5 型"(价值判断型无数据来源),改用 Sheet5 的 4 子系统为结构,5 型仅作软标注。',r:'✓ 已落数据'},
+ {t:'决策⑤:确立 VAD 情感坐标',b:'7大构成/感知/画外音三处情感各写各的自由文本(重叠仅 55 词),因果链算不出来。确立 <b>效价-唤醒-支配(VAD)</b> 为统一坐标。',r:'⏳ 框架已立,全量映射待做'}
+];
+const fx=document.getElementById('fixed');
+FIXED.forEach(f=> fx.appendChild($(`<div class="find fix"><div class="fh"><span class="sev fix">已处理</span><span class="ft">${f.t}</span></div><div class="fb">${f.b}</div><div class="fr">${f.r}</div></div>`)));
+
+// spanning
+const maxspan=6; const sp=document.getElementById('spanning');
+Object.entries(S.spanning_xi).sort((a,b)=>b[1].length-a[1].length).forEach(([xi,ms])=>{
+  sp.appendChild($(`<tr><td>${xi}</td><td><span class="codes">${ms.join(' · ')}</span></td><td><span class="barwrap"><span class="bar" style="width:${ms.length/maxspan*100}%"></span></span> ${ms.length}</td></tr>`));
+});
+
+// verified vs assumed
+const VER=[
+ '风格「体系」与世界模型不对齐 — 12/12 体系横跨多模型(现代主义/近现代各跨 6)',
+ '7大构成 与 V1 Sheet2 是 7↔7 干净映射(零损耗)',
+ '题材 518 / 语言 383 离散原子结构清晰、ID 唯一无重复',
+ '关联风格边 85% 能连到真实风格节点'
+];
+const ASS=[
+ '所有坐标数值(0.55/0.80…)是设计者直觉,非测量、无信度',
+ '风格坐标"由语言分布算出"——目前是偏移近似,尚未真正自下而上推导',
+ '东方 E1–6 与西方 W1–6 的 1:1 镜像(E5禅意↔W5潜意识等)',
+ '五层"正交→可重组"——核心卖点,尚未用语料验证',
+ 'VAD 情感坐标能统一三层——框架已立,未全量验证'
+];
+const vu=document.getElementById('verified'),au=document.getElementById('assumed');
+VER.forEach(x=>vu.appendChild($(`<li>${x}</li>`)));
+ASS.forEach(x=>au.appendChild($(`<li>${x}</li>`)));
+
+// open
+const OPEN=[
+ {t:'③ 维度基不统一',b:'世界观 3 轴 与 风格 8 维(E 向量 4 轴)有重复(再现-表现)与同义(稳定-流动 ≈ 秩序-张力)。需合并成<b>一组正交基</b>,各层都投影到它。',r:'未解决 · 需定基'},
+ {t:'⑤ VAD 全量映射',b:'要把 7大构成/感知/画外音 的 300+ 情感词逐个映射到 VAD 三维,因果链才真能算。',r:'未解决 · 工作量大'},
+ {t:'坐标方法论与信度',b:'坐标需要:轴端点定义 + 评分细则 + 多人(或 VLM 多次)标注一致性,才能称"数据"。',r:'未解决 · 需流程'}
+];
+const op=document.getElementById('open');
+OPEN.forEach(o=> op.appendChild($(`<div class="find open"><div class="fh"><span class="sev open">未解决</span><span class="ft">${o.t}</span></div><div class="fb">${o.b}</div><div class="fr">${o.r}</div></div>`)));
+
+// falsifiable tests
+const TESTS=[
+ {t:'正交性检验',q:'拿跨 5 层标注的语料,算层间相关。若「题材」高度预测「风格」,二者就不正交,"可重组"卖点被证伪。',f:'判据:层间互信息 / 相关系数 < 阈值 → 通过;否则<b>卖点被证伪</b>'},
+ {t:'坐标信度检验',q:'同一批画让 3 人(或 VLM 多次)独立打世界坐标,看一致性。',f:'判据:组内相关 ICC ≥ 0.7 → 坐标可信;<b>否则坐标是噪声</b>'},
+ {t:'往返重建测试',q:'标注一幅画 → 只用结构化字段反向生成描述/图 → 比对原作。',f:'判据:重建相似度达标 → 结构抓住了本质;<b>否则信息有损</b>'}
+];
+const ts=document.getElementById('tests');
+TESTS.forEach(t=> ts.appendChild($(`<div class="test"><div class="tt">${t.t}</div><div class="tq">${t.q}</div><div class="tf">${t.f}</div></div>`)));
+</script>
+</body></html>

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 生成图库 · 图谱生成的画 + 它的数据</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:30px 16px 80px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(22px,4.4vw,32px);font-weight:700;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.7;max-width:680px;margin:8px auto}.lead b{color:var(--ink-soft)}.lead a{color:var(--accent);text-decoration:none}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .filt{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:16px 0 8px}
+  .fchip{font-family:var(--sans);font-size:12px;color:var(--ink-soft);background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 12px;cursor:pointer}
+  .fchip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .cnt{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin:8px 0 14px}
+  .delbtn{display:inline-block;margin-top:12px;margin-left:10px;font-family:var(--mono);font-size:12px;color:#b06a62;background:#fff;border:1px solid #d9b3ad;border-radius:8px;padding:6px 13px;cursor:pointer}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:13px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .12s,box-shadow .12s}
+  .card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(80,60,30,.14)}
+  .card img{width:100%;height:180px;object-fit:cover;display:block;background:var(--paper-2)}
+  .card .cb{padding:8px 10px}
+  .card .ct{font-family:var(--serif);font-size:13px;font-weight:600;line-height:1.3;max-height:2.6em;overflow:hidden}
+  .card .ca{font-family:var(--mono);font-size:9.5px;color:var(--ink-mute);margin-top:4px;display:flex;justify-content:space-between}
+  .card .sid{color:var(--accent)}
+  .empty{text-align:center;color:var(--ink-faint);padding:60px 20px;font-size:13.5px;line-height:1.8}
+  .empty a{color:var(--accent);text-decoration:none}
+  /* modal */
+  .ov{position:fixed;inset:0;background:rgba(20,16,10,.55);z-index:100;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:30px 14px}
+  .ov.on{display:flex}
+  .modal{background:var(--paper);border-radius:16px;max-width:880px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.4);overflow:hidden}
+  .mtop{display:grid;grid-template-columns:380px 1fr;gap:0}@media(max-width:680px){.mtop{grid-template-columns:1fr}}
+  .mimg{background:#000;display:flex;align-items:center;justify-content:center}.mimg img{width:100%;max-height:440px;object-fit:contain;display:block}
+  .mhd{padding:18px 20px}
+  .mhd .mt{font-family:var(--serif);font-size:18px;font-weight:700;line-height:1.4}
+  .mhd .ma{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:5px}
+  .mhd .q{font-size:13px;color:var(--ink-soft);margin-top:10px;line-height:1.7;background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 11px}.mhd .q b{color:var(--accent)}
+  .mbody{padding:6px 20px 22px}
+  .mb-h{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--accent);border-bottom:1px solid var(--line);padding-bottom:4px;margin:14px 0 8px}
+  .fld{display:grid;grid-template-columns:84px 1fr;gap:4px 10px;font-size:12.5px;line-height:1.7}
+  .fld .k{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);text-align:right;padding-top:1px}
+  .fld .v{color:var(--ink-soft)}.fld .v .jid{font-family:var(--mono);font-size:10px;color:var(--accent)}
+  .prm{font-size:12px;color:var(--ink-mute);line-height:1.7;background:#fff;border:1px solid var(--line);border-radius:8px;padding:9px 11px;margin-top:6px}
+  .dl{display:inline-block;margin-top:12px;font-family:var(--mono);font-size:12px;color:var(--accent);text-decoration:none;border:1px solid var(--accent);border-radius:8px;padding:6px 13px}
+  .mclose{position:sticky;top:0;float:right;font-family:var(--mono);font-size:13px;color:var(--ink-mute);background:rgba(255,255,255,.85);border:1px solid var(--line);border-radius:999px;width:30px;height:30px;cursor:pointer;margin:10px;z-index:2}
+  .back{display:block;text-align:center;margin-top:34px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 生成图库</div>
+  <h1>图谱生成的画 · 连同它的数据</h1>
+  <p class="lead">这里存着从 <a href="kg-compile.html">意图编译器</a> 生成并保存的每一张图——<b>不只是图,还有生成它的结构化数据</b>(意图、命中的风格节点、7 字段、驱动提示词)。点任意一张看它"为什么长这样"。</p>
+  <div class="breadcrumb"><a href="home.html">🏠 首页</a> › <a href="kg-v2.html">🧭 艺术图谱</a> › <a href="kg-compile.html">意图编译器</a> › <b style="color:var(--ink-soft)">生成图库</b></div>
+  <div class="filt" id="filt"></div>
+  <div class="cnt" id="cnt"></div>
+  <div class="grid" id="grid"></div>
+</div>
+<div class="ov" id="ov"><div class="modal" id="modal"></div></div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+function esc(s){return (s||'').replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));}
+function tfmt(ts){const d=new Date(ts*1000);const p=n=>String(n).padStart(2,'0');return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;}
+let ITEMS=[], VIEW=[], cur='全部', rateF='全部';
+const RATEFS=['全部','👍 赞','👎 踩','未评'];
+fetch('data/kg_gen_gallery.json?_='+Date.now()).then(r=>r.json()).then(d=>{
+  ITEMS=d.items||[];
+  buildFilter();draw();
+}).catch(e=>{document.getElementById('grid').innerHTML='<div class="empty" style="grid-column:1/-1">数据加载中或需服务器:'+e+'</div>';});
+function buildFilter(){
+  const fc=document.getElementById('filt');fc.innerHTML='';
+  const styles=[...new Set(ITEMS.map(i=>i.style_cn).filter(Boolean))];
+  ['全部',...styles].forEach(s=>{
+    const b=$(`<span class="fchip${s===cur?' on':''}">${esc(s)}</span>`);
+    b.onclick=()=>{cur=s;[...fc.querySelectorAll('.fchip')].forEach(c=>c.classList.toggle('on',c.textContent===s&&!c.dataset.rate));draw();};
+    fc.appendChild(b);
+  });
+  fc.appendChild($('<span style="width:100%;height:0"></span>'));
+  RATEFS.forEach(s=>{
+    const b=$(`<span class="fchip${s===rateF?' on':''}" data-rate="1">${s}</span>`);
+    b.onclick=()=>{rateF=s;[...fc.querySelectorAll('[data-rate]')].forEach(c=>c.classList.toggle('on',c.textContent===s));draw();};
+    fc.appendChild(b);
+  });
+}
+function passRate(it){return rateF==='全部'||(rateF==='👍 赞'&&it.rating===1)||(rateF==='👎 踩'&&it.rating===-1)||(rateF==='未评'&&(it.rating==null));}
+function draw(){
+  VIEW=ITEMS.filter(i=>(cur==='全部'||i.style_cn===cur)&&passRate(i));
+  document.getElementById('cnt').textContent=`共 ${ITEMS.length} 张${(cur==='全部'&&rateF==='全部')?'':' · 当前筛选 '+VIEW.length+' 张'} · 按时间倒序`;
+  const g=document.getElementById('grid');g.innerHTML='';
+  if(!ITEMS.length){g.innerHTML='<div class="empty" style="grid-column:1/-1">还没有保存的图。<br>去 <a href="kg-compile-v2.html">意图编译器 v2</a> 输入灵感 → 🎨 生产(自动存入)。</div>';return;}
+  VIEW.forEach((it,i)=>{
+    const rmark=it.rating===1?'<span style="color:var(--green)">👍</span>':it.rating===-1?'<span style="color:#b06a62">👎</span>':'';
+    const set=it.set_id?'<span title="对比组" style="color:var(--gold)">⊞</span>':'';
+    const c=$(`<div class="card"><img loading="lazy" src="${it.file}" alt=""/><div class="cb"><div class="ct">${esc(it.style_cn||it.query||'生成图')}</div><div class="ca"><span class="sid">${esc(it.model_label||it.model||'')}</span><span>${rmark}${set} ${tfmt(it.ts)}</span></div></div></div>`);
+    c.onclick=()=>openM(i);g.appendChild(c);
+  });
+}
+function btResult(it){
+  const b=it.backtest;
+  if(!b) return `<span class="dl" style="cursor:pointer;border-color:var(--blue);color:var(--blue)" onclick="doBacktest('${it.id}')">🔬 回测这张(VLM 读图测坐标)</span>`;
+  const a=b.actual_wv||{},t=b.target_wv,e=b.error;
+  const verd=e==null?'(无预期坐标可比)':(e<0.2?'<b style="color:var(--green)">很准 ✓</b>':e<0.35?'<b style="color:var(--gold)">接近</b>':'<b style="color:#b06a62">偏离 ⚠</b>');
+  return `<div class="prm">实际落点 <b>(${a.x}, ${a.y})</b>${t?` · 预期 <b>(${t.x}, ${t.y})</b> · 误差 <b>${e}</b> ${verd}`:''}<br>
+    <span style="color:var(--ink-faint)">VLM 依据:${esc(a.note||'')}</span><br>
+    <span class="dl" style="cursor:pointer;margin-top:8px;border-color:var(--blue);color:var(--blue)" onclick="doBacktest('${it.id}')">🔬 重测</span></div>`;
+}
+async function doBacktest(id){
+  const box=document.getElementById('btbox'); if(box)box.textContent='🔬 回测中…(VLM 读图测坐标,约 20–40 秒)';
+  try{
+    const r=await fetch('api/backtest',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id})});
+    const d=await r.json();
+    if(d.ok){ const it=ITEMS.find(x=>x.id===id); if(it)it.backtest=d.backtest; openMById(id); draw(); }
+    else if(box)box.textContent='⚠️ '+(d.error||'回测失败');
+  }catch(e){ if(box)box.textContent='⚠️ '+e; }
+}
+async function doRate(id,rating){
+  try{
+    const r=await fetch('api/rate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id,rating})});
+    const d=await r.json();
+    if(d.ok){ const it=ITEMS.find(x=>x.id===id); if(it)it.rating=rating; openMById(id); draw(); }
+  }catch(e){ alert('评分失败:'+e); }
+}
+async function doDelete(id){
+  const pass=prompt('删除需要口令(防止误删/被刷):');
+  if(pass==null) return;
+  try{
+    const r=await fetch('api/delete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id,pass})});
+    const d=await r.json();
+    if(d.ok){ ITEMS=ITEMS.filter(x=>x.id!==id); closeM(); buildFilter(); draw(); }
+    else alert('删除失败:'+(d.error||''));
+  }catch(e){ alert('请求失败:'+e); }
+}
+function openM(i){ renderModal(VIEW[i]); }
+function openMById(id){ const it=ITEMS.find(x=>x.id===id); if(it) renderModal(it); }
+function renderModal(it){
+  const f=it.fields||{};
+  const flds=Object.entries(f).map(([k,v])=>`<div class="k">${esc(k)}</div><div class="v">${esc(String(v)).replace(/\[(STYLE[^\]]+)\]/,'<span class="jid">[$1]</span>')}</div>`).join('');
+  const sib=it.set_id?ITEMS.filter(x=>x.set_id===it.set_id):[];
+  const sibHtml=sib.length>1?`<div class="mb-h">对比组 · 同一意图 × ${sib.length} 个模型</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px">${sib.map(s=>`<div style="text-align:center"><img src="${s.file}" style="width:100%;border-radius:8px;border:1px solid ${s.id===it.id?'var(--accent)':'var(--line)'}" onclick="openMById('${s.id}')"/><div style="font-family:var(--mono);font-size:9.5px;color:var(--ink-mute);margin-top:2px">${esc(s.model_label||s.model||'')}</div></div>`).join('')}</div>`:'';
+  const r=it.rating;
+  const m=document.getElementById('modal');
+  m.innerHTML=`<span class="mclose" onclick="closeM()">✕</span>
+    <div class="mtop"><div class="mimg"><img src="${it.file}" alt=""/></div>
+      <div class="mhd"><div class="mt">${esc(it.style_cn||'生成图')}</div>
+        <div class="ma">${tfmt(it.ts)} · <b style="color:var(--ink-soft)">${esc(it.model_label||it.model||'')}</b> · ${it.bytes?Math.round(it.bytes/1024)+'KB':''}</div>
+        ${it.query?`<div class="q">意图:<b>${esc(it.query)}</b></div>`:''}
+        ${it.style_id?`<div class="ma" style="margin-top:8px">风格节点: <a href="kg-style-detail.html?id=${esc(it.style_id)}" style="color:var(--accent);text-decoration:none">${esc(it.style_id)} →</a></div>`:''}
+        <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
+          <span style="font-family:var(--mono);font-size:11px;color:var(--ink-mute)">评分:</span>
+          <span onclick="doRate('${it.id}',1)" style="cursor:pointer;font-size:17px;${r===1?'':'opacity:.4'}">👍</span>
+          <span onclick="doRate('${it.id}',-1)" style="cursor:pointer;font-size:17px;${r===-1?'':'opacity:.4'}">👎</span>
+          ${r!=null?`<span onclick="doRate('${it.id}',null)" style="cursor:pointer;font-family:var(--mono);font-size:10px;color:var(--ink-faint)">清除</span>`:''}
+        </div>
+      </div></div>
+    <div class="mbody">
+      ${sibHtml}
+      ${flds?`<div class="mb-h">结构化数据 · 生成它的字段</div><div class="fld">${flds}</div>`:''}
+      <div class="mb-h">🔬 生成回测 · 它落对位置了吗</div><div id="btbox">${btResult(it)}</div>
+      <div class="mb-h">驱动提示词</div><div class="prm">${esc(it.prompt||'')}</div>
+      <a class="dl" href="${it.file}" download target="_blank">⬇ 下载原图</a>
+      <span class="delbtn" onclick="doDelete('${it.id}')">🗑 删除</span>
+    </div>`;
+  document.getElementById('ov').classList.add('on');document.body.style.overflow='hidden';
+}
+function closeM(){document.getElementById('ov').classList.remove('on');document.body.style.overflow='';}
+document.getElementById('ov').onclick=e=>{if(e.target.id==='ov')closeM();};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
+</script>
+</body></html>

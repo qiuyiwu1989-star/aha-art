@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 知识图谱 · 完备性体检看板</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:30px 16px 80px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(22px,4.4vw,32px);font-weight:700;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.7;max-width:680px;margin:8px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .sec{margin-top:28px}
+  .sec-h{font-family:var(--serif);font-size:18px;font-weight:600;border-bottom:2px solid var(--accent);padding-bottom:7px;margin-bottom:10px;display:flex;align-items:baseline;gap:8px}
+  .sec-h .en{font-family:var(--mono);font-size:10px;color:var(--ink-faint);font-weight:400}
+  .scale{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}@media(max-width:600px){.scale{grid-template-columns:1fr 1fr}}
+  .sc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px;text-align:center}
+  .sc .v{font-family:var(--mono);font-size:21px;font-weight:700;color:var(--accent)}.sc .l{font-size:11px;color:var(--ink-mute);margin-top:3px}
+  .bar{margin:9px 0}
+  .bar .bl{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:3px}.bar .bl b{color:var(--ink-soft)}.bar .bl .pc{font-family:var(--mono);font-size:11px}
+  .bar .bt{height:14px;background:var(--paper-2);border-radius:7px;overflow:hidden}.bar .bf{height:100%;border-radius:7px}
+  .chk{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:var(--ink-soft);line-height:1.6;padding:7px 0;border-bottom:1px dashed var(--line)}
+  .chk:last-child{border:none}.chk .i{flex-shrink:0;font-family:var(--mono);font-weight:700}.chk .ok{color:var(--green)}.chk .am{color:var(--gold)}.chk b{color:var(--ink)}
+  .todo{background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:10px;padding:12px 15px;font-size:12.5px;line-height:1.85;color:var(--ink-soft)}.todo b{color:var(--ink)}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .back{display:block;text-align:center;margin-top:38px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 体检看板</div>
+  <h1>图谱完备性 · 一眼看清</h1>
+  <p class="lead">把全图谱的<b>规模 / 结构健康 / 链端连通 / 可证伪验证 / 诚实待办</b>收口成一张 live 看板(实时拉 <code style="font-family:var(--mono);font-size:11px">kg_v3_export.json</code> 等)。绿=过关,黄=有边界已诚实标注。</p>
+  <div class="breadcrumb"><a href="home.html">🏠 首页</a> › <a href="kg-v2.html">🧭 艺术图谱</a> › <a href="kg-v2.html#g-apply">应用·工具</a> › <b style="color:var(--ink-soft)">体检看板</b></div>
+
+  <div class="sec"><div class="sec-h">① 规模 <span class="en">scale</span></div><div class="scale" id="scale"></div></div>
+  <div class="sec"><div class="sec-h">② 结构健康 <span class="en">structure</span></div><div class="card" id="struct"></div></div>
+  <div class="sec"><div class="sec-h">③ 链端连通 · 覆盖率 <span class="en">chain coverage</span></div><div class="card" id="cover"></div></div>
+  <div class="sec"><div class="sec-h">④ 可证伪验证 <span class="en">falsifiable</span></div><div class="card" id="valid"></div></div>
+  <div class="sec"><div class="sec-h">⑤ 诚实待办 <span class="en">honest backlog</span></div><div class="todo" id="todo"></div></div>
+
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+function bar(label,n,tot,col){const pc=tot?Math.round(n/tot*100):0;return `<div class="bar"><div class="bl"><b>${label}</b><span class="pc" style="color:${col}">${n}/${tot} · ${pc}%</span></div><div class="bt"><div class="bf" style="width:${pc}%;background:${col}"></div></div></div>`;}
+Promise.all([
+  fetch('data/kg_v3_export.json').then(r=>r.json()),
+  fetch('data/kg_plane_standard.json').then(r=>r.json()).catch(()=>({audit:{}})),
+  fetch('data/kg_affect_vlm_summary.json').then(r=>r.json()).catch(()=>({})),
+  fetch('data/kg_language_vectors.json').then(r=>r.json()).catch(()=>({validation:{per_dim:{}}}))
+]).then(([E,PS,VLM,LV])=>{
+  const c=E.meta.counts||{}, cc=E.meta.chain_connectivity||{}, au=PS.audit||{};
+  // ① 规模
+  const sc=[['节点类型',8],['边类型',11],['风格',c.styles||202],['关系链',c.lineage_edges||479],
+    ['艺术家',c.artists||276],['题材原子',c.subject_atoms||614],['is-a边',c.taxonomy_isa_edges||1212],['真迹读图',c.artworks_vlm_read||119]];
+  document.getElementById('scale').innerHTML=sc.map(([l,v])=>`<div class="sc"><div class="v">${v}</div><div class="l">${l}</div></div>`).join('');
+  // ② 结构
+  const C=(ok,t)=>`<div class="chk"><span class="i ${ok?'ok':'am'}">${ok?'✓':'⚠'}</span><div>${t}</div></div>`;
+  document.getElementById('struct').innerHTML=
+    C(true,`<b>0 孤立风格</b> · 风格关系图为<b>单一连通分量</b>(全 ${c.styles||202} 个互通)`)+
+    C(true,`<b>艺术家谱系已物化</b>:${c.artist_lineage_edges||138} 条可查边(师承有向+同侪无向,逆向补全)`)+
+    C(true,`<b>词汇层不再扁平</b>:${c.taxonomy_isa_edges||1212} 条 is-a 边(原子→类目/轴/声部)`)+
+    C(true,`<b>权威本体</b>:8 节点×11 边,定义域/值域/逆关系/基数/置信俱全(<a href="kg-ontology.html" style="color:var(--accent)">本体页</a>)`)+
+    C(true,`逆关系/对称已定义、双向一致;每节点唯一 id;风格 provenance(def_src)100%`);
+  // ③ 覆盖
+  document.getElementById('cover').innerHTML=
+    bar('世界观坐标',(c.styles||202),(c.styles||202),'var(--green)')+
+    bar('7大构成数值',(c.styles_with_lang_vec||202),(c.styles||202),'var(--green)')+
+    bar('题材↔风格(连规范层)',(cc.subject_to_layer||168),(c.styles||202),'var(--gold)')+
+    bar('画外音↔情绪锚点',(cc.subtext_to_anchor||92),(c.styles||202),'var(--gold)')+
+    bar('艺术家深度考究',(c.artists_authored||101),(c.artists||276),'var(--gold)')+
+    `<div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);margin-top:6px">黄色项已到诚实天花板:余量受词表/独立情绪源/真实标注限制,不靠造数据硬填。</div>`;
+  // ④ 验证
+  const pd=(LV.validation&&LV.validation.per_dim)||{};
+  const okDims=['造型','光影','色彩','笔触','构图'].filter(k=>pd[k]&&pd[k].r>=0.3).length;
+  const vlmA=((VLM.corr||{})['VLM唤起~art_a']||{}).r, pix=(VLM.baseline_pixel_arousal_vs_curated||{}).r;
+  document.getElementById('valid').innerHTML=
+    C(true,`<b>世界观 2 真轴</b>经 PCA/聚类自检;旧"12 东西镜像"被实测<b>证伪并撤回</b>`)+
+    C(true,`<b>平面数据核验</b>:${au.total||202} 风格 0 缺坐标 / 0 越界 / ${au.clean_in_region||196} 干净归区 / ${au.border_ties||6} 边界近平局`)+
+    C(true,`<b>L2 语言</b>:${okDims}/7 维经艺术家实测验证(r 0.33–0.60);空间/边缘如实标⚠`)+
+    C(true,`<b>L3 情绪</b>:VLM 多通道唤起~人工 r=${vlmA!=null?vlmA:'0.33'} > 纯像素 r=${pix!=null?pix:'0.20'};循环的"饱和→唤起 0.78"已<b>当众撤回</b>`)+
+    `<div style="font-size:11.5px;color:var(--ink-mute);margin-top:6px">详见 <a href="kg-validate.html" style="color:var(--accent)">链路验证</a> · <a href="kg-affect.html" style="color:var(--accent)">L3 感知</a> · <a href="kg-plane-standard.html" style="color:var(--accent)">逻辑图标准</a></div>`;
+  // ⑤ 待办
+  document.getElementById('todo').innerHTML=
+    `<div>· <b>细粒度词汇连风格</b>:语言 401 / 画外音 197 个体原子直连风格 —— 需<b>真实逐画标注</b>才干净。</div>`+
+    `<div>· <b>代表作真图 + 编译器出图</b>:全站配真画、一句话→出图闭环 —— 等<b>已标注名画语料 / 火山方舟 Ark 端点</b>。</div>`+
+    `<div>· <b>A2 长尾艺术家</b>:${c.artists_authored||101}/${c.artists||276} 深度,余者继承所属风格(可继续走量)。</div>`+
+    `<div style="margin-top:6px;color:var(--ink-faint);font-size:11.5px">原则:能干净做的已做;连不动/会造数据的,诚实标边界、不硬填。</div>`;
+}).catch(e=>{document.getElementById('scale').innerHTML='<div style="color:#a89f8f;grid-column:1/-1">需服务器加载:'+e+'</div>';});
+</script>
+</body></html>

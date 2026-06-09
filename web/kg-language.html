@@ -1,0 +1,4273 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 7大构成 · 绘画语言层(V2 · 383 原子)</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:38px 18px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(22px,4vw,32px);font-weight:600;text-align:center;margin:8px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.7;max-width:700px;margin:6px auto}
+  .lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}
+  .breadcrumb a{color:var(--accent);text-decoration:none}
+  .chain{text-align:center;font-family:var(--serif);font-size:13px;color:var(--ink-soft);background:#fff;border:1px solid var(--line);border-left:3px solid var(--green);border-radius:10px;padding:11px 14px;max-width:760px;margin:14px auto 0;line-height:1.7}
+  .chain b{color:var(--green)}.chain .c1{color:var(--accent)}
+  /* 工具条 */
+  .bar{position:sticky;top:0;z-index:50;background:var(--paper);padding:14px 0 10px;margin-top:18px;border-bottom:1px solid var(--line)}
+  .search{display:block;width:100%;max-width:520px;margin:0 auto;font-family:var(--sans);font-size:14px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:999px;padding:11px 18px;outline:none}
+  .search:focus{border-color:var(--accent)}
+  .stat{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:8px}
+  .stat b{color:var(--accent)}
+  .jump{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:10px}
+  .jump a{font-family:var(--mono);font-size:11px;text-decoration:none;color:var(--ink-soft);background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 11px}
+  .jump a:hover{border-color:var(--accent);color:var(--accent)}
+  .jump a .c{color:var(--ink-faint)}
+  /* 分区 */
+  .cat{margin-top:26px;scroll-margin-top:122px}
+  .cat-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:2px solid var(--accent);padding-bottom:7px}
+  .cat-h .cn{font-family:var(--serif);font-size:20px;font-weight:600}
+  .cat-h .en{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
+  .cat-h .ct{font-family:var(--mono);font-size:11px;color:#fff;background:var(--accent);border-radius:999px;padding:1px 9px}
+  .cat-h .id{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-left:auto}
+  .cat-q{font-size:12.5px;color:var(--ink-mute);margin:7px 0 2px}
+  .atoms{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;margin-top:12px}
+  .atom{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+  .atom .an{font-family:var(--serif);font-size:14px;font-weight:600;color:var(--ink)}
+  .atom .ad{font-size:11.5px;color:var(--ink-mute);line-height:1.5;margin-top:2px}
+  .atom .psy{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+  .atom .pt{font-family:var(--mono);font-size:10px;color:var(--green);background:#eef3f0;border:1px solid #d7e3dc;border-radius:5px;padding:1px 6px}
+  .atom .ai{font-family:var(--mono);font-size:9px;color:var(--ink-faint);margin-top:5px}
+  .atom mark{background:#fbe3c8;color:var(--ink);border-radius:3px;padding:0 1px}
+  .empty{text-align:center;color:var(--ink-faint);font-size:13px;padding:40px}
+  .back{display:block;text-align:center;margin-top:44px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .home-fab:hover{color:var(--accent)}
+  .top-fab{position:fixed;right:14px;bottom:14px;z-index:9999;font-family:var(--mono);font-size:12px;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 12px;box-shadow:0 4px 14px rgba(0,0,0,.2);cursor:pointer}
+</style>
+</head><body>
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="top-fab" onclick="scrollTo(0,0)">↑ 顶部</div>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 绘画语言层</div>
+  <h1 id="title">7 大构成 · Pictorial Language</h1>
+  <p class="lead">五大可观测层之一:<b>怎么画 · 物理操作</b>。<b>L2 升级</b>:7 大构成不再只是 401 原子词典——每维现在是一条 <b>0→1 连续轴</b>,<b>202 个风格</b>都有<b>数值语言指纹</b>(下方),并经艺术家实测交叉验证。底部仍保留可搜索的原子词典(每原子带 V1「心理感受」)。</p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-impl">实现·题材+语言</a> › <b style="color:var(--ink-soft)">绘画语言层</b></div>
+  <div class="chain" id="chain"></div>
+
+  <style>
+  .l2sec{margin:26px 0 8px;background:#fbf9f4;border:1px solid var(--line);border-radius:16px;padding:18px 18px 20px}
+  .l2h{font-family:var(--serif);font-size:19px;font-weight:600;border-bottom:2px solid var(--accent);padding-bottom:7px;margin-bottom:6px}
+  .l2d{font-size:12.5px;color:var(--ink-mute);line-height:1.7;margin:8px 0 14px}.l2d b{color:var(--ink-soft)}
+  .l2sub{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin:16px 0 6px}
+  .l2axis{display:flex;align-items:center;gap:9px;margin:4px 0;font-size:12px}
+  .l2axis .an2{width:42px;font-family:var(--serif);font-weight:600;color:var(--ink-soft);text-align:right;flex-shrink:0}
+  .l2axis .lp{width:108px;text-align:right;color:var(--ink-faint);font-size:10.5px;flex-shrink:0}
+  .l2axis .hp{width:108px;color:var(--ink-faint);font-size:10.5px;flex-shrink:0}
+  .l2axis .gr{flex:1;height:8px;border-radius:5px;background:linear-gradient(90deg,#ece7db,var(--accent))}
+  .l2card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;margin-top:4px}
+  .l2pick{font-family:var(--sans);font-size:13px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);max-width:100%}
+  .l2bar{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px}
+  .l2bar .bl{width:42px;font-family:var(--serif);font-weight:600;color:var(--ink-soft);flex-shrink:0}
+  .l2bar .bt{flex:1;height:13px;background:var(--paper-2);border-radius:7px;position:relative;overflow:hidden}
+  .l2bar .bf{position:absolute;left:0;top:0;height:100%;border-radius:7px;background:var(--accent)}
+  .l2bar .bv{width:34px;text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink-mute);flex-shrink:0}
+  .l2bar .bp{width:128px;font-size:10px;color:var(--ink-faint);flex-shrink:0}
+  .l2tabs{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0 10px}
+  .l2tab{font-family:var(--mono);font-size:12px;padding:4px 11px;border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--ink-soft);cursor:pointer}
+  .l2tab.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .l2rank{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:600px){.l2rank{grid-template-columns:1fr}}
+  .l2pole{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-bottom:5px}
+  .l2chip{display:inline-block;font-size:11.5px;color:var(--ink-soft);background:var(--paper-2);border-radius:6px;padding:3px 8px;margin:2px 3px 2px 0;text-decoration:none}
+  .l2chip:hover{background:var(--accent-soft);color:var(--accent)}.l2chip b{font-family:var(--mono);color:var(--accent)}
+  .l2val{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:12px}
+  .l2val .vl{width:42px;font-family:var(--serif);font-weight:600;color:var(--ink-soft)}
+  .l2val .vt{width:150px;height:10px;background:var(--paper-2);border-radius:5px;position:relative;overflow:hidden}
+  .l2val .vf{position:absolute;top:0;height:100%;border-radius:5px}
+  .l2val .vv{font-family:var(--mono);font-size:11px;font-weight:600;width:78px}
+  .l2flag{font-size:12px;color:var(--ink-soft);background:#fbf3ec;border:1px solid #e6c9b0;border-left:4px solid var(--accent);border-radius:9px;padding:10px 13px;margin-top:10px;line-height:1.7}.l2flag b{color:var(--accent)}
+  </style>
+  <div class="l2sec">
+    <div class="l2h">L2 升级:不只是词典,是 7 条<span style="color:var(--accent)">连续轴</span></div>
+    <div class="l2d">下面那本 <b>401 原子词典</b>回答"有哪些语言";但要<b>连得到风格、能算</b>,每维还需一条<b>连续轴</b>。这里把 7 大构成各定义成一条 0→1 的轴,并从<b>每个风格的语言描述按极点词表打分</b>,得到 <b>202 个风格的数值语言指纹</b>——透明、可考、全覆盖。</div>
+
+    <div class="l2sub">① 七条连续轴(低极点 ← → 高极点)</div>
+    <div id="l2axes"></div>
+
+    <div class="l2sub">② 风格的语言指纹 · 选一个风格看它的 7 维数值</div>
+    <div class="l2card"><select class="l2pick" id="l2pick"></select> <span id="l2wv" class="miunit" style="font-family:var(--mono);font-size:10px;color:var(--ink-faint)"></span>
+      <div id="l2fp" style="margin-top:10px"></div></div>
+
+    <div class="l2sub">③ 任一维 → 哪些风格在两极</div>
+    <div class="l2tabs" id="l2tabs"></div>
+    <div class="l2rank" id="l2rank"></div>
+
+    <div class="l2sub">④ 这套数值靠谱吗?用艺术家实测交叉验证</div>
+    <div class="l2d" style="margin:2px 0 8px">散文派生的风格七轴,拿去和<b>该风格代表艺术家独立填写的数值 lang</b> 比(两来源不同)。r 越高=派生越可信。</div>
+    <div id="l2val"></div>
+    <div class="l2flag" id="l2valnote"></div>
+
+    <div class="l2sub">⑤ 七轴是否站得住?三方独立信源交叉验证(2026-06 实测)</div>
+    <div class="l2d" style="margin:2px 0 8px">每条轴用三个<b>互相独立</b>的来源比对:<b>人工考据</b>(艺术家填写)× <b>VLM 逐张读图</b>(209 张真迹语义打分聚合)× <b>像素实测</b>(可量化的轴才有代理)。结论:<b>七轴全部保留</b>——每条轴至少有一个独立信源背书;尤其<b>空间</b>像素测不到,却被 VLM 语义读图救回(r=0.57)。</div>
+    <div id="l2tri"></div>
+    <div class="l2flag" id="l2trinote"></div>
+  </div>
+  <script>
+  fetch('data/kg_language.json').then(r=>r.json()).then(L=>{
+    const V=(L.meta&&L.meta.validation)||L.validation; if(!V||!V.axes)return;
+    const box=document.getElementById('l2tri'); const POLE={构图:'均衡↔动势',空间:'纵深↔平面',造型:'体积↔消融',光影:'柔和↔强烈',色彩:'沉郁↔明艳',笔触:'隐没↔显露',边缘:'硬朗↔柔化'};
+    const colC={'高':'#5a7d6f','中':'#c08a2e','低':'#b0673a'};
+    const order=Object.entries(V.axes).sort((a,b)=>(b[1].hand_vs_vlm||0)-(a[1].hand_vs_vlm||0));
+    let h='<div style="overflow-x:auto"><table style="border-collapse:collapse;font-size:12.5px;width:100%;min-width:520px">'+
+      '<tr style="color:var(--ink-mute);font-family:var(--mono);font-size:11px;text-align:left"><th style="padding:5px 8px">构成轴</th><th>人工 × VLM</th><th>像素代理</th><th>背书信源</th><th>可信度</th></tr>';
+    order.forEach(([k,o])=>{const c=colC[o.confidence]||'#857d6f';
+      h+=`<tr style="border-top:1px solid var(--line)"><td style="padding:6px 8px"><b>${k}</b> <span style="color:var(--ink-faint);font-family:var(--mono);font-size:10px">${POLE[k]||''}</span></td>`+
+         `<td style="font-family:var(--mono);color:${o.hand_vs_vlm>=0.4?'#5a7d6f':o.hand_vs_vlm>=0.25?'#c08a2e':'#b0673a'}">r=${(o.hand_vs_vlm>=0?'+':'')+o.hand_vs_vlm} <span style="color:var(--ink-faint)">n=${o.n}</span></td>`+
+         `<td style="font-family:var(--mono);color:var(--ink-mute)">${o['pixel_proxy_r(方向归一)']==null?'<span style="color:var(--ink-faint)">像素无能</span>':'r='+(o['pixel_proxy_r(方向归一)']>=0?'+':'')+o['pixel_proxy_r(方向归一)']}</td>`+
+         `<td style="font-size:11.5px">${(o.backed_by||[]).join(' · ')}</td>`+
+         `<td><span style="color:#fff;background:${c};border-radius:5px;padding:1px 8px;font-size:11px">${o.confidence}</span></td></tr>`;});
+    h+='</table></div>';box.innerHTML=h;
+    document.getElementById('l2trinote').innerHTML='结论:'+(V.conclusion||'');
+  }).catch(()=>{});
+  </script>
+
+  <div class="bar">
+    <input class="search" id="q" type="search" placeholder="🔍 搜原子、描述或心理感受,如「对称」「戏剧」「张力」「呼吸」…"/>
+    <div class="stat" id="stat"></div>
+    <div class="jump" id="jump"></div>
+  </div>
+
+  <div id="list"></div>
+  <div class="empty" id="empty" style="display:none">没有匹配的原子,换个词试试。</div>
+
+  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+</div>
+
+<script>
+const DATA = {
+ "meta": {
+  "layer": "7大构成 · 绘画语言",
+  "en": "Pictorial Language",
+  "version": "V2-draft-0.1",
+  "src": "V1.xlsx Sheet2 绘画语言",
+  "total": 401,
+  "cat_count": 7,
+  "chain": "画上去的(因) → 读出来的(感知效应) → 画外音(意义)。每个原子的「心理感受」就是这条因果链的第一跳。",
+  "note": "V2 七大构成=可观测离散原子+每维一条连续轴；与 V1 Sheet2 七子系统 7↔7 零损耗映射，保留「心理感受」列。"
+ },
+ "categories": [
+  {
+   "id": "LANG.composition",
+   "cn": "构图与组织",
+   "en": "Composition",
+   "q": "画面如何被组织与引导",
+   "v1": "构图语言",
+   "count": 55,
+   "atoms": [
+    {
+     "id": "LANG.composition.01",
+     "cn": "对称",
+     "desc": "左右或上下平衡的结构秩序",
+     "psy": [
+      "稳定",
+      "平和",
+      "正式"
+     ]
+    },
+    {
+     "id": "LANG.composition.02",
+     "cn": "均衡",
+     "desc": "视觉重量的分布协调",
+     "psy": [
+      "平静",
+      "理性",
+      "和谐"
+     ]
+    },
+    {
+     "id": "LANG.composition.03",
+     "cn": "聚焦",
+     "desc": "重心集中引导视线",
+     "psy": [
+      "集中",
+      "清晰",
+      "紧凑"
+     ]
+    },
+    {
+     "id": "LANG.composition.04",
+     "cn": "留白",
+     "desc": "空间节奏与呼吸感",
+     "psy": [
+      "自由",
+      "宁静",
+      "空灵"
+     ]
+    },
+    {
+     "id": "LANG.composition.05",
+     "cn": "分割",
+     "desc": "区域划分与画面秩序",
+     "psy": [
+      "稳重",
+      "清晰",
+      "理性"
+     ]
+    },
+    {
+     "id": "LANG.composition.06",
+     "cn": "黄金比例",
+     "desc": "自然和谐的比例结构",
+     "psy": [
+      "平衡",
+      "舒适",
+      "优雅"
+     ]
+    },
+    {
+     "id": "LANG.composition.07",
+     "cn": "三角构图",
+     "desc": "稳定且聚焦的结构",
+     "psy": [
+      "庄重",
+      "安全",
+      "平衡"
+     ]
+    },
+    {
+     "id": "LANG.composition.08",
+     "cn": "S形构图",
+     "desc": "流动曲线的节奏引导",
+     "psy": [
+      "柔和",
+      "优雅",
+      "流畅"
+     ]
+    },
+    {
+     "id": "LANG.composition.09",
+     "cn": "对角构图",
+     "desc": "对角方向形成张力",
+     "psy": [
+      "动感",
+      "冲突",
+      "力量"
+     ]
+    },
+    {
+     "id": "LANG.composition.10",
+     "cn": "环形构图",
+     "desc": "封闭循环的结构秩序",
+     "psy": [
+      "完整",
+      "安定",
+      "连贯"
+     ]
+    },
+    {
+     "id": "LANG.composition.11",
+     "cn": "放射构图",
+     "desc": "中心向外的能量扩张",
+     "psy": [
+      "热烈",
+      "开放",
+      "强势"
+     ]
+    },
+    {
+     "id": "LANG.composition.12",
+     "cn": "纵向构图",
+     "desc": "垂直方向的视觉延展",
+     "psy": [
+      "崇高",
+      "上升",
+      "坚定"
+     ]
+    },
+    {
+     "id": "LANG.composition.13",
+     "cn": "横向构图",
+     "desc": "水平稳定的空间布局",
+     "psy": [
+      "宁静",
+      "广阔",
+      "平衡"
+     ]
+    },
+    {
+     "id": "LANG.composition.14",
+     "cn": "斜向构图",
+     "desc": "倾斜的动态方向",
+     "psy": [
+      "不稳定",
+      "刺激",
+      "张力"
+     ]
+    },
+    {
+     "id": "LANG.composition.15",
+     "cn": "结构线",
+     "desc": "画面秩序的骨架引导",
+     "psy": [
+      "理性",
+      "控制",
+      "秩序"
+     ]
+    },
+    {
+     "id": "LANG.composition.16",
+     "cn": "视线引导",
+     "desc": "视线路径与节奏推进",
+     "psy": [
+      "连贯",
+      "节奏",
+      "引导"
+     ]
+    },
+    {
+     "id": "LANG.composition.17",
+     "cn": "重心",
+     "desc": "视觉支点与稳定点",
+     "psy": [
+      "稳固",
+      "集中",
+      "平衡"
+     ]
+    },
+    {
+     "id": "LANG.composition.18",
+     "cn": "节奏",
+     "desc": "重复与变化形成律动",
+     "psy": [
+      "活跃",
+      "流动",
+      "节奏感"
+     ]
+    },
+    {
+     "id": "LANG.composition.19",
+     "cn": "重复",
+     "desc": "元素的重复秩序",
+     "psy": [
+      "规律",
+      "安定",
+      "机械感"
+     ]
+    },
+    {
+     "id": "LANG.composition.20",
+     "cn": "对比",
+     "desc": "明暗/大小的视觉冲突",
+     "psy": [
+      "强烈",
+      "戏剧",
+      "活力"
+     ]
+    },
+    {
+     "id": "LANG.composition.21",
+     "cn": "呼应",
+     "desc": "元素间的相互关联",
+     "psy": [
+      "连贯",
+      "和谐",
+      "温和"
+     ]
+    },
+    {
+     "id": "LANG.composition.22",
+     "cn": "统一",
+     "desc": "元素间的协调与一致",
+     "psy": [
+      "稳定",
+      "秩序",
+      "平衡"
+     ]
+    },
+    {
+     "id": "LANG.composition.23",
+     "cn": "变化",
+     "desc": "节奏波动与形式转化",
+     "psy": [
+      "动态",
+      "灵动",
+      "丰富"
+     ]
+    },
+    {
+     "id": "LANG.composition.24",
+     "cn": "张力",
+     "desc": "力量对抗与视觉冲突",
+     "psy": [
+      "紧张",
+      "强烈",
+      "动感"
+     ]
+    },
+    {
+     "id": "LANG.composition.25",
+     "cn": "密度",
+     "desc": "信息浓度与画面压迫感",
+     "psy": [
+      "压抑",
+      "充实",
+      "厚重"
+     ]
+    },
+    {
+     "id": "LANG.composition.26",
+     "cn": "疏朗",
+     "desc": "空间留白与轻盈节奏",
+     "psy": [
+      "放松",
+      "呼吸",
+      "自由"
+     ]
+    },
+    {
+     "id": "LANG.composition.27",
+     "cn": "比例",
+     "desc": "各部分尺度协调关系",
+     "psy": [
+      "稳定",
+      "理性",
+      "和谐"
+     ]
+    },
+    {
+     "id": "LANG.composition.28",
+     "cn": "尺度",
+     "desc": "主体与空间的视觉比例",
+     "psy": [
+      "庄重",
+      "亲切",
+      "崇高"
+     ]
+    },
+    {
+     "id": "LANG.composition.29",
+     "cn": "网格",
+     "desc": "几何秩序的结构框架",
+     "psy": [
+      "克制",
+      "冷静",
+      "理性"
+     ]
+    },
+    {
+     "id": "LANG.composition.30",
+     "cn": "九宫格",
+     "desc": "三分法的空间平衡",
+     "psy": [
+      "稳定",
+      "经典",
+      "自然"
+     ]
+    },
+    {
+     "id": "LANG.composition.31",
+     "cn": "三分法",
+     "desc": "黄金比例的衍生规则",
+     "psy": [
+      "平衡",
+      "柔和",
+      "舒适"
+     ]
+    },
+    {
+     "id": "LANG.composition.32",
+     "cn": "错位",
+     "desc": "位置偏移带来不确定感",
+     "psy": [
+      "动感",
+      "紧张",
+      "冲突"
+     ]
+    },
+    {
+     "id": "LANG.composition.33",
+     "cn": "偏置",
+     "desc": "重心偏移制造张力",
+     "psy": [
+      "动势",
+      "现代",
+      "活跃"
+     ]
+    },
+    {
+     "id": "LANG.composition.34",
+     "cn": "平行",
+     "desc": "水平线的延展秩序",
+     "psy": [
+      "平稳",
+      "理性",
+      "克制"
+     ]
+    },
+    {
+     "id": "LANG.composition.35",
+     "cn": "垂直",
+     "desc": "垂直方向的力量感",
+     "psy": [
+      "庄重",
+      "力量",
+      "坚定"
+     ]
+    },
+    {
+     "id": "LANG.composition.36",
+     "cn": "前后关系",
+     "desc": "层次间的视觉深度",
+     "psy": [
+      "空间",
+      "顺序",
+      "清晰"
+     ]
+    },
+    {
+     "id": "LANG.composition.37",
+     "cn": "框景",
+     "desc": "边界内的画面限定",
+     "psy": [
+      "封闭",
+      "安全",
+      "秩序"
+     ]
+    },
+    {
+     "id": "LANG.composition.38",
+     "cn": "出框",
+     "desc": "主体突破边界",
+     "psy": [
+      "自由",
+      "张力",
+      "突破"
+     ]
+    },
+    {
+     "id": "LANG.composition.39",
+     "cn": "入框",
+     "desc": "元素被边框限定",
+     "psy": [
+      "克制",
+      "约束",
+      "内敛"
+     ]
+    },
+    {
+     "id": "LANG.composition.40",
+     "cn": "连续",
+     "desc": "视觉节奏的连贯推进",
+     "psy": [
+      "自然",
+      "顺畅",
+      "流动"
+     ]
+    },
+    {
+     "id": "LANG.composition.41",
+     "cn": "断裂",
+     "desc": "节奏中断形成冲击",
+     "psy": [
+      "突兀",
+      "紧张",
+      "现代感"
+     ]
+    },
+    {
+     "id": "LANG.composition.42",
+     "cn": "渐变",
+     "desc": "由弱到强的秩序过渡",
+     "psy": [
+      "平和",
+      "柔顺",
+      "自然"
+     ]
+    },
+    {
+     "id": "LANG.composition.43",
+     "cn": "突变",
+     "desc": "突发性节奏变化",
+     "psy": [
+      "强烈",
+      "惊异",
+      "节奏感"
+     ]
+    },
+    {
+     "id": "LANG.composition.44",
+     "cn": "群组",
+     "desc": "元素聚合的集合单位",
+     "psy": [
+      "统一",
+      "密集",
+      "社会性"
+     ]
+    },
+    {
+     "id": "LANG.composition.45",
+     "cn": "多中心",
+     "desc": "多焦点的平衡组织",
+     "psy": [
+      "平衡",
+      "复杂",
+      "自由"
+     ]
+    },
+    {
+     "id": "LANG.composition.46",
+     "cn": "去中心",
+     "desc": "消解焦点的现代构成",
+     "psy": [
+      "扩散",
+      "均质",
+      "冷静"
+     ]
+    },
+    {
+     "id": "LANG.composition.47",
+     "cn": "视觉动线",
+     "desc": "观者视线的行进路径",
+     "psy": [
+      "引导",
+      "节奏",
+      "流动"
+     ]
+    },
+    {
+     "id": "LANG.composition.48",
+     "cn": "对称破坏",
+     "desc": "平衡中的冲突美",
+     "psy": [
+      "动感",
+      "刺激",
+      "张力"
+     ]
+    },
+    {
+     "id": "LANG.composition.49",
+     "cn": "节奏密度",
+     "desc": "信息节拍的松紧变化",
+     "psy": [
+      "律动",
+      "紧凑",
+      "强度"
+     ]
+    },
+    {
+     "id": "LANG.composition.50",
+     "cn": "空间张力",
+     "desc": "元素间的力量关系",
+     "psy": [
+      "压迫",
+      "延展",
+      "力量"
+     ]
+    },
+    {
+     "id": "LANG.composition.51",
+     "cn": "视觉层级",
+     "desc": "层次组织与焦点分配",
+     "psy": [
+      "深浅",
+      "秩序",
+      "聚散"
+     ]
+    },
+    {
+     "id": "LANG.composition.52",
+     "cn": "对应",
+     "desc": "对位关系的节奏平衡",
+     "psy": [
+      "和谐",
+      "温柔",
+      "对话"
+     ]
+    },
+    {
+     "id": "LANG.composition.53",
+     "cn": "分区",
+     "desc": "结构区域的功能分配",
+     "psy": [
+      "稳定",
+      "理性",
+      "秩序"
+     ]
+    },
+    {
+     "id": "LANG.composition.54",
+     "cn": "打破中心",
+     "desc": "焦点解构的开放构成",
+     "psy": [
+      "现代",
+      "自由",
+      "漂移"
+     ]
+    },
+    {
+     "id": "LANG.composition.55",
+     "cn": "节奏组块",
+     "desc": "模块化节奏的组合",
+     "psy": [
+      "系统",
+      "动态",
+      "组织性"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "LANG.space",
+   "cn": "透视与空间",
+   "en": "Space",
+   "q": "深度与空间如何被营造",
+   "v1": "空间语言",
+   "count": 57,
+   "atoms": [
+    {
+     "id": "LANG.space.01",
+     "cn": "透视",
+     "desc": "线性消失点形成的深度关系",
+     "psy": [
+      "秩序",
+      "真实",
+      "理性"
+     ]
+    },
+    {
+     "id": "LANG.space.02",
+     "cn": "平行透视",
+     "desc": "双消点结构的纵深感",
+     "psy": [
+      "稳定",
+      "科学",
+      "均衡"
+     ]
+    },
+    {
+     "id": "LANG.space.03",
+     "cn": "散点透视",
+     "desc": "多视点的自由空间组织",
+     "psy": [
+      "流动",
+      "开放",
+      "东方性"
+     ]
+    },
+    {
+     "id": "LANG.space.04",
+     "cn": "鸟瞰",
+     "desc": "高视角的整体俯视",
+     "psy": [
+      "超然",
+      "掌控",
+      "宏观"
+     ]
+    },
+    {
+     "id": "LANG.space.05",
+     "cn": "仰视",
+     "desc": "低视角的上升透视",
+     "psy": [
+      "崇高",
+      "力量",
+      "压迫"
+     ]
+    },
+    {
+     "id": "LANG.space.06",
+     "cn": "空间层次",
+     "desc": "前中后层的视觉深度",
+     "psy": [
+      "深远",
+      "稳定",
+      "秩序"
+     ]
+    },
+    {
+     "id": "LANG.space.07",
+     "cn": "大气透视",
+     "desc": "远近空气造成的灰度变化",
+     "psy": [
+      "朦胧",
+      "自然",
+      "宁静"
+     ]
+    },
+    {
+     "id": "LANG.space.08",
+     "cn": "空间压缩",
+     "desc": "深度被压平的视觉张力",
+     "psy": [
+      "紧凑",
+      "压迫",
+      "现代"
+     ]
+    },
+    {
+     "id": "LANG.space.09",
+     "cn": "空间展开",
+     "desc": "纵深延伸的开放结构",
+     "psy": [
+      "自由",
+      "舒展",
+      "平衡"
+     ]
+    },
+    {
+     "id": "LANG.space.10",
+     "cn": "空间折叠",
+     "desc": "多层空间重叠的视觉关系",
+     "psy": [
+      "复杂",
+      "超现实",
+      "张力"
+     ]
+    },
+    {
+     "id": "LANG.space.11",
+     "cn": "空间漂浮",
+     "desc": "失重感的空间漂移",
+     "psy": [
+      "梦幻",
+      "自由",
+      "虚幻"
+     ]
+    },
+    {
+     "id": "LANG.space.12",
+     "cn": "空间断裂",
+     "desc": "空间连续性被打破",
+     "psy": [
+      "紧张",
+      "现代",
+      "冷峻"
+     ]
+    },
+    {
+     "id": "LANG.space.13",
+     "cn": "空间延展",
+     "desc": "空间被无限推远",
+     "psy": [
+      "广阔",
+      "开放",
+      "深远"
+     ]
+    },
+    {
+     "id": "LANG.space.14",
+     "cn": "空间收缩",
+     "desc": "视觉被集中压缩",
+     "psy": [
+      "紧密",
+      "聚焦",
+      "压迫"
+     ]
+    },
+    {
+     "id": "LANG.space.15",
+     "cn": "空间重叠",
+     "desc": "多物体交叠产生深度",
+     "psy": [
+      "丰富",
+      "动态",
+      "自然"
+     ]
+    },
+    {
+     "id": "LANG.space.16",
+     "cn": "空间消解",
+     "desc": "边界模糊、深度被取消",
+     "psy": [
+      "模糊",
+      "平静",
+      "现代"
+     ]
+    },
+    {
+     "id": "LANG.space.17",
+     "cn": "空间漂移",
+     "desc": "多视角引起的错位空间",
+     "psy": [
+      "不稳定",
+      "流动",
+      "超现实"
+     ]
+    },
+    {
+     "id": "LANG.space.18",
+     "cn": "空间透明",
+     "desc": "透明层叠造成的虚实共存",
+     "psy": [
+      "梦幻",
+      "流动",
+      "轻盈"
+     ]
+    },
+    {
+     "id": "LANG.space.19",
+     "cn": "空间封闭",
+     "desc": "画面被边界包围",
+     "psy": [
+      "安全",
+      "孤立",
+      "静止"
+     ]
+    },
+    {
+     "id": "LANG.space.20",
+     "cn": "空间开放",
+     "desc": "边界消失的延伸感",
+     "psy": [
+      "自由",
+      "舒展",
+      "自然"
+     ]
+    },
+    {
+     "id": "LANG.space.21",
+     "cn": "空间透叠",
+     "desc": "层层叠透的深度关系",
+     "psy": [
+      "深邃",
+      "细腻",
+      "真实"
+     ]
+    },
+    {
+     "id": "LANG.space.22",
+     "cn": "空间漂白",
+     "desc": "视觉深度被光线淡化",
+     "psy": [
+      "轻盈",
+      "空灵",
+      "安静"
+     ]
+    },
+    {
+     "id": "LANG.space.23",
+     "cn": "空间塌陷",
+     "desc": "透视崩解造成的不稳结构",
+     "psy": [
+      "紧张",
+      "混乱",
+      "力量"
+     ]
+    },
+    {
+     "id": "LANG.space.24",
+     "cn": "空间切割",
+     "desc": "被几何形分割的空间体",
+     "psy": [
+      "理性",
+      "冷静",
+      "现代"
+     ]
+    },
+    {
+     "id": "LANG.space.25",
+     "cn": "空间扭曲",
+     "desc": "变形结构的视觉冲击",
+     "psy": [
+      "扭曲",
+      "焦虑",
+      "张力"
+     ]
+    },
+    {
+     "id": "LANG.space.26",
+     "cn": "空间位移",
+     "desc": "元素错位形成动态深度",
+     "psy": [
+      "流动",
+      "复杂",
+      "变化"
+     ]
+    },
+    {
+     "id": "LANG.space.27",
+     "cn": "空间叠层",
+     "desc": "多维平面的重构",
+     "psy": [
+      "复杂",
+      "沉稳",
+      "深远"
+     ]
+    },
+    {
+     "id": "LANG.space.28",
+     "cn": "空间悬浮",
+     "desc": "主体脱离地面的漂浮感",
+     "psy": [
+      "梦境",
+      "轻盈",
+      "自由"
+     ]
+    },
+    {
+     "id": "LANG.space.29",
+     "cn": "空间界限",
+     "desc": "深度被界定的可视边缘",
+     "psy": [
+      "明确",
+      "稳定",
+      "理性"
+     ]
+    },
+    {
+     "id": "LANG.space.30",
+     "cn": "空间虚化",
+     "desc": "背景被弱化形成景深",
+     "psy": [
+      "柔和",
+      "宁静",
+      "真实"
+     ]
+    },
+    {
+     "id": "LANG.space.31",
+     "cn": "空间聚焦",
+     "desc": "深度中心被突出",
+     "psy": [
+      "集中",
+      "紧张",
+      "张力"
+     ]
+    },
+    {
+     "id": "LANG.space.32",
+     "cn": "空间模糊",
+     "desc": "空气透视的心理距离",
+     "psy": [
+      "温柔",
+      "模糊",
+      "诗意"
+     ]
+    },
+    {
+     "id": "LANG.space.33",
+     "cn": "空间呼吸",
+     "desc": "空间节奏的疏密转换",
+     "psy": [
+      "平衡",
+      "舒展",
+      "自由"
+     ]
+    },
+    {
+     "id": "LANG.space.34",
+     "cn": "空间比例",
+     "desc": "元素与空间的相互关系",
+     "psy": [
+      "稳定",
+      "理性",
+      "秩序"
+     ]
+    },
+    {
+     "id": "LANG.space.35",
+     "cn": "空间重量",
+     "desc": "空间分布的重心感",
+     "psy": [
+      "厚重",
+      "稳定",
+      "压抑"
+     ]
+    },
+    {
+     "id": "LANG.space.36",
+     "cn": "空间轻盈",
+     "desc": "空间被稀释的通透感",
+     "psy": [
+      "柔和",
+      "自由",
+      "宁静"
+     ]
+    },
+    {
+     "id": "LANG.space.37",
+     "cn": "空间静止",
+     "desc": "没有动势的稳定空间",
+     "psy": [
+      "安宁",
+      "静止",
+      "克制"
+     ]
+    },
+    {
+     "id": "LANG.space.38",
+     "cn": "空间动势",
+     "desc": "透视引导的流动节奏",
+     "psy": [
+      "活力",
+      "张力",
+      "能量"
+     ]
+    },
+    {
+     "id": "LANG.space.39",
+     "cn": "空间纵深",
+     "desc": "前后层次的透视延伸",
+     "psy": [
+      "深邃",
+      "真实",
+      "稳定"
+     ]
+    },
+    {
+     "id": "LANG.space.40",
+     "cn": "空间平面化",
+     "desc": "透视被取消的二维关系",
+     "psy": [
+      "扁平",
+      "现代",
+      "冷静"
+     ]
+    },
+    {
+     "id": "LANG.space.41",
+     "cn": "空间碎裂",
+     "desc": "被分割成片段的视觉空间",
+     "psy": [
+      "破碎",
+      "紧张",
+      "实验性"
+     ]
+    },
+    {
+     "id": "LANG.space.42",
+     "cn": "空间连续",
+     "desc": "深度与动线的连贯性",
+     "psy": [
+      "顺畅",
+      "自然",
+      "平和"
+     ]
+    },
+    {
+     "id": "LANG.space.43",
+     "cn": "空间中断",
+     "desc": "被截断的视觉推进",
+     "psy": [
+      "不安",
+      "断裂",
+      "现代"
+     ]
+    },
+    {
+     "id": "LANG.space.44",
+     "cn": "空间虚构",
+     "desc": "想象或梦境中的空间",
+     "psy": [
+      "幻觉",
+      "神秘",
+      "诗意"
+     ]
+    },
+    {
+     "id": "LANG.space.45",
+     "cn": "空间重构",
+     "desc": "打破传统透视的再组织",
+     "psy": [
+      "理性",
+      "实验",
+      "现代"
+     ]
+    },
+    {
+     "id": "LANG.space.46",
+     "cn": "空间嵌套",
+     "desc": "空间中套空间的视觉关系",
+     "psy": [
+      "复杂",
+      "深邃",
+      "超现实"
+     ]
+    },
+    {
+     "id": "LANG.space.47",
+     "cn": "空间折射",
+     "desc": "光线介质导致的空间偏移",
+     "psy": [
+      "闪烁",
+      "奇幻",
+      "模糊"
+     ]
+    },
+    {
+     "id": "LANG.space.48",
+     "cn": "空间漂移",
+     "desc": "透视方向的动态变化",
+     "psy": [
+      "流动",
+      "迷离",
+      "自由"
+     ]
+    },
+    {
+     "id": "LANG.space.49",
+     "cn": "空间扁平",
+     "desc": "空间维度被压缩成表面",
+     "psy": [
+      "克制",
+      "理性",
+      "现代"
+     ]
+    },
+    {
+     "id": "LANG.space.50",
+     "cn": "空间透明化",
+     "desc": "光与形体融合的开放性",
+     "psy": [
+      "柔和",
+      "灵动",
+      "轻盈"
+     ]
+    },
+    {
+     "id": "LANG.space.51",
+     "cn": "空间隔离",
+     "desc": "不同层被隔开的封闭关系",
+     "psy": [
+      "冷漠",
+      "静止",
+      "疏离"
+     ]
+    },
+    {
+     "id": "LANG.space.52",
+     "cn": "空间贯通",
+     "desc": "视觉流动的贯穿性",
+     "psy": [
+      "连接",
+      "通透",
+      "自然"
+     ]
+    },
+    {
+     "id": "LANG.space.53",
+     "cn": "空间叙事",
+     "desc": "空间结构服务于故事逻辑",
+     "psy": [
+      "结构",
+      "秩序",
+      "引导"
+     ]
+    },
+    {
+     "id": "LANG.space.54",
+     "cn": "空间静默",
+     "desc": "无事件空间的精神状态",
+     "psy": [
+      "冷静",
+      "孤独",
+      "哲思"
+     ]
+    },
+    {
+     "id": "LANG.space.55",
+     "cn": "空间异化",
+     "desc": "现实被重构为心理空间",
+     "psy": [
+      "扭曲",
+      "荒诞",
+      "表现性"
+     ]
+    },
+    {
+     "id": "LANG.space.56",
+     "cn": "空间内凹",
+     "desc": "空间向内收缩",
+     "psy": [
+      "集中",
+      "聚焦",
+      "压抑"
+     ]
+    },
+    {
+     "id": "LANG.space.57",
+     "cn": "空间外凸",
+     "desc": "空间向外延展",
+     "psy": [
+      "扩张",
+      "冲动",
+      "开放"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "LANG.form",
+   "cn": "形状与造型",
+   "en": "Form",
+   "q": "形体如何被塑造",
+   "v1": "造型语言",
+   "count": 61,
+   "atoms": [
+    {
+     "id": "LANG.form.01",
+     "cn": "比例",
+     "desc": "局部与整体的尺度关系",
+     "psy": [
+      "平衡",
+      "秩序",
+      "理性"
+     ]
+    },
+    {
+     "id": "LANG.form.02",
+     "cn": "结构",
+     "desc": "形体的内在骨架关系",
+     "psy": [
+      "稳定",
+      "理性",
+      "科学"
+     ]
+    },
+    {
+     "id": "LANG.form.03",
+     "cn": "骨架",
+     "desc": "支撑形体的线性基础",
+     "psy": [
+      "坚定",
+      "清晰",
+      "力量"
+     ]
+    },
+    {
+     "id": "LANG.form.04",
+     "cn": "体块",
+     "desc": "三维体积的组织关系",
+     "psy": [
+      "稳重",
+      "厚实",
+      "庄重"
+     ]
+    },
+    {
+     "id": "LANG.form.05",
+     "cn": "外轮廓",
+     "desc": "形体边界的视觉形状",
+     "psy": [
+      "清晰",
+      "克制",
+      "平衡"
+     ]
+    },
+    {
+     "id": "LANG.form.06",
+     "cn": "内结构",
+     "desc": "隐含的造型逻辑线索",
+     "psy": [
+      "理性",
+      "深邃",
+      "控制"
+     ]
+    },
+    {
+     "id": "LANG.form.07",
+     "cn": "解剖",
+     "desc": "结构的生理基础",
+     "psy": [
+      "精确",
+      "真实",
+      "冷静"
+     ]
+    },
+    {
+     "id": "LANG.form.08",
+     "cn": "肌理体感",
+     "desc": "表面与体积的结合",
+     "psy": [
+      "丰富",
+      "真实",
+      "细腻"
+     ]
+    },
+    {
+     "id": "LANG.form.09",
+     "cn": "光塑造",
+     "desc": "明暗构建形体体积",
+     "psy": [
+      "稳定",
+      "立体",
+      "古典"
+     ]
+    },
+    {
+     "id": "LANG.form.10",
+     "cn": "塑形",
+     "desc": "用笔或色构成形体",
+     "psy": [
+      "力量",
+      "集中",
+      "控制"
+     ]
+    },
+    {
+     "id": "LANG.form.11",
+     "cn": "简化",
+     "desc": "省略细节保留核心",
+     "psy": [
+      "纯粹",
+      "克制",
+      "现代"
+     ]
+    },
+    {
+     "id": "LANG.form.12",
+     "cn": "夸张",
+     "desc": "形体比例的张力强化",
+     "psy": [
+      "戏剧",
+      "冲突",
+      "表现性"
+     ]
+    },
+    {
+     "id": "LANG.form.13",
+     "cn": "扭曲",
+     "desc": "形体的非自然变形",
+     "psy": [
+      "痛苦",
+      "焦虑",
+      "张力"
+     ]
+    },
+    {
+     "id": "LANG.form.14",
+     "cn": "解构",
+     "desc": "打破形体原有秩序",
+     "psy": [
+      "冷静",
+      "现代",
+      "理性"
+     ]
+    },
+    {
+     "id": "LANG.form.15",
+     "cn": "重构",
+     "desc": "新形体的再组织",
+     "psy": [
+      "创造",
+      "理性",
+      "实验"
+     ]
+    },
+    {
+     "id": "LANG.form.16",
+     "cn": "线性造型",
+     "desc": "以线为主导的形体构建",
+     "psy": [
+      "轻盈",
+      "理性",
+      "克制"
+     ]
+    },
+    {
+     "id": "LANG.form.17",
+     "cn": "面性造型",
+     "desc": "以平面塑造形体体积",
+     "psy": [
+      "稳定",
+      "冷静",
+      "结构感"
+     ]
+    },
+    {
+     "id": "LANG.form.18",
+     "cn": "块面造型",
+     "desc": "由体块组合的形态",
+     "psy": [
+      "力量",
+      "厚重",
+      "坚实"
+     ]
+    },
+    {
+     "id": "LANG.form.19",
+     "cn": "体积感",
+     "desc": "三维空间的实体感",
+     "psy": [
+      "充实",
+      "真实",
+      "厚重"
+     ]
+    },
+    {
+     "id": "LANG.form.20",
+     "cn": "重量感",
+     "desc": "视觉质量与压迫感",
+     "psy": [
+      "厚重",
+      "稳健",
+      "庄严"
+     ]
+    },
+    {
+     "id": "LANG.form.21",
+     "cn": "张力线",
+     "desc": "形体运动的主导线",
+     "psy": [
+      "动势",
+      "能量",
+      "生命感"
+     ]
+    },
+    {
+     "id": "LANG.form.22",
+     "cn": "动势",
+     "desc": "形体的运动方向与节奏",
+     "psy": [
+      "活力",
+      "力量",
+      "张扬"
+     ]
+    },
+    {
+     "id": "LANG.form.23",
+     "cn": "稳定形",
+     "desc": "均衡无动势的结构",
+     "psy": [
+      "安定",
+      "平衡",
+      "理性"
+     ]
+    },
+    {
+     "id": "LANG.form.24",
+     "cn": "动态形",
+     "desc": "非对称、流动的造型",
+     "psy": [
+      "活跃",
+      "自由",
+      "紧张"
+     ]
+    },
+    {
+     "id": "LANG.form.25",
+     "cn": "扭动形",
+     "desc": "形体内的旋转动势",
+     "psy": [
+      "表现",
+      "力量",
+      "冲突"
+     ]
+    },
+    {
+     "id": "LANG.form.26",
+     "cn": "延展形",
+     "desc": "拉伸展开的形态",
+     "psy": [
+      "舒展",
+      "开放",
+      "优雅"
+     ]
+    },
+    {
+     "id": "LANG.form.27",
+     "cn": "收缩形",
+     "desc": "聚拢内凹的造型",
+     "psy": [
+      "内敛",
+      "克制",
+      "压抑"
+     ]
+    },
+    {
+     "id": "LANG.form.28",
+     "cn": "对称形",
+     "desc": "左右均衡的静态结构",
+     "psy": [
+      "稳定",
+      "平衡",
+      "和谐"
+     ]
+    },
+    {
+     "id": "LANG.form.29",
+     "cn": "非对称形",
+     "desc": "不均衡的动态平衡",
+     "psy": [
+      "活跃",
+      "现代",
+      "紧张"
+     ]
+    },
+    {
+     "id": "LANG.form.30",
+     "cn": "几何形",
+     "desc": "规则化的抽象造型",
+     "psy": [
+      "理性",
+      "简洁",
+      "秩序"
+     ]
+    },
+    {
+     "id": "LANG.form.31",
+     "cn": "有机形",
+     "desc": "自然生长的曲线形态",
+     "psy": [
+      "柔和",
+      "生命",
+      "自然"
+     ]
+    },
+    {
+     "id": "LANG.form.32",
+     "cn": "抽象形",
+     "desc": "非具象的形式提炼",
+     "psy": [
+      "冷静",
+      "哲思",
+      "现代"
+     ]
+    },
+    {
+     "id": "LANG.form.33",
+     "cn": "具象形",
+     "desc": "现实可识别的形体",
+     "psy": [
+      "真实",
+      "稳定",
+      "温和"
+     ]
+    },
+    {
+     "id": "LANG.form.34",
+     "cn": "半具象",
+     "desc": "在真实与抽象之间",
+     "psy": [
+      "模糊",
+      "诗意",
+      "自由"
+     ]
+    },
+    {
+     "id": "LANG.form.35",
+     "cn": "变形",
+     "desc": "形体比例或方向的改变",
+     "psy": [
+      "奇异",
+      "张力",
+      "情绪化"
+     ]
+    },
+    {
+     "id": "LANG.form.36",
+     "cn": "压缩",
+     "desc": "形体被挤压变形",
+     "psy": [
+      "紧张",
+      "冲突",
+      "力量"
+     ]
+    },
+    {
+     "id": "LANG.form.37",
+     "cn": "扩张",
+     "desc": "形体向外生长延展",
+     "psy": [
+      "生命",
+      "冲动",
+      "爆发"
+     ]
+    },
+    {
+     "id": "LANG.form.38",
+     "cn": "断裂",
+     "desc": "形体被切断的不连续",
+     "psy": [
+      "冷峻",
+      "现代",
+      "紧绷"
+     ]
+    },
+    {
+     "id": "LANG.form.39",
+     "cn": "残缺",
+     "desc": "不完整的形体表现",
+     "psy": [
+      "悲怆",
+      "怀旧",
+      "时间感"
+     ]
+    },
+    {
+     "id": "LANG.form.40",
+     "cn": "塌陷",
+     "desc": "结构崩塌的形体",
+     "psy": [
+      "弱化",
+      "压迫",
+      "衰败"
+     ]
+    },
+    {
+     "id": "LANG.form.41",
+     "cn": "叠加形",
+     "desc": "多形体重叠的结构",
+     "psy": [
+      "复杂",
+      "节奏",
+      "融合"
+     ]
+    },
+    {
+     "id": "LANG.form.42",
+     "cn": "透明形",
+     "desc": "形体间的叠透关系",
+     "psy": [
+      "柔和",
+      "虚实",
+      "轻盈"
+     ]
+    },
+    {
+     "id": "LANG.form.43",
+     "cn": "构造形",
+     "desc": "几何化与机械性形态",
+     "psy": [
+      "冷峻",
+      "理性",
+      "现代"
+     ]
+    },
+    {
+     "id": "LANG.form.44",
+     "cn": "分解形",
+     "desc": "拆解为局部的构成形式",
+     "psy": [
+      "分离",
+      "理性",
+      "分析性"
+     ]
+    },
+    {
+     "id": "LANG.form.45",
+     "cn": "融合形",
+     "desc": "多形体之间的过渡关系",
+     "psy": [
+      "柔和",
+      "自然",
+      "协调"
+     ]
+    },
+    {
+     "id": "LANG.form.46",
+     "cn": "扁平形",
+     "desc": "压缩体积的二维形态",
+     "psy": [
+      "冷静",
+      "克制",
+      "现代"
+     ]
+    },
+    {
+     "id": "LANG.form.47",
+     "cn": "塑造线",
+     "desc": "勾勒形体的构造主线",
+     "psy": [
+      "清晰",
+      "理性",
+      "古典"
+     ]
+    },
+    {
+     "id": "LANG.form.48",
+     "cn": "力量线",
+     "desc": "形体的主导方向线",
+     "psy": [
+      "紧张",
+      "能量",
+      "控制"
+     ]
+    },
+    {
+     "id": "LANG.form.49",
+     "cn": "节奏形",
+     "desc": "形体重复形成的律动",
+     "psy": [
+      "律动",
+      "生命",
+      "秩序"
+     ]
+    },
+    {
+     "id": "LANG.form.50",
+     "cn": "构成形",
+     "desc": "几何与比例的理性组合",
+     "psy": [
+      "平衡",
+      "克制",
+      "设计感"
+     ]
+    },
+    {
+     "id": "LANG.form.51",
+     "cn": "视觉重心",
+     "desc": "形体聚焦的视觉核心",
+     "psy": [
+      "稳定",
+      "集中",
+      "平衡"
+     ]
+    },
+    {
+     "id": "LANG.form.52",
+     "cn": "体块节奏",
+     "desc": "大小比例的视觉韵律",
+     "psy": [
+      "节奏",
+      "平衡",
+      "秩序"
+     ]
+    },
+    {
+     "id": "LANG.form.53",
+     "cn": "形体延伸",
+     "desc": "空间中形体的方向性",
+     "psy": [
+      "开放",
+      "自由",
+      "流动"
+     ]
+    },
+    {
+     "id": "LANG.form.54",
+     "cn": "形体压缩",
+     "desc": "空间中形体的聚合性",
+     "psy": [
+      "紧张",
+      "凝聚",
+      "厚重"
+     ]
+    },
+    {
+     "id": "LANG.form.55",
+     "cn": "形体穿插",
+     "desc": "多形体交叠的空间节奏",
+     "psy": [
+      "丰富",
+      "紧密",
+      "复杂"
+     ]
+    },
+    {
+     "id": "LANG.form.56",
+     "cn": "形体破碎",
+     "desc": "被打散的结构残余",
+     "psy": [
+      "混乱",
+      "现代",
+      "碎片感"
+     ]
+    },
+    {
+     "id": "LANG.form.57",
+     "cn": "形体溶解",
+     "desc": "边界消散的体积弱化",
+     "psy": [
+      "柔和",
+      "模糊",
+      "诗意"
+     ]
+    },
+    {
+     "id": "LANG.form.58",
+     "cn": "形体重组",
+     "desc": "多元结构的重新整合",
+     "psy": [
+      "创造",
+      "实验",
+      "张力"
+     ]
+    },
+    {
+     "id": "LANG.form.59",
+     "cn": "形体漂浮",
+     "desc": "形体脱离重力感",
+     "psy": [
+      "梦幻",
+      "自由",
+      "灵性"
+     ]
+    },
+    {
+     "id": "LANG.form.60",
+     "cn": "形体投影",
+     "desc": "形体影像的映射关系",
+     "psy": [
+      "真实",
+      "光影",
+      "深度"
+     ]
+    },
+    {
+     "id": "LANG.form.61",
+     "cn": "形体延展",
+     "desc": "线性向外的运动方向",
+     "psy": [
+      "动感",
+      "节奏",
+      "能量"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "LANG.light",
+   "cn": "光影与明暗",
+   "en": "Light & Value",
+   "q": "光与明暗如何分布",
+   "v1": "光影语言",
+   "count": 57,
+   "atoms": [
+    {
+     "id": "LANG.light.01",
+     "cn": "明暗对比",
+     "desc": "光线强弱的戏剧冲突",
+     "psy": [
+      "强烈",
+      "戏剧",
+      "张力"
+     ]
+    },
+    {
+     "id": "LANG.light.02",
+     "cn": "逆光",
+     "desc": "光线从背后投射",
+     "psy": [
+      "神秘",
+      "轮廓",
+      "孤立"
+     ]
+    },
+    {
+     "id": "LANG.light.03",
+     "cn": "顺光",
+     "desc": "光线正面照射主体",
+     "psy": [
+      "清晰",
+      "真实",
+      "平静"
+     ]
+    },
+    {
+     "id": "LANG.light.04",
+     "cn": "侧光",
+     "desc": "半明半暗的视觉层次",
+     "psy": [
+      "立体",
+      "张力",
+      "戏剧"
+     ]
+    },
+    {
+     "id": "LANG.light.05",
+     "cn": "顶光",
+     "desc": "垂直照射的高亮区域",
+     "psy": [
+      "压迫",
+      "强烈",
+      "紧张"
+     ]
+    },
+    {
+     "id": "LANG.light.06",
+     "cn": "底光",
+     "desc": "由下向上照射的反常光",
+     "psy": [
+      "不安",
+      "诡异",
+      "戏剧化"
+     ]
+    },
+    {
+     "id": "LANG.light.07",
+     "cn": "散射光",
+     "desc": "无方向性的柔光",
+     "psy": [
+      "朦胧",
+      "温柔",
+      "宁静"
+     ]
+    },
+    {
+     "id": "LANG.light.08",
+     "cn": "聚光",
+     "desc": "强光集中照射焦点",
+     "psy": [
+      "紧张",
+      "聚焦",
+      "强调"
+     ]
+    },
+    {
+     "id": "LANG.light.09",
+     "cn": "光晕",
+     "desc": "光边界的模糊扩散",
+     "psy": [
+      "梦幻",
+      "柔和",
+      "神圣"
+     ]
+    },
+    {
+     "id": "LANG.light.10",
+     "cn": "光泽",
+     "desc": "物体表面反光质感",
+     "psy": [
+      "光滑",
+      "优雅",
+      "真实"
+     ]
+    },
+    {
+     "id": "LANG.light.11",
+     "cn": "光感",
+     "desc": "光线总体氛围",
+     "psy": [
+      "自然",
+      "流动",
+      "生命感"
+     ]
+    },
+    {
+     "id": "LANG.light.12",
+     "cn": "反光",
+     "desc": "环境色反射影响",
+     "psy": [
+      "细腻",
+      "真实",
+      "温和"
+     ]
+    },
+    {
+     "id": "LANG.light.13",
+     "cn": "投影",
+     "desc": "物体阴影的方向与形态",
+     "psy": [
+      "空间",
+      "秩序",
+      "存在感"
+     ]
+    },
+    {
+     "id": "LANG.light.14",
+     "cn": "半影",
+     "desc": "明暗过渡的中间带",
+     "psy": [
+      "柔和",
+      "模糊",
+      "自然"
+     ]
+    },
+    {
+     "id": "LANG.light.15",
+     "cn": "光影层次",
+     "desc": "不同明度的空间分布",
+     "psy": [
+      "深邃",
+      "稳定",
+      "立体"
+     ]
+    },
+    {
+     "id": "LANG.light.16",
+     "cn": "光影节奏",
+     "desc": "光区与暗区的分布规律",
+     "psy": [
+      "律动",
+      "张力",
+      "节奏"
+     ]
+    },
+    {
+     "id": "LANG.light.17",
+     "cn": "反差",
+     "desc": "明暗极值的对抗",
+     "psy": [
+      "强烈",
+      "冲突",
+      "焦虑"
+     ]
+    },
+    {
+     "id": "LANG.light.18",
+     "cn": "微光",
+     "desc": "弱光状态的情感氛围",
+     "psy": [
+      "静谧",
+      "内省",
+      "孤独"
+     ]
+    },
+    {
+     "id": "LANG.light.19",
+     "cn": "暗面",
+     "desc": "阴影主导的视觉区域",
+     "psy": [
+      "压抑",
+      "沉默",
+      "深沉"
+     ]
+    },
+    {
+     "id": "LANG.light.20",
+     "cn": "亮面",
+     "desc": "受光区域的高光区",
+     "psy": [
+      "活力",
+      "清晰",
+      "明快"
+     ]
+    },
+    {
+     "id": "LANG.light.21",
+     "cn": "漫射",
+     "desc": "光线柔化后的均匀效果",
+     "psy": [
+      "温柔",
+      "模糊",
+      "舒展"
+     ]
+    },
+    {
+     "id": "LANG.light.22",
+     "cn": "穿透",
+     "desc": "光线透过材质的表现",
+     "psy": [
+      "纯净",
+      "神秘",
+      "诗意"
+     ]
+    },
+    {
+     "id": "LANG.light.23",
+     "cn": "透光",
+     "desc": "半透明结构的光效",
+     "psy": [
+      "柔软",
+      "梦幻",
+      "生命感"
+     ]
+    },
+    {
+     "id": "LANG.light.24",
+     "cn": "反光肌理",
+     "desc": "光线在表面反射的变化",
+     "psy": [
+      "精致",
+      "活跃",
+      "真实"
+     ]
+    },
+    {
+     "id": "LANG.light.25",
+     "cn": "光影交错",
+     "desc": "光线交叠形成的复杂关系",
+     "psy": [
+      "丰富",
+      "动态",
+      "戏剧"
+     ]
+    },
+    {
+     "id": "LANG.light.26",
+     "cn": "光影对位",
+     "desc": "明暗对称的平衡结构",
+     "psy": [
+      "稳定",
+      "克制",
+      "古典"
+     ]
+    },
+    {
+     "id": "LANG.light.27",
+     "cn": "暗区焦点",
+     "desc": "阴影中的隐藏亮点",
+     "psy": [
+      "神秘",
+      "内省",
+      "引导"
+     ]
+    },
+    {
+     "id": "LANG.light.28",
+     "cn": "光轴",
+     "desc": "主光方向的秩序线",
+     "psy": [
+      "聚焦",
+      "控制",
+      "理性"
+     ]
+    },
+    {
+     "id": "LANG.light.29",
+     "cn": "光衰",
+     "desc": "光强递减的视觉过程",
+     "psy": [
+      "过渡",
+      "自然",
+      "真实"
+     ]
+    },
+    {
+     "id": "LANG.light.30",
+     "cn": "亮点",
+     "desc": "局部高光形成的聚焦",
+     "psy": [
+      "兴奋",
+      "跳跃",
+      "节奏"
+     ]
+    },
+    {
+     "id": "LANG.light.31",
+     "cn": "柔光",
+     "desc": "扩散型光线的柔和感",
+     "psy": [
+      "温和",
+      "宁静",
+      "舒适"
+     ]
+    },
+    {
+     "id": "LANG.light.32",
+     "cn": "强光",
+     "desc": "直射形成的硬影",
+     "psy": [
+      "剧烈",
+      "紧张",
+      "暴烈"
+     ]
+    },
+    {
+     "id": "LANG.light.33",
+     "cn": "硬影",
+     "desc": "明确边界的阴影形态",
+     "psy": [
+      "冷峻",
+      "刚硬",
+      "果断"
+     ]
+    },
+    {
+     "id": "LANG.light.34",
+     "cn": "软影",
+     "desc": "模糊边界的阴影形态",
+     "psy": [
+      "柔和",
+      "温顺",
+      "平衡"
+     ]
+    },
+    {
+     "id": "LANG.light.35",
+     "cn": "光影层叠",
+     "desc": "多光源造成的重影感",
+     "psy": [
+      "复杂",
+      "梦幻",
+      "动态"
+     ]
+    },
+    {
+     "id": "LANG.light.36",
+     "cn": "光影断裂",
+     "desc": "光线割裂的形式张力",
+     "psy": [
+      "现代",
+      "冲突",
+      "冷冽"
+     ]
+    },
+    {
+     "id": "LANG.light.37",
+     "cn": "时间光",
+     "desc": "不同时间的光色变化",
+     "psy": [
+      "流动",
+      "怀旧",
+      "节奏感"
+     ]
+    },
+    {
+     "id": "LANG.light.38",
+     "cn": "人工光",
+     "desc": "人造光源的视觉特性",
+     "psy": [
+      "冷漠",
+      "理性",
+      "都市感"
+     ]
+    },
+    {
+     "id": "LANG.light.39",
+     "cn": "自然光",
+     "desc": "环境中自然光线的表现",
+     "psy": [
+      "温暖",
+      "真实",
+      "平衡"
+     ]
+    },
+    {
+     "id": "LANG.light.40",
+     "cn": "室内光",
+     "desc": "局部照明的限定空间",
+     "psy": [
+      "温馨",
+      "私密",
+      "静止"
+     ]
+    },
+    {
+     "id": "LANG.light.41",
+     "cn": "户外光",
+     "desc": "广域照射的开放光场",
+     "psy": [
+      "明快",
+      "自由",
+      "生机"
+     ]
+    },
+    {
+     "id": "LANG.light.42",
+     "cn": "光幕",
+     "desc": "光雾形成的薄膜感",
+     "psy": [
+      "朦胧",
+      "诗意",
+      "轻盈"
+     ]
+    },
+    {
+     "id": "LANG.light.43",
+     "cn": "逆光轮廓",
+     "desc": "由背光形成的剪影边缘",
+     "psy": [
+      "孤立",
+      "力量",
+      "崇高"
+     ]
+    },
+    {
+     "id": "LANG.light.44",
+     "cn": "高光反射",
+     "desc": "强光照射产生的高亮区",
+     "psy": [
+      "闪烁",
+      "活跃",
+      "现代"
+     ]
+    },
+    {
+     "id": "LANG.light.45",
+     "cn": "光影节拍",
+     "desc": "光暗交替的视觉节奏",
+     "psy": [
+      "节奏",
+      "能量",
+      "呼吸感"
+     ]
+    },
+    {
+     "id": "LANG.light.46",
+     "cn": "光晕扩散",
+     "desc": "光区外缘的朦胧扩散",
+     "psy": [
+      "柔软",
+      "浪漫",
+      "梦境"
+     ]
+    },
+    {
+     "id": "LANG.light.47",
+     "cn": "光线分割",
+     "desc": "光线将画面切割成区域",
+     "psy": [
+      "紧张",
+      "结构",
+      "秩序"
+     ]
+    },
+    {
+     "id": "LANG.light.48",
+     "cn": "暗部延展",
+     "desc": "阴影层次的空间延伸",
+     "psy": [
+      "稳定",
+      "厚重",
+      "平衡"
+     ]
+    },
+    {
+     "id": "LANG.light.49",
+     "cn": "亮部侵蚀",
+     "desc": "光线侵入暗部的变化",
+     "psy": [
+      "动态",
+      "冲突",
+      "生命感"
+     ]
+    },
+    {
+     "id": "LANG.light.50",
+     "cn": "局部照亮",
+     "desc": "局部光源制造聚焦",
+     "psy": [
+      "紧张",
+      "专注",
+      "戏剧性"
+     ]
+    },
+    {
+     "id": "LANG.light.51",
+     "cn": "照度差",
+     "desc": "明暗落差的视觉张力",
+     "psy": [
+      "紧绷",
+      "冲突",
+      "深邃"
+     ]
+    },
+    {
+     "id": "LANG.light.52",
+     "cn": "空间光",
+     "desc": "光塑造的空间体积感",
+     "psy": [
+      "立体",
+      "深远",
+      "真实"
+     ]
+    },
+    {
+     "id": "LANG.light.53",
+     "cn": "柔焦",
+     "desc": "光影模糊化的视觉处理",
+     "psy": [
+      "梦幻",
+      "温柔",
+      "回忆感"
+     ]
+    },
+    {
+     "id": "LANG.light.54",
+     "cn": "眩光",
+     "desc": "过强光源导致的炫目",
+     "psy": [
+      "强烈",
+      "刺眼",
+      "能量"
+     ]
+    },
+    {
+     "id": "LANG.light.55",
+     "cn": "光雾",
+     "desc": "空气弥散形成的柔亮空间",
+     "psy": [
+      "平静",
+      "浪漫",
+      "朦胧"
+     ]
+    },
+    {
+     "id": "LANG.light.56",
+     "cn": "光线切割",
+     "desc": "光束划分画面结构",
+     "psy": [
+      "力量",
+      "方向",
+      "冷峻"
+     ]
+    },
+    {
+     "id": "LANG.light.57",
+     "cn": "光影交融",
+     "desc": "明暗共存的柔性空间",
+     "psy": [
+      "平衡",
+      "温和",
+      "真实"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "LANG.color",
+   "cn": "色彩系统",
+   "en": "Color",
+   "q": "色彩关系与心理",
+   "v1": "色彩语言",
+   "count": 43,
+   "atoms": [
+    {
+     "id": "LANG.color.01",
+     "cn": "冷暖",
+     "desc": "色温对比与心理暗示",
+     "psy": [
+      "温柔",
+      "冲突",
+      "平衡"
+     ]
+    },
+    {
+     "id": "LANG.color.02",
+     "cn": "互补",
+     "desc": "强对比与能量平衡",
+     "psy": [
+      "紧张",
+      "鲜明",
+      "动感"
+     ]
+    },
+    {
+     "id": "LANG.color.03",
+     "cn": "饱和",
+     "desc": "色彩纯度与强度",
+     "psy": [
+      "张扬",
+      "热烈",
+      "充盈"
+     ]
+    },
+    {
+     "id": "LANG.color.04",
+     "cn": "灰度",
+     "desc": "明度调节与空间层次",
+     "psy": [
+      "含蓄",
+      "克制",
+      "理性"
+     ]
+    },
+    {
+     "id": "LANG.color.05",
+     "cn": "明度",
+     "desc": "明暗对比与视觉聚焦",
+     "psy": [
+      "开放",
+      "明朗",
+      "鲜活"
+     ]
+    },
+    {
+     "id": "LANG.color.06",
+     "cn": "透明",
+     "desc": "通透叠色与空气感",
+     "psy": [
+      "轻盈",
+      "纯净",
+      "灵动"
+     ]
+    },
+    {
+     "id": "LANG.color.07",
+     "cn": "厚重",
+     "desc": "压实密度与稳重氛围",
+     "psy": [
+      "深沉",
+      "凝重",
+      "静默"
+     ]
+    },
+    {
+     "id": "LANG.color.08",
+     "cn": "晕染",
+     "desc": "柔和过渡与情绪流动",
+     "psy": [
+      "柔软",
+      "梦幻",
+      "流动"
+     ]
+    },
+    {
+     "id": "LANG.color.09",
+     "cn": "渐层",
+     "desc": "由浅入深的光色递进",
+     "psy": [
+      "平和",
+      "温润",
+      "自然"
+     ]
+    },
+    {
+     "id": "LANG.color.10",
+     "cn": "单色",
+     "desc": "极简构成与视觉统一",
+     "psy": [
+      "克制",
+      "专注",
+      "纯粹"
+     ]
+    },
+    {
+     "id": "LANG.color.11",
+     "cn": "多色",
+     "desc": "多元并置与活跃氛围",
+     "psy": [
+      "活泼",
+      "自由",
+      "愉悦"
+     ]
+    },
+    {
+     "id": "LANG.color.12",
+     "cn": "对比色",
+     "desc": "色相对立形成张力",
+     "psy": [
+      "紧张",
+      "冲突",
+      "鲜明"
+     ]
+    },
+    {
+     "id": "LANG.color.13",
+     "cn": "类似色",
+     "desc": "柔和衔接与和谐调性",
+     "psy": [
+      "平衡",
+      "柔顺",
+      "静谧"
+     ]
+    },
+    {
+     "id": "LANG.color.14",
+     "cn": "暗调",
+     "desc": "深沉气质与神秘空间",
+     "psy": [
+      "内敛",
+      "孤寂",
+      "压抑"
+     ]
+    },
+    {
+     "id": "LANG.color.15",
+     "cn": "高调",
+     "desc": "明亮轻盈与开放氛围",
+     "psy": [
+      "轻快",
+      "愉悦",
+      "阳光"
+     ]
+    },
+    {
+     "id": "LANG.color.16",
+     "cn": "暖色",
+     "desc": "活力、亲切与生机",
+     "psy": [
+      "温暖",
+      "明快",
+      "希望"
+     ]
+    },
+    {
+     "id": "LANG.color.17",
+     "cn": "冷色",
+     "desc": "静谧、理性与克制",
+     "psy": [
+      "冷峻",
+      "平静",
+      "孤立"
+     ]
+    },
+    {
+     "id": "LANG.color.18",
+     "cn": "中性色",
+     "desc": "过渡缓和与协调稳定",
+     "psy": [
+      "宁静",
+      "和谐",
+      "理性"
+     ]
+    },
+    {
+     "id": "LANG.color.19",
+     "cn": "暖灰",
+     "desc": "柔和空气与温度感",
+     "psy": [
+      "温润",
+      "轻柔",
+      "平静"
+     ]
+    },
+    {
+     "id": "LANG.color.20",
+     "cn": "冷灰",
+     "desc": "理性距离与金属氛围",
+     "psy": [
+      "冷漠",
+      "疏离",
+      "安静"
+     ]
+    },
+    {
+     "id": "LANG.color.21",
+     "cn": "灰化",
+     "desc": "降纯度的克制表现",
+     "psy": [
+      "稳重",
+      "沉静",
+      "理智"
+     ]
+    },
+    {
+     "id": "LANG.color.22",
+     "cn": "对位",
+     "desc": "色彩间的情绪对抗",
+     "psy": [
+      "冲突",
+      "动感",
+      "对峙"
+     ]
+    },
+    {
+     "id": "LANG.color.23",
+     "cn": "撞色",
+     "desc": "强对比与冲突节奏",
+     "psy": [
+      "大胆",
+      "叛逆",
+      "活跃"
+     ]
+    },
+    {
+     "id": "LANG.color.24",
+     "cn": "渐变",
+     "desc": "色调转换的节奏性",
+     "psy": [
+      "柔和",
+      "平滑",
+      "流动"
+     ]
+    },
+    {
+     "id": "LANG.color.25",
+     "cn": "光感色",
+     "desc": "光线作用下的色彩变化",
+     "psy": [
+      "生机",
+      "通透",
+      "鲜亮"
+     ]
+    },
+    {
+     "id": "LANG.color.26",
+     "cn": "层叠色",
+     "desc": "多层叠加的空间深度",
+     "psy": [
+      "厚重",
+      "丰富",
+      "含蓄"
+     ]
+    },
+    {
+     "id": "LANG.color.27",
+     "cn": "反射色",
+     "desc": "环境映照形成的色差",
+     "psy": [
+      "共鸣",
+      "互动",
+      "真实"
+     ]
+    },
+    {
+     "id": "LANG.color.28",
+     "cn": "投影色",
+     "desc": "阴影染色与环境融合",
+     "psy": [
+      "神秘",
+      "安静",
+      "深邃"
+     ]
+    },
+    {
+     "id": "LANG.color.29",
+     "cn": "残色",
+     "desc": "时间感与记忆气息",
+     "psy": [
+      "怀旧",
+      "忧伤",
+      "温柔"
+     ]
+    },
+    {
+     "id": "LANG.color.30",
+     "cn": "光色融合",
+     "desc": "光与色的自然交融",
+     "psy": [
+      "自然",
+      "流动",
+      "温和"
+     ]
+    },
+    {
+     "id": "LANG.color.31",
+     "cn": "光色断裂",
+     "desc": "光谱中断带来的张力",
+     "psy": [
+      "扭曲",
+      "冲突",
+      "焦虑"
+     ]
+    },
+    {
+     "id": "LANG.color.32",
+     "cn": "空气色",
+     "desc": "大气透视下的灰蓝调",
+     "psy": [
+      "遥远",
+      "轻盈",
+      "平静"
+     ]
+    },
+    {
+     "id": "LANG.color.33",
+     "cn": "夜色",
+     "desc": "深蓝与黑的氛围空间",
+     "psy": [
+      "静谧",
+      "孤独",
+      "梦幻"
+     ]
+    },
+    {
+     "id": "LANG.color.34",
+     "cn": "晨光色",
+     "desc": "柔亮、透明的温和色",
+     "psy": [
+      "希望",
+      "清新",
+      "愉悦"
+     ]
+    },
+    {
+     "id": "LANG.color.35",
+     "cn": "暮光色",
+     "desc": "温柔、含蓄的黄橙调",
+     "psy": [
+      "怀旧",
+      "宁静",
+      "感伤"
+     ]
+    },
+    {
+     "id": "LANG.color.36",
+     "cn": "月光色",
+     "desc": "冷白与静谧氛围",
+     "psy": [
+      "平静",
+      "空灵",
+      "安宁"
+     ]
+    },
+    {
+     "id": "LANG.color.37",
+     "cn": "烛光色",
+     "desc": "暖黄与摇曳质感",
+     "psy": [
+      "温馨",
+      "柔和",
+      "亲近"
+     ]
+    },
+    {
+     "id": "LANG.color.38",
+     "cn": "火焰色",
+     "desc": "橙红高饱和的热能感",
+     "psy": [
+      "激情",
+      "冲动",
+      "力量"
+     ]
+    },
+    {
+     "id": "LANG.color.39",
+     "cn": "海蓝色",
+     "desc": "深远空间与理性宁静",
+     "psy": [
+      "安定",
+      "纯净",
+      "理智"
+     ]
+    },
+    {
+     "id": "LANG.color.40",
+     "cn": "草绿色",
+     "desc": "生长、希望与自然气息",
+     "psy": [
+      "生机",
+      "舒展",
+      "清爽"
+     ]
+    },
+    {
+     "id": "LANG.color.41",
+     "cn": "紫调",
+     "desc": "神秘、感性与精神性",
+     "psy": [
+      "梦幻",
+      "浪漫",
+      "神秘"
+     ]
+    },
+    {
+     "id": "LANG.color.42",
+     "cn": "金调",
+     "desc": "尊贵与节日光感",
+     "psy": [
+      "庄重",
+      "富丽",
+      "温暖"
+     ]
+    },
+    {
+     "id": "LANG.color.43",
+     "cn": "银调",
+     "desc": "冷静与科技氛围",
+     "psy": [
+      "冷艳",
+      "现代",
+      "克制"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "LANG.texture",
+   "cn": "笔触与肌理",
+   "en": "Stroke & Texture",
+   "q": "笔触痕迹与物质感",
+   "v1": "笔触与质感语言",
+   "count": 73,
+   "atoms": [
+    {
+     "id": "LANG.texture.01",
+     "cn": "厚涂",
+     "desc": "堆叠颜料形成立体肌理",
+     "psy": [
+      "强烈",
+      "厚重",
+      "力量感"
+     ]
+    },
+    {
+     "id": "LANG.texture.02",
+     "cn": "薄涂",
+     "desc": "透明色层的轻描效果",
+     "psy": [
+      "轻盈",
+      "柔和",
+      "克制"
+     ]
+    },
+    {
+     "id": "LANG.texture.03",
+     "cn": "干擦",
+     "desc": "干笔摩擦形成粗糙表面",
+     "psy": [
+      "粗犷",
+      "质朴",
+      "真实"
+     ]
+    },
+    {
+     "id": "LANG.texture.04",
+     "cn": "湿画",
+     "desc": "颜料未干时的融合",
+     "psy": [
+      "柔软",
+      "流动",
+      "温和"
+     ]
+    },
+    {
+     "id": "LANG.texture.05",
+     "cn": "飞白",
+     "desc": "笔痕显露的留白质感",
+     "psy": [
+      "率性",
+      "轻盈",
+      "自然"
+     ]
+    },
+    {
+     "id": "LANG.texture.06",
+     "cn": "泼墨",
+     "desc": "大面积自由泼洒",
+     "psy": [
+      "豪放",
+      "激烈",
+      "即兴"
+     ]
+    },
+    {
+     "id": "LANG.texture.07",
+     "cn": "点描",
+     "desc": "以点叠加成色面结构",
+     "psy": [
+      "节奏",
+      "精致",
+      "理性"
+     ]
+    },
+    {
+     "id": "LANG.texture.08",
+     "cn": "刮擦",
+     "desc": "利用刮除形成肌理",
+     "psy": [
+      "冲突",
+      "锐利",
+      "破碎"
+     ]
+    },
+    {
+     "id": "LANG.texture.09",
+     "cn": "拍打",
+     "desc": "以笔拍击形成颗粒",
+     "psy": [
+      "活力",
+      "节奏",
+      "自由"
+     ]
+    },
+    {
+     "id": "LANG.texture.10",
+     "cn": "压印",
+     "desc": "以物压出肌理",
+     "psy": [
+      "实验",
+      "偶然",
+      "触觉"
+     ]
+    },
+    {
+     "id": "LANG.texture.11",
+     "cn": "叠加",
+     "desc": "多层笔触堆叠",
+     "psy": [
+      "丰富",
+      "深厚",
+      "沉稳"
+     ]
+    },
+    {
+     "id": "LANG.texture.12",
+     "cn": "扫笔",
+     "desc": "快速横扫形成流动感",
+     "psy": [
+      "动势",
+      "自由",
+      "直接"
+     ]
+    },
+    {
+     "id": "LANG.texture.13",
+     "cn": "渲染",
+     "desc": "平滑晕化的色层",
+     "psy": [
+      "温润",
+      "宁静",
+      "细腻"
+     ]
+    },
+    {
+     "id": "LANG.texture.14",
+     "cn": "拾笔",
+     "desc": "笔锋转折显露控制",
+     "psy": [
+      "精准",
+      "细致",
+      "理性"
+     ]
+    },
+    {
+     "id": "LANG.texture.15",
+     "cn": "泼彩",
+     "desc": "自由泼洒多色",
+     "psy": [
+      "热烈",
+      "放纵",
+      "冲动"
+     ]
+    },
+    {
+     "id": "LANG.texture.16",
+     "cn": "皴法",
+     "desc": "传统山水的纹理笔法",
+     "psy": [
+      "古典",
+      "结构",
+      "节奏"
+     ]
+    },
+    {
+     "id": "LANG.texture.17",
+     "cn": "干笔皴",
+     "desc": "干涩质感的山体描写",
+     "psy": [
+      "朴实",
+      "厚重",
+      "坚毅"
+     ]
+    },
+    {
+     "id": "LANG.texture.18",
+     "cn": "湿笔皴",
+     "desc": "墨色交融的柔和肌理",
+     "psy": [
+      "柔和",
+      "含蓄",
+      "自然"
+     ]
+    },
+    {
+     "id": "LANG.texture.19",
+     "cn": "勾线",
+     "desc": "清晰线条界定形体",
+     "psy": [
+      "克制",
+      "精准",
+      "理性"
+     ]
+    },
+    {
+     "id": "LANG.texture.20",
+     "cn": "破笔",
+     "desc": "故意断裂的笔触结构",
+     "psy": [
+      "狂放",
+      "现代",
+      "力量"
+     ]
+    },
+    {
+     "id": "LANG.texture.21",
+     "cn": "渐层笔触",
+     "desc": "色彩从厚到薄的过渡",
+     "psy": [
+      "温柔",
+      "流动",
+      "节奏"
+     ]
+    },
+    {
+     "id": "LANG.texture.22",
+     "cn": "重笔",
+     "desc": "力度深重的笔压痕迹",
+     "psy": [
+      "力量",
+      "厚实",
+      "坚强"
+     ]
+    },
+    {
+     "id": "LANG.texture.23",
+     "cn": "轻笔",
+     "desc": "轻盈柔软的笔触痕迹",
+     "psy": [
+      "柔和",
+      "细腻",
+      "温顺"
+     ]
+    },
+    {
+     "id": "LANG.texture.24",
+     "cn": "笔锋转折",
+     "desc": "笔势运动的方向变化",
+     "psy": [
+      "灵动",
+      "流畅",
+      "优雅"
+     ]
+    },
+    {
+     "id": "LANG.texture.25",
+     "cn": "疏密",
+     "desc": "笔迹分布的密度关系",
+     "psy": [
+      "节奏",
+      "平衡",
+      "韵律"
+     ]
+    },
+    {
+     "id": "LANG.texture.26",
+     "cn": "行笔节奏",
+     "desc": "笔触快慢的视觉节奏",
+     "psy": [
+      "音乐感",
+      "能量",
+      "连贯"
+     ]
+    },
+    {
+     "id": "LANG.texture.27",
+     "cn": "起笔",
+     "desc": "笔迹起始的动势",
+     "psy": [
+      "柔和",
+      "轻盈",
+      "引导"
+     ]
+    },
+    {
+     "id": "LANG.texture.28",
+     "cn": "收笔",
+     "desc": "笔迹收尾的节奏",
+     "psy": [
+      "控制",
+      "克制",
+      "静止"
+     ]
+    },
+    {
+     "id": "LANG.texture.29",
+     "cn": "粗糙肌理",
+     "desc": "颗粒、摩擦感明显",
+     "psy": [
+      "野性",
+      "厚重",
+      "真实"
+     ]
+    },
+    {
+     "id": "LANG.texture.30",
+     "cn": "光滑肌理",
+     "desc": "均匀细腻的表面触感",
+     "psy": [
+      "平静",
+      "优雅",
+      "现代"
+     ]
+    },
+    {
+     "id": "LANG.texture.31",
+     "cn": "裂纹肌理",
+     "desc": "老化或干裂的表面质感",
+     "psy": [
+      "历史",
+      "时间",
+      "脆弱"
+     ]
+    },
+    {
+     "id": "LANG.texture.32",
+     "cn": "金属质感",
+     "desc": "反光与坚硬感结合",
+     "psy": [
+      "冷峻",
+      "理性",
+      "现代"
+     ]
+    },
+    {
+     "id": "LANG.texture.33",
+     "cn": "布面肌理",
+     "desc": "布纹透出的底质效果",
+     "psy": [
+      "手工",
+      "温度",
+      "真实"
+     ]
+    },
+    {
+     "id": "LANG.texture.34",
+     "cn": "石质感",
+     "desc": "压实与重量的触觉印象",
+     "psy": [
+      "稳定",
+      "厚重",
+      "冷静"
+     ]
+    },
+    {
+     "id": "LANG.texture.35",
+     "cn": "木质感",
+     "desc": "纹理有机的自然结构",
+     "psy": [
+      "温暖",
+      "自然",
+      "平衡"
+     ]
+    },
+    {
+     "id": "LANG.texture.36",
+     "cn": "水感肌理",
+     "desc": "水流状或透明层叠",
+     "psy": [
+      "流动",
+      "柔软",
+      "梦幻"
+     ]
+    },
+    {
+     "id": "LANG.texture.37",
+     "cn": "砂感肌理",
+     "desc": "颗粒质地的粗糙层",
+     "psy": [
+      "粗犷",
+      "真实",
+      "沉静"
+     ]
+    },
+    {
+     "id": "LANG.texture.38",
+     "cn": "油脂感",
+     "desc": "光泽油亮的表面触感",
+     "psy": [
+      "丰盈",
+      "华丽",
+      "感性"
+     ]
+    },
+    {
+     "id": "LANG.texture.39",
+     "cn": "哑光肌理",
+     "desc": "无反光的消光表面",
+     "psy": [
+      "克制",
+      "安静",
+      "稳重"
+     ]
+    },
+    {
+     "id": "LANG.texture.40",
+     "cn": "光亮肌理",
+     "desc": "反光增强的视觉亮度",
+     "psy": [
+      "鲜明",
+      "现代",
+      "动感"
+     ]
+    },
+    {
+     "id": "LANG.texture.41",
+     "cn": "材料叠合",
+     "desc": "不同介质层的混合效果",
+     "psy": [
+      "实验",
+      "复杂",
+      "开放"
+     ]
+    },
+    {
+     "id": "LANG.texture.42",
+     "cn": "触觉笔触",
+     "desc": "可感的物理痕迹",
+     "psy": [
+      "真实",
+      "具象",
+      "身体性"
+     ]
+    },
+    {
+     "id": "LANG.texture.43",
+     "cn": "手势笔触",
+     "desc": "肢体动作痕迹化",
+     "psy": [
+      "激情",
+      "自由",
+      "表现性"
+     ]
+    },
+    {
+     "id": "LANG.texture.44",
+     "cn": "滴落",
+     "desc": "液态颜料自然下坠",
+     "psy": [
+      "自然",
+      "偶然",
+      "放松"
+     ]
+    },
+    {
+     "id": "LANG.texture.45",
+     "cn": "飞溅",
+     "desc": "高速甩洒的动势痕迹",
+     "psy": [
+      "狂野",
+      "能量",
+      "爆发"
+     ]
+    },
+    {
+     "id": "LANG.texture.46",
+     "cn": "刮刀痕",
+     "desc": "使用刮刀留下的质感",
+     "psy": [
+      "果断",
+      "现代",
+      "硬朗"
+     ]
+    },
+    {
+     "id": "LANG.texture.47",
+     "cn": "压层",
+     "desc": "多层颜料压制效果",
+     "psy": [
+      "稳定",
+      "深沉",
+      "理性"
+     ]
+    },
+    {
+     "id": "LANG.texture.48",
+     "cn": "溶解",
+     "desc": "材料间自然融合状态",
+     "psy": [
+      "柔和",
+      "梦幻",
+      "流动"
+     ]
+    },
+    {
+     "id": "LANG.texture.49",
+     "cn": "渗化",
+     "desc": "水与颜料相互渗透",
+     "psy": [
+      "自然",
+      "随机",
+      "细腻"
+     ]
+    },
+    {
+     "id": "LANG.texture.50",
+     "cn": "摩擦感",
+     "desc": "材料阻力的视觉化",
+     "psy": [
+      "粗糙",
+      "直接",
+      "力量"
+     ]
+    },
+    {
+     "id": "LANG.texture.51",
+     "cn": "断裂肌理",
+     "desc": "颜料破损形成的不连续",
+     "psy": [
+      "剧烈",
+      "现代",
+      "张力"
+     ]
+    },
+    {
+     "id": "LANG.texture.52",
+     "cn": "流痕",
+     "desc": "液体下流的重力痕迹",
+     "psy": [
+      "真实",
+      "自然",
+      "情绪性"
+     ]
+    },
+    {
+     "id": "LANG.texture.53",
+     "cn": "涂层剥落",
+     "desc": "材料脱落露出底层",
+     "psy": [
+      "时间",
+      "记忆",
+      "衰败"
+     ]
+    },
+    {
+     "id": "LANG.texture.54",
+     "cn": "数字笔触",
+     "desc": "数码画笔的笔迹特征",
+     "psy": [
+      "清晰",
+      "人工",
+      "理性"
+     ]
+    },
+    {
+     "id": "LANG.texture.55",
+     "cn": "虚拟肌理",
+     "desc": "模拟生成的质地效果",
+     "psy": [
+      "超现实",
+      "冷静",
+      "未来感"
+     ]
+    },
+    {
+     "id": "LANG.texture.M56",
+     "cn": "双勾填彩",
+     "desc": "(由风格层迁入的笔法技法)",
+     "psy": [],
+     "from_style": true
+    },
+    {
+     "id": "LANG.texture.M57",
+     "cn": "叠墨",
+     "desc": "(由风格层迁入的笔法技法)",
+     "psy": [],
+     "from_style": true
+    },
+    {
+     "id": "LANG.texture.M58",
+     "cn": "墨气",
+     "desc": "(由风格层迁入的笔法技法)",
+     "psy": [],
+     "from_style": true
+    },
+    {
+     "id": "LANG.texture.M59",
+     "cn": "墨线写意",
+     "desc": "(由风格层迁入的笔法技法)",
+     "psy": [],
+     "from_style": true
+    },
+    {
+     "id": "LANG.texture.M60",
+     "cn": "意笔",
+     "desc": "(由风格层迁入的笔法技法)",
+     "psy": [],
+     "from_style": true
+    },
+    {
+     "id": "LANG.texture.M61",
+     "cn": "枯笔",
+     "desc": "(由风格层迁入的笔法技法)",
+     "psy": [],
+     "from_style": true
+    },
+    {
+     "id": "LANG.texture.M62",
+     "cn": "没骨写意",
+     "desc": "(由风格层迁入的笔法技法)",
+     "psy": [],
+     "from_style": true
+    },
+    {
+     "id": "LANG.texture.M63",
+     "cn": "没骨工笔",
+     "desc": "(由风格层迁入的笔法技法)",
+     "psy": [],
+     "from_style": true
+    },
+    {
+     "id": "LANG.texture.M64",
+     "cn": "泼彩泼墨",
+     "desc": "(由风格层迁入的笔法技法)",
+     "psy": [],
+     "from_style": true
+    },
+    {
+     "id": "LANG.texture.M65",
+     "cn": "混合笔法",
+     "desc": "(由风格层迁入的笔法技法)",
+     "psy": [],
+     "from_style": true
+    },
+    {
+     "id": "LANG.texture.M66",
+     "cn": "渲染写意",
+     "desc": "(由风格层迁入的笔法技法)",
+     "psy": [],
+     "from_style": true
+    },
+    {
+     "id": "LANG.texture.M67",
+     "cn": "渲染工笔",
+     "desc": "(由风格层迁入的笔法技法)",
+     "psy": [],
+     "from_style": true
+    },
+    {
+     "id": "LANG.texture.M68",
+     "cn": "滴墨",
+     "desc": "(由风格层迁入的笔法技法)",
+     "psy": [],
+     "from_style": true
+    },
+    {
+     "id": "LANG.texture.M69",
+     "cn": "独墨",
+     "desc": "(由风格层迁入的笔法技法)",
+     "psy": [],
+     "from_style": true
+    },
+    {
+     "id": "LANG.texture.M70",
+     "cn": "破墨",
+     "desc": "(由风格层迁入的笔法技法)",
+     "psy": [],
+     "from_style": true
+    },
+    {
+     "id": "LANG.texture.M71",
+     "cn": "篆籀笔法",
+     "desc": "(由风格层迁入的笔法技法)",
+     "psy": [],
+     "from_style": true
+    },
+    {
+     "id": "LANG.texture.M72",
+     "cn": "米点皴",
+     "desc": "(由风格层迁入的笔法技法)",
+     "psy": [],
+     "from_style": true
+    },
+    {
+     "id": "LANG.texture.M73",
+     "cn": "行草笔法",
+     "desc": "(由风格层迁入的笔法技法)",
+     "psy": [],
+     "from_style": true
+    }
+   ]
+  },
+  {
+   "id": "LANG.edge",
+   "cn": "边缘与节奏",
+   "en": "Edge & Rhythm",
+   "q": "边界虚实与画面节奏",
+   "v1": "边缘关系语言",
+   "count": 55,
+   "atoms": [
+    {
+     "id": "LANG.edge.01",
+     "cn": "虚实",
+     "desc": "边界清晰与模糊的对比关系",
+     "psy": [
+      "柔和",
+      "平衡",
+      "呼吸感"
+     ]
+    },
+    {
+     "id": "LANG.edge.02",
+     "cn": "实边",
+     "desc": "轮廓清晰可见的界线",
+     "psy": [
+      "明确",
+      "稳定",
+      "控制"
+     ]
+    },
+    {
+     "id": "LANG.edge.03",
+     "cn": "虚边",
+     "desc": "边界模糊融入背景",
+     "psy": [
+      "柔和",
+      "宁静",
+      "自然"
+     ]
+    },
+    {
+     "id": "LANG.edge.04",
+     "cn": "锋利边",
+     "desc": "硬线条形成的分割感",
+     "psy": [
+      "冷峻",
+      "决断",
+      "张力"
+     ]
+    },
+    {
+     "id": "LANG.edge.05",
+     "cn": "模糊边",
+     "desc": "模糊化的形体过渡",
+     "psy": [
+      "柔软",
+      "梦幻",
+      "朦胧"
+     ]
+    },
+    {
+     "id": "LANG.edge.06",
+     "cn": "消失边",
+     "desc": "边界被光线吞没",
+     "psy": [
+      "空灵",
+      "神秘",
+      "诗意"
+     ]
+    },
+    {
+     "id": "LANG.edge.07",
+     "cn": "重叠边",
+     "desc": "元素重叠形成深度",
+     "psy": [
+      "层次",
+      "稳定",
+      "空间感"
+     ]
+    },
+    {
+     "id": "LANG.edge.08",
+     "cn": "分离边",
+     "desc": "边界刻意断裂",
+     "psy": [
+      "紧张",
+      "疏离",
+      "现代"
+     ]
+    },
+    {
+     "id": "LANG.edge.09",
+     "cn": "相融边",
+     "desc": "两形体柔和过渡",
+     "psy": [
+      "平衡",
+      "和谐",
+      "温润"
+     ]
+    },
+    {
+     "id": "LANG.edge.10",
+     "cn": "相切边",
+     "desc": "两元素轻微接触",
+     "psy": [
+      "紧张",
+      "微妙",
+      "精致"
+     ]
+    },
+    {
+     "id": "LANG.edge.11",
+     "cn": "相交边",
+     "desc": "边线交叉形成复杂关系",
+     "psy": [
+      "强烈",
+      "动感",
+      "冲突"
+     ]
+    },
+    {
+     "id": "LANG.edge.12",
+     "cn": "边界消解",
+     "desc": "形体界限被弱化",
+     "psy": [
+      "模糊",
+      "自由",
+      "现代"
+     ]
+    },
+    {
+     "id": "LANG.edge.13",
+     "cn": "边界强化",
+     "desc": "轮廓被明确强化",
+     "psy": [
+      "稳定",
+      "理性",
+      "古典"
+     ]
+    },
+    {
+     "id": "LANG.edge.14",
+     "cn": "边缘流动",
+     "desc": "边线具动态节奏",
+     "psy": [
+      "灵动",
+      "节奏",
+      "生命"
+     ]
+    },
+    {
+     "id": "LANG.edge.15",
+     "cn": "边缘断裂",
+     "desc": "形体间的空间跳接",
+     "psy": [
+      "紧张",
+      "现代",
+      "冲突"
+     ]
+    },
+    {
+     "id": "LANG.edge.16",
+     "cn": "边缘漂浮",
+     "desc": "轮廓轻盈不着地",
+     "psy": [
+      "梦幻",
+      "柔和",
+      "轻盈"
+     ]
+    },
+    {
+     "id": "LANG.edge.17",
+     "cn": "边缘模糊带",
+     "desc": "边界的灰度过渡区",
+     "psy": [
+      "含蓄",
+      "平和",
+      "自然"
+     ]
+    },
+    {
+     "id": "LANG.edge.18",
+     "cn": "边缘光",
+     "desc": "逆光造成的亮边",
+     "psy": [
+      "神秘",
+      "高贵",
+      "超现实"
+     ]
+    },
+    {
+     "id": "LANG.edge.19",
+     "cn": "边缘阴影",
+     "desc": "阴影强化形体边界",
+     "psy": [
+      "稳重",
+      "真实",
+      "深邃"
+     ]
+    },
+    {
+     "id": "LANG.edge.20",
+     "cn": "线性边界",
+     "desc": "以线控制形体边缘",
+     "psy": [
+      "冷静",
+      "秩序",
+      "精准"
+     ]
+    },
+    {
+     "id": "LANG.edge.21",
+     "cn": "色彩边界",
+     "desc": "用色差定义边缘",
+     "psy": [
+      "丰富",
+      "协调",
+      "现代"
+     ]
+    },
+    {
+     "id": "LANG.edge.22",
+     "cn": "明暗边界",
+     "desc": "光线形成的视觉断面",
+     "psy": [
+      "戏剧",
+      "强烈",
+      "真实"
+     ]
+    },
+    {
+     "id": "LANG.edge.23",
+     "cn": "空气边缘",
+     "desc": "光雾中柔化的界限",
+     "psy": [
+      "朦胧",
+      "宁静",
+      "梦幻"
+     ]
+    },
+    {
+     "id": "LANG.edge.24",
+     "cn": "重叠过渡",
+     "desc": "层层叠加的柔性边界",
+     "psy": [
+      "柔和",
+      "细腻",
+      "空间感"
+     ]
+    },
+    {
+     "id": "LANG.edge.25",
+     "cn": "对比边",
+     "desc": "明暗或色彩强对比",
+     "psy": [
+      "强烈",
+      "能量",
+      "冲击"
+     ]
+    },
+    {
+     "id": "LANG.edge.26",
+     "cn": "软化边",
+     "desc": "以模糊消解硬线",
+     "psy": [
+      "温柔",
+      "流动",
+      "含蓄"
+     ]
+    },
+    {
+     "id": "LANG.edge.27",
+     "cn": "锯齿边",
+     "desc": "不规则颤动的轮廓线",
+     "psy": [
+      "紧张",
+      "动感",
+      "野性"
+     ]
+    },
+    {
+     "id": "LANG.edge.28",
+     "cn": "断裂线",
+     "desc": "不连续的边界痕迹",
+     "psy": [
+      "不安",
+      "现代",
+      "破碎"
+     ]
+    },
+    {
+     "id": "LANG.edge.29",
+     "cn": "连续线",
+     "desc": "连贯无断裂的轮廓",
+     "psy": [
+      "流畅",
+      "自然",
+      "宁静"
+     ]
+    },
+    {
+     "id": "LANG.edge.30",
+     "cn": "断续线",
+     "desc": "节奏化的虚实边",
+     "psy": [
+      "节奏",
+      "细腻",
+      "呼吸感"
+     ]
+    },
+    {
+     "id": "LANG.edge.31",
+     "cn": "淡化线",
+     "desc": "以光或色削弱边界",
+     "psy": [
+      "柔和",
+      "克制",
+      "平静"
+     ]
+    },
+    {
+     "id": "LANG.edge.32",
+     "cn": "强化线",
+     "desc": "以笔强化形体力量",
+     "psy": [
+      "坚定",
+      "鲜明",
+      "结构"
+     ]
+    },
+    {
+     "id": "LANG.edge.33",
+     "cn": "消融线",
+     "desc": "线条溶入背景",
+     "psy": [
+      "模糊",
+      "自然",
+      "安静"
+     ]
+    },
+    {
+     "id": "LANG.edge.34",
+     "cn": "空白线",
+     "desc": "以留白暗示边缘",
+     "psy": [
+      "轻盈",
+      "含蓄",
+      "东方性"
+     ]
+    },
+    {
+     "id": "LANG.edge.35",
+     "cn": "投影边",
+     "desc": "阴影形成的第二轮廓",
+     "psy": [
+      "深沉",
+      "静谧",
+      "空间性"
+     ]
+    },
+    {
+     "id": "LANG.edge.36",
+     "cn": "光晕边",
+     "desc": "光的扩散造成的模糊",
+     "psy": [
+      "梦幻",
+      "柔软",
+      "诗意"
+     ]
+    },
+    {
+     "id": "LANG.edge.37",
+     "cn": "边缘断层",
+     "desc": "明暗突变的临界区",
+     "psy": [
+      "紧张",
+      "强烈",
+      "现代感"
+     ]
+    },
+    {
+     "id": "LANG.edge.38",
+     "cn": "渐变边",
+     "desc": "颜色或亮度渐变的边界",
+     "psy": [
+      "柔和",
+      "平滑",
+      "自然"
+     ]
+    },
+    {
+     "id": "LANG.edge.39",
+     "cn": "对照边",
+     "desc": "冷暖或亮暗反差界线",
+     "psy": [
+      "戏剧",
+      "冲突",
+      "能量"
+     ]
+    },
+    {
+     "id": "LANG.edge.40",
+     "cn": "消隐边",
+     "desc": "边界逐渐淡入空间",
+     "psy": [
+      "静谧",
+      "内敛",
+      "超现实"
+     ]
+    },
+    {
+     "id": "LANG.edge.41",
+     "cn": "断裂界面",
+     "desc": "不连续的形体交界",
+     "psy": [
+      "紧绷",
+      "现代",
+      "理性"
+     ]
+    },
+    {
+     "id": "LANG.edge.42",
+     "cn": "缓冲区",
+     "desc": "虚实之间的中间地带",
+     "psy": [
+      "平衡",
+      "呼吸",
+      "温和"
+     ]
+    },
+    {
+     "id": "LANG.edge.43",
+     "cn": "边缘融合",
+     "desc": "色与形的相互渗透",
+     "psy": [
+      "自然",
+      "连贯",
+      "温润"
+     ]
+    },
+    {
+     "id": "LANG.edge.44",
+     "cn": "边缘干扰",
+     "desc": "多重视觉边界并存",
+     "psy": [
+      "复杂",
+      "躁动",
+      "实验性"
+     ]
+    },
+    {
+     "id": "LANG.edge.45",
+     "cn": "边缘漂白",
+     "desc": "强光消弱边缘层次",
+     "psy": [
+      "空灵",
+      "梦幻",
+      "超现实"
+     ]
+    },
+    {
+     "id": "LANG.edge.46",
+     "cn": "边缘硬化",
+     "desc": "强对比强调结构",
+     "psy": [
+      "鲜明",
+      "理性",
+      "力量"
+     ]
+    },
+    {
+     "id": "LANG.edge.47",
+     "cn": "边缘对比",
+     "desc": "光色强化边界差异",
+     "psy": [
+      "紧张",
+      "冲突",
+      "视觉能量"
+     ]
+    },
+    {
+     "id": "LANG.edge.48",
+     "cn": "反向边缘",
+     "desc": "阴影或负形造成的反差",
+     "psy": [
+      "神秘",
+      "心理化",
+      "内省"
+     ]
+    },
+    {
+     "id": "LANG.edge.49",
+     "cn": "漂浮边界",
+     "desc": "边界失重、不定性",
+     "psy": [
+      "自由",
+      "梦幻",
+      "漂移"
+     ]
+    },
+    {
+     "id": "LANG.edge.50",
+     "cn": "吞没边",
+     "desc": "背景吞噬主体边界",
+     "psy": [
+      "模糊",
+      "隐喻",
+      "消散"
+     ]
+    },
+    {
+     "id": "LANG.edge.51",
+     "cn": "悬浮界面",
+     "desc": "浮动状态下的视觉关系",
+     "psy": [
+      "轻盈",
+      "失重",
+      "柔软"
+     ]
+    },
+    {
+     "id": "LANG.edge.52",
+     "cn": "边缘共鸣",
+     "desc": "两边界在视觉上互动",
+     "psy": [
+      "和谐",
+      "动态",
+      "生命感"
+     ]
+    },
+    {
+     "id": "LANG.edge.53",
+     "cn": "视觉临界",
+     "desc": "光暗转换的感知界限",
+     "psy": [
+      "紧张",
+      "专注",
+      "敏感"
+     ]
+    },
+    {
+     "id": "LANG.edge.54",
+     "cn": "边缘呼吸",
+     "desc": "边界轻微波动的节奏",
+     "psy": [
+      "柔和",
+      "自然",
+      "生命感"
+     ]
+    },
+    {
+     "id": "LANG.edge.55",
+     "cn": "边缘共振",
+     "desc": "光线或笔触在边缘震动",
+     "psy": [
+      "细腻",
+      "能量",
+      "节奏"
+     ]
+    }
+   ]
+  }
+ ]
+};
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const list=document.getElementById('list'), jump=document.getElementById('jump'),
+      stat=document.getElementById('stat'), q=document.getElementById('q'), empty=document.getElementById('empty');
+
+document.getElementById('chain').innerHTML =
+  '因果链 · <span class="c1">7大构成(画上去·因)</span> → <b>心理感受(读出来·感知效应)</b> → 画外音(意义·果)<br/><span style="font-family:var(--mono);font-size:11px;color:var(--ink-mute)">每个原子下方的绿色标签，就是这条链的第一跳</span>';
+
+DATA.categories.forEach(c=> jump.appendChild($(`<a href="#${c.id}">${c.cn}<span class="c"> ${c.count}</span></a>`)));
+
+function esc(s){return (s||'').replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));}
+function hl(s,kw){ s=esc(s); if(!kw) return s; try{return s.replace(new RegExp('('+kw.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark>$1</mark>');}catch(e){return s;} }
+function match(a,kw){ return !kw || a.cn.toLowerCase().includes(kw) || (a.desc||'').toLowerCase().includes(kw) || (a.psy||[]).join(' ').toLowerCase().includes(kw); }
+
+function render(kw){
+  kw=(kw||'').trim().toLowerCase();
+  list.innerHTML=''; let shown=0, catsShown=0;
+  DATA.categories.forEach(c=>{
+    const atoms=c.atoms.filter(a=>match(a,kw));
+    if(!atoms.length) return;
+    catsShown++; shown+=atoms.length;
+    const sec=$(`<div class="cat" id="${c.id}"></div>`);
+    sec.innerHTML=`<div class="cat-h"><span class="cn">${c.cn}</span><span class="en">${c.en}</span><span class="ct">${atoms.length}${kw?'/'+c.count:''}</span><span class="id">${c.id} · ←${c.v1}</span></div><div class="cat-q">${c.q}</div><div class="atoms"></div>`;
+    const grid=sec.querySelector('.atoms');
+    atoms.forEach(a=>{
+      const psy=(a.psy||[]).map(p=>`<span class="pt">${hl(p,kw)}</span>`).join('');
+      grid.appendChild($(`<div class="atom"><div class="an">${hl(a.cn,kw)}</div><div class="ad">${hl(a.desc,kw)}</div>${psy?`<div class="psy">${psy}</div>`:''}<div class="ai">${a.id}</div></div>`));
+    });
+    list.appendChild(sec);
+  });
+  empty.style.display = shown? 'none':'block';
+  stat.innerHTML = kw? `命中 <b>${shown}</b> 个原子 · ${catsShown} 个构成` : `共 <b>${DATA.meta.total}</b> 个语言原子 · ${DATA.meta.cat_count} 大构成 · 来源 V1 Sheet2`;
+}
+let timer; q.addEventListener('input',e=>{clearTimeout(timer);timer=setTimeout(()=>render(e.target.value),120);});
+render('');
+</script>
+<script>
+// L2 连续轴 + 风格指纹 + 排行 + 验证
+const DIMORDER=['构图','空间','造型','光影','色彩','笔触','边缘'];
+const WVC2={WV1:'#b0673a',WV2:'#9a7b3a',WV3:'#5a7d6f',WV4:'#5b7596',WV5:'#8a5a7a',WV6:'#4a6a8a'};
+fetch('data/kg_language_vectors.json').then(r=>r.json()).then(D=>{
+  const dims=D.meta.dims; // [{long,short,en,low,high}]
+  const byShort={}; dims.forEach(d=>byShort[d.short]=d);
+  // ① 轴
+  const ax=document.getElementById('l2axes');
+  DIMORDER.forEach(s=>{const d=byShort[s];
+    ax.insertAdjacentHTML('beforeend',`<div class="l2axis"><span class="an2">${s}</span><span class="lp">${d.low} ◂</span><span class="gr"></span><span class="hp">▸ ${d.high}</span></div>`);});
+  // ② 指纹
+  const sv=D.style_vectors;
+  const ids=Object.keys(sv).sort((a,b)=>sv[a].cn.localeCompare(sv[b].cn,'zh'));
+  const pick=document.getElementById('l2pick');
+  ids.forEach(id=>{const o=document.createElement('option');o.value=id;o.textContent=sv[id].cn;pick.appendChild(o);});
+  function drawFP(id){const v=sv[id].vec,fp=document.getElementById('l2fp');fp.innerHTML='';
+    document.getElementById('l2wv').textContent=sv[id].wv?('· '+sv[id].wv):'';
+    DIMORDER.forEach(s=>{const d=byShort[s],val=v[s];
+      fp.insertAdjacentHTML('beforeend',`<div class="l2bar"><span class="bl">${s}</span><span class="bt"><span class="bf" style="width:${val*100}%"></span></span><span class="bv">${val.toFixed(2)}</span><span class="bp">${val>=0.5?d.high:d.low}</span></div>`);});}
+  const def=ids.find(id=>sv[id].cn==='印象派')||ids[0];
+  pick.value=def; drawFP(def);
+  pick.addEventListener('change',e=>drawFP(e.target.value));
+  // ③ 排行
+  const rk=D.axis_rank,tabs=document.getElementById('l2tabs'),rankBox=document.getElementById('l2rank');
+  function drawRank(s){[...tabs.children].forEach(c=>c.classList.toggle('on',c.dataset.s===s));
+    const r=rk[s];
+    const chip=a=>`<a class="l2chip" href="kg-style-detail.html?id=${a.id}" title="${a.val.toFixed(2)}">${a.cn} <b>${a.val.toFixed(2)}</b></a>`;
+    rankBox.innerHTML=
+      `<div><div class="l2pole">▸ 高极点:${r.high_pole}</div>${r.top.map(chip).join('')}</div>`+
+      `<div><div class="l2pole">◂ 低极点:${r.low_pole}</div>${r.bottom.map(chip).join('')}</div>`;}
+  DIMORDER.forEach((s,i)=>{const b=document.createElement('span');b.className='l2tab'+(i===0?' on':'');b.dataset.s=s;b.textContent=s;b.onclick=()=>drawRank(s);tabs.appendChild(b);});
+  drawRank('构图');
+  // ④ 验证
+  const V=D.validation,vbox=document.getElementById('l2val');
+  DIMORDER.forEach(s=>{const o=V.per_dim[s],r=o.r;const ok=r!=null&&r>=0.3;
+    const col=ok?'var(--green)':(r!=null&&r>0?'var(--ink-faint)':'#b06a62');
+    const w=r==null?0:Math.abs(r)*100;
+    vbox.insertAdjacentHTML('beforeend',`<div class="l2val"><span class="vl">${s}</span><span class="vt"><span class="vf" style="width:${w}%;left:0;background:${col}"></span></span><span class="vv" style="color:${col}">r=${r==null?'–':(r>=0?'+':'')+r} ${ok?'✓':'⚠'}</span></div>`);});
+  const ov=V.overall;
+  document.getElementById('l2valnote').innerHTML=
+    `<b>诚实读数(样本已由 80 扩到 ${V.sample_styles||ov.n/7} 个风格 · 全 282 考究艺术家):</b>`+
+    `<b>色彩(0.54)/笔触(0.49)/光影(0.47)</b> 三维与艺术家独立实测稳健正相关——散文派生在这三维可信。`+
+    `<b>构图、造型约 0.23</b> 偏弱(注:造型在小样本 n=80 时曾虚高到 0.60,样本扩大后回落,这正是大样本挤掉小样本乐观);`+
+    `<b>空间(0.06)、边缘(0.03)≈0</b>——派生值与实测无相关(并非反相关,是这两维既派生不准、艺术家侧也无自洽基准)。`+
+    `总体 r=${ov.r}(n=${ov.n},MAE ${ov.mae})。<b>把虚高挤掉、把测不准如实标 0,正是经得起推敲。</b>`;
+}).catch(e=>{document.getElementById('l2axes').innerHTML='<span style="color:#a89f8f;font-size:12px">需服务器加载 kg_language_vectors.json</span>';});
+</script>
+</body></html>
