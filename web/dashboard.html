@@ -4,30 +4,32 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>aha 资产后台 · Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/aha-kit.css">
 <style>
-:root{--ink:#1a1a1a;--soft:#6b6b6b;--line:#e6e3dd;--accent:#9a6a3a;--bg:#f5f3ee;--ok:#3a8a5a;--warn:#c2792e;--dup:#9a9a9a;--rej:#b5483a}
-*{box-sizing:border-box}body{margin:0;font:14px/1.6 -apple-system,"PingFang SC",sans-serif;color:var(--ink);background:var(--bg)}
-header{padding:14px 22px;border-bottom:1px solid var(--line);background:#fff;display:flex;align-items:baseline;gap:14px}
-h1{font-size:18px;margin:0}.upd{color:var(--soft);font-size:12px;margin-left:auto}
+:root{--ink:#1d1b18;--soft:#857d6f;--line:#ddd5c6;--accent:#b0673a;--bg:#f4f1ea;--card:#fffdf8;--ok:#3a8a5a;--warn:#c2792e;--dup:#9a9a9a;--rej:#b5483a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace;--sh1:0 1px 3px rgba(60,48,32,.06)}
+*{box-sizing:border-box}body{margin:0;font:14px/1.6 var(--sans);color:var(--ink);background:var(--bg)}
+header{padding:14px 22px;border-bottom:1px solid var(--line);background:var(--card);display:flex;align-items:baseline;gap:14px}
+h1{font-size:18px;margin:0;font-family:var(--serif);font-weight:600}.upd{color:var(--soft);font-size:12px;margin-left:auto}
 .wrap{max-width:1180px;margin:0 auto;padding:18px 22px}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
-.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
-.card .v{font-size:26px;font-weight:700}.card .l{color:var(--soft);font-size:12px}.card .s{font-size:11px;color:var(--accent);margin-top:2px}
-.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px}
-.panel h2{font-size:14px;margin:0 0 12px;color:var(--soft);font-weight:600}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--sh1)}
+.card .v{font-size:28px;font-weight:600;font-family:var(--serif);font-variant-numeric:tabular-nums;line-height:1.1}.card .l{color:var(--soft);font-size:11px;font-family:var(--mono);letter-spacing:.04em}.card .s{font-size:11px;color:var(--accent);margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px;box-shadow:var(--sh1)}
+.panel h2{font-size:11px;margin:0 0 12px;color:var(--soft);font-weight:500;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase}
 .prog{height:22px;background:var(--bg);border-radius:6px;overflow:hidden;display:flex}
 .prog>span{display:block;height:100%}
 .row{display:grid;grid-template-columns:110px 1fr 130px;gap:10px;align-items:center;margin:7px 0;font-size:13px}
 .track{height:16px;background:var(--bg);border-radius:4px;overflow:hidden;position:relative}
 .fill{height:100%;background:var(--accent)}.fillk{height:100%;background:var(--ok);position:absolute;top:0;left:0}
-.num{text-align:right;color:var(--soft);font-size:12px}
+.num{text-align:right;color:var(--soft);font-size:12px;font-family:var(--mono)}
 .bars{display:flex;flex-direction:column;gap:5px}
 .bar{display:grid;grid-template-columns:96px 1fr 56px;gap:8px;align-items:center;font-size:12.5px}
 .bar .t{height:14px;background:var(--bg);border-radius:3px;overflow:hidden}.bar .t>span{display:block;height:100%;background:var(--accent)}
 .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--soft);margin-top:8px}
 .dot{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:middle}
 .recent{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
-.rc{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;font-size:11px}
+.rc{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--card);font-size:11px}
 .rc img{width:100%;height:80px;object-fit:cover;display:block;background:#eee}
 .rc .cap{padding:4px 6px}.rc .rr{color:var(--rej);font-weight:600}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:760px){.grid2{grid-template-columns:1fr}}
@@ -38,15 +40,15 @@ a.btn{font-size:12px;color:var(--accent);text-decoration:none;border:1px solid v
 .gl{font-size:13px;margin:5px 0}.gl b{color:var(--accent)}
 .pl{margin:4px 0 0 18px;padding:0;font-size:13px}.pl li{margin:4px 0}
 .stbl{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
-.stg{font-size:12px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:3px 10px}.stg i{color:var(--soft);font-style:normal;font-size:11px}
+.stg{font-size:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:3px 10px}.stg i{color:var(--soft);font-style:normal;font-size:11px}
 .rt{width:100%;border-collapse:collapse;font-size:11.5px}.rt th,.rt td{text-align:left;border-bottom:1px solid var(--line);padding:3px 6px;vertical-align:top}
 .rt code{font-size:11px;color:#444}
 pre.prompt{white-space:pre-wrap;word-break:break-word;background:#2b2b2b;color:#e6e0d4;padding:14px;border-radius:8px;font:12px/1.7 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}
-.abtn{font-size:12px;border:1px solid var(--accent);color:var(--accent);background:#fff;border-radius:6px;padding:4px 11px;cursor:pointer}
+.abtn{font-size:12px;border:1px solid var(--accent);color:var(--accent);background:var(--card);border-radius:6px;padding:4px 11px;cursor:pointer}
 .abtn:hover{background:var(--accent);color:#fff}.abtn.stop{border-color:var(--rej);color:var(--rej)}.abtn.stop:hover{background:var(--rej);color:#fff}
-.acts{display:flex;gap:3px;margin-top:3px}.acts button{flex:1;font-size:10.5px;border:1px solid var(--line);background:#fff;border-radius:4px;padding:2px 0;cursor:pointer;color:var(--soft)}
+.acts{display:flex;gap:3px;margin-top:3px}.acts button{flex:1;font-size:10.5px;border:1px solid var(--line);background:var(--card);border-radius:4px;padding:2px 0;cursor:pointer;color:var(--soft)}
 .acts button:hover{border-color:var(--accent);color:var(--accent)}
-select{font:13px inherit;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:#fff}
+select{font:13px inherit;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:var(--card)}
 .coshead,.cosrow{display:grid;grid-template-columns:1fr 90px 90px 200px;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px}
 .coshead{color:var(--soft);font-size:11.5px;font-weight:600;border-bottom:1px solid var(--line)}
 .cosrow b{font-size:13.5px}.ctag{font-size:10.5px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:1px 7px;color:var(--accent);margin-left:5px}
@@ -55,24 +57,28 @@ select{font:13px inherit;padding:5px 8px;border:1px solid var(--line);border-rad
 .cprog .track{height:14px}
 @media(max-width:760px){.coshead,.cosrow{grid-template-columns:1fr 70px 90px}.coshead span:last-child,.cprog{display:none}}
 .shell{display:flex;min-height:100vh}
-.side{width:212px;flex:none;background:#fff;border-right:1px solid var(--line);padding:16px 12px;position:sticky;top:0;height:100vh;overflow:auto}
-.brand{font-weight:700;font-size:16px;margin:4px 8px 16px}
+.side{width:212px;flex:none;background:var(--card);border-right:1px solid var(--line);padding:16px 12px;position:sticky;top:0;height:100vh;overflow:auto}
+.brand{font-family:var(--serif);font-weight:600;font-size:18px;margin:4px 8px 16px;letter-spacing:-.01em}
 .navi{display:block;padding:9px 12px;border-radius:8px;color:var(--ink);text-decoration:none;font-size:13.5px;margin:2px 0;cursor:pointer}
 .navi:hover{background:var(--bg)}.navi.on{background:var(--accent);color:#fff}
 .navi small{color:var(--soft);font-size:11px;display:block}.navi.on small{color:#f0e2d4}
 .navsep{height:1px;background:var(--line);margin:10px 6px}
 .main{flex:1;min-width:0}
-.modh{max-width:1180px;margin:0 auto;padding:18px 22px 2px}.modh h1{font-size:20px;margin:0}.modh p{color:var(--soft);font-size:13px;margin:5px 0 0}
+.modh{max-width:1180px;margin:0 auto;padding:18px 22px 2px}.modh h1{font-size:21px;margin:0;font-family:var(--serif);font-weight:600}.modh p{color:var(--soft);font-size:13px;margin:5px 0 0}
 .soon{max-width:1180px;margin:0 auto;padding:48px 22px;color:var(--soft)}
 @media(max-width:760px){.shell{flex-direction:column}.side{width:auto;height:auto;position:static;display:flex;flex-wrap:wrap;gap:4px}.brand{width:100%}}
 </style>
+<link href="css/aha-frames.css" rel="stylesheet"/>
+<script src="js/frames.js"></script>
 </head>
-<body>
+<body data-no-top>
 <div class="shell">
 <aside class="side">
   <div class="brand">aha 管理后台</div>
   <a class="navi on" data-m="cos">📥 原始数据管理 · COS<small>导入数据 · 开闸 · 清洗</small></a>
   <a class="navi" data-m="exhibit">🖼 展出与策展<small>选图进展厅</small></a>
+  <a class="navi" data-m="special">🗓 首页特展<small>主题展区 · 增删改</small></a>
+  <a class="navi" data-m="frame">🖼 画框管理中心<small>框样式库 + 逐画指定</small></a>
   <a class="navi" data-m="artist">🎨 艺术家 · 元数据<small>档案·星图·检索</small></a>
   <a class="navi" data-m="user">💬 用户 · 互动<small>museum mu_*</small></a>
   <a class="navi" data-m="gen">🎨 生成图库<small>全量治理 / 优选入馆</small></a>
@@ -98,6 +104,14 @@ select{font:13px inherit;padding:5px 8px;border:1px solid var(--line);border-rad
   <section class="mod" id="mod-exhibit" hidden>
     <div class="modh"><h1>🖼 展出与策展</h1><p>从核心资产选图进对外展厅 art.html（规则A自动 + 人工 + 主题展 collections）。</p></div>
     <div class="wrap" id="exh">加载中…</div>
+  </section>
+  <section class="mod" id="mod-special" hidden>
+    <div class="modh"><h1>🗓 首页特展</h1><p>museum 首页「特展」区实时读这里。规则型(按情绪/世界观/区域自动选,新画自动进)或选图型。改完即时生效。</p></div>
+    <div class="wrap"><div id="spwrap">加载中…</div></div>
+  </section>
+  <section class="mod" id="mod-frame" hidden>
+    <div class="modh"><h1>🖼 画框管理中心</h1><p>上半=框样式库(系统现有的框,含自动匹配规则);下半=逐画指定(给某幅画钉死一个框,全站一致)。不指定=按画的气质自动匹配。规范见 <a href="frames.html" target="_blank">frames.html</a>。</p></div>
+    <div class="wrap"><div id="frmwrap">加载中…</div></div>
   </section>
   <section class="mod" id="mod-artist" hidden>
     <div class="modh"><h1>🎨 艺术家 · 元数据</h1><p>艺术家库总览、缺口、检索（归一/别名合并后续）。</p></div>
@@ -125,7 +139,7 @@ document.querySelectorAll('.navi[data-m]').forEach(a=>a.onclick=()=>{
   const m=a.dataset.m;
   document.querySelectorAll('.navi[data-m]').forEach(x=>x.classList.toggle('on',x===a));
   document.querySelectorAll('.mod').forEach(s=>s.hidden=(s.id!=='mod-'+m));
-  if(!_loaded[m]){_loaded[m]=1;({exhibit:loadExhibit,artist:loadArtists,user:loadUsers,gen:loadGen,proj:loadProjection}[m]||(()=>{}))()}
+  if(!_loaded[m]){_loaded[m]=1;({exhibit:loadExhibit,special:loadSpecial,frame:loadFrame,artist:loadArtists,user:loadUsers,gen:loadGen,proj:loadProjection}[m]||(()=>{}))()}
 });
 async function load(){
   const d=await (await fetch(API+'stats')).json();
@@ -357,7 +371,7 @@ async function loadUsers(){
 let _genScope='all';
 async function loadGen(){
   const d=await (await fetch(API+'admin/m/gen?scope='+_genScope+'&limit=200')).json();
-  const chip=(s,l)=>`<span class="navi" style="display:inline-block;padding:4px 12px;border-radius:999px;cursor:pointer;margin-right:6px;${_genScope===s?'background:var(--accent);color:#fff':'background:#fff;border:1px solid var(--line)'}" onclick="_genScope='${s}';_loaded.gen=0;loadGen()">${l}</span>`;
+  const chip=(s,l)=>`<span class="navi" style="display:inline-block;padding:4px 12px;border-radius:999px;cursor:pointer;margin-right:6px;${_genScope===s?'background:var(--accent);color:#fff':'background:var(--card);border:1px solid var(--line)'}" onclick="_genScope='${s}';_loaded.gen=0;loadGen()">${l}</span>`;
   const items=d.items||[];
   document.getElementById('genmod').innerHTML=`
     <div class="cards">
@@ -451,6 +465,140 @@ async function loadVlm(){
 load();setInterval(load,30000);loadGov();loadAnom();setInterval(loadAnom,120000);
 loadCtl();setInterval(loadCtl,20000);loadReview();loadCos();loadPromptEditor();
 loadVlm();setInterval(loadVlm,30000);
+// ===== 首页特展管理(从 admin.html 并入主后台) =====
+const WVN_SP={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+let SPLIST=[],SPWORKS=[],SPPW='';
+function esc2(s){return (s==null?'':String(s)).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
+function loadSpecial(){Promise.all([
+    fetch('/api/specials').then(r=>r.json()).catch(()=>({items:[]})),
+    fetch('/cat/exhibit?limit=8000').then(r=>r.json()).catch(()=>fetch('/data/gallery_works.json').then(r=>r.json()))
+  ]).then(([sp,w])=>{SPLIST=sp.items||[];SPWORKS=w.works||[];renderSP();});}
+function spc(s){if(s.work_ids&&s.work_ids.length)return s.work_ids.length;const r=s.rule||{};
+  return SPWORKS.filter(w=>(!r.emo||!r.emo.length||r.emo.includes(w.emo))&&(!r.wv||!r.wv.length||r.wv.includes(w.wv))&&(!r.region||w.region===r.region)).length;}
+function renderSP(){const emos=[...new Set(SPWORKS.map(w=>w.emo).filter(Boolean))];const wrap=document.getElementById('spwrap');if(!wrap)return;
+  const IB='padding:6px 9px;border:1px solid var(--line);border-radius:7px';
+  wrap.innerHTML=`<div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+    <span style="font-size:12.5px;color:var(--soft)">管理口令</span><input id="sppw" type="password" placeholder="admin_pass" value="${esc2(SPPW)}" style="width:160px;${IB}">
+    <button onclick="newSP()" style="padding:6px 14px;border:1px solid var(--accent);background:var(--card);color:var(--accent);border-radius:999px;cursor:pointer">＋ 新建特展</button>
+    <span style="font-size:12px;color:var(--soft)">${SPLIST.length} 个 · 首页「特展」区实时读这里</span></div><div id="splist"></div>`;
+  document.getElementById('sppw').oninput=e=>SPPW=e.target.value;
+  const chip=(on,attr,val,lab)=>`<label class="${on?'spon':''}" data-${attr}="${val}" style="display:inline-block;font-size:12px;padding:3px 11px;border-radius:999px;border:1px solid var(--line);margin:2px;cursor:pointer;${on?'background:var(--accent);color:#fff;border-color:var(--accent)':''}">${lab}</label>`;
+  document.getElementById('splist').innerHTML=SPLIST.map((s,i)=>{const r=s.rule||{};
+    return `<div class="spcard" data-i="${i}" style="border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:12px;background:var(--card)">
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:7px">
+        <input class="sp-title" value="${esc2(s.title)}" placeholder="标题" style="flex:1;min-width:140px;font-size:14px;font-weight:600;${IB}">
+        <input class="sp-seq" type="number" value="${s.seq||0}" title="排序" style="width:64px;${IB}">
+        <label style="font-size:12px"><input type="checkbox" class="sp-pub" ${s.public!==false?'checked':''}> 上架</label>
+        <span style="font-size:12px;color:var(--soft)">${spc(s)} 幅</span></div>
+      <input class="sp-note" value="${esc2(s.note||'')}" placeholder="一句副标题" style="width:100%;font-size:12.5px;${IB};margin-bottom:8px">
+      <div style="font-size:11px;color:var(--soft);margin:4px 0">规则 · 命中任一即入展(留空=不限) · 情绪:</div>
+      <div>${emos.map(e=>chip((r.emo||[]).includes(e),'emo',e,e)).join('')}</div>
+      <div style="font-size:11px;color:var(--soft);margin:6px 0 2px">世界观:</div>
+      <div>${Object.entries(WVN_SP).map(([k,n])=>chip((r.wv||[]).includes(k),'wv',k,n)).join('')}</div>
+      <div style="display:flex;gap:10px;align-items:center;margin-top:9px;flex-wrap:wrap;font-size:12px">区域
+        <select class="sp-region" style="padding:5px;border:1px solid var(--line);border-radius:6px"><option value="">不限</option><option value="east" ${r.region==='east'?'selected':''}>东方</option><option value="west" ${r.region==='west'?'selected':''}>西方</option></select>
+        上限 <input class="sp-limit" type="number" value="${r.limit||''}" placeholder="不限" style="width:70px;padding:5px;border:1px solid var(--line);border-radius:6px">
+        <button onclick="saveSP(${i})" style="margin-left:auto;padding:6px 16px;background:var(--accent);color:#fff;border:none;border-radius:7px;cursor:pointer">保存</button>
+        <button onclick="delSP('${esc2(s.id)}')" style="padding:6px 12px;background:var(--card);color:#c0392b;border:1px solid var(--line);border-radius:7px;cursor:pointer">删除</button></div>
+    </div>`;}).join('');
+  [...document.querySelectorAll('#splist label[data-emo],#splist label[data-wv]')].forEach(c=>c.onclick=()=>{const on=c.classList.toggle('spon');
+    c.style.background=on?'var(--accent)':'';c.style.color=on?'#fff':'';c.style.borderColor=on?'var(--accent)':'var(--line)';});}
+function newSP(){SPLIST.unshift({id:'',title:'新特展',note:'',seq:SPLIST.length+1,public:true,rule:{}});renderSP();}
+function gatherSP(card){const emo=[...card.querySelectorAll('label.spon[data-emo]')].map(c=>c.dataset.emo);
+  const wv=[...card.querySelectorAll('label.spon[data-wv]')].map(c=>c.dataset.wv);
+  const region=card.querySelector('.sp-region').value,limit=+card.querySelector('.sp-limit').value||0;
+  const rule={};if(emo.length)rule.emo=emo;if(wv.length)rule.wv=wv;if(region)rule.region=region;if(limit)rule.limit=limit;return rule;}
+function saveSP(i){if(!SPPW){alert('先填管理口令');return;}const card=document.querySelector(`.spcard[data-i="${i}"]`),s=SPLIST[i];
+  const body={pass:SPPW,id:s.id,title:card.querySelector('.sp-title').value,note:card.querySelector('.sp-note').value,seq:+card.querySelector('.sp-seq').value||0,public:card.querySelector('.sp-pub').checked,rule:gatherSP(card)};
+  fetch('/api/special/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).then(r=>r.json()).then(d=>{if(d.ok)loadSpecial();else alert('失败:'+(d.error||'口令?'));});}
+function delSP(id){if(!id){loadSpecial();return;}if(!SPPW){alert('先填管理口令');return;}if(!confirm('删除这个特展?'))return;
+  fetch('/api/special/delete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pass:SPPW,id})}).then(r=>r.json()).then(d=>{if(d.ok)loadSpecial();else alert('失败');});}
+
+// ===== 🖼 画框 / 装裱:框样式目录(供应链)+ 给每幅画指定全站一致的框 =====
+let FWORKS=[],FCANON={},FSTYLES=[],FPW='',FQ='';
+function frmTitle(t){if(!t)return '无题';t=String(t).replace(/\.(jpe?g|png|webp|gif|tiff?|bmp|jfif)$/i,'').replace(/[_]+/g,' ').trim();return t||'无题';}
+function loadFrame(){Promise.all([
+    fetch('/api/frames').then(r=>r.json()).catch(()=>({frames:{}})),
+    fetch('/cat/exhibit?limit=8000').then(r=>r.json()).catch(()=>fetch('/data/gallery_works.json').then(r=>r.json())),
+    fetch('/api/frame_styles').then(r=>r.json()).catch(()=>({styles:[]})),
+    (window.AHAFrames?AHAFrames.loadStyles():Promise.resolve())
+  ]).then(([f,w,s])=>{FCANON=(f&&f.frames)||{};FWORKS=(w.works||[]).filter(x=>x.file);FSTYLES=(s&&s.styles)||[];renderFRM();});}
+// —— 框样式目录:可编辑(唯一ID/供应链/匹配规则)。视觉样式仍以 css/aha-frames.css 为事实源。——
+function fsField(label,cls,val,ph,extra){return `<label style="display:flex;flex-direction:column;gap:2px;font-size:10px;color:var(--soft)">${label}
+  <input class="${cls}" value="${esc2(val==null?'':val)}" placeholder="${ph||''}" style="padding:5px 7px;border:1px solid var(--line);border-radius:6px;font-size:12px;${extra||''}"></label>`;}
+function fsCard(s){const sample=(FWORKS.find(w=>!AHAFrames.isEast(w))||FWORKS[0]||{}).file||'';
+  const yuan=(s.price_cents==null||s.price_cents==='')?'':(s.price_cents/100);
+  return `<div class="fscard" data-k="${esc2(s.key)}" style="display:grid;grid-template-columns:150px 1fr;gap:16px;padding:14px;border:1px solid var(--line);border-radius:12px;background:#faf8f4;${s.active===false?'opacity:.55':''}">
+    <div style="text-align:center">
+      <div style="max-width:130px;margin:0 auto 8px">${sample?`<div class="aha-frame f-${esc2(s.key)}"><div class="aha-mat"><img src="${esc2(sample)}"></div></div>`:''}</div>
+      <div style="font-family:monospace;font-size:9px;color:var(--soft)">id:<b style="color:var(--ink,#2a2620)">${esc2(s.key)}</b> · 类 .${esc2(s.css_class||'f-'+s.key)}</div>
+      <label style="display:inline-flex;align-items:center;gap:5px;margin-top:7px;font-size:11px;color:var(--ink,#2a2620);cursor:pointer"><input type="checkbox" class="fs-active" ${s.active===false?'':'checked'}>上架</label>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:9px">
+      ${fsField('名字','fs-name',s.name,'素木暖框','font-weight:600')}
+      ${fsField('Emoji','fs-emoji',s.emoji,'🪵')}
+      ${fsField('SKU(供应链唯一码)','fs-sku',s.sku,'AHA-FRM-WOOD-01','font-family:monospace;color:var(--accent)')}
+      ${fsField('参考价(元)','fs-price',yuan,'0.00')}
+      ${fsField('材质','fs-material',s.material,'实木/金箔/铝…')}
+      ${fsField('供应商','fs-supplier',s.supplier,'')}
+      <div style="grid-column:1/-1">${fsField('一句话描述','fs-descr',s.descr,'温润胡桃木 · 大多数油画的稳妥选择')}</div>
+      <div style="grid-column:1/-1">${fsField('CSS / 材质质感描述','fs-note',s.css_note,'温润胡桃木框,大多数油画的稳妥默认。')}</div>
+      <div style="grid-column:1/-1">${fsField('匹配·流派关键词(逗号分隔)','fs-mstyle',s.match_style,'巴洛克,文艺复兴,…')}</div>
+      <div style="grid-column:1/-1">${fsField('匹配·媒材硬规则(逗号分隔)','fs-mmedia',s.match_media,'版画,蚀刻,摄影,…')}</div>
+      ${fsField('匹配优先级(小=先判)','fs-priority',s.priority,'50')}
+      ${fsField('展示排序','fs-sort',s.sort,'10')}
+      <div style="grid-column:1/-1;display:flex;justify-content:flex-end"><button onclick="saveFS('${esc2(s.key)}')" style="padding:6px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff;border-radius:999px;cursor:pointer;font-size:12px">保存「${esc2(s.name)}」</button></div>
+    </div>
+  </div>`;}
+function frmLibraryEditable(){
+  return `<h3 style="font-size:13px;color:var(--accent);margin:0 0 4px">框样式库 · 目录 ${FSTYLES.length} 种</h3>
+    <p style="font-size:11.5px;color:var(--soft);margin:0 0 12px;line-height:1.7">每种框有唯一内部 <b>id</b>(不可改,绑定 CSS 与逐画指定)+ 可改的供应链 <b>SKU</b>;此处管理目录元数据、供应链字段与<b>自动匹配规则</b>。
+      <br>注:框的<b>视觉样式</b>仍由 <code>css/aha-frames.css</code> 决定(改样式 / 加全新框需动 CSS);下架用「上架」开关(规则仍生效)。</p>
+    <div style="display:grid;gap:14px">${FSTYLES.map(fsCard).join('')}</div>
+    <hr style="border:none;border-top:1px solid var(--line);margin:24px 0">`;}
+function saveFS(key){if(!FPW){alert('先在上方填管理口令');return;}
+  const card=document.querySelector('.fscard[data-k="'+CSS.escape(key)+'"]');if(!card)return;
+  const g=sel=>{const el=card.querySelector(sel);return el?el.value.trim():'';};
+  const pr=g('.fs-price');
+  const body={pass:FPW,key,sku:g('.fs-sku'),name:g('.fs-name'),emoji:g('.fs-emoji'),descr:g('.fs-descr'),
+    material:g('.fs-material'),supplier:g('.fs-supplier'),css_note:g('.fs-note'),
+    match_style:g('.fs-mstyle'),match_media:g('.fs-mmedia'),
+    priority:g('.fs-priority')||0,sort:g('.fs-sort')||0,
+    price_cents:(pr===''?'':Math.round(parseFloat(pr)*100)),
+    active:card.querySelector('.fs-active').checked};
+  fetch('/api/frame_style/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+    .then(r=>r.json()).then(d=>{if(d&&d.ok){loadFrame();}else alert('失败:'+((d&&d.error)||'口令?'));}).catch(()=>alert('网络错误'));}
+function frmCard(w){const S=AHAFrames.STYLES,auto=AHAFrames.auto(w),cur=FCANON[w.file]||'';
+  const opt='<option value="">自动匹配('+AHAFrames.BY[auto].name+')</option>'+S.map(s=>`<option value="${s.key}" ${cur===s.key?'selected':''}>${s.emoji} ${s.name}</option>`).join('');
+  return `<div style="width:170px">
+    <div style="max-width:150px;margin:0 auto 7px">${AHAFrames.wrap(`<img loading="lazy" src="${esc2(w.file)}">`,w)}</div>
+    <div style="font-size:12px;font-weight:600;color:var(--ink,#2a2620);text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc2(frmTitle(w.title))}</div>
+    <div style="font-size:10px;color:var(--soft);text-align:center;margin-bottom:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc2(w.artist||'　')}</div>
+    <select class="frmsel" data-f="${esc2(w.file)}" style="width:100%;padding:5px;border:1px solid ${cur?'var(--accent)':'var(--line)'};border-radius:7px;font-size:12px;background:${cur?'#fbf3ea':'#fff'};cursor:pointer">${opt}</select>
+  </div>`;}
+function renderFRM(){const wrap=document.getElementById('frmwrap');if(!wrap||!window.AHAFrames)return;
+  const curated=FWORKS.filter(w=>FCANON[w.file]);
+  const q=FQ.trim().toLowerCase();
+  const browse=(q?FWORKS.filter(w=>((w.title||'')+' '+(w.artist||'')).toLowerCase().includes(q)):FWORKS).slice(0,80);
+  const grid=arr=>`<div style="display:flex;flex-wrap:wrap;gap:18px">${arr.map(frmCard).join('')}</div>`;
+  wrap.innerHTML=`<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px;padding:10px 13px;background:var(--card);border:1px solid var(--accent);border-radius:10px">
+      <span style="font-size:12.5px;color:var(--ink,#2a2620);font-weight:600">🔑 管理口令</span>
+      <input id="frmpw" type="password" value="${esc2(FPW)}" placeholder="admin_pass" style="width:180px;padding:6px 9px;border:1px solid var(--line);border-radius:7px">
+      <span style="font-size:11.5px;color:var(--soft)">改框目录、逐画指定都需要它</span></div>`
+    +frmLibraryEditable()
+    +`<h3 style="font-size:13px;color:var(--accent);margin:0 0 12px">逐画指定</h3>`
+    +`<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px">
+      <input id="frmq" placeholder="搜作品名 / 作者…" value="${esc2(FQ)}" style="flex:1;min-width:170px;padding:6px 9px;border:1px solid var(--line);border-radius:7px">
+      <span style="font-size:12px;color:var(--soft)">已指定 <b>${curated.length}</b> · 库 ${FWORKS.length} 幅 · 选框即时生效</span></div>
+    ${curated.length?`<h3 style="font-size:13px;color:var(--accent);margin:0 0 10px">已指定的框 · ${curated.length}</h3>${grid(curated)}<hr style="border:none;border-top:1px solid var(--line);margin:22px 0">`:''}
+    <h3 style="font-size:13px;color:var(--soft);margin:0 0 10px">浏览 / 指定${q?` · 搜「${esc2(FQ)}」`:''} · 显示前 ${browse.length}${(!q&&FWORKS.length>80)?' / '+FWORKS.length+'(搜索看更多)':''}</h3>
+    ${grid(browse)}`;
+  document.getElementById('frmpw').oninput=e=>FPW=e.target.value;
+  const qi=document.getElementById('frmq');qi.oninput=e=>{FQ=e.target.value;clearTimeout(qi._t);qi._t=setTimeout(renderFRM,260);};
+  wrap.querySelectorAll('.frmsel').forEach(sel=>sel.onchange=()=>saveFRM(sel.dataset.f,sel.value));}
+function saveFRM(file,key){if(!FPW){alert('先填管理口令再选框');renderFRM();return;}
+  AHAFrames.saveCanonical(file,key,FPW).then(d=>{if(d&&d.ok){if(key)FCANON[file]=key;else delete FCANON[file];renderFRM();}else{alert('失败:'+((d&&d.error)||'口令?'));}}).catch(()=>alert('网络错误'));}
 </script>
+<script src="js/aha-chrome.js"></script>
 </body>
 </html>
