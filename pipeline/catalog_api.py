@@ -508,13 +508,21 @@ def exhibit(limit: int = 3000, collection: int = None):
         medium = v.get("media")
         if isinstance(medium, str):
             medium = _re2.sub(r"^[①-⑳\s]*绘画类型[:：]?\s*", "", medium).strip() or None
+        # LLM 逐画装裱策展(frame_curate.py 写入 vlm.frame):前端优先级 人工canonical > 此建议 > 关键词auto
+        fr = v.get("frame") or {}
+        frame_suggest = fr.get("key") if isinstance(fr, dict) else None
+        subj = v.get("subject")  # 题材(静物/肖像/风景/宗教…),供 match_rule 打分用
         works.append({"work_id": r["work_id"], "file": img_url(r["cos_key"]), "thumb": img_url(r["cos_key"], 600),
                       "title": r["title"] or "无题", "artist": r["name_cn"] or r["name_en"] or "佚名",
                       "aid": r["artist_id"], "year": r["year"], "region": r["region"], "wv": _wvc,
                       "wvcn": _WVN.get(_wvc), "x": wv.get("x"), "y": wv.get("y"),
                       "emo": af.get("primary_anchor"), "voiceover": v.get("voiceover"),
                       "vad": {"v": vad.get("valence"), "a": vad.get("arousal"), "d": vad.get("dominance")},
-                      "color": v.get("color"), "lang": lang, "style": style, "medium": medium})
+                      "color": v.get("color"), "lang": lang, "style": style, "medium": medium,
+                      "subject": subj, "frame_suggest": frame_suggest,
+                      "frame_why": (fr.get("why") if isinstance(fr, dict) else None),
+                      "frame_finish": (fr.get("finish") if isinstance(fr, dict) else None),
+                      "frame_conf": (fr.get("conf") if isinstance(fr, dict) else None)})
     return {"works": works, "n": len(works)}
 
 @app.get("/foryou")
