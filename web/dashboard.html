@@ -29,22 +29,22 @@ h1{font-size:18px;margin:0;font-family:var(--serif);font-weight:600}.upd{color:v
 .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--soft);margin-top:8px}
 .dot{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:middle}
 .recent{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
-.rc{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--card);font-size:11px}
+.rc{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--card);font-size:11px;transition:transform .18s,box-shadow .18s}.rc:hover{transform:translateY(-2px);box-shadow:var(--sh1)}
 .rc img{width:100%;height:80px;object-fit:cover;display:block;background:#eee}
 .rc .cap{padding:4px 6px}.rc .rr{color:var(--rej);font-weight:600}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:760px){.grid2{grid-template-columns:1fr}}
-a.btn{font-size:12px;color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:6px;padding:3px 9px}
+a.btn{font-size:12px;color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 12px;transition:all .18s}a.btn:hover{border-color:var(--accent)}
 .gov{border:1px solid var(--line);border-radius:8px;margin:8px 0;background:var(--bg)}
 .gov>summary{cursor:pointer;padding:10px 14px;font-weight:600;font-size:13.5px;user-select:none}
 .gov .gd{padding:6px 16px 14px}
 .gl{font-size:13px;margin:5px 0}.gl b{color:var(--accent)}
 .pl{margin:4px 0 0 18px;padding:0;font-size:13px}.pl li{margin:4px 0}
 .stbl{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
-.stg{font-size:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:3px 10px}.stg i{color:var(--soft);font-style:normal;font-size:11px}
-.rt{width:100%;border-collapse:collapse;font-size:11.5px}.rt th,.rt td{text-align:left;border-bottom:1px solid var(--line);padding:3px 6px;vertical-align:top}
+.stg{font-family:var(--mono);font-size:11px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 10px}.stg i{color:var(--soft);font-style:normal;font-size:10px}
+.rt{width:100%;border-collapse:collapse;font-size:11.5px}.rt th,.rt td{text-align:left;border-bottom:1px solid var(--line);padding:4px 7px;vertical-align:top}.rt th{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--soft);font-weight:500}.rt tr:hover td{background:var(--paper-2,#ece7db)}
 .rt code{font-size:11px;color:#444}
-pre.prompt{white-space:pre-wrap;word-break:break-word;background:#2b2b2b;color:#e6e0d4;padding:14px;border-radius:8px;font:12px/1.7 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}
-.abtn{font-size:12px;border:1px solid var(--accent);color:var(--accent);background:var(--card);border-radius:6px;padding:4px 11px;cursor:pointer}
+pre.prompt{white-space:pre-wrap;word-break:break-word;background:#2a2622;color:#e8e1d4;padding:14px;border-radius:8px;font:12px/1.7 var(--mono);max-height:420px;overflow:auto}
+.abtn{font-size:12px;border:1px solid var(--accent);color:var(--accent);background:var(--card);border-radius:999px;padding:5px 13px;cursor:pointer;transition:all .18s}
 .abtn:hover{background:var(--accent);color:#fff}.abtn.stop{border-color:var(--rej);color:var(--rej)}.abtn.stop:hover{background:var(--rej);color:#fff}
 .acts{display:flex;gap:3px;margin-top:3px}.acts button{flex:1;font-size:10.5px;border:1px solid var(--line);background:var(--card);border-radius:4px;padding:2px 0;cursor:pointer;color:var(--soft)}
 .acts button:hover{border-color:var(--accent);color:var(--accent)}
@@ -58,10 +58,10 @@ select{font:13px inherit;padding:5px 8px;border:1px solid var(--line);border-rad
 @media(max-width:760px){.coshead,.cosrow{grid-template-columns:1fr 70px 90px}.coshead span:last-child,.cprog{display:none}}
 .shell{display:flex;min-height:100vh}
 .side{width:212px;flex:none;background:var(--card);border-right:1px solid var(--line);padding:16px 12px;position:sticky;top:0;height:100vh;overflow:auto}
-.brand{font-family:var(--serif);font-weight:600;font-size:18px;margin:4px 8px 16px;letter-spacing:-.01em}
-.navi{display:block;padding:9px 12px;border-radius:8px;color:var(--ink);text-decoration:none;font-size:13.5px;margin:2px 0;cursor:pointer}
-.navi:hover{background:var(--bg)}.navi.on{background:var(--accent);color:#fff}
-.navi small{color:var(--soft);font-size:11px;display:block}.navi.on small{color:#f0e2d4}
+.brand{font-family:var(--serif);font-weight:600;font-size:19px;margin:4px 8px 14px;letter-spacing:-.01em;line-height:1}.brandsub{font-family:var(--mono);font-size:9.5px;font-weight:400;color:var(--soft);letter-spacing:.12em;text-transform:uppercase;margin-top:3px}
+.navi{display:block;padding:9px 12px;border-radius:8px;color:var(--ink);text-decoration:none;font-size:13.5px;margin:2px 0;cursor:pointer;transition:background .15s,color .15s}
+.navi:hover{background:var(--paper-2,#ece7db)}.navi.on{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.navi small{color:var(--soft);font-size:11px;display:block}.navi.on small{color:var(--accent);opacity:.8}
 .navsep{height:1px;background:var(--line);margin:10px 6px}
 .main{flex:1;min-width:0}
 .modh{max-width:1180px;margin:0 auto;padding:18px 22px 2px}.modh h1{font-size:21px;margin:0;font-family:var(--serif);font-weight:600}.modh p{color:var(--soft);font-size:13px;margin:5px 0 0}
@@ -74,7 +74,7 @@ select{font:13px inherit;padding:5px 8px;border:1px solid var(--line);border-rad
 <body data-no-top>
 <div class="shell">
 <aside class="side">
-  <div class="brand">aha 管理后台</div>
+  <div class="brand">aha<span style="color:var(--accent)">.</span>art<div class="brandsub">管理后台 · admin</div></div>
   <a class="navi on" data-m="cos">📥 原始数据管理 · COS<small>导入数据 · 开闸 · 清洗</small></a>
   <a class="navi" data-m="exhibit">🖼 展出与策展<small>选图进展厅</small></a>
   <a class="navi" data-m="special">🗓 首页特展<small>主题展区 · 增删改</small></a>
@@ -87,7 +87,7 @@ select{font:13px inherit;padding:5px 8px;border:1px solid var(--line);border-rad
   <a class="navi" href="kg-catalog.html" target="_blank">↗ 画廊(对内)</a>
   <a class="navi" href="art.html" target="_blank">↗ 展厅(对外)</a>
   <div class="navsep"></div>
-  <span class="upd" id="upd" style="font-size:11px;color:var(--soft);padding:0 12px"></span>
+  <span class="upd" id="upd" style="font-family:var(--mono);font-size:11px;color:var(--soft);padding:0 12px;letter-spacing:.03em"></span>
 </aside>
 <main class="main">
   <section class="mod" id="mod-cos">
@@ -340,19 +340,58 @@ async function colCreate(){const n=document.getElementById('colName').value.trim
 async function colDel(cid){if(!confirm('删除该主题展?'))return;await fetch(API+`admin/collection/delete?cid=${cid}`,{method:'POST'});loadExhibit()}
 
 // ===== 艺术家模块 =====
+const WVNAME={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+function pctS(n,t){return t?` <span style="color:#aaa;font-weight:400">${Math.round(n/t*100)}%</span>`:'';}
+function gapList(arr,linkWork){return arr.length?arr.slice(0,30).map(x=>`<a href="kg-artist.html?id=${encodeURIComponent(x.id)}" target="_blank" style="display:inline-block;margin:2px 5px 2px 0;padding:2px 9px;border:1px solid var(--line);border-radius:999px;color:var(--ink);text-decoration:none;font-size:12px">${esc(x.cn)}${x.n!=null&&x.n>0?` <b style="color:var(--accent)">${x.n}</b>`:''}</a>`).join(''):'<span style="color:#aaa">无</span>';}
 async function loadArtists(qv){
-  const d=await (await fetch(API+'admin/m/artists'+(qv?('?q='+encodeURIComponent(qv)):''))).json();const t=d.totals;
-  document.getElementById('art').innerHTML=`
-    <div class="cards">
-      <div class="card"><div class="v">${fmt(t.total)}</div><div class="l">艺术家总数</div></div>
-      <div class="card"><div class="v">${fmt(t.with_born)}</div><div class="l">有生卒年</div><div class="s">${Math.round(t.with_born/t.total*100)}%</div></div>
-      <div class="card"><div class="v" style="color:var(--warn)">${fmt(t.no_cn)}</div><div class="l">缺中文名</div><div class="s">多为 wikiart 纯英文</div></div>
+  const [c,d]=await Promise.all([
+    fetch(API+'admin/m/canon').then(r=>r.json()).catch(()=>null),
+    fetch(API+'admin/m/artists'+(qv?('?q='+encodeURIComponent(qv)):'')).then(r=>r.json())
+  ]);const t=d.totals;
+  let canonHTML='';
+  if(c){
+    const card=(v,l,s)=>`<div class="card"><div class="v">${fmt(v)}</div><div class="l">${l}</div>${s?`<div class="s">${s}</div>`:''}</div>`;
+    const reg=[['西方',c.by_region.west],['东方',c.by_region.east]];
+    const wv=Object.keys(WVNAME).filter(k=>c.by_wv[k]).map(k=>[k+' '+WVNAME[k],c.by_wv[k]]);
+    const era=c.by_era.map(e=>[e.label,e.n]);
+    const fc=Object.entries(c.field_coverage).map(([k,n])=>[k+' '+n+'/'+c.total,n]);
+    const vC=Object.entries(c.verify).map(([k,n])=>`${k} ${n}`).join(' · ');
+    canonHTML=`
+    <div class="panel" style="background:linear-gradient(180deg,#fbf7f0,#fff)"><h2>🎨 策展艺术家(有完整主页的核心库)<span style="color:#aaa;font-weight:400;font-size:12px">= kg-artists.html / kg-artist.html 渲染的这批,单一事实源 = artists_canon</span></h2>
+      <div class="cards" style="margin-top:8px">
+        ${card(c.total,'策展艺术家','建有 V3 主页')}
+        ${card(c.with_works,'有馆藏真作品',Math.round(c.with_works/c.total*100)+'%')}
+        ${card(c.works_total,'馆藏真作品总数','已入库·已挂到人')}
+        ${card(c.complete,'达标 · 莫奈标准',Math.round(c.complete/c.total*100)+'% · 全 8 维齐')}
+        ${card(c.with_portrait,'有头像',Math.round(c.with_portrait/c.total*100)+'%')}
+        ${card((c.verify['verified']||0),'已考据验证',vC)}
+      </div></div>
+    <div class="grid2">
+      <div class="panel"><h2>东 / 西 分布</h2><div class="bars">${barlist(reg)}</div></div>
+      <div class="panel"><h2>世界观区分布</h2><div class="bars">${barlist(wv)}</div></div>
     </div>
-    <div class="panel"><h2>来源分布</h2><div class="bars">${barlist(d.by_source.map(s=>[srcName(s.k),s.n]))}</div></div>
-    <div class="panel"><h2>${qv?'搜索结果':'作品最多的艺术家'} <input id="aq" placeholder="搜艺术家…" value="${esc(qv||'')}" style="float:right;padding:5px 9px;border:1px solid var(--line);border-radius:7px"></h2>
+    <div class="grid2">
+      <div class="panel"><h2>年代分布</h2><div class="bars">${barlist(era)}</div></div>
+      <div class="panel"><h2>字段完整度 <span style="color:#aaa;font-weight:400;font-size:12px">达莫奈标准还缺什么(越短越缺)</span></h2><div class="bars">${barlist(fc)}</div></div>
+    </div>
+    <div class="panel"><h2>⚠ 达标缺口 <span style="color:#aaa;font-weight:400;font-size:12px">点名字进主页核对 · 数字=该人真作品数(优先补高产的)</span></h2>
+      <div style="margin-top:6px"><div class="csub" style="font-weight:600">缺师承 <span style="color:var(--warn)">${c.gap_counts.no_teachers}</span> 位</div><div style="margin:4px 0 12px">${gapList(c.gaps.no_teachers)}</div>
+      <div class="csub" style="font-weight:600">未达标(缺任一维)<span style="color:var(--warn)">${c.gap_counts.incomplete}</span> 位</div><div style="margin:4px 0 12px">${c.gaps.incomplete.slice(0,30).map(x=>`<a href="kg-artist.html?id=${encodeURIComponent(x.id)}" target="_blank" title="缺:${x.missing.join('、')}" style="display:inline-block;margin:2px 5px 2px 0;padding:2px 9px;border:1px solid var(--line);border-radius:999px;color:var(--ink);text-decoration:none;font-size:12px">${esc(x.cn)} <span style="color:#aaa">${x.missing.length}缺</span></a>`).join('')}</div>
+      <div class="csub" style="font-weight:600">缺头像 <span style="color:var(--warn)">${c.gap_counts.no_portrait}</span> 位 · 缺真作品 <span style="color:var(--warn)">${c.gap_counts.no_works}</span> 位</div>
+      <div style="margin:4px 0 0">${gapList(c.gaps.no_portrait)}</div></div></div>`;
+  }
+  document.getElementById('art').innerHTML=canonHTML+`
+    <div class="panel"><h2>源艺术家库(归一前)<span style="color:#aaa;font-weight:400;font-size:12px">${fmt(t.total)} 条 · 含未策展的画家,可搜索 → 提拔进策展库</span></h2>
+      <div class="cards" style="margin-top:6px">
+        <div class="card"><div class="v">${fmt(t.total)}</div><div class="l">源艺术家</div></div>
+        <div class="card"><div class="v">${fmt(t.with_born)}</div><div class="l">有生卒年</div><div class="s">${Math.round(t.with_born/t.total*100)}%</div></div>
+        <div class="card"><div class="v" style="color:var(--warn)">${fmt(t.no_cn)}</div><div class="l">缺中文名</div><div class="s">多为 wikiart 纯英文</div></div>
+      </div>
+      <div class="bars" style="margin-top:8px">${barlist(d.by_source.map(s=>[srcName(s.k),s.n]))}</div></div>
+    <div class="panel"><h2>${qv?'搜索结果':'作品最多的艺术家(源库)'} <input id="aq" placeholder="搜艺术家…" value="${esc(qv||'')}" style="float:right;padding:5px 9px;border:1px solid var(--line);border-radius:7px"></h2>
       <table class="rt" style="margin-top:6px"><tr><th>艺术家</th><th>英文</th><th>生卒</th><th>作品数</th></tr>
       ${d.items.map(a=>`<tr><td><a href="artist.html?id=${encodeURIComponent(a.id)}" target="_blank" style="color:var(--accent);text-decoration:none">${esc(a.cn||a.en||'—')}</a></td><td>${esc(a.en||'')}</td><td>${a.born?a.born+'–'+(a.death||''):'—'}</td><td>${a.n}</td></tr>`).join('')}</table>
-      <div class="gl" style="margin-top:8px;color:#aaa">点艺术家名 → 活数据详情页(作品云+情绪重心+风格分布)</div></div>`;
+      <div class="gl" style="margin-top:8px;color:#aaa">点艺术家名 → 详情页</div></div>`;
   const aq=document.getElementById('aq');aq.onkeydown=e=>{if(e.key==='Enter')loadArtists(aq.value.trim())};
 }
 
