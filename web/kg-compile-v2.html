@@ -72,7 +72,39 @@ const AXP={构图:['构图均衡稳定','','构图动势开放'],空间:['空间
   光影:['光影柔和','','强烈戏剧明暗'],色彩:['色调沉郁克制','','色彩明艳跳跃'],笔触:['笔触隐没平滑','','笔触松散显露'],边缘:['边缘柔化溶解','','边缘硬朗清晰']};
 const ANC2V={喜悦:'V2',鲜活:'V2',热烈:'V2',崇高:'V1',张力:'V2',恐惧:'V2',神秘:'V1',忧伤:'V2',孤独:'V1',怀旧:'V3',虚无:'V1',沉思:'V1',平静:'V1',空灵:'V1'};
 const VCN={V1:'存在感知',V2:'情绪表达',V3:'叙事记忆',V4:'价值批评',V5:'感知元反思'};
-let IDX=null, MOTIVE=null, lastText='', MODELS=[{id:'seedream5',label:'豆包 Seedream 5'}];
+let IDX=null, MOTIVE=null, lastText='', MODELS=[{id:'seedream5',label:'艺术家 5'}];
+let STYLE_SET=null, ANCHOR_SET=null;
+// 同义/近义扩展表:把口语词映射到图谱里"真实存在"的词条(风格名/题材key/情绪词key/锚点名)。
+// 运行时 routeTerm 会丢弃图谱里查不到的目标,所以写错也安全。纯前端,不调模型,仍秒出。
+const SYN={
+  '黄昏':['暮色','夜色'],'傍晚':['暮色','夜色'],'夕阳':['暮色','夜色'],'落日':['暮色','夜色'],'暮':['暮色'],'夕照':['暮色'],
+  '夜':['夜色','月亮'],'夜晚':['夜色','月亮'],'深夜':['夜色','月亮'],'午夜':['夜色'],'凌晨':['晨雾'],'清晨':['曙光','晨雾'],'黎明':['曙光'],
+  '都市':['都市','城市'],'都会':['都市','城市'],'城里':['城市'],'街':['霓虹街道','都市'],'街头':['霓虹街道','都市'],'街角':['霓虹街道'],'马路':['都市'],
+  '雨':['雨'],'下雨':['雨'],'雨天':['雨'],'雨夜':['雨','夜色'],'阴雨':['雨'],
+  '雪':['雪景'],'下雪':['雪景'],'雪天':['雪景'],
+  '海':['海洋','海'],'大海':['海洋','海'],'海边':['海洋'],
+  '山':['山岳','山'],'高山':['山岳','山'],'群山':['山岳'],'山峰':['山岳'],
+  '森林':['森林'],'树林':['森林'],'林':['森林'],
+  '花':['花卉'],'鲜花':['花卉'],'花海':['花卉'],'河':['江河'],'江':['江河'],'湖':['湖泊'],
+  '科幻':['霓虹街道','数字','都市'],'未来':['霓虹街道','数字'],'未来感':['霓虹街道','数字'],'赛博':['霓虹街道','数字'],'赛博朋克':['霓虹街道','数字'],'霓虹':['霓虹街道'],'科技':['数字'],
+  '肖像':['肖像'],'人像':['肖像'],'头像':['肖像'],'自拍':['自画像'],'人物':['人物'],'少女':['少女形象'],'美女':['美人','仕女'],
+  '战争':['战争'],'战斗':['战争'],'爱情':['爱情'],'恋爱':['爱情'],'浪漫':['爱情'],
+  '风景':['风景'],'景色':['风景'],'风光':['风景'],'田园':['田园'],'乡村':['田园'],'静物':['静物'],
+  '孤单':['孤独'],'寂寞':['孤独'],'一个人':['孤独'],
+  '治愈':['温暖','平和'],'温馨':['温暖','平和'],'温柔':['温暖'],'暖':['温暖'],'温暖':['温暖'],
+  '悲':['忧郁'],'悲伤':['忧郁'],'难过':['忧郁'],'伤感':['忧郁'],'忧郁':['忧郁'],'忧伤':['忧伤'],'抑郁':['忧郁'],
+  '压抑':['压抑'],'沉闷':['压抑'],'郁闷':['压抑'],
+  '宁静':['宁静'],'安静':['安静'],'平静':['平静'],'平和':['平和'],'恬静':['恬淡'],
+  '震撼':['壮阔'],'壮观':['壮阔'],'壮丽':['壮阔'],'宏伟':['宏大'],'史诗':['史诗叙事'],'辽阔':['壮阔'],
+  '童年':['童年'],'小时候':['童年'],'乡愁':['乡愁'],'思乡':['乡愁'],'怀念':['回忆'],'回忆':['回忆'],
+  '禅':['禅'],'禅意':['禅'],'空灵':['空灵'],'仙':['仙山'],
+  '神秘':['神秘'],'诡异':['神秘'],'幽暗':['暗影'],'恐怖':['恐惧'],'可怕':['恐惧'],'惊悚':['恐惧'],
+  '热闹':['快乐'],'欢乐':['快乐'],'快乐':['快乐'],'开心':['快乐'],'喜庆':['喜悦'],
+  '激情':['激情'],'热烈':['热烈'],'狂野':['奔放'],
+  '梦':['梦境'],'梦境':['梦境'],'梦幻':['梦境'],'虚幻':['梦境'],'幻':['幻觉'],
+  '抽象':['纯抽象'],'几何':['几何构成'],'拼贴':['拼贴'],'水墨':['山水','墨竹'],'山水':['山水'],
+  '古风':['仕女','高士'],'古典':['高士']
+};
 
 let TASTE={style:{},anchor:{}};
 Promise.all([
@@ -80,7 +112,7 @@ Promise.all([
   fetch('data/kg_subtext_motive.json').then(r=>r.json()).catch(()=>({})),
   fetch('data/kg_gen_models.json').then(r=>r.json()).catch(()=>null),
   fetch('data/kg_gen_gallery.json?_='+Date.now()).then(r=>r.json()).catch(()=>({items:[]}))
-]).then(([d,m,mods,gal])=>{IDX=d;MOTIVE=m;if(mods&&mods.models)MODELS=mods.models.filter(x=>x.enabled);buildTaste(gal.items);initEx();compile();})
+]).then(([d,m,mods,gal])=>{IDX=d;MOTIVE=m;STYLE_SET=new Set(IDX.style_cn_list);ANCHOR_SET=new Set(IDX.anchors.map(a=>a.cn));if(mods&&mods.models)MODELS=mods.models.filter(x=>x.enabled);buildTaste(gal.items);initEx();compile();})
  .catch(e=>{document.getElementById('out').innerHTML='<div style="text-align:center;color:#a89f8f;padding:40px">需服务器加载索引:'+e+'</div>';});
 function buildTaste(items){const t={style:{},anchor:{}};(items||[]).forEach(it=>{if(it.rating==null)return;
   if(it.style_cn)t.style[it.style_cn]=(t.style[it.style_cn]||0)+it.rating;
@@ -188,12 +220,21 @@ function findArtist(text){
   IDX.artist_cn_list.forEach(cn=>{ if(cn.length>=2 && text.includes(cn) && (!hit||cn.length>hit.length)) hit=cn; });
   return hit;
 }
+// 把一个"规范词条"路由进正确的桶(查不到图谱则丢弃,保证同义表写错也安全)
+function routeTerm(t,styleHits,subjHits,emoHits){
+  if(STYLE_SET.has(t)) styleHits.push(t);
+  else if(IDX.sub_to_styles[t]) subjHits.push(t);
+  else if(IDX.emoword_to_anchor[t]) emoHits.push(IDX.emoword_to_anchor[t]);
+  else if(ANCHOR_SET.has(t)) emoHits.push(t);
+}
 function classify(text){
   const styleHits=[],subjHits=[],emoHits=[];
   IDX.style_cn_list.forEach(cn=>{ if(cn.length>=2 && text.includes(cn)) styleHits.push(cn); });
   Object.keys(IDX.sub_to_styles).forEach(scn=>{ if(scn.length>=2 && text.includes(scn)) subjHits.push(scn); });
   Object.keys(IDX.emoword_to_anchor).forEach(w=>{ if(w.length>=2 && text.includes(w)) emoHits.push(IDX.emoword_to_anchor[w]); });
-  return {styleHits,subjHits:[...new Set(subjHits)],emoHits:[...new Set(emoHits)]};
+  // 同义/近义扩展:让"黄昏/赛博/治愈/梦幻"等口语词也落到图谱真实词条上(纯前端,仍秒出)
+  for(const k in SYN){ if(text.includes(k)) SYN[k].forEach(t=>routeTerm(t,styleHits,subjHits,emoHits)); }
+  return {styleHits:[...new Set(styleHits)],subjHits:[...new Set(subjHits)],emoHits:[...new Set(emoHits)]};
 }
 function styleIdByCn(cn){ for(const id in IDX.styles){ if(IDX.styles[id].cn===cn) return id; } return null; }
 

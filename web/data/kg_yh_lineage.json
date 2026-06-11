@@ -1,0 +1,1594 @@
+{
+ "meta": {
+  "source": "油画数据库 al_artist.affect_by/affect_to/disciple",
+  "note": "人工考据的影响/师承关系;src/dst 为 ARTIST.slug(命中curated 282)否则 null,另存中文名",
+  "n_edges": 226,
+  "n_both_curated": 6,
+  "raw_fragments": 5384,
+  "matched": 236
+ },
+ "edges": [
+  {
+   "src_cn": "乔治·斯塔布斯",
+   "dst_cn": "席里柯",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "安德烈·德兰",
+   "dst_cn": "马蒂斯",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.matisse"
+  },
+  {
+   "src_cn": "马蒂斯",
+   "dst_cn": "奥古斯特·马克",
+   "rel": "影响",
+   "src": "ARTIST.matisse",
+   "dst": null
+  },
+  {
+   "src_cn": "康定斯基",
+   "dst_cn": "奥古斯特·马克",
+   "rel": "影响",
+   "src": "ARTIST.kandinsky",
+   "dst": null
+  },
+  {
+   "src_cn": "阿希尔·戈尔基",
+   "dst_cn": "塞尚",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.cezanne"
+  },
+  {
+   "src_cn": "阿希尔·戈尔基",
+   "dst_cn": "毕加索",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.picasso"
+  },
+  {
+   "src_cn": "克洛德·莫奈",
+   "dst_cn": "欧仁·布丹",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "欧仁·布丹",
+   "dst_cn": "克洛德·莫奈",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "大卫·考克斯",
+   "dst_cn": "瓦利",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "卢卡斯·克拉纳赫",
+   "dst_cn": "小卢卡斯·克拉纳赫",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "彼得·特·温特",
+   "dst_cn": "瓦利",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "贝尔纳多·贝洛托",
+   "dst_cn": "卡纳莱托",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "克洛德·莫奈",
+   "dst_cn": "约翰·巴托德·琼金德",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "约翰·巴托德·琼金德",
+   "dst_cn": "欧仁·伊萨贝",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "乔瓦尼·弗朗西斯科·巴比里",
+   "dst_cn": "雷尼",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "乔瓦尼·弗朗西斯科·巴比里",
+   "dst_cn": "卡拉瓦乔",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.caravaggio"
+  },
+  {
+   "src_cn": "乔瓦尼·弗朗西斯科·巴比里",
+   "dst_cn": "卢多维科",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "雅各布斯·亨德利库斯·马利斯",
+   "dst_cn": "柯罗",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.corot"
+  },
+  {
+   "src_cn": "乔凡尼·保罗·帕尼尼",
+   "dst_cn": "余贝尔·罗贝尔",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "斯哈尔肯",
+   "dst_cn": "盖里特·德奥",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "内伊弗",
+   "dst_cn": "盖里特·德奥",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "布莱克伦卡姆",
+   "dst_cn": "盖里特·德奥",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "盖里特·德奥",
+   "dst_cn": "伦勃朗",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.rembrandt"
+  },
+  {
+   "src_cn": "蒙塔那",
+   "dst_cn": "Montagna",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "弗雷德里克·桑迪斯",
+   "dst_cn": "罗塞蒂",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.rossetti"
+  },
+  {
+   "src_cn": "斯塔尼斯拉斯·莱皮纳",
+   "dst_cn": "柯罗",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.corot"
+  },
+  {
+   "src_cn": "贝尔纳多·卡瓦里诺",
+   "dst_cn": "彼得罗·诺韦利",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "庚斯博罗",
+   "dst_cn": "约翰·克罗姆",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "奥古斯特·斯特林堡",
+   "dst_cn": "爱德华·蒙克",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "林风眠",
+   "dst_cn": "李可染",
+   "rel": "师承",
+   "src": "ARTIST.linfengmian",
+   "dst": "ARTIST.likeran"
+  },
+  {
+   "src_cn": "洪霍斯特",
+   "dst_cn": "马提亚斯·斯托姆",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "卡拉瓦乔",
+   "dst_cn": "马提亚斯·斯托姆",
+   "rel": "影响",
+   "src": "ARTIST.caravaggio",
+   "dst": null
+  },
+  {
+   "src_cn": "科拉多·吉安昆托",
+   "dst_cn": "戈雅",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "让·巴蒂斯特.玛丽·彼埃尔",
+   "dst_cn": "Antoine",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "席里柯",
+   "dst_cn": "彼埃尔·纳尔西斯·盖兰[男爵]",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "德拉克洛瓦",
+   "dst_cn": "彼埃尔·纳尔西斯·盖兰[男爵]",
+   "rel": "影响",
+   "src": "ARTIST.delacroix",
+   "dst": null
+  },
+  {
+   "src_cn": "舍费尔",
+   "dst_cn": "彼埃尔·纳尔西斯·盖兰[男爵]",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "彼埃尔·纳尔西斯·盖兰[男爵]",
+   "dst_cn": "泰奥多尔·席里柯",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "Rafael",
+   "dst_cn": "布里杰·瑞莱",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "埃米尔·费拉",
+   "dst_cn": "蒙克",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.munch"
+  },
+  {
+   "src_cn": "埃米尔·费拉",
+   "dst_cn": "李卜曼",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "埃米尔·费拉",
+   "dst_cn": "塞尚",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.cezanne"
+  },
+  {
+   "src_cn": "埃米尔·费拉",
+   "dst_cn": "杜米埃",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.daumier"
+  },
+  {
+   "src_cn": "埃米尔·费拉",
+   "dst_cn": "格列柯",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "埃米尔·费拉",
+   "dst_cn": "勃拉克",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "埃米尔·费拉",
+   "dst_cn": "毕加索",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.picasso"
+  },
+  {
+   "src_cn": "乔斯·玛丽亚·贝拉斯科",
+   "dst_cn": "迭戈·里维拉",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "马克斯·恩斯特",
+   "dst_cn": "梵高",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.vangogh"
+  },
+  {
+   "src_cn": "尼古拉斯·希亚德",
+   "dst_cn": "以萨克·奥利弗",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "拉斐尔",
+   "dst_cn": "佩鲁吉诺",
+   "rel": "影响",
+   "src": "ARTIST.raphael",
+   "dst": null
+  },
+  {
+   "src_cn": "佩鲁吉诺",
+   "dst_cn": "拉斐尔",
+   "rel": "师承",
+   "src": null,
+   "dst": "ARTIST.raphael"
+  },
+  {
+   "src_cn": "阿尔弗莱德·西斯莱",
+   "dst_cn": "康斯太勃尔",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.constable"
+  },
+  {
+   "src_cn": "阿尔弗莱德·西斯莱",
+   "dst_cn": "波宁顿",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "阿尔弗莱德·西斯莱",
+   "dst_cn": "透纳",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.turner"
+  },
+  {
+   "src_cn": "汉斯·霍尔拜因",
+   "dst_cn": "老汉斯·霍尔拜因",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "老汉斯·霍尔拜因",
+   "dst_cn": "汉斯·霍尔拜因",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "马丁·顺高尔",
+   "dst_cn": "汉斯·布格迈尔",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "安德烈亚·德尔·萨托",
+   "dst_cn": "蓬托尔莫",
+   "rel": "师承",
+   "src": null,
+   "dst": "ARTIST.pontormo"
+  },
+  {
+   "src_cn": "米开朗基罗",
+   "dst_cn": "卢卡·坎比亚西",
+   "rel": "影响",
+   "src": "ARTIST.michelangelo",
+   "dst": null
+  },
+  {
+   "src_cn": "西罗·费里",
+   "dst_cn": "Giovanni",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "费利克斯·帕拉",
+   "dst_cn": "迭戈·里维拉",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "Bellini",
+   "dst_cn": "雅克伯·贝利尼",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "雅克伯·贝利尼",
+   "dst_cn": "Bellini",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "赵无极",
+   "dst_cn": "马蒂斯",
+   "rel": "影响",
+   "src": "ARTIST.zaowuji",
+   "dst": "ARTIST.matisse"
+  },
+  {
+   "src_cn": "恩里科·塔伦加",
+   "dst_cn": "Gregorio",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "恩里科·塔伦加",
+   "dst_cn": "Antonio",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "奥古斯特·里德尔",
+   "dst_cn": "Karl",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "欧仁·布丹",
+   "dst_cn": "欧仁·伊萨贝",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "欧仁·伊萨贝",
+   "dst_cn": "欧仁·布丹",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "爱德华·达耶斯",
+   "dst_cn": "托马斯·吉尔丁",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "卡里亚尼",
+   "dst_cn": "米兰",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "弗朗切斯科·达·里米尼",
+   "dst_cn": "乌尔比诺",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "詹博诺",
+   "dst_cn": "维罗纳",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "黑田清辉",
+   "dst_cn": "李叔同",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "德利亚奴斯·德·维瑟",
+   "dst_cn": "Johannes",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "德利亚奴斯·德·维瑟",
+   "dst_cn": "Pieter",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "巴伦德·莱昂纳德斯·亨德里克斯",
+   "dst_cn": "Cornelis",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "巴塞洛缪·约翰·凡·霍夫",
+   "dst_cn": "Johannes",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "巴塞洛缪·约翰·凡·霍夫",
+   "dst_cn": "Jan",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "巴塞洛缪·约翰·凡·霍夫",
+   "dst_cn": "Hendrik",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "卡雷尔·路易·汉森",
+   "dst_cn": "Johannes",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "克里斯蒂安·朱利叶斯·洛德维克·波特曼",
+   "dst_cn": "Jan",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "克里斯托弗尔·毕斯乔普",
+   "dst_cn": "Johannes",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "克里斯托弗尔·皮特林克",
+   "dst_cn": "Jan",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "柯雷特·罗佩尔",
+   "dst_cn": "Pieter",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "科尔内利斯·雅各布斯·德尔夫",
+   "dst_cn": "Jan",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "费迪南德·卡尔·西里奇",
+   "dst_cn": "Johannes",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "弗朗西斯科·斯夸尔乔内",
+   "dst_cn": "Andrea",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "弗朗西斯科·斯夸尔乔内",
+   "dst_cn": "Carlo",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "乔治·安德里斯·罗斯",
+   "dst_cn": "Pieter",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "乔治·安德里斯·罗斯",
+   "dst_cn": "Cornelis",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "乔治·安德里斯·罗斯",
+   "dst_cn": "Francisco",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "雅各布·格里茨·勒夫",
+   "dst_cn": "Gerrit",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "雅各布·冯·舒邦",
+   "dst_cn": "Carl",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "雅克·阿韦德",
+   "dst_cn": "François",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "扬·德班",
+   "dst_cn": "Hendrik",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "扬·德班",
+   "dst_cn": "Nicolaes",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "扬·德班",
+   "dst_cn": "Jan",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "扬·德班",
+   "dst_cn": "Johannes",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "扬·詹斯·凡·德·韦尔德（第三）",
+   "dst_cn": "Pieter",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "扬·科贝尔（第三）",
+   "dst_cn": "Dirk",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "扬·洛德韦克·劳克希",
+   "dst_cn": "Pieter",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "扬·洛德韦克·劳克希",
+   "dst_cn": "Joannes",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "扬·凡·哈斯伯格",
+   "dst_cn": "Johan",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "扬·韦森布鲁赫",
+   "dst_cn": "Johannes",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "尼古拉斯·皮纳曼",
+   "dst_cn": "Jan",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "尼古拉斯·皮纳曼",
+   "dst_cn": "Johannes",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "尼古拉斯·皮纳曼",
+   "dst_cn": "Hendrik",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "尼古拉斯·皮纳曼",
+   "dst_cn": "Johan",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "彼得·杰拉杜斯·凡·欧斯",
+   "dst_cn": "Pieter",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "提谟修斯·德·格雷夫",
+   "dst_cn": "Jan",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "威廉·亨德里克·施密特",
+   "dst_cn": "Karel",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "威廉·亨德里克·施密特",
+   "dst_cn": "Nicolaas",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "威廉·亨德里克·施密特",
+   "dst_cn": "Johannes",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "威廉·亨德里克·施密特",
+   "dst_cn": "Johan",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "威廉·彼得·洛夫尼尔",
+   "dst_cn": "Jr",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "沃特·克拉贝特（第二）",
+   "dst_cn": "Jan",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "沃特·克拉贝特（第二）",
+   "dst_cn": "Dirk",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "奥古斯特·卢卡斯",
+   "dst_cn": "Karl",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "路易斯·赫森",
+   "dst_cn": "Henri",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "奥勒·贝尔特林",
+   "dst_cn": "马蒂斯",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.matisse"
+  },
+  {
+   "src_cn": "约翰·路德维希·阿伯利",
+   "dst_cn": "John",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "麦克尔·沃尔格穆特",
+   "dst_cn": "阿尔布莱希特·丢勒",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "安德烈斯·贝尼代蒂",
+   "dst_cn": "Jan",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "巴托洛梅奥·圭多博诺",
+   "dst_cn": "热那亚",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "乔亚奇诺·阿塞莱托",
+   "dst_cn": "卢卡",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "德尼斯·卡尔瓦特",
+   "dst_cn": "圭多·雷尼",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "德尼斯·卡尔瓦特",
+   "dst_cn": "阿尔巴尼",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "德尼斯·卡尔瓦特",
+   "dst_cn": "多米尼基诺",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "弗朗西斯科·里巴尔塔",
+   "dst_cn": "Juan",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "弗朗西斯科·里巴尔塔",
+   "dst_cn": "Antonio",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "弗朗西斯科·里巴尔塔",
+   "dst_cn": "Vicente",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "庞均",
+   "dst_cn": "潘天寿",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.pantianshou"
+  },
+  {
+   "src_cn": "庞均",
+   "dst_cn": "黄宾虹",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.huangbinhong"
+  },
+  {
+   "src_cn": "庞均",
+   "dst_cn": "倪贻德",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "张钦若",
+   "dst_cn": "吴作人",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "徐青峰",
+   "dst_cn": "陈丹青",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "阿希尔·戈尔基",
+   "dst_cn": "约翰·格雷厄姆",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "马克·罗思柯",
+   "dst_cn": "约翰·格雷厄姆",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "弗朗西斯科·塔科尼",
+   "dst_cn": "乔凡尼·贝利尼",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "杰罗拉莫·莫塞托",
+   "dst_cn": "安德烈亚·曼坦那",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "杰罗拉莫·莫塞托",
+   "dst_cn": "乔凡尼·贝利尼",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "格雷戈里奥·拉扎里尼",
+   "dst_cn": "Giovanni",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "格雷戈里奥·拉扎里尼",
+   "dst_cn": "Tiepolo",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "弗朗西斯科·科朗特斯",
+   "dst_cn": "Ribera",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "维维亚诺·科达齐",
+   "dst_cn": "斯瓦纳维尔特",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "洛伦佐·卡萨瓦诺",
+   "dst_cn": "Lorenzo",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "洛伦佐·卡萨瓦诺",
+   "dst_cn": "Fernando",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "弗朗西斯科·帕切科",
+   "dst_cn": "迭戈·委拉斯凯兹",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "詹弗朗切斯科·潘尼",
+   "dst_cn": "Leonardo",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "路易斯·特里斯坦",
+   "dst_cn": "迭戈·委拉斯凯兹",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "安东·凡·拉帕德",
+   "dst_cn": "文森特·凡·高",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "陈丹青",
+   "dst_cn": "俞云阶",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "俞云阶",
+   "dst_cn": "徐悲鸿",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.xubeihong"
+  },
+  {
+   "src_cn": "席勒",
+   "dst_cn": "恩斯特·纽舒尔",
+   "rel": "影响",
+   "src": "ARTIST.schiele",
+   "dst": null
+  },
+  {
+   "src_cn": "克里姆特",
+   "dst_cn": "恩斯特·纽舒尔",
+   "rel": "影响",
+   "src": "ARTIST.klimt",
+   "dst": null
+  },
+  {
+   "src_cn": "林笑初",
+   "dst_cn": "靳尚谊",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "林笑初",
+   "dst_cn": "孙为民",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "罗工柳",
+   "dst_cn": "王文彬",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "恩斯特·路德维希·克尔希纳",
+   "dst_cn": "高更",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.gauguin"
+  },
+  {
+   "src_cn": "恩斯特·路德维希·克尔希纳",
+   "dst_cn": "梵高",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.vangogh"
+  },
+  {
+   "src_cn": "Bellini",
+   "dst_cn": "阿尔布莱希特·丢勒",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "阿尔布莱希特·丢勒",
+   "dst_cn": "Grien",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "阿尔布莱希特·丢勒",
+   "dst_cn": "Grien",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "Bronzino",
+   "dst_cn": "埃德加·德加",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "埃尔·格列柯",
+   "dst_cn": "路易斯·特里斯坦",
+   "rel": "师承",
+   "src": "ARTIST.elgreco",
+   "dst": null
+  },
+  {
+   "src_cn": "雷诺阿",
+   "dst_cn": "爱德华·马奈",
+   "rel": "影响",
+   "src": "ARTIST.renoir",
+   "dst": null
+  },
+  {
+   "src_cn": "毕沙罗",
+   "dst_cn": "爱德华·马奈",
+   "rel": "影响",
+   "src": "ARTIST.pissarro",
+   "dst": null
+  },
+  {
+   "src_cn": "安吉利科",
+   "dst_cn": "Filippo",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "安尼巴列·卡拉奇",
+   "dst_cn": "多米尼基诺",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "奥拉齐奥·真蒂莱斯奇",
+   "dst_cn": "卡拉瓦乔",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.caravaggio"
+  },
+  {
+   "src_cn": "德加",
+   "dst_cn": "奥诺雷·杜米埃",
+   "rel": "影响",
+   "src": "ARTIST.degas",
+   "dst": null
+  },
+  {
+   "src_cn": "莫奈",
+   "dst_cn": "奥诺雷·杜米埃",
+   "rel": "影响",
+   "src": "ARTIST.monet",
+   "dst": null
+  },
+  {
+   "src_cn": "马塞尔·杜尚",
+   "dst_cn": "巴勃罗·鲁伊兹·毕加索",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "莫奈",
+   "dst_cn": "皮埃尔·奥古斯特·雷诺阿",
+   "rel": "影响",
+   "src": "ARTIST.monet",
+   "dst": null
+  },
+  {
+   "src_cn": "彼得·勃鲁盖尔",
+   "dst_cn": "伦勃朗",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.rembrandt"
+  },
+  {
+   "src_cn": "彼得·勃鲁盖尔",
+   "dst_cn": "小彼得·勃鲁盖尔",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "彼得·勃鲁盖尔",
+   "dst_cn": "扬第一·勃鲁盖尔",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "布龙吉诺",
+   "dst_cn": "亚历山德罗·阿洛里",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "迭戈·委拉斯凯兹",
+   "dst_cn": "戈雅",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "杜乔·迪·博宁塞尼亚",
+   "dst_cn": "契马布埃",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.cimabue"
+  },
+  {
+   "src_cn": "杜乔·迪·博宁塞尼亚",
+   "dst_cn": "塞尼亚",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "汉斯·霍尔拜因",
+   "dst_cn": "汉斯·布格迈尔",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "胡安·格里斯",
+   "dst_cn": "莫尔诺",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.mohr"
+  },
+  {
+   "src_cn": "吉兰达约",
+   "dst_cn": "委罗基奥",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "杰克逊·波洛克",
+   "dst_cn": "Clemente",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "杰克逊·波洛克",
+   "dst_cn": "Hart",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "杰克逊·波洛克",
+   "dst_cn": "Antonio",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "杰克逊·波洛克",
+   "dst_cn": "Matta",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "卡米尔·毕沙罗",
+   "dst_cn": "保罗·高更",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "卡米尔·毕沙罗",
+   "dst_cn": "保罗·塞尚",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "伦勃朗",
+   "dst_cn": "达·芬奇",
+   "rel": "影响",
+   "src": "ARTIST.rembrandt",
+   "dst": "ARTIST.davinci"
+  },
+  {
+   "src_cn": "伦勃朗",
+   "dst_cn": "拉斐尔",
+   "rel": "影响",
+   "src": "ARTIST.rembrandt",
+   "dst": "ARTIST.raphael"
+  },
+  {
+   "src_cn": "乔治·贝洛斯",
+   "dst_cn": "罗伯特·亨利",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "罗伯特·亨利",
+   "dst_cn": "戈雅",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "罗伯特·亨利",
+   "dst_cn": "乔治·贝洛斯",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "刘小东",
+   "dst_cn": "吕西安·弗洛伊德",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "吕西安·弗洛伊德",
+   "dst_cn": "丢勒",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.durer"
+  },
+  {
+   "src_cn": "吕西安·弗洛伊德",
+   "dst_cn": "荷尔拜因",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.holbein"
+  },
+  {
+   "src_cn": "乔吉奥·德·基里科",
+   "dst_cn": "弗朗切斯卡",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "乔吉奥·德·基里科",
+   "dst_cn": "克林格尔",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "乔吉娅·奥基弗",
+   "dst_cn": "毕加索",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.picasso"
+  },
+  {
+   "src_cn": "乔吉娅·奥基弗",
+   "dst_cn": "马蒂斯",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.matisse"
+  },
+  {
+   "src_cn": "乔吉娅·奥基弗",
+   "dst_cn": "约翰·马丁",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "乔托",
+   "dst_cn": "普契奥·卡帕纳",
+   "rel": "师承",
+   "src": "ARTIST.giotto",
+   "dst": null
+  },
+  {
+   "src_cn": "毕加索",
+   "dst_cn": "让·弗朗索瓦·米勒",
+   "rel": "影响",
+   "src": "ARTIST.picasso",
+   "dst": null
+  },
+  {
+   "src_cn": "萨塞塔",
+   "dst_cn": "Giovanni",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "庚斯博罗·杜邦",
+   "dst_cn": "托马斯·庚斯博罗",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "托马斯·庚斯博罗",
+   "dst_cn": "庚斯博罗·杜邦",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "委罗内塞",
+   "dst_cn": "米开朗基罗",
+   "rel": "影响",
+   "src": "ARTIST.veronese",
+   "dst": "ARTIST.michelangelo"
+  },
+  {
+   "src_cn": "委罗内塞",
+   "dst_cn": "拉斐尔",
+   "rel": "影响",
+   "src": "ARTIST.veronese",
+   "dst": "ARTIST.raphael"
+  },
+  {
+   "src_cn": "约翰·马林",
+   "dst_cn": "温斯洛·霍默",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "卢卡",
+   "dst_cn": "西蒙内·马丁尼",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "西蒙内·马丁尼",
+   "dst_cn": "杜乔",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.duccio"
+  },
+  {
+   "src_cn": "雅克·路易·大卫",
+   "dst_cn": "吉罗代",
+   "rel": "师承",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "詹姆斯·艾伯特·麦克尼尔·惠斯勒",
+   "dst_cn": "迭戈·委拉斯开兹",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "Clemente",
+   "dst_cn": "詹姆斯·恩索尔",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "弗朗西斯·培根",
+   "dst_cn": "詹姆斯·恩索尔",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "詹姆斯·恩索尔",
+   "dst_cn": "哈尔斯",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.hals"
+  },
+  {
+   "src_cn": "詹姆斯·恩索尔",
+   "dst_cn": "伦勃朗",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.rembrandt"
+  },
+  {
+   "src_cn": "詹姆斯·恩索尔",
+   "dst_cn": "戈雅",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "詹姆斯·恩索尔",
+   "dst_cn": "卡洛",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "詹姆斯·恩索尔",
+   "dst_cn": "透纳",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.turner"
+  },
+  {
+   "src_cn": "詹姆斯·恩索尔",
+   "dst_cn": "杜米埃",
+   "rel": "影响",
+   "src": null,
+   "dst": "ARTIST.daumier"
+  },
+  {
+   "src_cn": "真蒂莱·贝利尼",
+   "dst_cn": "曼坦那",
+   "rel": "影响",
+   "src": null,
+   "dst": null
+  },
+  {
+   "src_cn": "真蒂莱·贝利尼",
+   "dst_cn": "提香",
+   "rel": "师承",
+   "src": null,
+   "dst": "ARTIST.titian"
+  }
+ ]
+}

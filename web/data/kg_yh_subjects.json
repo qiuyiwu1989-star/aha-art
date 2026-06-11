@@ -1,0 +1,654 @@
+{
+ "meta": {
+  "source": "油画数据库 al_work.subject_names",
+  "note": "频率法抽题材词(≥30次),已剔媒介/作者名/标题;per-work tags 见 Postgres work_subjects",
+  "n_vocab": 161,
+  "n_works_with_subjects": 48200
+ },
+ "vocab": [
+  {
+   "subject": "人物画",
+   "count": 13284
+  },
+  {
+   "subject": "人物",
+   "count": 8847
+  },
+  {
+   "subject": "风景画",
+   "count": 6747
+  },
+  {
+   "subject": "风景",
+   "count": 4497
+  },
+  {
+   "subject": "静物画",
+   "count": 2405
+  },
+  {
+   "subject": "抽象",
+   "count": 2188
+  },
+  {
+   "subject": "天空",
+   "count": 1567
+  },
+  {
+   "subject": "女人",
+   "count": 1253
+  },
+  {
+   "subject": "肖像画",
+   "count": 1168
+  },
+  {
+   "subject": "宗教",
+   "count": 971
+  },
+  {
+   "subject": "静物",
+   "count": 903
+  },
+  {
+   "subject": "自然",
+   "count": 894
+  },
+  {
+   "subject": "肖像",
+   "count": 842
+  },
+  {
+   "subject": "树木",
+   "count": 801
+  },
+  {
+   "subject": "宗教画",
+   "count": 634
+  },
+  {
+   "subject": "房屋",
+   "count": 576
+  },
+  {
+   "subject": "花卉",
+   "count": 535
+  },
+  {
+   "subject": "动物",
+   "count": 529
+  },
+  {
+   "subject": "自然风光",
+   "count": 508
+  },
+  {
+   "subject": "男人",
+   "count": 469
+  },
+  {
+   "subject": "大海",
+   "count": 388
+  },
+  {
+   "subject": "房子",
+   "count": 358
+  },
+  {
+   "subject": "水果",
+   "count": 342
+  },
+  {
+   "subject": "鲜花",
+   "count": 325
+  },
+  {
+   "subject": "场景画",
+   "count": 306
+  },
+  {
+   "subject": "几何",
+   "count": 277
+  },
+  {
+   "subject": "群像画",
+   "count": 261
+  },
+  {
+   "subject": "抽象绘画",
+   "count": 259
+  },
+  {
+   "subject": "抽象画",
+   "count": 249
+  },
+  {
+   "subject": "树林",
+   "count": 222
+  },
+  {
+   "subject": "半身像",
+   "count": 218
+  },
+  {
+   "subject": "建筑",
+   "count": 217
+  },
+  {
+   "subject": "女孩",
+   "count": 209
+  },
+  {
+   "subject": "男子",
+   "count": 204
+  },
+  {
+   "subject": "水景",
+   "count": 197
+  },
+  {
+   "subject": "室内",
+   "count": 196
+  },
+  {
+   "subject": "花瓶",
+   "count": 175
+  },
+  {
+   "subject": "街景",
+   "count": 168
+  },
+  {
+   "subject": "女子",
+   "count": 164
+  },
+  {
+   "subject": "瑞典",
+   "count": 161
+  },
+  {
+   "subject": "当代",
+   "count": 160
+  },
+  {
+   "subject": "裸体",
+   "count": 158
+  },
+  {
+   "subject": "草地",
+   "count": 143
+  },
+  {
+   "subject": "河流",
+   "count": 142
+  },
+  {
+   "subject": "白云",
+   "count": 130
+  },
+  {
+   "subject": "色彩",
+   "count": 113
+  },
+  {
+   "subject": "植物",
+   "count": 108
+  },
+  {
+   "subject": "神话",
+   "count": 107
+  },
+  {
+   "subject": "岩石",
+   "count": 106
+  },
+  {
+   "subject": "人像",
+   "count": 106
+  },
+  {
+   "subject": "女性",
+   "count": 104
+  },
+  {
+   "subject": "自画像",
+   "count": 102
+  },
+  {
+   "subject": "威尼斯双年展",
+   "count": 102
+  },
+  {
+   "subject": "全身像",
+   "count": 102
+  },
+  {
+   "subject": "椅子",
+   "count": 101
+  },
+  {
+   "subject": "蓝天",
+   "count": 100
+  },
+  {
+   "subject": "森林",
+   "count": 100
+  },
+  {
+   "subject": "场景",
+   "count": 100
+  },
+  {
+   "subject": "男孩",
+   "count": 94
+  },
+  {
+   "subject": "创作",
+   "count": 94
+  },
+  {
+   "subject": "表现",
+   "count": 93
+  },
+  {
+   "subject": "意象",
+   "count": 93
+  },
+  {
+   "subject": "布面油画",
+   "count": 91
+  },
+  {
+   "subject": "恺加艺术",
+   "count": 91
+  },
+  {
+   "subject": "手稿珍籍插画",
+   "count": 91
+  },
+  {
+   "subject": "伊朗艺术",
+   "count": 91
+  },
+  {
+   "subject": "人物肖像",
+   "count": 90
+  },
+  {
+   "subject": "城市",
+   "count": 89
+  },
+  {
+   "subject": "山脉",
+   "count": 89
+  },
+  {
+   "subject": "孩子",
+   "count": 89
+  },
+  {
+   "subject": "船只",
+   "count": 87
+  },
+  {
+   "subject": "微型模型",
+   "count": 84
+  },
+  {
+   "subject": "插图",
+   "count": 84
+  },
+  {
+   "subject": "帆船",
+   "count": 83
+  },
+  {
+   "subject": "红色",
+   "count": 81
+  },
+  {
+   "subject": "微缩",
+   "count": 79
+  },
+  {
+   "subject": "人物宗教",
+   "count": 79
+  },
+  {
+   "subject": "教堂",
+   "count": 78
+  },
+  {
+   "subject": "现代绘画",
+   "count": 78
+  },
+  {
+   "subject": "头像",
+   "count": 76
+  },
+  {
+   "subject": "战争",
+   "count": 76
+  },
+  {
+   "subject": "建筑画",
+   "count": 76
+  },
+  {
+   "subject": "风景绘画",
+   "count": 75
+  },
+  {
+   "subject": "群像",
+   "count": 75
+  },
+  {
+   "subject": "桌子",
+   "count": 74
+  },
+  {
+   "subject": "瑞典画家",
+   "count": 74
+  },
+  {
+   "subject": "窗户",
+   "count": 73
+  },
+  {
+   "subject": "不定形艺术",
+   "count": 70
+  },
+  {
+   "subject": "格鲁吉亚",
+   "count": 67
+  },
+  {
+   "subject": "街道",
+   "count": 65
+  },
+  {
+   "subject": "蓝色",
+   "count": 64
+  },
+  {
+   "subject": "容器",
+   "count": 62
+  },
+  {
+   "subject": "大树",
+   "count": 60
+  },
+  {
+   "subject": "花园",
+   "count": 60
+  },
+  {
+   "subject": "人体",
+   "count": 60
+  },
+  {
+   "subject": "动物画",
+   "count": 58
+  },
+  {
+   "subject": "意象油画",
+   "count": 57
+  },
+  {
+   "subject": "城堡",
+   "count": 56
+  },
+  {
+   "subject": "山峰",
+   "count": 56
+  },
+  {
+   "subject": "裸女",
+   "count": 56
+  },
+  {
+   "subject": "古典",
+   "count": 55
+  },
+  {
+   "subject": "帽子",
+   "count": 55
+  },
+  {
+   "subject": "山谷",
+   "count": 54
+  },
+  {
+   "subject": "天使",
+   "count": 54
+  },
+  {
+   "subject": "伊拉克女性",
+   "count": 52
+  },
+  {
+   "subject": "湖泊",
+   "count": 51
+  },
+  {
+   "subject": "圣母",
+   "count": 51
+  },
+  {
+   "subject": "妇女",
+   "count": 49
+  },
+  {
+   "subject": "村庄",
+   "count": 49
+  },
+  {
+   "subject": "户外",
+   "count": 49
+  },
+  {
+   "subject": "凡东根",
+   "count": 48
+  },
+  {
+   "subject": "云彩",
+   "count": 47
+  },
+  {
+   "subject": "线条",
+   "count": 47
+  },
+  {
+   "subject": "狮子",
+   "count": 47
+  },
+  {
+   "subject": "海滩",
+   "count": 46
+  },
+  {
+   "subject": "港口",
+   "count": 45
+  },
+  {
+   "subject": "少女",
+   "count": 45
+  },
+  {
+   "subject": "风俗画",
+   "count": 45
+  },
+  {
+   "subject": "写生",
+   "count": 44
+  },
+  {
+   "subject": "传统文化",
+   "count": 44
+  },
+  {
+   "subject": "东方主义",
+   "count": 44
+  },
+  {
+   "subject": "稚拙艺术",
+   "count": 44
+  },
+  {
+   "subject": "月亮",
+   "count": 43
+  },
+  {
+   "subject": "塔德马",
+   "count": 43
+  },
+  {
+   "subject": "自然景观",
+   "count": 43
+  },
+  {
+   "subject": "树枝",
+   "count": 42
+  },
+  {
+   "subject": "乐器",
+   "count": 41
+  },
+  {
+   "subject": "观念艺术",
+   "count": 41
+  },
+  {
+   "subject": "男性",
+   "count": 41
+  },
+  {
+   "subject": "器皿",
+   "count": 41
+  },
+  {
+   "subject": "儿童",
+   "count": 38
+  },
+  {
+   "subject": "秋天",
+   "count": 38
+  },
+  {
+   "subject": "故事",
+   "count": 38
+  },
+  {
+   "subject": "海岸",
+   "count": 38
+  },
+  {
+   "subject": "田野",
+   "count": 38
+  },
+  {
+   "subject": "历史",
+   "count": 38
+  },
+  {
+   "subject": "日常生活",
+   "count": 38
+  },
+  {
+   "subject": "女士",
+   "count": 37
+  },
+  {
+   "subject": "人群",
+   "count": 36
+  },
+  {
+   "subject": "基督",
+   "count": 36
+  },
+  {
+   "subject": "彩色",
+   "count": 36
+  },
+  {
+   "subject": "冬季",
+   "count": 35
+  },
+  {
+   "subject": "封面",
+   "count": 35
+  },
+  {
+   "subject": "室内画",
+   "count": 35
+  },
+  {
+   "subject": "太阳",
+   "count": 34
+  },
+  {
+   "subject": "装饰",
+   "count": 34
+  },
+  {
+   "subject": "印象",
+   "count": 34
+  },
+  {
+   "subject": "印度",
+   "count": 33
+  },
+  {
+   "subject": "老人",
+   "count": 33
+  },
+  {
+   "subject": "抽象人物画",
+   "count": 33
+  },
+  {
+   "subject": "冬天",
+   "count": 32
+  },
+  {
+   "subject": "夜晚",
+   "count": 32
+  },
+  {
+   "subject": "当代人物画",
+   "count": 32
+  },
+  {
+   "subject": "风景自然",
+   "count": 32
+  },
+  {
+   "subject": "奇幻花鸟",
+   "count": 32
+  },
+  {
+   "subject": "劳动人民",
+   "count": 31
+  },
+  {
+   "subject": "道路",
+   "count": 30
+  },
+  {
+   "subject": "黄色",
+   "count": 30
+  },
+  {
+   "subject": "乡村",
+   "count": 30
+  },
+  {
+   "subject": "海边",
+   "count": 30
+  },
+  {
+   "subject": "食物",
+   "count": 30
+  }
+ ]
+}

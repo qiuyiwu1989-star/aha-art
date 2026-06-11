@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[活数据] 世界观地图 · aha</title>
+<style>
+:root{--ink:#2a2620;--soft:#6b6457;--line:#e2dccd;--bg:#f7f3ea;--accent:#9a6a3a}
+*{box-sizing:border-box;margin:0}body{font:14px/1.6 -apple-system,"PingFang SC",sans-serif;color:var(--ink);background:var(--bg)}
+header{padding:14px 20px;border-bottom:1px solid var(--line);background:#fff;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+h1{font-size:18px;margin:0}.sub{color:var(--soft);font-size:12.5px}
+.bar{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13px}
+select{font:13px inherit;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:#fff}
+.wrap{max-width:1000px;margin:0 auto;padding:18px}
+.plane{position:relative;width:100%;max-width:760px;margin:0 auto;aspect-ratio:1;background:radial-gradient(120% 120% at 50% 45%,#fff,#f1ead9);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+svg{position:absolute;inset:0;width:100%;height:100%}
+.axlab{position:absolute;font-size:12px;color:var(--soft);font-weight:600}
+.dot{cursor:pointer;transition:r .1s}
+.rgn{font-size:13px;font-weight:700;fill:#b7ab92;opacity:.75}
+.tip{position:fixed;z-index:20;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 28px rgba(0,0,0,.16);padding:8px;width:170px;pointer-events:none;display:none;font-size:12px}
+.tip img{width:100%;height:110px;object-fit:cover;border-radius:6px;display:block;background:#eee}
+.tip b{display:block;margin-top:5px}.tip span{color:var(--soft)}
+.legend{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:12px;font-size:12px;color:var(--soft)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px;vertical-align:middle}
+a.back{color:var(--accent);text-decoration:none;font-size:13px}
+</style></head>
+<body>
+<header>
+  <a class="back" href="home.html">← aha.art</a>
+  <h1>世界观地图 <span class="sub" id="sub">活数据</span></h1>
+  <div class="bar">着色 <select id="mode"><option value="wv">按世界观区</option><option value="anchor">按情绪锚</option></select>
+    <span class="sub">每点=一幅真实作品 · 悬停看图 · 点击进详情</span></div>
+</header>
+<div class="wrap">
+  <div class="plane" id="plane">
+    <svg id="svg" viewBox="0 0 1000 1000"></svg>
+    <div class="axlab" style="left:8px;top:50%">← 再现</div>
+    <div class="axlab" style="right:8px;top:50%">表现 →</div>
+    <div class="axlab" style="left:50%;top:6px;transform:translateX(-50%)">↑ 即时感知</div>
+    <div class="axlab" style="left:50%;bottom:6px;transform:translateX(-50%)">底层结构 ↓</div>
+  </div>
+  <div class="legend" id="legend"></div>
+</div>
+<div class="tip" id="tip"></div>
+<script>
+const WVC={WV1:'#5a7d6f',WV2:'#9a6a3a',WV3:'#7a8abf',WV4:'#d39a3a',WV5:'#c25a4a',WV6:'#6b6457'};
+const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+const ANC=['喜悦','鲜活','热烈','崇高','张力','恐惧','神秘','忧伤','孤独','怀旧','虚无','沉思','平静','空灵'];
+const ANCC={};ANC.forEach((a,i)=>ANCC[a]=`hsl(${i*26},55%,52%)`);
+let D=null,mode='wv';
+const svg=document.getElementById('svg'),tip=document.getElementById('tip');
+fetch('data/live/points.json').then(r=>r.json()).then(d=>{D=d;
+  document.getElementById('sub').textContent=`活数据 · ${d.meta.n} 件（随过闸增长）`;draw();});
+function draw(){
+  const W=1000,H=1000,pad=70;
+  let h=D.regions.map(r=>`<text class="rgn" x="${pad+r.cx*(W-2*pad)}" y="${pad+(1-r.cy)*(H-2*pad)}" text-anchor="middle">${r.name}</text>`).join('');
+  h+=`<line x1="${W/2}" y1="${pad}" x2="${W/2}" y2="${H-pad}" stroke="#eadfca"/><line x1="${pad}" y1="${H/2}" x2="${W-pad}" y2="${H/2}" stroke="#eadfca"/>`;
+  h+=D.points.map(p=>{const x=pad+p.x*(W-2*pad),y=pad+(1-p.y)*(H-2*pad);
+    const col=mode==='wv'?(WVC[p.wv]||'#aaa'):(ANCC[p.anchor]||'#aaa');
+    return `<circle class="dot" cx="${x}" cy="${y}" r="6" fill="${col}" fill-opacity=".8" data-i="${p._i=D.points.indexOf(p)}" data-id="${p.id}"/>`}).join('');
+  svg.innerHTML=h;
+  svg.querySelectorAll('.dot').forEach(c=>{
+    c.onmouseenter=e=>showTip(D.points[+c.dataset.i],e);c.onmousemove=e=>posTip(e);
+    c.onmouseleave=()=>tip.style.display='none';c.onclick=()=>location.href='work.html?id='+c.dataset.id;
+    c.onmouseover=()=>c.setAttribute('r',9);c.onmouseout=()=>c.setAttribute('r',6);});
+  const keys=mode==='wv'?Object.keys(WVN):ANC;
+  document.getElementById('legend').innerHTML=keys.map(k=>`<span><i style="background:${mode==='wv'?WVC[k]:ANCC[k]}"></i>${mode==='wv'?WVN[k]:k}</span>`).join('');
+}
+function showTip(p,e){tip.innerHTML=`<img src="${p.thumb}"><b>${(p.title||'无题').slice(0,18)}</b><span>${p.artist||''} · ${p.anchor||''} · ${p.style||''}</span>`;tip.style.display='block';posTip(e)}
+function posTip(e){const x=Math.min(e.clientX+14,innerWidth-185),y=Math.min(e.clientY+14,innerHeight-180);tip.style.left=x+'px';tip.style.top=y+'px'}
+document.getElementById('mode').onchange=e=>{mode=e.target.value;draw()};
+</script>
+</body></html>

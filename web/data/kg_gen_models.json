@@ -1,6 +1,6 @@
 {
  "meta":{"note":"出图模型注册表;加模型=加一条(+若新provider加adapter);enabled控制是否在编译器下拉/对比出图中出现"},
  "models":[
-  {"id":"seedream5","label":"豆包 Seedream 5","provider":"volcano_ark","enabled":true,"note":"火山方舟文生图,当前默认"}
+  {"id":"seedream5","label":"艺术家 5","provider":"volcano_ark","enabled":true,"note":"火山方舟文生图(对外白牌为「艺术家 5」),当前默认"}
  ]
 }

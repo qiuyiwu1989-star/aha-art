@@ -1,0 +1,285 @@
+/* ═══════════════════════════════════════════════════════════════════
+   aha-kit.css · 活页组件系统 (Living-page Kit)
+   ───────────────────────────────────────────────────────────────────
+   定位:文档/仪表盘型活页(kg-*、dashboard、live 数据页)的统一外观层。
+   与 aha.css(美术馆漫游体验)并列、互不污染。
+   一张新活页只需:
+     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="css/aha-kit.css">
+   然后用下方语义 class 搭骨架。token 与 aha.css 同源,两者同时 link 也安全。
+   设计基调:低唤醒 · 画先到 · 安静的纸。
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── 1. Tokens ──────────────────────────────────────────────────── */
+:root{
+  /* 表面层级:纸 → 凹陷 → 卡片(暖白,不用纯白以免刺眼) */
+  --paper:#f4f1ea; --paper-2:#ece7db; --card:#fffdf8;
+  --line:#ddd5c6; --line-soft:#e8e1d4;
+
+  /* 文字四阶 */
+  --ink:#1d1b18; --ink-soft:#4b463e; --ink-mute:#857d6f; --ink-faint:#a89f8f;
+
+  /* 主色(赭石)+ 数据三色 */
+  --accent:#b0673a; --accent-soft:#f0e4d8; --accent-line:#e5d3c2;
+  --green:#5a7d6f; --green-soft:#e4ede9;
+  --blue:#5b7596;  --blue-soft:#e3e9f0;
+  --gold:#c98a1a;  --gold-soft:#f3e7cb;
+
+  /* 语义状态 */
+  --ok:#3a8a5a; --warn:#c2792e; --rej:#b5483a; --mute:#9a9a9a;
+  --ok-soft:#e3efe6; --warn-soft:#f6e9d6; --rej-soft:#f5e0dc;
+
+  /* 字体族 */
+  --serif:"Noto Serif SC","Source Serif 4",Georgia,serif;
+  --latin:"Source Serif 4",Georgia,serif;
+  --sans:"Noto Sans SC",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+
+  /* 字阶(px / line-height) */
+  --fz-display:clamp(34px,7vw,52px);
+  --fz-h1:25px; --fz-h2:19px; --fz-h3:16px;
+  --fz-body:14px; --fz-small:12.5px; --fz-tiny:11px; --fz-label:10.5px;
+
+  /* 间距阶 */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px;
+
+  /* 圆角 / 阴影 / 缓动 */
+  --r-sm:6px; --r:12px; --r-lg:16px; --r-pill:999px;
+  --sh-1:0 1px 3px rgba(60,48,32,.06);
+  --sh-card:0 8px 22px -14px rgba(60,48,32,.28);
+  --sh-pop:0 14px 40px -16px rgba(60,48,32,.4);
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --dur:.18s; --dur-slow:.4s;
+
+  /* 玻璃底(磨砂顶栏用) */
+  --glass:rgba(244,241,234,.58); --glass-line:rgba(221,213,198,.55);
+  /* 渐变 & 纸纹 */
+  --grad-paper:linear-gradient(180deg,#f7f4ed,#efe9dc);
+  --grad-accent:linear-gradient(120deg,#c07a45,#9a5530);
+  --grad-fade:linear-gradient(180deg,rgba(244,241,234,.96),rgba(244,241,234,0));
+
+  /* 响应式断点(供 @media 参照,CSS 变量不能直接用于媒体查询) */
+  --bp-sm:560px; --bp-md:768px; --bp-lg:1100px;
+}
+
+/* ── 2. 基底 ────────────────────────────────────────────────────── */
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:var(--fz-body);line-height:1.6;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden}
+a{color:var(--accent);text-decoration:none}
+::selection{background:var(--accent-soft)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+
+/* ── 3. 页壳 ────────────────────────────────────────────────────── */
+.page{max-width:1100px;margin:0 auto;padding:var(--s4) var(--s4) var(--s7)}
+.page.narrow{max-width:780px}
+.page.wide{max-width:1320px}
+
+/* 页头:返回 / 主标题 / kicker / 副标 / 元信息 */
+.pagehead{padding:var(--s5) 0 var(--s4);border-bottom:1px solid var(--line);
+  margin-bottom:var(--s5)}
+.pagehead .back{font-family:var(--mono);font-size:var(--fz-small);color:var(--accent);
+  display:inline-block;margin-bottom:var(--s3);transition:transform var(--dur) var(--ease)}
+.pagehead .back:hover{transform:translateX(-2px)}
+.kicker{font-family:var(--mono);font-size:var(--fz-label);letter-spacing:.18em;
+  text-transform:uppercase;color:var(--accent)}
+.pagehead h1{font-family:var(--serif);font-size:var(--fz-h1);font-weight:600;
+  letter-spacing:-.01em;line-height:1.25;margin:var(--s2) 0 0}
+.pagehead .sub{color:var(--ink-mute);font-size:var(--fz-small);line-height:1.65;
+  margin-top:var(--s2);max-width:64ch}
+.pagehead .meta{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-faint);
+  letter-spacing:.04em;margin-top:var(--s3)}
+
+/* ── 4. 区块标题 ────────────────────────────────────────────────── */
+.sec{margin-top:var(--s6)}
+.sec-h{display:flex;align-items:baseline;gap:var(--s3);
+  border-bottom:1px solid var(--line);padding-bottom:var(--s2);margin-bottom:var(--s4)}
+.sec-h .t{font-family:var(--serif);font-size:var(--fz-h2);font-weight:500;color:var(--ink)}
+.sec-h .n{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-faint)}
+.sec-h .d{font-size:var(--fz-small);color:var(--ink-mute);margin-left:auto}
+
+/* ── 5. 卡片网格 ────────────────────────────────────────────────── */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:var(--s4)}
+.grid.tight{gap:var(--s3)}
+.grid.cols-2{grid-template-columns:repeat(auto-fill,minmax(420px,1fr))}
+.grid.cols-4{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+
+/* ── 6. 卡片 ────────────────────────────────────────────────────── */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:var(--s4) var(--s4) calc(var(--s4) + 2px);box-shadow:var(--sh-1)}
+a.card,.card.link{cursor:pointer;transition:transform var(--dur) var(--ease),
+  box-shadow var(--dur) var(--ease),border-color var(--dur) var(--ease);display:block;color:inherit}
+a.card:hover,.card.link:hover{transform:translateY(-2px);box-shadow:var(--sh-card);
+  border-color:var(--accent-line)}
+.card-h{display:flex;align-items:baseline;gap:var(--s2);margin-bottom:var(--s3)}
+.card-h .nm{font-family:var(--serif);font-size:var(--fz-h3);font-weight:600;color:var(--ink)}
+.card-h .en{font-family:var(--mono);font-size:var(--fz-label);color:var(--ink-faint)}
+.card-h .n{color:var(--ink-mute);font-size:var(--fz-tiny);margin-left:auto;
+  font-family:var(--mono);white-space:nowrap}
+.card-note{font-size:var(--fz-small);color:var(--ink-soft);line-height:1.6;margin-top:var(--s2)}
+
+/* ── 7. 指标条(label · track · fill · knob · value) ──────────────── */
+.bar{display:flex;align-items:center;gap:var(--s2);margin:5px 0;font-size:var(--fz-small)}
+.bar .lb{width:34px;color:var(--ink-mute);flex-shrink:0}
+.bar .track{flex:1;height:7px;background:var(--paper-2);border-radius:var(--r-pill);position:relative}
+.bar .fill{height:100%;background:var(--accent);border-radius:var(--r-pill);
+  transition:width var(--dur-slow) var(--ease)}
+.bar .knob{position:absolute;top:50%;width:10px;height:10px;border-radius:50%;
+  background:var(--card);border:2px solid var(--accent);transform:translate(-50%,-50%)}
+.bar .val{width:34px;text-align:right;color:var(--ink-mute);font-family:var(--mono);
+  font-size:var(--fz-tiny);flex-shrink:0}
+/* 配色变体:在 .bar 上加 .green/.blue/.gold */
+.bar.green .fill{background:var(--green)} .bar.green .knob{border-color:var(--green)}
+.bar.blue  .fill{background:var(--blue)}  .bar.blue  .knob{border-color:var(--blue)}
+.bar.gold  .fill{background:var(--gold)}  .bar.gold  .knob{border-color:var(--gold)}
+
+/* ── 8. 标记三件套:chip(状态) / tag(话题) / badge(强调) ──────────── */
+.chip{display:inline-flex;align-items:center;gap:4px;font-family:var(--mono);
+  font-size:var(--fz-label);letter-spacing:.06em;text-transform:uppercase;
+  padding:3px 9px;border-radius:var(--r-sm);background:var(--accent-soft);color:var(--accent)}
+.chip.ok{background:var(--ok-soft);color:var(--ok)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)}
+.chip.rej{background:var(--rej-soft);color:var(--rej)}
+.chip.info{background:var(--blue-soft);color:var(--blue)}
+.chip.green{background:var(--green-soft);color:var(--green)}
+.chip.muted{background:var(--paper-2);color:var(--ink-mute)}
+
+.tag{font-family:var(--sans);font-size:var(--fz-tiny);color:var(--ink-mute);
+  border:1px solid var(--line);border-radius:var(--r-pill);padding:2px 11px;display:inline-block}
+.tag::before{content:"#";opacity:.5}
+.tag.m{color:var(--accent);border-color:var(--accent-line)}
+.tag.m::before{content:"#";opacity:.5}
+.taglist{display:flex;gap:var(--s2);flex-wrap:wrap}
+
+.badge{font-family:var(--mono);font-size:var(--fz-label);background:var(--paper-2);
+  border:1px solid var(--line);border-radius:var(--r-pill);padding:1px 9px;color:var(--accent)}
+
+/* ── 9. KPI / 统计数字 ──────────────────────────────────────────── */
+.stats{display:flex;gap:var(--s5);flex-wrap:wrap}
+.stat .num{font-family:var(--serif);font-size:28px;font-weight:600;color:var(--ink);
+  line-height:1.1;font-variant-numeric:tabular-nums}
+.stat .num .u{font-size:var(--fz-small);color:var(--ink-mute);font-weight:400;margin-left:3px}
+.stat .lab{font-family:var(--mono);font-size:var(--fz-tiny);letter-spacing:.06em;
+  color:var(--ink-mute);text-transform:uppercase;margin-top:2px}
+
+/* ── 10. 表格 ───────────────────────────────────────────────────── */
+.tbl{width:100%;border-collapse:collapse;font-size:var(--fz-small)}
+.tbl th{font-family:var(--mono);font-size:var(--fz-tiny);letter-spacing:.05em;
+  text-transform:uppercase;color:var(--ink-mute);text-align:left;font-weight:500;
+  padding:var(--s2) var(--s3);border-bottom:1px solid var(--line)}
+.tbl td{padding:var(--s2) var(--s3);border-bottom:1px solid var(--line-soft);color:var(--ink-soft)}
+.tbl tr:hover td{background:var(--paper-2)}
+.tbl td.num,.tbl th.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums}
+
+/* ── 11. 按钮 / 链接 ────────────────────────────────────────────── */
+.btn{font-family:var(--sans);font-size:var(--fz-body);background:var(--ink);color:var(--paper);
+  border:none;border-radius:var(--r-pill);padding:10px 24px;cursor:pointer;
+  transition:transform var(--dur) var(--ease),opacity var(--dur) var(--ease);display:inline-block}
+.btn:hover{transform:translateY(-1px);opacity:.92}
+.btn.ghost{background:none;color:var(--ink-soft);border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--accent);color:var(--accent);transform:none}
+.btn.pill{font-family:var(--mono);font-size:var(--fz-small);color:var(--ink-mute);
+  background:none;border:1px solid var(--line);padding:6px 14px}
+.btn.pill:hover{border-color:var(--accent);color:var(--accent);transform:none}
+.btn[disabled]{opacity:.34;cursor:default;transform:none}
+
+/* ── 12. 状态:加载 / 空 / 淡入 ─────────────────────────────────── */
+.loading{text-align:center;color:var(--ink-mute);font-family:var(--serif);
+  font-size:var(--fz-h3);padding:var(--s7) var(--s4)}
+.loading::after{content:"";display:inline-block;width:1em;text-align:left;
+  animation:dots 1.4s steps(4,end) infinite}
+@keyframes dots{0%{content:""}25%{content:"·"}50%{content:"··"}75%{content:"···"}}
+.skel{background:linear-gradient(90deg,var(--paper-2) 25%,var(--line-soft) 50%,var(--paper-2) 75%);
+  background-size:200% 100%;border-radius:var(--r-sm);animation:shimmer 1.3s linear infinite}
+@keyframes shimmer{to{background-position:-200% 0}}
+.empty{text-align:center;color:var(--ink-mute);font-family:var(--serif);
+  font-size:var(--fz-h3);padding:var(--s7) var(--s4);line-height:1.7}
+.empty .hint{font-family:var(--sans);font-size:var(--fz-small);color:var(--ink-faint);margin-top:var(--s2)}
+.fade-in{animation:fadeIn .5s var(--ease) both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ── 13. 小工具类 ───────────────────────────────────────────────── */
+.muted{color:var(--ink-mute)} .faint{color:var(--ink-faint)}
+.serif{font-family:var(--serif)} .mono{font-family:var(--mono)}
+.rule{height:1px;background:var(--line);border:0;margin:var(--s5) 0}
+/* 重点信息 callout —— 用「浅赭石卡 + 可选圆点 kicker」强调,禁止左侧竖条 */
+.note{font-size:var(--fz-small);color:var(--ink-soft);line-height:1.7;
+  background:var(--paper-2);border-radius:var(--r);padding:var(--s3) var(--s4)}
+.note.accent{background:var(--accent-soft);border:1px solid var(--accent-line)}
+.note .k{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:var(--fz-label);
+  letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:7px}
+.note .k::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
+b{font-weight:600} .note b,.card-note b{color:var(--accent);font-weight:500}
+
+/* ── 14. 表单 ───────────────────────────────────────────────────── */
+.field{display:block;margin-bottom:var(--s4)}
+.field>.fl{display:block;font-family:var(--mono);font-size:var(--fz-tiny);letter-spacing:.04em;
+  color:var(--ink-mute);margin-bottom:6px}
+.input,.select,textarea.input{width:100%;font-family:var(--sans);font-size:var(--fz-body);
+  color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);
+  padding:9px 12px;transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+.input:focus,.select:focus,textarea.input:focus{outline:none;border-color:var(--accent);
+  box-shadow:0 0 0 3px var(--accent-soft)}
+.input::placeholder{color:var(--ink-faint)}
+.select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink-mute) 50%),
+  linear-gradient(135deg,var(--ink-mute) 50%,transparent 50%);
+  background-position:calc(100% - 16px) center,calc(100% - 11px) center;
+  background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:32px}
+.search{position:relative}
+.search .input{padding-left:34px}
+.search::before{content:"⌕";position:absolute;left:12px;top:50%;transform:translateY(-50%);
+  color:var(--ink-faint);font-size:16px}
+.slider{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:var(--r-pill);
+  background:var(--paper-2);outline:none}
+.slider::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;
+  background:var(--card);border:2px solid var(--accent);cursor:pointer;box-shadow:var(--sh-1)}
+.slider::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--card);
+  border:2px solid var(--accent);cursor:pointer}
+.check{display:inline-flex;align-items:center;gap:8px;font-size:var(--fz-small);
+  color:var(--ink-soft);cursor:pointer}
+.check input{accent-color:var(--accent);width:16px;height:16px}
+.segwrap{display:inline-flex;background:var(--paper-2);border:1px solid var(--line);
+  border-radius:var(--r-pill);padding:3px}
+.seg{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute);background:none;
+  border:none;border-radius:var(--r-pill);padding:6px 14px;cursor:pointer;transition:all var(--dur) var(--ease)}
+.seg.on{background:var(--card);color:var(--accent);box-shadow:var(--sh-1)}
+
+/* ── 15. 反馈:Toast / Modal ─────────────────────────────────────── */
+/* Toast —— 语义靠图标颜色,不用左侧竖条 */
+.toast{display:inline-flex;align-items:center;gap:10px;font-size:var(--fz-small);color:var(--ink);
+  background:var(--card);border:1px solid var(--line);
+  border-radius:var(--r-sm);padding:11px 16px;box-shadow:var(--sh-card)}
+.toast .ti{font-size:15px;line-height:1;color:var(--accent)}
+.toast.ok .ti{color:var(--ok)} .toast.warn .ti{color:var(--warn)} .toast.rej .ti{color:var(--rej)}
+.scrim{position:fixed;inset:0;background:rgba(40,30,20,.34);backdrop-filter:blur(2px);
+  display:flex;align-items:center;justify-content:center;padding:var(--s4);z-index:200;
+  animation:fadeIn var(--dur) var(--ease)}
+.modal{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:var(--s5);max-width:440px;width:100%;box-shadow:var(--sh-pop);
+  animation:popIn var(--dur-slow) var(--ease)}
+@keyframes popIn{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+.modal h3{font-family:var(--serif);font-size:var(--fz-h2);font-weight:600;margin-bottom:var(--s2)}
+.modal p{font-size:var(--fz-small);color:var(--ink-soft);line-height:1.7;margin-bottom:var(--s4)}
+.modal .acts{display:flex;gap:var(--s2);justify-content:flex-end}
+
+/* 站点骨架(顶栏 .site-top / 底栏 .site-foot)的样式与标记已统一收进
+   js/aha-chrome.js(自带 scoped CSS、零依赖,任意页一行 script 即注入)。
+   --glass / --glass-line token 保留在上方 :root,供其它磨砂场景复用。 */
+
+/* ── 17. 响应式 ─────────────────────────────────────────────────── */
+@media(max-width:560px){
+  .page{padding:var(--s3) var(--s3) var(--s6)}
+  .pagehead h1{font-size:21px}
+  .grid,.grid.cols-2{grid-template-columns:1fr}
+  .stats{gap:var(--s4)}
+  .stat .num{font-size:24px}
+}
+
+/* ── 18. 降级:尊重减少动效 ─────────────────────────────────────── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;
+    animation-iteration-count:1!important;transition-duration:.001ms!important}
+}

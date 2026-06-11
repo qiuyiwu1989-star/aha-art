@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>设计系统 · Design System · aha.art</title>
+<meta name="description" content="aha 全站活页设计规范 — 颜色、字体、组件、间距、动效、图表、模板的单一可信来源。">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400;1,8..60,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/aha-kit.css">
+<style>
+  /* ═══ 仅本规范页自用的版式(组件演示一律用 aha-kit 的真 class)═══ */
+  body{background:var(--paper)}
+  /* Hero */
+  .ds-hero{background:var(--grad-paper);border-bottom:1px solid var(--line);
+    padding:64px 24px 40px;text-align:center}
+  .ds-word{font-family:var(--serif);font-size:var(--fz-display);font-weight:700;
+    letter-spacing:-.02em;line-height:1;color:var(--ink)}
+  .ds-word .dot{color:var(--accent)}
+  .ds-kick{font-family:var(--mono);font-size:var(--fz-tiny);letter-spacing:.22em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  .ds-tag{font-family:var(--serif);font-size:clamp(15px,3vw,19px);color:var(--accent);margin-top:12px}
+  .ds-three{display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+  .ds-three span{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute);
+    border:1px solid var(--line);border-radius:var(--r-pill);padding:5px 13px;background:var(--card)}
+  .ds-meta{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-faint);margin-top:18px;letter-spacing:.04em}
+
+  /* 两栏:sticky TOC + 内容 */
+  .ds-shell{display:grid;grid-template-columns:200px 1fr;gap:36px;max-width:1180px;
+    margin:0 auto;padding:0 24px 90px}
+  .ds-toc{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;padding:28px 0;
+    display:flex;flex-direction:column;gap:2px}
+  .ds-toc .grp{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-faint);padding:12px 10px 4px}
+  .ds-toc a{font-size:13px;color:var(--ink-mute);text-decoration:none;padding:6px 11px;
+    border-radius:var(--r-sm);transition:all var(--dur) var(--ease)}
+  .ds-toc a:hover{color:var(--ink);background:var(--paper-2)}
+  .ds-toc a.active{color:var(--accent);background:var(--accent-soft);font-weight:500}
+  .ds-content{min-width:0;padding-top:28px}
+
+  /* 区块标题 */
+  .ds-sec{padding:30px 0;border-top:1px solid var(--line)}
+  .ds-sec:first-child{border-top:none}
+  .ds-h{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+  .ds-h .n{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--accent);
+    border:1px solid var(--accent-line);border-radius:var(--r-sm);padding:1px 7px}
+  .ds-h h2{font-family:var(--serif);font-size:23px;font-weight:600;color:var(--ink)}
+  .ds-h .en{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-faint);
+    text-transform:uppercase;letter-spacing:.08em;margin-left:auto}
+  .ds-lead{font-size:var(--fz-small);color:var(--ink-mute);line-height:1.7;margin-bottom:var(--s4);max-width:70ch}
+  .ds-label{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute);
+    letter-spacing:.04em;margin:var(--s4) 0 var(--s2)}
+  .ds-label:first-of-type{margin-top:0}
+
+  /* demo 容器 + 代码块 + 复制 */
+  .demo{background:var(--card);border:1px solid var(--line);border-radius:var(--r) var(--r) 0 0;padding:var(--s4)}
+  .code{position:relative;font-family:var(--mono);font-size:11.5px;line-height:1.7;color:var(--ink-soft);
+    background:#2a2622;border-radius:0 0 var(--r) var(--r);padding:var(--s3) var(--s4);
+    white-space:pre;overflow-x:auto;color:#e8e1d4}
+  .code .cp{position:absolute;top:8px;right:8px;font-family:var(--mono);font-size:10px;
+    color:#c9bfae;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+    border-radius:5px;padding:3px 9px;cursor:pointer}
+  .code .cp:hover{background:rgba(255,255,255,.16)}
+  .code .t{color:#b0875f}.code .a{color:#8aa8b0}.code .s{color:#a8b08a}
+
+  /* 色板 */
+  .sw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:var(--s3)}
+  .sw{border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;background:var(--card)}
+  .sw .c{height:50px}
+  .sw .m{padding:7px 10px}
+  .sw .nm{font-family:var(--mono);font-size:11px;color:var(--ink)}
+  .sw .hex{font-family:var(--mono);font-size:10px;color:var(--ink-faint)}
+
+  /* 字阶 / 间距 */
+  .scale-row{display:flex;align-items:baseline;gap:var(--s4);padding:9px 0;border-bottom:1px solid var(--line-soft)}
+  .scale-row .tk{font-family:var(--mono);font-size:11px;color:var(--ink-faint);width:150px;flex-shrink:0}
+  .sp-row{display:flex;align-items:center;gap:var(--s3);padding:5px 0}
+  .sp-row .vis{background:var(--accent-soft);height:16px;border:1px solid var(--accent-line)}
+  .sp-row .lb{font-family:var(--mono);font-size:11px;color:var(--ink-mute);width:78px}
+
+  /* 动效演示 */
+  .ease-demo{height:40px;background:var(--paper-2);border-radius:var(--r-pill);position:relative;overflow:hidden}
+  .ease-demo .ball{position:absolute;top:6px;left:6px;width:28px;height:28px;border-radius:50%;
+    background:var(--accent);animation:slide 2.4s var(--ease) infinite alternate}
+  @keyframes slide{to{left:calc(100% - 34px)}}
+
+  /* 图表 SVG */
+  .chart-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--s4)}
+  .chart{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:var(--s4)}
+  .chart .ct{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute);
+    letter-spacing:.04em;margin-bottom:var(--s2)}
+  .chart svg{width:100%;height:auto;display:block}
+
+  /* 活页原型缩略 */
+  .arch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:var(--s4)}
+  .arch .wf{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r-sm);
+    padding:10px;height:120px;display:flex;flex-direction:column;gap:5px;overflow:hidden}
+  .arch .wf .l{background:var(--line);border-radius:3px;height:8px}
+  .arch .wf .acc{background:var(--accent-line)}
+  .arch .wf .row{display:flex;gap:5px}.arch .wf .row>*{flex:1}
+  .arch .wf .box{background:var(--card);border:1px solid var(--line);border-radius:4px;flex:1}
+
+  /* 铁律 */
+  .rule-row{display:flex;gap:var(--s3);padding:var(--s3) 0;border-bottom:1px solid var(--line-soft)}
+  .rule-row .no{font-family:var(--serif);font-size:24px;font-weight:700;color:var(--accent-line);
+    line-height:1;width:38px;flex-shrink:0}
+  .rule-row .tx b{font-weight:600;color:var(--ink)}
+  .rule-row .tx{font-size:var(--fz-small);color:var(--ink-soft);line-height:1.65}
+
+  /* token 表 */
+  .tok-grp{margin-bottom:var(--s4)}
+  .tok-grp .gh{font-family:var(--mono);font-size:var(--fz-tiny);letter-spacing:.06em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:var(--s2)}
+
+  @media(max-width:900px){
+    .ds-shell{grid-template-columns:1fr;gap:0}
+    .ds-toc{position:sticky;top:0;height:auto;flex-direction:row;overflow-x:auto;gap:6px;
+      padding:10px 0;background:var(--grad-fade);backdrop-filter:blur(6px);z-index:30;border-bottom:1px solid var(--line)}
+    .ds-toc .grp{display:none}
+    .ds-toc a{white-space:nowrap;border-left:none;border-bottom:2px solid transparent}
+    .ds-toc a.active{border-left:none;border-bottom-color:var(--accent)}
+  }
+</style>
+</head>
+<body data-no-top>
+
+<!-- ═══ HERO ═══ -->
+<header class="ds-hero">
+  <div class="ds-kick">Design System · 设计系统</div>
+  <div class="ds-word">aha<span class="dot">.</span>art</div>
+  <div class="ds-tag">让美,来找你。</div>
+  <p class="ds-lead" style="margin:16px auto 0;max-width:60ch;text-align:center">
+    aha 全站<b>活页</b>(kg-*、live、dashboard、gallery)的设计规范——颜色、字体、组件、间距、动效、图表、模板的<b>单一可信来源</b>。
+    一切定义在 <span class="mono">css/aha-kit.css</span>,改它,全站跟着变。</p>
+  <div class="ds-three"><span>低唤醒</span><span>画先到</span><span>安静的纸</span></div>
+  <div class="ds-meta">v1.1 · 2026-06 · 暖纸 #f4f1ea + 赭石 #b0673a</div>
+</header>
+
+<div class="ds-shell">
+
+  <!-- ═══ STICKY TOC ═══ -->
+  <nav class="ds-toc" id="toc">
+    <span class="grp">基础</span>
+    <a href="#wordmark">字标</a><a href="#color">颜色</a><a href="#type">字体 & 字阶</a>
+    <a href="#gradient">渐变 & 纸</a><a href="#space">间距/圆角/阴影/动效</a>
+    <span class="grp">组件</span>
+    <a href="#button">按钮</a><a href="#card">卡片</a><a href="#chart">图表</a>
+    <a href="#mark">标记</a><a href="#data">KPI & 表格</a><a href="#form">表单</a>
+    <a href="#feedback">Toast / Modal</a><a href="#state">状态</a>
+    <span class="grp">模式</span>
+    <a href="#breakpoint">断点</a><a href="#archetype">活页原型</a><a href="#rules">5 条铁律</a>
+    <span class="grp">使用</span>
+    <a href="#usage">起始模板</a><a href="#chrome">顶栏 / 底栏</a><a href="#files">命名 & 文件</a><a href="#tokens">完整 Token</a>
+  </nav>
+
+  <main class="ds-content">
+
+  <!-- 字标 -->
+  <section class="ds-sec" id="wordmark">
+    <div class="ds-h"><span class="n">01</span><h2>品牌字标</h2><span class="en">Wordmark</span></div>
+    <p class="ds-lead">衬线小写 <b>aha.art</b> —— <b>aha</b> 与 <b>art</b> 墨色,中间句点是品牌唯一的"亮色锚"(赭石),不要换色、不要去掉。字标用 <span class="mono">--serif</span> 700。</p>
+    <div class="demo" style="display:flex;align-items:center;gap:40px;flex-wrap:wrap">
+      <div style="font-family:var(--serif);font-size:64px;font-weight:700;letter-spacing:-.02em">aha<span style="color:var(--accent)">.</span>art</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span class="chip ok">✓ 句点永远 --accent</span>
+        <span class="chip rej">✗ 整词染色 / 去掉句点 / 用无衬线</span>
+      </div>
+    </div>
+    <div class="code"><button class="cp">复制</button>&lt;span class="ds-word"&gt;aha&lt;span class="dot"&gt;.&lt;/span&gt;art&lt;/span&gt;</div>
+  </section>
+
+  <!-- 颜色 -->
+  <section class="ds-sec" id="color">
+    <div class="ds-h"><span class="n">02</span><h2>颜色</h2><span class="en">Color</span></div>
+    <p class="ds-lead">语义优先,<b>页内永不直接写十六进制</b>。表面是暖纸三阶、文字是中性四阶,赭石是唯一品牌色,数据三色与语义状态各司其职。</p>
+
+    <p class="ds-label">表面 · Surface</p>
+    <div class="sw-grid">
+      <div class="sw"><div class="c" style="background:var(--paper)"></div><div class="m"><div class="nm">--paper</div><div class="hex">#f4f1ea 页底</div></div></div>
+      <div class="sw"><div class="c" style="background:var(--paper-2)"></div><div class="m"><div class="nm">--paper-2</div><div class="hex">#ece7db 凹陷</div></div></div>
+      <div class="sw"><div class="c" style="background:var(--card);border-bottom:1px solid var(--line)"></div><div class="m"><div class="nm">--card</div><div class="hex">#fffdf8 卡面</div></div></div>
+      <div class="sw"><div class="c" style="background:var(--line)"></div><div class="m"><div class="nm">--line</div><div class="hex">#ddd5c6 描边</div></div></div>
+    </div>
+
+    <p class="ds-label">文字四阶 · Ink</p>
+    <div class="sw-grid">
+      <div class="sw"><div class="c" style="background:var(--ink)"></div><div class="m"><div class="nm">--ink</div><div class="hex">#1d1b18 主</div></div></div>
+      <div class="sw"><div class="c" style="background:var(--ink-soft)"></div><div class="m"><div class="nm">--ink-soft</div><div class="hex">#4b463e 次</div></div></div>
+      <div class="sw"><div class="c" style="background:var(--ink-mute)"></div><div class="m"><div class="nm">--ink-mute</div><div class="hex">#857d6f 弱</div></div></div>
+      <div class="sw"><div class="c" style="background:var(--ink-faint)"></div><div class="m"><div class="nm">--ink-faint</div><div class="hex">#a89f8f 极弱</div></div></div>
+    </div>
+
+    <p class="ds-label">品牌 · 数据三色 · 语义状态</p>
+    <div class="sw-grid">
+      <div class="sw"><div class="c" style="background:var(--accent)"></div><div class="m"><div class="nm">--accent</div><div class="hex">#b0673a 赭石(主)</div></div></div>
+      <div class="sw"><div class="c" style="background:var(--green)"></div><div class="m"><div class="nm">--green</div><div class="hex">#5a7d6f 探索</div></div></div>
+      <div class="sw"><div class="c" style="background:var(--blue)"></div><div class="m"><div class="nm">--blue</div><div class="hex">#5b7596 信息</div></div></div>
+      <div class="sw"><div class="c" style="background:var(--gold)"></div><div class="m"><div class="nm">--gold</div><div class="hex">#c98a1a 强调</div></div></div>
+      <div class="sw"><div class="c" style="background:var(--ok)"></div><div class="m"><div class="nm">--ok</div><div class="hex">#3a8a5a 正常</div></div></div>
+      <div class="sw"><div class="c" style="background:var(--warn)"></div><div class="m"><div class="nm">--warn</div><div class="hex">#c2792e 注意</div></div></div>
+      <div class="sw"><div class="c" style="background:var(--rej)"></div><div class="m"><div class="nm">--rej</div><div class="hex">#b5483a 异常</div></div></div>
+      <div class="sw"><div class="c" style="background:var(--mute)"></div><div class="m"><div class="nm">--mute</div><div class="hex">#9a9a9a 中性</div></div></div>
+    </div>
+
+    <p class="ds-label">语义用法 · 别凭颜色好看选</p>
+    <div class="note accent" style="margin-top:8px">
+      赭石 = 唯一可交互/强调信号(链接、hover、当前项)。数据三色只用于<b>图表区分</b>,不进正文。
+      语义色只用于<b>状态</b>(过闸/待评估/拒绝),不当装饰。纸面层级靠 paper→paper-2→card,不靠阴影堆叠。
+    </div>
+  </section>
+
+  <!-- 字体 -->
+  <section class="ds-sec" id="type">
+    <div class="ds-h"><span class="n">03</span><h2>字体 & 字阶</h2><span class="en">Typography</span></div>
+    <p class="ds-lead">衬线撑标题与品牌、无衬线承正文、拉丁斜体作画家名/题注、等宽做标签与数字。四族各有其位,不混用。</p>
+
+    <p class="ds-label">字族 · Families</p>
+    <div class="grid cols-2">
+      <div class="card"><div class="card-h"><span class="nm serif">思源/Noto Serif SC</span><span class="n">--serif</span></div><div class="card-note serif" style="font-size:18px">标题 · 品牌 · 强调短句。汉字大字号撑场。</div></div>
+      <div class="card"><div class="card-h"><span class="nm">思源/Noto Sans SC</span><span class="n">--sans</span></div><div class="card-note">正文 · 说明 · UI。14px / 行高 1.6,安静好读。</div></div>
+      <div class="card"><div class="card-h"><span class="nm" style="font-family:var(--latin);font-style:italic">Source Serif 4</span><span class="n">--latin</span></div><div class="card-note" style="font-family:var(--latin);font-style:italic">Claude Monet · 1872 — 拉丁斜体作画家名 / 题注。</div></div>
+      <div class="card"><div class="card-h"><span class="nm mono">JetBrains Mono</span><span class="n">--mono</span></div><div class="card-note mono" style="font-size:12px">LABEL · 0.69 · 2,047 件 — 标签 / 计数 / 数字。</div></div>
+    </div>
+
+    <p class="ds-label">字号阶梯 · Scale</p>
+    <div class="demo">
+      <div class="scale-row"><span class="tk">--fz-display clamp34-52</span><span class="serif" style="font-size:var(--fz-display);font-weight:700">aha 让美来找你</span></div>
+      <div class="scale-row"><span class="tk">--fz-h1 25 / serif 600</span><span class="serif" style="font-size:var(--fz-h1);font-weight:600">页面主标题</span></div>
+      <div class="scale-row"><span class="tk">--fz-h2 19 / serif 500</span><span class="serif" style="font-size:var(--fz-h2);font-weight:500">区块标题</span></div>
+      <div class="scale-row"><span class="tk">--fz-h3 16 / serif 600</span><span class="serif" style="font-size:var(--fz-h3);font-weight:600">卡片标题</span></div>
+      <div class="scale-row"><span class="tk">--fz-body 14 / sans</span><span style="font-size:var(--fz-body)">正文:安静的纸上,字也要安静。</span></div>
+      <div class="scale-row"><span class="tk">--fz-small 12.5</span><span style="font-size:var(--fz-small);color:var(--ink-mute)">副文 / 说明</span></div>
+      <div class="scale-row"><span class="tk">--fz-label 10.5 / mono</span><span class="mono" style="font-size:var(--fz-label);letter-spacing:.06em;color:var(--ink-mute)">MONO LABEL · 标签计数</span></div>
+    </div>
+  </section>
+
+  <!-- 渐变 -->
+  <section class="ds-sec" id="gradient">
+    <div class="ds-h"><span class="n">04</span><h2>渐变 & 纸</h2><span class="en">Gradient</span></div>
+    <p class="ds-lead">克制使用。纸渐变给 hero 一点呼吸,赭石渐变只给少数主操作/重点块,淡出渐变给吸顶栏遮罩。<b>不做彩色霓虹渐变</b>——那不是安静的纸。</p>
+    <div class="sw-grid">
+      <div class="sw"><div class="c" style="height:64px;background:var(--grad-paper)"></div><div class="m"><div class="nm">--grad-paper</div><div class="hex">hero / 区块底</div></div></div>
+      <div class="sw"><div class="c" style="height:64px;background:var(--grad-accent)"></div><div class="m"><div class="nm">--grad-accent</div><div class="hex">主操作 / 重点</div></div></div>
+      <div class="sw"><div class="c" style="height:64px;background:var(--grad-fade),var(--paper-2)"></div><div class="m"><div class="nm">--grad-fade</div><div class="hex">吸顶栏遮罩</div></div></div>
+    </div>
+  </section>
+
+  <!-- 间距/圆角/阴影/动效 -->
+  <section class="ds-sec" id="space">
+    <div class="ds-h"><span class="n">05</span><h2>间距 · 圆角 · 阴影 · 动效</h2><span class="en">Spacing & Motion</span></div>
+    <div class="grid cols-2">
+      <div class="card"><div class="card-h"><span class="nm">间距阶 8 基</span></div>
+        <div class="sp-row"><span class="lb">--s1 4</span><span class="vis" style="width:4px"></span></div>
+        <div class="sp-row"><span class="lb">--s2 8</span><span class="vis" style="width:8px"></span></div>
+        <div class="sp-row"><span class="lb">--s3 12</span><span class="vis" style="width:12px"></span></div>
+        <div class="sp-row"><span class="lb">--s4 16</span><span class="vis" style="width:16px"></span></div>
+        <div class="sp-row"><span class="lb">--s5 24</span><span class="vis" style="width:24px"></span></div>
+        <div class="sp-row"><span class="lb">--s6 32</span><span class="vis" style="width:32px"></span></div>
+        <div class="sp-row"><span class="lb">--s7 48</span><span class="vis" style="width:48px"></span></div>
+      </div>
+      <div class="card"><div class="card-h"><span class="nm">圆角 & 阴影</span></div>
+        <div style="display:flex;gap:var(--s3);flex-wrap:wrap;margin-top:6px">
+          <div style="width:64px;height:46px;background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r-sm)"></div>
+          <div style="width:64px;height:46px;background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r)"></div>
+          <div style="width:64px;height:46px;background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r-pill)"></div>
+        </div>
+        <div class="mono" style="font-size:10.5px;color:var(--ink-faint);margin-top:5px">--r-sm 6 · --r 12 · --r-pill</div>
+        <div style="display:flex;gap:var(--s4);margin-top:var(--s4)">
+          <div style="width:64px;height:46px;background:var(--card);border-radius:var(--r);box-shadow:var(--sh-1)"></div>
+          <div style="width:64px;height:46px;background:var(--card);border-radius:var(--r);box-shadow:var(--sh-card)"></div>
+          <div style="width:64px;height:46px;background:var(--card);border-radius:var(--r);box-shadow:var(--sh-pop)"></div>
+        </div>
+        <div class="mono" style="font-size:10.5px;color:var(--ink-faint);margin-top:5px">--sh-1 · --sh-card · --sh-pop</div>
+      </div>
+    </div>
+    <p class="ds-label">动效 · 一条缓动曲线走天下</p>
+    <div class="demo">
+      <div class="ease-demo"><div class="ball"></div></div>
+      <div class="mono" style="font-size:11px;color:var(--ink-mute);margin-top:10px">
+        --ease: cubic-bezier(.22,.61,.36,1) · --dur .18s(状态)· --dur-slow .4s(进度/填充)</div>
+    </div>
+  </section>
+
+  <!-- 按钮 -->
+  <section class="ds-sec" id="button">
+    <div class="ds-h"><span class="n">06</span><h2>按钮</h2><span class="en">Buttons</span></div>
+    <div class="demo" style="display:flex;gap:var(--s3);flex-wrap:wrap;align-items:center">
+      <button class="btn">主操作</button>
+      <button class="btn ghost">次操作</button>
+      <button class="btn pill">← 上一幅</button>
+      <button class="btn" disabled>禁用</button>
+      <a class="back" href="#top">← 返回链接</a>
+    </div>
+    <div class="code"><button class="cp">复制</button>&lt;button class="btn"&gt;主操作&lt;/button&gt;
+&lt;button class="btn ghost"&gt;次操作&lt;/button&gt;
+&lt;button class="btn pill"&gt;← 上一幅&lt;/button&gt;</div>
+  </section>
+
+  <!-- 卡片 -->
+  <section class="ds-sec" id="card">
+    <div class="ds-h"><span class="n">07</span><h2>卡片 & 网格</h2><span class="en">Cards</span></div>
+    <div class="demo">
+      <div class="grid">
+        <a class="card link" href="#card"><div class="card-h"><span class="nm">印象派</span><span class="en">Impressionism</span><span class="n">2047 件</span></div><div class="card-note">可点卡片:hover 抬升 + 染边。强调用 <b>--accent</b>。</div></a>
+        <div class="card"><div class="card-h"><span class="nm">文艺复兴</span><span class="n">1009 件</span></div><div class="card-note">静态卡片:承载图表、表格、文本皆可。</div></div>
+      </div>
+    </div>
+    <div class="code"><button class="cp">复制</button>&lt;div class="grid"&gt;          &lt;!-- 变体 .cols-2 / .cols-4 / .tight --&gt;
+  &lt;a class="card link" href="…"&gt;
+    &lt;div class="card-h"&gt;&lt;span class="nm"&gt;印象派&lt;/span&gt;&lt;span class="n"&gt;2047 件&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="card-note"&gt;说明…&lt;/div&gt;
+  &lt;/a&gt;
+&lt;/div&gt;</div>
+  </section>
+
+  <!-- 图表 -->
+  <section class="ds-sec" id="chart">
+    <div class="ds-h"><span class="n">08</span><h2>图表 · 5 种</h2><span class="en">Charts</span></div>
+    <p class="ds-lead">aha 是数据型图谱,图表是一等公民。统一画法:暖纸底、赭石/数据三色描点、等宽标注。下面是 live 预览。</p>
+    <div class="chart-grid">
+
+      <div class="chart"><div class="ct">① 指标条 · 七大构成</div>
+        <div class="bar"><span class="lb">构图</span><div class="track"><div class="fill" style="width:82%"></div><span class="knob" style="left:82%"></span></div><span class="val">.82</span></div>
+        <div class="bar green"><span class="lb">光影</span><div class="track"><div class="fill" style="width:76%"></div><span class="knob" style="left:76%"></span></div><span class="val">.76</span></div>
+        <div class="bar blue"><span class="lb">色彩</span><div class="track"><div class="fill" style="width:86%"></div><span class="knob" style="left:86%"></span></div><span class="val">.86</span></div>
+        <div class="bar gold"><span class="lb">笔触</span><div class="track"><div class="fill" style="width:83%"></div><span class="knob" style="left:83%"></span></div><span class="val">.83</span></div>
+      </div>
+
+      <div class="chart"><div class="ct">② 雷达 · 风格指纹</div>
+        <svg viewBox="0 0 200 160">
+          <g fill="none" stroke="var(--line)" stroke-width="1">
+            <polygon points="100,18 168,58 142,140 58,140 32,58"/>
+            <polygon points="100,52 134,72 121,121 79,121 66,72" opacity=".7"/>
+          </g>
+          <polygon points="100,30 150,62 128,132 64,128 48,66" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+          <g fill="var(--ink-mute)" font-family="var(--mono)" font-size="8">
+            <text x="100" y="12" text-anchor="middle">构图</text><text x="176" y="58">光影</text>
+            <text x="150" y="153">色彩</text><text x="22" y="153">笔触</text><text x="2" y="58">空间</text></g>
+        </svg>
+      </div>
+
+      <div class="chart"><div class="ct">③ 散点 · 世界观平面</div>
+        <svg viewBox="0 0 200 160">
+          <line x1="100" y1="10" x2="100" y2="150" stroke="var(--line)"/>
+          <line x1="10" y1="80" x2="190" y2="80" stroke="var(--line)"/>
+          <g><circle cx="60" cy="50" r="6" fill="var(--accent)" opacity=".8"/>
+            <circle cx="74" cy="44" r="5" fill="var(--accent)" opacity=".6"/>
+            <circle cx="138" cy="58" r="6" fill="var(--blue)" opacity=".7"/>
+            <circle cx="150" cy="108" r="6" fill="var(--green)" opacity=".75"/>
+            <circle cx="56" cy="116" r="5" fill="var(--gold)" opacity=".7"/>
+            <circle cx="120" cy="120" r="5" fill="var(--green)" opacity=".55"/></g>
+          <g fill="var(--ink-faint)" font-family="var(--mono)" font-size="7.5">
+            <text x="150" y="74">再现→</text><text x="103" y="20">↑结构</text></g>
+        </svg>
+      </div>
+
+      <div class="chart"><div class="ct">④ 时间线 · 东西双带</div>
+        <svg viewBox="0 0 200 160">
+          <line x1="14" y1="56" x2="186" y2="56" stroke="var(--line)"/>
+          <line x1="14" y1="108" x2="186" y2="108" stroke="var(--line)"/>
+          <g><circle cx="40" cy="56" r="5" fill="var(--blue)"/><circle cx="92" cy="56" r="5" fill="var(--accent)"/><circle cx="150" cy="56" r="5" fill="var(--gold)"/>
+            <circle cx="58" cy="108" r="5" fill="var(--green)"/><circle cx="128" cy="108" r="5" fill="var(--green)" opacity=".6"/></g>
+          <g fill="var(--ink-faint)" font-family="var(--mono)" font-size="7.5">
+            <text x="14" y="46">西方</text><text x="14" y="128">东方</text>
+            <text x="14" y="150">-1400</text><text x="160" y="150">2010</text></g>
+        </svg>
+      </div>
+
+      <div class="chart"><div class="ct">⑤ 关系网络 · 承自/影响</div>
+        <svg viewBox="0 0 200 160">
+          <g stroke="var(--line)" stroke-width="1.4">
+            <line x1="100" y1="80" x2="50" y2="40"/><line x1="100" y1="80" x2="150" y2="46"/>
+            <line x1="100" y1="80" x2="60" y2="124"/><line x1="100" y1="80" x2="146" y2="118"/></g>
+          <line x1="50" y1="40" x2="150" y2="46" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+          <g><circle cx="100" cy="80" r="11" fill="var(--accent)"/>
+            <circle cx="50" cy="40" r="8" fill="var(--card)" stroke="var(--blue)" stroke-width="2"/>
+            <circle cx="150" cy="46" r="8" fill="var(--card)" stroke="var(--green)" stroke-width="2"/>
+            <circle cx="60" cy="124" r="7" fill="var(--card)" stroke="var(--gold)" stroke-width="2"/>
+            <circle cx="146" cy="118" r="7" fill="var(--card)" stroke="var(--ink-mute)" stroke-width="2"/></g>
+        </svg>
+      </div>
+
+    </div>
+    <p class="ds-label">实线=考据成立 · 虚线=推断 · 数据三色仅作区分。复杂网络/流程图用 mermaid 时也套 token 配色。</p>
+  </section>
+
+  <!-- 标记 -->
+  <section class="ds-sec" id="mark">
+    <div class="ds-h"><span class="n">09</span><h2>标记</h2><span class="en">Chip · Tag · Badge</span></div>
+    <div class="demo">
+      <p class="ds-label">chip — 状态/分类</p>
+      <div style="display:flex;gap:var(--s2);flex-wrap:wrap;margin-bottom:var(--s4)">
+        <span class="chip">摹写之眼</span><span class="chip ok">已过闸</span><span class="chip warn">待评估</span>
+        <span class="chip rej">已拒</span><span class="chip info">推断</span><span class="chip green">探索</span><span class="chip muted">归档</span></div>
+      <p class="ds-label">tag — 话题(自带 #)</p>
+      <div class="taglist" style="margin-bottom:var(--s4)"><span class="tag">山水</span><span class="tag">写意</span><span class="tag m">本命</span></div>
+      <p class="ds-label">badge — 内联强调</p>
+      <span class="badge">99.8%</span> <span class="badge">v2</span>
+    </div>
+    <div class="code"><button class="cp">复制</button>&lt;span class="chip ok"&gt;已过闸&lt;/span&gt;   &lt;span class="tag m"&gt;本命&lt;/span&gt;   &lt;span class="badge"&gt;v2&lt;/span&gt;
+chip 变体:(默认赭石) .ok .warn .rej .info .green .muted</div>
+
+    <p class="ds-label">重点信息 callout — 强调用「浅赭石卡 + 圆点 kicker」,不用左侧竖条</p>
+    <div class="demo">
+      <div class="note" style="margin-bottom:12px">普通说明 = 中性纸卡 <span class="mono faint">.note</span>。承载次要解释,不抢戏。</div>
+      <div class="note accent" style="margin-bottom:12px">需要强调的要点 = 浅赭石卡 <span class="mono">.note.accent</span>。<b>关键词</b>用 b 标签点赭石,emphasis 来自暖底,而非一条竖边。</div>
+      <div class="note accent">
+        <div class="k">要点 · keynote</div>
+        带标签的 callout:加一行 <span class="mono">.k</span>(圆点 + mono 小标),用于"注意 / 规则 / 提示"等需要显式命名的重点。
+      </div>
+    </div>
+    <div class="code"><button class="cp">复制</button>&lt;div class="note accent"&gt;
+  &lt;div class="k"&gt;要点&lt;/div&gt;          &lt;!-- 可选标签,自带圆点 --&gt;
+  正文,&lt;b&gt;关键词&lt;/b&gt;点赭石。
+&lt;/div&gt;
+
+&lt;!-- ✗ 全站禁止:用左侧竖条做强调(border-left:Npx solid accent) --&gt;</div>
+  </section>
+
+  <!-- KPI & 表格 -->
+  <section class="ds-sec" id="data">
+    <div class="ds-h"><span class="n">10</span><h2>KPI & 表格</h2><span class="en">Stats & Table</span></div>
+    <div class="demo">
+      <div class="stats" style="margin-bottom:var(--s5)">
+        <div class="stat"><div class="num">282<span class="u">位</span></div><div class="lab">艺术家</div></div>
+        <div class="stat"><div class="num">2,047</div><div class="lab">已过闸作品</div></div>
+        <div class="stat"><div class="num">99.8<span class="u">%</span></div><div class="lab">西方占比</div></div>
+        <div class="stat"><div class="num">28</div><div class="lab">规范风格</div></div>
+      </div>
+      <table class="tbl">
+        <thead><tr><th>风格</th><th>世界观</th><th class="num">作品数</th><th class="num">置信</th></tr></thead>
+        <tbody>
+          <tr><td>印象派</td><td>经验之光</td><td class="num">2,047</td><td class="num">0.69</td></tr>
+          <tr><td>新古典主义</td><td>礼制图式</td><td class="num">1,530</td><td class="num">0.84</td></tr>
+          <tr><td>文艺复兴</td><td>形式建构</td><td class="num">1,009</td><td class="num">0.72</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 表单 -->
+  <section class="ds-sec" id="form">
+    <div class="ds-h"><span class="n">11</span><h2>表单</h2><span class="en">Forms</span></div>
+    <div class="demo">
+      <div class="grid cols-2">
+        <div>
+          <div class="field"><label class="fl">搜索</label><div class="search"><input class="input" placeholder="搜风格 / 艺术家 / 题材…"></div></div>
+          <div class="field"><label class="fl">世界观区</label><select class="select"><option>经验之光</option><option>写意寄情</option><option>礼制图式</option></select></div>
+          <div class="field"><label class="fl">置信阈值 · 0.65</label><input class="slider" type="range" min="0" max="100" value="65"></div>
+        </div>
+        <div>
+          <div class="field"><label class="fl">备注</label><textarea class="input" rows="3" placeholder="多行输入…"></textarea></div>
+          <label class="check" style="margin-bottom:14px"><input type="checkbox" checked>只看已过闸</label>
+          <div class="segwrap"><button class="seg on">区</button><button class="seg">时代</button><button class="seg">体系</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="code"><button class="cp">复制</button>&lt;div class="field"&gt;&lt;label class="fl"&gt;搜索&lt;/label&gt;
+  &lt;div class="search"&gt;&lt;input class="input" placeholder="…"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;select class="select"&gt;…&lt;/select&gt;  &lt;input class="slider" type="range"&gt;</div>
+  </section>
+
+  <!-- Toast / Modal -->
+  <section class="ds-sec" id="feedback">
+    <div class="ds-h"><span class="n">12</span><h2>Toast / Modal</h2><span class="en">Feedback</span></div>
+    <div class="demo">
+      <p class="ds-label">Toast 通知(左色条表语义)</p>
+      <div style="display:flex;flex-direction:column;gap:10px;max-width:340px;margin-bottom:var(--s4)">
+        <div class="toast ok"><span class="ti">✓</span>已存为展</div>
+        <div class="toast warn"><span class="ti">!</span>该作品尚未过闸</div>
+        <div class="toast rej"><span class="ti">✕</span>生成失败,请重试</div>
+      </div>
+      <p class="ds-label">Modal 弹窗</p>
+      <button class="btn" onclick="document.getElementById('demo-modal').style.display='flex'">打开弹窗 ↗</button>
+    </div>
+    <div class="code"><button class="cp">复制</button>&lt;div class="toast ok"&gt;&lt;span class="ti"&gt;✓&lt;/span&gt;已存为展&lt;/div&gt;
+&lt;div class="scrim"&gt;&lt;div class="modal"&gt;&lt;h3&gt;标题&lt;/h3&gt;&lt;p&gt;…&lt;/p&gt;
+  &lt;div class="acts"&gt;&lt;button class="btn ghost"&gt;取消&lt;/button&gt;&lt;button class="btn"&gt;确定&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;</div>
+  </section>
+
+  <!-- 状态 -->
+  <section class="ds-sec" id="state">
+    <div class="ds-h"><span class="n">13</span><h2>状态</h2><span class="en">Loading · Empty · Skeleton</span></div>
+    <div class="grid cols-2">
+      <div class="demo"><div class="loading">加载中</div></div>
+      <div class="demo"><div class="empty">还没有内容<div class="hint">先去图库点几幅心动的画</div></div></div>
+    </div>
+    <div class="demo" style="margin-top:var(--s3);border-radius:var(--r)">
+      <div class="skel" style="height:14px;width:60%;margin-bottom:8px"></div>
+      <div class="skel" style="height:14px;width:90%;margin-bottom:8px"></div>
+      <div class="skel" style="height:14px;width:75%"></div>
+    </div>
+  </section>
+
+  <!-- 断点 -->
+  <section class="ds-sec" id="breakpoint">
+    <div class="ds-h"><span class="n">14</span><h2>响应式断点</h2><span class="en">Breakpoints</span></div>
+    <p class="ds-lead">移动优先。三档够用,不为想象中的设备过度切分。网格用 <span class="mono">auto-fill minmax()</span> 自适应,断点只兜底布局塌缩。</p>
+    <table class="tbl">
+      <thead><tr><th>Token</th><th class="num">宽度</th><th>用途</th></tr></thead>
+      <tbody>
+        <tr><td>--bp-sm</td><td class="num">560px</td><td>单列 · 页头缩字 · stats 收窄</td></tr>
+        <tr><td>--bp-md</td><td class="num">768px</td><td>侧栏 TOC 转吸顶横滑</td></tr>
+        <tr><td>--bp-lg</td><td class="num">1100px</td><td>.page 最大内容宽</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 活页原型 -->
+  <section class="ds-sec" id="archetype">
+    <div class="ds-h"><span class="n">15</span><h2>活页原型库</h2><span class="en">Page Archetypes</span></div>
+    <p class="ds-lead">aha 没有幻灯片,只有活页。四类原型覆盖几乎所有页面——新建时先认领一类,再填内容,而不是从白纸开始。</p>
+    <div class="arch-grid">
+      <div class="card arch"><div class="card-h"><span class="nm">Live 数据页</span></div>
+        <div class="wf"><div class="l acc" style="width:50%"></div><div class="l" style="width:75%"></div>
+          <div class="row"><div class="box"></div><div class="box"></div><div class="box"></div></div></div>
+        <div class="card-note" style="margin-top:8px">fetch JSON → 卡片网格 + 指标条。如 kg-style-live。</div></div>
+      <div class="card arch"><div class="card-h"><span class="nm">KG 详情页</span></div>
+        <div class="wf"><div class="l acc" style="width:40%"></div><div class="l" style="width:90%"></div><div class="l" style="width:70%"></div>
+          <div class="row"><div class="box" style="flex:2"></div><div class="box"></div></div></div>
+        <div class="card-note" style="margin-top:8px">单实体多段:身份 + 雷达 + 关联。如 kg-artist。</div></div>
+      <div class="card arch"><div class="card-h"><span class="nm">Dashboard</span></div>
+        <div class="wf"><div class="row"><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div></div>
+          <div class="l" style="width:100%"></div><div class="l" style="width:100%"></div></div>
+        <div class="card-note" style="margin-top:8px">KPI 行 + 表格 + 状态色。如 dashboard。</div></div>
+      <div class="card arch"><div class="card-h"><span class="nm">Gallery</span></div>
+        <div class="wf"><div class="row"><div class="box"></div><div class="box"></div></div><div class="row"><div class="box"></div><div class="box"></div></div></div>
+        <div class="card-note" style="margin-top:8px">图先到 · 等宽密铺 · 点开看解读。如 gallery。</div></div>
+    </div>
+  </section>
+
+  <!-- 铁律 -->
+  <section class="ds-sec" id="rules">
+    <div class="ds-h"><span class="n">16</span><h2>5 条铁律</h2><span class="en">Iron Rules</span></div>
+    <div class="demo">
+      <div class="rule-row"><div class="no">1</div><div class="tx"><b>同源不重造。</b>颜色/字号/间距一律走 token,<b>页内永不再写 :root{} 或十六进制</b>——这是活页变丑变乱的头号原因。</div></div>
+      <div class="rule-row"><div class="no">2</div><div class="tx"><b>画先到。</b>界面退到作品之后:克制留白、低对比、赭石只点一处。界面不与画争注意力。</div></div>
+      <div class="rule-row"><div class="no">3</div><div class="tx"><b>赭石是信号不是装饰。</b>只有可交互/当前/强调才染赭石。到处都赭石 = 哪都不强调。</div></div>
+      <div class="rule-row"><div class="no">4</div><div class="tx"><b>数字诚实。</b>异步先 loading/skeleton,空数据走 empty,<b>绝不留白或填假数据</b>;推断与考据用实线/虚线区分。</div></div>
+      <div class="rule-row"><div class="no">5</div><div class="tx"><b>手感一致。</b>可交互元素统一:hover 染赭石 + 微抬升,focus-visible 焦点环,缓动同一条曲线。</div></div>
+    </div>
+  </section>
+
+  <!-- 起始模板 -->
+  <section class="ds-sec" id="usage">
+    <div class="ds-h"><span class="n">17</span><h2>如何新建一张活页</h2><span class="en">Starter</span></div>
+    <p class="ds-lead">复制下面整段即可开工。只引两行样式,用语义 class 搭 <span class="mono">.page → .pagehead → .sec</span> 骨架,异步数据先 loading 后 fade-in。</p>
+    <div class="code"><button class="cp">复制</button>&lt;!doctype html&gt;&lt;html lang="zh"&gt;&lt;head&gt;
+&lt;meta charset="utf-8"&gt;&lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;
+&lt;title&gt;页面标题 · aha&lt;/title&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&amp;family=Noto+Sans+SC:wght@300;400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"&gt;
+&lt;link rel="stylesheet" href="css/aha-kit.css"&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;div class="page"&gt;
+  &lt;div class="pagehead"&gt;
+    &lt;a class="back" href="home.html"&gt;← aha&lt;/a&gt;
+    &lt;div class="kicker"&gt;LIVE DATA&lt;/div&gt;
+    &lt;h1&gt;页面标题&lt;/h1&gt;
+    &lt;p class="sub"&gt;一句副标说明…&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;section class="sec"&gt;
+    &lt;div class="sec-h"&gt;&lt;span class="t"&gt;区块&lt;/span&gt;&lt;span class="n"&gt;12&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="grid" id="grid"&gt;&lt;div class="loading"&gt;加载中&lt;/div&gt;&lt;/div&gt;
+  &lt;/section&gt;
+&lt;/div&gt;
+&lt;script&gt;/* fetch → 渲染 .card → grid.classList.add('fade-in') */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;</div>
+  </section>
+
+  <!-- 命名 & 文件 -->
+  <section class="ds-sec" id="files">
+    <div class="ds-h"><span class="n">18</span><h2>命名 & 文件结构</h2><span class="en">Convention</span></div>
+    <div class="grid cols-2">
+      <div class="card"><div class="card-h"><span class="nm">命名公约</span></div>
+        <div class="card-note" style="line-height:1.9">
+          页面 <span class="mono">kg-{主题}[-live].html</span><br>
+          数据 <span class="mono">data/live/{主题}.json</span><br>
+          class 语义不表象:<span class="mono">.card</span> 不叫 <span class="mono">.box</span><br>
+          状态用 chip 变体,不自造颜色 class</div></div>
+      <div class="card"><div class="card-h"><span class="nm">文件结构</span></div>
+        <div class="card-note mono" style="font-size:11.5px;line-height:1.9">web/<br>
+          ├ css/aha-kit.css ← 改这里<br>
+          ├ css/aha.css ← 美术馆体验层<br>
+          ├ design-system.html ← 本页<br>
+          ├ DESIGN-SYSTEM.md ← 书面规范<br>
+          └ kg-*.html / data/live/*.json</div></div>
+    </div>
+    <div class="note accent" style="margin-top:var(--s4)">
+      做完两件事:① 登记进 <b>home.html</b> 索引;② 部署 <span class="mono">cp</span> 到 <span class="mono">/data/pub/p/aha/</span>。</div>
+  </section>
+
+  <!-- 站点骨架 -->
+  <section class="ds-sec" id="chrome">
+    <div class="ds-h"><span class="n">19</span><h2>站点骨架 · 顶栏 / 底栏</h2><span class="en">Site Chrome</span></div>
+    <p class="ds-lead">全站统一顶栏 + 底栏,由 <span class="mono">js/aha-chrome.js</span> 自动注入——每页 <b>只加一行 script</b> 即可,不必手抄。底栏含**备案号**与**出品方**,法务信息单点维护。</p>
+    <p class="ds-label">顶栏 .site-top(品牌 → 产品日志)</p>
+    <div class="demo" style="padding:0;overflow:hidden">
+      <div class="site-top" style="position:static"><a class="brand" href="#top">aha<span class="dot">.</span>art</a><a class="st-link" href="#top">产品日志 · log</a></div>
+    </div>
+    <p class="ds-label">底栏 .site-foot(备案号 + 出品)</p>
+    <div class="demo" style="padding:0;overflow:hidden">
+      <footer class="site-foot" style="margin:0">
+        <div class="sf-row">备案号 · <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">浙ICP备2021038972号-8</a></div>
+        <div class="sf-row">出品 · 浙江大学国际设计研究院</div>
+      </footer>
+    </div>
+    <div class="code"><button class="cp">复制</button>&lt;!-- body 末尾加这一行,顶栏+底栏自动出现 --&gt;
+&lt;script src="js/aha-chrome.js"&gt;&lt;/script&gt;
+
+&lt;!-- 本身有大 hero 的日志/封面页可不要顶栏: --&gt;
+&lt;body data-no-top&gt; … &lt;/body&gt;</div>
+    <div class="note accent"><div class="k">规则</div>每张活页都要在 body 末尾挂 <span class="mono">aha-chrome.js</span>,让顶栏/底栏全站一致;备案号与出品方只在 <span class="mono">aha-chrome.js</span> 一处维护,不要写死在页面里。</div>
+  </section>
+
+  <!-- 完整 token 表 -->
+  <section class="ds-sec" id="tokens">
+    <div class="ds-h"><span class="n">20</span><h2>完整 Token 表</h2><span class="en">All Tokens</span></div>
+    <p class="ds-lead">单一可信来源 = <span class="mono">css/aha-kit.css :root</span>。下表是速查。</p>
+    <div class="grid cols-2">
+      <div class="tok-grp"><div class="gh">表面 / 文字</div><table class="tbl"><tbody>
+        <tr><td>--paper</td><td class="num">#f4f1ea</td></tr><tr><td>--paper-2</td><td class="num">#ece7db</td></tr>
+        <tr><td>--card</td><td class="num">#fffdf8</td></tr><tr><td>--line</td><td class="num">#ddd5c6</td></tr>
+        <tr><td>--ink</td><td class="num">#1d1b18</td></tr><tr><td>--ink-soft</td><td class="num">#4b463e</td></tr>
+        <tr><td>--ink-mute</td><td class="num">#857d6f</td></tr><tr><td>--ink-faint</td><td class="num">#a89f8f</td></tr>
+      </tbody></table></div>
+      <div class="tok-grp"><div class="gh">品牌 / 数据 / 语义</div><table class="tbl"><tbody>
+        <tr><td>--accent</td><td class="num">#b0673a</td></tr><tr><td>--green</td><td class="num">#5a7d6f</td></tr>
+        <tr><td>--blue</td><td class="num">#5b7596</td></tr><tr><td>--gold</td><td class="num">#c98a1a</td></tr>
+        <tr><td>--ok</td><td class="num">#3a8a5a</td></tr><tr><td>--warn</td><td class="num">#c2792e</td></tr>
+        <tr><td>--rej</td><td class="num">#b5483a</td></tr><tr><td>--mute</td><td class="num">#9a9a9a</td></tr>
+      </tbody></table></div>
+      <div class="tok-grp"><div class="gh">字体 / 字阶</div><table class="tbl"><tbody>
+        <tr><td>--serif</td><td>Noto Serif SC</td></tr><tr><td>--sans</td><td>Noto Sans SC</td></tr>
+        <tr><td>--latin</td><td>Source Serif 4</td></tr><tr><td>--mono</td><td>JetBrains Mono</td></tr>
+        <tr><td>--fz-h1 → label</td><td class="num">25 / 19 / 16 / 14 / 12.5 / 11 / 10.5</td></tr>
+      </tbody></table></div>
+      <div class="tok-grp"><div class="gh">间距 / 圆角 / 阴影 / 动效</div><table class="tbl"><tbody>
+        <tr><td>--s1 → s7</td><td class="num">4 / 8 / 12 / 16 / 24 / 32 / 48</td></tr>
+        <tr><td>--r-sm / r / pill</td><td class="num">6 / 12 / 999</td></tr>
+        <tr><td>--sh-1 / card / pop</td><td>暖色三档</td></tr>
+        <tr><td>--ease</td><td class="num">.22,.61,.36,1</td></tr>
+        <tr><td>--dur / slow</td><td class="num">.18s / .4s</td></tr>
+      </tbody></table></div>
+    </div>
+    <hr class="rule">
+    <p class="muted" style="text-align:center;font-size:var(--fz-small);padding-bottom:var(--s5)">
+      改 <span class="mono">css/aha-kit.css</span> → 本页与全站活页一起变 · 书面细则见
+      <a href="DESIGN-SYSTEM.md">DESIGN-SYSTEM.md</a> · <a href="home.html">← 回首页</a></p>
+  </section>
+
+  </main>
+</div>
+
+<!-- 演示弹窗 -->
+<div class="scrim" id="demo-modal" style="display:none">
+  <div class="modal">
+    <h3>存为一场展?</h3>
+    <p>把你刚才逛过的 12 幅画收成一场可分享的个人展。也可以继续逛,稍后再存。</p>
+    <div class="acts">
+      <button class="btn ghost" onclick="document.getElementById('demo-modal').style.display='none'">继续逛</button>
+      <button class="btn" onclick="document.getElementById('demo-modal').style.display='none'">存为展</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// 滚动高亮 TOC
+const links=[...document.querySelectorAll('.ds-toc a')];
+const map=Object.fromEntries(links.map(a=>[a.getAttribute('href').slice(1),a]));
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+  links.forEach(a=>a.classList.remove('active'));map[e.target.id]?.classList.add('active');
+  map[e.target.id]?.scrollIntoView({block:'nearest',inline:'nearest'});}})},
+  {rootMargin:'-20% 0px -70% 0px'});
+document.querySelectorAll('.ds-sec').forEach(s=>io.observe(s));
+// 复制代码
+document.querySelectorAll('.code .cp').forEach(btn=>btn.addEventListener('click',()=>{
+  const code=btn.parentNode.cloneNode(true);code.querySelector('.cp').remove();
+  navigator.clipboard.writeText(code.textContent.trim()).then(()=>{
+    const o=btn.textContent;btn.textContent='已复制 ✓';setTimeout(()=>btn.textContent=o,1400);});}));
+// 滑块标签 live
+document.querySelectorAll('.slider').forEach(s=>s.addEventListener('input',e=>{
+  const fl=e.target.closest('.field')?.querySelector('.fl');
+  if(fl)fl.textContent=`置信阈值 · ${(e.target.value/100).toFixed(2)}`;}));
+// 弹窗点遮罩关闭
+document.getElementById('demo-modal').addEventListener('click',e=>{
+  if(e.target.id==='demo-modal')e.target.style.display='none';});
+</script>
+<script src="js/aha-chrome.js"></script>
+</body></html>

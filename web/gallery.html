@@ -1,0 +1,128 @@
+<!doctype html><html lang="zh"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 懂你的人类美术馆</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6}
+.wrap{max-width:1280px;margin:0 auto;padding:34px 20px 80px}
+/* 刊头 */
+.head{text-align:center;margin-bottom:18px}
+.brand{font-family:var(--serif);font-size:clamp(40px,8vw,64px);font-weight:600;letter-spacing:-.02em;line-height:1}
+.brand .dot{color:var(--accent)}
+.slogan{font-family:var(--serif);font-size:clamp(15px,3vw,19px);color:var(--accent);margin-top:8px}
+.cat{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ink-mute);margin-top:5px}
+/* 入口行 */
+.entries{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin:20px auto 6px;max-width:840px}
+.entry{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-size:13px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:9px 17px;color:var(--ink-soft);transition:all .15s}
+.entry:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+.entry.primary{background:var(--accent);color:#fff;border-color:var(--accent)}.entry.primary:hover{color:#fff;opacity:.92}
+.entry .ic{font-size:15px}
+/* 筛选 */
+.filters{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin:22px 0 16px}
+.chip{font-family:var(--sans);font-size:12px;border:1px solid var(--line);background:#fff;color:var(--ink-mute);border-radius:18px;padding:5px 13px;cursor:pointer;transition:all .15s}
+.chip:hover{border-color:var(--accent)}
+.chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+/* 瀑布流 */
+.grid{column-count:5;column-gap:14px}
+@media(max-width:1100px){.grid{column-count:4}}
+@media(max-width:820px){.grid{column-count:3}}
+@media(max-width:560px){.grid{column-count:2}}
+.card{break-inside:avoid;margin-bottom:14px;border-radius:10px;overflow:hidden;position:relative;cursor:pointer;background:var(--paper-2);box-shadow:0 1px 3px rgba(0,0,0,.06);transition:transform .18s,box-shadow .18s}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,.14)}
+.card img{width:100%;display:block}
+.card .cap{position:absolute;left:0;right:0;bottom:0;padding:22px 11px 9px;background:linear-gradient(transparent,rgba(0,0,0,.72));color:#fff;opacity:0;transition:opacity .18s}
+.card:hover .cap{opacity:1}
+.card .cap b{font-family:var(--serif);font-size:13px;display:block;font-weight:600}
+.card .cap span{font-size:10.5px;opacity:.85}
+.dotE{position:absolute;top:8px;left:8px;width:8px;height:8px;border-radius:50%;box-shadow:0 0 0 2px rgba(255,255,255,.5)}
+.loading{text-align:center;color:var(--ink-faint);padding:60px 0}
+.foot{text-align:center;margin-top:40px;font-family:var(--mono);font-size:11px;color:var(--ink-faint);line-height:1.9}
+.foot a{color:var(--accent);text-decoration:none}
+/* 灯箱 */
+.lb{position:fixed;inset:0;background:rgba(20,18,16,.92);display:none;align-items:center;justify-content:center;z-index:50;padding:24px;flex-direction:column}
+.lb.show{display:flex}
+.lb img{max-width:90vw;max-height:74vh;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lb .info{color:#f4f1ea;text-align:center;margin-top:16px;max-width:680px}
+.lb .info b{font-family:var(--serif);font-size:19px;display:block}
+.lb .info .m{font-size:12.5px;color:#bdb4a3;margin-top:3px;font-family:var(--mono)}
+.lb .acts{margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.lb .acts a{font-size:13px;text-decoration:none;background:var(--accent);color:#fff;border-radius:20px;padding:8px 18px}
+.lb .acts a.ghost{background:transparent;border:1px solid rgba(244,241,234,.4);color:#f4f1ea}
+.lb .x{position:absolute;top:18px;right:24px;color:#f4f1ea;font-size:30px;cursor:pointer;opacity:.7}.lb .x:hover{opacity:1}
+</style></head>
+<body><div class="wrap">
+
+<div class="head">
+  <div class="brand">aha<span class="dot">.</span>art</div>
+  <div class="slogan">让美,来找你 · art that finds you</div>
+  <div class="cat">懂你的人类美术馆 · 千人千面的名画知识图谱画廊</div>
+</div>
+
+<div class="entries">
+  <a class="entry primary" href="kg-me.html"><span class="ic">🧑‍🎨</span>测我的审美</a>
+  <a class="entry" href="home.html"><span class="ic">🧭</span>全部功能</a>
+  <a class="entry" href="kg-galaxy.html"><span class="ic">🌌</span>风格星海</a>
+  <a class="entry" href="kg-me-types.html"><span class="ic">🃏</span>门派图鉴</a>
+  <a class="entry" href="kg-v2.html"><span class="ic">🧬</span>知识图谱</a>
+  <a class="entry" href="wander.html"><span class="ic">🚶</span>随便逛逛</a>
+</div>
+
+<div class="filters" id="filters"></div>
+<div id="grid" class="grid"><div class="loading">正在挂画(226 幅人类名画)…</div></div>
+
+<div class="foot">
+  共 <span id="cnt">—</span> 幅公共领域名画 · 数据来自 Met / 克利夫兰等开放馆藏<br>
+  <a href="home.html">全部页面索引 →</a> · <a href="kg-works.html">作品层</a> · <a href="index.html">经典星图版</a>
+</div>
+</div>
+
+<div class="lb" id="lb"><span class="x" id="lbx">×</span><img id="lbimg" src="" alt=""/><div class="info" id="lbinfo"></div></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const REGION={west:{c:'#d8b9a3',n:'西方'},east:{c:'#aac3b8',n:'东方'}};
+let WORKS=[], REGN={}, filterKey='all';
+
+Promise.all([
+  fetch('data/kg_artist_images.json').then(r=>r.json()),
+  fetch('data/kg_artists.json').then(r=>r.json()),
+  fetch('data/kg_worldview_v3.json').then(r=>r.json()).catch(()=>({regions:[]}))
+]).then(([IMG,AJ,WV])=>{
+  const IM=IMG.artists||IMG, A=AJ.artists||{};
+  (WV.regions||[]).forEach(r=>REGN[r.id]=r.name);
+  for(const aid in IM){const art=A[aid]||{};const its=(IM[aid]&&(IM[aid].items||IM[aid]))||[];if(!Array.isArray(its))continue;
+    its.forEach(w=>{if(w&&w.file)WORKS.push({file:w.file,title:w.title||'',date:w.date||'',cn:art.cn||aid,en:art.en||'',region:art.region||'west',regionId:(art.wv&&art.wv.region_id)||null,artistId:aid});});}
+  // 轻度打散(确定性:按 file 名穿插,避免同一画家扎堆)
+  WORKS.sort((a,b)=>a.file<b.file?-1:1);
+  const inter=[];const by={};WORKS.forEach(w=>{(by[w.artistId]=by[w.artistId]||[]).push(w);});
+  const keys=Object.keys(by);let added=true;while(added){added=false;keys.forEach(k=>{if(by[k].length){inter.push(by[k].shift());added=true;}});}
+  WORKS=inter;
+  $('#cnt').textContent=WORKS.length;
+  buildFilters(); render();
+}).catch(e=>{$('#grid').innerHTML='<div class="loading">加载失败:'+e+'</div>';});
+
+function buildFilters(){
+  const regs=[...new Set(WORKS.map(w=>w.regionId).filter(Boolean))];
+  const chips=[['all','全部'],['east','东方'],['west','西方']].concat(regs.map(r=>[r,REGN[r]||r]));
+  $('#filters').innerHTML=chips.map(c=>`<span class="chip ${c[0]==='all'?'on':''}" data-k="${c[0]}">${c[1]}</span>`).join('');
+  $('#filters').querySelectorAll('.chip').forEach(ch=>ch.onclick=()=>{filterKey=ch.dataset.k;$('#filters').querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x.dataset.k===filterKey));render();});
+}
+function render(){
+  const list=WORKS.filter(w=>filterKey==='all'||w.region===filterKey||w.regionId===filterKey);
+  $('#grid').innerHTML=list.map((w,i)=>`<div class="card" data-i="${WORKS.indexOf(w)}"><span class="dotE" style="background:${(REGION[w.region]||REGION.west).c}"></span><img loading="lazy" src="${w.file}" alt="${esc(w.cn)}"/><div class="cap"><b>${esc(w.cn)}</b><span>${esc(w.title)}${w.date?' · '+w.date:''}</span></div></div>`).join('');
+  $('#grid').querySelectorAll('.card').forEach(c=>c.onclick=()=>open(+c.dataset.i));
+}
+function open(i){const w=WORKS[i];if(!w)return;
+  $('#lbimg').src=w.file;
+  $('#lbinfo').innerHTML=`<b>${esc(w.cn)}</b><div class="m">${esc(w.title)}${w.date?' · '+w.date:''} · ${(REGION[w.region]||{}).n||''}${w.regionId?' · '+(REGN[w.regionId]||''):''}</div>
+    <div class="acts"><a href="kg-me.html">测我和 TA 有多像</a><a class="ghost" href="kg-galaxy.html">在星海里找 TA</a></div>`;
+  $('#lb').classList.add('show');
+}
+$('#lbx').onclick=()=>$('#lb').classList.remove('show');
+$('#lb').onclick=e=>{if(e.target.id==='lb')$('#lb').classList.remove('show');};
+function esc(s){return(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+</script>
+</body></html>

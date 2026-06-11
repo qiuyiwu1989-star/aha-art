@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>我的 · aha 审美档案</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--blue:#5b7596;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+*{box-sizing:border-box;margin:0}
+body{font-family:var(--sans);font-size:14px;line-height:1.6;color:var(--ink);background:var(--paper)}
+header{padding:13px 20px;border-bottom:1px solid var(--line);background:rgba(244,241,234,.92);backdrop-filter:blur(6px);display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+h1{font-size:18px;margin:0;font-family:var(--serif);font-weight:600}
+a.back{color:var(--accent);text-decoration:none;font-size:13px;font-family:var(--mono)}
+.wrap{max-width:980px;margin:0 auto;padding:22px 18px 90px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:16px}
+.card h2{font-size:11px;color:var(--ink-faint);margin:0 0 13px;font-weight:500;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase}
+input{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:9px;margin:6px 0;font:14px var(--sans);background:var(--paper)}
+button{font:14px var(--sans);background:var(--accent);color:#fff;border:none;border-radius:10px;padding:11px 20px;cursor:pointer}
+button.sec,a.btn{font:13px var(--sans);background:#fff;color:var(--ink-soft);border:1px solid var(--line);border-radius:20px;padding:8px 16px;cursor:pointer;text-decoration:none;display:inline-block}
+button.sec:hover,a.btn:hover{border-color:var(--accent);color:var(--accent)}
+.tabs{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.tabs span{cursor:pointer;color:var(--ink-mute);padding:8px 16px;border-radius:999px;font-size:13.5px;border:1px solid transparent}
+.tabs span:hover{border-color:var(--line)}
+.tabs span.on{color:#fff;background:var(--accent)}
+.msg{color:#a8443a;font-size:13px;min-height:18px}
+.auth-tab{display:flex;gap:14px;margin-bottom:12px}.auth-tab span{cursor:pointer;color:var(--ink-mute);padding:4px 0;border-bottom:2px solid transparent;font-family:var(--serif)}.auth-tab span.on{color:var(--accent);border-color:var(--accent)}
+.lead{color:var(--ink-mute);font-size:13px;line-height:1.75;margin-bottom:12px}.lead a{color:var(--accent);text-decoration:none}
+.empty{color:var(--ink-faint);font-size:13.5px;padding:20px 4px;line-height:1.9}.empty a{color:var(--accent);text-decoration:none}
+/* 门派 hero */
+.hero{background:linear-gradient(135deg,#fff,#f7f0e6);border:1px solid #e6d8c2;border-radius:16px;padding:20px 22px;margin-bottom:16px}
+.hero .rchip{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--accent);text-transform:uppercase}
+.hero .menpai{font-family:var(--serif);font-size:clamp(24px,5vw,33px);font-weight:600;line-height:1.15;margin:4px 0;border-left:4px solid var(--accent);padding-left:12px}
+.hero .traitline{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin:2px 0 6px}
+.hero .creed{font-family:var(--serif);font-style:italic;color:var(--accent);font-size:15px;margin:6px 0}
+.hero .desc{font-size:13px;color:var(--ink-soft);line-height:1.65}
+.hero .meta{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-top:11px}
+.tag{display:inline-block;font-size:10.5px;font-family:var(--mono);background:var(--accent-soft);color:var(--accent);border-radius:10px;padding:2px 9px}
+.tag.rare{background:#f3e0d4}
+.idline{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);margin-top:11px;border-top:1px dashed var(--line);padding-top:8px}
+.idline b{color:var(--accent)}
+/* 双平面 */
+.planes{display:grid;grid-template-columns:1fr 1fr;gap:18px}@media(max-width:620px){.planes{grid-template-columns:1fr}}
+.psub{font-size:11px;color:var(--ink-mute);margin-bottom:6px;text-align:center;font-family:var(--mono)}
+svg.pl{display:block;width:100%;max-width:300px;margin:0 auto}
+/* 性格滑块 */
+.trait{display:flex;align-items:center;gap:9px;font-size:11.5px;margin:9px 0}
+.trait .lo{width:54px;text-align:right;color:var(--ink-mute);font-family:var(--mono);font-size:10px}
+.trait .hi{width:54px;color:var(--ink-mute);font-family:var(--mono);font-size:10px}
+.trait .tk{flex:1;height:9px;background:var(--paper-2);border-radius:5px;position:relative}
+.trait .tk .dot{position:absolute;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:var(--accent);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.trait .tv{width:30px;text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink)}
+/* 本命 */
+.soul{display:flex;gap:14px;align-items:center}
+.soul .nm{font-family:var(--serif);font-size:21px;font-weight:600}
+.soul .aff{color:var(--accent);font-family:var(--mono);font-size:13px;margin-top:2px}
+/* 三盏灯 */
+.meter{margin:11px 0}.meter .l{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink-soft);margin-bottom:4px}.meter .l b{font-family:var(--mono)}
+.bar{height:8px;background:var(--paper-2);border-radius:5px;overflow:hidden}.bar>span{display:block;height:100%;border-radius:5px}
+.mini-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.mini{background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:10px 15px;min-width:100px}.mini .v{font-size:22px;font-weight:600;font-family:var(--serif);color:var(--accent)}.mini .l{font-size:11px;color:var(--ink-mute);margin-top:1px}
+/* 网格 */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(152px,1fr));gap:12px}
+.gc{background:#fff;border:1px solid var(--line);border-radius:11px;overflow:hidden;cursor:pointer;transition:transform .14s,box-shadow .14s}
+.gc:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.1)}.gc img{width:100%;height:152px;object-fit:cover;display:block;background:var(--paper-2)}
+.gc .cb{padding:8px 10px}.gc .ct{font-family:var(--serif);font-size:12.5px;font-weight:600;max-height:2.6em;overflow:hidden;line-height:1.3}
+.gc .ca{font-size:10.5px;color:var(--ink-mute);margin-top:3px;display:flex;justify-content:space-between}.gc .sc{font-family:var(--mono);color:var(--accent)}
+.hist{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px}
+.h{border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff;font-size:10px}.h img{width:100%;height:62px;object-fit:cover;display:block;background:var(--paper-2)}.h .c{padding:3px 6px;color:var(--ink-mute)}
+.kbadge{display:inline-block;font-size:9px;padding:0 5px;border-radius:6px;background:var(--accent);color:#fff}
+.exh{border:1px solid var(--line);border-radius:11px;padding:12px 15px;margin-bottom:9px;background:#fff}.exh .t{font-family:var(--serif);font-weight:600}.exh .m{font-size:12px;color:var(--ink-mute)}
+</style></head>
+<body>
+<header><a class="back" href="gallery.html">← aha.art</a><h1>我的</h1><span id="who" style="margin-left:auto;color:var(--ink-mute);font-size:13px"></span></header>
+<div class="wrap" id="app">加载中…</div>
+<script>
+const KEY='aha_uid';
+function luid(){try{return localStorage.getItem(KEY)}catch(e){return null}}
+function setuid(u){try{localStorage.setItem(KEY,u)}catch(e){}}
+function esc(s){return (s||'').replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]))}
+async function jget(p){return (await fetch('api/'+p)).json()}
+async function jpost(p,b){return (await fetch('api/'+p,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)})).json()}
+// 6 世界观区(与 profile.py / kg-worldview 一致)
+const RG=[['WV1','摹写之眼',.232,.389],['WV2','礼制图式',.41,.287],['WV3','写意寄情',.528,.457],['WV4','经验之光',.533,.733],['WV5','表现外化',.775,.512],['WV6','形式建构',.82,.207]];
+const RADAR=['表现性','感知性','构图','空间','造型','光影','色彩','笔触','边缘','愉悦','唤起','控制'];
+// 门派文案 + 稀有度(与 kg-me / kg-me-types 一致)
+const MENPAI={
+  WV1:{creed:'世界本已动人,我只需忠实地看见。',color:'#9a6b4a',desc:'你属于写实的世界——着迷于把眼前真实、可信地画下来。'},
+  WV2:{creed:'万物各有其位,秩序即是美。',color:'#8a7a52',desc:'你属于秩序的世界——偏爱庄重、规整、有仪式感的图像。'},
+  WV3:{creed:'不求形似,但写胸中逸气。',color:'#5a7d6f',desc:'你属于写意的世界——重意境与心境,不拘形似。'},
+  WV4:{creed:'我画的不是物,是光落在物上的那一刻。',color:'#c98a1a',desc:'你属于印象派的世界——着迷于光、色与瞬间的感受。'},
+  WV5:{creed:'色彩与笔触,是情感的直接呐喊。',color:'#b0673a',desc:'你属于表现的世界——被强烈的情感、色彩与笔触打动。'},
+  WV6:{creed:'拆解万象,重组为纯粹的形与色。',color:'#5b7596',desc:'你属于抽象的世界——爱纯粹的形、色与结构之美。'}
+};
+const REGSHARE={WV1:27,WV2:12,WV3:24,WV4:4,WV5:20,WV6:13};
+const SUBDESC={守炉人:'认定一种美,安守深耕',深井者:'口味集中,越挖越深',集萃者:'兼收并蓄,围绕一个稳定中心',博览家:'口味开阔,乐于尝鲜'};
+const cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+function subType2(focus,cautious){return focus?(cautious?'守炉人':'深井者'):(cautious?'集萃者':'博览家');}
+function hashVec(v){let h=2166136261>>>0;const s=v.map(x=>Math.round(x*100)).join(',');for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0;}return h.toString(36).toUpperCase().slice(0,5).padStart(5,'0');}
+
+let WHO=null, PROF=null, curTab='profile';
+
+async function load(){
+  WHO=await jget('me/whoami');
+  if(!WHO.auth){renderAuth();return;}
+  const who=document.getElementById('who');
+  who.textContent='👤 '+(WHO.nickname||WHO.email)+' · 退出';who.style.cursor='pointer';
+  who.onclick=async()=>{await jpost('me/logout',{});location.reload()};
+  PROF=await jget('me/profile').catch(()=>({ready:false}));
+  renderTabs();renderTab();
+}
+function renderTabs(){
+  document.getElementById('app').innerHTML=`
+    <div class="tabs">
+      <span data-t="profile">审美档案</span>
+      <span data-t="foryou">为你推荐</span>
+      <span data-t="mine">我的</span>
+      <span data-t="gen">我的创作</span>
+    </div><div id="tabbody"></div>`;
+  [...document.querySelectorAll('.tabs span')].forEach(s=>s.onclick=()=>{curTab=s.dataset.t;renderTab();});
+}
+function renderTab(){
+  [...document.querySelectorAll('.tabs span')].forEach(s=>s.classList.toggle('on',s.dataset.t===curTab));
+  const b=document.getElementById('tabbody');
+  if(curTab==='profile')renderProfile(b);
+  else if(curTab==='foryou')renderForyou(b);
+  else if(curTab==='gen')renderGen(b);
+  else renderMine(b);
+}
+
+// ---------- 审美档案(kg-me 级) ----------
+function bar(v,c){return `<div class="bar"><span style="width:${Math.round((v||0)*100)}%;background:${c}"></span></div>`;}
+function renderProfile(b){
+  if(!PROF||!PROF.ready){
+    b.innerHTML=`<div class="card"><h2>审美档案 · 还在生长</h2>
+      <p class="lead">你的审美档案由"看过、停留、喜欢的画"实时算出——<b>12 维向量、本命画家、门派、三盏灯</b>。<br>
+      现在数据还不够(${(PROF&&PROF.n)||0} 个有效行为)。去<a href="art.html">展厅</a>多看几幅、点几个 ❤,这里就会长出你的样子。</p>
+      <div style="margin-top:10px"><a class="btn" href="art.html">🖼️ 去展厅看画 →</a> <a class="btn" href="kg-me.html">⚡ 实验室版试玩 →</a></div></div>`;
+    return;
+  }
+  const p=PROF, v=p.vec||[];
+  const reg=p.arche_region||'WV1', mp=MENPAI[reg]||{creed:'',color:'var(--accent)',desc:''};
+  const sp=+(p.spread||0), ds=+(p.dstar||0.34);
+  const focus=sp<0.13, cautious=ds<0.36;
+  const sub=subType2(focus,cautious);
+  const traitline=`${focus?'专一':'博览'} · ${cautious?'守成':'探索'}`;
+  const share=REGSHARE[reg]||10, rlab=share<8?'稀有':share<18?'小众':'主流';
+  const idCode='aha №'+reg.replace('WV','')+'-'+hashVec(v.length?v:[0]);
+  // 性格滑块
+  const traits=[
+    {lo:'念旧',hi:'尝新',v:cl((ds-0.15)/0.45)},
+    {lo:'专精',hi:'博览',v:cl(sp/0.25)},
+    {lo:'爱热烈',hi:'爱安静',v:cl(1-(v[10]??0.5))},
+    {lo:'写实',hi:'写意',v:cl(v[0]??0.5)}
+  ];
+  // 世界观平面
+  const X=x=>22+x*196, Y=y=>22+(1-y)*196;
+  const rgDots=RG.map(r=>{const on=r[0]===reg;return `<circle cx="${X(r[2])}" cy="${Y(r[3])}" r="${on?7:4}" fill="none" stroke="${on?mp.color:'#cfc6b4'}" stroke-width="${on?2:1.2}" stroke-dasharray="3 3"/><text x="${X(r[2])}" y="${Y(r[3])-10}" font-size="9" fill="${on?mp.color:'#bcb3a2'}" text-anchor="middle" font-family="var(--serif)">${r[1]}</text>`;}).join('');
+  const youDot=v.length?`<circle cx="${X(v[0])}" cy="${Y(v[1])}" r="20" fill="${mp.color}" fill-opacity=".09"/><circle cx="${X(v[0])}" cy="${Y(v[1])}" r="8" fill="${mp.color}" stroke="#fff" stroke-width="2.5"/>`:'';
+  // 情绪平面(愉悦×唤起)
+  const mX=x=>22+x*196, mY=y=>22+(1-y)*196;
+  const moodQuad=[['#a8443a',0,1,'紧张'],['#c98a1a',1,1,'昂扬'],['#5a7d6f',1,0,'宁静'],['#5b7596',0,0,'忧郁']].map(q=>`<text x="${mX(q[1]?0.78:0.22)}" y="${mY(q[2]?0.82:0.18)}" font-size="10" fill="${q[0]}" text-anchor="middle" font-family="var(--serif)" opacity=".7">${q[3]}</text>`).join('');
+  const moodDot=v.length?`<circle cx="${mX(v[9])}" cy="${mY(v[10])}" r="8" fill="var(--accent)" stroke="#fff" stroke-width="2.5"/>`:'';
+  // 12 轴雷达
+  const cx=130,cy=130,R=98,N=12;
+  const pts=v.map((val,i)=>{const ang=-Math.PI/2+i*2*Math.PI/N;return [cx+Math.cos(ang)*R*val,cy+Math.sin(ang)*R*val];});
+  const poly=pts.map(pp=>pp.join(',')).join(' ');
+  const spokes=RADAR.map((nm,i)=>{const ang=-Math.PI/2+i*2*Math.PI/N;const ex=cx+Math.cos(ang)*R,ey=cy+Math.sin(ang)*R;const lx=cx+Math.cos(ang)*(R+15),ly=cy+Math.sin(ang)*(R+15);
+    return `<line x1="${cx}" y1="${cy}" x2="${ex}" y2="${ey}" stroke="#e6ddcc"/><text x="${lx}" y="${ly}" font-size="8.5" fill="#8a8170" text-anchor="middle" dominant-baseline="middle">${nm}</text>`;}).join('');
+  const rings=[0.25,0.5,0.75,1].map(rr=>`<circle cx="${cx}" cy="${cy}" r="${R*rr}" fill="none" stroke="#efe7d6"/>`).join('');
+  const L=p.lights||{}, soul=p.soulmate;
+  b.innerHTML=`
+    <div class="hero">
+      <span class="rchip">你的审美门派 · 基于 ${p.n} 个审美行为</span>
+      <div class="menpai" style="border-left-color:${mp.color}">${esc(p.arche_region_name||'')}派 · 「${sub}」型</div>
+      <div class="traitline">${sub}:${SUBDESC[sub]||''} · ${traitline}</div>
+      <div class="creed" style="color:${mp.color}">「${mp.creed}」</div>
+      <div class="desc">${mp.desc}</div>
+      <div class="meta"><span class="tag rare">稀有度 ${share}% · ${rlab}</span><span class="tag">离散 σ ${p.spread}</span><span class="tag">惊奇带 d* ${p.dstar}</span></div>
+      <div class="idline">审美 ID <b>${idCode}</b> · 向量 ⟨${v.map(x=>(+x).toFixed(2)).join(' ')}⟩ — 与艺术家同维,你也是空间里一个点</div>
+    </div>
+
+    <div class="card"><h2>你的审美坐标 · 两个空间</h2>
+      <div class="planes">
+        <div><div class="psub">世界观 · 再现↔表现 ⊥ 结构↔感知</div>
+          <svg class="pl" viewBox="0 0 240 240"><rect x="22" y="22" width="196" height="196" fill="#fcfaf5" stroke="#e8e0d0"/><line x1="120" y1="22" x2="120" y2="218" stroke="#eadfca"/><line x1="22" y1="120" x2="218" y2="120" stroke="#eadfca"/>${rgDots}${youDot}
+            <text x="26" y="124" font-size="9" fill="#5a7d6f">再现</text><text x="214" y="124" font-size="9" fill="#b0673a" text-anchor="end">表现</text><text x="120" y="32" font-size="9" fill="#b0673a" text-anchor="middle">感知</text><text x="120" y="214" font-size="9" fill="#5a7d6f" text-anchor="middle">结构</text></svg></div>
+        <div><div class="psub">情绪 · 愉悦 × 唤起</div>
+          <svg class="pl" viewBox="0 0 240 240"><rect x="22" y="22" width="196" height="196" fill="#fcfaf5" stroke="#e8e0d0"/><line x1="120" y1="22" x2="120" y2="218" stroke="#eadfca"/><line x1="22" y1="120" x2="218" y2="120" stroke="#eadfca"/>${moodQuad}${moodDot}
+            <text x="26" y="124" font-size="9" fill="#857d6f">不悦</text><text x="214" y="124" font-size="9" fill="#857d6f" text-anchor="end">愉悦</text><text x="120" y="32" font-size="9" fill="#857d6f" text-anchor="middle">激越</text><text x="120" y="214" font-size="9" fill="#857d6f" text-anchor="middle">平静</text></svg></div>
+      </div>
+      <div class="mini-row">
+        <div class="mini"><div class="v">${p.spread}</div><div class="l">离散度 · 口味宽窄</div></div>
+        <div class="mini"><div class="v">${p.dstar}</div><div class="l">惊奇带 d* · 探索半径</div></div>
+        <div class="mini"><div class="v">${p.n}</div><div class="l">有效行为 · 置信度</div></div>
+      </div>
+    </div>
+
+    <div class="card"><h2>你的审美性格</h2>
+      ${traits.map(t=>`<div class="trait"><span class="lo">${t.lo}</span><span class="tk"><span class="dot" style="left:${(t.v*100).toFixed(0)}%"></span></span><span class="hi">${t.hi}</span><span class="tv">${Math.round(t.v*100)}</span></div>`).join('')}
+    </div>
+
+    <div class="card"><h2>12 维审美指纹</h2>
+      <svg class="pl" viewBox="0 0 260 260" style="max-width:320px"><g>${rings}${spokes}<polygon points="${poly}" fill="${mp.color}33" stroke="${mp.color}" stroke-width="1.5"/></g></svg>
+    </div>
+
+    ${soul?`<div class="card"><h2>本命画家 · 与你审美最近的灵魂</h2>
+      <div class="soul"><div style="flex:1"><div class="nm">${esc(soul.cn||'')}</div><div class="aff">契合 ${soul.aff}%</div></div>
+        <a class="btn" href="artist.html?id=${encodeURIComponent(soul.artist_id||'')}">看 TA 的画 →</a></div></div>`:''}
+
+    <div class="card"><h2>三盏灯 · 你看画的状态</h2>
+      <div class="meter"><div class="l"><span>顿悟密度 · 心动里有多少"原来如此"</span><b>${Math.round((L.epiphany||0)*100)}</b></div>${bar(L.epiphany,'var(--accent)')}</div>
+      <div class="meter"><div class="l"><span>审美成长 · 口味的开阔度+确定度</span><b>${Math.round((L.growth||0)*100)}</b></div>${bar(L.growth,'var(--gold)')}</div>
+      <div class="meter"><div class="l"><span>安静感 · 低唤醒+情绪平顺</span><b>${Math.round((L.calm||0)*100)}</b></div>${bar(L.calm,'var(--green)')}</div>
+      <p class="lead" style="margin:12px 0 0">想看完整可交互的内核(双时间尺度·自学习·自检)→ <a href="kg-me.html">我的审美档案 · 实验室版</a></p>
+    </div>`;
+}
+
+// ---------- 我的创作 ----------
+async function renderGen(b){
+  b.innerHTML=`<div class="card"><h2>我的创作 · 意图编译器生成的画</h2><div id="gn" class="empty">…</div></div>`;
+  const d=await jget('me/gen').catch(()=>({items:[]}));
+  const items=d.items||[];
+  document.getElementById('gn').outerHTML=items.length?
+    `<div class="lead">这些是你在<a href="kg-compile-v2.html">意图编译器</a>里生成并保存的图,连同它的结构化数据。</div>
+     <div class="grid">${items.map(i=>`<div class="gc" onclick="window.open('${i.file}','_blank')">
+       <img loading="lazy" src="${i.file}"><div class="cb"><div class="ct">${esc(i.style_cn||i.query||'生成图')}</div>
+       <div class="ca"><span>${esc(i.model_label||'')}</span><span>${(i.ts||'').slice(5,10)}</span></div></div></div>`).join('')}</div>`
+    :'<div class="empty">还没有创作。去<a href="kg-compile-v2.html">意图编译器</a>输入灵感 → 🎨 生成,作品会自动存到这里。</div>';
+}
+
+// ---------- 为你推荐 ----------
+async function renderForyou(b){
+  b.innerHTML=`<div class="card"><h2>为你推荐</h2><div id="fy" class="empty">正在按你的审美计算…</div></div>`;
+  const d=await jget('me/foryou?limit=30').catch(()=>({ready:false,items:[]}));
+  const fy=document.getElementById('fy');
+  if(!d.ready||!d.items.length){fy.outerHTML='<div class="empty">还在了解你的口味——去<a href="art.html">展厅</a>多看几幅,推荐会越来越准。</div>';return;}
+  fy.className='';fy.outerHTML=`<div class="lead">基于你的 12 维审美 μ,在"惊奇带"上挑既合口味、又能给你新鲜感的画(分数=契合×惊奇×品质)。</div>
+    <div class="grid">${d.items.map(i=>`<div class="gc" onclick="location.href='work.html?id=${i.work_id}'">
+      <img loading="lazy" src="${i.thumb}"><div class="cb"><div class="ct">${esc(i.title||'无题')}</div>
+      <div class="ca"><span>${esc(i.artist||'佚名')}</span><span class="sc">${Math.round(i.score*100)}</span></div></div></div>`).join('')}</div>`;
+}
+
+// ---------- 我的 ----------
+async function renderMine(b){
+  const st=WHO.state||{};const c=st.counts||{};
+  b.innerHTML=`<div class="card"><h2>概览</h2>
+      <div class="mini-row">
+        <div class="mini"><div class="v">${(st.collections||[]).length}</div><div class="l">收藏</div></div>
+        <div class="mini"><div class="v">${c.events||0}</div><div class="l">浏览行为</div></div>
+        <div class="mini"><div class="v" id="exn">…</div><div class="l">我的展</div></div>
+      </div></div>
+    <div class="card"><h2>我的收藏</h2><div id="col" class="empty">…</div></div>
+    <div class="card"><h2>我策的展</h2><div id="exh" class="empty">…</div></div>
+    <div class="card"><h2>阅读记录 · 最近看过</h2><div id="hist" class="empty">…</div></div>`;
+  const cols=st.collections||[];
+  const colImg=f=>f&&f.startsWith('http')?f:(f&&f.startsWith('img/')?'/'+f:f);
+  document.getElementById('col').outerHTML=cols.length?`<div class="grid">${cols.slice(0,40).map(f=>`<div class="gc"><img loading="lazy" src="${colImg(f)}"></div>`).join('')}</div>`:'<div class="empty">还没有收藏。在<a href="art.html">展厅</a>点 ❤ 收藏喜欢的画。</div>';
+  const ex=await jget('me/exhibitions?uid='+encodeURIComponent(WHO.uid)).catch(()=>({items:[]}));
+  document.getElementById('exn').textContent=(ex.items||[]).length;
+  document.getElementById('exh').outerHTML=(ex.items&&ex.items.length)?ex.items.map(e=>`<div class="exh"><div class="t">${esc(e.title||'未命名展')}</div><div class="m">${(e.work_ids||[]).length} 件 · ${(e.ts||'').slice(0,10)}</div>${e.note?`<div class="m">${esc(e.note)}</div>`:''}</div>`).join(''):'<div class="empty">还没有策展。在展厅把喜欢的画存为一个展览,未来可以公开给别人看。</div>';
+  const hist=(await jget('me/history')).items||[];
+  const hImg=t=>t&&t.startsWith('http')?t:(t&&t.startsWith('img/')?'/'+t:'');
+  document.getElementById('hist').outerHTML=hist.length?`<div class="hist">${hist.map(h=>{const u=hImg(h.target);const km={open:'看',like:'❤',dwell:'驻足'}[h.kind]||h.kind;
+    return `<div class="h">${u?`<img loading="lazy" src="${u}">`:'<div style="height:62px;background:var(--paper-2)"></div>'}<div class="c"><span class="kbadge">${km}</span> ${(h.ts||'').slice(5,16).replace('T',' ')}</div></div>`}).join('')}</div>`:'<div class="empty">还没有记录,去逛逛。</div>';
+}
+
+// ---------- 登录/注册 ----------
+function renderAuth(){
+  document.getElementById('app').innerHTML=`
+    <div class="card" style="max-width:430px;margin:36px auto">
+      <div class="auth-tab"><span class="on" id="tabL">登录</span><span id="tabR">注册</span></div>
+      <p class="lead">登录后,你在展厅的浏览与收藏会长成一份只属于你的<b>审美档案</b>(本命画家、门派、为你推荐)。</p>
+      <div id="form"></div><div class="msg" id="msg"></div></div>`;
+  let mode='login';
+  function draw(){
+    document.getElementById('tabL').className=mode==='login'?'on':'';document.getElementById('tabR').className=mode==='reg'?'on':'';
+    document.getElementById('form').innerHTML=`
+      <input id="email" type="email" placeholder="邮箱">
+      ${mode==='reg'?'<input id="nick" placeholder="昵称(可选)">':''}
+      <input id="pw" type="password" placeholder="密码(≥6位)">
+      <button id="go" style="width:100%;margin-top:8px">${mode==='login'?'登录':'注册'}</button>`;
+    document.getElementById('go').onclick=submit;
+  }
+  document.getElementById('tabL').onclick=()=>{mode='login';draw()};
+  document.getElementById('tabR').onclick=()=>{mode='reg';draw()};
+  async function submit(){
+    const email=document.getElementById('email').value.trim(),pw=document.getElementById('pw').value;
+    const body={email:email,password:pw};
+    if(mode==='reg'){body.nickname=(document.getElementById('nick').value||'').trim();body.uid=luid();}
+    const r=await jpost(mode==='reg'?'me/register':'me/login',body);
+    if(r.ok){setuid(r.uid);location.reload();}else{document.getElementById('msg').textContent=r.error||'失败';}
+  }
+  draw();
+}
+load();
+</script>
+</body></html>

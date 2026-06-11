@@ -1,0 +1,83 @@
+{
+ "updated": "2026-06-11 00:46",
+ "bucket": "aha-1254041526 (ap-shanghai)",
+ "summary": {
+  "areas": 5,
+  "files": 191067,
+  "bytes": 501096067098
+ },
+ "areas": [
+  {
+   "key": "yh",
+   "name": "世界大师油画全集",
+   "files": 49041,
+   "bytes": 279339236720,
+   "junk": 39,
+   "ingestable": 49001,
+   "ingested": 44408,
+   "quality": "高清 14.8MP",
+   "note": "元数据四表齐全·正在上传",
+   "tag": "主力"
+  },
+  {
+   "key": "yishujia",
+   "name": "yishujia 高清裸图",
+   "files": 31827,
+   "bytes": 193972437662,
+   "junk": 0,
+   "ingestable": 31827,
+   "ingested": 31827,
+   "quality": "高清 10MP",
+   "note": "零元数据·已VLM描述",
+   "tag": "高清无标"
+  },
+  {
+   "key": "nbfox",
+   "name": "nbfox 麦田名画",
+   "files": 27125,
+   "bytes": 2751927419,
+   "junk": 0,
+   "ingestable": 27125,
+   "ingested": 22810,
+   "quality": "缩略图 0.4MP",
+   "note": "含占位图·需清洗",
+   "tag": "低清"
+  },
+  {
+   "key": "wikiart",
+   "name": "WikiArt 数据集",
+   "files": 3,
+   "bytes": 19119381581,
+   "junk": 0,
+   "ingestable": null,
+   "ingested": 83071,
+   "quality": "缩略图 0.3MP",
+   "note": "原始存档(WikiArt1+3+meta_gen)·图已解压灌库·与下方解压图重复",
+   "tag": "存档备份"
+  },
+  {
+   "key": "wikiart_img",
+   "name": "WikiArt 解压单图",
+   "files": 83071,
+   "bytes": 5913083716,
+   "junk": 0,
+   "ingestable": 83071,
+   "ingested": 83071,
+   "quality": "缩略图 0.3MP",
+   "note": "15流派·灌库后的规范图",
+   "tag": "已入库"
+  }
+ ],
+ "related": [
+  {
+   "name": "油画元数据库 (4张SQL表)",
+   "where": "opendesign-1254041526/datasets/油画数据库.zip",
+   "note": "26MB·还原作者/年代/题材的钥匙"
+  },
+  {
+   "name": "yishujia 原桶",
+   "where": "yishujia-1254041526",
+   "note": "34,324文件/72.7GB·勿动·只读"
+  }
+ ]
+}

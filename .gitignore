@@ -6,6 +6,10 @@ web/img/
 *.log
 *.tmp
 
+# 大数据 dump(油画数据库等,走外部/COS,不进 git)
+_yh_sql/
+*.sql
+
 # Python
 __pycache__/
 *.pyc

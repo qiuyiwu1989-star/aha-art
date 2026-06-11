@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[活数据] 风格语言指纹 · aha</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/aha-kit.css">
+<style>
+  /* 页面专属微调:情绪重心条 —— 仅用 token，不重定义颜色 */
+  .vad{margin-top:var(--s3);padding-top:var(--s3);border-top:1px solid var(--line-soft);
+    font-size:var(--fz-tiny);color:var(--ink-mute);font-family:var(--mono);letter-spacing:.02em}
+  .vad b{color:var(--ink);font-weight:500}
+</style></head>
+<body>
+<div class="page">
+  <div class="pagehead">
+    <a class="back" href="home.html">← aha.art</a>
+    <div class="kicker">Live Data · 活数据</div>
+    <h1>风格语言指纹</h1>
+    <p class="sub">每个规范风格在「七大构成」上的真实均值,来自已过闸作品。</p>
+    <div class="meta" id="sub">加载中</div>
+  </div>
+  <div class="grid" id="grid"><div class="loading">加载中</div></div>
+</div>
+<script>
+const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+const L7=['构图','空间','造型','光影','色彩','笔触','边缘'];
+fetch('data/live/styles.json').then(r=>r.json()).then(d=>{
+  document.getElementById('sub').textContent=`活数据 · ${d.meta.n} 个规范风格`;
+  document.getElementById('grid').innerHTML=d.styles.map(s=>{
+    const bars=L7.map(k=>{const v=(s.lang||{})[k];if(v==null)return'';const p=Math.round(v*100);
+      return `<div class="bar"><span class="lb">${k}</span><div class="track"><div class="fill" style="width:${p}%"></div><span class="knob" style="left:${p}%"></span></div><span class="val">${v.toFixed(2)}</span></div>`}).join('');
+    const vd=s.vad;
+    return `<div class="card"><div class="card-h"><span class="nm">${s.name}</span>${s.wv?`<span class="chip">${WVN[s.wv]||s.wv}</span>`:''}<span class="n">${s.n} 件</span></div>${bars}
+      ${vd?`<div class="vad">情绪重心 · 愉悦 <b>${vd.v}</b> 唤起 <b>${vd.a}</b> 支配 <b>${vd.d}</b></div>`:''}</div>`}).join('');
+  document.getElementById('grid').classList.add('fade-in');
+}).catch(()=>{document.getElementById('grid').innerHTML='<div class="empty">数据加载失败<div class="hint">检查 data/live/styles.json</div></div>'});
+</script>
+<script src="js/aha-chrome.js"></script>
+</body></html>

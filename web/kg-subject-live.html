@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[活数据] 题材图谱 · aha</title>
+<style>
+:root{--ink:#2a2620;--soft:#6b6457;--line:#e2dccd;--bg:#f7f3ea;--accent:#9a6a3a}
+*{box-sizing:border-box;margin:0}body{font:14px/1.6 -apple-system,"PingFang SC",sans-serif;color:var(--ink);background:var(--bg)}
+header{padding:14px 20px;border-bottom:1px solid var(--line);background:#fff;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+h1{font-size:18px;margin:0}.sub{color:var(--soft);font-size:12.5px}a.back{color:var(--accent);text-decoration:none;font-size:13px}
+.wrap{max-width:1100px;margin:0 auto;padding:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.thumbs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line)}
+.thumbs img{width:100%;height:72px;object-fit:cover;display:block;background:#eee}
+.cb{padding:9px 12px;display:flex;align-items:baseline;gap:8px}.cb .t{font-size:15px;font-weight:700}.cb .n{margin-left:auto;color:var(--accent);font-size:13px}
+.barwrap{height:4px;background:var(--bg)}.barwrap>div{height:100%;background:var(--accent)}
+</style></head>
+<body>
+<header><a class="back" href="home.html">← aha.art</a><h1>题材图谱 <span class="sub" id="sub">活数据</span></h1>
+  <span class="sub">已过闸作品的题材标签聚合(按出现频次)</span></header>
+<div class="wrap" id="grid">加载中…</div>
+<script>
+fetch('data/live/subjects.json').then(r=>r.json()).then(d=>{
+  document.getElementById('sub').textContent=`活数据 · ${d.meta.n} 个题材标签(显示前 ${d.meta.shown})`;
+  const mx=d.subjects[0].n;
+  document.getElementById('grid').innerHTML=d.subjects.map(s=>`<div class="card">
+    <div class="thumbs">${(s.samples||[]).slice(0,4).map(u=>`<img loading="lazy" src="${u}">`).join('')}</div>
+    <div class="barwrap"><div style="width:${Math.round(s.n/mx*100)}%"></div></div>
+    <div class="cb"><span class="t">${s.tag}</span><span class="n">${s.n}</span></div></div>`).join('');
+});
+</script>
+</body></html>

@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>aha 资产后台 · Dashboard</title>
+<style>
+:root{--ink:#1a1a1a;--soft:#6b6b6b;--line:#e6e3dd;--accent:#9a6a3a;--bg:#f5f3ee;--ok:#3a8a5a;--warn:#c2792e;--dup:#9a9a9a;--rej:#b5483a}
+*{box-sizing:border-box}body{margin:0;font:14px/1.6 -apple-system,"PingFang SC",sans-serif;color:var(--ink);background:var(--bg)}
+header{padding:14px 22px;border-bottom:1px solid var(--line);background:#fff;display:flex;align-items:baseline;gap:14px}
+h1{font-size:18px;margin:0}.upd{color:var(--soft);font-size:12px;margin-left:auto}
+.wrap{max-width:1180px;margin:0 auto;padding:18px 22px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.card .v{font-size:26px;font-weight:700}.card .l{color:var(--soft);font-size:12px}.card .s{font-size:11px;color:var(--accent);margin-top:2px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px}
+.panel h2{font-size:14px;margin:0 0 12px;color:var(--soft);font-weight:600}
+.prog{height:22px;background:var(--bg);border-radius:6px;overflow:hidden;display:flex}
+.prog>span{display:block;height:100%}
+.row{display:grid;grid-template-columns:110px 1fr 130px;gap:10px;align-items:center;margin:7px 0;font-size:13px}
+.track{height:16px;background:var(--bg);border-radius:4px;overflow:hidden;position:relative}
+.fill{height:100%;background:var(--accent)}.fillk{height:100%;background:var(--ok);position:absolute;top:0;left:0}
+.num{text-align:right;color:var(--soft);font-size:12px}
+.bars{display:flex;flex-direction:column;gap:5px}
+.bar{display:grid;grid-template-columns:96px 1fr 56px;gap:8px;align-items:center;font-size:12.5px}
+.bar .t{height:14px;background:var(--bg);border-radius:3px;overflow:hidden}.bar .t>span{display:block;height:100%;background:var(--accent)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--soft);margin-top:8px}
+.dot{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:middle}
+.recent{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+.rc{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;font-size:11px}
+.rc img{width:100%;height:80px;object-fit:cover;display:block;background:#eee}
+.rc .cap{padding:4px 6px}.rc .rr{color:var(--rej);font-weight:600}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+a.btn{font-size:12px;color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:6px;padding:3px 9px}
+.gov{border:1px solid var(--line);border-radius:8px;margin:8px 0;background:var(--bg)}
+.gov>summary{cursor:pointer;padding:10px 14px;font-weight:600;font-size:13.5px;user-select:none}
+.gov .gd{padding:6px 16px 14px}
+.gl{font-size:13px;margin:5px 0}.gl b{color:var(--accent)}
+.pl{margin:4px 0 0 18px;padding:0;font-size:13px}.pl li{margin:4px 0}
+.stbl{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.stg{font-size:12px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:3px 10px}.stg i{color:var(--soft);font-style:normal;font-size:11px}
+.rt{width:100%;border-collapse:collapse;font-size:11.5px}.rt th,.rt td{text-align:left;border-bottom:1px solid var(--line);padding:3px 6px;vertical-align:top}
+.rt code{font-size:11px;color:#444}
+pre.prompt{white-space:pre-wrap;word-break:break-word;background:#2b2b2b;color:#e6e0d4;padding:14px;border-radius:8px;font:12px/1.7 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}
+.abtn{font-size:12px;border:1px solid var(--accent);color:var(--accent);background:#fff;border-radius:6px;padding:4px 11px;cursor:pointer}
+.abtn:hover{background:var(--accent);color:#fff}.abtn.stop{border-color:var(--rej);color:var(--rej)}.abtn.stop:hover{background:var(--rej);color:#fff}
+.acts{display:flex;gap:3px;margin-top:3px}.acts button{flex:1;font-size:10.5px;border:1px solid var(--line);background:#fff;border-radius:4px;padding:2px 0;cursor:pointer;color:var(--soft)}
+.acts button:hover{border-color:var(--accent);color:var(--accent)}
+select{font:13px inherit;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:#fff}
+.coshead,.cosrow{display:grid;grid-template-columns:1fr 90px 90px 200px;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px}
+.coshead{color:var(--soft);font-size:11.5px;font-weight:600;border-bottom:1px solid var(--line)}
+.cosrow b{font-size:13.5px}.ctag{font-size:10.5px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:1px 7px;color:var(--accent);margin-left:5px}
+.csub{font-size:11px;color:var(--soft);margin-top:2px}
+.cnum{text-align:right;font-weight:600}.cnum span{font-weight:400;color:var(--soft);font-size:11px;margin-left:3px}
+.cprog .track{height:14px}
+@media(max-width:760px){.coshead,.cosrow{grid-template-columns:1fr 70px 90px}.coshead span:last-child,.cprog{display:none}}
+.shell{display:flex;min-height:100vh}
+.side{width:212px;flex:none;background:#fff;border-right:1px solid var(--line);padding:16px 12px;position:sticky;top:0;height:100vh;overflow:auto}
+.brand{font-weight:700;font-size:16px;margin:4px 8px 16px}
+.navi{display:block;padding:9px 12px;border-radius:8px;color:var(--ink);text-decoration:none;font-size:13.5px;margin:2px 0;cursor:pointer}
+.navi:hover{background:var(--bg)}.navi.on{background:var(--accent);color:#fff}
+.navi small{color:var(--soft);font-size:11px;display:block}.navi.on small{color:#f0e2d4}
+.navsep{height:1px;background:var(--line);margin:10px 6px}
+.main{flex:1;min-width:0}
+.modh{max-width:1180px;margin:0 auto;padding:18px 22px 2px}.modh h1{font-size:20px;margin:0}.modh p{color:var(--soft);font-size:13px;margin:5px 0 0}
+.soon{max-width:1180px;margin:0 auto;padding:48px 22px;color:var(--soft)}
+@media(max-width:760px){.shell{flex-direction:column}.side{width:auto;height:auto;position:static;display:flex;flex-wrap:wrap;gap:4px}.brand{width:100%}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="side">
+  <div class="brand">aha 管理后台</div>
+  <a class="navi on" data-m="cos">📥 原始数据管理 · COS<small>导入数据 · 开闸 · 清洗</small></a>
+  <a class="navi" data-m="exhibit">🖼 展出与策展<small>选图进展厅</small></a>
+  <a class="navi" data-m="artist">🎨 艺术家 · 元数据<small>档案·星图·检索</small></a>
+  <a class="navi" data-m="user">💬 用户 · 互动<small>museum mu_*</small></a>
+  <a class="navi" data-m="gen">🎨 生成图库<small>全量治理 / 优选入馆</small></a>
+  <a class="navi" data-m="proj">🔗 知识结构投影<small>活库 → 知识页</small></a>
+  <div class="navsep"></div>
+  <a class="navi" href="kg-catalog.html" target="_blank">↗ 画廊(对内)</a>
+  <a class="navi" href="art.html" target="_blank">↗ 展厅(对外)</a>
+  <div class="navsep"></div>
+  <span class="upd" id="upd" style="font-size:11px;color:var(--soft);padding:0 12px"></span>
+</aside>
+<main class="main">
+  <section class="mod" id="mod-cos">
+    <div class="modh"><h1>📥 原始数据管理 · COS</h1><p>我导入的全部数据（4 来源 / 15 万件），正处在「开闸标注 + 清洗去重」的过程中。</p></div>
+    <div class="wrap" id="app">加载中…</div>
+    <div class="wrap" id="cos"></div>
+    <div class="wrap" id="vlm"></div>
+    <div class="wrap" id="ctl"></div>
+    <div class="wrap" id="anom"></div>
+    <div class="wrap" id="review"></div>
+    <div class="wrap" id="promptedit"></div>
+    <div class="wrap" id="gov"></div>
+  </section>
+  <section class="mod" id="mod-exhibit" hidden>
+    <div class="modh"><h1>🖼 展出与策展</h1><p>从核心资产选图进对外展厅 art.html（规则A自动 + 人工 + 主题展 collections）。</p></div>
+    <div class="wrap" id="exh">加载中…</div>
+  </section>
+  <section class="mod" id="mod-artist" hidden>
+    <div class="modh"><h1>🎨 艺术家 · 元数据</h1><p>艺术家库总览、缺口、检索（归一/别名合并后续）。</p></div>
+    <div class="wrap" id="art">加载中…</div>
+  </section>
+  <section class="mod" id="mod-user" hidden>
+    <div class="modh"><h1>💬 用户 · 互动</h1><p>匿名用户行为、众声评论、收藏、人设解读（museum mu_* 数据）。</p></div>
+    <div class="wrap" id="usr">加载中…</div>
+  </section>
+  <section class="mod" id="mod-gen" hidden>
+    <div class="modh"><h1>🎨 生成图库 · 全量治理</h1><p>所有用户用意图编译器生成的图（mu_generation，按 uid 分"我的"/全量）。可评分、删除、把好图优选入馆。用户侧"我的创作"在 <a href="me.html" target="_blank">me.html</a>。</p></div>
+    <div class="wrap" id="genmod">加载中…</div>
+  </section>
+  <section class="mod" id="mod-proj" hidden>
+    <div class="modh"><h1>🔗 知识结构投影</h1><p>把活库投影成知识结构页要的数据切片（旧 demo 页保留，活数据版为 -live 新页）。</p></div>
+    <div class="wrap" id="proj">加载中…</div>
+  </section>
+</main>
+</div>
+<script>
+const API='/cat/';
+const fmt=n=>(n??0).toLocaleString();
+const _loaded={};
+document.querySelectorAll('.navi[data-m]').forEach(a=>a.onclick=()=>{
+  const m=a.dataset.m;
+  document.querySelectorAll('.navi[data-m]').forEach(x=>x.classList.toggle('on',x===a));
+  document.querySelectorAll('.mod').forEach(s=>s.hidden=(s.id!=='mod-'+m));
+  if(!_loaded[m]){_loaded[m]=1;({exhibit:loadExhibit,artist:loadArtists,user:loadUsers,gen:loadGen,proj:loadProjection}[m]||(()=>{}))()}
+});
+async function load(){
+  const d=await (await fetch(API+'stats')).json();
+  const t=d.totals,g=d.gating;
+  const statusColor={kept:'var(--ok)',archived:'var(--warn)',pending:'var(--accent)',dup:'var(--dup)',rejected:'var(--rej)'};
+  const stMap=Object.fromEntries(d.status.map(s=>[s.k,s.n]));
+  const el=document.getElementById('app');
+  el.innerHTML=`
+    <div class="cards">
+      <div class="card"><div class="v">${fmt(t.works)}</div><div class="l">总作品</div></div>
+      <div class="card"><div class="v">${fmt(t.uniq)}</div><div class="l">唯一作品(去重后)</div><div class="s">已剔 dup ${fmt(stMap.dup)}</div></div>
+      <div class="card"><div class="v" style="color:var(--ok)">${fmt(stMap.kept)}</div><div class="l">核心资产 kept</div></div>
+      <div class="card"><div class="v">${g.pct}%</div><div class="l">过闸进度</div><div class="s">${fmt(g.gated)} / ${fmt(g.curatable)}</div></div>
+      <div class="card"><div class="v">${fmt(d.pace.h1)}</div><div class="l">近1小时过闸</div><div class="s">24h: ${fmt(d.pace.h24)} · ${eta(g,d.pace)}</div></div>
+      <div class="card"><div class="v">${fmt(t.artists)}</div><div class="l">艺术家</div><div class="s">${t.styles} 规范风格</div></div>
+    </div>
+
+    <div class="panel"><h2>过闸总进度</h2>
+      <div class="prog">${seg(stMap,t.works,statusColor)}</div>
+      <div class="legend">${d.status.map(s=>`<span><i class="dot" style="background:${statusColor[s.k]||'#ccc'}"></i>${s.k} ${fmt(s.n)}</span>`).join('')}</div>
+    </div>
+
+    <div class="panel"><h2>各来源进度（绿=核心资产，棕=已过闸，浅=待过闸）</h2>
+      ${d.source.map(s=>`<div class="row"><b>${srcName(s.k)}</b>
+        <div class="track"><div class="fill" style="width:${pct(s.gated,s.total)}%"></div><div class="fillk" style="width:${pct(s.kept,s.total)}%"></div></div>
+        <div class="num">${fmt(s.kept)}核 / ${fmt(s.gated)}过 / ${fmt(s.total)}</div></div>`).join('')}
+    </div>
+
+    <div class="grid2">
+      <div class="panel"><h2>核心资产 · 规范风格分布</h2><div class="bars">${barlist(d.style.map(s=>[s.zh,s.n]))}</div></div>
+      <div class="panel"><h2>核心资产 · 情绪锚分布</h2><div class="bars">${barlist(d.anchor.map(s=>[s.k,s.n]))}</div></div>
+    </div>
+
+    <div class="panel"><h2>核心资产 · 质量分布</h2><div class="bars">${barlist(d.qhist.map(s=>['≥'+s.b,s.n]))}</div></div>
+
+    <div class="panel"><h2>最近被剔 / 归档（抽查闸门判得准不准）</h2>
+      <div class="recent">${d.recent.map(r=>`<div class="rc"><img loading="lazy" src="${r.thumb}">
+        <div class="cap"><span class="rr">${r.status==='archived'?'归档':'剔'}·${r.reason||''}</span><br>${esc((r.title||'无题')).slice(0,16)}</div></div>`).join('')}</div>
+    </div>`;
+  document.getElementById('upd').textContent='更新于 '+new Date().toLocaleTimeString();
+}
+function seg(m,total,col){return Object.entries(m).map(([k,n])=>`<span style="width:${n/total*100}%;background:${col[k]||'#ccc'}" title="${k} ${n}"></span>`).join('')}
+function pct(a,b){return b?Math.min(100,a/b*100).toFixed(1):0}
+function barlist(arr){const mx=Math.max(1,...arr.map(x=>x[1]));return arr.map(([k,n])=>`<div class="bar"><span title="${k}">${k}</span><div class="t"><span style="width:${n/mx*100}%"></span></div><span class="num">${fmt(n)}</span></div>`).join('')}
+function srcName(k){return({nbfox:'麦田 nbfox',yh:'油画数据集',yishujia:'yishujia',wikiart:'WikiArt'})[k]||k}
+function eta(g,p){if(!p.h1)return'';const h=g.pending/p.h1;return h>48?`约${Math.round(h/24)}天剩`:`约${Math.round(h)}小时剩`}
+function esc(s){return(s||'').replace(/[<>&]/g,m=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[m]))}
+
+async function loadGov(){
+  const d=await (await fetch(API+'governance')).json();
+  const det=(title,inner,open)=>`<details class="gov" ${open?'open':''}><summary>${title}</summary><div class="gd">${inner}</div></details>`;
+  const stages=d.stages.map(s=>`<div class="gl"><b>${s[0]}</b> ${esc(s[1])}</div>`).join('');
+  const princ=d.principles.map(p=>`<li>${esc(p).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')}</li>`).join('');
+  const cats=Object.entries(d.category_map).map(([k,v])=>`<div class="gl"><b>${k}</b> ${v.join(' / ')}</div>`).join('');
+  const dedup=Object.entries(d.dedup).map(([k,v])=>`<div class="gl"><b>${k}</b> ${esc(String(v))}</div>`).join('');
+  const styles=`<div class="stbl">${d.styles.map(s=>`<span class="stg"><b>${s.zh}</b> <i>${s.en}</i></span>`).join('')}</div>`;
+  const rules=`<div class="gd2"><table class="rt"><tr><th>匹配关键词(正则)</th><th>→ 规范风格</th></tr>${d.style_rules.map(r=>`<tr><td><code>${esc(r[0])}</code></td><td>${r[1]}</td></tr>`).join('')}</table></div>`;
+  document.getElementById('gov').innerHTML=`
+    <div class="panel"><h2>🛠 数据治理控制台 <span style="color:#aaa;font-weight:400;font-size:12px">（以下规则/提示词直接读自运行中的代码，即治理标准本身）</span></h2>
+      ${det('① 管线流程',stages,true)}
+      ${det('② 治理原则',`<ul class="pl">${princ}</ul>`,true)}
+      ${det('③ 三路分流规则（VLM 分类 → 入库状态）',cats)}
+      ${det('④ 去重规则',dedup)}
+      ${det('⑤ 规范风格表（'+d.styles.length+' 类，中文为主）',styles+rules)}
+      ${det('⑥ VLM 默认提示词（model '+d.model+'｜图 '+d.image_px+'px｜max_tokens '+d.max_tokens+'）',
+        '<pre class="prompt">'+esc(d.prompt)+'</pre><div class="gl" style="margin-top:8px">情绪锚(14): '+d.anchors.join(' ')+'</div>',true)}
+    </div>`;
+}
+const gb=b=>(b/1e9).toFixed(1)+' GB';
+async function loadCos(){
+  try{
+    const d=await(await fetch('data/cos_inventory.json?t='+Date.now())).json();
+    const s=d.summary;
+    const rows=d.areas.map(a=>{
+      const pct=a.ingestable?Math.min(100,Math.round(a.ingested/a.ingestable*100)):100;
+      const prog=a.ingestable
+        ? `<div class="track"><div class="fill" style="width:${pct}%"></div></div><div class="csub">已灌 ${fmt(a.ingested)} / ${fmt(a.ingestable)}（${pct}%）</div>`
+        : `<div class="csub" style="color:var(--ok)">zip 存档·已解压灌库 ${fmt(a.ingested)}</div>`;
+      return `<div class="cosrow">
+        <div><b>${a.name}</b><span class="ctag">${a.tag}</span><div class="csub">${a.quality} · ${a.note}</div></div>
+        <div class="cnum">${fmt(a.files)}<span>文件</span></div>
+        <div class="cnum">${gb(a.bytes)}</div>
+        <div class="cprog">${prog}</div></div>`;
+    }).join('');
+    const rel=(d.related||[]).map(r=>`<div class="gl"><b>${r.name}</b> <code>${r.where}</code> — ${r.note}</div>`).join('');
+    document.getElementById('cos').innerHTML=`
+      <div class="panel">
+        <h2>📦 COS 数据存储总览　<span style="color:#aaa;font-weight:400;font-size:12px">治理上游 · 各类原始数据落地 COS 的现状（${d.bucket}，快照 ${d.updated}）</span></h2>
+        <div class="cards">
+          <div class="card"><div class="v">${fmt(s.files)}</div><div class="l">COS 文件总数</div></div>
+          <div class="card"><div class="v">${gb(s.bytes)}</div><div class="l">总存储</div></div>
+          <div class="card"><div class="v">${s.areas}</div><div class="l">数据区</div></div>
+        </div>
+        <div class="coshead"><span>数据区</span><span>文件</span><span>体积</span><span>COS → 已灌库</span></div>
+        ${rows}
+        <div style="margin-top:12px"><div class="csub" style="margin-bottom:5px;font-weight:600">相关数据源</div>${rel}</div>
+      </div>`;
+  }catch(e){document.getElementById('cos').innerHTML='<div class="panel"><h2>📦 COS 数据存储总览</h2><div class="csub">cos_inventory.json 加载失败</div></div>';}
+}
+async function loadAnom(){
+  const d=await (await fetch(API+'anomalies')).json();
+  const types=d.types.filter(t=>t.count>0).sort((a,b)=>b.count-a.count);
+  const blocks=types.map(t=>{
+    const sm=t.samples.map(s=>`<a class="rc" href="work.html?id=${s.id}" target="_blank" title="${esc((s.title||'')+' · '+(s.artist||''))}">
+      <img loading="lazy" src="${s.thumb}"><div class="cap">${esc((s.note||s.title||'')).slice(0,20)}</div></a>`).join('');
+    return `<details class="gov"><summary><b style="color:var(--rej)">${t.count}</b> · ${t.label}</summary><div class="gd"><div class="recent">${sm}</div></div></details>`;
+  }).join('');
+  document.getElementById('anom').innerHTML=`<div class="panel"><h2>🚨 异常雷达 <span style="color:#aaa;font-weight:400;font-size:12px">（已扫已过闸 ${fmt(d.scanned_gated)} 件；点缩略图进深读核对）</span></h2>${blocks||'<div class="gl">暂无异常 ✓</div>'}</div>`;
+}
+let _ctlSel={cSrc:'',cLim:'1000',eMin:'0.65',ePer:'5'};
+async function loadCtl(){
+  let d;try{d=await (await fetch(API+'admin/gate_status')).json()}catch(e){return}
+  if(!d.by_source)return;
+  // 重渲染前先抓住用户当前选择,渲染后回填,避免20秒自刷/点按钮把下拉框重置
+  ['cSrc','cLim','eMin','ePer'].forEach(id=>{const el=document.getElementById(id);if(el)_ctlSel[id]=el.value;});
+  const sel=(v,cur)=>String(v)===String(cur)?' selected':'';
+  const srcOpt=[['','全部来源']].concat(d.by_source.map(s=>[s.k,srcName(s.k)+'(待'+fmt(s.pending)+')'])).map(([v,t])=>`<option value="${v}"${sel(v,_ctlSel.cSrc)}>${t}</option>`).join('');
+  const limOpt=[500,1000,2000,5000].map(v=>`<option${sel(v,_ctlSel.cLim)}>${v}</option>`).join('');
+  const minOpt=['0.55','0.65','0.7','0.75','0.8'].map(v=>`<option${sel(v,_ctlSel.eMin)}>${v}</option>`).join('');
+  const perOpt=[['0','不限'],['3','3'],['5','5'],['10','10']].map(([v,t])=>`<option value="${v}"${sel(v,_ctlSel.ePer)}>${t}</option>`).join('');
+  document.getElementById('ctl').innerHTML=`<div class="panel"><h2>🎛 过闸操作台</h2>
+    <div class="gl">状态 <b style="color:${d.running?'var(--ok)':'var(--soft)'}">${d.running?'● 运行中':'○ 空闲'}</b> · 待过闸 <b>${fmt(d.pending)}</b> · 近10分 ${d.rate_10min} 张</div>
+    <div style="margin-top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      来源 <select id="cSrc" onchange="_ctlSel.cSrc=this.value">${srcOpt}</select> 数量 <select id="cLim" onchange="_ctlSel.cLim=this.value">${limOpt}</select>
+      <button class="abtn" onclick="runGate()">▶ 开始过闸</button><button class="abtn stop" onclick="stopGate()">■ 停止</button>
+      <span id="cMsg" style="color:var(--accent);font-size:12px"></span></div>
+    <div class="gl" style="margin-top:14px;border-top:1px solid var(--line);padding-top:12px">🖼 <b>展出选图（规则A）</b> · 已选展出 <b id="exCnt">${fmt(d.exhibited)}</b>（其中可上墙 ${fmt(d.exhibited_ready)} 件含世界观坐标）</div>
+    <div style="margin-top:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      质量阈值 <select id="eMin" onchange="_ctlSel.eMin=this.value">${minOpt}</select>
+      每艺术家上限 <select id="ePer" onchange="_ctlSel.ePer=this.value">${perOpt}</select>
+      <button class="abtn" onclick="autoExhibit(false)">规则入展</button><button class="abtn stop" onclick="autoExhibit(true)">清空重选</button>
+      <a class="abtn" href="art.html" target="_blank" style="text-decoration:none">↗ 看展厅 art.html</a>
+      <span id="eMsg" style="color:var(--accent);font-size:12px"></span></div></div>`;
+}
+async function runGate(){const s=document.getElementById('cSrc').value,l=document.getElementById('cLim').value;
+  const r=await (await fetch(API+`admin/run_gate?source=${encodeURIComponent(s)}&limit=${l}`,{method:'POST'})).json();
+  document.getElementById('cMsg').textContent=r.ok?('已启动 '+r.cmd):('× '+(r.msg||'失败'));setTimeout(loadCtl,2000);}
+async function stopGate(){await fetch(API+'admin/stop_gate',{method:'POST'});document.getElementById('cMsg').textContent='已停止';setTimeout(loadCtl,2000);}
+async function autoExhibit(clear){const mq=document.getElementById('eMin').value,pa=document.getElementById('ePer').value;
+  _ctlSel.eMin=mq;_ctlSel.ePer=pa;document.getElementById('eMsg').textContent='处理中…';
+  const r=await (await fetch(API+`admin/auto_exhibit?min_quality=${mq}&per_artist=${pa}&clear=${clear}`,{method:'POST'})).json();
+  document.getElementById('eMsg').textContent='✓ 已选展出 '+r.exhibited_total+' 件（阈值'+mq+'/上限'+pa+'）';
+  const ec=document.getElementById('exCnt');if(ec)ec.textContent=fmt(r.exhibited_total);}
+async function rExhibit(id){await fetch(API+`admin/exhibit?id=${id}&on=true`,{method:'POST'});rMark(id,'已入展')}
+
+async function loadReview(){
+  let d;try{d=await (await fetch(API+'admin/review?n=12')).json()}catch(e){return}
+  if(!d.items)return;
+  document.getElementById('review').innerHTML=`<div class="panel"><h2>🔍 抽检纠错 <button class="abtn" onclick="loadReview()">换一批</button>
+    <span style="color:#aaa;font-weight:400;font-size:12px">随机抽核心资产人眼核，错了直接纠（点图进深读）</span></h2>
+    <div class="recent">${d.items.map(it=>`<div class="rc" id="rc${it.id}">
+      <a href="work.html?id=${it.id}" target="_blank"><img loading="lazy" src="${it.thumb}"></a>
+      <div class="cap">${esc((it.title||'无题')).slice(0,15)}<br><span style="color:#999">${it.cat||''}·q${it.quality??'?'}·${it.anchor||''}</span>
+      <div class="acts"><button onclick="rExhibit(${it.id})" style="color:var(--ok)">展出</button><button onclick="rAct(${it.id},'regate')">重标</button><button onclick="rSet(${it.id},'archived')">归档</button><button onclick="rSet(${it.id},'rejected')">剔</button></div></div></div>`).join('')}</div></div>`;
+}
+async function rSet(id,st){await fetch(API+`admin/status?id=${id}&status=${st}`,{method:'POST'});rMark(id,st)}
+async function rAct(id){await fetch(API+`admin/regate?id=${id}`,{method:'POST'});rMark(id,'已重标')}
+function rMark(id,t){const e=document.getElementById('rc'+id);if(e){e.style.opacity=.45;e.querySelector('.acts').innerHTML='<span style="color:var(--ok);font-size:11px">✓ '+t+'</span>'}}
+
+// ===== 展出与策展模块 =====
+async function colBulk(){const cid=document.getElementById('cbCol').value,st=document.getElementById('cbStyle').value;
+  const r=await (await fetch(API+`admin/collection/add_bulk?cid=${cid}${st?'&style='+st:''}&limit=500`,{method:'POST'})).json();
+  document.getElementById('cbMsg').textContent='+'+r.added+' 件';_loaded.exhibit=0;}
+async function loadExhibit(){
+  const [d,f]=await Promise.all([fetch(API+'admin/m/exhibit').then(r=>r.json()),fetch(API+'facets?status=kept').then(r=>r.json())]);
+  window._exhStyles=(f.style||[]).map(s=>({id:s.k,zh:s.zh}));const t=d.totals;
+  document.getElementById('exh').innerHTML=`
+    <div class="cards">
+      <div class="card"><div class="v" style="color:var(--ok)">${fmt(t.e)}</div><div class="l">已选展出</div></div>
+      <div class="card"><div class="v">${fmt(t.r)}</div><div class="l">可上墙(含世界观坐标)</div><div class="s">art.html 实际展出数</div></div>
+      <div class="card"><div class="v">${fmt(t.k)}</div><div class="l">核心资产池 kept</div></div>
+    </div>
+    <div class="panel"><h2>规则A 自动入展</h2><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      质量阈值 <select id="eMin2"><option>0.6</option><option selected>0.65</option><option>0.7</option><option>0.75</option></select>
+      每艺术家上限 <select id="ePer2"><option value="0">不限</option><option>3</option><option selected>5</option><option>10</option></select>
+      <button class="abtn" onclick="autoExhibit2(false)">规则入展</button><button class="abtn stop" onclick="autoExhibit2(true)">清空重选</button>
+      <a class="abtn" href="art.html" target="_blank" style="text-decoration:none">↗ 看展厅</a>
+      <span id="eMsg2" style="color:var(--accent);font-size:12px"></span></div></div>
+    <div class="grid2">
+      <div class="panel"><h2>展出 · 风格分布</h2><div class="bars">${barlist(d.by_style.map(s=>[s.k,s.n]))}</div></div>
+      <div class="panel"><h2>展出 · 来源分布</h2><div class="bars">${barlist(d.by_source.map(s=>[srcName(s.k),s.n]))}</div></div>
+    </div>
+    <div class="panel"><h2>主题展 collections <span style="font-weight:400;color:#aaa;font-size:12px">（建展，作品后续可加入）</span></h2>
+      <div style="display:flex;gap:8px;margin-bottom:10px"><input id="colName" placeholder="新展名,如《印象派之光》" style="flex:1;padding:6px 9px;border:1px solid var(--line);border-radius:7px"><button class="abtn" onclick="colCreate()">建展</button></div>
+      <div class="bars">${d.collections.length?d.collections.map(c=>`<div class="bar"><span>${esc(c.name)}</span><div class="t"></div><span class="num">${c.n} 件 <a href="javascript:void(0)" onclick="colDel(${c.id})" style="color:var(--rej)">删</a></span></div>`).join(''):'<div class="gl">暂无主题展</div>'}</div>
+      ${d.collections.length?`<div style="margin-top:12px;display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-size:12.5px">组卷:把
+        <select id="cbCol">${d.collections.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select> 加入风格
+        <select id="cbStyle"><option value="">(全部展出)</option>${(window._exhStyles||[]).map(s=>`<option value="${s.id}">${s.zh}</option>`).join('')}</select>
+        的展出作品 <button class="abtn" onclick="colBulk()">加入</button><span id="cbMsg" style="color:var(--accent)"></span></div>`:''}</div>
+    <div class="panel"><h2>最近入展（点缩略图进详情，可下架）</h2><div class="recent">${d.recent.map(r=>`<div class="rc" id="ex${r.id}"><a href="work.html?id=${r.id}" target="_blank"><img loading="lazy" src="${r.thumb}"></a><div class="cap">${esc((r.title||'无题')).slice(0,14)}<div class="acts"><button onclick="exhibitOff(${r.id})">下架</button></div></div></div>`).join('')}</div></div>`;
+}
+async function autoExhibit2(clear){const mq=document.getElementById('eMin2').value,pa=document.getElementById('ePer2').value;document.getElementById('eMsg2').textContent='处理中…';
+  const r=await (await fetch(API+`admin/auto_exhibit?min_quality=${mq}&per_artist=${pa}&clear=${clear}`,{method:'POST'})).json();
+  document.getElementById('eMsg2').textContent='已选展出 '+r.exhibited_total+' 件';_loaded.exhibit=0;}
+async function exhibitOff(id){await fetch(API+`admin/exhibit?id=${id}&on=false`,{method:'POST'});const e=document.getElementById('ex'+id);if(e){e.style.opacity=.4;e.querySelector('.acts').innerHTML='<span style="color:#999">已下架</span>'}}
+async function colCreate(){const n=document.getElementById('colName').value.trim();if(!n)return;await fetch(API+`admin/collection/create?name=${encodeURIComponent(n)}`,{method:'POST'});_loaded.exhibit=0;loadExhibit()}
+async function colDel(cid){if(!confirm('删除该主题展?'))return;await fetch(API+`admin/collection/delete?cid=${cid}`,{method:'POST'});loadExhibit()}
+
+// ===== 艺术家模块 =====
+async function loadArtists(qv){
+  const d=await (await fetch(API+'admin/m/artists'+(qv?('?q='+encodeURIComponent(qv)):''))).json();const t=d.totals;
+  document.getElementById('art').innerHTML=`
+    <div class="cards">
+      <div class="card"><div class="v">${fmt(t.total)}</div><div class="l">艺术家总数</div></div>
+      <div class="card"><div class="v">${fmt(t.with_born)}</div><div class="l">有生卒年</div><div class="s">${Math.round(t.with_born/t.total*100)}%</div></div>
+      <div class="card"><div class="v" style="color:var(--warn)">${fmt(t.no_cn)}</div><div class="l">缺中文名</div><div class="s">多为 wikiart 纯英文</div></div>
+    </div>
+    <div class="panel"><h2>来源分布</h2><div class="bars">${barlist(d.by_source.map(s=>[srcName(s.k),s.n]))}</div></div>
+    <div class="panel"><h2>${qv?'搜索结果':'作品最多的艺术家'} <input id="aq" placeholder="搜艺术家…" value="${esc(qv||'')}" style="float:right;padding:5px 9px;border:1px solid var(--line);border-radius:7px"></h2>
+      <table class="rt" style="margin-top:6px"><tr><th>艺术家</th><th>英文</th><th>生卒</th><th>作品数</th></tr>
+      ${d.items.map(a=>`<tr><td><a href="artist.html?id=${encodeURIComponent(a.id)}" target="_blank" style="color:var(--accent);text-decoration:none">${esc(a.cn||a.en||'—')}</a></td><td>${esc(a.en||'')}</td><td>${a.born?a.born+'–'+(a.death||''):'—'}</td><td>${a.n}</td></tr>`).join('')}</table>
+      <div class="gl" style="margin-top:8px;color:#aaa">点艺术家名 → 活数据详情页(作品云+情绪重心+风格分布)</div></div>`;
+  const aq=document.getElementById('aq');aq.onkeydown=e=>{if(e.key==='Enter')loadArtists(aq.value.trim())};
+}
+
+// ===== 用户互动模块 =====
+async function loadUsers(){
+  const d=await (await fetch(API+'admin/m/users')).json();const c=d.counts;
+  const card=(v,l)=>`<div class="card"><div class="v">${fmt(v)}</div><div class="l">${l}</div></div>`;
+  document.getElementById('usr').innerHTML=`
+    <div class="cards">${card(c.mu_user,'匿名用户')}${card(c.mu_event,'行为事件')}${card(c.mu_comment,'众声评论')}${card(c.mu_collection,'收藏')}${card(c.mu_persona,'解读人设')}${card(c.mu_taste,'口味画像')}${card(c.mu_generation,'生成')}${card(c.mu_rating,'评分')}</div>
+    <div class="grid2">
+      <div class="panel"><h2>行为事件类型</h2><div class="bars">${barlist(d.event_kinds.map(k=>[k.k,k.n]))}</div></div>
+      <div class="panel"><h2>最近评论</h2>${d.comments.length?d.comments.map(m=>`<div class="gl">[${m.status||'?'}] ${esc(m.body||'')}</div>`).join(''):'<div class="gl">暂无</div>'}</div>
+    </div>`;
+}
+
+// ===== 生成图库治理模块 =====
+let _genScope='all';
+async function loadGen(){
+  const d=await (await fetch(API+'admin/m/gen?scope='+_genScope+'&limit=200')).json();
+  const chip=(s,l)=>`<span class="navi" style="display:inline-block;padding:4px 12px;border-radius:999px;cursor:pointer;margin-right:6px;${_genScope===s?'background:var(--accent);color:#fff':'background:#fff;border:1px solid var(--line)'}" onclick="_genScope='${s}';_loaded.gen=0;loadGen()">${l}</span>`;
+  const items=d.items||[];
+  document.getElementById('genmod').innerHTML=`
+    <div class="cards">
+      <div class="card"><div class="v">${fmt(d.total)}</div><div class="l">生成图总数</div></div>
+      <div class="card"><div class="v">${fmt(d.users)}</div><div class="l">创作用户(已绑 uid)</div></div>
+    </div>
+    <div class="panel"><h2>筛选</h2>${chip('all','全部')}${chip('rated','已评分')}${chip('unclaimed','匿名/未绑定')}</div>
+    <div class="panel"><h2>生成图（共 ${items.length} 张）</h2>
+      <div class="recent" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr))">
+        ${items.map(i=>`<div class="rc" style="position:relative">
+          <img loading="lazy" src="${i.file}" style="height:130px">
+          <div class="cap"><b>${esc(i.style_cn||i.query||'生成图')}</b><br>
+            <span style="color:var(--soft)">${esc(i.who||'匿名')} · ${(i.ts||'').slice(0,10)}</span><br>
+            <span style="color:var(--soft)">${esc(i.model||'')} ${i.rating===1?'👍':i.rating===-1?'👎':''}</span><br>
+            <span style="cursor:pointer" onclick="genRate('${i.id}',1)">👍</span>
+            <span style="cursor:pointer" onclick="genRate('${i.id}',-1)">👎</span>
+            <span style="cursor:pointer;color:#b06a62" onclick="genDel('${i.id}')">🗑</span>
+          </div></div>`).join('')||'<div class="gl">暂无生成图</div>'}
+      </div></div>`;
+}
+async function genRate(id,r){await fetch(API+`admin/gen/rate?id=${id}&rating=${r}`,{method:'POST'});_loaded.gen=0;loadGen()}
+async function genDel(id){if(!confirm('删除这张生成图?'))return;await fetch(API+`admin/gen/delete?id=${id}`,{method:'POST'});_loaded.gen=0;loadGen()}
+
+// ===== 知识结构投影模块 =====
+async function loadProjection(){
+  const d=await (await fetch(API+'admin/m/projection')).json();
+  const sl=d.slices.map(s=>`<div class="bar"><span>${s.file}</span><div class="t"></div><span class="num">${fmt(s.kb)}KB · ${s.age_min}分钟前</span></div>`).join('')||'<div class="gl">尚无切片,点重投影生成</div>';
+  const pg=d.pages.map(p=>`<div class="gl">· <b>${p.name}.html</b>（活数据）← ${p.slice} ｜ 原 demo 页 <a href="${p.demo}.html" target="_blank" style="color:var(--soft)">${p.demo}.html</a> 保留不动 · <a class="abtn" href="${p.name}.html" target="_blank" style="text-decoration:none">↗ 预览活数据版</a></div>`).join('');
+  document.getElementById('proj').innerHTML=`
+    <div class="cards">
+      <div class="card"><div class="v">${fmt(d.db.annotated)}</div><div class="l">已标注核心资产</div><div class="s">可投影上限</div></div>
+      <div class="card"><div class="v">${fmt(d.db.kept)}</div><div class="l">kept</div></div>
+      <div class="card"><div class="v">${fmt(d.db.exh)}</div><div class="l">exhibited</div></div>
+    </div>
+    <div class="panel"><h2>投影切片(web/data/live/) <span style="font-weight:400;color:#aaa;font-size:12px">活库导出的 JSON,知识页读它</span></h2>
+      <div class="bars">${sl}</div>
+      <div style="margin-top:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        作用域 <select id="pScope"><option value="kept" selected>kept(核心资产)</option><option value="exhibited">exhibited(展出)</option></select>
+        上限 <select id="pLim"><option>4000</option><option>8000</option><option>20000</option></select>
+        <button class="abtn" onclick="reproject()">🔄 一键重投影</button>
+        <span id="pMsg" style="color:var(--accent);font-size:12px"></span></div></div>
+    <div class="panel"><h2>已接活数据的知识页（旧 demo 页全部保留）</h2>${pg}
+      <div class="gl" style="margin-top:10px;color:#aaa">第二期接入:kg-affect / kg-worldview-map / kg-galaxy / kg-style-* / kg-subject / kg-artist*（逐个 copy 旧页改数据源）</div></div>`;
+}
+async function reproject(){const sc=document.getElementById('pScope').value,l=document.getElementById('pLim').value;
+  document.getElementById('pMsg').textContent='投影中(约10-30秒)…';
+  const r=await (await fetch(API+`admin/reproject?scope=${sc}&limit=${l}`,{method:'POST'})).json();
+  document.getElementById('pMsg').textContent=r.ok?('✓ '+(r.out||'').trim().split('\\n').pop()):('× '+(r.err||'失败'));_loaded.proj=0;setTimeout(loadProjection,800);}
+
+// ===== VLM 提示词在线编辑(标准可改) =====
+async function loadPromptEditor(){
+  const d=await (await fetch(API+'admin/prompt')).json();
+  document.getElementById('promptedit').innerHTML=`<div class="panel"><h2>✎ VLM 提示词(治理标准 · 可在线编辑)
+    <span style="font-weight:400;font-size:12px;color:${d.override?'var(--warn)':'#aaa'}">${d.override?'● 当前用自定义覆盖':'○ 当前用内置默认'}</span></h2>
+    <textarea id="ptext" style="width:100%;min-height:220px;font:12px/1.6 ui-monospace,monospace;border:1px solid var(--line);border-radius:8px;padding:10px;resize:vertical">${esc(d.effective)}</textarea>
+    <div style="margin-top:8px;display:flex;gap:8px;align-items:center">
+      <button class="abtn" onclick="savePrompt()">保存(下批过闸生效)</button>
+      <button class="abtn stop" onclick="resetPrompt()">恢复内置默认</button>
+      <span id="peMsg" style="color:var(--accent);font-size:12px"></span>
+      <span style="margin-left:auto;color:#aaa;font-size:12px">改完对新过闸的作品生效;已标注的需重标</span></div></div>`;
+}
+async function savePrompt(){const t=document.getElementById('ptext').value;document.getElementById('peMsg').textContent='保存中…';
+  const r=await (await fetch(API+'admin/prompt',{method:'POST',body:t})).json();
+  document.getElementById('peMsg').textContent=r.ok?('✓ 已保存 '+r.len+' 字'):'× 失败';setTimeout(loadPromptEditor,800);}
+async function resetPrompt(){if(!confirm('恢复内置默认提示词?自定义将删除'))return;await fetch(API+'admin/prompt/reset',{method:'POST'});loadPromptEditor();}
+
+// ===== VLM 处理进度（口径=status∈kept/rejected/archived，不用vlm字段以免yishujia导入描述虚高）=====
+async function loadVlm(){
+  try{
+    const d=await(await fetch(API+'stats')).json();
+    const NM={wikiart:'WikiArt',yh:'油画数据集',nbfox:'麦田 nbfox',yishujia:'yishujia'};
+    const st=Object.fromEntries(d.status.map(s=>[s.k,s.n]));
+    const judged=(st.kept||0)+(st.rejected||0)+(st.archived||0), pending=st.pending||0, dup=st.dup||0;
+    const proc=(d.totals.works||0)-dup, pct=proc?Math.round(judged/proc*100):0;
+    const rows=(d.source||[]).map(s=>{const p=s.total?Math.round(s.gated/s.total*100):0;
+      return `<div class="row"><b>${NM[s.k]||s.k}</b>
+        <div class="track"><div class="fill" style="width:${p}%"></div></div>
+        <div class="num">${fmt(s.gated)} / ${fmt(s.total)}（${p}%）</div></div>`;}).join('');
+    document.getElementById('vlm').innerHTML=`<div class="panel">
+      <h2>🤖 VLM 处理进度　<span style="color:#aaa;font-weight:400;font-size:12px">已过 VLM 闸门 = kept+rejected+archived（不含去重跳过的 dup）</span></h2>
+      <div class="cards">
+        <div class="card"><div class="v" style="color:var(--ok)">${fmt(judged)}</div><div class="l">已 VLM 处理</div><div class="s">${pct}% / 可处理 ${fmt(proc)}</div></div>
+        <div class="card"><div class="v" style="color:var(--warn)">${fmt(pending)}</div><div class="l">待 VLM</div></div>
+        <div class="card"><div class="v" style="color:var(--dup)">${fmt(dup)}</div><div class="l">去重跳过·不进VLM</div></div>
+      </div>
+      <div style="margin:4px 0 8px;font-size:12px;color:var(--soft)">各来源已 VLM 处理 / 总量</div>
+      ${rows}</div>`;
+  }catch(e){document.getElementById('vlm').innerHTML='<div class="panel"><h2>🤖 VLM 处理进度</h2><div class="csub">stats 加载失败</div></div>';}
+}
+
+load();setInterval(load,30000);loadGov();loadAnom();setInterval(loadAnom,120000);
+loadCtl();setInterval(loadCtl,20000);loadReview();loadCos();loadPromptEditor();
+loadVlm();setInterval(loadVlm,30000);
+</script>
+</body>
+</html>

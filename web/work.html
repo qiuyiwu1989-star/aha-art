@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>作品 · aha</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#141210;--panel:#f3eee2;--ink:#2a2620;--ink-soft:#5c554a;--ink-mute:#8a8170;--ink-faint:#a89e8b;--line:#ddd5c6;--gold:#b0673a;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+.stage{display:grid;grid-template-columns:1fr 420px;min-height:100vh}@media(max-width:860px){.stage{grid-template-columns:1fr}}
+.view{position:relative;background:radial-gradient(120% 100% at 50% 40%,#23201b,#100e0c);display:flex;align-items:center;justify-content:center;min-height:60vh;overflow:hidden}
+.view img{max-width:94%;max-height:92vh;object-fit:contain;box-shadow:0 30px 80px rgba(0,0,0,.6);cursor:zoom-in;transform-origin:center center;transition:transform .06s linear;will-change:transform}
+.view .topl{position:absolute;top:16px;right:16px;display:flex;gap:8px;z-index:5}
+.view .topl a{font-size:13px;color:#f3eee2;background:rgba(20,16,12,.5);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:9px 15px;text-decoration:none;cursor:pointer;transition:.15s}
+.view .topl a:hover{background:var(--gold);border-color:var(--gold)}
+.view .nav{position:absolute;top:50%;transform:translateY(-50%);z-index:5;color:#f3eee2;background:rgba(20,16,12,.4);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.16);width:42px;height:62px;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;user-select:none}
+.view .nav:hover{background:var(--gold)}.view .nav.pv{left:14px;border-radius:0 8px 8px 0}.view .nav.nx{right:14px;border-radius:8px 0 0 8px}
+.view .vhint{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:4;font-family:var(--mono);font-size:11px;color:rgba(243,238,226,.42);pointer-events:none}
+.panel{background:var(--panel);padding:30px 28px;overflow-y:auto;max-height:100vh}
+.crumb{font-family:var(--mono);font-size:11px;color:var(--ink-mute)}.crumb a{color:var(--gold);text-decoration:none}
+h1{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1.25;margin:10px 0 2px}
+.artist{font-size:14px;color:var(--ink-soft)}.artist a{color:var(--gold);text-decoration:none}
+.warn{background:#fbf2e3;border:1px solid #ecd6b3;color:#8a6a3a;font-size:12px;border-radius:8px;padding:8px 11px;margin-top:10px;line-height:1.6}
+.voice{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:16px;line-height:1.8;margin:18px 0;border-left:3px solid #e3d3c2;padding-left:13px}
+.sec{margin-top:22px}
+.sec-h{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--ink-mute);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:10px}
+.kv{font-size:13px;color:var(--ink-soft);line-height:1.9}.kv b{color:var(--ink)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.tag{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);background:#fff;border:1px solid var(--line);border-radius:6px;padding:2px 8px}
+.mix{font-size:12.5px;color:var(--ink-soft);margin-top:6px}
+/* 7构成 极点轴 */
+.l7ax{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+.ax{display:grid;grid-template-columns:64px 30px 1fr 30px 32px;align-items:center;gap:7px}
+.ax .an{font-family:var(--serif);font-size:12px;color:var(--ink-soft);font-weight:600}
+.ax .lo,.ax .hi{font-family:var(--mono);font-size:9.5px;color:var(--ink-mute)}.ax .lo{text-align:right}
+.ax .vv{font-family:var(--mono);font-size:11px;color:var(--ink-faint);text-align:right}
+.ax .track{position:relative;height:3px;background:#d8cfbd;border-radius:2px}
+.ax .track .mid{position:absolute;left:50%;top:-1px;width:1px;height:5px;background:#cdc3ad}
+.ax .track .dot{position:absolute;top:-4px;width:11px;height:11px;border-radius:50%;background:var(--gold);transform:translateX(-50%);box-shadow:0 0 0 2px #f3eee2;z-index:2}
+/* 情绪坐标 */
+.aff{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.aff .anchor{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--gold)}
+.aff .vad{font-size:13px;color:var(--ink-soft);margin-top:8px;line-height:1.8}.aff .vad b{color:var(--ink)}
+.dbar{display:inline-block;width:88px;height:8px;background:#e6ddcc;border:1px solid var(--line);border-radius:5px;vertical-align:middle}.dbar>span{display:block;height:100%;background:var(--gold);border-radius:5px}
+.chan{font-size:12px;color:var(--ink-soft);margin-top:12px;line-height:1.8}.chan b{color:var(--ink)}
+.fused{font-family:var(--serif);font-size:14.5px;line-height:1.95;background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.foot{font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:20px;border-top:1px solid var(--line);padding-top:10px}
+.home-fab{position:fixed;left:14px;bottom:14px;z-index:50;font-family:var(--mono);font-size:12px;text-decoration:none;color:#f3eee2;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:8px 13px}
+/* zoom overlay */
+#zoom{position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:100;display:none;overflow:hidden;cursor:grab}
+#zoom.on{display:block}#zoom img{position:absolute;transform-origin:0 0;user-select:none;-webkit-user-drag:none;will-change:transform}
+#zoom .zx{position:fixed;top:14px;right:22px;color:#fff;font-size:34px;cursor:pointer;z-index:101;line-height:1}
+#zoom .zhint{position:fixed;bottom:14px;left:0;right:0;text-align:center;color:#bbb;font-size:12px;z-index:101;pointer-events:none}
+#zoom .zload{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;color:#ccc}
+</style>
+</head><body>
+<a class="home-fab" href="kg-catalog.html">← 返回画廊</a>
+<div class="stage" id="stage"><div style="grid-column:1/-1;text-align:center;color:#8a8170;padding:80px;font-family:var(--mono)">加载中…</div></div>
+<script>
+const API='/cat/';
+const esc=s=>(s==null?'':String(s)).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+const fmt=x=>x==null?'—':(+x).toFixed(2);
+const qs=new URLSearchParams(location.search);
+let curId=+qs.get('id');
+let SEQ=(qs.get('seq')||'').split(',').filter(Boolean).map(Number);
+const POLES={'构图与组织':['均衡','动势'],'形状与造型':['消融','扎实'],'透视与空间':['平面','纵深'],'色彩系统':['沉郁','明艳'],'笔触与肌理':['隐没','显露'],'边缘与节奏':['柔化','硬朗'],'光影与明暗':['柔和','强烈']};
+
+function affBlock(af){
+  const v=af.vad||{},va=+v.valence||0,ar=+v.arousal||0,dom=v.dominance;
+  const W=180,H=180,p=16,cx=p+va*(W-2*p),cy=p+(1-ar)*(H-2*p);
+  const ch=af.channels||{};
+  const chh=Object.keys(ch).length?`<div class="chan">${Object.entries(ch).map(([k,t])=>`· <b>${k}</b> ${esc(t)}`).join('<br>')}</div>`:'';
+  const dbar=dom==null?'—':`<span class="dbar"><span style="width:${Math.round(dom*100)}%"></span></span> <b>${fmt(dom)}</b>`;
+  return `<div class="aff">
+    <svg width="${W}" height="${H}" style="background:#fff;border:1px solid var(--line);border-radius:10px;flex:none">
+      <line x1="${W/2}" y1="${p}" x2="${W/2}" y2="${H-p}" stroke="#ece4d4"/><line x1="${p}" y1="${H/2}" x2="${W-p}" y2="${H/2}" stroke="#ece4d4"/>
+      <text x="${W-p+1}" y="${H/2-3}" font-size="9.5" fill="#a89e8b" text-anchor="end">积极</text><text x="${p}" y="${H/2-3}" font-size="9.5" fill="#a89e8b">消极</text>
+      <text x="${W/2+3}" y="${p+9}" font-size="9.5" fill="#a89e8b">激越</text><text x="${W/2+3}" y="${H-p-2}" font-size="9.5" fill="#a89e8b">平静</text>
+      <circle cx="${cx}" cy="${cy}" r="8" fill="var(--gold)"/><circle cx="${cx}" cy="${cy}" r="13" fill="none" stroke="var(--gold)" opacity=".4"/>
+    </svg>
+    <div><div class="anchor">${esc(af.primary_anchor||'—')}</div>
+      <div class="vad">愉悦 V <b>${fmt(va)}</b><br>唤起 A <b>${fmt(ar)}</b><br>支配 D ${dbar}</div></div>${chh}</div>`;
+}
+
+async function render(id){
+  curId=id;history.replaceState(null,'','work.html?id='+id+(SEQ.length?'&seq='+SEQ.join(','):''));
+  const a=await (await fetch(API+'work/'+id)).json();
+  if(a.detail){document.getElementById('stage').innerHTML='<div style="grid-column:1/-1;text-align:center;color:#8a8170;padding:80px">未找到该作品 · <a href="kg-catalog.html" style="color:#b0673a">回画廊</a></div>';return}
+  const v=a.vlm||{},L7=v.language7||{},af=v.affect||{},stl=v.style||{};
+  document.title=(a.title||'无题')+' · aha';
+  const noMeta=(!a.title)||a.artist.name_cn==='(佚名·待考)';
+  const l7=Object.keys(L7).map(k=>{const o=L7[k]||{},val=(typeof o==='object')?(+o.v||0):(+o||0),P=POLES[k]||['',''];
+    return `<div class="ax" title="${esc((typeof o==='object')?(o.desc||''):'')}"><span class="an">${k}</span><span class="lo">${P[0]}</span>
+      <span class="track"><span class="mid"></span><span class="dot" style="left:${Math.round(val*100)}%"></span></span>
+      <span class="hi">${P[1]}</span><span class="vv">${val.toFixed(2)}</span></div>`}).join('');
+  const tags=(v.subject_tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('');
+  const mix=(v.style_mix&&v.style_mix.length)?`<div class="mix">配比：${v.style_mix.map(s=>esc(s.流派)+' '+s.pct+'%').join(' · ')}</div>`:'';
+  const objs=(v.objects||[]).join(' · ');
+  const navBtns=SEQ.length?`<div class="nav pv" onclick="go(-1)">‹</div><div class="nav nx" onclick="go(1)">›</div>`:'';
+  document.getElementById('stage').innerHTML=`
+   <div class="view" id="view">
+     <div class="topl"><a id="zoomBtn">⤢ 复位</a><a href="kg-catalog.html">画廊</a></div>
+     ${navBtns}
+     <img id="pic" src="${a.image.full}?imageMogr2/thumbnail/1600x" alt="">
+     <div class="vhint">滚轮缩放 · 拖动平移 · 双击复位 · ← → 切换</div>
+   </div>
+   <div class="panel">
+     <div class="crumb"><a href="kg-catalog.html">画廊</a> › #${a.id} · ${esc(a.source||'')} · ${a.status}</div>
+     <h1>${esc(a.title||'无题')}</h1>
+     <div class="artist">${esc(a.artist.name_cn||a.artist.name_en||'佚名')}${a.artist.born?' · '+a.artist.born+'–'+(a.artist.death||''):''}${a.year?' · '+esc(a.year):''}${a.school?' · '+esc(a.school):''}${a.medium?' · '+esc(a.medium):''}</div>
+     ${noMeta?'<div class="warn">⚠ 标题/作者为数据缺口（源数据未提供，VLM 识别不可靠未采纳），非考证结论。</div>':''}
+     ${v.voiceover?`<div class="voice">"${esc(v.voiceover)}"</div>`:''}
+     <div class="sec"><div class="sec-h">题材 · ${esc(v.subject||'')}</div><div class="tags">${tags}</div></div>
+     ${stl.流派?`<div class="sec"><div class="sec-h">风格</div><div class="kv">${esc(stl.流派||'')} · ${esc(stl.审美倾向||'')} · ${esc(stl.表现特征||'')}</div>${mix}</div>`:''}
+     ${objs?`<div class="sec"><div class="sec-h">画面元素 · 按占比</div><div class="kv">${esc(objs)}</div></div>`:''}
+     ${l7?`<div class="sec"><div class="sec-h">七大构成</div><div class="l7ax">${l7}</div></div>`:''}
+     <div class="sec"><div class="sec-h">感知效应 · 情绪坐标</div>${affBlock(af)}</div>
+     ${v.allegory?`<div class="sec"><div class="sec-h">寓意</div><div class="kv">${esc(v.allegory)}</div></div>`:''}
+     ${v.fused?`<div class="sec"><div class="sec-h">整体解读</div><div class="fused">${esc(v.fused)}</div></div>`:''}
+     <div class="foot">质量 ${a.quality??'—'} · 来源 ${esc(a.source||'')}${(v._src==='yishujia_import')?' · 含历史导入标注':''}</div>
+   </div>`;
+  document.getElementById('zoomBtn').onclick=resetZoom;
+  setupZoom();
+}
+function go(dir){if(!SEQ.length)return;let i=SEQ.indexOf(curId);if(i<0)return;i+=dir;if(i<0||i>=SEQ.length)return;render(SEQ[i]);}
+
+// 就地缩放(在左侧图区内,不弹全屏):滚轮缩放朝光标 · 拖动平移 · 双击复位
+let vS=1,vX=0,vY=0,vDrag=false,vpx=0,vpy=0,pinch=0;
+function applyV(){const pic=document.getElementById('pic');if(!pic)return;pic.style.transform=`translate(${vX}px,${vY}px) scale(${vS})`;pic.style.cursor=vS>1?'grab':'zoom-in'}
+function resetZoom(){vS=1;vX=0;vY=0;applyV()}
+function zoomAt(cx,cy,f){const view=document.getElementById('view');const r=view.getBoundingClientRect();
+  const dx=cx-(r.left+r.width/2),dy=cy-(r.top+r.height/2);const ns=Math.min(12,Math.max(1,vS*f)),af=ns/vS;
+  vX=dx-(dx-vX)*af;vY=dy-(dy-vY)*af;vS=ns;if(vS<=1){vX=0;vY=0}applyV()}
+function setupZoom(){
+  const view=document.getElementById('view'),pic=document.getElementById('pic');resetZoom();
+  view.addEventListener('wheel',e=>{e.preventDefault();zoomAt(e.clientX,e.clientY,e.deltaY<0?1.2:1/1.2)},{passive:false});
+  pic.addEventListener('mousedown',e=>{if(vS<=1)return;e.preventDefault();vDrag=true;vpx=e.clientX;vpy=e.clientY;pic.style.cursor='grabbing'});
+  pic.addEventListener('dblclick',resetZoom);
+  view.addEventListener('touchmove',e=>{if(e.touches.length===2){e.preventDefault();const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);if(pinch){const cx=(e.touches[0].clientX+e.touches[1].clientX)/2,cy=(e.touches[0].clientY+e.touches[1].clientY)/2;zoomAt(cx,cy,d/pinch)}pinch=d}},{passive:false});
+  view.addEventListener('touchend',()=>pinch=0);
+}
+addEventListener('mousemove',e=>{if(!vDrag)return;vX+=e.clientX-vpx;vY+=e.clientY-vpy;vpx=e.clientX;vpy=e.clientY;applyV()});
+addEventListener('mouseup',()=>{if(vDrag){vDrag=false;applyV()}});
+addEventListener('keydown',e=>{if(e.key==='ArrowLeft')go(-1);else if(e.key==='ArrowRight')go(1)});
+
+render(curId);
+</script>
+</body></html>
