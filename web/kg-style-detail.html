@@ -96,8 +96,9 @@ Promise.all([
   fetch('data/kg_language_vectors.json').then(r=>r.json()).catch(()=>({style_vectors:{},meta:{dims:[]}})),
   fetch('data/kg_artist_index.json').then(r=>r.json()).catch(()=>({})),
   fetch('data/kg_subject_style_edges.json').then(r=>r.json()).catch(()=>({by_style:{}})),
-  fetch('data/kg_subtext_style_edges.json').then(r=>r.json()).catch(()=>({by_style:{}}))
-]).then(([sty,graph,arts,wv,lineage,langv,aidx,subjE,subtE])=>{
+  fetch('data/kg_subtext_style_edges.json').then(r=>r.json()).catch(()=>({by_style:{}})),
+  fetch('data/kg_style_works.json').then(r=>r.json()).catch(()=>({by_canonical:{},count:{},canon_zh:{}}))
+]).then(([sty,graph,arts,wv,lineage,langv,aidx,subjE,subtE,swork])=>{
   const SUBJ=(subjE.by_style)||{}; const SUBT=(subtE.by_style)||{};
   const L2V=(langv.style_vectors||{}); const L2DIM=(langv.meta&&langv.meta.dims)||[];
   const L2BY={}; L2DIM.forEach(d=>L2BY[d.short]=d);
@@ -283,7 +284,7 @@ Promise.all([
       const fp=$('<div style="background:#fbf9f4;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:10px"></div>');
       fp.appendChild($('<div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-bottom:6px">L2 语言指纹(0→1 连续轴 · <a href="kg-language.html" style="color:var(--accent);text-decoration:none">语言层</a>)</div>'));
       ORD.forEach(s=>{const val=lv[s],d=L2BY[s]||{};
-        fp.appendChild($(`<div style="display:flex;align-items:center;gap:7px;margin:3px 0;font-size:11.5px"><span style="width:30px;font-family:var(--serif);font-weight:600;color:var(--ink-soft)">${s}</span><span style="flex:1;height:11px;background:var(--paper-2);border-radius:6px;position:relative;overflow:hidden"><span style="position:absolute;left:0;top:0;height:100%;width:${val*100}%;background:var(--accent);border-radius:6px"></span></span><span style="width:30px;text-align:right;font-family:var(--mono);font-size:10px;color:var(--ink-mute)">${val.toFixed(2)}</span><span style="width:96px;font-size:9.5px;color:var(--ink-faint)">${val>=0.5?(d.high||''):(d.low||'')}</span></div>`));});
+        fp.appendChild($(`<div style="display:flex;align-items:center;gap:7px;margin:4px 0;font-size:11.5px"><span style="width:30px;font-family:var(--serif);font-weight:600;color:var(--ink-soft);flex-shrink:0">${s}</span><span style="width:84px;text-align:right;font-size:9px;color:var(--ink-faint);flex-shrink:0;line-height:1.2">${d.low||''}</span><span style="flex:1;height:7px;background:var(--paper-2);border-radius:4px;position:relative"><span style="position:absolute;left:50%;top:0;height:100%;width:1px;background:#cfc6b4"></span><span style="position:absolute;top:50%;left:${val*100}%;width:12px;height:12px;border-radius:50%;background:var(--accent);transform:translate(-50%,-50%);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.18)"></span></span><span style="width:84px;font-size:9px;color:var(--ink-faint);flex-shrink:0;line-height:1.2">${d.high||''}</span><span style="width:28px;text-align:right;font-family:var(--mono);font-size:10px;color:var(--ink-mute);flex-shrink:0">${val.toFixed(2)}</span></div>`));});
       wrap.appendChild(fp);}
     const g=$('<div class="lang7"></div>');
     SEVEN.forEach(k=>{const v=lo.lang7[k]; g.appendChild($(`<div class="l7"><a class="l7k" href="kg-language.html" title="去绘画语言层看「${k}」">${k}</a><div class="l7v">${v||'<span style="color:var(--ink-faint)">—</span>'}</div></div>`));});
@@ -309,6 +310,27 @@ Promise.all([
   const sc=$('<div class="chips"></div>'); sib.forEach(x=>sc.appendChild($(`<a class="chip" href="kg-style-detail.html?id=${x.id}">${x.cn}</a>`)));
   inner.appendChild($(`<div class="kv" style="margin-top:6px"><span class="l">同区邻居</span></div>`)); inner.appendChild(sc);
   b.appendChild(SEC('⑩ 关联 EDGES',inner));
+  // ⑪ 本风格作品 · 优先富节点精确匹配,无则退标准码组粒度
+  const canon=n.canonical, canonZh=(swork.canon_zh||{})[canon]||canon;
+  const nodeW=((swork.by_node||{})[n.id])||[], nodeT=((swork.count_node||{})[n.id])||0;
+  const grpW=((swork.by_canonical||{})[canon])||[], grpT=((swork.count||{})[canon])||0;
+  const precise=nodeW.length>0;
+  const cworks=precise?nodeW:grpW, ctotal=precise?nodeT:grpT;
+  if(canon && canon!=='other' && cworks.length){
+    const cg=$('<div class="awgrid"></div>');
+    cworks.slice(0,12).forEach(a=>{if(!a.thumb)return;
+      cg.appendChild($(`<a class="aw" href="${a.full||a.thumb}" target="_blank" title="${(a.title||'')} · ${(a.artist||'')}"><img loading="lazy" src="${a.thumb}" alt="${a.title||''}"/><span class="awt">${a.title||''}</span></a>`));});
+    const note=precise
+      ? `本节点<b style="color:var(--green)">精确匹配</b> <b>${ctotal}</b> 件入库真迹(预览 ${Math.min(12,cg.children.length)} 件)。<br>由原始流派标签直接对应到本细分风格,非组粒度。`
+      : `经标准码 <b>${canonZh}</b> 关联,共 <b>${ctotal}</b> 件入库真迹(预览 ${Math.min(12,cg.children.length)} 件)。<br>⚠ 按<b>「${canonZh}」组粒度</b>展示——本节点细分尚无独立标注的作品,与同组共享。`;
+    const box=$('<div></div>');
+    box.appendChild($(`<div class="worknote" style="margin-bottom:8px">${note}</div>`));
+    box.appendChild(cg);
+    b.appendChild(SEC(`⑪ 本风格作品 · 入库真迹${precise?'(精确匹配)':'(按组粒度)'}`,box));
+  } else {
+    const why = east ? '本馆藏目前几乎全为西方作品,该东方风格暂无入库真迹。' : '该风格暂无入库真迹。';
+    b.appendChild(SEC('⑪ 本风格作品 · 入库真迹',`<div class="empty">${why}(待作品入库后自动出现)</div>`));
+  }
   // 馆藏相关(缩略图)
   const cw=(graph.membership||{})[n.id]||[];
   if(cw.length){
