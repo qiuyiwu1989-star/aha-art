@@ -62,7 +62,7 @@ select{font:13px inherit;padding:5px 8px;border:1px solid var(--line);border-rad
 .navi{display:block;padding:9px 12px;border-radius:8px;color:var(--ink);text-decoration:none;font-size:13.5px;margin:2px 0;cursor:pointer;transition:background .15s,color .15s}
 .navi:hover{background:var(--paper-2,#ece7db)}.navi.on{background:var(--accent-soft);color:var(--accent);font-weight:600}
 .navi small{color:var(--soft);font-size:11px;display:block}.navi.on small{color:var(--accent);opacity:.8}
-.navsep{height:1px;background:var(--line);margin:10px 6px}
+.navgrp{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint,#a89f8f);padding:13px 12px 4px}.navi{display:flex;align-items:center;flex-wrap:wrap}.navi small{flex-basis:100%}.navi .ico{width:15px;height:15px;flex:none;margin-right:7px;opacity:.75}.navi.on .ico{opacity:1}.navsep{height:1px;background:var(--line);margin:10px 6px}
 .main{flex:1;min-width:0}
 .modh{max-width:1180px;margin:0 auto;padding:18px 22px 2px}.modh h1{font-size:21px;margin:0;font-family:var(--serif);font-weight:600}.modh p{color:var(--soft);font-size:13px;margin:5px 0 0}
 .soon{max-width:1180px;margin:0 auto;padding:48px 22px;color:var(--soft)}
@@ -75,23 +75,28 @@ select{font:13px inherit;padding:5px 8px;border:1px solid var(--line);border-rad
 <div class="shell">
 <aside class="side">
   <div class="brand">aha<span style="color:var(--accent)">.</span>art<div class="brandsub">管理后台 · admin</div></div>
-  <a class="navi on" data-m="cos">📥 原始数据管理 · COS<small>导入数据 · 开闸 · 清洗</small></a>
-  <a class="navi" data-m="exhibit">🖼 展出与策展<small>选图进展厅</small></a>
-  <a class="navi" data-m="special">🗓 首页特展<small>主题展区 · 增删改</small></a>
-  <a class="navi" data-m="frame">🖼 画框管理中心<small>框样式库 + 逐画指定</small></a>
-  <a class="navi" data-m="artist">🎨 艺术家 · 元数据<small>档案·星图·检索</small></a>
-  <a class="navi" data-m="user">💬 用户 · 互动<small>museum mu_*</small></a>
-  <a class="navi" data-m="gen">🎨 生成图库<small>全量治理 / 优选入馆</small></a>
-  <a class="navi" data-m="proj">🔗 知识结构投影<small>活库 → 知识页</small></a>
+  <div class="navgrp">入料 · 资产</div>
+  <a class="navi" data-m="cos"><i data-ic="data"></i> 原始数据 · COS<small>导入 · 开闸 · 清洗</small></a>
+  <a class="navi" data-m="artist"><i data-ic="artists"></i> 艺术家 · 元数据<small>档案 · 星图 · 检索</small></a>
+  <div class="navgrp">对外展呈</div>
+  <a class="navi" data-m="exhibit"><i data-ic="works"></i> 展出与策展<small>选图进展厅</small></a>
+  <a class="navi" data-m="special"><i data-ic="sparkles"></i> 首页特展<small>主题展区 · 增删改</small></a>
+  <a class="navi" data-m="frame"><i data-ic="frame"></i> 画框管理中心<small>框样式库 + 逐画</small></a>
+  <div class="navgrp">用户 · 创作</div>
+  <a class="navi" data-m="user"><i data-ic="danmaku"></i> 用户 · 互动<small>museum mu_*</small></a>
+  <a class="navi" data-m="gen"><i data-ic="create"></i> 生成图库<small>治理 / 优选入馆</small></a>
+  <div class="navgrp">知识结构</div>
+  <a class="navi" data-m="proj"><i data-ic="graph"></i> 知识结构投影<small>活库 → 知识页</small></a>
   <div class="navsep"></div>
-  <a class="navi" href="kg-catalog.html" target="_blank">↗ 画廊(对内)</a>
-  <a class="navi" href="art.html" target="_blank">↗ 展厅(对外)</a>
+  <div class="navgrp">直达</div>
+  <a class="navi" href="kg-catalog.html" target="_blank"><i data-ic="gallery"></i> 画廊(对内)</a>
+  <a class="navi" href="art.html" target="_blank"><i data-ic="museum"></i> 展厅(对外)</a>
   <div class="navsep"></div>
   <span class="upd" id="upd" style="font-family:var(--mono);font-size:11px;color:var(--soft);padding:0 12px;letter-spacing:.03em"></span>
 </aside>
 <main class="main">
   <section class="mod" id="mod-cos">
-    <div class="modh"><h1>📥 原始数据管理 · COS</h1><p>我导入的全部数据（4 来源 / 15 万件），正处在「开闸标注 + 清洗去重」的过程中。</p></div>
+    <div class="modh"><h1>原始数据管理 · COS</h1><p>我导入的全部数据（4 来源 / 15 万件），正处在「开闸标注 + 清洗去重」的过程中。</p></div>
     <div class="wrap" id="app">加载中…</div>
     <div class="wrap" id="cos"></div>
     <div class="wrap" id="vlm"></div>
@@ -103,45 +108,52 @@ select{font:13px inherit;padding:5px 8px;border:1px solid var(--line);border-rad
     <div class="wrap" id="gov"></div>
   </section>
   <section class="mod" id="mod-exhibit" hidden>
-    <div class="modh"><h1>🖼 展出与策展</h1><p>从核心资产选图进对外展厅 art.html（规则A自动 + 人工 + 主题展 collections）。</p></div>
+    <div class="modh"><h1>展出与策展</h1><p>从核心资产选图进对外展厅 art.html（规则A自动 + 人工 + 主题展 collections）。</p></div>
     <div class="wrap" id="exh">加载中…</div>
   </section>
   <section class="mod" id="mod-special" hidden>
-    <div class="modh"><h1>🗓 首页特展</h1><p>museum 首页「特展」区实时读这里。规则型(按情绪/世界观/区域自动选,新画自动进)或选图型。改完即时生效。</p></div>
+    <div class="modh"><h1>首页特展</h1><p>museum 首页「特展」区实时读这里。规则型(按情绪/世界观/区域自动选,新画自动进)或选图型。改完即时生效。</p></div>
     <div class="wrap"><div id="spwrap">加载中…</div></div>
   </section>
   <section class="mod" id="mod-frame" hidden>
-    <div class="modh"><h1>🖼 画框管理中心</h1><p>上半=框样式库(系统现有的框,含自动匹配规则);下半=逐画指定(给某幅画钉死一个框,全站一致)。不指定=按画的气质自动匹配。规范见 <a href="frames.html" target="_blank">frames.html</a>。</p></div>
+    <div class="modh"><h1>画框管理中心</h1><p>上半=框样式库(系统现有的框,含自动匹配规则);下半=逐画指定(给某幅画钉死一个框,全站一致)。不指定=按画的气质自动匹配。规范见 <a href="frames.html" target="_blank">frames.html</a>。</p></div>
     <div class="wrap"><div id="frmwrap">加载中…</div></div>
   </section>
   <section class="mod" id="mod-artist" hidden>
-    <div class="modh"><h1>🎨 艺术家 · 元数据</h1><p>艺术家库总览、缺口、检索（归一/别名合并后续）。</p></div>
+    <div class="modh"><h1>艺术家 · 元数据</h1><p>艺术家库总览、缺口、检索（归一/别名合并后续）。</p></div>
     <div class="wrap" id="art">加载中…</div>
   </section>
   <section class="mod" id="mod-user" hidden>
-    <div class="modh"><h1>💬 用户 · 互动</h1><p>匿名用户行为、众声评论、收藏、人设解读（museum mu_* 数据）。</p></div>
+    <div class="modh"><h1>用户 · 互动</h1><p>匿名用户行为、众声评论、收藏、人设解读（museum mu_* 数据）。</p></div>
     <div class="wrap" id="usr">加载中…</div>
   </section>
   <section class="mod" id="mod-gen" hidden>
-    <div class="modh"><h1>🎨 生成图库 · 全量治理</h1><p>所有用户用意图编译器生成的图（mu_generation，按 uid 分"我的"/全量）。可评分、删除、把好图优选入馆。用户侧"我的创作"在 <a href="me.html" target="_blank">me.html</a>。</p></div>
+    <div class="modh"><h1>生成图库 · 全量治理</h1><p>所有用户用意图编译器生成的图（mu_generation，按 uid 分"我的"/全量）。可评分、删除、把好图优选入馆。用户侧"我的创作"在 <a href="me.html" target="_blank">me.html</a>。</p></div>
     <div class="wrap" id="genmod">加载中…</div>
   </section>
   <section class="mod" id="mod-proj" hidden>
-    <div class="modh"><h1>🔗 知识结构投影</h1><p>把活库投影成知识结构页要的数据切片（旧 demo 页保留，活数据版为 -live 新页）。</p></div>
+    <div class="modh"><h1>知识结构投影</h1><p>把活库投影成知识结构页要的数据切片（旧 demo 页保留，活数据版为 -live 新页）。</p></div>
     <div class="wrap" id="proj">加载中…</div>
   </section>
 </main>
 </div>
+<script src="js/aha-icons.js"></script>
 <script>
 const API='/cat/';
 const fmt=n=>(n??0).toLocaleString();
 const _loaded={};
-document.querySelectorAll('.navi[data-m]').forEach(a=>a.onclick=()=>{
-  const m=a.dataset.m;
-  document.querySelectorAll('.navi[data-m]').forEach(x=>x.classList.toggle('on',x===a));
+const MODS=['cos','exhibit','special','frame','artist','user','gen','proj'];
+const LOADERS={exhibit:loadExhibit,special:loadSpecial,frame:loadFrame,artist:loadArtists,user:loadUsers,gen:loadGen,proj:loadProjection};
+function showMod(m){if(MODS.indexOf(m)<0)m='cos';
+  document.querySelectorAll('.navi[data-m]').forEach(x=>x.classList.toggle('on',x.dataset.m===m));
   document.querySelectorAll('.mod').forEach(s=>s.hidden=(s.id!=='mod-'+m));
-  if(!_loaded[m]){_loaded[m]=1;({exhibit:loadExhibit,special:loadSpecial,frame:loadFrame,artist:loadArtists,user:loadUsers,gen:loadGen,proj:loadProjection}[m]||(()=>{}))()}
-});
+  if(m!=='cos'&&!_loaded[m]){_loaded[m]=1;(LOADERS[m]||(()=>{}))();}
+  document.title='aha 后台 · '+({cos:'原始数据',exhibit:'展出策展',special:'首页特展',frame:'画框管理',artist:'艺术家',user:'用户互动',gen:'生成图库',proj:'知识投影'}[m]||'');}
+// 点导航 = 改 hash(写进 URL,刷新/前进后退/分享都停在该模块)
+document.querySelectorAll('.navi[data-m]').forEach(a=>a.onclick=e=>{e.preventDefault();
+  if(location.hash.slice(1)===a.dataset.m)showMod(a.dataset.m);else location.hash=a.dataset.m;});
+addEventListener('hashchange',()=>showMod(decodeURIComponent(location.hash.slice(1))));
+showMod(decodeURIComponent(location.hash.slice(1))||'cos');
 async function load(){
   const d=await (await fetch(API+'stats')).json();
   const t=d.totals,g=d.gating;
@@ -379,6 +391,10 @@ async function loadArtists(qv){
       <div class="csub" style="font-weight:600">未达标(缺任一维)<span style="color:var(--warn)">${c.gap_counts.incomplete}</span> 位</div><div style="margin:4px 0 12px">${c.gaps.incomplete.slice(0,30).map(x=>`<a href="kg-artist.html?id=${encodeURIComponent(x.id)}" target="_blank" title="缺:${x.missing.join('、')}" style="display:inline-block;margin:2px 5px 2px 0;padding:2px 9px;border:1px solid var(--line);border-radius:999px;color:var(--ink);text-decoration:none;font-size:12px">${esc(x.cn)} <span style="color:#aaa">${x.missing.length}缺</span></a>`).join('')}</div>
       <div class="csub" style="font-weight:600">缺头像 <span style="color:var(--warn)">${c.gap_counts.no_portrait}</span> 位 · 缺真作品 <span style="color:var(--warn)">${c.gap_counts.no_works}</span> 位</div>
       <div style="margin:4px 0 0">${gapList(c.gaps.no_portrait)}</div></div></div>`;
+    const susp=c.suspects||[];
+    if(susp.length)canonHTML+=`<div class="panel"><h2>⚑ 考据疑点 <span style="color:#aaa;font-weight:400;font-size:12px">AI 交叉核对发现 ${(c.verify['疑点']||0)} 位有疑点(点名进主页核对修正)</span></h2>
+      <table class="rt" style="margin-top:6px"><tr><th>艺术家</th><th>疑点</th></tr>
+      ${susp.map(s=>`<tr><td style="white-space:nowrap"><a href="kg-artist.html?id=${encodeURIComponent(s.id)}" target="_blank" style="color:var(--accent);text-decoration:none">${esc(s.cn)}</a></td><td style="font-size:12px;line-height:1.6">${(s.flags||[]).map(f=>`<div><b style="font-family:var(--mono);font-size:10.5px;color:var(--accent)">${esc(f.field||'')}</b> ${esc(f.issue||'')}</div>`).join('')||esc(s.note||'')}</td></tr>`).join('')}</table></div>`;
   }
   document.getElementById('art').innerHTML=canonHTML+`
     <div class="panel"><h2>源艺术家库(归一前)<span style="color:#aaa;font-weight:400;font-size:12px">${fmt(t.total)} 条 · 含未策展的画家,可搜索 → 提拔进策展库</span></h2>
