@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>原型 · 大刊 / 编辑部 · aha</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f4f1ea;--paper2:#ece6d9;--ink:#221e18;--ink-soft:#5a5246;--ink-mute:#8a8170;--gold:#9a5a2c;--line:#ddd5c6;
+    --serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .backbar{position:fixed;top:12px;right:12px;z-index:40;display:flex;gap:8px}
+  .backbar a{font-family:var(--mono);font-size:11px;color:var(--ink-soft);background:rgba(255,255,255,.72);
+    border:1px solid var(--line);border-radius:999px;padding:6px 12px;text-decoration:none}
+  /* 刊头 */
+  .masthead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+    max-width:1280px;margin:0 auto;padding:22px 40px 16px;border-bottom:2px solid var(--ink);flex-wrap:wrap}
+  .masthead .logo{font-family:var(--serif);font-weight:900;font-size:clamp(26px,3.4vw,40px);letter-spacing:.01em}
+  .masthead .logo .d{color:var(--gold)}
+  .masthead .meta{font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.12em;text-transform:uppercase}
+  /* 封面大图 */
+  .cover{position:relative;max-width:1280px;margin:0 auto;height:clamp(420px,78vh,820px);overflow:hidden;background:#1a1510}
+  .cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    transform:scale(1.06);animation:kenburns 26s ease-in-out infinite alternate}
+  @keyframes kenburns{from{transform:scale(1.05) translate(0,0)}to{transform:scale(1.13) translate(-2%,-2%)}}
+  .cover .scrim{position:absolute;inset:0;background:
+    linear-gradient(0deg,rgba(12,9,6,.86) 0%,rgba(12,9,6,.32) 38%,rgba(12,9,6,.05) 62%,rgba(12,9,6,.25) 100%)}
+  .cover .tag{position:absolute;top:22px;left:26px;font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;
+    color:#f0e6d4;border:1px solid rgba(240,230,212,.5);border-radius:999px;padding:5px 13px;backdrop-filter:blur(4px)}
+  .cover .cap{position:absolute;left:0;right:0;bottom:0;padding:0 clamp(26px,5vw,66px) clamp(30px,5vh,64px);color:#f6efe2}
+  .cover .voice{font-family:var(--serif);font-weight:500;font-style:italic;font-size:clamp(22px,3.6vw,46px);
+    line-height:1.4;max-width:18ch;text-shadow:0 2px 24px rgba(0,0,0,.6);text-wrap:balance}
+  .cover .by{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:#e7d8c0;margin-top:18px;opacity:.92}
+  .cover .by b{font-family:var(--serif);font-weight:600;font-style:normal;color:#fff;font-size:14px}
+  .cover .enter{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-family:var(--mono);font-size:12px;
+    letter-spacing:.06em;color:#1a140d;background:#e9dcc2;border-radius:999px;padding:10px 20px;text-decoration:none;
+    transition:transform .2s,background .2s}
+  .cover .enter:hover{transform:translateY(-2px);background:#fff}
+  /* 本期 · 目录(展区 = 篇目,不是卡片) */
+  .issue{max-width:1280px;margin:0 auto;padding:64px 40px 100px}
+  .issue-h{display:flex;align-items:baseline;gap:16px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:8px}
+  .issue-h .t{font-family:var(--serif);font-size:clamp(20px,2.4vw,28px);font-weight:700}
+  .issue-h .n{font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.1em;margin-left:auto}
+  /* 篇目行 */
+  .entry{display:grid;grid-template-columns:64px 1fr auto;gap:clamp(14px,3vw,40px);align-items:center;
+    padding:clamp(20px,3.4vh,34px) 6px;border-bottom:1px solid var(--line);cursor:pointer;position:relative;
+    transition:padding-left .35s cubic-bezier(.22,.61,.36,1)}
+  .entry:hover{padding-left:18px}
+  .entry .no{font-family:var(--serif);font-size:clamp(28px,4vw,46px);font-weight:300;color:var(--gold);line-height:1;
+    transition:color .3s}
+  .entry:hover .no{color:var(--ink)}
+  .entry .mid .nm{font-family:var(--serif);font-size:clamp(20px,2.6vw,30px);font-weight:600;line-height:1.2}
+  .entry .mid .ds{font-size:13.5px;color:var(--ink-soft);margin-top:6px;line-height:1.6;max-width:52ch}
+  .entry .mid .cnt{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);letter-spacing:.05em;margin-top:8px}
+  /* 右侧:这间厅的几幅画,悬停浮现 */
+  .entry .peek{display:flex;gap:8px;align-items:center}
+  .entry .peek .pk{width:clamp(46px,5vw,76px);height:clamp(58px,6.2vw,96px);object-fit:cover;border-radius:2px;
+    background:#cabfa6;box-shadow:0 8px 18px -8px rgba(40,28,12,.5),0 0 0 4px var(--paper),0 0 0 5px rgba(0,0,0,.06);
+    transform:translateY(8px) rotate(-2deg);opacity:.86;transition:transform .35s cubic-bezier(.22,.61,.36,1),opacity .35s}
+  .entry .peek .pk:nth-child(2){transform:translateY(4px) rotate(1.5deg);z-index:2}
+  .entry .peek .pk:nth-child(3){transform:translateY(10px) rotate(3deg)}
+  .entry:hover .peek .pk{transform:translateY(0) rotate(0);opacity:1}
+  .entry .arrow{font-family:var(--mono);font-size:18px;color:var(--ink-mute);transition:transform .3s,color .3s;align-self:center}
+  .entry:hover .arrow{transform:translateX(5px);color:var(--gold)}
+  @media(max-width:720px){.entry{grid-template-columns:44px 1fr}.entry .peek,.entry .arrow{display:none}.cover{height:62vh}}
+  .loading{padding:50px;text-align:center;color:var(--ink-mute);font-family:var(--mono)}
+  .foot{max-width:1280px;margin:0 auto;padding:0 40px;font-family:var(--mono);font-size:11px;color:var(--ink-faint,#a89f8f);line-height:1.8}
+</style></head>
+<body>
+<div class="backbar"><a href="museum.html">现版</a><a href="museum-hero-portal.html">方案A</a><a href="museum-hero-3d.html">方案B</a></div>
+
+<header class="masthead">
+  <div class="logo">人类美术馆<span class="d">.</span></div>
+  <div class="meta" id="issue-meta">THE HUMAN GALLERY · 加载中</div>
+</header>
+
+<section class="cover" id="cover"><div class="loading" style="color:#caa46a;padding-top:120px">正在挑选今日封面…</div></section>
+
+<section class="issue">
+  <div class="issue-h"><div class="t">本期 · 六种看世界的方式</div><div class="n">SIX WORLDVIEWS · 点篇目进厅</div></div>
+  <div id="entries"></div>
+  <div class="foot" style="margin-top:40px">每一间厅,是人类看待世界的一种方式 · 推开任意篇目,走进那一种眼睛。</div>
+</section>
+
+<script>
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function mTitle(t){if(!t)return '无题';t=String(t).replace(/\.(jpe?g|png|webp|gif|tiff?|bmp|jfif)$/i,'').replace(/[_]+/g,' ').trim();return t||'无题';}
+function imgT(w,px){const f=(w&&w.file)||'';px=px||600;
+  if(/myqcloud\.com/i.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/quality/82';
+  if(/(^|\/)img\/[^?]*\.(jpe?g|png)$/i.test(f))return f.replace(/\.(jpe?g|png)$/i,'.t720.webp');
+  return (w&&w.thumb)||f;}
+function hash(s){let h=0;s=String(s);for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return h;}
+const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+const WVNOTE={WV1:'忠实于眼睛所见——把世界看清楚本身,就是一种信仰。',WV2:'图像服务于秩序与信仰,程式先于个性。',WV3:'不求形似,以笔墨寄托心性与逸气;留白处最响。',WV4:'捕捉光落进眼睛的那一瞬,瞬间比永恒更真。',WV5:'把内心情绪直接外化为色彩与笔触的强度。',WV6:'退回到形式本身——点线面与结构即是内容。'};
+const VOICE={WV1:'只要看得够久够诚,真实会自己显形。',WV2:'个人退到最后,留下图像本该有的庄严。',WV3:'寥寥几笔,画的不是眼前之物,是胸中那口气。',WV4:'物的轮廓被光融化,剩下一次呼吸般的观看。',WV5:'颜色与笔触都在喊,它先于理智抵达你。',WV6:'这里没有故事,只有结构在低声说话。'};
+const ORDER=['WV1','WV2','WV3','WV4','WV5','WV6'];
+
+fetch('/cat/exhibit?limit=2000&slim=1').then(r=>r.json()).catch(()=>fetch('data/gallery_works.json').then(r=>r.json()))
+ .then(d=>{
+   const W=(d.works||[]).filter(w=>w.file&&w.wv);
+   const byWV={};W.forEach(w=>{(byWV[w.wv]=byWV[w.wv]||[]).push(w);});
+   buildCover(W); buildIssue(byWV);
+ }).catch(e=>{document.getElementById('cover').innerHTML='<div class="loading">需服务器:'+e+'</div>';});
+
+function buildCover(W){
+  // 今日封面:按日期确定性挑一幅(每天换一张),偏好横幅
+  const day=new Date(); const seed=Math.abs(hash(day.getFullYear()+'-'+day.getMonth()+'-'+day.getDate()));
+  const land=W.filter(w=>w);  // 全集;真实里可按 ar 偏好横幅
+  const w=land[seed%land.length];
+  const issue=Math.floor((Date.UTC(day.getFullYear(),day.getMonth(),day.getDate())-Date.UTC(2026,0,1))/86400000)+1;
+  document.getElementById('issue-meta').textContent=`第 ${issue} 期 · ${day.getFullYear()}.${String(day.getMonth()+1).padStart(2,'0')}.${String(day.getDate()).padStart(2,'0')} · 今日封面`;
+  const wv=w.wv, voice=(w.voiceover&&w.voiceover.length>8)?w.voiceover:(VOICE[wv]||'一幅人类留下的画。');
+  document.getElementById('cover').innerHTML=`
+    <img src="${imgT(w,1400)}" alt="">
+    <div class="scrim"></div>
+    <div class="tag">今日封面 · COVER</div>
+    <div class="cap">
+      <div class="voice">「${esc(voice)}」</div>
+      <div class="by"><b>${esc(mTitle(w.title))}</b> · ${esc(w.artist||'佚名')}${w.wvcn?' · '+esc(w.wvcn):(WVN[wv]?' · '+WVN[wv]:'')}</div>
+      <a class="enter" href="art.html?w=${encodeURIComponent(w.file)}">走近这幅 →</a>
+    </div>`;
+}
+function buildIssue(byWV){
+  const box=document.getElementById('entries');box.innerHTML='';
+  ORDER.forEach((k,i)=>{
+    const ws=(byWV[k]||[]);const peek=ws.slice(0,3);
+    const el=document.createElement('div');el.className='entry';
+    el.innerHTML=`<div class="no">${String(i+1).padStart(2,'0')}</div>
+      <div class="mid"><div class="nm">${WVN[k]}</div><div class="ds">${WVNOTE[k]}</div><div class="cnt">${ws.length} 幅 · 进厅以沙龙墙 / 长廊 / 平面任选</div></div>
+      <div class="peek">${peek.map(w=>`<img class="pk" loading="lazy" src="${imgT(w,200)}">`).join('')}<span class="arrow">→</span></div>`;
+    el.onclick=()=>location.href='museum.html#hall=wv:'+k+'&form=salon';
+    box.appendChild(el);
+  });
+}
+</script>
+</body></html>

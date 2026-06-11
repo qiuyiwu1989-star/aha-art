@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>原型 · 色谱长河 · aha</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:#16130d;color:#f3eee2;font-family:var(--sans);overflow:hidden}
+  .river{position:fixed;inset:0;overflow-x:auto;overflow-y:hidden;cursor:grab;scrollbar-width:none}
+  .river::-webkit-scrollbar{display:none}
+  .river.drag{cursor:grabbing}
+  .field{position:relative;height:100%;will-change:transform}
+  /* 中央光谱河:柔和的色相带,衬在画后面 */
+  .spectrum{position:absolute;left:0;top:50%;transform:translateY(-50%);height:62%;border-radius:40px;
+    filter:blur(34px);opacity:.5;pointer-events:none}
+  .pa{position:absolute;cursor:pointer;transition:transform .25s,filter .25s;will-change:transform}
+  .pa:hover{transform:scale(1.14) translateY(-4px);z-index:9}
+  .pa .fr{padding:5px;border-radius:2px;box-shadow:0 14px 28px -12px rgba(0,0,0,.7)}
+  .pa img{display:block;width:100%;height:auto;border-radius:1px;background:#222}
+  .pa .cap{position:absolute;left:0;right:0;bottom:-17px;text-align:center;font-family:var(--mono);font-size:9px;
+    color:rgba(243,238,226,.0);transition:color .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pa:hover .cap{color:rgba(243,238,226,.85)}
+  .htitle{position:fixed;left:0;right:0;top:7%;z-index:6;text-align:center;pointer-events:none;text-shadow:0 2px 22px #000}
+  .htitle .n{font-family:var(--serif);font-size:clamp(26px,4.4vw,44px);font-weight:700}
+  .htitle .n .d{color:#d99a5a}
+  .htitle .s{font-family:var(--serif);font-size:clamp(13px,1.8vw,17px);color:#e2c499;margin-top:6px;opacity:.92}
+  /* 底部色相标尺 */
+  .ruler{position:fixed;left:0;right:0;bottom:0;height:42px;z-index:7;display:flex;align-items:center;
+    padding:0 18px;gap:12px;background:linear-gradient(0deg,rgba(10,8,5,.9),transparent)}
+  .ruler .bar{flex:1;height:8px;border-radius:999px;position:relative;
+    background:linear-gradient(90deg,#c25a4a,#cd9a3a,#9bbf5a,#5ab0a0,#5b7596,#8a6abf,#c25a4a)}
+  .ruler .cur{position:absolute;top:-4px;width:3px;height:16px;background:#fff;border-radius:2px;box-shadow:0 0 8px #fff}
+  .ruler .lab{font-family:var(--mono);font-size:10px;color:#cabfa6;white-space:nowrap}
+  .hint{position:fixed;left:0;right:0;bottom:50px;z-index:6;text-align:center;font-family:var(--mono);font-size:11px;
+    letter-spacing:.14em;color:#cab089;pointer-events:none;opacity:.8}
+  .backbar{position:fixed;top:12px;left:12px;z-index:30;display:flex;gap:7px}
+  .backbar a{font-family:var(--mono);font-size:11px;color:#3a2c1c;background:rgba(243,238,226,.82);border-radius:999px;padding:6px 11px;text-decoration:none}
+  .loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;color:#caa46a;font-family:var(--mono);z-index:20}
+</style></head>
+<body>
+<div class="backbar"><a href="museum.html">现版</a><a href="museum-hero-spotlight.html">聚光灯</a><a href="museum-hero-reel.html">一画入魂→</a></div>
+<div class="htitle"><div class="n">色谱长河<span class="d">.</span></div><div class="s">顺着颜色,漂过整座馆 —— 从赤到紫,每幅画落在它自己的色相上</div></div>
+<div class="river" id="river"><div class="field" id="field"></div></div>
+<div class="hint">← 拖动 / 滚轮,沿色相漂流 →</div>
+<div class="ruler"><span class="lab" id="hl">红</span><div class="bar"><div class="cur" id="cur"></div></div><span class="lab">紫</span></div>
+<div class="loading" id="loading">正在按颜色铺开馆藏…</div>
+
+<script>
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function mTitle(t){if(!t)return '无题';t=String(t).replace(/\.(jpe?g|png|webp|gif|tiff?|bmp|jfif)$/i,'').replace(/[_]+/g,' ').trim();return t||'无题';}
+function imgT(w,px){const f=(w&&w.file)||'';px=px||300;
+  if(/myqcloud\.com/i.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/quality/82';
+  if(/(^|\/)img\/[^?]*\.(jpe?g|png)$/i.test(f))return f.replace(/\.(jpe?g|png)$/i,'.t720.webp');
+  return (w&&w.thumb)||f;}
+function hexOf(c){if(c&&c.hex)return c.hex;if(c&&typeof c.h==='number')return 'hsl('+c.h+','+Math.round((c.s||.4)*70)+'%,'+Math.round((c.v||.5)*60+18)+'%)';return '#8a8170';}
+const HUEN=[[0,'红'],[35,'橙'],[60,'黄'],[110,'绿'],[175,'青'],[225,'蓝'],[280,'紫'],[330,'品红']];
+
+fetch('/cat/exhibit?limit=2000&slim=1').then(r=>r.json()).catch(()=>fetch('data/gallery_works.json').then(r=>r.json()))
+ .then(d=>{
+   let W=(d.works||[]).filter(w=>w.file&&w.color&&typeof w.color.h==='number');
+   W.sort((a,b)=>a.color.h-b.color.h);
+   if(W.length>700)W=W.filter((_,i)=>i%Math.ceil(W.length/700)===0);
+   build(W);
+ }).catch(e=>{document.getElementById('loading').textContent='需服务器:'+e;});
+
+let FIELD_W=0;
+function build(W){
+  const field=document.getElementById('field');const H=innerHeight;
+  const PER=190; FIELD_W=Math.max(innerWidth, 360*PER/40 + 600); // 色相 0–360 铺开
+  const X=h=>120+(h/360)*(FIELD_W-360);
+  // 衬底光谱
+  const spec=document.createElement('div');spec.className='spectrum';
+  spec.style.width=FIELD_W+'px';
+  spec.style.background='linear-gradient(90deg,'+Array.from({length:13},(_, i)=>`hsl(${i*30},45%,42%)`).join(',')+')';
+  field.appendChild(spec);
+  let html='';
+  W.forEach((w,i)=>{const c=w.color;const sz=Math.round(78+ (c.v||.5)*54);
+    const x=X(c.h)+(((i*2654435761)>>>0)%80-40);
+    const y=H*0.18+(1-(c.v||.5))*H*0.5 + Math.sin(c.h*0.13+i)*26;
+    html+=`<div class="pa" style="left:${x}px;top:${Math.max(60,Math.min(H-150,y))}px;width:${sz}px" onclick="location.href='art.html?w=${encodeURIComponent(w.file)}'">
+      <div class="fr" style="background:${hexOf(c)}"><img loading="lazy" src="${imgT(w,260)}"></div>
+      <div class="cap">${esc(mTitle(w.title))}</div></div>`;});
+  field.insertAdjacentHTML('beforeend',html);
+  field.style.width=FIELD_W+'px';
+  document.getElementById('loading').remove();
+  // 起点漂到红橙一带
+  river.scrollLeft=FIELD_W*0.04;
+  updateRuler();
+}
+const river=document.getElementById('river');
+// 滚轮纵向→横向
+river.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){river.scrollLeft+=e.deltaY;e.preventDefault();}},{passive:false});
+// 拖拽
+let dn=false,sx,sl;river.addEventListener('pointerdown',e=>{dn=true;sx=e.clientX;sl=river.scrollLeft;river.classList.add('drag');});
+addEventListener('pointermove',e=>{if(dn)river.scrollLeft=sl-(e.clientX-sx);});
+addEventListener('pointerup',()=>{dn=false;river.classList.remove('drag');});
+// 空闲缓慢漂
+let idle=0;river.addEventListener('scroll',()=>{idle=0;updateRuler();});
+(function flow(){idle++;if(idle>180&&!dn){river.scrollLeft+=0.5;}requestAnimationFrame(flow);})();
+function updateRuler(){const p=FIELD_W>innerWidth?river.scrollLeft/(FIELD_W-innerWidth):0;
+  document.getElementById('cur').style.left=(p*100)+'%';
+  const hue=Math.min(360,((river.scrollLeft+innerWidth/2-120)/(FIELD_W-360))*360);
+  let nm='红';for(const[h,n]of HUEN)if(hue>=h)nm=n;document.getElementById('hl').textContent=nm;}
+</script>
+</body></html>

@@ -1,0 +1,411 @@
+<!doctype html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>aha · 单画版式实验室</title>
+<meta name="description" content="同一张画,六种版式 —— 单画页 art.html 的 UI 版式规范与对照。">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="css/aha-frames.css" rel="stylesheet"/>
+<script src="js/frames.js"></script>
+<style>
+:root{
+  --paper:#f3eee2; --paper2:#ece4d4; --card:#f8f4ea;
+  --ink:#2a2620; --ink-soft:#5c554a; --ink-faint:#8a8170;
+  --gold:#b0673a; --gold-deep:#8f4e28;
+  --line:rgba(40,30,15,.13); --line-soft:rgba(40,30,15,.07);
+  --stage:#15120e; --stage2:#221c14;
+  --serif:'Noto Serif SC',serif; --sans:'Noto Sans SC',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+.mono{font-family:var(--mono)}
+/* ============ 顶部：版式切换 ============ */
+.lab-top{position:sticky;top:0;z-index:50;background:rgba(243,238,226,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.lab-bar{display:flex;align-items:center;gap:16px;padding:11px 20px}
+.lab-brand{font-family:var(--serif);font-weight:700;font-size:16px;white-space:nowrap;display:flex;align-items:center;gap:8px}
+.lab-brand b{color:var(--gold)}
+.lab-brand .mu{font-family:var(--mono);font-weight:400;font-size:10.5px;color:var(--ink-faint);letter-spacing:.12em}
+.tabs{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;flex:1}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:#fff7;border-radius:999px;padding:7px 14px;font-size:13px;color:var(--ink-soft);cursor:pointer;display:flex;align-items:center;gap:6px;transition:.18s;white-space:nowrap}
+.tab .tn{font-family:var(--mono);font-size:10px;opacity:.5}
+.tab:hover{border-color:var(--gold);color:var(--ink)}
+.tab.on{background:var(--gold);border-color:var(--gold);color:#fff}
+.tab.on .tn{opacity:.7;color:#fff}
+.lab-act{display:flex;gap:8px;white-space:nowrap}
+.lab-act button,.lab-act a{font-family:var(--mono);font-size:12px;border:1px solid var(--line);background:#fff7;border-radius:999px;padding:7px 13px;color:var(--ink-soft);cursor:pointer;text-decoration:none}
+.lab-act button:hover{border-color:var(--gold);color:var(--ink)}
+/* 规范注释条 */
+.spec{display:flex;gap:14px;align-items:baseline;padding:9px 20px;background:var(--paper2);border-bottom:1px solid var(--line);font-size:12.5px;color:var(--ink-soft)}
+.spec .sk{font-family:var(--mono);font-size:11px;color:var(--gold-deep);font-weight:500;white-space:nowrap}
+.spec .sv b{color:var(--ink)}
+/* ============ 舞台容器 ============ */
+#stage{position:relative;min-height:calc(100vh - 96px)}
+/* —— 通用解读零件 —— */
+.kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase}
+.w-title{font-family:var(--serif);font-weight:700;line-height:1.25}
+.w-sub{color:var(--ink-soft)}
+.w-sub .anon{color:var(--ink-faint)}
+.voice{font-family:var(--serif);font-style:italic;line-height:1.6}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 11px;color:var(--ink-soft);background:#fff6}
+.chip b{color:var(--gold-deep);font-weight:600}
+/* 七维轴 */
+.ax7{display:flex;flex-direction:column;gap:7px}
+.ax{display:grid;grid-template-columns:34px 38px 1fr 38px 40px;align-items:center;gap:7px;font-size:11px}
+.ax .an{font-weight:600;color:var(--ink)}
+.ax .lo{color:var(--ink-faint);font-size:10px}
+.ax .hi{color:var(--ink-faint);font-size:10px;text-align:right}
+.ax .track{position:relative;height:5px;border-radius:3px;background:rgba(40,30,15,.1)}
+.ax .track .mid{position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:rgba(40,30,15,.14)}
+.ax .track .dot{position:absolute;top:50%;width:10px;height:10px;border-radius:50%;background:var(--gold);transform:translate(-50%,-50%);box-shadow:0 1px 3px rgba(140,70,30,.5)}
+.ax .track .ref{position:absolute;top:50%;width:9px;height:9px;border-radius:50%;border:1.5px solid var(--ink-faint);transform:translate(-50%,-50%);background:var(--paper)}
+.ax .val{font-family:var(--mono);color:var(--ink-faint);text-align:right;font-size:10px}
+.ax7-leg{font-size:10.5px;color:var(--ink-faint);margin-top:3px}
+/* 解说员气泡 */
+.bub{border-radius:14px;padding:13px 16px;line-height:1.62;position:relative}
+.bub .who{font-family:var(--mono);font-size:10.5px;color:var(--gold-deep);margin-bottom:5px;letter-spacing:.04em}
+.bub .who .av{font-family:var(--sans);margin-right:5px}
+.bub .demo{font-size:10px;color:var(--ink-faint);opacity:.8}
+/* 众声占位 */
+.voices-ph{border:1px dashed var(--line);border-radius:12px;padding:14px;color:var(--ink-faint);font-size:12.5px;background:#fff4}
+.voices-ph .vh{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin-bottom:6px}
+
+/* =====================================================================
+   版式 1 · 剧场 Theater
+   ===================================================================== */
+.v-theater{display:grid;grid-template-columns:1fr minmax(340px,420px)}
+.v-theater .stageL{background:radial-gradient(120% 120% at 50% 35%,var(--stage2),var(--stage));display:flex;flex-direction:column;min-height:calc(100vh - 96px)}
+.v-theater .stageL .pic{flex:1;display:flex;align-items:center;justify-content:center;padding:42px;min-height:0}
+.v-theater .stageL .pic img{max-height:72vh;width:auto;box-shadow:0 30px 70px -22px rgba(0,0,0,.8),0 0 0 1px rgba(255,235,200,.07)}
+.v-theater .dock{padding:0 28px 24px;display:flex;gap:16px;justify-content:center;align-items:center}
+.v-theater .nav-av{display:flex;flex-direction:column;align-items:center;gap:5px;color:#cdbfa6;cursor:pointer;opacity:.62;transition:.18s}
+.v-theater .nav-av.on,.v-theater .nav-av:hover{opacity:1}
+.v-theater .nav-av .av{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;background:#000a;border:1px solid #ffffff1f}
+.v-theater .nav-av.on .av{border-color:var(--gold);box-shadow:0 0 0 3px rgba(176,103,58,.3)}
+.v-theater .nav-av .nm{font-size:10.5px}
+.v-theater .railR{background:var(--paper);border-left:1px solid var(--line);padding:30px 26px;overflow-y:auto;display:flex;flex-direction:column;gap:20px}
+
+/* =====================================================================
+   版式 2 · 沉浸 Immersive
+   ===================================================================== */
+.v-immersive{position:absolute;inset:0;background:#0d0b08;overflow:hidden}
+.v-immersive .full{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.v-immersive .full img{max-width:94%;max-height:92%;width:auto;box-shadow:0 40px 90px -20px rgba(0,0,0,.9)}
+.v-immersive .vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(130% 100% at 50% 42%,transparent 52%,rgba(0,0,0,.72))}
+.v-immersive .voicebar{position:absolute;left:0;right:0;bottom:0;padding:60px 8% 34px;background:linear-gradient(to top,rgba(0,0,0,.82),transparent);color:#f1e9da}
+.v-immersive .voicebar .vk{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:#caa97e;margin-bottom:10px}
+.v-immersive .voicebar .vv{font-family:var(--serif);font-style:italic;font-size:clamp(20px,3.2vw,34px);line-height:1.5;max-width:880px}
+.v-immersive .voicebar .meta{margin-top:14px;color:#cabfa8;font-size:13px}
+.v-immersive .drawer-tab{position:absolute;top:50%;right:0;transform:translateY(-50%);writing-mode:vertical-rl;background:rgba(255,247,235,.9);color:var(--ink);font-family:var(--mono);font-size:12px;letter-spacing:.1em;padding:16px 9px;border-radius:10px 0 0 10px;cursor:pointer;box-shadow:-6px 0 22px -10px rgba(0,0,0,.6)}
+.v-immersive .drawer{position:absolute;top:0;right:0;bottom:0;width:min(400px,86vw);background:var(--paper);border-left:1px solid var(--line);transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);padding:28px 24px;overflow-y:auto;display:flex;flex-direction:column;gap:18px;box-shadow:-20px 0 50px -20px rgba(0,0,0,.5)}
+.v-immersive.draweron .drawer{transform:translateX(0)}
+.v-immersive .drawer .dx{align-self:flex-end;font-family:var(--mono);font-size:13px;color:var(--ink-faint);cursor:pointer;border:1px solid var(--line);border-radius:999px;width:30px;height:30px;display:flex;align-items:center;justify-content:center}
+
+/* =====================================================================
+   版式 3 · 编辑/杂志 Editorial
+   ===================================================================== */
+.v-editorial{background:var(--paper)}
+.v-editorial .wrap{max-width:1180px;margin:0 auto;padding:56px 40px 80px;display:grid;grid-template-columns:1.05fr 1fr;gap:58px;align-items:start}
+.v-editorial .figcol{position:sticky;top:120px}
+.v-editorial .figcol img{width:100%;box-shadow:0 26px 56px -24px rgba(40,25,10,.5)}
+.v-editorial .figcap{font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:12px;line-height:1.7}
+.v-editorial .txtcol{padding-top:6px}
+.v-editorial .txtcol .kicker{margin-bottom:18px}
+.v-editorial .txtcol h1{font-family:var(--serif);font-weight:700;font-size:clamp(30px,3.6vw,46px);line-height:1.18;margin:0 0 8px}
+.v-editorial .txtcol .by{color:var(--ink-soft);font-size:15px;margin-bottom:34px}
+.v-editorial .pull{font-family:var(--serif);font-style:italic;font-size:clamp(22px,2.6vw,30px);line-height:1.55;color:var(--gold-deep);border-left:3px solid var(--gold);padding-left:22px;margin:0 0 36px}
+.v-editorial .body{font-size:15.5px;line-height:1.9;color:#403a31}
+.v-editorial .body p{margin:0 0 18px}
+.v-editorial .divid{height:1px;background:var(--line);margin:34px 0}
+
+/* =====================================================================
+   版式 4 · 美术馆墙 Gallery Wall
+   ===================================================================== */
+.v-wall{background:
+   radial-gradient(140% 90% at 50% 0%,rgba(255,255,255,.5),transparent 60%),
+   linear-gradient(180deg,#e9e2d3,#d8cebb);min-height:calc(100vh - 96px);
+   display:flex;align-items:center;justify-content:center;gap:54px;padding:60px 50px;flex-wrap:wrap}
+.v-wall .hang{position:relative}
+.v-wall .hang .aha-frame{max-height:74vh}
+.v-wall .hang .aha-frame img{max-height:64vh;width:auto}
+.v-wall .hang:before{content:"";position:absolute;left:50%;top:-46px;width:1px;height:46px;background:rgba(60,45,25,.3);transform:translateX(-50%)}
+.v-wall .plaque{background:#fbf8f1;border:1px solid var(--line);border-radius:4px;padding:22px 24px;max-width:320px;box-shadow:0 10px 26px -16px rgba(40,30,15,.4)}
+.v-wall .plaque .pk{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--ink-faint);margin-bottom:12px}
+.v-wall .plaque h2{font-family:var(--serif);font-size:21px;font-weight:700;margin:0 0 4px;line-height:1.3}
+.v-wall .plaque .pby{color:var(--ink-soft);font-size:13.5px;margin-bottom:16px}
+.v-wall .plaque .prow{display:flex;justify-content:space-between;gap:12px;font-size:12.5px;padding:7px 0;border-top:1px solid var(--line-soft);color:var(--ink-soft)}
+.v-wall .plaque .prow span:first-child{color:var(--ink-faint);font-family:var(--mono);font-size:11px}
+.v-wall .plaque .pvoice{font-family:var(--serif);font-style:italic;font-size:14px;line-height:1.6;color:var(--gold-deep);margin-top:16px}
+
+/* =====================================================================
+   版式 5 · 对话 Conversation
+   ===================================================================== */
+.v-conversation{background:linear-gradient(180deg,var(--paper),var(--paper2));min-height:calc(100vh - 96px)}
+.v-conversation .feed{max-width:560px;margin:0 auto;padding:34px 18px 60px;display:flex;flex-direction:column;gap:18px}
+.v-conversation .ctop img{width:100%;border-radius:16px;box-shadow:0 18px 44px -20px rgba(40,25,10,.55)}
+.v-conversation .ctop .cap{text-align:center;margin-top:12px;font-family:var(--serif)}
+.v-conversation .ctop .cap b{font-size:18px;font-weight:700}
+.v-conversation .ctop .cap span{color:var(--ink-soft);font-size:13px}
+.v-conversation .msg{display:flex;gap:10px;align-items:flex-start}
+.v-conversation .msg .pav{flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:19px;box-shadow:0 3px 8px -4px rgba(40,30,15,.4)}
+.v-conversation .msg .bub{background:#fff;border:1px solid var(--line);box-shadow:0 4px 12px -8px rgba(40,30,15,.3);border-top-left-radius:3px;max-width:80%}
+.v-conversation .invite{align-self:center;margin-top:8px;font-family:var(--mono);font-size:12.5px;color:var(--gold-deep);border:1px dashed var(--gold);border-radius:999px;padding:9px 18px;background:#fff6;cursor:pointer}
+
+/* =====================================================================
+   版式 6 · 移动卡片 Mobile Card
+   ===================================================================== */
+.v-mobile{background:repeating-linear-gradient(45deg,#ded5c4,#ded5c4 12px,#d9d0be 12px,#d9d0be 24px);min-height:calc(100vh - 96px);display:flex;justify-content:center;padding:30px 16px}
+.v-mobile .phone{width:390px;max-width:100%;background:var(--paper);border-radius:34px;box-shadow:0 30px 70px -24px rgba(40,25,10,.6),0 0 0 9px #1c1812,0 0 0 11px #34291c;overflow:hidden;align-self:flex-start;max-height:calc(100vh - 60px);display:flex;flex-direction:column}
+.v-mobile .notch{height:30px;background:#1c1812;border-radius:34px 34px 0 0;position:relative;flex:0 0 auto}
+.v-mobile .notch:after{content:"";position:absolute;left:50%;top:9px;transform:translateX(-50%);width:96px;height:7px;border-radius:5px;background:#000}
+.v-mobile .screen{overflow-y:auto;flex:1}
+.v-mobile .screen img.hero{width:100%}
+.v-mobile .mbody{padding:18px 18px 30px;display:flex;flex-direction:column;gap:16px}
+.v-mobile .mbody h2{font-family:var(--serif);font-size:21px;font-weight:700;margin:0;line-height:1.3}
+.v-mobile .mbody .mby{color:var(--ink-soft);font-size:13px;margin-top:-8px}
+
+/* 手机适配:窄屏下所有多栏版式降级单列 */
+@media(max-width:860px){
+  .v-theater{grid-template-columns:1fr}
+  .v-theater .stageL{min-height:54vh}
+  .v-theater .railR{border-left:none;border-top:1px solid var(--line)}
+  .v-editorial .wrap{grid-template-columns:1fr;gap:30px;padding:34px 22px}
+  .v-editorial .figcol{position:static}
+  .v-wall{flex-direction:column;gap:30px;padding:40px 22px}
+  .spec{flex-direction:column;gap:4px}
+}
+</style></head>
+<body>
+
+<header class="lab-top">
+  <div class="lab-bar">
+    <div class="lab-brand"><b>aha</b> 单画版式实验室 <span class="mu">ART · LAYOUT LAB</span></div>
+    <div class="tabs" id="tabs"></div>
+    <div class="lab-act">
+      <button id="swap" title="换一张画看这套版式">↻ 换一张</button>
+      <a href="art-modes.html" title="五模式规范·单一事实源">规范 ↗</a>
+      <a href="art.html" title="生产页·已可切换五模式">生产页 ↗</a>
+    </div>
+  </div>
+  <div class="spec"><span class="sk" id="specK">版式</span><span class="sv" id="specV"></span></div>
+</header>
+
+<main id="stage"></main>
+
+<script>
+/* ====== 数据 ====== */
+const AX=['构图','空间','造型','光影','色彩','笔触','边缘'];
+const POLES={构图:['均衡','动势'],空间:['平面','纵深'],造型:['消融','扎实'],光影:['柔和','强烈'],色彩:['沉郁','明艳'],笔触:['隐没','显露'],边缘:['柔化','硬朗']};
+// 缺省样画:萨尔瓦多·罗萨《傍晚时分,巫术的场景》(表现外化/恐惧,暗调戏剧性,元数据丰富)
+let W = {
+  file:"https://aha-1254041526.cos.ap-shanghai.myqcloud.com/artworks/%E6%B2%B9%E7%94%BB%E6%95%B0%E6%8D%AE%E9%9B%86/yh/upload3/workImage_ori/2023/2/27/cqt80x5ke2sdl384o4_l.jpg",
+  title:"罗萨 傍晚时分，巫术的场景", artist:"萨尔瓦多·罗萨", year:"1645", region:"那不勒斯",
+  wv:"WV5", wvcn:"表现外化", emo:"恐惧", vad:{v:.2,a:.9,d:.3},
+  lang:{构图:.9,空间:.7,造型:1,光影:1,色彩:.8,笔触:.9,边缘:.8},
+  voiceover:"黑暗并非空无一物，它是所有被压抑的狂欢与恐惧所居住的国度。"
+};
+const REGAVG={WV5:{构图:.62,空间:.5,造型:.7,光影:.72,色彩:.66,笔触:.74,边缘:.6}}; // 表现外化区·示意典型值
+
+/* ====== 工具 ====== */
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function isRealArtist(w){const a=((w&&w.artist)||'').trim();if(!a)return false;return !/佚名|待考|无名|未知|匿名|不详|无款|unknown|anonymous|untitled/i.test(a);}
+function cleanTitle(t){return String(t||'无题').replace(/\.(jpg|jpeg|png|webp)$/i,'').replace(/_/g,' ').trim()||'无题';}
+function imgSrc(w,wide){return w.file+(w.file.indexOf('?')<0&&w.file.indexOf('myqcloud.com')>=0?('?imageMogr2/thumbnail/'+(wide||1400)+'x'):'');}
+function artistLine(w){return isRealArtist(w)?esc(w.artist):'<span class="anon">佚名 · 待考</span>';}
+function voiceText(w){return w.voiceover&&w.voiceover.length>8?w.voiceover:'一幅人类留下的画。';}
+
+/* —— 共享零件 —— */
+function chipsHTML(w){
+  const v=w.vad||{};
+  return `<div class="chips">
+    ${w.wvcn?`<span class="chip">世界观 · <b>${esc(w.wvcn)}</b></span>`:''}
+    ${w.emo?`<span class="chip">情绪 · <b>${esc(w.emo)}</b></span>`:''}
+    ${w.year?`<span class="chip">${esc(w.year)}</span>`:''}
+    ${w.region?`<span class="chip">${esc(w.region)}</span>`:''}
+    ${v.v!=null?`<span class="chip mono">愉悦 ${(+v.v).toFixed(1)} · 唤起 ${(+v.a).toFixed(1)}</span>`:''}
+  </div>`;
+}
+function axisHTML(w){
+  if(!w.lang)return'';
+  const ref=REGAVG[w.wv]||null;
+  return `<div class="ax7">${AX.map(a=>{
+    const val=w.lang[a]; if(val==null)return'';
+    const r=ref&&ref[a]!=null?ref[a]:null;
+    return `<div class="ax"><span class="an">${a}</span><span class="lo">${POLES[a][0]}</span>
+      <span class="track"><span class="mid"></span>${r!=null?`<span class="ref" title="本区典型" style="left:${Math.round(r*100)}%"></span>`:''}<span class="dot" style="left:${Math.round(val*100)}%"></span></span>
+      <span class="hi">${POLES[a][1]}</span><span class="val">${(+val).toFixed(2)}</span></div>`;
+  }).join('')}</div><div class="ax7-leg">● 这幅　○ 本区(${esc(w.wvcn||'')})典型</div>`;
+}
+// 解说员示意文案:aha 用真实画外音;其余标「示意」
+function readingText(w,who){
+  if(who==='aha')return voiceText(w);
+  if(who==='painter')return '画这片黑暗时，我把光全收进中央那点火里。四周越沉，火越像活的。最得意是左下那几个影子——你看不清，正是我要的。';
+  return '';
+}
+function bubbleHTML(who,name,av,text,demo){
+  return `<div class="bub" style="background:#fff;border:1px solid var(--line)">
+    <div class="who"><span class="av">${av}</span>${esc(name)}${demo?' <span class="demo">· 示意</span>':''}</div>
+    <div>${esc(text)}</div></div>`;
+}
+function voicesPH(){
+  return `<div class="voices-ph"><div class="vh">众声 · 弹幕 / 钉点 / 评论</div>真实 UGC 起步为空——这里是观众弹幕飘过、在画上钉点批注、写下短评的位置。（版式占位）</div>`;
+}
+
+/* ====== 六种版式渲染 ====== */
+// 与《单画体验·五模式规范》(art-modes.html)一致：五种关系。生产页 art.html 已可切换。
+const VARIANTS=[
+  {key:'theater',  tn:'01', name:'剧场 · 求教',     spec:'<b>有人站在你旁边讲。</b>画居中陈列 + 右栏全量解读 + 画下解说员；点解说员→出声讲、右栏对应分析联动高亮。信息最密的"看懂"档。', render:rTheater},
+  {key:'immersive',tn:'02', name:'沉浸 · 独处',     spec:'<b>只有你和它。</b>纯黑满屏，画外音浮底；解读藏进右缘抽屉。空闲约 10s 像幻灯片屏保自动切下一张。', render:rImmersive},
+  {key:'wall',     tn:'03', name:'美术馆墙 · 临场', spec:'<b>像真的去看展。</b>画带框、聚光、挂质感墙，铭牌在右下；单击=走近。仪式与距离，只看不分析。', render:rWall},
+  {key:'editorial',tn:'04', name:'杂志 · 品读',     spec:'<b>读一篇关于它的文章。</b>暖纸跨页，大字画外音引文 + 解读散文 + 优雅旁注；藏社交/装裱。滚动品读。', render:rEditorial},
+  {key:'conversation',tn:'05',name:'对话 · 共看',   spec:'<b>和大家一起看。</b>画在顶，解说员消息堆叠成聊天流 + 众声 UGC；点解说员 TA 加入发言，你也能回。', render:rConversation},
+  {key:'mobile',   tn:'06', name:'移动 · 窄屏',     spec:'竖屏单列：画→画外音→七维→众声。<b>移动优先</b>，所有多栏模式窄屏都降级到此流（生产页由 @media 自动适配）。', render:rMobile},
+];
+
+function rTheater(w){
+  return `<section class="v-theater">
+    <div class="stageL">
+      <div class="pic"><img src="${imgSrc(w,1400)}" alt=""></div>
+      <div class="dock">
+        <div class="nav-av on"><span class="av">◉</span><span class="nm">aha</span></div>
+        <div class="nav-av"><span class="av">🎨</span><span class="nm">作者自述</span></div>
+        <div class="nav-av"><span class="av">＋</span><span class="nm">邀请</span></div>
+      </div>
+    </div>
+    <div class="railR">
+      <div><div class="kicker">aha · 美术馆</div>
+        <div class="w-title" style="font-size:25px;margin-top:8px">${esc(cleanTitle(w.title))}</div>
+        <div class="w-sub" style="margin-top:4px">${artistLine(w)}${w.year?' · '+esc(w.year):''}</div></div>
+      <div class="bub" style="background:var(--card);border:1px solid var(--line)">
+        <div class="who"><span class="av">◉</span>aha · 官方解读</div>
+        <div class="voice" style="font-size:16px">"${esc(voiceText(w))}"</div></div>
+      ${chipsHTML(w)}
+      <div><div class="kicker" style="margin-bottom:10px">七大构成</div>${axisHTML(w)}</div>
+      ${voicesPH()}
+    </div>
+  </section>`;
+}
+function rImmersive(w){
+  return `<section class="v-immersive" id="immv">
+    <div class="full"><img src="${imgSrc(w,1800)}" alt=""></div>
+    <div class="vignette"></div>
+    <div class="voicebar">
+      <div class="vk">画外音 · VOICEOVER</div>
+      <div class="vv">"${esc(voiceText(w))}"</div>
+      <div class="meta">${esc(cleanTitle(w.title))} · ${isRealArtist(w)?esc(w.artist):'佚名'}${w.year?' · '+esc(w.year):''}　|　${esc(w.wvcn||'')} · ${esc(w.emo||'')}</div>
+    </div>
+    <div class="drawer-tab" onclick="document.getElementById('immv').classList.add('draweron')">解读 ▸</div>
+    <div class="drawer">
+      <div class="dx" onclick="document.getElementById('immv').classList.remove('draweron')">✕</div>
+      <div><div class="kicker">读它</div>
+        <div class="w-title" style="font-size:22px;margin-top:6px">${esc(cleanTitle(w.title))}</div>
+        <div class="w-sub" style="margin-top:3px">${artistLine(w)}</div></div>
+      ${chipsHTML(w)}
+      <div><div class="kicker" style="margin-bottom:10px">七大构成</div>${axisHTML(w)}</div>
+      ${voicesPH()}
+    </div>
+  </section>`;
+}
+function rEditorial(w){
+  return `<section class="v-editorial"><div class="wrap">
+    <div class="figcol">
+      <img src="${imgSrc(w,1300)}" alt="">
+      <div class="figcap">${esc(cleanTitle(w.title))}<br>${isRealArtist(w)?esc(w.artist):'佚名 · 待考'}${w.year?'，'+esc(w.year):''}　·　${esc(w.region||'')}</div>
+    </div>
+    <div class="txtcol">
+      <div class="kicker">aha 美术馆 · 一幅画的细读</div>
+      <h1>${esc(cleanTitle(w.title))}</h1>
+      <div class="by">${artistLine(w)}${w.year?' · '+esc(w.year):''}</div>
+      <p class="pull">"${esc(voiceText(w))}"</p>
+      <div class="body">
+        <p>这幅画属于<b>${esc(w.wvcn||'')}</b>的世界观，把情绪外化成画面的张力。它的情绪基调是<b>${esc(w.emo||'')}</b>——${esc(moodTail(w))}</p>
+        <p>在七大构成上，它最突出的是${esc(topAxes(w))}。这些选择不是技法的炫耀，而是为了让你在看的瞬间，先于理解就被攫住。</p>
+      </div>
+      <div class="divid"></div>
+      <div class="kicker" style="margin-bottom:12px">语言指纹 · 七大构成</div>
+      ${axisHTML(w)}
+    </div>
+  </div></section>`;
+}
+function rWall(w){
+  const framed=(window.AHAFrames)?AHAFrames.wrap('<img src="'+imgSrc(w,1300)+'" alt="">',w):'<div class="aha-frame f-wood"><div class="aha-mat"><img src="'+imgSrc(w,1300)+'"></div></div>';
+  return `<section class="v-wall">
+    <div class="hang">${framed}</div>
+    <div class="plaque">
+      <div class="pk">AHA MUSEUM</div>
+      <h2>${esc(cleanTitle(w.title))}</h2>
+      <div class="pby">${artistLine(w)}</div>
+      <div class="prow"><span>年代</span><span>${esc(w.year||'—')}</span></div>
+      <div class="prow"><span>产地</span><span>${esc(w.region||'—')}</span></div>
+      <div class="prow"><span>世界观</span><span>${esc(w.wvcn||'—')}</span></div>
+      <div class="prow"><span>情绪</span><span>${esc(w.emo||'—')}</span></div>
+      <div class="pvoice">"${esc(voiceText(w))}"</div>
+    </div>
+  </section>`;
+}
+function rConversation(w){
+  return `<section class="v-conversation"><div class="feed">
+    <div class="ctop">
+      <img src="${imgSrc(w,1100)}" alt="">
+      <div class="cap"><b>${esc(cleanTitle(w.title))}</b><br><span>${artistLine(w)}${w.year?' · '+esc(w.year):''}</span></div>
+    </div>
+    <div class="msg"><div class="pav">◉</div>${bubbleHTML('aha','aha · 官方解读','',readingText(w,'aha'),false)}</div>
+    <div class="msg"><div class="pav">🎨</div>${bubbleHTML('painter','以 画家自述 之眼','',readingText(w,'painter'),true)}</div>
+    <div class="invite">＋ 邀请更多解说员来讲这幅画</div>
+  </div></section>`;
+}
+function rMobile(w){
+  return `<section class="v-mobile"><div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <img class="hero" src="${imgSrc(w,900)}" alt="">
+      <div class="mbody">
+        <h2>${esc(cleanTitle(w.title))}</h2>
+        <div class="mby">${artistLine(w)}${w.year?' · '+esc(w.year):''}</div>
+        <div class="bub" style="background:var(--card);border:1px solid var(--line)">
+          <div class="who"><span class="av">◉</span>aha · 官方解读</div>
+          <div class="voice" style="font-size:15px">"${esc(voiceText(w))}"</div></div>
+        ${chipsHTML(w)}
+        <div><div class="kicker" style="margin-bottom:9px">七大构成</div>${axisHTML(w)}</div>
+        ${voicesPH()}
+      </div>
+    </div>
+  </div></section>`;
+}
+
+/* 文案小工具 */
+function moodTail(w){const m={恐惧:'一种不安从画里渗出来。',沉思:'一种安静在画里漫开。',热烈:'生命的热度几乎要溢出画框。',崇高:'面对它，人会不自觉地安静下来。',张力:'一根弦绷在画面里，随时会响。'};return m[w.emo]||'它把这种情绪稳稳地交到你眼前。';}
+function topAxes(w){if(!w.lang)return'';const s=AX.map(a=>[a,w.lang[a]]).filter(x=>x[1]!=null).sort((a,b)=>b[1]-a[1]).slice(0,3);return s.map(x=>x[0]+'（'+POLES[x[0]][1]+'，'+(+x[1]).toFixed(1)+'）').join('、');}
+
+/* ====== 切换 / 初始化 ====== */
+let _cur='theater';
+function renderTabs(){
+  document.getElementById('tabs').innerHTML=VARIANTS.map(v=>`<button class="tab${v.key===_cur?' on':''}" data-k="${v.key}"><span class="tn">${v.tn}</span>${v.name}</button>`).join('');
+  document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{_cur=b.dataset.k;draw();});
+}
+function draw(){
+  const v=VARIANTS.find(x=>x.key===_cur);
+  document.getElementById('specK').textContent=v.tn+' · '+v.name;
+  document.getElementById('specV').innerHTML=v.spec;
+  document.getElementById('stage').innerHTML=v.render(W);
+  renderTabs();
+}
+/* 换一张画:从活库取一张元数据丰富的,套当前版式 */
+let _pool=null;
+async function swap(){
+  try{
+    if(!_pool){
+      const d=await(await fetch('/cat/exhibit?limit=8000')).json();
+      _pool=(d.works||[]).filter(w=>w.file&&w.wvcn&&w.lang&&w.voiceover&&w.voiceover.length>8&&isRealArtist(w));
+    }
+    if(_pool&&_pool.length){W=_pool[Math.floor(Math.random()*_pool.length)];draw();}
+  }catch(e){/* 离线则保持缺省画 */}
+}
+document.getElementById('swap').onclick=swap;
+// 支持 ?v=版式键 与 ?w=作品file 深链
+(function(){const q=new URLSearchParams(location.search);const v=q.get('v');if(v&&VARIANTS.find(x=>x.key===v))_cur=v;})();
+draw();
+</script>
+</body></html>

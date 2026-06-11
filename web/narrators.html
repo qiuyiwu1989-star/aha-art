@@ -1,0 +1,142 @@
+<!doctype html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>讲解员管理中心 · aha</title>
+<meta name="description" content="aha 画作页解说员的后台管理:看/改每位讲解员的提示词、音色、情绪,新建与删除。">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f3eee2;--card:#f8f4ea;--ink:#2a2620;--ink-soft:#5c554a;--ink-faint:#8a8170;--gold:#b0673a;--gold-deep:#8f4e28;--line:rgba(40,30,15,.14);--serif:'Noto Serif SC',serif;--sans:'Noto Sans SC',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.6}
+.wrap{max-width:980px;margin:0 auto;padding:28px 22px 90px}
+.top{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.top a{font-family:var(--mono);font-size:12px;color:var(--ink-soft);border:1px solid var(--line);border-radius:999px;padding:6px 13px;background:#fff7;text-decoration:none}
+.top a:hover{border-color:var(--gold);color:var(--gold)}
+h1{font-family:var(--serif);font-size:28px;font-weight:700;margin:14px 0 4px}
+.lede{font-size:14px;color:var(--ink-soft);max-width:680px;margin-bottom:8px}
+.lede b{color:var(--ink)}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:18px 0 8px}
+.bar input{font-family:var(--mono);font-size:13px;border:1px solid var(--line);border-radius:8px;padding:9px 12px;background:#fff;color:var(--ink);min-width:200px}
+.btn{font-family:var(--mono);font-size:13px;background:var(--gold);color:#fff;border:none;border-radius:8px;padding:9px 16px;cursor:pointer}
+.btn.ghost{background:#fff;color:var(--ink-soft);border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--gold);color:var(--gold)}
+.msg{font-family:var(--mono);font-size:12px;color:var(--ink-faint);min-height:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:14px}
+.pcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 17px;cursor:pointer;transition:.15s}
+.pcard:hover{border-color:var(--gold);box-shadow:0 10px 26px -18px rgba(40,30,15,.5)}
+.pcard .hd{display:flex;align-items:center;gap:10px}
+.pcard .em{font-size:24px}
+.pcard .nm{font-family:var(--serif);font-size:18px;font-weight:700}
+.pcard .tags{margin-left:auto;display:flex;gap:5px}
+.tag{font-family:var(--mono);font-size:9px;letter-spacing:.04em;border-radius:5px;padding:2px 6px;border:1px solid var(--line);color:var(--ink-faint)}
+.tag.b{color:var(--gold);border-color:var(--gold)}
+.tag.e{color:#5a7d6f;border-color:#5a7d6f}
+.pcard .ds{font-size:13px;color:var(--ink-soft);margin:9px 0 8px;line-height:1.55}
+.pcard .meta{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint)}
+.pcard .pv{font-size:11.5px;color:var(--ink-faint);margin-top:8px;line-height:1.5;max-height:46px;overflow:hidden;border-top:1px dashed var(--line);padding-top:7px}
+/* 编辑层 */
+.scrim{position:fixed;inset:0;background:rgba(10,8,6,.6);z-index:50;display:none;align-items:center;justify-content:center;padding:20px}.scrim.on{display:flex}
+.modal{background:var(--paper);border-radius:16px;max-width:620px;width:100%;max-height:90vh;overflow-y:auto;padding:24px 26px}
+.modal h2{font-family:var(--serif);font-size:20px;margin-bottom:14px}
+.field{margin-bottom:13px}
+.field label{display:block;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-bottom:5px;letter-spacing:.04em}
+.field input,.field textarea,.field select{width:100%;font-family:var(--sans);font-size:13.5px;border:1px solid var(--line);border-radius:8px;padding:9px 11px;background:#fff;color:var(--ink);resize:vertical}
+.field textarea{min-height:130px;line-height:1.6}
+.field.row{display:flex;gap:12px}.field.row>div{flex:1}
+.field .hint{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-top:4px}
+.mfoot{display:flex;gap:10px;align-items:center;margin-top:8px}
+.mfoot .del{margin-left:auto;color:#b3402f;background:none;border:1px solid rgba(179,64,47,.4);border-radius:8px;font-family:var(--mono);font-size:12px;padding:8px 13px;cursor:pointer}
+.note{font-family:var(--mono);font-size:11.5px;color:var(--ink-faint);line-height:1.8;background:#fff6;border:1px dashed var(--line);border-radius:12px;padding:13px 15px;margin-top:18px}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="top"><a href="log.html">‹ 产品日志</a><a href="dashboard.html">管理后台 ↗</a><a href="art.html">画作页 ↗</a><a href="art-modes.html">五模式规范 ↗</a></div>
+  <h1>🎙 讲解员管理中心</h1>
+  <p class="lede">画作页"换一种眼睛看"的解说员都在这。<b>内置 6 位</b>（aha 官方 / 诗人 / 史学家 / 心理学者 / 画家自述 / 孩子）可改提示词，<b>改后不被重启覆盖</b>（数据库为准）；也能新建馆方讲解员。提示词决定 TA 怎么讲。</p>
+  <div class="bar">
+    <input id="pass" type="password" placeholder="馆方口令(admin_pass)" autocomplete="off">
+    <button class="btn" id="load">载入</button>
+    <button class="btn ghost" id="add">＋ 新建讲解员</button>
+    <span class="msg" id="msg"></span>
+  </div>
+  <div class="grid" id="grid"></div>
+  <div class="note">提示词改完即生效:之后对<b>未缓存</b>作品点该讲解员,会按新提示词生成。已缓存的旧解读不变(后续可加"清缓存重读")。内置讲解员一旦在此编辑,启动种子不再覆盖它。</div>
+</div>
+
+<div class="scrim" id="scrim">
+  <div class="modal">
+    <h2 id="mtitle">编辑讲解员</h2>
+    <div class="field row">
+      <div style="flex:0 0 80px"><label>emoji</label><input id="f_emoji" maxlength="4"></div>
+      <div><label>名字</label><input id="f_name" maxlength="16"></div>
+    </div>
+    <div class="field"><label>一句人设(UI 短句)</label><input id="f_descr" maxlength="60" placeholder="如:用意象与通感读画,像念一首短诗"></div>
+    <div class="field"><label>提示词 · 生成视角(核心)</label><textarea id="f_prompt" maxlength="2000" placeholder="你是…。只关心…。讲法…"></textarea><div class="hint">决定 TA 站在什么视角、讲什么、怎么讲。</div></div>
+    <div class="field row">
+      <div><label>音色(TTS)</label><select id="f_voice"></select></div>
+      <div><label>朗读语气 / 情绪</label><input id="f_emotion" maxlength="40" placeholder="如:抒情轻柔、带一丝怅惘"></div>
+    </div>
+    <div class="mfoot">
+      <button class="btn" id="save">保存</button>
+      <button class="btn ghost" id="cancel">取消</button>
+      <button class="del" id="del" style="display:none">删除</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let _list=[],_voices=['冰糖','茉莉','苏打','白桦'],_cur=null;
+function pass(){return $('pass').value.trim();}
+try{const p=localStorage.getItem('aha_admin_pass');if(p)$('pass').value=p;}catch(e){}
+
+function load(){
+  const pw=pass();if(!pw){$('msg').textContent='请先填口令';return;}
+  try{localStorage.setItem('aha_admin_pass',pw);}catch(e){}
+  $('msg').textContent='载入中…';
+  fetch('api/personas/all?pass='+encodeURIComponent(pw)).then(r=>r.json()).then(d=>{
+    if(d.error){$('msg').textContent='✕ '+d.error;return;}
+    _list=d.items||[];_voices=d.voices||_voices;$('msg').textContent='共 '+_list.length+' 位';render();
+  }).catch(()=>$('msg').textContent='✕ 网络错误');
+}
+function render(){
+  const g=$('grid');g.innerHTML='';
+  _list.forEach(p=>{
+    const el=document.createElement('div');el.className='pcard';
+    const tags=(p.builtin?'<span class="tag b">内置</span>':'<span class="tag">用户</span>')+(p.edited?'<span class="tag e">已改</span>':'');
+    el.innerHTML='<div class="hd"><span class="em">'+esc(p.emoji||'👁')+'</span><span class="nm">'+esc(p.name)+'</span><span class="tags">'+tags+'</span></div>'+
+      '<div class="ds">'+esc(p.descr||'')+'</div>'+
+      '<div class="meta">音色 '+esc(p.voice||'—')+'　·　语气 '+esc(p.emotion||'—')+'</div>'+
+      '<div class="pv">'+esc((p.prompt||'').slice(0,90))+(p.prompt&&p.prompt.length>90?'…':'')+'</div>';
+    el.onclick=()=>openEdit(p);g.appendChild(el);
+  });
+}
+function fillVoices(sel){const s=$('f_voice');s.innerHTML=_voices.map(v=>'<option'+(v===sel?' selected':'')+'>'+esc(v)+'</option>').join('');}
+function openEdit(p){_cur=p||null;
+  $('mtitle').textContent=p?('编辑 · '+p.name):'新建讲解员';
+  $('f_emoji').value=p?p.emoji||'':'👁';$('f_name').value=p?p.name||'':'';
+  $('f_descr').value=p?p.descr||'':'';$('f_prompt').value=p?p.prompt||'':'';
+  fillVoices(p?p.voice:'冰糖');$('f_emotion').value=p?p.emotion||'':'';
+  $('del').style.display=(p&&!p.builtin)?'':'none';
+  $('scrim').classList.add('on');
+}
+function closeEdit(){$('scrim').classList.remove('on');_cur=null;}
+function save(){
+  const body={pass:pass(),id:_cur?_cur.id:'',name:$('f_name').value.trim(),emoji:$('f_emoji').value.trim(),
+    descr:$('f_descr').value.trim(),prompt:$('f_prompt').value.trim(),voice:$('f_voice').value,emotion:$('f_emotion').value.trim()};
+  if(!body.name||!body.prompt){$('msg').textContent='名称与提示词必填';return;}
+  fetch('api/persona/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+    .then(r=>r.json()).then(d=>{if(d.ok){closeEdit();$('msg').textContent='✓ 已保存';load();}else $('msg').textContent='✕ '+(d.error||'保存失败');});
+}
+function del(){
+  if(!_cur||_cur.builtin)return;
+  if(!confirm('删除讲解员「'+_cur.name+'」?'))return;
+  fetch('api/persona/delete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pass:pass(),id:_cur.id})})
+    .then(r=>r.json()).then(d=>{if(d.ok){closeEdit();$('msg').textContent='✓ 已删除';load();}else $('msg').textContent='✕ '+(d.error||'删除失败');});
+}
+$('load').onclick=load;$('add').onclick=()=>openEdit(null);$('save').onclick=save;$('cancel').onclick=closeEdit;$('del').onclick=del;
+$('pass').addEventListener('keydown',e=>{if(e.key==='Enter')load();});
+$('scrim').onclick=e=>{if(e.target.id==='scrim')closeEdit();};
+if(pass())load();
+</script>
+</body></html>

@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>原型 · 美术馆中庭(CSS-3D 门廊)· aha</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#2a2620;--ink-soft:#5c554a;--ink-mute:#8a8170;--gold:#b0673a;--gold-lit:#d99a5a;--mat:#f4f1ea;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:var(--sans);color:var(--ink);overflow-x:hidden;
+    background:radial-gradient(120% 90% at 50% 8%,#efe7d7 0%,#e2d7c0 42%,#cdbfa3 100%);}
+  /* ===== 中庭 ===== */
+  .atrium{position:relative;height:100svh;min-height:560px;perspective:1500px;perspective-origin:50% 42%;overflow:hidden}
+  /* 地面:暖石地坪向远处收 */
+  .floor{position:absolute;left:-20%;right:-20%;bottom:0;height:46%;
+    background:linear-gradient(180deg,rgba(120,98,66,.04),rgba(90,70,44,.20));
+    transform:rotateX(64deg);transform-origin:bottom center;
+    box-shadow:0 -1px 0 rgba(255,250,240,.5) inset}
+  .floor:before{content:"";position:absolute;inset:0;background:
+    repeating-linear-gradient(90deg,transparent 0 78px,rgba(60,44,22,.06) 78px 80px);}
+  /* 天光 */
+  .skylight{position:absolute;left:50%;top:-6%;width:60%;height:32%;transform:translateX(-50%);
+    background:radial-gradient(60% 100% at 50% 0,rgba(255,251,240,.85),transparent 70%);pointer-events:none;filter:blur(6px)}
+  .htitle{position:absolute;left:0;right:0;top:5.5%;text-align:center;z-index:6;pointer-events:none}
+  .htitle .n{font-family:var(--serif);font-size:clamp(28px,4.6vw,46px);font-weight:700;letter-spacing:.02em;color:#33291d}
+  .htitle .n .d{color:var(--gold)}
+  .htitle .s{font-family:var(--serif);font-size:clamp(13px,1.8vw,17px);color:#8a6a3a;margin-top:6px}
+  /* 门廊舞台 */
+  .stage{position:absolute;left:50%;top:50%;transform-style:preserve-3d;
+    transform:translate(-50%,-46%);transition:transform .25s cubic-bezier(.22,.61,.36,1);will-change:transform}
+  .doors{display:flex;gap:clamp(10px,1.6vw,26px);transform-style:preserve-3d;align-items:flex-end}
+  /* 一扇门 = 一个展区 */
+  .door{position:relative;width:clamp(116px,12.4vw,182px);cursor:pointer;transform-style:preserve-3d;
+    transition:transform .4s cubic-bezier(.22,.61,.36,1),filter .4s}
+  /* 拱门石框 */
+  .arch{position:relative;height:clamp(210px,30vw,330px);border-radius:50% 50% 8px 8px/26% 26% 4px 4px;
+    background:linear-gradient(180deg,#e9e0cf,#d3c5a9);
+    padding:11px 11px 0;
+    box-shadow:0 1px 0 rgba(255,252,244,.8) inset, 0 -2px 6px rgba(70,52,28,.18) inset,
+      0 26px 44px -22px rgba(50,36,16,.55);overflow:hidden}
+  .arch:after{content:"";position:absolute;inset:5px;border-radius:inherit;border:1px solid rgba(90,68,38,.18);pointer-events:none}
+  /* 门内的房间:暖光 + 挂画的墙 + 退去的地面 */
+  .room{position:relative;height:100%;border-radius:46% 46% 6px 6px/24% 24% 3px 3px;overflow:hidden;
+    background:linear-gradient(180deg,#6f5a3e 0%,#5a4730 60%,#3e3120 100%);}
+  .room .lit{position:absolute;inset:0;background:radial-gradient(80% 60% at 50% 18%,rgba(255,226,170,.55),transparent 72%);
+    opacity:.6;transition:opacity .4s}
+  .room .rfloor{position:absolute;left:-30%;right:-30%;bottom:0;height:34%;
+    background:linear-gradient(180deg,rgba(40,30,16,.1),rgba(20,14,8,.6))}
+  /* 房间里挂的画(2 幅) */
+  .room .pic{position:absolute;border-radius:2px;background:#cabfa6;
+    box-shadow:0 8px 16px -6px rgba(0,0,0,.6),0 0 0 3px #b8924e,0 0 0 4px rgba(0,0,0,.3)}
+  .room .pic img{width:100%;height:100%;object-fit:cover;display:block;border-radius:1px}
+  .room .p1{left:16%;top:30%;width:30%;height:34%}
+  .room .p2{right:14%;top:24%;width:34%;height:40%}
+  /* 门楣铭牌 */
+  .plaque{position:absolute;left:50%;bottom:-15px;transform:translateX(-50%);z-index:3;text-align:center;
+    background:linear-gradient(180deg,#caa46a,#a87d44);border-radius:4px;padding:5px 13px 6px;white-space:nowrap;
+    box-shadow:0 6px 14px -6px rgba(50,30,8,.6),0 1px 0 rgba(255,240,210,.5) inset}
+  .plaque .pn{font-family:var(--serif);font-size:clamp(12px,1.4vw,15px);font-weight:700;color:#3a2a14}
+  .plaque .pc{font-family:var(--mono);font-size:9px;color:#5a4220;letter-spacing:.04em}
+  /* hover:门被点亮、轻微前移 */
+  .door:hover{transform:translateZ(60px) translateY(-6px)}
+  .door:hover .room .lit{opacity:1}
+  .door:hover .arch{box-shadow:0 1px 0 rgba(255,252,244,.9) inset,0 -2px 6px rgba(70,52,28,.18) inset,
+    0 30px 50px -20px rgba(50,36,16,.6),0 0 0 1px var(--gold-lit),0 0 34px -6px rgba(217,154,90,.7)}
+  .door:hover .plaque{background:linear-gradient(180deg,#e8c478,#c0913f)}
+  /* 进入提示 */
+  .enterhint{position:absolute;left:0;right:0;bottom:18px;text-align:center;font-family:var(--mono);
+    font-size:11px;letter-spacing:.18em;color:#7c6038;z-index:6;pointer-events:none;animation:bob 2.6s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0);opacity:.7}50%{transform:translateY(5px);opacity:1}}
+  .pillL,.pillR{position:absolute;top:8%;bottom:6%;width:5%;z-index:5;pointer-events:none}
+  .pillL{left:0;background:linear-gradient(90deg,rgba(70,52,28,.22),transparent)}
+  .pillR{right:0;background:linear-gradient(270deg,rgba(70,52,28,.22),transparent)}
+
+  /* ===== 下半:作品 = 框中画(对照展区=门) ===== */
+  .below{max-width:1180px;margin:0 auto;padding:54px 22px 90px}
+  .sech{font-family:var(--serif);font-size:20px;font-weight:700;margin-bottom:4px}
+  .secsub{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-bottom:22px;letter-spacing:.04em}
+  .wallstrip{background:
+     radial-gradient(120% 80% at 50% -10%,rgba(255,251,243,.6),transparent 60%),
+     linear-gradient(180deg,#e7dfce,#d8cdb4);
+     border-radius:14px;padding:34px 26px 30px;display:flex;gap:34px;overflow-x:auto;
+     box-shadow:0 1px 0 rgba(255,255,255,.5) inset}
+  .wallstrip::-webkit-scrollbar{height:7px}.wallstrip::-webkit-scrollbar-thumb{background:rgba(60,44,22,.22);border-radius:4px}
+  .artwork{flex:0 0 auto;width:170px;cursor:pointer;transition:transform .22s}
+  .artwork:hover{transform:translateY(-6px)}
+  .artwork .fr{background:linear-gradient(135deg,#caa46a,#7d5733);padding:9px;
+    box-shadow:0 1px 0 rgba(255,238,205,.4) inset,0 -2px 2px rgba(0,0,0,.3) inset,0 20px 34px -16px rgba(35,25,10,.55)}
+  .artwork .fr .mat{background:#f3eee2;padding:8px;box-shadow:inset 0 2px 6px rgba(40,30,15,.18)}
+  .artwork .fr img{width:100%;height:auto;display:block;background:#cfc6b4}
+  .artwork .cap{text-align:center;margin-top:10px}
+  .artwork .t{font-family:var(--serif);font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .artwork .a{font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-top:1px}
+  .legend{display:flex;gap:26px;flex-wrap:wrap;margin-top:30px;font-size:13px;color:var(--ink-soft)}
+  .legend b{color:var(--gold)}
+  .backbar{position:fixed;top:12px;left:12px;z-index:30;display:flex;gap:8px}
+  .backbar a{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);background:rgba(255,255,255,.7);
+    border:1px solid rgba(40,30,15,.15);border-radius:999px;padding:6px 12px;text-decoration:none}
+  .loading{padding:60px;text-align:center;color:var(--ink-mute);font-family:var(--mono)}
+  @media(max-width:760px){.doors{gap:8px}.htitle{top:4%}}
+</style></head>
+<body>
+<div class="backbar"><a href="museum.html">← 现版首页</a><a href="museum-hero-3d.html">看方案 B(真 3D)→</a></div>
+
+<section class="atrium" id="atrium">
+  <div class="skylight"></div>
+  <div class="floor"></div>
+  <div class="pillL"></div><div class="pillR"></div>
+  <div class="htitle"><div class="n">人类美术馆<span class="d">.</span></div><div class="s">推开一扇门,走进一种看世界的方式</div></div>
+  <div class="stage" id="stage"><div class="doors" id="doors"><div class="loading">正在点亮中庭…</div></div></div>
+  <div class="enterhint">移动鼠标环顾 · 点一扇门走进去 ↓</div>
+</section>
+
+<div class="below">
+  <div class="sech">而每一件作品,是墙上一幅装裱好的画</div>
+  <div class="secsub">ARTWORK = A FRAMED PAINTING · 展区是「门 / 空间」,作品是「框中之物」——一眼分得清</div>
+  <div class="wallstrip" id="strip"><div class="loading">载入馆藏…</div></div>
+  <div class="legend">
+    <div>🚪 <b>展区</b> = 一扇能走进去的门 / 一个房间(复数 · 有景深 · 点击进入)</div>
+    <div>🖼️ <b>作品</b> = 墙上一幅装裱好的画(单数 · 有框 · 点击走近)</div>
+  </div>
+</div>
+
+<script>
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function mTitle(t){if(!t)return '无题';t=String(t).replace(/\.(jpe?g|png|webp|gif|tiff?|bmp|jfif)$/i,'').replace(/[_]+/g,' ').trim();return t||'无题';}
+function imgT(w,px){const f=(w&&w.file)||'';px=px||420;
+  if(/myqcloud\.com/i.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/quality/82';
+  if(/(^|\/)img\/[^?]*\.(jpe?g|png)$/i.test(f))return f.replace(/\.(jpe?g|png)$/i,'.t720.webp');
+  return (w&&w.thumb)||f;}
+const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+const WVS={WV1:'忠实眼睛所见',WV2:'图像服务秩序',WV3:'以笔墨寄心性',WV4:'捕捉光的瞬间',WV5:'情绪直接外化',WV6:'退回形式本身'};
+const ORDER=['WV1','WV2','WV3','WV4','WV5','WV6'];
+
+fetch('/cat/exhibit?limit=2000&slim=1').then(r=>r.json()).catch(()=>fetch('data/gallery_works.json').then(r=>r.json()))
+ .then(d=>{
+   const W=(d.works||[]).filter(w=>w.file&&w.wv);
+   const byWV={};W.forEach(w=>{(byWV[w.wv]=byWV[w.wv]||[]).push(w);});
+   buildDoors(byWV); buildStrip(W);
+ }).catch(e=>{document.getElementById('doors').innerHTML='<div class="loading">需服务器:'+e+'</div>';});
+
+function buildDoors(byWV){
+  const doors=document.getElementById('doors');doors.innerHTML='';
+  ORDER.forEach((k,i)=>{
+    const ws=(byWV[k]||[]);const a=ws[0],b=ws[1]||ws[0];
+    const el=document.createElement('div');el.className='door';
+    el.style.transform=`rotateY(${(i-2.5)*7}deg)`;
+    el.dataset.base=(i-2.5)*7;
+    el.innerHTML=`<div class="arch"><div class="room"><div class="lit"></div>
+        ${a?`<div class="pic p1"><img loading="lazy" src="${imgT(a,300)}"></div>`:''}
+        ${b?`<div class="pic p2"><img loading="lazy" src="${imgT(b,300)}"></div>`:''}
+        <div class="rfloor"></div></div></div>
+      <div class="plaque"><div class="pn">${WVN[k]}</div><div class="pc">${ws.length} 幅 · ${WVS[k]}</div></div>`;
+    el.onclick=()=>{location.href='museum.html#hall=wv:'+k+'&form=salon';};
+    doors.appendChild(el);
+  });
+}
+function buildStrip(W){
+  const strip=document.getElementById('strip');strip.innerHTML='';
+  // 取一批有图的代表作
+  const pick=W.slice(0,16);
+  pick.forEach(w=>{const el=document.createElement('div');el.className='artwork';
+    el.innerHTML=`<div class="fr"><div class="mat"><img loading="lazy" src="${imgT(w,360)}"></div></div>
+      <div class="cap"><div class="t">${esc(mTitle(w.title))}</div><div class="a">${esc(w.artist||'')}</div></div>`;
+    el.onclick=()=>location.href='art.html?w='+encodeURIComponent(w.file);
+    strip.appendChild(el);});
+}
+// 视差:鼠标移动环顾中庭
+const stage=document.getElementById('stage'),atrium=document.getElementById('atrium');
+let tx=0,ty=0,cx=0,cy=0;
+atrium.addEventListener('mousemove',e=>{const r=atrium.getBoundingClientRect();
+  tx=((e.clientX-r.left)/r.width-0.5);ty=((e.clientY-r.top)/r.height-0.5);});
+atrium.addEventListener('mouseleave',()=>{tx=0;ty=0;});
+// 手机陀螺仪
+window.addEventListener('deviceorientation',e=>{if(e.gamma!=null){tx=Math.max(-.5,Math.min(.5,e.gamma/45));ty=Math.max(-.5,Math.min(.5,(e.beta-40)/45));}},true);
+(function loop(){cx+=(tx-cx)*0.08;cy+=(ty-cy)*0.08;
+  stage.style.transform=`translate(-50%,-46%) rotateY(${cx*-12}deg) rotateX(${cy*6}deg)`;
+  requestAnimationFrame(loop);})();
+</script>
+</body></html>

@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>原型 · 美术馆中庭(真 3D / WebGL)· aha</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#2a2620;--ink-soft:#5c554a;--gold:#b0673a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;overflow:hidden;background:#221a12;font-family:var(--sans);color:#f3eee2}
+  #c{position:fixed;inset:0;display:block;cursor:grab}
+  #c:active{cursor:grabbing}
+  .htitle{position:fixed;left:0;right:0;top:6%;text-align:center;z-index:5;pointer-events:none;
+    text-shadow:0 2px 18px rgba(0,0,0,.6)}
+  .htitle .n{font-family:var(--serif);font-size:clamp(28px,4.6vw,46px);font-weight:700;color:#fbf3e6}
+  .htitle .n .d{color:#e0a85e}
+  .htitle .s{font-family:var(--serif);font-size:clamp(13px,1.8vw,17px);color:#e7c89a;margin-top:6px;opacity:.92}
+  /* 投影到屏幕的厅名铭牌 */
+  .lab{position:fixed;z-index:4;transform:translate(-50%,-50%);pointer-events:none;text-align:center;
+    transition:opacity .25s}
+  .lab .pn{font-family:var(--serif);font-weight:700;font-size:15px;color:#1f1710;
+    background:linear-gradient(180deg,#d3a967,#a87d44);padding:5px 14px;border-radius:4px;white-space:nowrap;
+    box-shadow:0 8px 20px -8px rgba(0,0,0,.7),0 1px 0 rgba(255,240,210,.5) inset}
+  .lab .pc{font-family:var(--mono);font-size:10px;color:#e7c89a;margin-top:5px;text-shadow:0 1px 4px rgba(0,0,0,.8)}
+  .lab.hot .pn{background:linear-gradient(180deg,#f0c87c,#c2913f);transform:scale(1.06)}
+  .hint{position:fixed;left:0;right:0;bottom:22px;text-align:center;z-index:5;font-family:var(--mono);
+    font-size:11.5px;letter-spacing:.16em;color:#d9b683;pointer-events:none;text-shadow:0 1px 6px rgba(0,0,0,.7)}
+  .backbar{position:fixed;top:12px;left:12px;z-index:30;display:flex;gap:8px}
+  .backbar a{font-family:var(--mono);font-size:11.5px;color:#3a2c1c;background:rgba(243,238,226,.82);
+    border-radius:999px;padding:6px 12px;text-decoration:none}
+  .boot{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:20;
+    background:radial-gradient(circle at 50% 40%,#2c2016,#160f09);font-family:var(--mono);font-size:13px;color:#caa46a;
+    flex-direction:column;gap:14px}
+  .boot .ring{width:30px;height:30px;border:2px solid rgba(202,164,106,.3);border-top-color:#caa46a;border-radius:50%;animation:spin 1s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .fallback{position:fixed;inset:0;display:none;align-items:center;justify-content:center;text-align:center;padding:30px;
+    background:#221a12;z-index:40;flex-direction:column;gap:16px}
+  .fallback a{color:#e0a85e}
+</style>
+<script type="importmap">
+{"imports":{"three":"/js/three.module.js"}}
+</script>
+</head>
+<body>
+<div class="backbar"><a href="museum.html">← 现版首页</a><a href="museum-hero-portal.html">看方案 A(CSS-3D)→</a></div>
+<canvas id="c"></canvas>
+<script>/* 看门狗:6 秒内 3D 没起来(模块加载失败/无 WebGL)→ 显示回退,不卡在转圈 */
+setTimeout(function(){var b=document.getElementById('boot');if(b&&b.style.display!=='none'){b.style.display='none';var f=document.getElementById('fb');if(f)f.style.display='flex';}},6000);</script>
+<div class="htitle"><div class="n">人类美术馆<span class="d">.</span></div><div class="s">站在中庭,环顾六种看世界的方式 · 拖动环视,点门走进去</div></div>
+<div class="hint" id="hint">拖动环视中庭 · 点一扇门进入展厅</div>
+<div class="boot" id="boot"><div class="ring"></div><div>正在搭建中庭…</div></div>
+<div class="fallback" id="fb"><div>你的设备不支持 WebGL 3D</div><a href="museum-hero-portal.html">→ 看轻量版中庭(方案 A)</a></div>
+<div id="labels"></div>
+
+<script type="module">
+import * as THREE from 'three';
+const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+const WVS={WV1:'忠实眼睛所见',WV2:'图像服务秩序',WV3:'以笔墨寄心性',WV4:'捕捉光的瞬间',WV5:'情绪直接外化',WV6:'退回形式本身'};
+const ORDER=['WV1','WV2','WV3','WV4','WV5','WV6'];
+function imgT(w,px){const f=(w&&w.file)||'';px=px||600;
+  if(/myqcloud\.com/i.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/quality/82';
+  if(/(^|\/)img\/[^?]*\.(jpe?g|png)$/i.test(f))return f.replace(/\.(jpe?g|png)$/i,'.t720.webp');
+  return (w&&w.thumb)||f;}
+
+let renderer,scene,camera,raycaster,portals=[],labelEls=[],hot=null,yaw=0,pitch=0,autoY=0.018,dragging=false,lastX,lastY,idle=0;
+const mouse=new THREE.Vector2(0,0);
+
+fetch('/cat/exhibit?limit=2000&slim=1').then(r=>r.json()).catch(()=>fetch('data/gallery_works.json').then(r=>r.json()))
+ .then(d=>{
+   const W=(d.works||[]).filter(w=>w.file&&w.wv);
+   const byWV={};W.forEach(w=>{(byWV[w.wv]=byWV[w.wv]||[]).push(w);});
+   try{ init(byWV); }catch(e){ console.error(e); document.getElementById('fb').style.display='flex'; document.getElementById('boot').style.display='none'; }
+ }).catch(e=>{document.getElementById('boot').innerHTML='需服务器加载';});
+
+function init(byWV){
+  const canvas=document.getElementById('c');
+  renderer=new THREE.WebGLRenderer({canvas,antialias:true});
+  renderer.setPixelRatio(Math.min(2,devicePixelRatio));
+  renderer.setSize(innerWidth,innerHeight);
+  scene=new THREE.Scene();
+  scene.fog=new THREE.FogExp2(0x1c140d,0.045);
+  camera=new THREE.PerspectiveCamera(62,innerWidth/innerHeight,0.1,100);
+  camera.position.set(0,1.5,0);
+  // 灯光:暖环境 + 中央吊灯 + 天光
+  scene.add(new THREE.HemisphereLight(0xfff0d8,0x2a1d10,0.85));
+  const chand=new THREE.PointLight(0xffdca6,1.5,30,1.6);chand.position.set(0,4.2,0);scene.add(chand);
+  const sky=new THREE.DirectionalLight(0xffe9c6,0.5);sky.position.set(0,8,2);scene.add(sky);
+  // 地面圆盘
+  const floor=new THREE.Mesh(new THREE.CircleGeometry(9,64),
+    new THREE.MeshStandardMaterial({color:0x6b563a,roughness:.92,metalness:.05}));
+  floor.rotation.x=-Math.PI/2;scene.add(floor);
+  // 穹顶环带(暖墙)
+  const wall=new THREE.Mesh(new THREE.CylinderGeometry(8.6,8.6,7,64,1,true),
+    new THREE.MeshStandardMaterial({color:0x3a2c1b,roughness:1,side:THREE.BackSide}));
+  wall.position.y=3;scene.add(wall);
+
+  const loader=new THREE.TextureLoader();loader.crossOrigin='anonymous';
+  const R=6, frameMat=new THREE.MeshStandardMaterial({color:0x9a6a32,roughness:.6,metalness:.35});
+  const labelBox=document.getElementById('labels');
+  ORDER.forEach((k,i)=>{
+    const ang=(i/ORDER.length)*Math.PI*2;
+    const x=Math.sin(ang)*R, z=-Math.cos(ang)*R;
+    const grp=new THREE.Group();grp.position.set(x,1.7,z);grp.lookAt(0,1.7,0);
+    // 框
+    const frame=new THREE.Mesh(new THREE.BoxGeometry(2.5,3.0,0.12),frameMat);grp.add(frame);
+    // 画(贴图)
+    const w=(byWV[k]||[])[0];
+    const planeMat=new THREE.MeshStandardMaterial({color:0xcabfa6,roughness:.85});
+    const plane=new THREE.Mesh(new THREE.PlaneGeometry(2.18,2.68),planeMat);plane.position.z=0.07;grp.add(plane);
+    if(w){loader.load(imgT(w,600),tex=>{tex.colorSpace=THREE.SRGBColorSpace;planeMat.map=tex;planeMat.color.set(0xffffff);planeMat.needsUpdate=true;});}
+    // 画前一盏暖射灯
+    const sl=new THREE.SpotLight(0xffe6bd,2.2,12,0.5,0.6,1.2);
+    sl.position.set(x*0.6,4,z*0.6);sl.target=grp;scene.add(sl);scene.add(sl.target);
+    grp.userData={k,base:planeMat};scene.add(grp);portals.push(grp);
+    // HTML 铭牌
+    const el=document.createElement('div');el.className='lab';
+    el.innerHTML=`<div class="pn">${WVN[k]}</div><div class="pc">${(byWV[k]||[]).length} 幅 · ${WVS[k]}</div>`;
+    labelBox.appendChild(el);labelEls.push(el);
+  });
+  raycaster=new THREE.Raycaster();
+  document.getElementById('boot').style.display='none';
+  bindInput();animate();
+}
+
+function bindInput(){
+  const canvas=document.getElementById('c');
+  canvas.addEventListener('pointerdown',e=>{dragging=true;lastX=e.clientX;lastY=e.clientY;idle=0;});
+  addEventListener('pointerup',()=>dragging=false);
+  addEventListener('pointermove',e=>{
+    mouse.x=(e.clientX/innerWidth)*2-1;mouse.y=-(e.clientY/innerHeight)*2+1;
+    if(dragging){yaw-=(e.clientX-lastX)*0.005;pitch=Math.max(-0.4,Math.min(0.4,pitch+(e.clientY-lastY)*0.004));lastX=e.clientX;lastY=e.clientY;idle=0;}
+  });
+  canvas.addEventListener('click',()=>{ if(hot)location.href='museum.html#hall=wv:'+hot.userData.k+'&form=salon'; });
+  addEventListener('deviceorientation',e=>{if(e.gamma!=null){yaw=-(e.alpha||0)*Math.PI/180;pitch=Math.max(-0.4,Math.min(0.4,((e.beta||40)-40)/90));}},true);
+  addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
+}
+
+const _v=new THREE.Vector3();
+function animate(){
+  requestAnimationFrame(animate);
+  idle++; if(!dragging&&idle>90) yaw+=0.0016; // 空闲后缓慢自转(约 65s 一圈)
+  camera.rotation.order='YXZ';camera.rotation.y=yaw;camera.rotation.x=pitch;
+  // 悬停检测
+  raycaster.setFromCamera(mouse,camera);
+  const hits=raycaster.intersectObjects(portals,true);
+  const newHot=hits.length?hits[0].object.parent:null;
+  if(newHot!==hot){ if(hot)hot.scale.set(1,1,1); hot=newHot; if(hot)hot.scale.set(1.06,1.06,1.06); document.getElementById('c').style.cursor=hot?'pointer':'grab'; }
+  // 铭牌投影
+  portals.forEach((g,i)=>{
+    _v.set(g.position.x,g.position.y-1.85,g.position.z).project(camera);
+    const el=labelEls[i];
+    const behind=_v.z>1;
+    if(behind){el.style.opacity=0;return;}
+    el.style.left=((_v.x*0.5+0.5)*innerWidth)+'px';
+    el.style.top=((-_v.y*0.5+0.5)*innerHeight)+'px';
+    el.style.opacity=Math.max(0,1-Math.abs(_v.x)*0.6);
+    el.classList.toggle('hot',hot===g);
+  });
+  renderer.render(scene,camera);
+}
+</script>
+</body></html>
