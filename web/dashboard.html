@@ -95,6 +95,7 @@ select{font:13px inherit;padding:5px 8px;border:1px solid var(--line);border-rad
     <div class="wrap" id="app">加载中…</div>
     <div class="wrap" id="cos"></div>
     <div class="wrap" id="vlm"></div>
+    <div class="wrap" id="govdata"></div>
     <div class="wrap" id="ctl"></div>
     <div class="wrap" id="anom"></div>
     <div class="wrap" id="review"></div>
@@ -462,9 +463,41 @@ async function loadVlm(){
   }catch(e){document.getElementById('vlm').innerHTML='<div class="panel"><h2>🤖 VLM 处理进度</h2><div class="csub">stats 加载失败</div></div>';}
 }
 
+// ===== 数据治理总账面板（读 govern_panel.py 生成的 governance.json）=====
+async function loadGovData(){
+  try{
+    const d=await(await fetch('data/governance.json?t='+Date.now())).json();
+    const NM={wikiart:'WikiArt',yh:'油画数据集',nbfox:'麦田 nbfox',yishujia:'yishujia',demo:'demo'};
+    const L=d.ledger,A=d.artists,V=d.vlm_queue,Q=d.quality;
+    const lrows=L.by_source.map(s=>`<div class="row"><b>${NM[s.src]||s.src}</b>
+      <div class="track"><div class="fill" style="width:${Math.round(s.completeness*100)}%"></div></div>
+      <div class="num">${fmt(s.rows)} 行 · 完整度 ${(s.completeness*100).toFixed(0)}%</div></div>`).join('');
+    const vrows=V.by_source.map(s=>{const p=s.pending?Math.round(s.ready/s.pending*100):0;
+      return `<div class="row"><b>${NM[s.src]||s.src}</b>
+      <div class="track"><div class="fill" style="width:${p}%"></div></div>
+      <div class="num">优质 ${fmt(s.ready)} / 待处理 ${fmt(s.pending)}</div></div>`;}).join('');
+    const merges=A.top_merge.map(m=>`<span class="ctag">${esc(m.name||'?')} ×${m.ids+1}</span>`).join(' ');
+    document.getElementById('govdata').innerHTML=`<div class="panel">
+      <h2>🧹 数据治理总账　<span style="color:#aaa;font-weight:400;font-size:12px">归并·去重·标记后的干净账（v_ledger，快照 ${d.updated}）下游 VLM 消费</span></h2>
+      <div class="cards">
+        <div class="card"><div class="v">${fmt(L.total)}</div><div class="l">总账唯一作品</div></div>
+        <div class="card"><div class="v" style="color:var(--ok)">${fmt(V.ready_total)}</div><div class="l">VLM 优质待处理</div><div class="s">已滤掉低清/占位/重复</div></div>
+        <div class="card"><div class="v">${fmt(A.canonical)}</div><div class="l">规范艺术家</div><div class="s">归并 ${fmt(A.merged)} · 别名 ${fmt(A.aliases)}</div></div>
+        <div class="card"><div class="v">${fmt(L.east_west.east||0)}/${fmt(L.east_west.west||0)}</div><div class="l">东 / 西</div></div>
+        <div class="card"><div class="v" style="color:var(--warn)">${fmt(Q.placeholder)}</div><div class="l">占位图</div><div class="s">假簇 ${fmt(Q.untrusted_clusters)}</div></div>
+      </div>
+      <div class="grid2">
+        <div><div class="csub" style="font-weight:600;margin:4px 0">📒 总账各来源 · 元数据完整度</div>${lrows}</div>
+        <div><div class="csub" style="font-weight:600;margin:4px 0">🤖 VLM 优质待处理队列（绿=可直接喂VLM）</div>${vrows}</div>
+      </div>
+      <div style="margin-top:10px"><div class="csub" style="font-weight:600;margin-bottom:4px">🎨 艺术家归并样例（同一人合并的 id 数）</div>${merges}</div>
+    </div>`;
+  }catch(e){document.getElementById('govdata').innerHTML='<div class="panel"><h2>🧹 数据治理总账</h2><div class="csub">governance.json 加载失败（先跑 govern_panel.py）</div></div>';}
+}
+
 load();setInterval(load,30000);loadGov();loadAnom();setInterval(loadAnom,120000);
 loadCtl();setInterval(loadCtl,20000);loadReview();loadCos();loadPromptEditor();
-loadVlm();setInterval(loadVlm,30000);
+loadVlm();setInterval(loadVlm,30000);loadGovData();setInterval(loadGovData,60000);
 // ===== 首页特展管理(从 admin.html 并入主后台) =====
 const WVN_SP={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
 let SPLIST=[],SPWORKS=[],SPPW='';
@@ -526,28 +559,48 @@ function loadFrame(){Promise.all([
 // —— 框样式目录:可编辑(唯一ID/供应链/匹配规则)。视觉样式仍以 css/aha-frames.css 为事实源。——
 function fsField(label,cls,val,ph,extra){return `<label style="display:flex;flex-direction:column;gap:2px;font-size:10px;color:var(--soft)">${label}
   <input class="${cls}" value="${esc2(val==null?'':val)}" placeholder="${ph||''}" style="padding:5px 7px;border:1px solid var(--line);border-radius:6px;font-size:12px;${extra||''}"></label>`;}
+function fsYuan(c){return (c==null||c==='')?'':(c/100);}
 function fsCard(s){const sample=(FWORKS.find(w=>!AHAFrames.isEast(w))||FWORKS[0]||{}).file||'';
-  const yuan=(s.price_cents==null||s.price_cents==='')?'':(s.price_cents/100);
-  return `<div class="fscard" data-k="${esc2(s.key)}" style="display:grid;grid-template-columns:150px 1fr;gap:16px;padding:14px;border:1px solid var(--line);border-radius:12px;background:#faf8f4;${s.active===false?'opacity:.55':''}">
+  const mrJSON=s.match_rule?JSON.stringify(s.match_rule,null,1):'';
+  return `<div class="fscard" data-k="${esc2(s.key)}" style="display:grid;grid-template-columns:150px 1fr;gap:16px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--card);${s.active===false?'opacity:.55':''}">
     <div style="text-align:center">
       <div style="max-width:130px;margin:0 auto 8px">${sample?`<div class="aha-frame f-${esc2(s.key)}"><div class="aha-mat"><img src="${esc2(sample)}"></div></div>`:''}</div>
-      <div style="font-family:monospace;font-size:9px;color:var(--soft)">id:<b style="color:var(--ink,#2a2620)">${esc2(s.key)}</b> · 类 .${esc2(s.css_class||'f-'+s.key)}</div>
+      <div style="font-size:12.5px;font-weight:600;color:var(--ink,#2a2620)">${esc2(s.emoji||'')} ${esc2(s.name||'')}</div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--soft);margin-top:2px">id:<b style="color:var(--ink,#2a2620)">${esc2(s.key)}</b> · .${esc2(s.css_class||'f-'+s.key)}</div>
       <label style="display:inline-flex;align-items:center;gap:5px;margin-top:7px;font-size:11px;color:var(--ink,#2a2620);cursor:pointer"><input type="checkbox" class="fs-active" ${s.active===false?'':'checked'}>上架</label>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:9px">
-      ${fsField('名字','fs-name',s.name,'素木暖框','font-weight:600')}
-      ${fsField('Emoji','fs-emoji',s.emoji,'🪵')}
-      ${fsField('SKU(供应链唯一码)','fs-sku',s.sku,'AHA-FRM-WOOD-01','font-family:monospace;color:var(--accent)')}
-      ${fsField('参考价(元)','fs-price',yuan,'0.00')}
-      ${fsField('材质','fs-material',s.material,'实木/金箔/铝…')}
-      ${fsField('供应商','fs-supplier',s.supplier,'')}
-      <div style="grid-column:1/-1">${fsField('一句话描述','fs-descr',s.descr,'温润胡桃木 · 大多数油画的稳妥选择')}</div>
-      <div style="grid-column:1/-1">${fsField('CSS / 材质质感描述','fs-note',s.css_note,'温润胡桃木框,大多数油画的稳妥默认。')}</div>
-      <div style="grid-column:1/-1">${fsField('匹配·流派关键词(逗号分隔)','fs-mstyle',s.match_style,'巴洛克,文艺复兴,…')}</div>
-      <div style="grid-column:1/-1">${fsField('匹配·媒材硬规则(逗号分隔)','fs-mmedia',s.match_media,'版画,蚀刻,摄影,…')}</div>
-      ${fsField('匹配优先级(小=先判)','fs-priority',s.priority,'50')}
-      ${fsField('展示排序','fs-sort',s.sort,'10')}
-      <div style="grid-column:1/-1;display:flex;justify-content:flex-end"><button onclick="saveFS('${esc2(s.key)}')" style="padding:6px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff;border-radius:999px;cursor:pointer;font-size:12px">保存「${esc2(s.name)}」</button></div>
+    <div>
+      <div style="font-size:10px;color:var(--accent);font-weight:600;margin-bottom:6px;letter-spacing:.04em">🏭 供应链(录真实采购数据)</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+        ${fsField('名字','fs-name',s.name,'素木暖框','font-weight:600')}
+        ${fsField('Emoji','fs-emoji',s.emoji,'🪵')}
+        ${fsField('内部 SKU(唯一)','fs-sku',s.sku,'AHA-FRM-WOOD-01','font-family:var(--mono);color:var(--accent)')}
+        ${fsField('供应商','fs-supplier',s.supplier,'厂商名')}
+        ${fsField('供应商货号','fs-supplier_sku',s.supplier_sku,'厂家SKU')}
+        ${fsField('材质','fs-material',s.material,'实木/金箔/铝/亚克力')}
+        ${fsField('边框宽 mm','fs-profile_mm',s.profile_mm,'40')}
+        ${fsField('进深 mm','fs-depth_mm',s.depth_mm,'25')}
+        ${fsField('表面工艺/色','fs-finish',s.finish,'暖金/哑光黑/胡桃')}
+        ${fsField('成本(元)','fs-cost',fsYuan(s.cost_cents),'0.00')}
+        ${fsField('售价(元)','fs-price',fsYuan(s.price_cents),'0.00')}
+        ${fsField('币种','fs-currency',s.currency||'CNY','CNY')}
+        ${fsField('起订量 MOQ','fs-moq',s.moq,'1')}
+        ${fsField('交期(天)','fs-lead',s.lead_time_days,'7')}
+        ${fsField('库存状态','fs-stock',s.stock_status,'现货/定制/停产')}
+        <div style="grid-column:1/-1">${fsField('采购/产品链接','fs-url',s.product_url,'https://…')}</div>
+        <div style="grid-column:1/-1">${fsField('供应备注','fs-supnote',s.supply_note,'尺寸定制、包装、最小批量说明…')}</div>
+      </div>
+      <details style="margin-top:11px">
+        <summary style="cursor:pointer;font-size:10px;color:var(--soft);font-weight:600;letter-spacing:.04em">🔗 关联度 match_rule(预留 · 后续匹配用)+ 简易匹配关键词(当前生效)</summary>
+        <div style="margin-top:8px;display:grid;gap:8px">
+          ${fsField('简易匹配·流派关键词(逗号)','fs-mstyle',s.match_style,'巴洛克,文艺复兴,…')}
+          ${fsField('简易匹配·媒材硬规则(逗号)','fs-mmedia',s.match_media,'版画,蚀刻,摄影,…')}
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${fsField('匹配优先级(小=先判)','fs-priority',s.priority,'50')}${fsField('展示排序','fs-sort',s.sort,'10')}</div>
+          <label style="display:flex;flex-direction:column;gap:2px;font-size:10px;color:var(--soft)">关联度 match_rule(加权多维 JSON · 预留)
+            <textarea class="fs-mrule" spellcheck="false" style="min-height:140px;padding:7px 9px;border:1px solid var(--line);border-radius:7px;font:11.5px/1.5 var(--mono,monospace);white-space:pre">${esc2(mrJSON)}</textarea></label>
+        </div>
+      </details>
+      <div style="display:flex;justify-content:flex-end;margin-top:10px"><button onclick="saveFS('${esc2(s.key)}')" style="padding:6px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff;border-radius:999px;cursor:pointer;font-size:12px">保存「${esc2(s.name)}」</button></div>
     </div>
   </div>`;}
 function frmLibraryEditable(){
@@ -559,29 +612,66 @@ function frmLibraryEditable(){
 function saveFS(key){if(!FPW){alert('先在上方填管理口令');return;}
   const card=document.querySelector('.fscard[data-k="'+CSS.escape(key)+'"]');if(!card)return;
   const g=sel=>{const el=card.querySelector(sel);return el?el.value.trim():'';};
-  const pr=g('.fs-price');
-  const body={pass:FPW,key,sku:g('.fs-sku'),name:g('.fs-name'),emoji:g('.fs-emoji'),descr:g('.fs-descr'),
-    material:g('.fs-material'),supplier:g('.fs-supplier'),css_note:g('.fs-note'),
+  const cents=sel=>{const v=g(sel);return v===''?'':Math.round(parseFloat(v)*100);};
+  let mrule;const mt=g('.fs-mrule');
+  if(mt){try{mrule=JSON.parse(mt);}catch(e){alert('关联度 match_rule 不是合法 JSON,请检查');return;}}
+  const body={pass:FPW,key,name:g('.fs-name'),emoji:g('.fs-emoji'),sku:g('.fs-sku'),
+    supplier:g('.fs-supplier'),supplier_sku:g('.fs-supplier_sku'),material:g('.fs-material'),
+    profile_mm:g('.fs-profile_mm'),depth_mm:g('.fs-depth_mm'),finish:g('.fs-finish'),
+    cost_cents:cents('.fs-cost'),price_cents:cents('.fs-price'),currency:g('.fs-currency'),
+    moq:g('.fs-moq'),lead_time_days:g('.fs-lead'),stock_status:g('.fs-stock'),
+    product_url:g('.fs-url'),supply_note:g('.fs-supnote'),
     match_style:g('.fs-mstyle'),match_media:g('.fs-mmedia'),
     priority:g('.fs-priority')||0,sort:g('.fs-sort')||0,
-    price_cents:(pr===''?'':Math.round(parseFloat(pr)*100)),
     active:card.querySelector('.fs-active').checked};
+  if(mrule!==undefined) body.match_rule=mrule;
   fetch('/api/frame_style/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
     .then(r=>r.json()).then(d=>{if(d&&d.ok){loadFrame();}else alert('失败:'+((d&&d.error)||'口令?'));}).catch(()=>alert('网络错误'));}
-function frmCard(w){const S=AHAFrames.STYLES,auto=AHAFrames.auto(w),cur=FCANON[w.file]||'';
-  const opt='<option value="">自动匹配('+AHAFrames.BY[auto].name+')</option>'+S.map(s=>`<option value="${s.key}" ${cur===s.key?'selected':''}>${s.emoji} ${s.name}</option>`).join('');
+function frmCard(w){const S=AHAFrames.STYLES,ax=AHAFrames.autoExplain(w),cur=FCANON[w.file]||'';
+  const dft=ax.key,isAI=ax.src==='llm';
+  const opt='<option value="">默认('+AHAFrames.BY[dft].name+(isAI?' · 🪄AI':'')+')</option>'+S.map(s=>`<option value="${s.key}" ${cur===s.key?'selected':''}>${s.emoji} ${s.name}</option>`).join('');
+  const aitip=isAI?`<div title="${esc2(ax.why)}" style="font-size:9px;color:var(--accent);text-align:center;margin-bottom:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🪄 ${esc2(ax.why)}</div>`:'';
   return `<div style="width:170px">
     <div style="max-width:150px;margin:0 auto 7px">${AHAFrames.wrap(`<img loading="lazy" src="${esc2(w.file)}">`,w)}</div>
     <div style="font-size:12px;font-weight:600;color:var(--ink,#2a2620);text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc2(frmTitle(w.title))}</div>
     <div style="font-size:10px;color:var(--soft);text-align:center;margin-bottom:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc2(w.artist||'　')}</div>
-    <select class="frmsel" data-f="${esc2(w.file)}" style="width:100%;padding:5px;border:1px solid ${cur?'var(--accent)':'var(--line)'};border-radius:7px;font-size:12px;background:${cur?'#fbf3ea':'#fff'};cursor:pointer">${opt}</select>
+    ${aitip}<select class="frmsel" data-f="${esc2(w.file)}" style="width:100%;padding:5px;border:1px solid ${cur?'var(--accent)':'var(--line)'};border-radius:7px;font-size:12px;background:${cur?'#fbf3ea':'var(--card)'};cursor:pointer">${opt}</select>
   </div>`;}
+// 装裱概览统计:全库最终框分布 + 决策来源(人工/AI策展/关联度/待定)+ 置信。纯前端算,反映访客实际所见。
+function frmStats(){
+  if(!FWORKS.length||!window.AHAFrames) return '';
+  const fc={},src={ai:0,rule:0,human:0,pending:0},conf={high:0,mid:0,low:0,none:0};
+  FWORKS.forEach(w=>{
+    const eff=FCANON[w.file]||AHAFrames.autoExplain(w).key; fc[eff]=(fc[eff]||0)+1;
+    if(FCANON[w.file]){src.human++;return;}
+    const ax=AHAFrames.autoExplain(w); conf[ax.conf]=(conf[ax.conf]||0)+1;
+    if(ax.src==='llm')src.ai++; else if(ax.conf==='low'||ax.conf==='none')src.pending++; else src.rule++;
+  });
+  const tot=FWORKS.length;
+  const COL={wood:'#a87b4e',gilt:'#c9a23a',noir:'#3a3530',mat:'#cbbfa6',white:'#ddd5c2',silver:'#9aa0a6',scroll:'#8f3f33',float:'#7aa6c2'};
+  const S=AHAFrames.STYLES.slice().sort((a,b)=>(fc[b.key]||0)-(fc[a.key]||0));
+  const max=Math.max(1,...S.map(s=>fc[s.key]||0));
+  const bars=S.map(s=>{const n=fc[s.key]||0,pct=tot?Math.round(n/tot*100):0;
+    return `<div style="display:grid;grid-template-columns:104px 1fr 66px;gap:8px;align-items:center;font-size:12px;margin:3px 0">
+      <span>${s.emoji} ${esc2(s.name)}</span>
+      <div style="height:15px;background:var(--bg);border-radius:3px;overflow:hidden"><span style="display:block;height:100%;width:${Math.round(n/max*100)}%;background:${COL[s.key]||'var(--accent)'}"></span></div>
+      <span style="text-align:right;color:var(--soft);font-family:var(--mono)">${n} · ${pct}%</span></div>`;}).join('');
+  const chip=(lbl,n,c)=>`<span style="font-size:12px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:4px 12px"><b style="color:${c};font-family:var(--mono)">${n}</b> ${lbl}</span>`;
+  return `<div class="panel" style="margin-bottom:16px">
+    <h2 style="margin-bottom:10px">📊 装裱概览 · 全库 ${tot} 幅(访客实际看到的最终框)</h2>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center">
+      ${chip('🪄 AI 逐画策展',src.ai,'var(--accent)')}${chip('🔗 关联度打分',src.rule,'#3a8a5a')}${chip('🔒 人工指定',src.human,'#c2792e')}${chip('⚠️ 待定',src.pending,'var(--rej)')}
+      <span style="font-size:11.5px;color:var(--soft)">置信 高 ${conf.high} · 中 ${conf.mid} · 低 ${conf.low+conf.none}</span></div>
+    ${bars}
+    <div style="font-size:11px;color:var(--soft);margin-top:10px">框决策优先级:人工指定 &gt; AI 逐画策展 &gt; 关联度打分(match_rule)&gt; 待定兜底</div></div>`;
+}
 function renderFRM(){const wrap=document.getElementById('frmwrap');if(!wrap||!window.AHAFrames)return;
   const curated=FWORKS.filter(w=>FCANON[w.file]);
   const q=FQ.trim().toLowerCase();
   const browse=(q?FWORKS.filter(w=>((w.title||'')+' '+(w.artist||'')).toLowerCase().includes(q)):FWORKS).slice(0,80);
   const grid=arr=>`<div style="display:flex;flex-wrap:wrap;gap:18px">${arr.map(frmCard).join('')}</div>`;
-  wrap.innerHTML=`<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px;padding:10px 13px;background:var(--card);border:1px solid var(--accent);border-radius:10px">
+  wrap.innerHTML=frmStats()
+    +`<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px;padding:10px 13px;background:var(--card);border:1px solid var(--accent);border-radius:10px">
       <span style="font-size:12.5px;color:var(--ink,#2a2620);font-weight:600">🔑 管理口令</span>
       <input id="frmpw" type="password" value="${esc2(FPW)}" placeholder="admin_pass" style="width:180px;padding:6px 9px;border:1px solid var(--line);border-radius:7px">
       <span style="font-size:11.5px;color:var(--soft)">改框目录、逐画指定都需要它</span></div>`
