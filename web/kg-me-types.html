@@ -121,7 +121,7 @@ function hull(P){if(P.length<3)return P.slice();P=P.slice().sort((a,b)=>a[0]-b[0
   const up=[];for(let i=P.length-1;i>=0;i--){const p=P[i];while(up.length>=2&&cross(up[up.length-2],up[up.length-1],p)<=0)up.pop();up.push(p);}
   lo.pop();up.pop();return lo.concat(up);}
 const W=760,H=520,pad=54,sx=v=>pad+v*(W-2*pad),sy=v=>H-pad-v*(H-2*pad);
-function T(svg,x,y,s,o={}){const e=E('text',{x,y,'font-family':o.f||'Noto Sans SC','font-size':o.fs||11,fill:o.fill||'#a89f8f','text-anchor':o.a||'middle'});e.textContent=s;if(o.w)e.setAttribute('font-weight',o.w);if(o.st){e.setAttribute('paint-order','stroke');e.setAttribute('stroke','#fcfaf5');e.setAttribute('stroke-width',3);}svg.appendChild(e);}
+function T(svg,x,y,s,o={}){const e=E('text',{x,y,'font-family':o.f||'Noto Sans SC','font-size':o.fs||11,fill:o.fill||'#a89f8f','text-anchor':o.a||'middle'});e.textContent=s;if(o.w)e.setAttribute('font-weight',o.w);if(o.st){e.setAttribute('paint-order','stroke');e.setAttribute('stroke','#fcfaf5');e.setAttribute('stroke-width',o.st===1?4.5:3);}svg.appendChild(e);}
 
 Promise.all([
   fetch('data/kg_artists.json').then(r=>r.json()),
@@ -193,12 +193,10 @@ Promise.all([
       svg.appendChild(E('polygon',{points:hl.map(p=>p.join(',')).join(' '),fill:mp.color,'fill-opacity':.09,stroke:mp.color,'stroke-opacity':.45,'stroke-dasharray':'5 4','stroke-width':1.3,'stroke-linejoin':'round'}));}});
   // 点云
   pts.forEach(p=>{const ci=E('circle',{cx:sx(p.x),cy:sy(p.y),r:2.6,fill:p.region==='east'?'#aac3b8':'#d8b9a3','fill-opacity':.55,stroke:'#fff','stroke-width':.4});const ti=E('title',{});ti.textContent=p.cn;ci.appendChild(ti);svg.appendChild(ci);});
-  // 区名:最后画(置于点云之上)+ 落在色块上沿之上,不被点覆盖
+  // 区名:最后画(图层在点云之上)+ 落在区域中心,不被点覆盖
   REG.forEach(r=>{const mp=MENPAI[r.id]||{color:'#b0673a'};const rp=(byReg[r.id]||[]).map(p=>[sx(p.x),sy(p.y)]);
     if(rp.length>=3){const c=[rp.reduce((s,p)=>s+p[0],0)/rp.length,rp.reduce((s,p)=>s+p[1],0)/rp.length];
-      const hl=hull(rp).map(p=>{const dx=p[0]-c[0],dy=p[1]-c[1],d=Math.hypot(dx,dy)||1;return[p[0]+dx/d*13,p[1]+dy/d*13];});
-      const ty=Math.min(...hl.map(p=>p[1]));
-      T(svg,c[0],ty-7,`${r.id} ${r.name}`,{f:'Noto Serif SC',fs:13,w:600,fill:mp.color,st:1});}});
+      T(svg,c[0],c[1]+4,`${r.id} ${r.name}`,{f:'Noto Serif SC',fs:13,w:600,fill:mp.color,st:1});}});
   $('#plane').appendChild(svg);
 }).catch(e=>{$('#content').innerHTML='<div class="loading">加载失败:'+e+'</div>';});
 </script>
