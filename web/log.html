@@ -62,12 +62,12 @@
 
   <div class="backbar"><a href="gallery.html">← 图库首页(看画)</a></div>
   <nav class="catnav">
-    <a href="#you"><span class="ci">🧑‍🎨</span><span class="ct">你</span><span class="cn">YOU</span></a>
-    <a href="#wander"><span class="ci">🚶</span><span class="ct">逛</span><span class="cn">WANDER</span></a>
-    <a href="#graph"><span class="ci">🧬</span><span class="ct">图谱</span><span class="cn">GRAPH</span></a>
-    <a href="#forces"><span class="ci">🧭</span><span class="ct">力</span><span class="cn">FORCES</span></a>
-    <a href="kg-works.html"><span class="ci">🖼️</span><span class="ct">作品</span><span class="cn">WORKS</span></a>
-    <a href="architecture.html"><span class="ci">⚙️</span><span class="ct">关于</span><span class="cn">ABOUT</span></a>
+    <a href="#you"><span class="ci" data-ic="me"></span><span class="ct">你</span><span class="cn">YOU</span></a>
+    <a href="#wander"><span class="ci" data-ic="wander"></span><span class="ct">逛</span><span class="cn">WANDER</span></a>
+    <a href="#graph"><span class="ci" data-ic="graph"></span><span class="ct">图谱</span><span class="cn">GRAPH</span></a>
+    <a href="#forces"><span class="ci" data-ic="forces"></span><span class="ct">力</span><span class="cn">FORCES</span></a>
+    <a href="kg-works.html"><span class="ci" data-ic="works"></span><span class="ct">作品</span><span class="cn">WORKS</span></a>
+    <a href="architecture.html"><span class="ci" data-ic="about"></span><span class="ct">关于</span><span class="cn">ABOUT</span></a>
   </nav>
 
   <div style="display:flex;justify-content:center;margin:16px 0 2px">
@@ -82,8 +82,10 @@
   <div class="sec" id="live">
     <div class="sec-h"><span class="t">🟢 活数据 · 15 万件库 &amp; 管理后台</span><span class="d">2026-06 · 接入 Postgres+COS 真实数据(旧 demo 页仍保留)</span></div>
     <a class="row" href="dashboard.html"><span class="ic">🛠️</span><div class="body"><div class="nm">★ 管理后台 · 数据治理中枢<span class="en">Back-office</span>(需登录)</div><div class="ds">整体管理后台,5 模块:原始数据·COS(导入/开闸/清洗) / 展出策展 / 艺术家元数据 / 用户互动 / 知识结构投影。看进度、抽检纠错、异常雷达、规则标准、一键投影。</div><div class="tags"><span class="tg m">对内·治理</span><span class="tg">5模块</span></div></div><span class="go">→</span></a>
+    <a class="row" href="narrators.html"><span class="ic">🎙</span><div class="body"><div class="nm">讲解员管理中心<span class="en">Narrators</span>(口令)(2026-06-11)</div><div class="ds">画作页"换一种眼睛看"的解说员后台:看/改每位<b>提示词</b>(决定怎么讲)、音色、情绪,新建/删除馆方讲解员。内置 6 位(aha/诗人/史学家/心理学者/画家自述/孩子)改后<b>不被重启覆盖</b>(DB 为事实源)。</div><div class="tags"><span class="tg m">对内·讲解员</span><span class="tg">提示词管理</span></div></div><span class="go">→</span></a>
     <a class="row" href="kg-catalog.html"><span class="ic">🖼️</span><div class="body"><div class="nm">★ 核心资产画廊 · 连库浏览<span class="en">Catalog</span></div><div class="ds">连 Postgres 的画廊,缩略图瀑布+来源/风格/情绪筛选+搜索+无限滚动,扛 15 万件。点画进独立详情页:左图放大、右完整 V2 标注、← → 切换。</div><div class="tags"><span class="tg m">对内·活数据</span><span class="tg">百万级</span></div></div><span class="go">→</span></a>
     <a class="row" href="art.html"><span class="ic">🏛️</span><div class="body"><div class="nm">对外展厅 · 策展呈现<span class="en">Exhibition</span></div><div class="ds">从核心资产选出的展出集(规则A+人工),沉浸看画+世界观平面+情绪+互动。读 /cat/exhibit 活数据。</div><div class="tags"><span class="tg m">对外</span><span class="tg">展出集</span></div></div><span class="go">→</span></a>
+    <a class="row" href="art-modes.html"><span class="ic">📐</span><div class="body"><div class="nm">★ 单画体验 · 五模式规范<span class="en">Modes Spec</span>(2026-06-11)</div><div class="ds">定义"一个人面对一幅画的<b>五种关系</b>":🌫沉浸(独处)/🎭剧场(求教)/🏛墙(临场)/📰杂志(品读)/💬对话(共看)。每种的特色·信息取舍·主手势·感觉 + 取舍矩阵 + 共享原则。<b>art.html 实现的单一事实源。</b></div><div class="tags"><span class="tg m">体验规范</span><span class="tg">单一事实源</span><span class="tg">5 关系</span></div></div><span class="go">→</span></a>
     <a class="row" href="art-layouts.html"><span class="ic">🎞️</span><div class="body"><div class="nm">单画版式实验室<span class="en">Layout Lab</span>(2026-06-11)</div><div class="ds">同一张真画,<b>六种版式</b>当场切换对照:剧场 / 沉浸 / 编辑杂志 / 美术馆墙 / 对话 / 移动卡片,每种带一句 UI 规范注释——为画作页 <a href="art.html" style="color:var(--accent)">art.html</a> 探索"一张单画该怎么呈现"。可「换一张」。</div><div class="tags"><span class="tg m">设计规范</span><span class="tg">6 版式</span><span class="tg">单画对照</span></div></div><span class="go">→</span></a>
     <a class="row" href="kg-artworks-live.html"><span class="ic">🔬</span><div class="body"><div class="nm">★ VLM 读图 · 活数据版<span class="en">Artworks·live</span></div><div class="ds">原 119 件 demo → 现 4000+ 件真实标注(随过闸增长),每幅 6 维系统读图。旧 <a href="kg-artworks.html" style="color:var(--accent)">kg-artworks</a> 保留。</div><div class="tags"><span class="tg m">活数据投影</span><span class="tg">4000+</span></div></div><span class="go">→</span></a>
     <a class="row" href="kg-worldview-live.html"><span class="ic">🗺️</span><div class="body"><div class="nm">★ 世界观地图 · 活数据版<span class="en">Worldview·live</span></div><div class="ds">真实作品铺在「再现↔表现 × 结构↔感知」平面,6 区定位、按世界观/情绪着色、悬停看图、点击进详情。每点=一幅真画。</div><div class="tags"><span class="tg m">活数据投影</span><span class="tg">点云</span></div></div><span class="go">→</span></a>
@@ -106,9 +108,16 @@
     <a class="row" href="wander-talk.html"><span class="ic">💬</span><div class="body"><div class="nm">对话策展<span class="en">Talk</span></div><div class="ds">说一句心情("像悲伤但有希望"),它端画上来、讲为何合你此刻。</div><div class="tags"><span class="tg">桌面/手机</span><span class="tg">最像"懂你"</span></div></div><span class="go">→</span></a>
   </div>
 
+  <div class="sec" id="lab">
+    <div class="sec-h"><span class="t">🔬 实验场 · 互动装置(非产品)</span><span class="d">2026-06-11 · 把全站"看完即走的展示装置"收成一区</span></div>
+    <div class="bh-note" style="background:var(--accent-soft,#f0e4d8);border:1px solid #e0c4a8;border-radius:10px;padding:11px 14px;margin-bottom:10px;font-size:13px;line-height:1.7">👉 <b>装置 ≠ 产品</b>。这一区收 40 件<b>看完即走、不存账户</b>的互动装置——价值是让人<b>当场看懂并相信</b>引擎怎么转。准线:价值落在<b>用户</b>身上=产品(/me、美术馆),落在<b>对引擎的理解</b>上=装置。按"<b>向谁证明什么</b>"分三厅:✨演示(说服小白)/ 🔬研究(说服专家)/ 🎲玩法(说服逛客)。</div>
+    <a class="row" href="lab.html"><span class="ic">🔬</span><div class="body"><div class="nm">★ 实验场 · 互动装置总厅<span class="en">The Lab</span></div><div class="ds">aha 引擎的<b>展示面</b>:✨演示装置(美学实验室/kg-me/星辰大海…)、🔬研究展品(可证伪/像素实测/艺术史动力学…)、🎲玩法装置(以色觅画/对话策展/概念实验…)三厅,每件标"它在向谁证明什么"、已毕业进产品的打角标。和产品主线分开,让首页干净、装置集中。</div><div class="tags"><span class="tg m">互动装置区</span><span class="tg">3 厅 40 件</span><span class="tg">看完即走</span></div></div><span class="go">→</span></a>
+  </div>
+
   <div class="sec">
-    <div class="sec-h"><span class="t">汇总入口</span><span class="n">3</span><span class="d">三个分类总览页</span></div>
-    <a class="row" href="wander.html"><span class="ic">🧭</span><div class="body"><div class="nm">逛法总览</div><div class="ds">7 种"逛"的方法 + 手机版入口。</div></div><span class="go">→</span></a>
+    <div class="sec-h"><span class="t">汇总入口</span><span class="n">4</span><span class="d">总览 / 结构页</span></div>
+    <a class="row" href="compass.html"><span class="ic">🧭</span><div class="body"><div class="nm">体验地图<span class="en">Experience Map</span></div><div class="ds">113 页的网点结构 + 用户旅程闭环;「旅程」看用户怎么走、「全景」看四层各归何处,每页标现役状态。</div><div class="tags"><span class="tg">结构</span><span class="tg">2026-06-11</span></div></div><span class="go">→</span></a>
+    <a class="row" href="wander.html"><span class="ic">🚶</span><div class="body"><div class="nm">逛法总览</div><div class="ds">7 种"逛"的方法 + 手机版入口。</div></div><span class="go">→</span></a>
     <a class="row" href="compare.html"><span class="ic">🔀</span><div class="body"><div class="nm">交互方案总览</div><div class="ds">同一内容、4 种不同"操作哲学"。</div></div><span class="go">→</span></a>
     <a class="row" href="concepts.html"><span class="ic">🧪</span><div class="body"><div class="nm">概念实验总览</div><div class="ds">4 个更实验性的玩法。</div></div><span class="go">→</span></a>
   </div>
@@ -150,7 +159,7 @@
     <div class="sec-h"><span class="t">🧬 图谱 · 艺术家</span><span class="d">知识图谱:艺术家那一侧</span></div>
     <div class="bh-note" style="background:var(--accent-soft,#f0e4d8);border:1px solid #e0c4a8;border-radius:10px;padding:11px 14px;margin-bottom:10px;font-size:13px;line-height:1.7">👉 <b>不知从哪进?这一簇有统一入口与层级</b>:先看 <a href="kg-tour.html" style="color:var(--accent);font-weight:600;text-decoration:none">🧭 一条线导览</a>(第一次来)→ 进 <a href="kg-v2.html" style="color:var(--accent);font-weight:600;text-decoration:none">🧬 艺术图谱·导航中枢</a>(一切从这里展开,每页面包屑都会带你回来)→ 找具体节点用 <a href="kg-search.html" style="color:var(--accent);font-weight:600;text-decoration:none">🔍 全局搜索</a>。下面是全部子页。</div>
     <a class="row" href="kg-artist-framework.html"><span class="ic">👤</span><div class="body"><div class="nm">★ 艺术家页面 · 第一性原理架构 V3<span class="en">Artist · V3</span></div><div class="ds">从公理重推:艺术家=<b>作者</b>那一方,一个在生成链上持续产出作品的人格源,作品铺成<b>有重心·离散·轨迹</b>的点云。弃 V2 的 4 轴向量与 10 段并列,改为沿 V3 生成链的<b>三组 12 维</b>(人源→链上签名→艺术家独有)。与风格不再是 belongs_to,而是<b>居于/跨越/立区</b>三态。新增轨迹/点云/感知效应。范本:列宾(居于写实)、莫奈(立区印象)。</div><div class="tags"><span class="tg m">第一性原理</span><span class="tg">链上点云</span><span class="tg">居于/跨越/立区</span></div></div><span class="go">→</span></a>
-    <a class="row" href="kg-artists.html"><span class="ic">📋</span><div class="body"><div class="nm">★ 艺术家全量索引<span class="en">Artists</span></div><div class="ds">从全部风格的代表人物<b>自动抽取去重</b>,按 6 世界观区或时间分组、东西/搜索筛选(<b>实时计数见页内</b>)。<b>已逐个考究的</b>有完整主页(达芬奇/毕加索/八大山人/范宽…),其余为<b>继承自所属风格</b>的待考究节点(向量=风格向量,点开可见所属风格)。另有按区×流派的建设清单(见下条)。</div><div class="tags"><span class="tg m">全量索引</span><span class="tg">已考究 ✓</span><span class="tg">区 · 时间分组</span></div></div><span class="go">→</span></a>
+    <a class="row" href="artists.html"><span class="ic">🧭</span><div class="body"><div class="nm">★ 艺术家中枢<span class="en">Artists Hub</span><span class="tg" style="margin-left:6px">2026-06-11</span></div><div class="ds"><b>两种进入合于一处</b>:🧭 知识图谱(已考究 307 位,世界观平面/时间线检索,点进=完整深度主页)+ 🖼 全部馆藏(<b>跨源归并 6,685 位真实艺术家</b>,真迹缩略图,中英文名对应、默认中文)。两层同一批人——馆藏里已考究的打「🧭考究」角标、直通深页。共用搜索 + 东西筛选,按设计系统重做 UI。</div><div class="tags"><span class="tg m">统一中枢</span><span class="tg">6,685 馆藏</span><span class="tg">307 考究 ✓</span><span class="tg">默认中文</span></div></div><span class="go">→</span></a>
     <a class="row" href="kg-artist-roster.html"><span class="ic">🗂️</span><div class="body"><div class="nm">艺术家名单 · 区 × 流派(建设清单)<span class="en">Roster</span></div><div class="ds">按 6 世界观区 × 代表流派、东西方并置罗列代表艺术家;已建可点进、未建灰显、带建设进度条。风格(涌现的区)→ 挂代表艺术家 → 逐步建主页。</div><div class="tags"><span class="tg m">建设清单</span><span class="tg">区×流派</span><span class="tg">进度</span></div></div><span class="go">→</span></a>
     <a class="row" href="kg-artist-atlas.html"><span class="ic">✨</span><div class="body"><div class="nm">★ 艺术家星图 · 全员落在世界观平面<span class="en">Atlas</span></div><div class="ds"><b>全部艺术家</b>放进同一张 V3 世界观平面(再现-表现 ⊥ 结构-感知):<b>亮点=已考究</b>(点进主页)、淡点=继承自风格的待考究节点;东绿西赭,6 个地标是世界观区。可按 已考究/东西/姿态 筛选、搜名高亮——一眼看尽整部美术史的分布。</div><div class="tags"><span class="tg m">全员星图</span><span class="tg">一张图看全史</span><span class="tg">可筛选</span></div></div><span class="go">→</span></a>
   </div>
@@ -210,7 +219,6 @@
     <a class="row" href="kg-facets.html"><span class="ic">🔻</span><div class="body"><div class="nm">画外音/感知 · 多面解构(一层六面)<span class="en">Facets</span></div><div class="ds">上轮发现画外音398原子混了≥6种性质,一律VAD太粗。拆成六面各用各机制:情感→VAD、象征→母题节点(50→11)、叙事/感官/哲思→闭集枚举、时间→坐标。解决"非情绪项被粗略塞进VAD"。</div><div class="tags"><span class="tg m">一层六面</span><span class="tg">象征50→11</span><span class="tg">各归其位</span></div></div><span class="go">→</span></a>
     <a class="row" href="kg-provenance.html"><span class="ic">🔭</span><div class="body"><div class="nm">★ 数据可信度 · 每个数字从哪来<span class="en">Provenance</span></div><div class="ds">把整条生成链 <b>L0→L4</b> 每一项数据摊开:<b>来自哪种信源</b>(考据/测量/派生/诠释)、<b>样本多大、多可信、怎么验证的</b>,并坦白还<b>不知道什么</b>(空间轴最弱 r0.22、颜色读不出情绪 r0.2、3 传统图是示意、71 位无可考引文)。认识论诚实——不把推断当测量、不把断言当事实。</div><div class="tags"><span class="tg m">科学化</span><span class="tg">信源标注</span><span class="tg">诚实未知</span></div></div><span class="go">→</span></a>
     <a class="row" href="kg-affect.html"><span class="ic">🎭</span><div class="body"><div class="nm">L3 感知效应 · VAD 模型 + 像素实测<span class="en">Affect</span></div><div class="ds">先给 VAD 开集模型(398 情绪→14 锚点,效价×唤醒散点);再用 57 幅真实作品的像素正面检验"可测"——当众撤掉那条循环的"饱和→唤起 r≈0.78",诚实分级哪条成立(世界观位置→像素中等✓,6 区可分)。</div><div class="tags"><span class="tg m">像素实测</span><span class="tg">循环纠偏</span><span class="tg">6区可分</span></div></div><span class="go">→</span></a>
-    <a class="row" href="kg-artworks.html"><span class="ic">🖼️</span><div class="body"><div class="nm">真迹读图 · VLM 看每一幅画<span class="en">Artworks</span></div><div class="ds">119 幅人类公共领域<b>真迹</b>,每幅由视觉大模型(mimo-v2.5)做<b>6 维系统读图</b>:媒介→题材→风格→视觉重心/阅读路径→7大构成→VAD 情绪→一句画外音。按情绪筛选,点开看完整解读。也是真实画作的集中展示。</div><div class="tags"><span class="tg m">VLM读图</span><span class="tg">119真迹</span><span class="tg">6维+情绪</span></div></div><span class="go">→</span></a>
     <a class="row" href="kg-openness.html"><span class="ic">♾️</span><div class="body"><div class="nm">不穷举:闭集 vs 开集(题材收成关键节点)<span class="en">Openness</span></div><div class="ds">解决"植物→花卉→玫瑰→…无限展开"的穷举陷阱:开集层只立关键节点,具体物象/情绪降为实例,靠实例上卷/连续坐标/开放标记泛化。示范题材 518→90 关键节点。</div><div class="tags"><span class="tg m">关键节点</span><span class="tg">518→90</span><span class="tg">反穷举</span></div></div><span class="go">→</span></a>
     <a class="row" href="kg-graph.html"><span class="ic">🕸️</span><div class="body"><div class="nm">从分类表 → 图谱(数据派生的边)<span class="en">Graph</span></div><div class="ds">把 119 件画按 id 挂到节点(111/119 成功),再统计同现,让节点间的 54 条边<b>由语料长出来</b>(印象派↔肖像…)。可视化共现网络。这一步 V2 第一次成为真正的"图"。</div><div class="tags"><span class="tg m">taxonomy→graph</span><span class="tg">54 共现边</span><span class="tg">可推敲</span></div></div><span class="go">→</span></a>
     <a class="row" href="kg-node.html"><span class="ic">🔖</span><div class="body"><div class="nm">节点详情页样板 · 印象派<span class="en">Node</span></div><div class="ds">"每个知识点的详情页"长什么样:定义 + 5轴坐标 + 关联关系(图的边,连到真实节点)+ 13 件代表作(作品归类)。一次演示 关联/详情/归类 三目标 + 目标节点数据模型。</div><div class="tags"><span class="tg m">端态样板</span><span class="tg">关联+详情+归类</span></div></div><span class="go">→</span></a>
@@ -238,6 +246,7 @@
   <div id="by-time" hidden></div>
   <div class="foot">aha · 懂你的人类美术馆 · 让美来找你<br/>共 89 件公共领域名画 + 233 条连线 · 图片本地托管 · 数据来自大都会博物馆(Met)开放数据</div>
 </div>
+<script src="js/aha-icons.js"></script>
 <script src="js/aha-chrome.js"></script>
 <script>
 (function(){

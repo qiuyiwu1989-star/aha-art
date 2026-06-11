@@ -59,3 +59,19 @@ window.AHAIcons = (function(){
   }
   return { svg: svg, paths: P };
 })();
+
+/* 静态页便捷用法:<i data-ic="me"></i> 自动替换为图标;
+   data-ic-fill = 实心;data-ic-text="搜索" = 图标后跟文字。一行 script 即可全页生效。 */
+(function(){
+  function mount(){
+    document.querySelectorAll('[data-ic]').forEach(function(el){
+      if(el.__ic)return;el.__ic=1;
+      var t=el.getAttribute('data-ic-text');
+      el.innerHTML=AHAIcons.svg(el.getAttribute('data-ic'),{fill:el.hasAttribute('data-ic-fill')})+(t?' <span>'+t+'</span>':'');
+      var d=getComputedStyle(el).display;if(d==='inline')el.style.display='inline-flex';
+      el.style.alignItems='center';if(t)el.style.gap=el.style.gap||'6px';
+    });
+  }
+  window.AHAIconsMount=mount;
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount);else mount();
+})();

@@ -37,6 +37,7 @@
    <link rel="stylesheet" href="css/aha-kit.css">
    ```
 2. 用语义 class 搭骨架:`.page → .pagehead → .sec`;列表用 `.grid`+`.card`,图表用 `.bar`/inline-SVG,状态用 `.chip`,数字用 `.stat`/`.tbl .num`,表单用 `.field/.input/.select/.slider`,反馈用 `.toast`/`.scrim+.modal`。页面专属微调放独立 `<style>` 且**只用 `var(--…)`**。
+   - **图标禁 emoji**:功能图标一律用 `AHAIcons`(`js/aha-icons.js`,Lucide 线性 42+ 图标)——JS 里 `AHAIcons.svg('heart',{fill:true})`,静态 HTML 里 `<i data-ic="me"></i>`(挂 aha-icons.js 自动替换)。新图标只加进 `js/aha-icons.js`,别再用 🏠🎨 之类 emoji。展板见 design-system.html。
    - **统一顶栏/底栏**:body 末尾必挂 `<script src="js/aha-chrome.js"></script>`(自动注入顶栏 + 底栏:备案号 浙ICP备2021038972号-8 / 出品 浙江大学国际设计研究院)。有大 hero 的页用 `<body data-no-top>` 只要底栏。备案/出品只在 `aha-chrome.js` 一处维护。
    - 顶栏 brand `aha.art` → **museum.html(主页)**;右侧"产品日志"→ **log.html**(都由 aha-chrome.js 自动给)。页面里手写的"回首页"指 museum、"看全部/日志"指 log.html;别再写 index.html/home.html 当内容链接。
 3. 认领一类**活页原型**再填内容:Live 数据页 / KG 详情页 / Dashboard / Gallery。

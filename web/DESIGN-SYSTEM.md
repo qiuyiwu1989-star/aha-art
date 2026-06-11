@@ -58,6 +58,7 @@
 | `.btn` / `.btn.ghost` `.pill`,`[disabled]` | 按钮 |
 | `.field` + `.fl` / `.input` / `.select` / `.search` / `.slider` / `.check` / `.segwrap`+`.seg` | 表单 |
 | `.toast`(`.ok/.warn/.rej`)/ `.scrim`+`.modal`(`h3` `p` `.acts`) | 反馈:通知 / 弹窗 |
+| `AHAIcons`(`js/aha-icons.js`)| **全站唯一图标源**(Lucide 线性 42+);`AHAIcons.svg('heart',{fill})` 或静态 `<i data-ic="me">`。**禁 emoji 当功能图标** |
 | `.site-top` / `.site-foot` | 统一顶栏 / 底栏(由 `js/aha-chrome.js` 自动注入,底栏含备案号+出品) |
 | `.loading` / `.empty`(`.hint`)/ `.skel` / `.fade-in` | 加载·空·骨架·入场 |
 | `.note` / `.note.accent`(+ 可选 `.k` 圆点标签)/ `.rule` / `.muted` `.faint` `.serif` `.mono` | 文本块与工具类 |
