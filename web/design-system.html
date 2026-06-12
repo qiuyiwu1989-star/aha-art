@@ -3,7 +3,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>设计系统 · Design System · aha.art</title>
 <meta name="description" content="aha 全站活页设计规范 — 颜色、字体、组件、间距、动效、图表、模板的单一可信来源。">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400;1,8..60,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400;1,8..60,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/aha-kit.css">
 <style>
   /* ═══ 仅本规范页自用的版式(组件演示一律用 aha-kit 的真 class)═══ */
@@ -159,8 +159,8 @@
     <div class="demo" style="display:flex;align-items:center;gap:40px;flex-wrap:wrap">
       <div style="font-family:var(--serif);font-size:64px;font-weight:700;letter-spacing:-.02em">aha<span style="color:var(--accent)">.</span>art</div>
       <div style="display:flex;flex-direction:column;gap:8px">
-        <span class="chip ok">✓ 句点永远 --accent</span>
-        <span class="chip rej">✗ 整词染色 / 去掉句点 / 用无衬线</span>
+        <span class="chip ok"><i data-ic="check"></i> 句点永远 --accent</span>
+        <span class="chip rej"><i data-ic="close"></i> 整词染色 / 去掉句点 / 用无衬线</span>
       </div>
     </div>
     <div class="code"><button class="cp">复制</button>&lt;span class="ds-word"&gt;aha&lt;span class="dot"&gt;.&lt;/span&gt;art&lt;/span&gt;</div>
@@ -464,9 +464,9 @@ chip 变体:(默认赭石) .ok .warn .rej .info .green .muted</div>
     <div class="demo">
       <p class="ds-label">Toast 通知(左色条表语义)</p>
       <div style="display:flex;flex-direction:column;gap:10px;max-width:340px;margin-bottom:var(--s4)">
-        <div class="toast ok"><span class="ti">✓</span>已存为展</div>
+        <div class="toast ok"><span class="ti"><i data-ic="check"></i></span>已存为展</div>
         <div class="toast warn"><span class="ti">!</span>该作品尚未过闸</div>
-        <div class="toast rej"><span class="ti">✕</span>生成失败,请重试</div>
+        <div class="toast rej"><span class="ti"><i data-ic="close"></i></span>生成失败,请重试</div>
       </div>
       <p class="ds-label">Modal 弹窗</p>
       <button class="btn" onclick="document.getElementById('demo-modal').style.display='flex'">打开弹窗 ↗</button>
@@ -500,10 +500,10 @@ chip 变体:(默认赭石) .ok .warn .rej .info .green .muted</div>
     <table class="tbl">
       <thead><tr><th>设备</th><th class="num">宽度</th><th>布局</th><th>要点</th></tr></thead>
       <tbody>
-        <tr><td>📱 手机(竖屏为主)</td><td class="num">≤ 600</td><td>全单列</td><td>页边距收窄、h1 降到 21、stats/表格收紧、sec 说明换行</td></tr>
-        <tr><td>▢ 平板竖屏 iPad portrait</td><td class="num">600–900</td><td>2 列</td><td>cols-4 收成 2 列、页边距 16</td></tr>
-        <tr><td>▭ 平板横屏 / 桌面</td><td class="num">900–1100</td><td>多列</td><td>grid auto-fill 自然铺、.page 居中</td></tr>
-        <tr><td>🖥 宽屏</td><td class="num">≥ 1100</td><td>多列 · 限宽</td><td>.page 最大 1100 居中,两侧留白</td></tr>
+        <tr><td><i data-ic="phone"></i> 手机(竖屏为主)</td><td class="num">≤ 600</td><td>全单列</td><td>页边距收窄、h1 降到 21、stats/表格收紧、sec 说明换行</td></tr>
+        <tr><td><i data-ic="frame"></i> 平板竖屏 iPad portrait</td><td class="num">600–900</td><td>2 列</td><td>cols-4 收成 2 列、页边距 16</td></tr>
+        <tr><td><i data-ic="frame"></i> 平板横屏 / 桌面</td><td class="num">900–1100</td><td>多列</td><td>grid auto-fill 自然铺、.page 居中</td></tr>
+        <tr><td><i data-ic="phone"></i> 宽屏</td><td class="num">≥ 1100</td><td>多列 · 限宽</td><td>.page 最大 1100 居中,两侧留白</td></tr>
       </tbody>
     </table>
 
@@ -569,7 +569,7 @@ chip 变体:(默认赭石) .ok .warn .rej .info .green .muted</div>
 &lt;/head&gt;&lt;body&gt;
 &lt;div class="page"&gt;
   &lt;div class="pagehead"&gt;
-    &lt;a class="back" href="home.html"&gt;← aha&lt;/a&gt;
+    &lt;a class="back" href="museum.html"&gt;← aha&lt;/a&gt;
     &lt;div class="kicker"&gt;LIVE DATA&lt;/div&gt;
     &lt;h1&gt;页面标题&lt;/h1&gt;
     &lt;p class="sub"&gt;一句副标说明…&lt;/p&gt;
@@ -661,7 +661,7 @@ chip 变体:(默认赭石) .ok .warn .rej .info .green .muted</div>
     <hr class="rule">
     <p class="muted" style="text-align:center;font-size:var(--fz-small);padding-bottom:var(--s5)">
       改 <span class="mono">css/aha-kit.css</span> → 本页与全站活页一起变 · 书面细则见
-      <a href="DESIGN-SYSTEM.md">DESIGN-SYSTEM.md</a> · <a href="home.html">← 回首页</a></p>
+      <a href="DESIGN-SYSTEM.md">DESIGN-SYSTEM.md</a> · <a href="museum.html">← 回首页</a></p>
   </section>
 
   </main>
@@ -702,4 +702,5 @@ document.getElementById('demo-modal').addEventListener('click',e=>{
   if(e.target.id==='demo-modal')e.target.style.display='none';});
 </script>
 <script src="js/aha-chrome.js"></script>
+<script src="js/aha-icons.js"></script>
 </body></html>

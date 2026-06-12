@@ -49,7 +49,7 @@
   <h1>多风格,差异看得见</h1>
   <p class="lead">加入<b>2–6 个风格</b>,在<b>世界观平面 + 11 维平行坐标</b>上并排比较——线在哪条轴上岔开,差异就在哪里。系统自动找出<b>这组风格分歧最大的维度</b>。<span style="font-size:12px">(看"多风格如何聚集"用 <a href="kg-projection.html" style="color:var(--accent)">投影对比</a>)</span></p>
   <div class="breadcrumb"><a href="museum.html"><i data-ic="home"></i> 首页</a> › <a href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">风格对比</b></div>
-  <div style="text-align:center;margin-top:10px;font-family:var(--mono);font-size:11px"><span style="color:var(--ink-faint)">两种对比工具 · </span><span style="background:var(--accent);color:#fff;border-radius:999px;padding:3px 11px">⚖️ 看差异(本页)</span> <a href="kg-projection.html" style="color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 11px">🎯 看聚集 →</a></div>
+  <div style="text-align:center;margin-top:10px;font-family:var(--mono);font-size:11px"><span style="color:var(--ink-faint)">两种对比工具 · </span><span style="background:var(--accent);color:#fff;border-radius:999px;padding:3px 11px"><i data-ic="scale"></i> 看差异(本页)</span> <a href="kg-projection.html" style="color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 11px"><i data-ic="target"></i> 看聚集 →</a></div>
 
   <div class="picker">
     <div class="chips" id="chips"></div>
@@ -121,7 +121,7 @@ function render(){
   qs.delete('a');qs.delete('b');qs.set('ids',sel.join(','));history.replaceState(null,'','?'+qs.toString());
   // chips
   const ch=document.getElementById('chips');ch.innerHTML='';
-  sel.forEach((id,i)=>{const c=$(`<span class="schip" data-sid="${id}" style="background:${col(i)}">${byId[id].cn}<button class="x">✕</button></span>`);
+  sel.forEach((id,i)=>{const c=$(`<span class="schip" data-sid="${id}" style="background:${col(i)}">${byId[id].cn}<button class="x"><i data-ic="close"></i></button></span>`);
     c.querySelector('.x').onclick=()=>{if(sel.length>1){sel=sel.filter(x=>x!==id);render();}};
     c.onmouseenter=()=>focus(id);c.onmouseleave=()=>focus(null);ch.appendChild(c);});
   document.getElementById('hint').textContent=sel.length>=6?'最多 6 个':`已选 ${sel.length} 个`;

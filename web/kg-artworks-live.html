@@ -109,7 +109,7 @@ function ensureFull(){ // 全字段:首次点详情才拉,之后缓存
 }
 function openM(a){
   const m=document.getElementById('modal');
-  m.innerHTML=`<span class="mclose" onclick="closeM()">✕</span><div class="mloading" style="padding:64px 20px;text-align:center;color:var(--ink-faint);font-family:var(--mono);font-size:13px">载入解读…</div>`;
+  m.innerHTML=`<span class="mclose" onclick="closeM()"><i data-ic="close"></i></span><div class="mloading" style="padding:64px 20px;text-align:center;color:var(--ink-faint);font-family:var(--mono);font-size:13px">载入解读…</div>`;
   document.getElementById('ov').classList.add('on');document.body.style.overflow='hidden';
   ensureFull().then(full=>{const rec=full[a.slug];const l=m.querySelector('.mloading');if(!rec){if(l)l.textContent='暂无该作品的完整解读';return;}renderM(rec);}).catch(()=>{const l=m.querySelector('.mloading');if(l)l.textContent='解读加载失败';});
 }
@@ -121,7 +121,7 @@ function renderM(a){
   const ch=af.channels||{};
   const chrows=Object.entries(ch).map(([k,v])=>`<div class="chitem"><b>${k}</b> ${v}</div>`).join('');
   const m=document.getElementById('modal');
-  m.innerHTML=`<span class="mclose" onclick="closeM()">✕</span>
+  m.innerHTML=`<span class="mclose" onclick="closeM()"><i data-ic="close"></i></span>
     <div class="mtop"><div class="mimg"><img src="${a.full}" alt=""/></div>
       <div class="mhd"><div class="mt">${a.title||'—'}</div><div class="ma">${a.artist||''} · ${a.media||''}</div>
         ${a.voiceover?`<div class="mq">“${a.voiceover}”</div>`:''}

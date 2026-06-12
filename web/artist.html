@@ -2,7 +2,7 @@
 <html lang="zh"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>艺术家 · aha</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#2a2620;--soft:#5c554a;--mute:#8a8170;--line:#ddd5c6;--bg:#f3eee2;--gold:#b0673a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
 *{box-sizing:border-box;margin:0}body{background:var(--bg);color:var(--ink);font-family:var(--sans)}
@@ -58,7 +58,7 @@ fetch('/cat/artist?id='+encodeURIComponent(id)).then(r=>r.json()).then(d=>{
       ${lin?`<div class="lin">谱系 · ${esc(lin)}</div>`:''}
       ${L.quote?`<div class="quote">"${esc(L.quote)}"</div>`:''}
       <div class="prov">考据来源 · 知识图谱策展(kg_artists)；以下作品/情绪为活库实测</div>
-    </div>`:'<div class="prov" style="color:#c2792e">⚠ 此艺术家未在策展考据名册(282)中,以下为活库聚合,中英文/生平待考。</div>';
+    </div>`:'<div class="prov" style="color:#c2792e"><i data-ic="warn"></i> 此艺术家未在策展考据名册(282)中,以下为活库聚合,中英文/生平待考。</div>';
   document.getElementById('app').innerHTML=lore+`
     <div class="cards">
       <div class="card"><div class="v">${d.n_kept}</div><div class="l">核心资产作品</div></div>
@@ -73,10 +73,11 @@ fetch('/cat/artist?id='+encodeURIComponent(id)).then(r=>r.json()).then(d=>{
         <div class="bars">${d.styles.map(s=>`<div class="bar"><span>${esc(s.k)}</span><div class="bt"><span style="width:${s.n/mx*100}%"></span></div><span style="text-align:right;color:var(--mute)">${s.n}</span></div>`).join('')||'<span style="color:var(--mute)">—</span>'}</div>
       </div>
       <div><div class="sec-h">作品 · ${d.works.length}（核心资产,点开看解读）</div>
-        <div class="works">${d.works.map(w=>`<a class="w" href="work.html?id=${w.id}"><img loading="lazy" src="${w.thumb}"><div class="c">${esc((w.title||'无题').slice(0,16))}<br><span style="color:var(--mute)">${w.anchor||''} ${w.style||''}</span></div></a>`).join('')}</div>
+        <div class="works">${d.works.map(w=>`<a class="w" href="work.html?id=${w.code||w.id}"><img loading="lazy" decoding="async" src="${w.thumb}"><div class="c">${esc((w.title||'无题').slice(0,16))}<br><span style="color:var(--mute)">${w.anchor||''} ${w.style||''}</span></div></a>`).join('')}</div>
         ${d.n_kept===0?'<p style="color:var(--mute)">该艺术家尚无作品过闸(开闸推进中)。</p>':''}
       </div>
     </div>`;
 });
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

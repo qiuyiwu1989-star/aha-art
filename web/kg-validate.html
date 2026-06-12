@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>aha · 生成链 · 可证伪验证</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
   :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--red:#a8443a;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -35,18 +35,30 @@
   .cn{border-radius:9px;padding:9px 12px;text-align:center;color:#fff;font-family:var(--serif);font-size:13px;font-weight:600}
   .cn .s{display:block;font-family:var(--mono);font-size:9px;font-weight:400;margin-top:2px;opacity:.9}
   .arrow{color:var(--ink-faint);font-size:18px}
+  .ladder{display:flex;height:30px;border-radius:8px;overflow:hidden;margin-top:4px;font-family:var(--mono);font-size:11px;font-weight:600}
+  .ladder .seg{display:flex;align-items:center;justify-content:center;color:#fff;white-space:nowrap;min-width:0}
+  .ladleg{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;font-family:var(--mono);font-size:11px;color:var(--ink-soft)}
+  .ladleg i{display:inline-flex;align-items:center;gap:5px;font-style:normal}.ladleg i b{width:11px;height:11px;border-radius:3px;display:inline-block}
+  .sings{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px;margin-top:6px}
+  .sing{background:#fff;border:1px solid var(--line);border-radius:11px;overflow:hidden;border-left:3px solid var(--red)}
+  .sing img{width:100%;height:135px;object-fit:cover;background:var(--paper-2);display:block}
+  .sing .sb{padding:9px 11px}
+  .sing .st{font-family:var(--serif);font-size:13px;font-weight:600}.sing .st .an{font-family:var(--mono);font-size:9.5px;color:#fff;background:var(--red);border-radius:4px;padding:1px 6px;margin-left:5px}
+  .sing .sg{font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin:4px 0}
+  .sing .sg b{color:var(--red)}
+  .sing .sr{font-size:11px;color:var(--ink-soft);line-height:1.5;margin-top:3px}.sing .sr b{color:var(--accent)}
   .back{display:block;text-align:center;margin-top:40px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
   .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="museum.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 经得起推敲</div>
   <h1>生成链 · 可证伪验证</h1>
-  <p class="lead">世界观层已自检过(<a href="kg-worldview-science.html" style="color:var(--accent)">科学性自检</a>)。这一页把追问推到整条链:<b>风格的坐标,能预测画面被像素测到的样子吗?</b> 用 <b id="n">…</b> 件作品的<b>实测色彩/情绪</b>正面检验,并<b>如实分级</b>——哪段成立、哪段还不成立。</p>
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-apply">应用·工具</a> › <b style="color:var(--ink-soft)">链路验证</b></div>
+  <p class="lead">世界观层已自检过(<a href="kg-worldview-science.html" style="color:var(--accent)">科学性自检</a>)。这一页把追问推到整条链:<b>风格的坐标,能预测画面被像素测到的样子吗?</b> 用 <b id="n">…</b> 件作品的<b>实测色彩/情绪</b>正面检验,并<b>如实分级</b>——哪段成立、哪段还不成立。<b>⑤ 是拱顶石</b>:成立的"技法→情绪"那条,到底<b>投了多少</b>?把情绪方差<b>按层问责</b>——技法 ~20%,余下 ~80% 漏给语义与动机。</p>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="museum.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-apply">应用·工具</a> › <b style="color:var(--ink-soft)">链路验证</b></div>
 
-  <div class="caveat">⚠️ <b>前提</b>:样本=语料里挂了作品的 <b id="ns">…</b> 个风格 × 其 <b id="n2">…</b> 件作品;风格向量为本系统编码,而<b>颜色/情绪是从像素实测的</b>(独立于编码)。所以这是一次<b>真·跨来源</b>的检验——但样本偏小、偏西方,结论按强度诚实标注。</div>
+  <div class="caveat"><i data-ic="warn"></i> <b>前提</b>:样本=语料里挂了作品的 <b id="ns">…</b> 个风格 × 其 <b id="n2">…</b> 件作品;风格向量为本系统编码,而<b>颜色/情绪是从像素实测的</b>(独立于编码)。所以这是一次<b>真·跨来源</b>的检验——但样本偏小、偏西方,结论按强度诚实标注。</div>
 
   <div class="sec">
     <div class="sec-h">① 链条末端:感知效应可由像素测吗?<span style="font-family:var(--mono);font-size:11px;color:var(--green);margin-left:8px">作品层</span></div>
@@ -76,9 +88,28 @@
       <span class="arrow">→</span>
       <div class="cn" style="background:var(--green)">位置→画面<span class="s">中等 ✓ · 再现-表现轴</span></div>
       <span class="arrow">→</span>
-      <div class="cn" style="background:#9a6a62">饱和=情绪<span class="s">✗ 循环 · 已撤</span></div>
+      <div class="cn" style="background:#9a6a62">饱和=情绪<span class="s"><i data-ic="close"></i> 循环 · 已撤</span></div>
+      <span class="arrow">→</span>
+      <div class="cn" style="background:var(--gold)">技法→情绪<span class="s">~20% · 部分投影(见 ⑤)</span></div>
+      <span class="arrow">→</span>
+      <div class="cn" style="background:#7a6a9a">残差→意义<span class="s">~80% 在语义/动机</span></div>
     </div>
     <div class="verdict mid" style="margin-top:14px"><b>诚实判定(已纠偏):</b>① 世界观层结构经 PCA/聚类自检站得住。② <b>真正非循环的发现</b>:像素特征<b>中等程度</b>携带风格的世界观位置信息——尤其<b>再现-表现轴</b>(暖色 −0.48 / 边缘 +0.43 / 明度 +0.40),且 <b>6 个区在像素上能分开</b>(边缘密度、暖色占比单调变化)。③ 但<b>两条捷径要撤</b>:旧引用的"饱和→唤起 r≈0.78"是<b>循环</b>(语料唤起=颜色派生),独立测只剩 ≈0.2;E 向量的能量轴(秩序-张力/节制-强度)像素里 <b>r≈0</b>;单风格→单幅画仍弱。<b>把循环的那条揪出来撤掉,正是经得起推敲。</b>完整拆解见 <a href="kg-affect.html" style="color:var(--accent);font-weight:600">L3 感知效应 →</a></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">⑤ 拱顶石:情绪的投影问责——每层解释多少?<span style="font-family:var(--mono);font-size:11px;color:var(--green);margin-left:8px">118 幅四层语料</span></div>
+    <div class="sec-d">①②③ 验的是"投影成不成立";这一节问更狠的:成立的那条<b>到底投了多少</b>?对 <b id="nx">…</b> 幅<b>四层全标注</b>真迹(题材+语言+情绪+画外音),用技法 7 轴回归预测它的 VAD,看能解释多大比例——<b>解释不掉的残差,正是语义/动机在扛</b>(那根不可像素测的轴)。</div>
+    <div class="card">
+      <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-bottom:5px">情绪方差的归属(R² 问责)</div>
+      <div class="ladder" id="ladder"></div>
+      <div class="ladleg" id="ladleg"></div>
+      <div style="font-size:12px;color:var(--ink-soft);line-height:1.7;margin-top:9px;border-top:1px dashed var(--line);padding-top:8px" id="ladNote"></div>
+    </div>
+    <div class="scatter card" style="margin-top:10px"><svg id="scX" viewBox="0 0 600 360"></svg><div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);text-align:center;margin-top:4px">横轴 技法预测唤起 · 纵轴 实际标注唤起 · 贴对角线=技法说得准,<b style="color:var(--red)">偏离对角线=奇点</b>(点色越红=残差越大)</div></div>
+    <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin:16px 0 2px">残差最大的 8 幅 · 技法预测不掉的情绪,语义/动机在扛</div>
+    <div class="sings" id="sings"></div>
+    <div class="verdict mid" id="vX" style="margin-top:12px"></div>
   </div>
 
   <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
@@ -109,5 +140,43 @@ fetch('data/kg_validate.json').then(r=>r.json()).then(D=>{
     const bars=Object.entries(q).map(([k,v])=>`<span style="width:${v/tot*100}%;background:${QC[k]}" title="${k} ${v}"></span>`).join('');
     cg.appendChild($(`<div class="qc" style="border-left:3px solid ${WVC[wv]}"><div class="qh">${wv} ${WVN[wv]}</div><div class="bars">${bars}</div><div class="qm">${Object.entries(q).sort((a,b)=>b[1]-a[1]).map(([k,v])=>k.split('·')[0]+' '+v).join(' · ')}</div></div>`));});
 });
+
+// ⑤ 拱顶石:投影问责账本
+fetch('data/kg_xlayer.json').then(r=>r.json()).then(D=>{
+  const r2=D.meta.r2_mean, langPct=Math.round(r2*100), residPct=100-langPct;
+  document.getElementById('nx').textContent=D.meta.n;
+  // 问责阶梯条
+  document.getElementById('ladder').innerHTML=
+    `<div class="seg" style="width:${langPct}%;background:var(--gold)">技法 ${langPct}%</div>`+
+    `<div class="seg" style="width:${residPct}%;background:var(--accent)">语义+动机残差 ${residPct}%</div>`;
+  document.getElementById('ladleg').innerHTML=
+    `<i><b style="background:var(--gold)"></b>语言/技法可解释 R²≈${r2.toFixed(2)}</i>`+
+    `<i><b style="background:var(--accent)"></b>残差(语义·题材·动机)≈${(1-r2).toFixed(2)}</i>`+
+    `<i style="color:var(--ink-faint)">裸像素更弱(见 ①②)</i>`;
+  document.getElementById('ladNote').innerHTML=`🔭 技法(怎么画)能解释情绪方位的 <b>~${langPct}%</b>(三维 R² ${D.meta.r2.valence}/${D.meta.r2.arousal}/${D.meta.r2.dominance})——<b>真,但远非全部</b>。余下 <b>~${residPct}%</b> 不在像素/技法里,而在<b>题材语义与"为什么画"的动机</b>上。这正解释了为何 VLM 三通道(读语义)赢过纯色彩,也为何 <a href="kg-subtext.html#orthoSec" style="color:var(--accent);font-weight:600">画外音/动机是一根正交、不可像素测的轴 →</a>。`;
+  // 残差散点:技法预测唤起 × 实际唤起
+  const svg=document.getElementById('scX'),W=600,H=360,pad=40;
+  const sx=v=>pad+v*(W-2*pad),sy=v=>H-pad-v*(H-2*pad);
+  svg.appendChild(E('rect',{x:pad,y:pad,width:W-2*pad,height:H-2*pad,fill:'#fcfaf5',stroke:'#e8e0d0'}));
+  [.25,.5,.75].forEach(t=>{svg.appendChild(E('line',{x1:sx(t),y1:pad,x2:sx(t),y2:H-pad,stroke:'#efe9dc'}));svg.appendChild(E('line',{x1:pad,y1:sy(t),x2:W-pad,y2:sy(t),stroke:'#efe9dc'}));});
+  svg.appendChild(E('line',{x1:sx(0),y1:sy(0),x2:sx(1),y2:sy(1),stroke:'#cbb6a0','stroke-dasharray':'5 4','stroke-width':1.3}));
+  D.works.forEach(w=>{const t=Math.min(w.resid/0.45,1);
+    const col=`rgb(${Math.round(90+78*t)},${Math.round(125-57*t)},${Math.round(111-53*t)})`;
+    const c=E('circle',{cx:sx(w.pred.arousal),cy:sy(w.labeled.arousal),r:4.2,fill:col,'fill-opacity':.72,stroke:'#fff','stroke-width':.6});
+    const tt=document.createElementNS(NS,'title');tt.textContent=`${(w.artist||'').replace(/\(.*?\)/,'').trim()} · ${w.anchor} · 预测${w.pred.arousal}/实际${w.labeled.arousal} · 残差${w.resid}`;c.appendChild(tt);
+    svg.appendChild(c);});
+  svg.appendChild(E('text',{x:W/2,y:H-10,'text-anchor':'middle','font-family':'JetBrains Mono','font-size':10,fill:'#a89f8f'}));svg.lastChild.textContent='技法预测唤起 →';
+  const yl=E('text',{x:13,y:H/2,'text-anchor':'middle','font-family':'JetBrains Mono','font-size':10,fill:'#a89f8f',transform:`rotate(-90 13 ${H/2})`});yl.textContent='实际标注唤起 →';svg.appendChild(yl);
+  // 奇点卡
+  document.getElementById('sings').innerHTML=D.singularities.map(s=>{
+    const artist=(s.artist||'').replace(/\(.*?\)/,'').trim();
+    return `<div class="sing"><img src="img/${s.slug}.jpg" loading="lazy" decoding="async" alt=""/><div class="sb">`+
+      `<div class="st">${artist||s.title}<span class="an">${s.anchor}</span></div>`+
+      `<div class="sg">技法预测唤起 <b>${s.pred.arousal}</b> → 实际 <b>${s.labeled.arousal}</b> · 残差 ${s.resid}</div>`+
+      `<div class="sr"><b>语义在扛:</b>${s.ch_subject||s.voiceover}</div></div></div>`;}).join('');
+  // 诚实判定
+  document.getElementById('vX').innerHTML=`<b>诚实判定:情绪是"部分投影"。</b>技法能解释约 <b>${langPct}%</b> 的情绪方位(非零、可复现=真投影),但<b>大头(~${residPct}%)漏给了语义与动机</b>。残差最大的几幅(德拉克洛瓦《暴风雨中沉睡的基督》、戈雅《战争的灾难》)无一例外:<b>张力来自题材叙事,不在笔触里</b>。这不是失败——<b>它精确量出了"情绪能被画面投射多少、又有多少必须靠'为什么画'来补"</b>,正是这套图谱该有的诚实刻度。`;
+}).catch(e=>{document.getElementById('ladNote').innerHTML='<span style="color:var(--ink-faint)">需服务器加载 kg_xlayer.json</span>';});
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

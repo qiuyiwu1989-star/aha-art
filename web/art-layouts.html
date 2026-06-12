@@ -2,7 +2,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>aha · 单画版式实验室</title>
 <meta name="description" content="同一张画,六种版式 —— 单画页 art.html 的 UI 版式规范与对照。">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="css/aha-frames.css" rel="stylesheet"/>
 <script src="js/frames.js"></script>
 <style>
@@ -212,7 +212,7 @@ const REGAVG={WV5:{构图:.62,空间:.5,造型:.7,光影:.72,色彩:.66,笔触:.
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function isRealArtist(w){const a=((w&&w.artist)||'').trim();if(!a)return false;return !/佚名|待考|无名|未知|匿名|不详|无款|unknown|anonymous|untitled/i.test(a);}
 function cleanTitle(t){return String(t||'无题').replace(/\.(jpg|jpeg|png|webp)$/i,'').replace(/_/g,' ').trim()||'无题';}
-function imgSrc(w,wide){return w.file+(w.file.indexOf('?')<0&&w.file.indexOf('myqcloud.com')>=0?('?imageMogr2/thumbnail/'+(wide||1400)+'x'):'');}
+function imgSrc(w,wide){return w.file+(w.file.indexOf('?')<0&&w.file.indexOf('myqcloud.com')>=0?('?imageMogr2/thumbnail/'+(wide||1400)+'x/format/webp'):'');}
 function artistLine(w){return isRealArtist(w)?esc(w.artist):'<span class="anon">佚名 · 待考</span>';}
 function voiceText(w){return w.voiceover&&w.voiceover.length>8?w.voiceover:'一幅人类留下的画。';}
 
@@ -270,7 +270,7 @@ function rTheater(w){
       <div class="pic"><img src="${imgSrc(w,1400)}" alt=""></div>
       <div class="dock">
         <div class="nav-av on"><span class="av">◉</span><span class="nm">aha</span></div>
-        <div class="nav-av"><span class="av">🎨</span><span class="nm">作者自述</span></div>
+        <div class="nav-av"><span class="av"><i data-ic="create"></i></span><span class="nm">作者自述</span></div>
         <div class="nav-av"><span class="av">＋</span><span class="nm">邀请</span></div>
       </div>
     </div>
@@ -298,7 +298,7 @@ function rImmersive(w){
     </div>
     <div class="drawer-tab" onclick="document.getElementById('immv').classList.add('draweron')">解读 ▸</div>
     <div class="drawer">
-      <div class="dx" onclick="document.getElementById('immv').classList.remove('draweron')">✕</div>
+      <div class="dx" onclick="document.getElementById('immv').classList.remove('draweron')"><i data-ic="close"></i></div>
       <div><div class="kicker">读它</div>
         <div class="w-title" style="font-size:22px;margin-top:6px">${esc(cleanTitle(w.title))}</div>
         <div class="w-sub" style="margin-top:3px">${artistLine(w)}</div></div>
@@ -352,7 +352,7 @@ function rConversation(w){
       <div class="cap"><b>${esc(cleanTitle(w.title))}</b><br><span>${artistLine(w)}${w.year?' · '+esc(w.year):''}</span></div>
     </div>
     <div class="msg"><div class="pav">◉</div>${bubbleHTML('aha','aha · 官方解读','',readingText(w,'aha'),false)}</div>
-    <div class="msg"><div class="pav">🎨</div>${bubbleHTML('painter','以 画家自述 之眼','',readingText(w,'painter'),true)}</div>
+    <div class="msg"><div class="pav"><i data-ic="create"></i></div>${bubbleHTML('painter','以 画家自述 之眼','',readingText(w,'painter'),true)}</div>
     <div class="invite">＋ 邀请更多解说员来讲这幅画</div>
   </div></section>`;
 }
@@ -408,4 +408,5 @@ document.getElementById('swap').onclick=swap;
 (function(){const q=new URLSearchParams(location.search);const v=q.get('v');if(v&&VARIANTS.find(x=>x.key===v))_cur=v;})();
 draw();
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

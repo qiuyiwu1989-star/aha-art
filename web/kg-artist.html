@@ -2,11 +2,13 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>aha · 艺术家</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
-  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--blue:#5b7596;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--card:#fffdf8;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--line-soft:#e8e1d4;--accent:#b0673a;--accent-soft:#f0e4d8;--accent-line:#e5d3c2;--green:#5a7d6f;--green-soft:#e4ede9;--blue:#5b7596;--blue-soft:#e3e9f0;--gold:#c98a1a;--gold-soft:#f3e7cb;--ok:#3a8a5a;--warn:#c2792e;--rej:#b5483a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace;--s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--r-sm:6px;--r:12px;--r-lg:16px;--r-pill:999px;--sh-1:0 1px 3px rgba(60,48,32,.06);--sh-card:0 8px 22px -14px rgba(60,48,32,.28);--sh-pop:0 14px 40px -16px rgba(60,48,32,.4);--ease:cubic-bezier(.22,.61,.36,1);--dur:.18s;--dur-slow:.4s}
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
   .wrap{max-width:900px;margin:0 auto;padding:30px 18px 90px}
   .breadcrumb{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}.breadcrumb a{color:var(--accent);text-decoration:none}
   /* header */
@@ -33,7 +35,7 @@
   .band-h .nt{font-size:11.5px;color:var(--ink-faint);margin-left:auto;font-style:italic}
   .bio{font-size:14px;color:var(--ink-soft);line-height:1.9;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
   /* generic card + sub head */
-  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:10px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-top:10px}
   .sh{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.03em;margin-bottom:8px;border-bottom:1px dashed var(--line);padding-bottom:5px}
   .chips{display:flex;flex-wrap:wrap;gap:6px}
   .chip{font-size:12.5px;color:var(--ink-soft);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:3px 10px;text-decoration:none}
@@ -58,12 +60,13 @@
   .ro .rl{font-family:var(--mono);font-size:9.5px;color:var(--ink-faint)}
   .ro .rv{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--ink);margin-top:3px}
   .ro .rv small{font-family:var(--mono);font-size:10px;color:var(--ink-mute);font-weight:400}
-  .note{font-size:12.5px;color:var(--ink-soft);line-height:1.7;margin-top:10px;background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:8px;padding:9px 12px}
+  .note{font-size:12.5px;color:var(--ink-soft);line-height:1.7;margin-top:10px;background:var(--accent-soft);border:1px solid var(--accent-line);border-radius:var(--r-sm);padding:9px 12px}
   .note b{color:var(--accent)}
   /* fingerprint */
   .frow{display:flex;align-items:center;gap:9px;margin:6px 0;font-size:11.5px}
   .frow .fl,.frow .fr{width:40px;font-family:var(--mono);font-size:10.5px;color:var(--ink-soft)}.frow .fl{text-align:right}
   .ft{flex:1;height:7px;background:var(--paper-2);border-radius:4px;position:relative}
+  .ft::before{content:'';position:absolute;left:50%;top:0;height:100%;width:1px;background:#cfc6b4}
   .fd{position:absolute;top:50%;width:13px;height:13px;border-radius:50%;background:var(--accent);transform:translate(-50%,-50%);border:2px solid #fff}
   .fk{width:34px;font-family:var(--serif);font-size:12px;color:var(--ink-mute);text-align:right}
   /* VAD circumplex */
@@ -84,9 +87,10 @@
   .ga{display:block;text-decoration:none;background:var(--paper);border:1px solid var(--line);border-radius:9px;overflow:hidden}
   .ga img{width:100%;height:120px;object-fit:cover;display:block;background:var(--paper-2)}
   .ga .gt{display:block;font-size:11px;color:var(--ink-soft);padding:5px 7px;line-height:1.3}
-  .ga:hover{border-color:var(--accent)}.ga:hover .gt{color:var(--accent)}
+  .ga{transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+  .ga:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:var(--sh-card)}.ga:hover .gt{color:var(--accent)}
   .worklist{display:flex;flex-direction:column;gap:6px}
-  .wn{display:flex;align-items:baseline;gap:8px;font-size:14px;color:var(--ink-soft);background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:8px 12px}
+  .wn{display:flex;align-items:baseline;gap:8px;font-size:14px;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding:8px 12px}
   .wn .wt{font-family:var(--serif);flex:1}.wn .wy{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}.wn .wxy{font-family:var(--mono);font-size:10px;color:var(--accent)}
   /* quote */
   .quote{font-family:var(--serif);font-size:16px;font-style:italic;color:var(--ink-soft);text-align:center;padding:6px 4px 2px;line-height:1.85}
@@ -102,9 +106,9 @@
   .empty{font-size:13px;color:var(--ink-faint);padding:40px;text-align:center}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="museum.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-artist">实例·艺术家</a> › <b style="color:var(--ink-soft)">艺术家页</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="museum.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-artist">实例·艺术家</a> › <b style="color:var(--ink-soft)">艺术家页</b></div>
   <div id="body"><div class="empty">加载中…</div></div>
   <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
 </div>
@@ -159,7 +163,7 @@ function openLB(svgEl,clone){
   c.addEventListener('pointermove',e=>{if(!dr)return;const r=c.getBoundingClientRect();vb[0]=dr.vx-(e.clientX-dr.x)/r.width*vb[2];vb[1]=dr.vy-(e.clientY-dr.y)/r.height*vb[3];apply();});
   const end=()=>{dr=null;c.style.cursor='grab';}; c.addEventListener('pointerup',end); c.addEventListener('pointerleave',end);
   o.appendChild(c);
-  o.appendChild($(`<div class="lbx">✕ 关闭</div>`));
+  o.appendChild($(`<div class="lbx"><i data-ic="close"></i> 关闭</div>`));
   o.appendChild($(`<div class="lbhint">滚轮放大细节 · 拖动平移 · 点背景关闭</div>`));
   o.addEventListener('click',()=>o.remove());
   document.body.appendChild(o);
@@ -168,8 +172,34 @@ const NS='http://www.w3.org/2000/svg';
 const E=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
 const qid=new URLSearchParams(location.search).get('id')||'ARTIST.repin';
 const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+// 🔗 焦点艺术家 lore + 全员索引 直接取自后端活库(Postgres aha · /cat),非静态快照
+const POLES=[{k:"构图",l:"均衡",r:"动势"},{k:"空间",l:"纵深",r:"平面"},{k:"造型",l:"体积",r:"消融"},{k:"光影",l:"柔和",r:"强烈"},{k:"色彩",l:"沉郁",r:"明艳"},{k:"笔触",l:"隐没",r:"显露"},{k:"边缘",l:"硬朗",r:"柔化"}];
+const buildA=Promise.all([
+  fetch('/cat/artist?id='+encodeURIComponent(qid)).then(r=>r.json()),
+  fetch('/cat/artists_canon').then(r=>r.json())
+]).then(([d,C])=>{
+  const artists={};
+  (C.artists||[]).forEach(x=>{artists[x.id]={id:x.id,cn:x.cn,en:x.en,region:x.region,wv:{region_id:x.wv},styles:x.primary?[x.primary]:[],born:x.born,death:x.death,portrait:x.portrait};});
+  let a=(d&&d.lore)||null;
+  if(!a||!a.cn){              // 非策展/活库艺术家(无 lore):用 /cat/artist 顶层字段兜底成最小简档,走 stub 分支不崩
+    a=a||{};
+    a.cn=a.cn||(d&&(d.name_cn||d.name))||qid;
+    a.en=a.en||(d&&d.name_en)||'';
+    if(a.born==null&&d&&d.born!=null)a.born=d.born;
+    if(a.death==null&&d&&d.death!=null)a.death=d.death;
+    a.nationality=a.nationality||(d&&d.nationality)||'';
+    a.region=a.region||(d&&d.region)||'';
+    a._stub=true;
+  }
+  a.id=a.id||(d&&d.id)||qid;
+  if(d&&d.measured)a._measured=d.measured;   // 🔬 实测聚合(真作品 VLM 向量),供 ⑥⑦ 并列“实测 vs 策展”
+  if(d){a._holdings=d.holdings||[];a._n_holdings=d.n_holdings||0;a._styles=d.styles||[];a._vad_centroid=d.vad_centroid;a._draft=d.draft;}  // 活库派生 lite 深页用
+  artists[a.id]=a;            // 焦点艺术家用完整 lore 覆盖最小条目
+  if(qid&&qid!==a.id)artists[qid]=a;   // 兼容用源 id(nbfox:/yh:…)打开:/cat/artist 已解析成 canon lore,别名指过去
+  return {artists,meta:{lang_poles:POLES}};
+});
 Promise.all([
-  fetch('data/kg_artists.json').then(r=>r.json()),
+  buildA,
   fetch('data/kg_worldview_v3.json').then(r=>r.json()).catch(()=>({regions:[],axes:[]})),
   fetch('data/kg_style.json').then(r=>r.json()).catch(()=>({nodes:[]})),
   fetch('data/kg_artist_images.json').then(r=>r.json()).catch(()=>({})),
@@ -177,12 +207,20 @@ Promise.all([
   fetch('data/kg_artist_lineage.json').then(r=>r.json()).catch(()=>({by_artist:{}})),
   fetch('data/kg_relations.json').then(r=>r.json()).catch(()=>({edges:[]})),
   fetch('data/kg_context.json').then(r=>r.json()).catch(()=>({events:[],lanes:[]})),
-  fetch('data/kg_artist_portraits.json').then(r=>r.json()).catch(()=>({}))
-]).then(([A,WV,STY,IMG,PIX,LINAG,REL,CTX,PORTS])=>{
+  fetch('data/kg_artist_portraits.json').then(r=>r.json()).catch(()=>({})),
+  fetch('data/kg_edges.json').then(r=>r.json()).catch(()=>({by_artist:{}})),
+  fetch('data/kg_subject_artist_edges.json').then(r=>r.json()).catch(()=>({artist_to_nodes:{},nodes:{}}))
+]).then(([A,WV,STY,IMG,PIX,LINAG,REL,CTX,PORTS,EDGES,SUBJ])=>{
+  const subjNodes=SUBJ.nodes||{};
+  const subjChip=kid=>{const nd=subjNodes[kid];if(!nd)return '';return `<a class="chip" href="kg-subject-map.html?kid=${encodeURIComponent(kid)}" title="到题材地图定位「${nd.cn}」">${nd.cn} →</a>`;};
   const cn2id={}; (STY.nodes||[]).forEach(n=>cn2id[n.cn]=n.id);
   // 三层连通辅助:艺术家名→id、师承名内联链接、风格→风格详情
   const artId={}; Object.values(A.artists).forEach(x=>{ if(x.cn&&!artId[x.cn]) artId[x.cn]=x.id; });
-  const aLink=nm=>{const id=artId[nm]; return id?`<a href="kg-artist.html?id=${id}" style="color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--line)">${nm}</a>`:nm;};
+  const aLink=nm=>{const id=artId[nm];
+    if(id)return `<a href="kg-artist.html?id=${id}" style="color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--line)">${nm}</a>`;
+    // 不在策展库的人名:也做成活链接,去艺术家库检索(去掉括号注解再搜)
+    const qn=String(nm).replace(/[（(].*$/,'').trim();
+    return `<a href="kg-artists.html?q=${encodeURIComponent(qn)}" title="在艺术家库中检索「${qn}」" style="color:var(--ink-soft);text-decoration:none;border-bottom:1px dotted var(--line)">${nm}</a>`;};
   const GLIN=(LINAG.by_artist)||{};
   const idCn=id=>(A.artists[id]||{}).cn||id;
   const aLinkId=id=>`<a href="kg-artist.html?id=${id}" style="color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--line)">${idCn(id)}</a>`;
@@ -196,12 +234,13 @@ Promise.all([
   // ===== 派生页(继承自所属风格;知名者带策展生平,深度点云待考究)=====
   if(a._stub){
     const wvid=(a.wv&&a.wv.region_id)||'', iv=a.inherited_vector||{};
-    b.appendChild($(`<div class="nh ${east?'east':''}"><span class="cn">${a.cn}</span><span class="badges">${a.style_relation?`<span class="bd mode 居于">居于 · ${(a.styles||[])[0]||''}</span>`:''}${wvid?`<a class="bd wm" href="kg-worldview-region.html?id=${wvid}" style="text-decoration:none">${wvid} ${WVN[wvid]||''}</a>`:''}<span class="bd id">${a.id}</span></span></div>`));
+    const HD=a._holdings||[], NH=a._n_holdings||HD.length, MEAS=a._measured||{}, isLedger=HD.length>0;
+    b.appendChild($(`<div class="nh ${east?'east':''}"><span class="cn">${a.cn}</span><span class="badges">${a.cn?`<a class="bd" href="studio.html?artist=${encodeURIComponent(a.cn)}" style="text-decoration:none;color:var(--accent)" title="用 ${a.cn} 的基因去生成中心创作">用 TA 基因创作 →</a>`:''}${a.style_relation?`<span class="bd mode 居于">居于 · ${(a.styles||[])[0]||''}</span>`:''}${wvid?`<a class="bd wm" href="kg-worldview-region.html?id=${wvid}" style="text-decoration:none">${wvid} ${WVN[wvid]||''}</a>`:''}<span class="bd id">${a.id}</span></span></div>`));
     const bd=(a.born!=null)?`${a.born}–${a.death||'今'} · ${a.nationality||''} · `:'';
-    b.appendChild($(`<div class="idline">${bd}${east?'东方':'西方'} · 风格实例(继承自所属风格)</div>`));
+    b.appendChild($(`<div class="idline">${bd}${east?'东方':'西方'} · ${isLedger?'活库聚合(待考究)':'风格实例(继承自所属风格)'}</div>`));
     if(a.bio) b.appendChild($(`<div class="headline">“${a.bio}”</div>`));
     // mini 世界观平面
-    if(a.wv&&a.wv.x!=null){
+    if(!isLedger&&a.wv&&a.wv.x!=null){
       const c=$(`<div class="band B"><div class="band-h"><span class="tag">④</span><span class="t">世界观坐标 · 继承自所属风格</span><span class="nt">再现-表现 ⊥ 结构-感知</span></div></div>`);
       const W=560,H=400,pad=44, sx=v=>pad+v*(W-2*pad), sy=v=>H-pad-v*(H-2*pad);
       const svg=E('svg',{viewBox:`0 0 ${W} ${H}`,style:'width:100%;height:auto'});
@@ -221,13 +260,58 @@ Promise.all([
       c.appendChild(bars);
       b.appendChild(c);
     }
+    // ══ 活库派生 lite 深页(有真迹的非策展艺术家):真迹聚合 + 逐张 VLM 实测 ══
+    if(isLedger){
+      b.appendChild(a._draft
+        ? $(`<div class="note"><i data-ic="tools"></i> <b>制作中 · 已立项</b>:已建 canon 草稿(实测数据已预填),正在补全生平 / 世界观读法 / 师承 / 画外音等人文部分,完成后升级为满血策展页。<a href="gallery-live.html?artist=${encodeURIComponent(qid)}&name=${encodeURIComponent(a.cn)}" style="color:var(--accent)">看全部藏画 →</a></div>`)
+        : $(`<div class="note"><i data-ic="box"></i> <b>活库聚合 · 待考究</b>:此页由该艺术家入库真迹<b>自动聚合</b>(逐张 VLM 实测),非人工策展;世界观坐标 / 生平 / 师承 / 画外音等深度考据尚待补。<a href="gallery-live.html?artist=${encodeURIComponent(qid)}&name=${encodeURIComponent(a.cn)}" style="color:var(--accent)">看全部藏画 →</a></div>`));
+      if((a._styles||[]).length){const c=$(`<div class="card"><div class="sh">风格分布 · 取自入库真迹</div></div>`);
+        const mx=Math.max(1,...a._styles.map(s=>s.n));
+        a._styles.slice(0,10).forEach(s=>{const sid=cn2id[s.k]||cn2id[s.k+'风格'];const klab=sid?`<a href="kg-style-detail.html?id=${sid}" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--line)">${s.k}</a>`:s.k;
+          c.appendChild($(`<div class="frow"><span class="fk" style="width:84px;text-align:right">${klab}</span><span class="ft"><span style="position:absolute;left:0;top:0;height:100%;width:${s.n/mx*100}%;background:${ACR};border-radius:4px"></span></span><span class="vnum">${s.n}</span></div>`));});
+        b.appendChild(c);}
+      const MVAD=MEAS.vad, MPTS=MEAS.vad_points||[];
+      if(MVAD&&MVAD.v){const fv=MVAD.v.mean,fa=MVAD.a.mean,fd=MVAD.d?MVAD.d.mean:0.5;
+        const c=$(`<div class="card"><div class="sh">感知效应 · VAD 情绪(实测自 ${MEAS.n_vad} 件真画)</div></div>`);
+        const S=320,pd=40,svg=E('svg',{viewBox:`0 0 ${S} ${S}`,style:'width:100%;max-width:320px;height:auto;display:block;margin:0 auto'});
+        const cx=v=>pd+v*(S-2*pd),cy=v=>S-pd-v*(S-2*pd);
+        const quads=[['#a8443a',pd,pd],['#c98a1a',(S)/2,pd],['#5a7d6f',(S)/2,(S)/2],['#5b7596',pd,(S)/2]];
+        const half=(S-2*pd)/2; const aq=(fv>=0.5?(fa>=0.5?1:2):(fa>=0.5?0:3));
+        quads.forEach((q,i)=>svg.appendChild(E('rect',{x:q[1],y:q[2],width:half,height:half,fill:q[0],'fill-opacity':i===aq?0.14:0.05})));
+        svg.appendChild(E('rect',{x:pd,y:pd,width:S-2*pd,height:S-2*pd,fill:'none',stroke:'#e0d8c8'}));
+        svg.appendChild(E('line',{x1:cx(0.5),y1:pd,x2:cx(0.5),y2:S-pd,stroke:'#e8e0d0'}));svg.appendChild(E('line',{x1:pd,y1:cy(0.5),x2:S-pd,y2:cy(0.5),stroke:'#e8e0d0'}));
+        MPTS.forEach(p=>{const qd=(p.v>=0.5?(p.a>=0.5?1:2):(p.a>=0.5?0:3));svg.appendChild(E('circle',{cx:cx(p.v),cy:cy(p.a),r:3.5,fill:quads[qd][0],'fill-opacity':0.45,stroke:'#fff','stroke-width':0.6}));});
+        const T2=(x,y,s,o={})=>{const t=E('text',{x,y,'font-family':'JetBrains Mono','font-size':o.fs||10,fill:'#857d6f','text-anchor':o.a||'middle'});t.textContent=s;t.setAttribute('paint-order','stroke');t.setAttribute('stroke','#fcfaf5');t.setAttribute('stroke-width',2.5);svg.appendChild(t);};
+        T2(cx(0.98),cy(0.5)-6,'愉悦→',{a:'end'});T2(cx(0.5)+4,pd-10,'↑唤起',{a:'start'});
+        const r=7+fd*13;svg.appendChild(E('circle',{cx:cx(fv),cy:cy(fa),r:r,fill:ACR,'fill-opacity':0.85,stroke:'#fff','stroke-width':2}));
+        c.appendChild(svg);
+        c.appendChild($(`<div class="kv" style="font-size:11px;color:var(--ink-faint);margin-top:6px">○ 浅点=逐张真画情绪;● 大点=重心。愉悦 <b style="color:${ACR}">${fv.toFixed(2)}</b> · 唤起 <b style="color:${ACR}">${fa.toFixed(2)}</b>${MVAD.d?` · 支配 <b style="color:${ACR}">${fd.toFixed(2)}</b>`:''}(VLM 实测,非像素直推)</div>`));
+        b.appendChild(c);}
+      const ML=MEAS.lang;
+      if(ML&&(MEAS.n_lang||0)>0){const c=$(`<div class="card"><div class="sh">个人语言指纹 · 实测(${MEAS.n_lang} 件真画 · 7 大构成)</div></div>`);
+        POLES.forEach(p=>{const st=ML[p.k];if(!st)return;const v=st.mean;
+          c.appendChild($(`<div class="frow"><span class="fk">${p.k}</span><span class="fl">${p.l}</span><span class="ft"><span class="fd" style="left:${v*100}%;background:${ACR}"></span></span><span class="fr">${p.r}</span><span class="vnum">${v.toFixed(2)}</span></div>`));});
+        b.appendChild(c);}
+      const c3=$(`<div class="card"><div class="sh"><i data-ic="works"></i> 馆藏真迹 · 共 ${(NH||0).toLocaleString()} 件(点开看解读)</div></div>`);
+      const grid=$(`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:7px;margin-top:8px"></div>`);
+      HD.slice(0,80).forEach(w=>grid.appendChild($(`<a class="ga" href="work.html?id=${w.code||w.id}" style="border-radius:9px"><img loading="lazy" decoding="async" src="${w.thumb}" style="width:100%;height:86px;object-fit:cover;display:block;background:var(--paper-2)"><span class="gt" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${(w.title||'无题')}</span></a>`)));
+      c3.appendChild(grid);b.appendChild(c3);
+      // ↔ 连通:不让 lite 页成为死胡同
+      {const c=$(`<div class="card"><div class="sh">↔ 连通</div></div>`);
+       const ch=$(`<div class="chips"></div>`);
+       ch.appendChild($(`<a class="chip" href="artists.html"><i data-ic="compass"></i> 艺术家中枢</a>`));
+       ch.appendChild($(`<a class="chip" href="gallery-live.html?artist=${encodeURIComponent(qid)}&name=${encodeURIComponent(a.cn)}"><i data-ic="works"></i> 全部藏画</a>`));
+       (a._styles||[]).slice(0,6).forEach(s=>ch.appendChild($(styChip(s.k))));
+       c.appendChild(ch);b.appendChild(c);}
+      document.title='aha · '+a.cn; return;
+    }
     // 题材 + 所属风格
     const c2=$(`<div class="band B"><div class="band-h"><span class="tag">⑤</span><span class="t">题材与所属风格</span><span class="nt">L1 实现</span></div></div>`);
     if((a.subjects||[]).length) c2.appendChild($(`<div class="chips">${a.subjects.map(s=>`<span class="chip">${s}</span>`).join('')}</div>`));
     const chips=$(`<div class="chips" style="margin-top:10px"></div>`);
     (a.styles||[]).forEach(cn=>{const id=cn2id[cn];chips.appendChild($(id?`<a class="chip" href="kg-style-detail.html?id=${id}" style="text-decoration:none">${cn}</a>`:`<span class="chip">${cn}</span>`));});
     c2.appendChild($(`<div class="sh" style="margin-top:10px">所属风格(点进风格志)</div>`));c2.appendChild(chips);
-    c2.appendChild($(`<div class="note" style="margin-top:12px">📋 此页为<b>风格实例派生</b>:坐标/题材继承自所属风格;${a.bio?'生平为策展摘要,':''}个人点云·一生轨迹·代表作待逐个深度考究。</div>`));
+    c2.appendChild($(`<div class="note" style="margin-top:12px"><i data-ic="clipboard"></i> 此页为<b>风格实例派生</b>:坐标/题材继承自所属风格;${a.bio?'生平为策展摘要,':''}个人点云·一生轨迹·代表作待逐个深度考究。</div>`));
     b.appendChild(c2);
     document.title='aha · '+a.cn;
     return;
@@ -239,16 +323,32 @@ Promise.all([
   const _ew=east?'#5a7d6f':'#b0673a';
   b.appendChild($(`<div class="pavatar">${_port?`<img src="${_port}" alt="${a.cn}" onerror="this.parentElement.innerHTML='<div class=&quot;mono&quot; style=&quot;background:${_ew}&quot;>'+[...'${a.cn}'][0]+'</div>'">`:`<div class="mono" style="background:${_ew}">${[...a.cn][0]||'?'}</div>`}</div>`));
   if(_port){const _P=PORTS[a.id];let _cr;
-    if(_P.source==='WikiArt') _cr='头像 · 来源 WikiArt';
+    if((_P.source||'').startsWith('百度')) _cr='头像 · 网络检索(参考,未经馆藏核验)';
+    else if(_P.source==='WikiArt') _cr='头像 · 来源 WikiArt';
     else if(_P.score===3) _cr=`头像取自其自画像《${_P.title}》${_P.source?' · '+_P.source:''}`;
     else _cr=`头像取自肖像《${_P.title}》${_P.by?'(作者:'+_P.by+')':''}${_P.source?' · '+_P.source:''}`;
     b.appendChild($(`<div class="pcredit">${_cr}</div>`));}
   b.appendChild($(`<div class="nh ${east?'east':''}"><span class="cn">${a.cn}</span><span class="en">${a.en}</span><span class="badges">
+    ${a.cn?`<a class="bd" href="studio.html?artist=${encodeURIComponent(a.cn)}" style="text-decoration:none;color:var(--accent)" title="用 ${a.cn} 的基因去生成中心创作">用 TA 基因创作 →</a>`:''}
     ${mode?`<span class="bd mode ${mode}">${mode} · ${a.style_relation.target}</span>`:''}
-    ${a.wv?`<span class="bd wm">${a.wv.region_id} ${a.wv.region_cn}</span>`:''}
+    ${a.wv?`<a class="bd wm" href="kg-worldview-region.html?id=${a.wv.region_id}" style="text-decoration:none">${a.wv.region_id} ${a.wv.region_cn}</a>`:''}
+    ${(()=>{const vf=a.verify;if(!vf)return '';const m={'verified':['✓ 已考据','#5a7d6f'],'疑点':['⚑ 有疑点','#b0673a'],'待核':['待核','#a89f8f']}[vf.status]||['待核','#a89f8f'];return `<span class="bd" style="background:${m[1]};color:#fff" title="${(vf.note||'').replace(/"/g,'')}">考据 ${m[0]}</span>`;})()}
     <span class="bd id">${a.id}</span></span></div>`));
   b.appendChild($(`<div class="idline">${a.born}–${a.death}  ·  ${a.nationality}  ·  ${(a.titles||[]).join('/')}  ·  ${east?'东方':'西方'}</div>`));
   if(a.headline) b.appendChild($(`<div class="headline">“${a.headline}”</div>`));
+  // ✦ 与你的契合度(懂你:用户12维μ vs 这位艺术家真作品聚合);仅登录有档案时显示
+  {let _uid=null;try{_uid=localStorage.getItem('aha_uid');}catch(e){}
+   if(_uid){const fc=$(`<div class="card" id="fitcard" style="display:none;border-color:#cfe0d8;background:linear-gradient(180deg,#f3f7f5,#fff)"></div>`);b.appendChild(fc);
+    fetch('/cat/artist_fit?uid='+encodeURIComponent(_uid)+'&id='+encodeURIComponent(a.id)).then(r=>r.json()).then(d=>{
+      if(!d||!d.ready)return; const aff=d.aff;
+      const ph=aff>=80?'几乎正中你的口味':aff>=65?'挺合你的胃口':aff>=45?'和你的口味有点距离':'离你常逛的区有点远——也许正好换换眼睛';
+      fc.style.display='';
+      fc.innerHTML=`<div class="sh" style="font-size:14px"><i data-ic="sparkles"></i> 与你的契合度 · <b style="color:#5a7d6f">${aff}%</b></div><div style="height:8px;background:var(--paper-2);border-radius:5px;position:relative;margin:6px 0"><span style="position:absolute;left:0;top:0;height:100%;width:${aff}%;background:#5a7d6f;border-radius:5px"></span></div><div style="font-size:12px;color:var(--ink-soft)">${ph} <span style="color:var(--ink-faint)">· 你的 12 维口味重心 vs TA ${d.n} 件真画的聚合(reward 内核)</span></div>`;
+    }).catch(()=>{});}}
+  // 考据疑点(诚实呈现:LLM 交叉核对发现的待核项)
+  {const vf=a.verify;if(vf&&vf.status==='疑点'&&(vf.flags||[]).length){
+    const fl=vf.flags.map(f=>`<div style="margin:3px 0"><b style="font-family:var(--mono);font-size:10.5px;color:var(--accent)">${f.field||''}</b> ${f.issue||''}</div>`).join('');
+    b.appendChild($(`<div class="card" style="border-color:#e0c9b0;background:#fbf6ef"><div class="sh" style="font-size:13px">⚑ 考据疑点 · 待人工复核 <small style="font-family:var(--mono);font-size:10px;color:var(--ink-faint);font-weight:400">AI 交叉核对 ${vf.at||''},非定论</small></div><div style="font-size:12px;line-height:1.7;color:var(--ink-soft)">${fl}</div></div>`));}}
 
   // ===== Band A · 人源 =====
   const bA=$(`<div class="band A"><div class="band-h"><span class="tag">A</span><span class="t">人源 · 立场从何而来</span><span class="nt">生平 = 世界观的成因</span></div></div>`);
@@ -274,6 +374,11 @@ Promise.all([
     if(tj.length>1){const P=tj.map(p=>[sx(p.x),sy(p.y)]);
       svg.appendChild(E('path',{d:P.map((q,i)=>`${i?'L':'M'}${q[0]},${q[1]}`).join(' '),fill:'none',stroke:ACR,'stroke-width':2,'stroke-opacity':.5,'stroke-dasharray':'1 5','stroke-linecap':'round'}));
       tj.forEach((p,i)=>svg.appendChild(E('circle',{cx:P[i][0],cy:P[i][1],r:3.2+i/(tj.length-1)*2.4,fill:i===tj.length-1?ACR:'#fff',stroke:ACR,'stroke-width':1.5})));}
+    // 🔬 实测世界观:真作品 VLM 逐张坐标点云(浅绿)+ 实测重心(绿空心环)
+    const MW=(a._measured&&a._measured.wv)||null;
+    if(MW&&MW.points&&MW.points.length){
+      MW.points.forEach(p=>svg.appendChild(E('circle',{cx:sx(p.x),cy:sy(p.y),r:2.8,fill:'#5a7d6f','fill-opacity':.30,stroke:'#fff','stroke-width':.35})));
+      svg.appendChild(E('circle',{cx:sx(MW.x.mean),cy:sy(MW.y.mean),r:8,fill:'none',stroke:'#5a7d6f','stroke-width':2.5}));}
     (a.works||[]).forEach(w=>{if(w.x==null)return;svg.appendChild(E('circle',{cx:sx(w.x),cy:sy(w.y),r:5,fill:ACR,'fill-opacity':.42,stroke:'#fff','stroke-width':.8}));});
     svg.appendChild(E('circle',{cx:sx(a.wv.x),cy:sy(a.wv.y),r:9,fill:ACR,stroke:'#fff','stroke-width':2.5}));
     box.appendChild(svg);
@@ -285,6 +390,7 @@ Promise.all([
     box.appendChild($(`<div class="pzhint">滚轮放大 · 拖动平移 · 标签随比例自动展开</div>`));
     const zr=$(`<button class="pzreset" title="复位">⟲</button>`);box.appendChild(zr);
     const items=[{x:a.wv.x,y:a.wv.y,t:a.cn,fs:13,col:'#1d1b18',bold:true,pri:6}];
+    if(MW&&MW.x)items.push({x:MW.x.mean,y:MW.y.mean,t:'实测重心',fs:10.5,col:'#5a7d6f',bold:true,pri:5});
     (WV.regions||[]).forEach(rg2=>items.push({x:rg2.cx,y:rg2.cy,t:rg2.name,fs:11,col:rg2.id===a.wv.region_id?ACR:'#a89f8f',bold:rg2.id===a.wv.region_id,pri:rg2.id===a.wv.region_id?5:2}));
     tj.forEach(p=>items.push({x:p.x,y:p.y,t:`${p.phase}·${p.year}`,fs:10.5,col:ACR,bold:false,pri:3}));
     (a.works||[]).forEach(w=>{if(w.x!=null)items.push({x:w.x,y:w.y,t:`${w.t}·${w.year}`,fs:10.5,col:'#6b6456',bold:false,pri:1});});
@@ -316,18 +422,30 @@ Promise.all([
     const ro=$(`<div class="readout">
       <div class="ro"><div class="rl">个人重心</div><div class="rv">${a.wv.x.toFixed(2)}<small> 再现-表现</small></div></div>
       <div class="ro"><div class="rl">·</div><div class="rv">${a.wv.y.toFixed(2)}<small> 结构-感知</small></div></div>
-      <div class="ro"><div class="rl">离散 σ</div><div class="rv">${a.wv.spread.toFixed(2)}<small> 点云幅度</small></div></div>
-      <div class="ro"><div class="rl">所属区</div><div class="rv" style="font-size:13px">${a.wv.region_cn}</div></div>
+      <div class="ro"><div class="rl">离散 σ</div><div class="rv">${a.wv.spread!=null?a.wv.spread.toFixed(2):'—'}<small> 点云幅度</small></div></div>
+      <div class="ro"><div class="rl">所属区</div><div class="rv" style="font-size:13px"><a href="kg-worldview-region.html?id=${a.wv.region_id}" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--line)">${a.wv.region_cn}</a></div></div>
     </div>`);
     c.appendChild(ro);
+    if(MW&&MW.x){c.appendChild($(`<div class="kv" style="font-size:11px;color:var(--ink-faint);margin-top:8px"><span style="color:#5a7d6f">○ 实测重心</span>(${MW.n} 件真画 VLM 逐张读图)x <b style="color:#5a7d6f">${MW.x.mean}</b>±${MW.x.sd} · y <b style="color:#5a7d6f">${MW.y.mean}</b>±${MW.y.sd}${MW.region?` · 多数落 ${MW.region}`:''} &nbsp;|&nbsp; <span style="color:${ACR}">● 策展</span> ${a.wv.x}/${a.wv.y}</div>`));}
     c.appendChild($(`<div class="note"><b>个人偏移:</b>${a.wv.offset}<br><b>读法:</b>${a.wv.read}</div>`));
     bB.appendChild(c);
   }
-  // ⑤ 题材
-  if(a.subjects&&a.subjects.length){const c=$(`<div class="card"><div class="sh">⑤ 题材母题 · L1 实现</div></div>`);c.appendChild($(`<div class="chips">${a.subjects.map(s=>`<span class="chip">${s}</span>`).join('')}</div>`));bB.appendChild(c);}
+  // ⑤ 题材(规范节点→题材地图可点;策展描述词保留)
+  {const canonSubj=((SUBJ.artist_to_nodes||{})[a.id])||[];
+   const hasCanon=canonSubj.some(k=>subjNodes[k]);
+   if((a.subjects&&a.subjects.length)||hasCanon){
+    const c=$(`<div class="card"><div class="sh">⑤ 题材母题 · L1 实现</div></div>`);
+    if(hasCanon)c.appendChild($(`<div class="chips">${canonSubj.map(subjChip).join('')}</div>`));
+    if(a.subjects&&a.subjects.length)c.appendChild($(`<div class="chips" style="margin-top:6px">${a.subjects.map(s=>`<span class="chip" style="color:var(--ink-mute)">${s}</span>`).join('')}${hasCanon?'<span style="font-size:10px;color:var(--ink-faint);align-self:center;margin-left:4px">↑ 上排=规范题材(可跳地图);下排=策展描述</span>':''}</div>`));
+    bB.appendChild(c);}}
   // ⑥ 个人语言指纹
   if(a.lang){const c=$(`<div class="card"><div class="sh">⑥ 个人语言指纹 · L2 实现(7 大构成)</div></div>`);
-    poles.forEach(p=>{const v=a.lang[p.k];if(v==null)return;c.appendChild($(`<div class="frow"><span class="fk">${p.k}</span><span class="fl">${p.l}</span><span class="ft"><span class="fd" style="left:${v*100}%;background:${ACR}"></span></span><span class="fr">${p.r}</span></div>`));});
+    const ML=(a._measured&&a._measured.lang)||null;
+    poles.forEach(p=>{const v=a.lang[p.k];if(v==null)return;
+      const me=ML&&ML[p.k];
+      const meHTML=me?`<span style="position:absolute;top:50%;left:${Math.max(0,me.mean-me.sd)*100}%;width:${Math.min(100,me.sd*200)}%;height:4px;transform:translateY(-50%);background:rgba(90,125,111,.22);border-radius:3px"></span><span class="fd" style="left:${me.mean*100}%;width:9px;height:9px;background:var(--green)" title="实测均值 ${me.mean}±${me.sd}(${me.n} 件真画)"></span>`:'';
+      c.appendChild($(`<div class="frow"><span class="fk">${p.k}</span><span class="fl">${p.l}</span><span class="ft">${meHTML}<span class="fd" style="left:${v*100}%;background:${ACR}"></span></span><span class="fr">${p.r}</span><span class="vnum" style="font-size:9px;width:auto;min-width:46px">${me?`<b style="color:var(--green)">${me.mean}</b> / `:''}${(+v).toFixed(2)}</span></div>`));});
+    if(ML)c.appendChild($(`<div class="kv" style="font-size:11px;color:var(--ink-faint);margin-top:8px"><span style="color:var(--green)">●</span> 实测均值±σ(${a._measured.n_lang} 件真画 VLM 逐张量) &nbsp; <span style="color:${ACR}">●</span> 策展估计。两者分歧大的轴(如光影)=待复核。</div>`));
     if(a.language)c.appendChild($(`<div class="kv" style="margin-top:8px"><span class="l">技法</span>${a.language}</div>`));
     if(a.color)c.appendChild($(`<div class="kv"><span class="l">色彩</span>${a.color}</div>`));
     bB.appendChild(c);}
@@ -364,9 +482,15 @@ Promise.all([
     T(cx(0.02),cy(0.5)-7,'沉郁',{a:'start',fill:'#857d6f',fs:10.5,st:'#fcfaf5',sw:2.5});
     T(cx(0.5)+5,pd-11,'↑ 唤起',{a:'start',fill:'#857d6f',fs:10.5,w:600});
     T(cx(0.5)+5,S-pd+15,'平静',{a:'start',fill:'#857d6f',fs:10.5});
-    // 逐张作品 VAD(VLM 读图)——浅点,显示该画家作品的情绪散布
-    const _wvad=((IMG[a.id]&&IMG[a.id].items)||[]).filter(it=>it.vad&&it.vad.v!=null);
-    _wvad.forEach(it=>{const q=(it.vad.v>=0.5?(it.vad.a>=0.5?1:2):(it.vad.a>=0.5?0:3));svg.appendChild(E('circle',{cx:cx(it.vad.v),cy:cy(it.vad.a),r:4,fill:quads[q].col,'fill-opacity':0.45,stroke:'#fff','stroke-width':0.6}));});
+    // 逐张作品 VAD(VLM 读图)——浅点;优先用实测 live 点云(全部入库真画),回落静态 PD 图
+    const MV=(a._measured&&a._measured.vad_points)||null;
+    const _wvad=MV&&MV.length?MV.map(p=>({vad:{v:p.v,a:p.a}})):((IMG[a.id]&&IMG[a.id].items)||[]).filter(it=>it.vad&&it.vad.v!=null);
+    _wvad.forEach(it=>{const q=(it.vad.v>=0.5?(it.vad.a>=0.5?1:2):(it.vad.a>=0.5?0:3));svg.appendChild(E('circle',{cx:cx(it.vad.v),cy:cy(it.vad.a),r:3.5,fill:quads[q].col,'fill-opacity':0.4,stroke:'#fff','stroke-width':0.5}));});
+    // 实测重心(真画 VAD 均值)——空心绿环,与策展点(实心赭)对照
+    const MVAD=(a._measured&&a._measured.vad)||null;
+    if(MVAD&&MVAD.v){const mv=MVAD.v.mean,ma=MVAD.a.mean;
+      svg.appendChild(E('circle',{cx:cx(mv),cy:cy(ma),r:8,fill:'none',stroke:'#5a7d6f','stroke-width':2.5}));
+      T(cx(mv),cy(ma)+(Math.abs(ma-f.a)<0.08?-13:16),'实测',{f:'JetBrains Mono',fs:9.5,fill:'#5a7d6f',w:600,st:'#fcfaf5',sw:2.5});}
     // 支配 = 点径 + 外环
     const r=7+f.d*15;
     svg.appendChild(E('circle',{cx:cx(f.v),cy:cy(f.a),r:r+5,fill:'none',stroke:ACR,'stroke-opacity':0.3,'stroke-dasharray':'3 3'}));
@@ -377,6 +501,8 @@ Promise.all([
     // 三轴双极读数
     const VADP=[['愉悦','沉郁','明亮',f.v],['唤起','平静','激越',f.a],['支配','沉浸','压迫',f.d]];
     VADP.forEach(([k,l,r2,v])=> c.appendChild($(`<div class="frow"><span class="fk">${k}</span><span class="fl">${l}</span><span class="ft"><span class="fd" style="left:${v*100}%;background:${ACR}"></span></span><span class="fr">${r2}</span><span class="vnum">${v.toFixed(2)}</span></div>`)));
+    if(MVAD&&MVAD.v){const mvd=MVAD.v,mad=MVAD.a,mdd=MVAD.d;
+      c.appendChild($(`<div class="kv" style="font-size:11px;color:var(--ink-faint);margin-top:6px"><span style="color:#5a7d6f">○实测</span>(${a._measured.n_vad}件真画 VLM):愉悦 <b style="color:#5a7d6f">${mvd.mean}</b>±${mvd.sd} · 唤起 <b style="color:#5a7d6f">${mad.mean}</b>±${mad.sd}${mdd?` · 支配 <b style="color:#5a7d6f">${mdd.mean}</b>`:''} &nbsp;|&nbsp; <span style="color:${ACR}">●策展</span> ${f.v}/${f.a}/${f.d}</div>`));}
     const dread=f.d<0.45?'小 = 沉浸/被吸入':(f.d>0.6?'大 = 压迫/纪念碑':'中等');
     c.appendChild($(`<div class="note">落在「<b>${quads[aq].name}</b>」象限 · 点径=支配(${dread})。${f.note||''}${_wvad.length?` <span style="color:var(--ink-faint)">浅点=该画家 ${_wvad.length} 张真迹各自的情绪(VLM 逐张读图)——看情绪在作品间如何散布。</span>`:''}</div>`));
     bB.appendChild(c);}
@@ -389,8 +515,8 @@ Promise.all([
     // 回扣 ④:创作观 = L0 立场的口语版(优先用 voice_echo,否则由 wv 坐标推导)
     let echo=a.voice_echo;
     if(!echo&&a.wv){const sxw=a.wv.x<0.5?'再现':'表现', syw=a.wv.y<0.5?'结构':'感知';echo=`这位的立场落在 ④【${sxw} × ${syw}】。`;}
-    if(echo)c.appendChild($(`<div class="note" style="background:#f3f6f4;border-left-color:var(--green)">↘ <b style="color:var(--green)">回扣 ④ 世界观:</b>${echo.replace(/【([^】]*)】/g,'<b>【$1】</b>')}</div>`));
-    if(a.meaning)c.appendChild($(`<div class="note" style="background:#fbf7f0;border-left-color:var(--gold)"><b>意义指向(${a.quote?'被推断':'史家推断 · 暂无可靠亲述'}):</b>${a.meaning}</div>`));
+    if(echo)c.appendChild($(`<div class="note" style="background:var(--green-soft);border-color:var(--green)">↘ <b style="color:var(--green)">回扣 ④ 世界观:</b>${echo.replace(/【([^】]*)】/g,'<b>【$1】</b>')}</div>`));
+    if(a.meaning)c.appendChild($(`<div class="note" style="background:var(--gold-soft);border-color:var(--gold)"><b>意义指向(${a.quote?'被推断':'史家推断 · 暂无可靠亲述'}):</b>${a.meaning}</div>`));
     bB.appendChild(c);}
   b.appendChild(bB);
 
@@ -399,33 +525,60 @@ Promise.all([
   // ⑨ 轨迹
   if(a.trajectory&&a.trajectory.length){const c=$(`<div class="card"><div class="sh">⑨ 一生的轨迹 ★ · 在世界观平面上的漂移</div></div>`);
     const tl=$(`<div class="tl"></div>`);
-    a.trajectory.forEach(p=>tl.appendChild($(`<div class="tp"><div class="ti"><div class="tph">${p.phase}<span class="tyr">${p.year}</span></div><div class="tnt">${p.note||''}</div><div class="txy">(${p.x.toFixed(2)}, ${p.y.toFixed(2)})</div></div></div>`)));
+    a.trajectory.forEach(p=>tl.appendChild($(`<div class="tp"><div class="ti"><div class="tph">${p.phase||''}<span class="tyr">${p.year||''}</span></div><div class="tnt">${p.note||''}</div>${(p.x!=null&&p.y!=null)?`<div class="txy">(${p.x.toFixed(2)}, ${p.y.toFixed(2)})</div>`:''}</div></div>`)));
     c.appendChild(tl);bC.appendChild(c);}
-  // ⑩ 代表作=点云(+ 公共领域真图,若有)
-  if(a.works&&a.works.length){const c=$(`<div class="card"><div class="sh">⑩ 代表作 = 点云 · 每件名作即链上的实例点</div></div>`);
+  // ⑩ 代表作 = 真迹(点开看解读,代表作的"真实化")+ 链上坐标点云
+  {const c=$(`<div class="card"><div class="sh">⑩ 代表作 · 真迹点开看解读 + 链上坐标</div></div>`);
+    let any=false;
+    // 公共领域真图(若有)
     const gal=IMG[a.id];
     if(gal&&gal.items&&gal.items.length){
       const g=$(`<div class="gal"></div>`);
-      gal.items.forEach(it=>g.appendChild($(`<a class="ga" href="${it.file}" target="_blank" title="${it.title}（${it.source}）"><img loading="lazy" src="${it.file}" alt="${it.title}"/><span class="gt">${it.title}</span></a>`)));
+      gal.items.forEach(it=>g.appendChild($(`<a class="ga" href="${it.file}" target="_blank" title="${it.title}（${it.source}）"><img loading="lazy" decoding="async" src="${it.file}" alt="${it.title}"/><span class="gt">${it.title}</span></a>`)));
       c.appendChild(g);
-      c.appendChild($(`<div class="kv" style="font-size:10.5px;color:var(--ink-faint);margin:2px 0 8px">真迹图 · ${gal.credit||'公共领域'}</div>`));
+      c.appendChild($(`<div class="kv" style="font-size:10.5px;color:var(--ink-faint);margin:2px 0 8px">公共领域真迹图 · ${gal.credit||'公共领域'}</div>`));
+      any=true;
     }
-    const wl=$(`<div class="worklist"></div>`);
-    a.works.forEach(w=>wl.appendChild($(`<div class="wn"><span class="wt">${w.t}</span><span class="wy">${w.year}</span>${w.x!=null?`<span class="wxy">(${w.x.toFixed(2)}, ${w.y.toFixed(2)})</span>`:''}</div>`)));
-    c.appendChild(wl);bC.appendChild(c);}
-  // ⑪ 谱系
+    // 🖼 馆藏真迹:活库真实作品,每件 → work.html 解读页(代表作的"真实化")
+    const realHd=$(`<div class="kv" style="display:none;margin-top:6px"><span class="l" style="color:var(--accent)">馆藏真迹</span></div>`);
+    const real=$(`<div style="display:none;grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:8px;margin-top:4px"></div>`);
+    c.appendChild(realHd);c.appendChild(real);
+    // 策展精选(链上坐标点云)
+    if(a.works&&a.works.length){
+      c.appendChild($(`<div class="kv" style="font-size:11px;color:var(--ink-faint);margin-top:10px"><span class="l">策展精选</span>链上坐标点</div>`));
+      const wl=$(`<div class="worklist"></div>`);
+      a.works.forEach(w=>wl.appendChild($(`<div class="wn"><span class="wt">${w.t}</span><span class="wy">${w.year||''}</span>${w.x!=null?`<span class="wxy">(${w.x.toFixed(2)}, ${w.y.toFixed(2)})</span>`:''}</div>`)));
+      c.appendChild(wl);any=true;
+    }
+    if(!any)c.style.display='none';
+    bC.appendChild(c);
+    // 异步把活库真迹接进来(每件可点开 work.html 看官方解读/VLM/相关作品)
+    fetch('/cat/artist?id='+encodeURIComponent(a.id)).then(r=>r.json()).then(d=>{
+      const HD=(d.holdings&&d.holdings.length)?d.holdings:(d.works||[]);
+      const NH=d.n_holdings||d.n_kept||HD.length;
+      if(!HD.length)return;
+      c.style.display='';
+      realHd.querySelector('.l').textContent=`馆藏真迹 · 共 ${NH.toLocaleString()} 件(点开看解读)`;
+      realHd.style.display='';real.style.display='grid';
+      HD.slice(0,80).forEach(w=>real.appendChild($(`<a class="ga" href="work.html?id=${w.code||w.id}" style="border-radius:9px"><img loading="lazy" decoding="async" src="${w.thumb}" style="width:100%;height:88px;object-fit:cover;display:block;background:var(--paper-2)"><span class="gt" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${(w.title||'无题')}</span></a>`)));
+    }).catch(()=>{});}
+  // ⑪ 谱系(读统一规范边 kg_edges:三源收敛,全 id 解析→可点,库外→检索)
   {const c=$(`<div class="card"><div class="sh">⑪ 谱系 GENEALOGY · 世界观的繁殖网络</div></div>`);
     const g=$(`<div class="kv"></div>`);
-    const gl=GLIN[a.id]||{};
-    const upd=(label,ids,raw)=>{const set=[...new Set((ids||[]).map(idCn))]; // 物化边集(已逆向补全)
-      const links=(ids&&ids.length)?[...new Set(ids)].map(aLinkId).join('、'):((raw&&raw.length)?raw.map(aLink).join('、'):'');
-      if(links)g.appendChild($(`<div><span class="l">${label}</span>${links}</div>`));};
-    upd('师承',gl.承师,a.teachers);
-    upd('同侪',gl.同侪,a.peers);
-    upd('学生',gl.授徒,a.students);
+    const be=(EDGES.by_artist&&EDGES.by_artist[a.id])||{out:[],in:[]};
+    const lk=o=>o.id?aLinkId(o.id):aLink(o.name||'?');
+    const uniq=arr=>{const m=new Map();arr.forEach(o=>{const k=o.id||('n:'+o.name);if(o.name&&!m.has(k))m.set(k,o);});return [...m.values()];};
+    const other=e=>(e.src===a.id)?{id:e.dst,name:e.dst_name}:{id:e.src,name:e.src_name};
+    const teachers=uniq((be.in||[]).filter(e=>e.type==='师承').map(e=>({id:e.src,name:e.src_name})));
+    const students=uniq((be.out||[]).filter(e=>e.type==='师承').map(e=>({id:e.dst,name:e.dst_name})));
+    const peers=uniq([...(be.out||[]),...(be.in||[])].filter(e=>e.type==='同侪').map(other));
+    const row=(label,arr)=>{if(arr.length)g.appendChild($(`<div><span class="l">${label}</span>${arr.map(lk).join('、')}</div>`));};
+    row('师承',teachers); row('同侪',peers); row('学生',students);
     if(a.influence&&a.influence.length)g.appendChild($(`<div><span class="l">影响</span>${a.influence.map(aLink).join('、')}</div>`));
     if(a.institutions&&a.institutions.length)g.appendChild($(`<div><span class="l">主要收藏</span>${a.institutions.join('、')}</div>`));
-    c.appendChild(g);bC.appendChild(c);}
+    c.appendChild(g);
+    if(teachers.length+students.length+peers.length)g.appendChild($(`<div style="font-size:10px;color:var(--ink-faint);margin-top:6px">关系取自统一边表 kg_edges(lore/lineage/relations 三源收敛);名字均可点 · 库内→主页 · 库外→检索</div>`));
+    bC.appendChild(c);}
   // ⑫ 风格关系(+ 所属风格链接到风格详情)
   if(a.style_relation){const s=a.style_relation;const c=$(`<div class="card srel ${s.mode}"><div class="sh">⑫ 风格关系 · 不是 belongs_to,是一种姿态</div></div>`);
     c.appendChild($(`<div><span class="sm">${s.mode}</span><span class="se">${s.en} · ${s.target}</span></div>`));
@@ -438,12 +591,12 @@ Promise.all([
    const evs=(CTX.events||[]).filter(ev=>(ev.artists||[]).some(x=>x.id===a.id));
    const lcol={},lcn={};(CTX.lanes||[]).forEach(l=>{lcol[l.key]=l.col;lcn[l.key]=l.cn.split(' · ')[0].split(' / ')[0];});
    if(edges.length||evs.length){
-     const c=$(`<div class="card"><div class="sh">⚔️ TA 参与的力 · 关系层 / 语境层</div></div>`);
+     const c=$(`<div class="card"><div class="sh"><i data-ic="versus"></i> TA 参与的力 · 关系层 / 语境层</div></div>`);
      const bdg=(t,col)=>`<span style="font-family:var(--mono);font-size:10px;color:#fff;background:${col};border-radius:5px;padding:1px 7px;white-space:nowrap">${t}</span>`;
      if(edges.length){const g=$(`<div class="kv"></div>`);
        edges.forEach(e=>{const out=e.from===a.id,other=out?e.to:e.from,otherCn=out?e.to_cn:e.from_cn,col=FCOL[e.type]||'#857d6f';
          const verb=e.bidir?'与':(out?'→':'←');
-         const oL=(A.artists[other]&&!A.artists[other]._stub)?aLinkId(other):`<span style="color:#857d6f">${otherCn}</span>`;
+         const oL=(A.artists[other]&&!A.artists[other]._stub)?aLinkId(other):aLink(otherCn);
          g.appendChild($(`<div style="margin:4px 0;font-size:13px;line-height:1.6"><a href="kg-dynamics.html?force=${encodeURIComponent(e.type)}" style="text-decoration:none">${bdg(e.type,col)}</a> ${verb} ${oL} <span style="color:#857d6f;font-size:12px">· ${e.note}</span></div>`));});
        c.appendChild(g);}
      if(evs.length){const g=$(`<div class="kv" style="margin-top:9px"></div>`);
@@ -451,7 +604,7 @@ Promise.all([
        evs.forEach(ev=>{const col=lcol[ev.lane]||'#857d6f';
          g.appendChild($(`<div style="margin:4px 0;font-size:13px;line-height:1.6"><a href="kg-context.html?lane=${ev.lane}" style="text-decoration:none">${bdg(lcn[ev.lane]||'',col)}</a> <b>${ev.title}</b> <span style="color:#857d6f;font-size:12px">· ${ev.effect}</span></div>`));});
        c.appendChild(g);}
-     c.appendChild($(`<div class="chips" style="margin-top:10px"><a class="chip" href="kg-forces.html">🧭 力的总图</a><a class="chip" href="kg-dynamics.html">⚔️ 关系层</a><a class="chip" href="kg-context.html">🌗 语境层</a></div>`));
+     c.appendChild($(`<div class="chips" style="margin-top:10px"><a class="chip" href="kg-forces.html"><i data-ic="compass"></i> 力的总图</a><a class="chip" href="kg-dynamics.html"><i data-ic="versus"></i> 关系层</a><a class="chip" href="kg-context.html"><i data-ic="moon"></i> 语境层</a></div>`));
      bC.appendChild(c);
    }}
   // ↔ 连通:同区艺术家 / 星图 / 所属区 / 名单
@@ -460,11 +613,12 @@ Promise.all([
    const sibRich=sib.filter(x=>!x._stub).slice(0,8);
    const c=$(`<div class="card"><div class="sh">↔ 连通 · 同区 / 星图 / 风格</div></div>`);
    if(sibRich.length)c.appendChild($(`<div class="kv"><span class="l">同区已考究</span>${sibRich.map(x=>aLink(x.cn)).join('、')}</div>`));
-   c.appendChild($(`<div class="chips" style="margin-top:9px"><a class="chip" href="kg-artist-atlas.html">🌌 在星图中查看</a>${rid?`<a class="chip" href="kg-worldview-region.html?id=${rid}">🗺 所属区 ${WVN[rid]||''}</a>`:''}<a class="chip" href="kg-artist-roster.html">🗂️ 艺术家名单</a></div>`));
+   c.appendChild($(`<div class="chips" style="margin-top:9px"><a class="chip" href="kg-artist-atlas.html"><i data-ic="galaxy"></i> 在星图中查看</a>${rid?`<a class="chip" href="kg-worldview-region.html?id=${rid}"><i data-ic="map"></i> 所属区 ${WVN[rid]||''}</a>`:''}<a class="chip" href="kg-artist-roster.html"><i data-ic="folders"></i> 艺术家名单</a></div>`));
    bC.appendChild(c);}
   b.appendChild(bC);
 
   document.title='aha · '+a.cn;
 }).catch(e=>{document.getElementById('body').innerHTML='<div class="empty">加载失败(需通过服务器打开):'+e+'</div>';});
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

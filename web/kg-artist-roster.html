@@ -66,7 +66,7 @@ Promise.all([
   const builtId=cn=> (byCn[cn]&&byCn[cn].rich)?byCn[cn].id:null;
   const rosterCns=new Set();
   let total=0,built=0;
-  const chip=(cn)=>{const id=builtId(cn); rosterCns.add(cn); total++; if(id){built++; return `<a class="chip" href="kg-artist.html?id=${id}">${cn} <span class="ck">✓</span></a>`;} return `<span class="chip">${cn}</span>`;};
+  const chip=(cn)=>{const id=builtId(cn); rosterCns.add(cn); total++; if(id){built++; return `<a class="chip" href="kg-artist.html?id=${id}">${cn} <span class="ck"><i data-ic="check"></i></span></a>`;} return `<span class="chip">${cn}</span>`;};
   const rc=document.getElementById('regions');
   R.regions.forEach(rg=>{
     const box=$(`<div class="reg"><div class="rh"><span class="rid">${rg.id}</span><span class="rn">${rg.name}</span><span class="rx">${rg.axis}</span></div></div>`);
@@ -93,7 +93,7 @@ Promise.all([
     e.appendChild($(`<div class="ch">清单外已建 · ${extra.length} 位</div>`));
     e.appendChild($(`<div class="cd">不在正典清单里、但已有完整主页的(多为扩充考究)。点进可看。</div>`));
     const ch=$(`<div class="chips"></div>`);
-    extra.sort((x,y)=>(x.region||'').localeCompare(y.region||'')).forEach(a=>ch.appendChild($(`<a class="chip" href="kg-artist.html?id=${a.id}">${a.cn} <span class="ck">✓</span></a>`)));
+    extra.sort((x,y)=>(x.region||'').localeCompare(y.region||'')).forEach(a=>ch.appendChild($(`<a class="chip" href="kg-artist.html?id=${a.id}">${a.cn} <span class="ck"><i data-ic="check"></i></span></a>`)));
     e.appendChild(ch);
   }
   // 进度(正典)+ 全库已考究实测

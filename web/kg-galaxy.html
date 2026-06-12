@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>会发光的艺术史 · aha</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
   :root{--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace;
     --surface:rgba(20,23,31,.84);--surface-2:rgba(255,255,255,.06);--line:rgba(255,255,255,.12);
@@ -164,14 +164,14 @@
 </head><body>
 <canvas id="scene"></canvas>
 <div class="nlabels" id="nlabels"></div>
-<div class="youlabel" id="youLabel">✦ 你</div>
+<div class="youlabel" id="youLabel"><i data-ic="sparkles"></i> 你</div>
 <div class="onb" id="onb">
   <div class="onbcard">
     <div class="onbk" data-i18n="onbk">会发光的艺术史 · 怎么逛</div>
-    <div class="onbrow"><span class="oi">🌌</span><div><b data-i18n="onb1t">换排布 = 换星空</b><span data-i18n="onb1d">星系团 / 谱系星河 / 时间螺旋… 同一片星辰，六种看艺术史的方式。</span></div></div>
-    <div class="onbrow"><span class="oi">✦</span><div><b data-i18n="onb2t">点一颗星</b><span data-i18n="onb2d">看它的承自 / 影响 / 对抗——关系线点亮、流光显示方向、星旁标出关联流派。</span></div></div>
-    <div class="onbrow"><span class="oi">🧭</span><div><b data-i18n="onb3t">选两个流派，沿史脉飞行</b><span data-i18n="onb3d">镜头沿真实关系最短路逐站讲述，像看一段艺术史短片。</span></div></div>
-    <div class="onbrow"><span class="oi">⛶</span><div><b data-i18n="onb4t">纯净全屏</b><span data-i18n="onb4d" data-i18n-html="1">按 <kbd>H</kbd> 隐藏界面、沉浸观看；双击复位视角。</span></div></div>
+    <div class="onbrow"><span class="oi"><i data-ic="galaxy"></i></span><div><b data-i18n="onb1t">换排布 = 换星空</b><span data-i18n="onb1d">星系团 / 谱系星河 / 时间螺旋… 同一片星辰，六种看艺术史的方式。</span></div></div>
+    <div class="onbrow"><span class="oi"><i data-ic="sparkles"></i></span><div><b data-i18n="onb2t">点一颗星</b><span data-i18n="onb2d">看它的承自 / 影响 / 对抗——关系线点亮、流光显示方向、星旁标出关联流派。</span></div></div>
+    <div class="onbrow"><span class="oi"><i data-ic="compass"></i></span><div><b data-i18n="onb3t">选两个流派，沿史脉飞行</b><span data-i18n="onb3d">镜头沿真实关系最短路逐站讲述，像看一段艺术史短片。</span></div></div>
+    <div class="onbrow"><span class="oi"><i data-ic="fullscreen"></i></span><div><b data-i18n="onb4t">纯净全屏</b><span data-i18n="onb4d" data-i18n-html="1">按 <kbd>H</kbd> 隐藏界面、沉浸观看；双击复位视角。</span></div></div>
     <button id="onbBtn" data-i18n="onbBtn">开始探索 →</button>
   </div>
 </div>
@@ -181,11 +181,11 @@
   <div class="kick">aha · A Luminous History of Art</div>
   <h1 data-i18n="h1">会发光的艺术史</h1>
   <p class="lead" data-i18n="lead" data-i18n-html="1">一片由<b>人类艺术史</b>张成的星空——每颗星是一个<b>艺术流派</b>,星与星的连线,是<b>真实的师承·影响·对抗</b>(皆出自史料,非虚构)。换一种排布,整片星辰重组成另一种看艺术史的方式。</p>
-  <div class="breadcrumb"><a href="kg-worldview.html" data-i18n="bc1">世界观</a> · <a href="kg-style.html" data-i18n="bc2">风格图谱</a> · <a href="kg-v2.html" data-i18n="bc3">方法论</a> · <a href="home.html" data-i18n="bc4">首页</a> · <a href="kg-galaxy-roadmap.html" style="opacity:.7" data-i18n="bc5">路线图</a></div>
+  <div class="breadcrumb"><a href="kg-worldview.html" data-i18n="bc1">世界观</a> · <a href="kg-style.html" data-i18n="bc2">风格图谱</a> · <a href="kg-v2.html" data-i18n="bc3">方法论</a> · <a href="museum.html" data-i18n="bc4">首页</a> · <a href="kg-galaxy-roadmap.html" style="opacity:.7" data-i18n="bc5">路线图</a></div>
 </div>
 
 <div class="panel">
-  <div class="ptools"><button onclick="openQuiz()" title="我的星 · 审美定位" style="color:var(--accent)">✦</button><button onclick="toggleAudit(1)" title="数据自检 · 可信度">🔬</button><button onclick="setClean(1)" title="纯净全屏(快捷键 H)">⛶</button><button onclick="setPanelMin(1)" title="收起面板">⟩</button></div>
+  <div class="ptools"><button onclick="openQuiz()" title="我的星 · 审美定位" style="color:var(--accent)"><i data-ic="sparkles"></i></button><button onclick="toggleAudit(1)" title="数据自检 · 可信度"><i data-ic="science"></i></button><button onclick="setClean(1)" title="纯净全屏(快捷键 H)"><i data-ic="fullscreen"></i></button><button onclick="setPanelMin(1)" title="收起面板">⟩</button></div>
   <div class="ph" data-i18n="hLayout">排布方式 Layout · 换它=换星空</div>
   <div class="grid2" id="lays">
     <button class="lay on" data-l="cluster"><div class="t" data-i18n="lay_cluster_t">星系团</div><div class="d" data-i18n="lay_cluster_d">6 世界观区聚成星云</div></button>
@@ -211,7 +211,7 @@
   </div>
   <div class="cnt" id="yearLab" style="text-align:left;color:var(--txt-soft)">全部年代</div>
   <div class="ph" data-i18n="hPath">路径漫游 Path · 顺真实史脉飞行</div>
-  <button class="btn" id="btnPath" style="margin-top:0" data-i18n="btnPath">🧭 选两个流派,沿史脉飞行</button>
+  <button class="btn" id="btnPath" style="margin-top:0" data-i18n="btnPath"><i data-ic="compass"></i> 选两个流派,沿史脉飞行</button>
   <div class="cnt" id="pathStat" style="text-align:left;color:var(--txt-soft);min-height:0"></div>
   <div class="ph" data-i18n="hDisplay">显示 Display</div>
   <label class="chk"><input type="checkbox" id="ckEdges" checked/> <span data-i18n="ckEdges">真实关系线(承自/影响/对抗)</span></label>
@@ -224,7 +224,7 @@
   <label class="chk"><input type="checkbox" id="ckLabels" checked/> <span data-i18n="ckLabels">区标签</span></label>
   <label class="chk"><input type="checkbox" id="ckSpin" checked/> <span data-i18n="ckSpin">缓慢自转</span></label>
   <button class="btn" id="btnReset" data-i18n="btnReset">⟲ 重置视角</button>
-  <div class="grid2" style="margin-top:9px"><button class="btn" id="btnShot" style="margin-top:0" data-i18n="btnShot">📷 截图</button><button class="btn" id="btnLink" style="margin-top:0" data-i18n="btnLink">🔗 分享链接</button></div>
+  <div class="grid2" style="margin-top:9px"><button class="btn" id="btnShot" style="margin-top:0" data-i18n="btnShot"><i data-ic="camera"></i> 截图</button><button class="btn" id="btnLink" style="margin-top:0" data-i18n="btnLink"><i data-ic="network"></i> 分享链接</button></div>
   <div class="cnt" id="cnt">— / —</div>
 </div>
 
@@ -234,8 +234,8 @@
 <div class="mcap" id="mcap"></div>
 <div class="legend" id="legend"></div>
 <div class="legendbtn" id="legendBtn" onclick="toggleLegend(1)" data-i18n="legendBtn">▤ 图例</div>
-<button class="floatbtn" id="panelOpen" onclick="setPanelMin(0)" title="展开面板" data-i18n="panelOpen">☰ 控制</button>
-<button class="floatbtn" id="cleanExit" onclick="setClean(0)" title="退出纯净(H / Esc)" data-i18n="cleanExit">⛶ 退出纯净</button>
+<button class="floatbtn" id="panelOpen" onclick="setPanelMin(0)" title="展开面板" data-i18n="panelOpen"><i data-ic="menu"></i> 控制</button>
+<button class="floatbtn" id="cleanExit" onclick="setClean(0)" title="退出纯净(H / Esc)" data-i18n="cleanExit"><i data-ic="fullscreen"></i> 退出纯净</button>
 <button class="floatbtn" id="langBtn" onclick="toggleLang()" title="中文 / English" style="left:14px;bottom:14px;right:auto">EN</button>
 <div class="audit" id="audit" onclick="if(event.target===this)toggleAudit(0)"><div class="acard" id="acard"></div></div>
 <div class="tip" id="tip"></div>
@@ -842,7 +842,7 @@ function buildAudit(){
   const fy=y=>y<0?Math.round(-y)+' BCE':Math.round(y);
   const en=LANG==='en';
   document.getElementById('acard').innerHTML= en?
-    `<h3>🔬 Data self-check · Credibility</h3>
+    `<h3><i data-ic="science"></i> Data self-check · Credibility</h3>
      <div class="sub">This work lives or dies by being <b>real and traceable</b>. Below is its full ledger — <b>including what is not yet filled in</b>. We show it honestly, nothing hidden.</div>
      <div class="kv">Real nodes (styles)　<b>${N.length}</b><br>Real relations (edges)　<b>${E.length}</b>　inherit ${kc.parent} · influence ${kc.influence} · oppose ${kc.against}<br>Confidence　　　high <b>${conf.high}</b> · med <b>${conf.med||0}</b><br>Artists (key figures)　<b>${A.length}</b><br>Time span　　　<b>${fy(ym.ymin)} → ${fy(ym.ymax)}</b><br>Layouts　　　　<b>${(D.meta.layouts||[]).length}</b></div>
      <div class="div"></div>
@@ -852,7 +852,7 @@ function buildAudit(){
      ${bar('Artists linked to a detail page',aid,A.length)}
      <div class="note">Principle: relations use only <b>authored art-historical facts</b> (inherit/influence/oppose), <b>never artwork co-occurrence</b> (some artworks aren't real); a reason must be found in either endpoint's text, else left blank — never fabricated. Gaps are exported as lists for the team to fill in parallel.</div>
      <button class="close" onclick="toggleAudit(0)">Close</button>`
-    :`<h3>🔬 数据自检 · 可信度</h3>
+    :`<h3><i data-ic="science"></i> 数据自检 · 可信度</h3>
      <div class="sub">这件作品的命脉是<b>真实、可追溯</b>。下面是它现在的全部底数——包括<b>还没补全的部分</b>,我们照实显示,不藏。</div>
      <div class="kv">真实节点(风格)　<b>${N.length}</b><br>真实关系(边)　　<b>${E.length}</b>　承自 ${kc.parent} · 影响 ${kc.influence} · 对抗 ${kc.against}<br>置信分布　　　　高 <b>${conf.high}</b> · 中 <b>${conf.med||0}</b><br>艺术家(代表人物)<b>${A.length}</b><br>年代跨度　　　　<b>${fy(ym.ymin)} → ${fy(ym.ymax)}</b><br>排布方式　　　　<b>${(D.meta.layouts||[]).length}</b> 套</div>
      <div class="div"></div>
@@ -1035,7 +1035,7 @@ function buildLegend(){
   const wv=regions.map(r=>`<span class="lgi"><span class="sw" style="background:${cssHex(wvHex(r.id))}"></span>${wvName(r.id,r.name)}</span>`).join('');
   const rel=['parent','influence','against'].map(k=>`<span class="lgi"><span class="swl" style="border-top-color:${cssHex(EKIND[k].c)}"></span>${kindName(k)}</span>`).join('');
   const en=LANG==='en';
-  document.getElementById('legend').innerHTML=`<span class="lgx" onclick="toggleLegend(0)">✕</span>
+  document.getElementById('legend').innerHTML=`<span class="lgx" onclick="toggleLegend(0)"><i data-ic="close"></i></span>
     <div class="lgrow"><span class="lgt">${en?'Worldview':'世界观区 WV'}</span>${wv}</div>
     <div class="lgrow"><span class="lgt">${en?'Relations':'关系'}</span>${rel}</div>`;
 }
@@ -1144,7 +1144,7 @@ function showProfile(){const p=myProfile;if(!p)return;
   const w1=axisWord(p.rep_exp,'再现','表现'),w2=axisWord(p.struct_perc,'结构','感知'),w3=axisWord(p.sta_flu,'稳定','流动');
   const tops=myTop.slice(0,3).map(i=>`<a onclick="selectById('${nodes[i].id}')">${nodes[i].cn}</a>`).join(' · ');
   const el=document.getElementById('sres');
-  el.innerHTML=`<div class="sh">✦ 你的审美之星</div><div class="sp">你偏 <b>${w1} · ${w2} · ${w3}</b></div>
+  el.innerHTML=`<div class="sh"><i data-ic="sparkles"></i> 你的审美之星</div><div class="sp">你偏 <b>${w1} · ${w2} · ${w3}</b></div>
     <div class="sn">最接近你的流派：${tops}<br/>整片星空已按你点亮——近你者明、远你者隐。</div>
     <div class="sbtns"><button onclick="openQuiz()">重测</button><button onclick="shareMyStar()">分享星图</button><button onclick="clearMyStar()">退出</button></div>`;
   el.classList.add('show');}
@@ -1172,4 +1172,5 @@ function animate(){requestAnimationFrame(animate);clock+=0.016;
   if(bgStarsObj){window._bg.uniforms.uTime.value=clock;bgStarsObj.rotation.y+=0.00035;}
   controls.update();stepTween();stepTime();updateRiverEnd();updateFlyTo();updateOrbit();updateFlow();updateSelFlow();updateMeteor();updateFlight();updateRitual();updateNodeLabels();updateYouLabel();if(mouse.x>-2)pick();composer.render();}
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

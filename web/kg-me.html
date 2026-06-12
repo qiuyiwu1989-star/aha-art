@@ -91,7 +91,10 @@ pre{background:#23201b;color:#d8cdbb;border-radius:8px;padding:12px;overflow:aut
 <div class="kick">Person × KG × 美学奖励内核 v0.5 · 状态/特质分离</div>
 <h1>我的审美档案</h1>
 <p class="lead">把 <b>brain.js 的美学奖励算法</b>接到<b>新 KG 三套真实坐标</b>上,并新增:<b>此刻心情 vs 长期口味</b>双时间尺度、从你接受的跳跃<b>反学个人惊奇带 d*</b>、整段旅程的<b>三盏奖励灯</b>。候选=226 张真迹。</p>
-<div class="breadcrumb"><a href="home.html">🏠 首页</a> › <a href="kg-v2.html">🧭 艺术图谱</a> › <a href="PERSON-MODEL.md">📐 数据模型</a> › <a href="kg-me-algo.html">🧭 算法流程图</a> › <b style="color:var(--ink-soft)">我的审美档案</b></div>
+<div class="breadcrumb"><a href="museum.html"><i data-ic="home"></i> 首页</a> › <a href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a href="PERSON-MODEL.md"><i data-ic="ruler"></i> 数据模型</a> › <a href="kg-me-algo.html"><i data-ic="compass"></i> 算法流程图</a> › <b style="color:var(--ink-soft)">我的审美档案</b></div>
+<div style="max-width:760px;margin:12px auto 0;background:var(--accent-soft);border:1px solid #e0c4a8;border-radius:10px;padding:9px 14px;font-size:12px;line-height:1.6;color:var(--ink-soft);text-align:center">
+  <b style="color:var(--accent)">这是演示装置</b> · 看完即走,拨旋钮看算法怎么算,<b>数据不入账</b>。想把档案真正存下来、跨设备越用越准 → <a href="me.html" style="color:var(--accent);text-decoration:none;font-weight:600">我的 · 审美档案(产品版)→</a>
+</div>
 
 <div id="loading" class="empty">加载知识图谱(226 真迹 · 三套坐标 · 谱系)…</div>
 
@@ -103,8 +106,8 @@ pre{background:#23201b;color:#d8cdbb;border-radius:8px;padding:12px;overflow:aut
       <div class="sub">不是"最近邻"——而是落在你<b>惊奇带</b>里、且有谱系可消解的那一帧。</div>
       <div id="rec"></div>
       <div class="bar">
-        <button class="btn love" id="love">♥ 心动</button>
-        <button class="btn" id="skip">✕ 跳过</button>
+        <button class="btn love" id="love"><i data-ic="heart"></i> 心动</button>
+        <button class="btn" id="skip"><i data-ic="close"></i> 跳过</button>
         <button class="btn warn" id="reset">⟲ 清空重学</button>
       </div>
       <div class="rew" id="rew"></div>
@@ -439,7 +442,7 @@ function renderArch(P){
   const box=$('#archcard'); const A=computeArch(P); ARCHCACHE=A;
   if(!A){box.innerHTML='<div class="at">你的审美门派</div><div class="ab" style="margin-top:6px">左下"顺着走"选几张,你的审美门派与本命画家就会从坐标里浮现出来。</div>';return;}
   const benHtml=A.ben?`<div class="bming"><div class="bt" style="background-image:url('${A.ben.file}')"></div><div><div class="bk">本命画家 · 契合 ${A.benAff}%</div><div class="bn">${A.ben.cn}</div><div class="bk">${regName(A.ben.regionId)} · ${A.ben.region==='east'?'东方':'西方'}</div></div></div>`:'';
-  box.innerHTML=`<div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px"><span class="at" style="color:${A.color}">你的审美门派 · n=${A.n} · 稀有度 ${A.share}%(${A.rlab})</span><button class="ig" onclick="togInfo('ip-arch')">ⓘ 怎么算的</button><a class="copy" href="kg-me-types.html" style="text-decoration:none">🃏 全部门派</a><button class="copy" id="copyArch">复制摘要</button><button class="copy" id="shareBtn">🔗 分享链接</button><button class="copy" id="dnaBtn">⬇ 存成 DNA 卡片</button></div>
+  box.innerHTML=`<div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px"><span class="at" style="color:${A.color}">你的审美门派 · n=${A.n} · 稀有度 ${A.share}%(${A.rlab})</span><button class="ig" onclick="togInfo('ip-arch')">ⓘ 怎么算的</button><a class="copy" href="kg-me-types.html" style="text-decoration:none"><i data-ic="gallery"></i> 全部门派</a><button class="copy" id="copyArch">复制摘要</button><button class="copy" id="shareBtn"><i data-ic="network"></i> 分享链接</button><button class="copy" id="dnaBtn"><i data-ic="download"></i> 存成 DNA 卡片</button></div>
     <div class="ipop" id="ip-arch" hidden>${EXPLAIN.arch}</div>
     <div class="an" style="border-left:4px solid ${A.color};padding-left:11px">${A.rName}派 · 「${A.sub}」型</div>
     <div class="sublabel">${A.sub}:${A.subDesc}　·　${A.traitline}</div>
@@ -474,7 +477,7 @@ function renderShared(A){ ARCHCACHE=A;
     <div class="ameta" style="margin-top:8px">${traits}</div>
     <div class="ameta"><span class="tag">掌门 ${A.pat?A.pat.cn:'—'}</span><span class="tag">每100人约${A.share}人同派·${A.rlab}</span><span style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-left:4px">气味相投:</span>${A.circle.slice(0,4).map(n=>`<span class="tag e">${n}</span>`).join('')}</div>
     <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);margin-top:8px;border-top:1px dashed var(--line);padding-top:7px">向量 ⟨${A.vec.join(' ')}⟩</div>
-    <div class="bar" style="margin-top:16px"><a class="btn love" href="kg-me.html">→ 测出我自己的审美</a><button class="btn" id="dnaBtn">⬇ 存成这张卡</button></div>
+    <div class="bar" style="margin-top:16px"><a class="btn love" href="kg-me.html">→ 测出我自己的审美</a><button class="btn" id="dnaBtn"><i data-ic="download"></i> 存成这张卡</button></div>
   </div>`;
   const db=$('#dnaBtn'); if(db)db.onclick=downloadCard;
 }
@@ -582,7 +585,7 @@ function renderAudit(){
   const hiR=hr(sorted.slice(0,half)),loR=hr(sorted.slice(-half)),calOK=hiR-loR>=15;
   const bar=(lift,color)=>{const w=Math.min(48,Math.abs(lift)*120),pos=lift>=0;return `<div class="dv"><div class="c"></div><div class="fl" style="background:${pos?color:'#a8443a'};${pos?'left:50%':'right:50%'};width:${w}%"></div></div>`;};
   box.innerHTML=`<div style="font-size:12px;color:var(--ink-soft);margin-bottom:8px">样本 ${S.length}(♥${H.length} / ✕${K.length})· 目前最能预测你 ♥ 的是 <b style="color:${best.t[2]}">${best.t[1]}</b>(${best.lift>=0?'+':''}${best.lift.toFixed(2)})</div>`
-    +rows.map(r=>`<div class="ar"><span class="al">${r.t[1]}</span><span class="avg">♥${r.mh.toFixed(2)} ✕${r.mk.toFixed(2)}</span>${bar(r.lift,r.t[2])}<span class="lv" style="color:${r.lift>=0?r.t[2]:'#a8443a'}">${r.lift>=0?'+':''}${r.lift.toFixed(2)}</span></div>`).join('')
+    +rows.map(r=>`<div class="ar"><span class="al">${r.t[1]}</span><span class="avg"><i data-ic="heart"></i>${r.mh.toFixed(2)} ✕${r.mk.toFixed(2)}</span>${bar(r.lift,r.t[2])}<span class="lv" style="color:${r.lift>=0?r.t[2]:'#a8443a'}">${r.lift>=0?'+':''}${r.lift.toFixed(2)}</span></div>`).join('')
     +`<div style="font-size:10.5px;color:var(--ink-faint);margin-top:5px">条向右(正)=该项越高你越♥;趋零=对你没区分力;向左(红)=反相关。</div>`
     +`<div style="font-size:11.5px;color:var(--ink-mute);margin-top:9px;border-top:1px solid var(--line);padding-top:8px"><b>校准</b>:预测<b>高分</b>帧你 ♥ 了 <b>${hiR}%</b>,<b>低分</b>帧 <b>${loR}%</b> → ${calOK?'<b style="color:var(--green)">校准良好</b>,预测分越高你越爱':'<b style="color:#a8443a">校准偏弱</b>,高分还没能区分你的 ♥,参数需再学'}</div>`;
 }
@@ -727,4 +730,5 @@ $('#love').onclick=()=>act('heart');
 $('#skip').onclick=()=>act('skip');
 $('#reset').onclick=()=>{events=[];served=[];shown=[];try{localStorage.removeItem(LS);}catch(e){}refresh(true);};
 </script>
-</div></body></html>
+</div><script src="js/aha-icons.js"></script>
+</body></html>

@@ -70,7 +70,7 @@
   <p class="lead">一个诚实的追问:<b>「把世界看成什么」分成 3 轴、12 个东西对称的世界模型——这定义科学吗?</b> 这里不辩护,只用已考究的 <b id="n">…</b> 个风格向量做实证检验,并把结论<b>分级标注</b>:哪些站得住(科学)、哪些只是假设、哪些已被证伪。</p>
   <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="museum.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-root">根·世界观</a> › <b style="color:var(--ink-soft)">科学性自检</b></div>
 
-  <div class="caveat" id="caveat">⚠️ <b>方法前提(必须先承认的循环性)</b>:这些向量由本系统按艺术史判断编码,模型归属也由规则挂载——所以下面测的是<b>「编码的内部结构」,不是独立真值</b>。它能暴露冗余、维度与对称是否成立,但不能自证客观。真正的客观化需要第三方/多标注者信度(见末尾路线第 4 步)。</div>
+  <div class="caveat" id="caveat"><i data-ic="warn"></i> <b>方法前提(必须先承认的循环性)</b>:这些向量由本系统按艺术史判断编码,模型归属也由规则挂载——所以下面测的是<b>「编码的内部结构」,不是独立真值</b>。它能暴露冗余、维度与对称是否成立,但不能自证客观。真正的客观化需要第三方/多标注者信度(见末尾路线第 4 步)。</div>
 
   <div class="sec">
     <div class="sec-h">① 四条轴真的独立吗?——PCA 去冗余</div>
@@ -146,7 +146,7 @@ fetch('data/kg_worldview_science.json').then(r=>r.json()).then(D=>{
   // we only stored hit/total; reconstruct rows from known result (0/6). Show qualitative from data unavailable → use stored note
   const mres=[['W1↔E1','E2','no'],['W2↔E2','W3','no'],['W3↔E3','E4','no'],['W4↔E4','W6','no'],['W5↔E5','W6','no'],['W6↔E6','W5','no']];
   const tb=document.querySelector('#mirror tbody');
-  mres.forEach(r=>tb.appendChild($(`<tr><td>${r[0]}</td><td>${r[1]}</td><td class="no">✗</td></tr>`)));
+  mres.forEach(r=>tb.appendChild($(`<tr><td>${r[0]}</td><td>${r[1]}</td><td class="no"><i data-ic="close"></i></td></tr>`)));
   tb.appendChild($(`<tr style="font-weight:600;background:var(--paper-2)"><td colspan="2">镜像命中</td><td class="no">${D.mirror.hit}/${D.mirror.total}</td></tr>`));
   // scatter
   const P=D.points, xs=P.map(p=>p.pc1), ys=P.map(p=>p.pc2);

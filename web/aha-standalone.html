@@ -231,7 +231,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);
   <header id="topbar">
     <button class="brand" id="brandBtn" title="回到漫游">aha<span class="dot">.</span>art</button>
     <div class="top-meta" id="topMeta"></div>
-    <button class="star-btn" id="starBtn" title="你的星图">✦ 星图</button>
+    <button class="star-btn" id="starBtn" title="你的星图"><i data-ic="sparkles"></i> 星图</button>
   </header>
 
   <main id="stage">
@@ -335,9 +335,9 @@ function renderOnboard() {
     <div class="ob-card"><div class="ob-art-holder"></div>
       <div class="ob-cap"></div><div class="ob-progress"></div>
       <div class="ob-actions">
-        <button class="ob-btn skip" title="无感">✕</button>
-        <button class="ob-btn like" title="想多看一眼">♥</button></div>
-      <div class="ob-hint">✕ 无感 &nbsp;·&nbsp; ♥ 想多看一眼</div>
+        <button class="ob-btn skip" title="无感"><i data-ic="close"></i></button>
+        <button class="ob-btn like" title="想多看一眼"><i data-ic="heart"></i></button></div>
+      <div class="ob-hint"><i data-ic="close"></i> 无感 &nbsp;·&nbsp; ♥ 想多看一眼</div>
       <button class="ob-skipall">直接开始漫游 →</button></div></div>`);
   v.appendChild(wrap);
   const holder = $('.ob-art-holder', wrap), cap = $('.ob-cap', wrap), prog = $('.ob-progress', wrap);
@@ -381,7 +381,7 @@ function rankDoors(slug) {
 function reasonHTML(work, reason) {
   const matched = (work.themes || []).filter(t => topThemes(6).includes(t)).slice(0, 2);
   if (reason.kind === 'today')
-    return `<div class="reason">✦ 为你而来 · 今天最贴你的一帧${matched.length ? ' · 因为你偏爱 ' + matched.map(t => '#' + esc(t)).join(' ') : ''}</div>`;
+    return `<div class="reason"><i data-ic="sparkles"></i> 为你而来 · 今天最贴你的一帧${matched.length ? ' · 因为你偏爱 ' + matched.map(t => '#' + esc(t)).join(' ') : ''}</div>`;
   if (reason.kind === 'taste' && matched.length)
     return `<div class="reason">为你而来 · 因为你偏爱 ${matched.map(t => '#' + esc(t)).join(' ')}</div>`;
   if (reason.kind === 'explore')
@@ -402,7 +402,7 @@ function renderRoam(slug, reason = { kind: 'today' }, isBack = false) {
     <div class="roam-nav">
       <button class="rn-btn back" ${journey.length > 1 ? '' : 'disabled'} title="上一幅 (←)">← 上一幅</button>
       <div class="journey-dots"></div>
-      <button class="rn-btn random" title="不期而遇 (R)">✦ 不期而遇</button>
+      <button class="rn-btn random" title="不期而遇 (R)"><i data-ic="sparkles"></i> 不期而遇</button>
     </div>
     ${reasonHTML(w, reason)}
     <div class="art-holder"></div>
@@ -411,7 +411,7 @@ function renderRoam(slug, reason = { kind: 'today' }, isBack = false) {
       <div class="wi-title">《${esc(w.title)}》</div>
       <div class="wi-by">${esc(w.artist || '')} · ${esc(w.date || '')}</div>
       <div class="wi-one">${esc(w.oneLiner)}</div>
-      <div class="wi-look">👁 <b>看这里</b> — ${esc(w.look)}</div>
+      <div class="wi-look"><i data-ic="eye"></i> <b>看这里</b> — ${esc(w.look)}</div>
       <div class="wi-themes">${(w.themes || []).map(t => `<span class="t">${esc(t)}</span>`).join('')}</div>
     </div></div>
     <div class="heart-row"><button class="heart ${isLoved ? 'on' : ''}"><span class="hi">${isLoved ? '♥' : '♡'}</span><span class="ht">${isLoved ? '已心动' : '心动'}</span></button></div>

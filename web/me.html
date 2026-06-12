@@ -1,76 +1,152 @@
 <!doctype html>
 <html lang="zh"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>我的 · aha 审美档案</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<title>我的美术馆 · aha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/aha-kit.css">
+<script src="js/cloud.js"></script>
+<script src="js/aha-icons.js"></script>
 <style>
-:root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--blue:#5b7596;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
-*{box-sizing:border-box;margin:0}
-body{font-family:var(--sans);font-size:14px;line-height:1.6;color:var(--ink);background:var(--paper)}
-header{padding:13px 20px;border-bottom:1px solid var(--line);background:rgba(244,241,234,.92);backdrop-filter:blur(6px);display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
-h1{font-size:18px;margin:0;font-family:var(--serif);font-weight:600}
-a.back{color:var(--accent);text-decoration:none;font-size:13px;font-family:var(--mono)}
-.wrap{max-width:980px;margin:0 auto;padding:22px 18px 90px}
-.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:16px}
-.card h2{font-size:11px;color:var(--ink-faint);margin:0 0 13px;font-weight:500;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase}
-input{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:9px;margin:6px 0;font:14px var(--sans);background:var(--paper)}
-button{font:14px var(--sans);background:var(--accent);color:#fff;border:none;border-radius:10px;padding:11px 20px;cursor:pointer}
-button.sec,a.btn{font:13px var(--sans);background:#fff;color:var(--ink-soft);border:1px solid var(--line);border-radius:20px;padding:8px 16px;cursor:pointer;text-decoration:none;display:inline-block}
-button.sec:hover,a.btn:hover{border-color:var(--accent);color:var(--accent)}
-.tabs{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
-.tabs span{cursor:pointer;color:var(--ink-mute);padding:8px 16px;border-radius:999px;font-size:13.5px;border:1px solid transparent}
-.tabs span:hover{border-color:var(--line)}
-.tabs span.on{color:#fff;background:var(--accent)}
-.msg{color:#a8443a;font-size:13px;min-height:18px}
-.auth-tab{display:flex;gap:14px;margin-bottom:12px}.auth-tab span{cursor:pointer;color:var(--ink-mute);padding:4px 0;border-bottom:2px solid transparent;font-family:var(--serif)}.auth-tab span.on{color:var(--accent);border-color:var(--accent)}
-.lead{color:var(--ink-mute);font-size:13px;line-height:1.75;margin-bottom:12px}.lead a{color:var(--accent);text-decoration:none}
-.empty{color:var(--ink-faint);font-size:13.5px;padding:20px 4px;line-height:1.9}.empty a{color:var(--accent);text-decoration:none}
-/* 门派 hero */
-.hero{background:linear-gradient(135deg,#fff,#f7f0e6);border:1px solid #e6d8c2;border-radius:16px;padding:20px 22px;margin-bottom:16px}
-.hero .rchip{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--accent);text-transform:uppercase}
-.hero .menpai{font-family:var(--serif);font-size:clamp(24px,5vw,33px);font-weight:600;line-height:1.15;margin:4px 0;border-left:4px solid var(--accent);padding-left:12px}
-.hero .traitline{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin:2px 0 6px}
-.hero .creed{font-family:var(--serif);font-style:italic;color:var(--accent);font-size:15px;margin:6px 0}
-.hero .desc{font-size:13px;color:var(--ink-soft);line-height:1.65}
-.hero .meta{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-top:11px}
-.tag{display:inline-block;font-size:10.5px;font-family:var(--mono);background:var(--accent-soft);color:var(--accent);border-radius:10px;padding:2px 9px}
-.tag.rare{background:#f3e0d4}
-.idline{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);margin-top:11px;border-top:1px dashed var(--line);padding-top:8px}
-.idline b{color:var(--accent)}
-/* 双平面 */
-.planes{display:grid;grid-template-columns:1fr 1fr;gap:18px}@media(max-width:620px){.planes{grid-template-columns:1fr}}
+/* 控制台壳:页面专属,只用 token */
+.ico{display:inline-flex;vertical-align:-.12em}
+.nav a .ico{font-size:16px}
+.btn .ico,.qa .ico{font-size:15px}
+.shell{display:grid;grid-template-columns:248px 1fr;min-height:100vh}
+@media(max-width:820px){.shell{grid-template-columns:1fr}}
+.side{background:var(--paper-2);border-right:1px solid var(--line);padding:var(--s4) var(--s3);position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;display:flex;flex-direction:column;gap:var(--s3)}
+@media(max-width:820px){.side{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line);flex-direction:column;gap:var(--s2);padding:var(--s3)}.idcard{padding:var(--s2) var(--s3)}}
+.brand{font-family:var(--serif);font-size:var(--fz-h3);font-weight:600;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:6px}
+.brand .d{color:var(--accent)}
+.idcard{display:flex;gap:11px;align-items:center;padding:var(--s3);background:var(--card);border:1px solid var(--line);border-radius:var(--r)}
+.idcard .av{width:44px;height:44px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--accent);font-family:var(--serif);font-size:21px;font-weight:600;background:var(--accent-soft) center/cover no-repeat;border:1px solid var(--accent-line);cursor:pointer;position:relative;overflow:hidden}
+.idcard .av .cam{position:absolute;inset:auto 0 0 0;height:15px;display:flex;align-items:center;justify-content:center;background:rgba(40,30,20,.5);color:#fff;font-size:9px;opacity:0;transition:opacity var(--dur) var(--ease)}
+.idcard .av:hover .cam{opacity:1}
+/* 大头像(设置页换头像) */
+.avbig{width:84px;height:84px;border-radius:50%;background:var(--accent-soft) center/cover no-repeat;border:1px solid var(--accent-line);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:38px;color:var(--accent);font-weight:600;flex-shrink:0}
+.idcard .nk{font-family:var(--serif);font-size:14.5px;font-weight:600;line-height:1.2}
+.idcard .mp{font-size:11px;color:var(--ink-mute);margin-top:2px}
+.nav{display:flex;flex-direction:column;gap:1px}
+@media(max-width:820px){.nav{flex-direction:row;flex-wrap:nowrap;overflow-x:auto;gap:5px;padding-bottom:3px;-webkit-overflow-scrolling:touch;scrollbar-width:none}.nav::-webkit-scrollbar{display:none}.nav a{flex:0 0 auto;white-space:nowrap;padding:7px 11px;font-size:13px}}
+.nav a{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:var(--r-sm);color:var(--ink-soft);text-decoration:none;font-size:13.5px;cursor:pointer;border:1px solid transparent;transition:all var(--dur) var(--ease)}
+.nav a:hover{background:var(--card);border-color:var(--line)}
+.nav a.on{background:var(--accent);color:#fff}
+.nav a .ic{width:18px;text-align:center;font-size:14px}
+.nav .sp{flex:1}@media(max-width:820px){.nav .sp{display:none}}
+.main{min-width:0}
+.maintop{position:sticky;top:0;z-index:5;background:var(--glass);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:var(--s4) var(--s6);display:flex;align-items:center;gap:var(--s3)}
+.maintop h1{font-family:var(--serif);font-size:var(--fz-h2);font-weight:600;margin:0}
+.maintop .acts{margin-left:auto;display:flex;gap:var(--s2);flex-wrap:wrap}
+/* 统一纵向节奏:所有区块由 .body 的 gap 决定间距,各块不再各自带外边距 */
+.body{padding:var(--s6);max-width:1160px;display:flex;flex-direction:column;gap:var(--s5)}
+.body>.sec{margin-top:0}
+.body>:empty{display:none}
+@media(max-width:560px){.maintop{padding:var(--s3) var(--s4)}.body{padding:var(--s4);gap:var(--s4)}
+  .stats{gap:var(--s4) var(--s5)}.stat .num{font-size:23px}
+  .hero{padding:var(--s4)}.maintop h1{font-size:var(--fz-h3)}
+  .qa{grid-template-columns:1fr 1fr}}
+/* 门派 hero(无左竖条;暖底强调) */
+.hero{position:relative;overflow:hidden;background:var(--grad-paper);border:1px solid var(--accent-line);border-radius:var(--r-lg);padding:var(--s5) var(--s6)}
+/* 门派封面式构图 */
+.hero-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.hero-acts{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1fr auto;gap:var(--s5);align-items:start;margin-top:var(--s2)}
+@media(max-width:600px){.hero-grid{grid-template-columns:1fr;gap:var(--s4)}}
+.region-name{font-family:var(--serif);font-weight:600;font-size:clamp(27px,5.4vw,40px);line-height:1.08;letter-spacing:.01em}
+.region-name .sub{display:block;font-size:.4em;color:var(--ink-mute);font-weight:500;margin-top:8px;letter-spacing:.02em}
+.region-name .prelim{font-size:.42em;color:var(--ink-mute);font-weight:400}
+.creed-q{position:relative;font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.3vw,18px);line-height:1.6;margin:var(--s4) 0 var(--s3);padding-left:24px}
+.creed-q::before{content:"\201C";position:absolute;left:-4px;top:-10px;font-size:46px;line-height:1;opacity:.28;font-family:Georgia,"Noto Serif SC",serif}
+.hero .desc{font-size:13.5px;color:var(--ink-soft);line-height:1.7;max-width:48ch}
+.hero-chips{margin-top:var(--s4);display:flex;gap:6px;flex-wrap:wrap}
+.soul-mini{flex-shrink:0;width:104px;text-align:center;text-decoration:none;display:block}
+.soul-mini .pic{width:104px;height:130px;border-radius:10px;background:var(--paper-2) center/cover no-repeat;border:1px solid var(--line);box-shadow:var(--sh-1);transition:transform var(--dur) var(--ease)}
+.soul-mini:hover .pic{transform:translateY(-2px);box-shadow:var(--sh-card)}
+.soul-mini .lb{font-family:var(--mono);font-size:9px;color:var(--ink-faint);letter-spacing:.12em;text-transform:uppercase;margin-top:8px}
+.soul-mini .nm{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--ink);margin-top:2px;line-height:1.2}
+.soul-mini .af{font-family:var(--mono);font-size:11px;color:var(--accent);margin-top:2px}
+@media(max-width:600px){.soul-mini{width:auto;display:flex;align-items:center;gap:12px;text-align:left}.soul-mini .pic{width:64px;height:80px}.soul-mini .lb{margin-top:0}}
+.hero .menpai{font-family:var(--serif);font-size:clamp(24px,4.5vw,32px);font-weight:600;line-height:1.15;margin:4px 0 2px}
+.hero .creed{font-family:var(--serif);font-style:italic;color:var(--accent);font-size:15px;margin:7px 0}
+.hero .desc{font-size:13.5px;color:var(--ink-soft);line-height:1.7}
+.hero .idline{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);margin-top:12px;border-top:1px dashed var(--line);padding-top:9px;word-break:break-all}
+/* 成熟度/置信带:诚实告诉用户档案有多可信 */
+.matbar{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin:9px 0 2px}
+.matbar .ml{color:var(--accent);font-weight:500}.matbar .md{letter-spacing:2px;color:var(--accent)}
+.mmsg{font-size:12px;color:var(--ink-soft);line-height:1.55;margin-top:3px}.mmsg b{color:var(--accent)}
+.hero .idline b{color:var(--accent)}
+.planes{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4)}@media(max-width:560px){.planes{grid-template-columns:1fr}}
 .psub{font-size:11px;color:var(--ink-mute);margin-bottom:6px;text-align:center;font-family:var(--mono)}
-svg.pl{display:block;width:100%;max-width:300px;margin:0 auto}
-/* 性格滑块 */
-.trait{display:flex;align-items:center;gap:9px;font-size:11.5px;margin:9px 0}
-.trait .lo{width:54px;text-align:right;color:var(--ink-mute);font-family:var(--mono);font-size:10px}
-.trait .hi{width:54px;color:var(--ink-mute);font-family:var(--mono);font-size:10px}
-.trait .tk{flex:1;height:9px;background:var(--paper-2);border-radius:5px;position:relative}
-.trait .tk .dot{position:absolute;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:var(--accent);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.2)}
-.trait .tv{width:30px;text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink)}
-/* 本命 */
-.soul{display:flex;gap:14px;align-items:center}
-.soul .nm{font-family:var(--serif);font-size:21px;font-weight:600}
-.soul .aff{color:var(--accent);font-family:var(--mono);font-size:13px;margin-top:2px}
-/* 三盏灯 */
-.meter{margin:11px 0}.meter .l{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink-soft);margin-bottom:4px}.meter .l b{font-family:var(--mono)}
-.bar{height:8px;background:var(--paper-2);border-radius:5px;overflow:hidden}.bar>span{display:block;height:100%;border-radius:5px}
-.mini-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-.mini{background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:10px 15px;min-width:100px}.mini .v{font-size:22px;font-weight:600;font-family:var(--serif);color:var(--accent)}.mini .l{font-size:11px;color:var(--ink-mute);margin-top:1px}
-/* 网格 */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(152px,1fr));gap:12px}
-.gc{background:#fff;border:1px solid var(--line);border-radius:11px;overflow:hidden;cursor:pointer;transition:transform .14s,box-shadow .14s}
-.gc:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.1)}.gc img{width:100%;height:152px;object-fit:cover;display:block;background:var(--paper-2)}
-.gc .cb{padding:8px 10px}.gc .ct{font-family:var(--serif);font-size:12.5px;font-weight:600;max-height:2.6em;overflow:hidden;line-height:1.3}
+svg.pl{display:block;width:100%;margin:0 auto}
+/* 双极性格条 */
+.trait{display:flex;align-items:center;gap:10px;font-size:11.5px;margin:10px 0}
+.trait .lo,.trait .hi{width:52px;color:var(--ink-mute);font-family:var(--mono);font-size:10px}
+.trait .lo{text-align:right}
+.trait .tk{flex:1;height:7px;background:var(--paper-2);border-radius:var(--r-pill);position:relative}
+.trait .tk i{position:absolute;top:50%;width:13px;height:13px;border-radius:50%;background:var(--card);border:2px solid var(--accent);transform:translate(-50%,-50%);box-shadow:var(--sh-1)}
+.trait .tv{width:26px;text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink);font-variant-numeric:tabular-nums}
+.soul{display:flex;gap:13px;align-items:center}
+.soul .bt{width:60px;height:60px;flex-shrink:0;border-radius:var(--r-sm);background:var(--paper-2) center/cover no-repeat;border:1px solid var(--line)}
+.soul .nm{font-family:var(--serif);font-size:20px;font-weight:600}.soul .aff{color:var(--accent);font-family:var(--mono);font-size:13px;margin-top:2px}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--s3)}
+.gc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:all var(--dur) var(--ease)}
+.gc:hover{transform:translateY(-2px);box-shadow:var(--sh-card);border-color:var(--accent)}
+.gc img{width:100%;height:150px;object-fit:cover;display:block;background:var(--paper-2)}
+.gc{position:relative}
+.uncol{position:absolute;top:6px;right:6px;z-index:2;width:24px;height:24px;border-radius:50%;border:none;background:rgba(20,16,10,.55);color:#fff;font-size:15px;line-height:1;cursor:pointer;opacity:0;transition:opacity var(--dur) var(--ease)}
+.gc:hover .uncol{opacity:1}.uncol:hover{background:var(--accent)}
+@media(hover:none){.uncol{opacity:.85}}
+.gc .cb{padding:7px 10px}.gc .ct{font-family:var(--serif);font-size:12.5px;font-weight:600;max-height:2.6em;overflow:hidden;line-height:1.3}
 .gc .ca{font-size:10.5px;color:var(--ink-mute);margin-top:3px;display:flex;justify-content:space-between}.gc .sc{font-family:var(--mono);color:var(--accent)}
-.hist{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px}
-.h{border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff;font-size:10px}.h img{width:100%;height:62px;object-fit:cover;display:block;background:var(--paper-2)}.h .c{padding:3px 6px;color:var(--ink-mute)}
-.kbadge{display:inline-block;font-size:9px;padding:0 5px;border-radius:6px;background:var(--accent);color:#fff}
-.exh{border:1px solid var(--line);border-radius:11px;padding:12px 15px;margin-bottom:9px;background:#fff}.exh .t{font-family:var(--serif);font-weight:600}.exh .m{font-size:12px;color:var(--ink-mute)}
-</style></head>
+.strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:7px}
+.strip .h{border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;background:var(--card);font-size:10px}
+.strip .h img{width:100%;height:58px;object-fit:cover;display:block;background:var(--paper-2)}.strip .h .c{padding:3px 5px;color:var(--ink-mute)}
+.ipop{font-size:11.5px;color:var(--ink-soft);line-height:1.65;background:var(--paper-2);border-radius:var(--r-sm);padding:9px 12px;margin:8px 0}
+.ipop b{color:var(--accent)}.ipop code{font-family:var(--mono);font-size:10.5px;background:var(--card);padding:0 3px;border-radius:3px}
+.ig{font-family:var(--sans);font-size:10.5px;color:var(--ink-faint);background:none;border:1px solid var(--line);border-radius:var(--r-pill);padding:1px 9px;cursor:pointer}
+.ig:hover{border-color:var(--accent);color:var(--accent)}
+.qa{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--s3)}
+.qa a{display:block;padding:var(--s4);background:var(--card);border:1px solid var(--line);border-radius:var(--r);text-decoration:none;transition:all var(--dur) var(--ease)}
+.qa a:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:var(--sh-card)}
+.qa .qi{font-size:22px}.qa .qt{font-family:var(--serif);font-weight:600;color:var(--ink);margin-top:5px}.qa .qd{font-size:11.5px;color:var(--ink-mute);margin-top:2px}
+.authwrap{max-width:420px;margin:8vh auto;padding:var(--s5)}
+.fyk{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4)}@media(max-width:560px){.fyk{grid-template-columns:1fr}}
+.fyk label{font-size:12px;color:var(--ink-soft);display:flex;flex-direction:column;gap:5px;font-family:var(--mono)}
+.fyk .slider{width:100%}
+.ex-card .ex-badge{margin-left:auto}
+.ex-acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:var(--s3)}
+/* 浮动提示:复用 kit 的 .toast 皮肤,只补定位与显隐 */
+#_toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(8px);z-index:50;opacity:0;pointer-events:none;transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease);box-shadow:var(--sh-pop)}
+#_toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+/* —— 登录页:黑暗中提灯逛馆 —— */
+body.auth{background:#0a0805;overflow:hidden}
+.lantern{position:fixed;inset:0;overflow:hidden;background:radial-gradient(130% 100% at 50% 32%,#16120c,#0a0805);--mx:50%;--my:42%}
+.lantern .art{position:absolute;border-radius:2px;object-fit:cover;box-shadow:0 16px 54px rgba(0,0,0,.75),0 0 0 1px rgba(0,0,0,.55);filter:saturate(.72) brightness(.92);will-change:transform}
+.lantern .veil{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle 220px at var(--mx) var(--my),rgba(10,8,5,0) 0%,rgba(10,8,5,.5) 26%,rgba(9,7,4,.9) 58%,rgba(7,5,3,.99) 100%)}
+.lantern .halo{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(circle 210px at var(--mx) var(--my),rgba(226,170,98,.2) 0%,rgba(226,170,98,.06) 38%,rgba(226,170,98,0) 64%)}
+.lantern .hint{position:fixed;left:0;right:0;bottom:max(26px,env(safe-area-inset-bottom));text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:rgba(232,216,190,.5);pointer-events:none;animation:hintp 3.6s ease-in-out infinite}
+@keyframes hintp{0%,100%{opacity:.3}50%{opacity:.72}}
+.authwrap2{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:min(91vw,384px);z-index:5;background:rgba(26,21,14,.74);-webkit-backdrop-filter:blur(15px);backdrop-filter:blur(15px);border:1px solid rgba(216,170,110,.26);border-radius:18px;padding:25px 23px;box-shadow:0 44px 110px -34px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,240,210,.07)}
+.authwrap2 .a-back{position:absolute;top:-28px;left:0;font-family:var(--mono);font-size:11px;color:rgba(226,170,98,.85);text-decoration:none}
+.authwrap2 .a-brand{font-family:var(--serif);font-size:22px;font-weight:600;color:#f1e6d2;text-align:center;letter-spacing:.01em}
+.authwrap2 .a-brand .d{color:var(--accent)}
+.authwrap2 .a-sub{text-align:center;font-size:12.5px;color:rgba(228,214,190,.66);line-height:1.6;margin:7px 2px 16px}
+.authwrap2 .a-sub b{color:#e7c79a;font-weight:500}
+.a-seg{display:flex;background:rgba(0,0,0,.3);border:1px solid rgba(216,170,110,.18);border-radius:999px;padding:3px;margin-bottom:14px}
+.a-seg button{flex:1;background:none;border:none;color:rgba(228,214,190,.62);font-family:var(--sans);font-size:13px;padding:7px;border-radius:999px;cursor:pointer;transition:.15s}
+.a-seg button.on{background:rgba(216,170,110,.2);color:#f3e7d2;font-weight:500}
+.a-input{width:100%;background:rgba(0,0,0,.32);border:1px solid rgba(216,170,110,.22);border-radius:10px;color:#f1e6d2;font-size:14px;padding:12px 13px;margin-bottom:11px;font-family:var(--sans)}
+.a-input::placeholder{color:rgba(228,214,190,.4)}
+.a-input:focus{outline:none;border-color:rgba(226,170,98,.7);box-shadow:0 0 0 3px rgba(226,170,98,.13)}
+.a-go{width:100%;margin-top:4px;padding:13px;border:none;border-radius:12px;cursor:pointer;font-family:var(--serif);font-size:15.5px;font-weight:600;color:#1c1308;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(180deg,#f1cd8b,#d99a48);box-shadow:0 12px 32px -8px rgba(226,170,98,.6),inset 0 1px 0 rgba(255,255,255,.5);transition:transform .15s,box-shadow .15s,filter .15s}
+.a-go:hover{transform:translateY(-1px);filter:brightness(1.05);box-shadow:0 18px 44px -8px rgba(226,170,98,.85),inset 0 1px 0 rgba(255,255,255,.6)}
+.a-go:active{transform:translateY(0)}
+.a-go .lan{width:17px;height:17px;flex-shrink:0}
+.a-msg{color:#ec9070;font-size:12px;min-height:16px;text-align:center;margin-top:10px}
+.a-anon{text-align:center;margin-top:13px}
+.a-anon a{font-family:var(--mono);font-size:11px;color:rgba(228,214,190,.55);text-decoration:none;border-bottom:1px dashed rgba(228,214,190,.3);padding-bottom:1px}
+</style><script src="/js/aha-app.js" defer></script></head>
 <body>
-<header><a class="back" href="gallery.html">← aha.art</a><h1>我的</h1><span id="who" style="margin-left:auto;color:var(--ink-mute);font-size:13px"></span></header>
-<div class="wrap" id="app">加载中…</div>
+<div id="app"><div class="loading" style="padding:30vh 0;text-align:center">加载中…</div></div>
 <script>
 const KEY='aha_uid';
 function luid(){try{return localStorage.getItem(KEY)}catch(e){return null}}
@@ -78,10 +154,9 @@ function setuid(u){try{localStorage.setItem(KEY,u)}catch(e){}}
 function esc(s){return (s||'').replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]))}
 async function jget(p){return (await fetch('api/'+p)).json()}
 async function jpost(p,b){return (await fetch('api/'+p,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)})).json()}
-// 6 世界观区(与 profile.py / kg-worldview 一致)
-const RG=[['WV1','摹写之眼',.232,.389],['WV2','礼制图式',.41,.287],['WV3','写意寄情',.528,.457],['WV4','经验之光',.533,.733],['WV5','表现外化',.775,.512],['WV6','形式建构',.82,.207]];
+const cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const LANGK=['构图','空间','造型','光影','色彩','笔触','边缘'];
 const RADAR=['表现性','感知性','构图','空间','造型','光影','色彩','笔触','边缘','愉悦','唤起','控制'];
-// 门派文案 + 稀有度(与 kg-me / kg-me-types 一致)
 const MENPAI={
   WV1:{creed:'世界本已动人,我只需忠实地看见。',color:'#9a6b4a',desc:'你属于写实的世界——着迷于把眼前真实、可信地画下来。'},
   WV2:{creed:'万物各有其位,秩序即是美。',color:'#8a7a52',desc:'你属于秩序的世界——偏爱庄重、规整、有仪式感的图像。'},
@@ -91,204 +166,451 @@ const MENPAI={
   WV6:{creed:'拆解万象,重组为纯粹的形与色。',color:'#5b7596',desc:'你属于抽象的世界——爱纯粹的形、色与结构之美。'}
 };
 const REGSHARE={WV1:27,WV2:12,WV3:24,WV4:4,WV5:20,WV6:13};
-const SUBDESC={守炉人:'认定一种美,安守深耕',深井者:'口味集中,越挖越深',集萃者:'兼收并蓄,围绕一个稳定中心',博览家:'口味开阔,乐于尝鲜'};
-const cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
-function subType2(focus,cautious){return focus?(cautious?'守炉人':'深井者'):(cautious?'集萃者':'博览家');}
+const SUBDESC={守炉人:'认定一种美,安守深耕',深井者:'口味集中,越挖越深',移巢者:'专注一种,隔阵子整体搬家',孤旅者:'一次只爱一种,不断远行寻新',集萃者:'兼收并蓄,围绕一个稳定中心',博览家:'口味开阔,乐于尝鲜',漫游者:'什么都看,随性而至',游牧者:'又广又爱冒险,逐美而居'};
+function subType(f,s,c){return {'111':'守炉人','110':'深井者','101':'移巢者','100':'孤旅者','011':'集萃者','010':'博览家','001':'漫游者','000':'游牧者'}[(f?'1':'0')+(s?'1':'0')+(c?'1':'0')];}
 function hashVec(v){let h=2166136261>>>0;const s=v.map(x=>Math.round(x*100)).join(',');for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0;}return h.toString(36).toUpperCase().slice(0,5).padStart(5,'0');}
+const SPW={wv:.5,lang:.3,aff:.2};
+const dWV=(a,b)=>Math.hypot(a.wv.x-b.wv.x,a.wv.y-b.wv.y)/Math.SQRT2;
+const dLang=(a,b)=>{let s=0;for(let i=0;i<7;i++)s+=((a.lang[i]||0)-(b.lang[i]||0))**2;return Math.sqrt(s)/Math.sqrt(7);};
+const dAff=(a,b)=>Math.hypot(a.aff.v-b.aff.v,a.aff.a-b.aff.a)/Math.SQRT2;
+const dKG=(a,b)=>SPW.wv*dWV(a,b)+SPW.lang*dLang(a,b)+SPW.aff*dAff(a,b);
+const EXPLAIN={
+  arch:`<b>门派</b>=你 12 维重心落在 6 个世界观区的哪个;<b>亚型</b>=三个二元特质(专一/博览·安住/漂移·守成/探索)→ 8 种,共 <b>48 种原型</b>;<b>本命画家</b>=三套坐标里离你最近的大师;<b>稀有度</b>=你门派在 282 位大师里的占比。`,
+  plane:`世界观平面:<code>再现↔表现</code> ⊥ <code>结构↔感知</code>。<b>实心=长期口味</b>,<b>空心=此刻心情</b>,虚线=<b>漂移轨迹</b>,赭环=<b>惊奇带 d*</b>,★=本命画家。背景淡点=282 位大师。`,
+  traits:`四条大白话性格,由行为算出:探索欲(d*)、口味广度(σ)、情绪偏好(唤起)、风格倾向(再现-表现)。`,
+  radar:`<b>12 维审美指纹</b>:世界观2+语言7+情绪3。与每位大师同维,所以能直接算相似度——本命画家就是这么找的。`,
+  meters:`衡量整段旅程质量:<b>顿悟密度</b>=心动落在"新异"上的比例 · <b>审美成长</b>=区覆盖熵+确定度 · <b>安静感</b>=低唤醒且平顺。`
+};
+window.togInfo=(id)=>{const e=document.getElementById(id);if(e)e.hidden=!e.hidden;};
 
-let WHO=null, PROF=null, curTab='profile';
-
-async function load(){
-  WHO=await jget('me/whoami');
-  if(!WHO.auth){renderAuth();return;}
-  const who=document.getElementById('who');
-  who.textContent='👤 '+(WHO.nickname||WHO.email)+' · 退出';who.style.cursor='pointer';
-  who.onclick=async()=>{await jpost('me/logout',{});location.reload()};
-  PROF=await jget('me/profile').catch(()=>({ready:false}));
-  renderTabs();renderTab();
-}
-function renderTabs(){
-  document.getElementById('app').innerHTML=`
-    <div class="tabs">
-      <span data-t="profile">审美档案</span>
-      <span data-t="foryou">为你推荐</span>
-      <span data-t="mine">我的</span>
-      <span data-t="gen">我的创作</span>
-    </div><div id="tabbody"></div>`;
-  [...document.querySelectorAll('.tabs span')].forEach(s=>s.onclick=()=>{curTab=s.dataset.t;renderTab();});
-}
-function renderTab(){
-  [...document.querySelectorAll('.tabs span')].forEach(s=>s.classList.toggle('on',s.dataset.t===curTab));
-  const b=document.getElementById('tabbody');
-  if(curTab==='profile')renderProfile(b);
-  else if(curTab==='foryou')renderForyou(b);
-  else if(curTab==='gen')renderGen(b);
-  else renderMine(b);
-}
-
-// ---------- 审美档案(kg-me 级) ----------
-function bar(v,c){return `<div class="bar"><span style="width:${Math.round((v||0)*100)}%;background:${c}"></span></div>`;}
-function renderProfile(b){
-  if(!PROF||!PROF.ready){
-    b.innerHTML=`<div class="card"><h2>审美档案 · 还在生长</h2>
-      <p class="lead">你的审美档案由"看过、停留、喜欢的画"实时算出——<b>12 维向量、本命画家、门派、三盏灯</b>。<br>
-      现在数据还不够(${(PROF&&PROF.n)||0} 个有效行为)。去<a href="art.html">展厅</a>多看几幅、点几个 ❤,这里就会长出你的样子。</p>
-      <div style="margin-top:10px"><a class="btn" href="art.html">🖼️ 去展厅看画 →</a> <a class="btn" href="kg-me.html">⚡ 实验室版试玩 →</a></div></div>`;
-    return;
-  }
-  const p=PROF, v=p.vec||[];
-  const reg=p.arche_region||'WV1', mp=MENPAI[reg]||{creed:'',color:'var(--accent)',desc:''};
-  const sp=+(p.spread||0), ds=+(p.dstar||0.34);
-  const focus=sp<0.13, cautious=ds<0.36;
-  const sub=subType2(focus,cautious);
-  const traitline=`${focus?'专一':'博览'} · ${cautious?'守成':'探索'}`;
+let REG=[], ARTISTS=[], ARTISTIMG={}, ARCH=null, KGREADY=false;
+function archFromVec(p){
+  const v=p.vec||[]; const self={wv:{x:v[0]||.5,y:v[1]||.5},lang:v.slice(2,9),aff:{v:v[9]||.5,a:v[10]||.5,d:v[11]||.5}};
+  let reg=p.arche_region; if(!reg||!MENPAI[reg]){let bd=9;REG.forEach(r=>{const d=Math.hypot(r.cx-self.wv.x,r.cy-self.wv.y);if(d<bd){bd=d;reg=r.id;}});}
+  const mp=MENPAI[reg]||{creed:'',color:'#b0673a',desc:''};
+  const sp=+(p.spread||0), ds=+(p.dstar||.34);
+  const focus=sp<0.13, settled=(p.drift!=null?p.drift:1)<0.05, cautious=ds<0.36;
+  const sub=p.arche_sub||subType(focus,settled,cautious);
+  const traitline=`${focus?'专一':'博览'} · ${settled?'安住':'漂移'} · ${cautious?'守成':'探索'}`;
+  const traits=[{lo:'念旧',hi:'尝新',v:cl((ds-0.15)/0.45)},{lo:'专精',hi:'博览',v:cl(sp/0.25)},{lo:'爱热烈',hi:'爱安静',v:cl(1-(self.aff.a))},{lo:'写实',hi:'写意',v:cl(self.wv.x)}];
+  const near=ARTISTS.map(a=>({a,d:dKG(a,self)})).sort((x,y)=>x.d-y.d);
+  let ben=near[0]?near[0].a:null, benAff=near[0]?Math.round(cl(1-near[0].d)*100):0;
+  if(p.soulmate&&p.soulmate.cn){const m=ARTISTS.find(a=>a.id===p.soulmate.artist_id)||ARTISTS.find(a=>a.cn===p.soulmate.cn);
+    ben={id:p.soulmate.artist_id,cn:p.soulmate.cn,file:(m&&m.file)||ARTISTIMG[p.soulmate.artist_id]||null};benAff=p.soulmate.aff;}
+  const seen=new Set(),circle=[];near.forEach(o=>{if(!seen.has(o.a.cn)&&circle.length<5){seen.add(o.a.cn);circle.push(o.a.cn);}});
   const share=REGSHARE[reg]||10, rlab=share<8?'稀有':share<18?'小众':'主流';
-  const idCode='aha №'+reg.replace('WV','')+'-'+hashVec(v.length?v:[0]);
-  // 性格滑块
-  const traits=[
-    {lo:'念旧',hi:'尝新',v:cl((ds-0.15)/0.45)},
-    {lo:'专精',hi:'博览',v:cl(sp/0.25)},
-    {lo:'爱热烈',hi:'爱安静',v:cl(1-(v[10]??0.5))},
-    {lo:'写实',hi:'写意',v:cl(v[0]??0.5)}
-  ];
-  // 世界观平面
-  const X=x=>22+x*196, Y=y=>22+(1-y)*196;
-  const rgDots=RG.map(r=>{const on=r[0]===reg;return `<circle cx="${X(r[2])}" cy="${Y(r[3])}" r="${on?7:4}" fill="none" stroke="${on?mp.color:'#cfc6b4'}" stroke-width="${on?2:1.2}" stroke-dasharray="3 3"/><text x="${X(r[2])}" y="${Y(r[3])-10}" font-size="9" fill="${on?mp.color:'#bcb3a2'}" text-anchor="middle" font-family="var(--serif)">${r[1]}</text>`;}).join('');
-  const youDot=v.length?`<circle cx="${X(v[0])}" cy="${Y(v[1])}" r="20" fill="${mp.color}" fill-opacity=".09"/><circle cx="${X(v[0])}" cy="${Y(v[1])}" r="8" fill="${mp.color}" stroke="#fff" stroke-width="2.5"/>`:'';
-  // 情绪平面(愉悦×唤起)
-  const mX=x=>22+x*196, mY=y=>22+(1-y)*196;
-  const moodQuad=[['#a8443a',0,1,'紧张'],['#c98a1a',1,1,'昂扬'],['#5a7d6f',1,0,'宁静'],['#5b7596',0,0,'忧郁']].map(q=>`<text x="${mX(q[1]?0.78:0.22)}" y="${mY(q[2]?0.82:0.18)}" font-size="10" fill="${q[0]}" text-anchor="middle" font-family="var(--serif)" opacity=".7">${q[3]}</text>`).join('');
-  const moodDot=v.length?`<circle cx="${mX(v[9])}" cy="${mY(v[10])}" r="8" fill="var(--accent)" stroke="#fff" stroke-width="2.5"/>`:'';
-  // 12 轴雷达
-  const cx=130,cy=130,R=98,N=12;
-  const pts=v.map((val,i)=>{const ang=-Math.PI/2+i*2*Math.PI/N;return [cx+Math.cos(ang)*R*val,cy+Math.sin(ang)*R*val];});
-  const poly=pts.map(pp=>pp.join(',')).join(' ');
-  const spokes=RADAR.map((nm,i)=>{const ang=-Math.PI/2+i*2*Math.PI/N;const ex=cx+Math.cos(ang)*R,ey=cy+Math.sin(ang)*R;const lx=cx+Math.cos(ang)*(R+15),ly=cy+Math.sin(ang)*(R+15);
-    return `<line x1="${cx}" y1="${cy}" x2="${ex}" y2="${ey}" stroke="#e6ddcc"/><text x="${lx}" y="${ly}" font-size="8.5" fill="#8a8170" text-anchor="middle" dominant-baseline="middle">${nm}</text>`;}).join('');
-  const rings=[0.25,0.5,0.75,1].map(rr=>`<circle cx="${cx}" cy="${cy}" r="${R*rr}" fill="none" stroke="#efe7d6"/>`).join('');
-  const L=p.lights||{}, soul=p.soulmate;
+  const vec=v.map(x=>+(+x).toFixed(2)), idCode='aha №'+reg.replace('WV','')+'-'+hashVec(vec.length?vec:[0]);
+  return {reg,rName:(REG.find(r=>r.id===reg)||{}).name||p.arche_region_name||'',sub,subDesc:SUBDESC[sub]||p.arche_sub_desc||'',traitline,creed:mp.creed,color:mp.color,desc:mp.desc,traits,self,
+    ben,benAff,circle,share,rlab,vec,idCode,sig:sp,dstar:ds,n:p.n||0,
+    maturity:(p.maturity!=null?p.maturity:cl((p.n||0)/22)),matLevel:p.maturity_level||((p.n||0)>=20?'清晰':((p.n||0)>=8?'成形中':'初识')),needMore:(p.need_more!=null?p.need_more:Math.max(0,8-(p.n||0))),
+    lights:p.lights||{},sess:(p.vec_sess&&p.vec_sess.length?{x:p.vec_sess[0],y:p.vec_sess[1],av:p.vec_sess[9],aa:p.vec_sess[10]}:null)};
+}
+function b64url(s){return btoa(unescape(encodeURIComponent(s))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
+function encodeShare(A){const v=A.vec;const arr=[...v.map(x=>Math.round(x*100)),Math.round(A.sig*100),0,Math.round(A.dstar*100),30,A.n];return b64url(JSON.stringify(arr));}
+function shareUrl(A){return 'https://aha.yishujia.art/kg-me.html#s='+encodeShare(A);}
+function rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
+function wrapText(c,t,mx){const o=[];let l='';for(const ch of (t||'')){if(c.measureText(l+ch).width>mx&&l){o.push(l);l=ch;}else l+=ch;}if(l)o.push(l);return o;}
+// 缺图占位:任何图加载失败都退到它,绝不出现浏览器的裂图图标
+const PLACE="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='160'%20height='120'%3E%3Crect%20width='160'%20height='120'%20fill='%23efe9dd'/%3E%3Ctext%20x='80'%20y='64'%20font-size='12'%20fill='%23b6a98e'%20text-anchor='middle'%3E图暂缺%3C/text%3E%3C/svg%3E";
+function loadImg(src){return new Promise(r=>{if(!src)return r(null);const im=new Image();im.onload=()=>r(im);im.onerror=()=>r(null);im.src=src;});}
+function loadImgCO(src){return new Promise(r=>{if(!src)return r(null);const im=new Image();im.crossOrigin='anonymous';im.onload=()=>r(im);im.onerror=()=>r(null);im.src=src;});}
+async function buildCard(A){
+  if(document.fonts){try{await document.fonts.ready;}catch(e){}}
+  const W=1080,PAD=96,acc=A.color||'#b0673a',ink='#1d1b18',soft='#4b463e',mute='#857d6f',faint='#a89f8f',line='#ddd5c6',paper='#f4f1ea',paper2='#ece7db';
+  const benImg=await loadImg(A.ben?A.ben.file:null);
+  const qrImg=await loadImgCO('https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=0&qzone=1&color=1d1b18&bgcolor=f4f1ea&data='+encodeURIComponent(shareUrl(A)));
+  const tmp=document.createElement('canvas').getContext('2d');tmp.font="300 30px 'Noto Sans SC',sans-serif";
+  const desc=wrapText(tmp,A.desc,W-2*PAD);
+  const H=Math.round(150+74+96+44+50+desc.length*44+34+190+(4*66)+30+360+34+96+58+260+72);
+  const cv=document.createElement('canvas');cv.width=W;cv.height=H;const c=cv.getContext('2d');
+  c.fillStyle=paper;c.fillRect(0,0,W,H);c.strokeStyle=acc;c.lineWidth=2;c.strokeRect(40,40,W-80,H-80);c.textBaseline='alphabetic';
+  const rule=yy=>{c.strokeStyle=line;c.lineWidth=1;c.beginPath();c.moveTo(PAD,yy);c.lineTo(W-PAD,yy);c.stroke();};
+  let y=150;
+  c.textAlign='left';c.fillStyle=ink;c.font="600 40px 'Noto Serif SC',serif";c.fillText('aha',PAD,y);c.fillStyle=acc;c.fillText('.',PAD+72,y);
+  c.fillStyle=mute;c.font="500 19px 'JetBrains Mono',monospace";c.textAlign='right';c.fillText('AESTHETIC DNA / 审美档案',W-PAD,y-4);y+=20;rule(y);y+=54;
+  c.textAlign='center';c.fillStyle=acc;c.font="600 78px 'Noto Serif SC',serif";c.fillText(A.rName+'派',W/2,y);y+=58;
+  c.fillStyle=ink;c.font="500 32px 'Noto Serif SC',serif";c.fillText('「'+A.sub+'」型',W/2,y);c.fillStyle=mute;c.font="400 22px 'Noto Sans SC',sans-serif";c.fillText('　'+A.subDesc,W/2,y+30);y+=44;
+  c.fillStyle=acc;c.font="italic 27px 'Noto Serif SC',serif";c.fillText('“'+A.creed+'”',W/2,y+22);y+=50;
+  c.fillStyle=soft;c.font="300 29px 'Noto Sans SC',sans-serif";desc.forEach(l=>{c.fillText(l,W/2,y+18);y+=44;});y+=34;
+  const bs=150;c.textAlign='left';c.fillStyle=paper2;rr(c,PAD,y,bs,bs,12);c.fill();
+  if(benImg){c.save();rr(c,PAD,y,bs,bs,12);c.clip();const s=Math.max(bs/benImg.width,bs/benImg.height);c.drawImage(benImg,PAD+(bs-benImg.width*s)/2,y+(bs-benImg.height*s)/2,benImg.width*s,benImg.height*s);c.restore();}
+  c.fillStyle=mute;c.font="400 23px 'Noto Sans SC',sans-serif";c.fillText('和你审美最像的大师',PAD+bs+30,y+38);
+  c.fillStyle=ink;c.font="600 52px 'Noto Serif SC',serif";c.fillText(A.ben?A.ben.cn:'—',PAD+bs+30,y+94);
+  c.fillStyle=acc;c.font="500 25px 'Noto Sans SC',sans-serif";c.fillText('相似度 '+A.benAff+'%　气味相投 '+A.circle.slice(0,2).join(' '),PAD+bs+30,y+132);y+=bs+40;
+  c.font="400 24px 'Noto Sans SC',sans-serif";
+  A.traits.forEach(t=>{const tx=260,tw=W-PAD-tx-110,ty=y;c.fillStyle=mute;c.textAlign='right';c.fillText(t.lo,tx-18,ty+8);c.textAlign='left';c.fillText(t.hi,tx+tw+18,ty+8);
+    c.fillStyle=paper2;rr(c,tx,ty-3,tw,12,6);c.fill();c.fillStyle=acc;rr(c,tx,ty-3,Math.max(12,tw*t.v),12,6);c.fill();c.beginPath();c.arc(tx+tw*t.v,ty+3,11,0,7);c.fill();
+    c.fillStyle=ink;c.font="600 25px 'JetBrains Mono',monospace";c.textAlign='right';c.fillText(Math.round(t.v*100),W-PAD,ty+9);c.font="400 24px 'Noto Sans SC',sans-serif";y+=66;});y+=30;
+  const PS=320,px0=(W-PS)/2,pp=34,mxp=v=>px0+pp+v*(PS-2*pp),myp=v=>y+PS-pp-v*(PS-2*pp);
+  c.fillStyle='#fcfaf5';rr(c,px0,y,PS,PS,14);c.fill();c.strokeStyle=line;c.lineWidth=1;rr(c,px0,y,PS,PS,14);c.stroke();
+  c.fillStyle=faint;c.font="400 15px 'Noto Sans SC',sans-serif";c.textAlign='center';c.fillText('再现 → 表现',W/2,y+PS-10);
+  REG.forEach(r=>{const m=MENPAI[r.id]||{color:mute};c.globalAlpha=.55;c.fillStyle=m.color;c.beginPath();c.arc(mxp(r.cx),myp(r.cy),7,0,7);c.fill();c.globalAlpha=1;c.fillStyle=m.color;c.font="400 14px 'Noto Serif SC',serif";c.fillText(r.name,mxp(r.cx),myp(r.cy)-12);});
+  c.save();c.strokeStyle=acc;c.globalAlpha=.32;c.setLineDash([4,5]);c.lineWidth=1.5;c.beginPath();c.arc(mxp(A.vec[0]),myp(A.vec[1]),Math.max(10,A.sig*(PS-2*pp)*1.6),0,7);c.stroke();c.restore();
+  c.fillStyle=acc;c.beginPath();c.arc(mxp(A.vec[0]),myp(A.vec[1]),12,0,7);c.fill();c.strokeStyle='#fff';c.lineWidth=3;c.beginPath();c.arc(mxp(A.vec[0]),myp(A.vec[1]),12,0,7);c.stroke();y+=PS+34;
+  c.textAlign='center';c.fillStyle=mute;c.font="400 20px 'Noto Sans SC',sans-serif";c.fillText('你的审美坐标 · 和艺术家同处一个空间',W/2,y);y+=40;
+  c.fillStyle=ink;c.font="600 30px 'JetBrains Mono',monospace";c.fillText(A.idCode,W/2,y);y+=30;
+  c.fillStyle=faint;c.font="400 17px 'JetBrains Mono',monospace";c.fillText('⟨'+A.vec.join(' ')+'⟩',W/2,y);y+=26;
+  c.fillStyle=mute;c.font="400 17px 'Noto Sans SC',sans-serif";c.fillText('每 100 人约 '+A.share+' 人与你同派 · '+A.rlab,W/2,y);y+=44;
+  rule(y);y+=24;const qs=130,qx=W-PAD-qs;
+  if(qrImg){c.drawImage(qrImg,qx,y,qs,qs);}else{c.strokeStyle=line;c.strokeRect(qx,y,qs,qs);}
+  c.textAlign='left';c.fillStyle=acc;c.font="italic 30px 'Noto Serif SC',serif";c.fillText('让美,来找你',PAD,y+44);
+  c.fillStyle=ink;c.font="500 22px 'Noto Sans SC',sans-serif";c.fillText('扫码,测出你的审美门派',PAD,y+82);
+  c.fillStyle=mute;c.font="400 18px 'JetBrains Mono',monospace";c.fillText('aha.yishujia.art',PAD,y+116);
+  return cv;
+}
+async function downloadCard(btn){if(!ARCH)return;const o=btn.textContent;btn.textContent='生成中…';
+  try{const cv=await buildCard(ARCH);cv.toBlob(b=>{const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='我的审美DNA-aha.png';a.click();setTimeout(()=>URL.revokeObjectURL(u),5000);btn.textContent='已保存 ✓';setTimeout(()=>btn.textContent=o,1800);},'image/png');}
+  catch(e){btn.textContent='生成失败';setTimeout(()=>btn.textContent=o,1800);}}
+function copyTxt(btn,txt,ok){(navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>{const o=btn.textContent;btn.textContent=ok||'已复制 ✓';setTimeout(()=>btn.textContent=o,1800);}).catch(()=>{btn.textContent='复制失败';});}
+
+// ============ 图表 SVG ============
+function plSvg(A){const X=x=>22+x*196,Y=y=>22+(1-y)*196,c=A.color;
+  const bg=ARTISTS.map(a=>`<circle cx="${X(a.wv.x).toFixed(1)}" cy="${Y(a.wv.y).toFixed(1)}" r="2" fill="${a.region==='east'?'#aac3b8':'#d8b9a3'}" fill-opacity=".4"/>`).join('');
+  const rg=REG.map(r=>{const on=r.id===A.reg;return `<circle cx="${X(r.cx)}" cy="${Y(r.cy)}" r="${on?7:4}" fill="none" stroke="${on?c:'#cfc6b4'}" stroke-width="${on?2:1.2}" stroke-dasharray="3 3"/><text x="${X(r.cx)}" y="${Y(r.cy)-9}" font-size="9" fill="${on?c:'#bcb3a2'}" text-anchor="middle" font-family="'Noto Serif SC',serif">${r.name}</text>`;}).join('');
+  const L=A.self.wv,S=A.sess,ring=`<circle cx="${X(L.x)}" cy="${Y(L.y)}" r="${Math.min(190,A.dstar*196)}" fill="none" stroke="${c}" stroke-opacity=".4" stroke-width="1.2" stroke-dasharray="2 5"/>`;
+  const halo=`<circle cx="${X(L.x)}" cy="${Y(L.y)}" r="${Math.max(10,A.sig*196)}" fill="${c}" fill-opacity=".07" stroke="${c}" stroke-opacity=".22" stroke-dasharray="3 3"/>`;
+  let traj='',sdot='';if(S){traj=`<line x1="${X(L.x)}" y1="${Y(L.y)}" x2="${X(S.x)}" y2="${Y(S.y)}" stroke="#857d6f" stroke-opacity=".5" stroke-dasharray="2 3"/>`;sdot=`<circle cx="${X(S.x)}" cy="${Y(S.y)}" r="6" fill="#fff" stroke="#857d6f" stroke-width="2"/><text x="${X(S.x)}" y="${Y(S.y)+17}" font-size="9.5" fill="#857d6f" text-anchor="middle" font-family="'Noto Serif SC',serif">此刻</text>`;}
+  let bd='';if(A.ben){const m=ARTISTS.find(a=>a.id===A.ben.id||a.cn===A.ben.cn);if(m){bd=`<line x1="${X(L.x)}" y1="${Y(L.y)}" x2="${X(m.wv.x)}" y2="${Y(m.wv.y)}" stroke="#23201b" stroke-opacity=".25"/><circle cx="${X(m.wv.x)}" cy="${Y(m.wv.y)}" r="6" fill="none" stroke="#23201b" stroke-width="1.8"/><text x="${X(m.wv.x)}" y="${Y(m.wv.y)-9}" font-size="10" fill="#23201b" text-anchor="middle" font-family="'Noto Serif SC',serif"><i data-ic="star"></i>${esc(A.ben.cn)}</text>`;}}
+  const ld=`<circle cx="${X(L.x)}" cy="${Y(L.y)}" r="20" fill="${c}" fill-opacity=".08"/><circle cx="${X(L.x)}" cy="${Y(L.y)}" r="8" fill="${c}" stroke="#fff" stroke-width="2.5"/><text x="${X(L.x)}" y="${Y(L.y)-13}" font-size="10.5" fill="${c}" text-anchor="middle" font-weight="700" font-family="'Noto Serif SC',serif">长期</text>`;
+  return `<svg class="pl" viewBox="0 0 240 240" style="max-width:340px"><rect x="22" y="22" width="196" height="196" fill="#fcfaf5" stroke="#e8e0d0"/><line x1="120" y1="22" x2="120" y2="218" stroke="#eadfca"/><line x1="22" y1="120" x2="218" y2="120" stroke="#eadfca"/>${bg}${rg}${ring}${halo}${traj}${bd}${sdot}${ld}<text x="26" y="124" font-size="9" fill="#5a7d6f">再现</text><text x="214" y="124" font-size="9" fill="#b0673a" text-anchor="end">表现</text><text x="120" y="32" font-size="9" fill="#b0673a" text-anchor="middle">感知</text><text x="120" y="214" font-size="9" fill="#5a7d6f" text-anchor="middle">结构</text></svg>`;
+}
+function moodSvg(A){const X=x=>22+x*196,Y=y=>22+(1-y)*196,v=A.vec;
+  const q=[['#a8443a',.2,.82,'紧张'],['#c98a1a',.8,.82,'昂扬'],['#5a7d6f',.8,.18,'宁静'],['#5b7596',.2,.18,'忧郁']].map(o=>`<text x="${X(o[1])}" y="${Y(o[2])}" font-size="10" fill="${o[0]}" opacity=".7" text-anchor="middle" font-family="'Noto Serif SC',serif">${o[3]}</text>`).join('');
+  const s=A.sess?`<line x1="${X(v[9])}" y1="${Y(v[10])}" x2="${X(A.sess.av)}" y2="${Y(A.sess.aa)}" stroke="#857d6f" stroke-opacity=".5" stroke-dasharray="2 3"/><circle cx="${X(A.sess.av)}" cy="${Y(A.sess.aa)}" r="6" fill="#fff" stroke="#857d6f" stroke-width="2"/>`:'';
+  return `<svg class="pl" viewBox="0 0 240 240" style="max-width:340px"><rect x="22" y="22" width="196" height="196" fill="#fcfaf5" stroke="#e8e0d0"/><line x1="120" y1="22" x2="120" y2="218" stroke="#eadfca"/><line x1="22" y1="120" x2="218" y2="120" stroke="#eadfca"/>${q}${s}<circle cx="${X(v[9])}" cy="${Y(v[10])}" r="8" fill="${A.color}" stroke="#fff" stroke-width="2.5"/><text x="26" y="124" font-size="9" fill="#857d6f">不悦</text><text x="214" y="124" font-size="9" fill="#857d6f" text-anchor="end">愉悦</text><text x="120" y="32" font-size="9" fill="#857d6f" text-anchor="middle">激越</text><text x="120" y="214" font-size="9" fill="#857d6f" text-anchor="middle">平静</text></svg>`;
+}
+function radarSvg(A){const v=A.vec,cx=130,cy=130,R=98,N=12,c=A.color;
+  const pts=v.map((val,i)=>{const a=-Math.PI/2+i*2*Math.PI/N;return [cx+Math.cos(a)*R*val,cy+Math.sin(a)*R*val].map(n=>n.toFixed(1)).join(',');}).join(' ');
+  const sp=RADAR.map((nm,i)=>{const a=-Math.PI/2+i*2*Math.PI/N,ex=cx+Math.cos(a)*R,ey=cy+Math.sin(a)*R,lx=cx+Math.cos(a)*(R+15),ly=cy+Math.sin(a)*(R+15);return `<line x1="${cx}" y1="${cy}" x2="${ex.toFixed(1)}" y2="${ey.toFixed(1)}" stroke="#e6ddcc"/><text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" font-size="8.5" fill="#8a8170" text-anchor="middle" dominant-baseline="middle">${nm}</text>`;}).join('');
+  const rg=[.25,.5,.75,1].map(r=>`<circle cx="${cx}" cy="${cy}" r="${R*r}" fill="none" stroke="#efe7d6"/>`).join('');
+  return `<svg class="pl" viewBox="0 0 260 260" style="max-width:330px"><g>${rg}${sp}<polygon points="${pts}" fill="${c}33" stroke="${c}" stroke-width="1.5"/></g></svg>`;
+}
+function meterBar(name,v,cls){return `<div class="bar ${cls}"><span class="lb" style="width:auto;flex-shrink:0;color:var(--ink-soft)">${name}</span><span class="track"><span class="fill" style="width:${Math.round((v||0)*100)}%"></span></span><span class="val">${Math.round((v||0)*100)}</span></div>`;}
+// 推荐口味权重(持久化,喂给 /me/foryou)
+// 探索度默认随成熟度:冷启动偏「熟悉」(相似),成熟才偏「惊喜」(倒U)——与后端一致
+function fyExDefault(){const m=(ARCH&&ARCH.maturity!=null)?ARCH.maturity:0.4;return Math.max(0.2,Math.min(0.7,0.25+0.45*m));}
+function fyW(){const def={aha:fyExDefault(),calm:.15,qual:.30};try{return Object.assign(def,JSON.parse(localStorage.getItem('aha_fy_w')||'{}'))}catch(e){return def}}
+function setFyW(w){try{localStorage.setItem('aha_fy_w',JSON.stringify(w))}catch(e){}}
+function fyQuery(){const w=fyW();return `&w_aha=${w.aha}&w_calm=${w.calm}&w_qual=${w.qual}`;}
+// 审美成长曲线(吃 /me/journey)
+function journeyPlane(it){const X=x=>22+x*196,Y=y=>22+(1-y)*196;
+  const rg=REG.map(r=>`<circle cx="${X(r.cx)}" cy="${Y(r.cy)}" r="3.5" fill="none" stroke="#d2c8b4" stroke-dasharray="2 2"/><text x="${X(r.cx)}" y="${Y(r.cy)-7}" font-size="8" fill="#bcb3a2" text-anchor="middle" font-family="'Noto Serif SC',serif">${r.name}</text>`).join('');
+  const pts=it.map(j=>({x:j.vec[0],y:j.vec[1]}));
+  const path=pts.map((p,i)=>`${i?'L':'M'}${X(p.x).toFixed(1)} ${Y(p.y).toFixed(1)}`).join(' ');
+  const dots=pts.map((p,i)=>{const last=i===pts.length-1;return `<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="${last?6:3}" fill="${last?'var(--accent)':'#cb9a7a'}" ${last?'stroke="#fff" stroke-width="2"':''}/>`;}).join('');
+  return `<svg class="pl" viewBox="0 0 240 240" style="max-width:340px"><rect x="22" y="22" width="196" height="196" fill="#fcfaf5" stroke="#e8e0d0"/><line x1="120" y1="22" x2="120" y2="218" stroke="#eadfca"/><line x1="22" y1="120" x2="218" y2="120" stroke="#eadfca"/>${rg}<path d="${path}" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-dasharray="3 3" stroke-opacity=".6"/>${dots}<text x="26" y="124" font-size="9" fill="#5a7d6f">再现</text><text x="214" y="124" font-size="9" fill="#b0673a" text-anchor="end">表现</text><text x="120" y="32" font-size="9" fill="#b0673a" text-anchor="middle">感知</text><text x="120" y="214" font-size="9" fill="#5a7d6f" text-anchor="middle">结构</text></svg>`;
+}
+function journeyLights(it){const W=300,H=130,p=22,xs=i=>p+(it.length<2?0:i/(it.length-1)*(W-2*p)),ys=v=>H-p-(v||0)*(H-2*p);
+  const grid=[0,.5,1].map(g=>`<line x1="${p}" y1="${ys(g).toFixed(1)}" x2="${W-p}" y2="${ys(g).toFixed(1)}" stroke="#efe7d6"/>`).join('');
+  const ser=[['epiphany','#b0673a','顿悟'],['growth','#c98a1a','成长'],['calm','#5a7d6f','安静']];
+  const lines=ser.map(s=>{const d=it.map((j,i)=>`${i?'L':'M'}${xs(i).toFixed(1)} ${ys((j.lights||{})[s[0]]).toFixed(1)}`).join(' ');return `<path d="${d}" fill="none" stroke="${s[1]}" stroke-width="1.8"/>`;}).join('');
+  const lg=ser.map(s=>`<span style="color:${s[1]};font-family:var(--mono);font-size:10px">● ${s[2]}</span>`).join('　');
+  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:340px">${grid}${lines}<text x="${p}" y="${H-5}" font-size="8" fill="#8a8170">早 → 近(${it.length} 个快照)</text></svg><div style="text-align:center;margin-top:4px">${lg}</div>`;
+}
+async function loadJourney(){const el=document.getElementById('journeyBody');if(!el)return;
+  const d=await jget('me/journey').catch(()=>({items:[]}));const it=(d.items||[]).filter(j=>j.vec&&j.vec.length);
+  if(it.length<2){el.innerHTML='<div class="empty">继续逛、心动几次,你的审美成长曲线就会在这画出来(目前 '+it.length+' 个快照)。</div>';return;}
+  el.innerHTML=`<div class="planes"><div><div class="psub">审美轨迹 · 重心怎么移动的</div>${journeyPlane(it)}</div><div><div class="psub">三盏灯 · 随时间</div>${journeyLights(it)}</div></div>`;
+}
+
+// ============ 控制台 ============
+let WHO=null, PROF=null, GEN=null, curView='overview';
+const ICO=(n,o)=>(window.AHAIcons?AHAIcons.svg(n,o):'');
+const NAV=[['overview','dashboard','概览'],['profile','compass','审美档案'],['collections','heart','我的收藏'],['exhibitions','gallery','我策的展'],['gen','palette','我的创作'],['foryou','sparkles','为你推荐'],['settings','settings','设置']];
+// 头像:有上传图→显示图;否则用「名字」首字(衬线手写感),绝不取门派字
+function userName(){return (WHO&&(WHO.nickname||(WHO.email||'').split('@')[0]))||'你';}
+function avatarInner(){const a=WHO&&WHO.avatar;if(a)return '';return esc([...userName()][0]||'你');}
+function avatarBg(){const a=WHO&&WHO.avatar;return a?`background-image:url('${a.startsWith('http')?a:'/'+a.replace(/^\//,'')}')`:'';}
+async function loadKG(){ if(KGREADY)return;
+  try{const [AJ,WV,IMG]=await Promise.all([fetch('data/kg_artists.json').then(r=>r.json()),fetch('data/kg_worldview_v3.json').then(r=>r.json()).catch(()=>({regions:[]})),fetch('data/kg_artist_images.json').then(r=>r.json()).catch(()=>({}))]);
+    REG=(WV.regions||[]).map(r=>({id:r.id,name:r.name,cx:r.cx,cy:r.cy}));
+    const IM=IMG.artists||IMG;for(const k in IM){const its=(IM[k]&&(IM[k].items||IM[k]))||[];if(Array.isArray(its)){const f=(its.find(x=>x&&x.file)||{}).file;if(f)ARTISTIMG[k]=f;}}
+    const A=AJ.artists||{};ARTISTS=Object.values(A).filter(a=>a.wv&&a.wv.x!=null&&a.affect).map(a=>({id:a.id,cn:a.cn,region:a.region,regionId:a.wv.region_id,wv:{x:a.wv.x,y:a.wv.y},aff:{v:a.affect.v,a:a.affect.a,d:a.affect.d??.5},lang:LANGK.map(k=>(a.lang&&a.lang[k]!=null)?a.lang[k]:.5),file:ARTISTIMG[a.id]||null}));
+    KGREADY=true;}catch(e){}
+}
+async function load(){
+  WHO=await jget('me/whoami').catch(()=>({auth:false}));
+  if(!WHO.auth){renderAuth();return;}
+  await loadKG();
+  PROF=await jget('me/profile').catch(()=>({ready:false}));
+  if(PROF&&PROF.ready)ARCH=archFromVec(PROF);
+  renderShell();go(location.hash.replace('#','')||'overview');
+}
+function renderShell(){
+  const A=ARCH, name=userName();
+  document.getElementById('app').innerHTML=`<div class="shell">
+    <aside class="side">
+      <a class="brand" href="museum.html">aha<span class="d">.</span> <span style="font-size:11px;color:var(--ink-mute);font-family:var(--mono)">我的美术馆</span></a>
+      <div class="idcard"><div class="av" title="换头像" onclick="go('settings')" style="${avatarBg()}">${avatarInner()}<span class="cam">${ICO('camera')}</span></div><div><div class="nk">${esc(name)}</div><div class="mp">${A?esc(A.rName)+'派 ·「'+A.sub+'」':'审美档案生长中'}</div></div></div>
+      <nav class="nav" id="nav">${NAV.map(n=>`<a data-v="${n[0]}"><span class="ic">${ICO(n[1])}</span>${n[2]}</a>`).join('')}<span class="sp"></span><a onclick="logout()"><span class="ic">${ICO('logout')}</span>退出</a></nav>
+    </aside>
+    <main class="main"><div class="maintop"><h1 id="vtitle">概览</h1><div class="acts" id="vacts"></div></div><div class="body fade-in" id="view"><div class="loading">…</div></div></main>
+  </div>`;
+  document.querySelectorAll('#nav a[data-v]').forEach(a=>a.onclick=()=>go(a.dataset.v));
+}
+async function logout(){await jpost('me/logout',{}).catch(()=>{});location.reload();}
+function go(v){curView=v;location.hash=v;
+  document.querySelectorAll('#nav a[data-v]').forEach(a=>a.classList.toggle('on',a.dataset.v===v));
+  const t=(NAV.find(n=>n[0]===v)||[])[2]||'我的';document.getElementById('vtitle').textContent=t;
+  const acts=document.getElementById('vacts');acts.innerHTML=(ARCH&&(v==='overview'||v==='profile'))?`<button class="btn ghost" id="aShare">${ICO('share')} 分享</button><button class="btn ghost" id="aDna">${ICO('download')} DNA 卡片</button>`:'';
+  if(ARCH){const s=document.getElementById('aShare');if(s)s.onclick=()=>copyTxt(s,shareUrl(ARCH),'已复制链接 ✓');const d=document.getElementById('aDna');if(d)d.onclick=()=>downloadCard(d);}
+  const b=document.getElementById('view');b.classList.remove('fade-in');void b.offsetWidth;b.classList.add('fade-in');
+  ({overview:vOverview,profile:vProfile,collections:vCollections,exhibitions:vExhibitions,gen:vGen,foryou:vForyou,settings:vSettings}[v]||vOverview)(b);
+}
+addEventListener('hashchange',()=>{const v=location.hash.replace('#','');if(v&&v!==curView&&WHO&&WHO.auth)go(v);});
+
+// —— 概览 ——
+async function vOverview(b){
+  const st=WHO.state||{},c=st.counts||{},A=ARCH;
+  const kpi=`<div class="card"><div class="stats"><div class="stat"><div class="num">${(st.collections||[]).length}</div><div class="lab">收藏</div></div><div class="stat"><div class="num">${c.events||0}</div><div class="lab">浏览行为</div></div><div class="stat"><div class="num" id="kGen">·</div><div class="lab">创作</div></div>${A?`<div class="stat"><div class="num" style="font-family:var(--serif);color:${A.color}">${esc(A.rName)}</div><div class="lab">门派</div></div><div class="stat"><div class="num">${A.share}<span class="u">%</span></div><div class="lab">稀有度</div></div>`:''}</div></div>`;
+  let hero='';
+  if(A){hero=heroBlock(A,false)+
+    `<div class="card"><div class="card-h"><span class="nm">三盏灯 · 看画状态</span><span class="en">整段旅程的质量</span></div>${meterBar('顿悟密度',A.lights.epiphany,'')}${meterBar('审美成长',A.lights.growth,'gold')}${meterBar('安静感',A.lights.calm,'green')}<div class="card-note" style="margin-top:8px"><a href="#profile" onclick="go('profile')">看完整审美档案 →</a> · <a href="kg-me-algo-lite.html">这是怎么算出来的?🎈</a></div></div>`;}
+  else hero=`<div class="note accent"><span class="k">档案生长中</span>你的审美档案由"看过、心动的画"算出。去<a href="art.html">展厅</a>多看几幅、点几个 ❤,门派/本命/三盏灯就会长出来。</div>`;
+  b.innerHTML=kpi+hero+`
+    <div class="sec"><div class="sec-h"><span class="t">快捷</span></div><div class="qa">
+      <a href="art.html"><div class="qi">${ICO('museum')}</div><div class="qt">去展厅看画</div><div class="qd">逛得越多越懂你</div></a>
+      <a href="kg-compile-v2.html"><div class="qi">${ICO('palette')}</div><div class="qt">生成一幅</div><div class="qd">意图编译器</div></a>
+      <a href="frame.html"><div class="qi">${ICO('frame')}</div><div class="qt">相框模式</div><div class="qd">全屏轮播·双击收藏·越看越懂你</div></a>
+      <a href="trail.html"><div class="qi">${ICO('sparkles')}</div><div class="qt">阅读星图</div><div class="qd">读过的画连成你的美学轨迹·可分享</div></a>
+      <a href="kg-me-types.html"><div class="qi">${ICO('cards')}</div><div class="qt">全部门派</div><div class="qd">48 种审美原型</div></a>
+    </div></div>
+    <div class="sec"><div class="sec-h"><span class="t">最近看过</span><span class="d"><a href="#collections" onclick="go('collections')">我的收藏 →</a></span></div><div id="ovHist" class="strip"><div class="skel" style="height:60px"></div></div></div>
+    <div class="sec"><div class="sec-h"><span class="t">✧ 为你今日</span><span class="d"><a href="#foryou" onclick="go('foryou')">更多 →</a></span></div><div id="ovFy" class="gal"><div class="skel" style="height:150px"></div></div></div>`;
+  jget('me/gen').then(d=>{const el=document.getElementById('kGen');if(el)el.textContent=(d.items||[]).length;}).catch(()=>{});
+  jget('me/history').then(d=>{const h=(d.items||[]).slice(0,12),el=document.getElementById('ovHist');if(!el)return;
+    // 归一:http 原样;前导斜杠/相对路径 → 站内;含中文的 cos key 走 COS 并百分号编码;数字 id 无法前端解析→占位
+    const hi=t=>{if(!t)return '';t=t.trim();if(t.startsWith('http'))return t;if(/^\d+$/.test(t))return '';t=t.replace(/^\/+/,'');if(t.startsWith('img/'))return '/'+t;return 'https://aha-1254041526.cos.ap-shanghai.myqcloud.com/'+t.split('/').map(encodeURIComponent).join('/')+'?imageMogr2/thumbnail/360x';};
+    el.innerHTML=h.length?h.map(x=>{const u=hi(x.target),km={open:'看',like:'❤',dwell:'驻足'}[x.kind]||x.kind;return `<div class="h">${u?`<img loading="lazy" decoding="async" src="${u}" onerror="this.onerror=null;this.src=PLACE">`:'<div style="height:58px;background:var(--paper-2)"></div>'}<div class="c">${km}</div></div>`;}).join(''):'<div class="empty">还没有记录,去逛逛。</div>';}).catch(()=>{});
+  jget('me/foryou?limit=6').then(d=>{const el=document.getElementById('ovFy');if(!el)return;const it=(d.ready&&d.items)||[];
+    el.innerHTML=it.length?it.map(workCard).join(''):'<div class="empty">逛几幅,这里就为你长出推荐。</div>';}).catch(()=>{document.getElementById('ovFy').innerHTML='<div class="empty">暂不可用</div>';});
+}
+function workCard(i){return `<div class="gc" onclick="location.href='work.html?id=${i.work_id}'"><img loading="lazy" decoding="async" src="${i.thumb}" onerror="this.onerror=null;this.src=PLACE"><div class="cb"><div class="ct">${esc(i.title||'无题')}</div><div class="ca"><span>${esc(i.artist||'佚名')}</span>${i.score!=null?`<span class="sc">${Math.round(i.score*100)}</span>`:''}</div></div></div>`;}
+// 成熟度带:按数据量诚实表达档案可信度(冷启动不当定论)
+function matRibbon(A){const f=Math.max(0,Math.min(5,Math.round(A.maturity*5)));const dots='●'.repeat(f)+'○'.repeat(5-f);
+  const msg=A.matLevel==='清晰'?'数据已足,这份画像可信度较高。'
+    :A.matLevel==='成形中'?'方向已经显现,细节还会随你多看而调整。'
+    :'才刚起步,以下是<b>初步猜测</b>——多看几幅、点几个心动,会很快变准。';
+  return `<div class="matbar"><span class="ml">档案成熟度 · ${A.matLevel}</span><span class="md">${dots}</span><span>基于 ${A.n} 个行为${A.needMore?` · 再看约 ${A.needMore} 幅跨过初识`:''}</span></div><div class="mmsg">${msg}</div>`;}
+// 低成熟度时给门派加「初步」前缀,不把冷启动当定论
+function menpaiLabel(A){return `${A.matLevel==='初识'?'<span style="font-size:.6em;color:var(--ink-mute);font-weight:400">初步看 · </span>':''}${esc(A.rName)}派 · 「${A.sub}」型`;}
+// 门派封面:概览(full=false)与档案(full=true)共用的精致构图
+function heroBlock(A,full){
+  const soul=A.ben?`<a class="soul-mini" href="artist.html?id=${encodeURIComponent(A.ben.id||'')}">
+      <div class="pic" style="${A.ben.file?`background-image:url('${A.ben.file}')`:''}"></div>
+      <div class="lb">本命画家</div><div class="nm">${esc(A.ben.cn||'—')}</div><div class="af">契合 ${A.benAff||0}%</div></a>`:'';
+  const prelim=A.matLevel==='初识'?'<span class="prelim">初步看 · </span>':'';
+  const acts=full?`<div class="hero-acts"><button class="ig" onclick="togInfo('ip-a')">ⓘ 怎么算的</button><a class="btn ghost" href="kg-me-types.html">${ICO('cards')} 全部门派</a><button class="btn ghost" id="cpBtn">复制摘要</button></div>`:'';
+  return `<div class="hero">
+    <div class="hero-top"><span class="kicker">你的审美门派</span>${acts}</div>
+    ${matRibbon(A)}
+    ${full?`<div class="ipop" id="ip-a" hidden>${EXPLAIN.arch}</div>`:''}
+    <div class="hero-grid">
+      <div>
+        <div class="region-name" style="color:${A.color}">${prelim}${esc(A.rName)}<span class="sub">「${esc(A.sub)}」型 · ${esc(A.subDesc||'')}</span></div>
+        <div class="creed-q" style="color:${A.color}">${esc(A.creed)}</div>
+        <div class="desc">${esc(A.desc)}</div>
+        <div class="hero-chips"><span class="chip">稀有度 ${A.share}% · ${A.rlab}</span><span class="chip muted">离散 σ ${A.sig.toFixed(2)}</span><span class="chip muted">惊奇带 d* ${A.dstar.toFixed(2)}</span>${full?`<span class="chip muted">审美ID ${A.idCode}</span>`:''}</div>
+      </div>
+      ${soul}
+    </div>
+  </div>`;
+}
+
+// —— 审美档案 ——
+function vProfile(b){
+  if(!PROF||!PROF.ready){b.innerHTML=`<div class="note accent"><span class="k">档案生长中</span>现在数据还不够(${(PROF&&PROF.n)||0} 个有效行为)。去<a href="art.html">展厅</a>多看几幅、点几个心动。<div style="margin-top:10px"><a class="btn" href="art.html">${ICO('museum')} 去展厅</a> <a class="btn ghost" href="kg-me.html">${ICO('sparkles')} 实验室版试玩</a></div></div>`;return;}
+  const A=ARCH,L=A.lights;
   b.innerHTML=`
-    <div class="hero">
-      <span class="rchip">你的审美门派 · 基于 ${p.n} 个审美行为</span>
-      <div class="menpai" style="border-left-color:${mp.color}">${esc(p.arche_region_name||'')}派 · 「${sub}」型</div>
-      <div class="traitline">${sub}:${SUBDESC[sub]||''} · ${traitline}</div>
-      <div class="creed" style="color:${mp.color}">「${mp.creed}」</div>
-      <div class="desc">${mp.desc}</div>
-      <div class="meta"><span class="tag rare">稀有度 ${share}% · ${rlab}</span><span class="tag">离散 σ ${p.spread}</span><span class="tag">惊奇带 d* ${p.dstar}</span></div>
-      <div class="idline">审美 ID <b>${idCode}</b> · 向量 ⟨${v.map(x=>(+x).toFixed(2)).join(' ')}⟩ — 与艺术家同维,你也是空间里一个点</div>
+    ${heroBlock(A,true)}
+    <div class="card"><div class="card-h"><span class="nm">同温层 · 与你审美相近的大师</span><span class="en">向量最近</span></div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center"><span class="mono" style="font-size:10px;color:var(--ink-mute)">同派近邻:</span>${A.circle.slice(0,6).map(n=>`<span class="chip">${esc(n)}</span>`).join('')}</div>
+      <div class="idline">审美 ID <b>${A.idCode}</b> · 向量 ⟨${A.vec.join(' ')}⟩</div></div>
+
+    <div class="card"><div class="card-h"><span class="nm">你在坐标系里的点云</span><button class="ig" onclick="togInfo('ip-p')">ⓘ 怎么算的</button></div>
+      <div class="ipop" id="ip-p" hidden>${EXPLAIN.plane}</div>
+      <div class="planes"><div><div class="psub">世界观 · 长期 vs 此刻 + 漂移轨迹</div>${plSvg(A)}</div><div><div class="psub">情绪 · 愉悦 × 唤起</div>${moodSvg(A)}</div></div></div>
+
+    <div class="card"><div class="card-h"><span class="nm">审美旅程 · 成长曲线</span><span class="en">每隔几次心动记一帧</span></div><div id="journeyBody"><div class="skel" style="height:120px"></div></div></div>
+
+    <div class="grid cols-2">
+      <div class="card"><div class="card-h"><span class="nm">审美性格</span><button class="ig" onclick="togInfo('ip-t')">ⓘ</button></div><div class="ipop" id="ip-t" hidden>${EXPLAIN.traits}</div>
+        ${A.traits.map(t=>`<div class="trait"><span class="lo">${t.lo}</span><span class="tk"><i style="left:${(t.v*100).toFixed(0)}%"></i></span><span class="hi">${t.hi}</span><span class="tv">${Math.round(t.v*100)}</span></div>`).join('')}</div>
+      <div class="card"><div class="card-h"><span class="nm">12 维审美指纹</span><button class="ig" onclick="togInfo('ip-r')">ⓘ</button></div><div class="ipop" id="ip-r" hidden>${EXPLAIN.radar}</div>${radarSvg(A)}</div>
     </div>
 
-    <div class="card"><h2>你的审美坐标 · 两个空间</h2>
-      <div class="planes">
-        <div><div class="psub">世界观 · 再现↔表现 ⊥ 结构↔感知</div>
-          <svg class="pl" viewBox="0 0 240 240"><rect x="22" y="22" width="196" height="196" fill="#fcfaf5" stroke="#e8e0d0"/><line x1="120" y1="22" x2="120" y2="218" stroke="#eadfca"/><line x1="22" y1="120" x2="218" y2="120" stroke="#eadfca"/>${rgDots}${youDot}
-            <text x="26" y="124" font-size="9" fill="#5a7d6f">再现</text><text x="214" y="124" font-size="9" fill="#b0673a" text-anchor="end">表现</text><text x="120" y="32" font-size="9" fill="#b0673a" text-anchor="middle">感知</text><text x="120" y="214" font-size="9" fill="#5a7d6f" text-anchor="middle">结构</text></svg></div>
-        <div><div class="psub">情绪 · 愉悦 × 唤起</div>
-          <svg class="pl" viewBox="0 0 240 240"><rect x="22" y="22" width="196" height="196" fill="#fcfaf5" stroke="#e8e0d0"/><line x1="120" y1="22" x2="120" y2="218" stroke="#eadfca"/><line x1="22" y1="120" x2="218" y2="120" stroke="#eadfca"/>${moodQuad}${moodDot}
-            <text x="26" y="124" font-size="9" fill="#857d6f">不悦</text><text x="214" y="124" font-size="9" fill="#857d6f" text-anchor="end">愉悦</text><text x="120" y="32" font-size="9" fill="#857d6f" text-anchor="middle">激越</text><text x="120" y="214" font-size="9" fill="#857d6f" text-anchor="middle">平静</text></svg></div>
-      </div>
-      <div class="mini-row">
-        <div class="mini"><div class="v">${p.spread}</div><div class="l">离散度 · 口味宽窄</div></div>
-        <div class="mini"><div class="v">${p.dstar}</div><div class="l">惊奇带 d* · 探索半径</div></div>
-        <div class="mini"><div class="v">${p.n}</div><div class="l">有效行为 · 置信度</div></div>
-      </div>
-    </div>
-
-    <div class="card"><h2>你的审美性格</h2>
-      ${traits.map(t=>`<div class="trait"><span class="lo">${t.lo}</span><span class="tk"><span class="dot" style="left:${(t.v*100).toFixed(0)}%"></span></span><span class="hi">${t.hi}</span><span class="tv">${Math.round(t.v*100)}</span></div>`).join('')}
-    </div>
-
-    <div class="card"><h2>12 维审美指纹</h2>
-      <svg class="pl" viewBox="0 0 260 260" style="max-width:320px"><g>${rings}${spokes}<polygon points="${poly}" fill="${mp.color}33" stroke="${mp.color}" stroke-width="1.5"/></g></svg>
-    </div>
-
-    ${soul?`<div class="card"><h2>本命画家 · 与你审美最近的灵魂</h2>
-      <div class="soul"><div style="flex:1"><div class="nm">${esc(soul.cn||'')}</div><div class="aff">契合 ${soul.aff}%</div></div>
-        <a class="btn" href="artist.html?id=${encodeURIComponent(soul.artist_id||'')}">看 TA 的画 →</a></div></div>`:''}
-
-    <div class="card"><h2>三盏灯 · 你看画的状态</h2>
-      <div class="meter"><div class="l"><span>顿悟密度 · 心动里有多少"原来如此"</span><b>${Math.round((L.epiphany||0)*100)}</b></div>${bar(L.epiphany,'var(--accent)')}</div>
-      <div class="meter"><div class="l"><span>审美成长 · 口味的开阔度+确定度</span><b>${Math.round((L.growth||0)*100)}</b></div>${bar(L.growth,'var(--gold)')}</div>
-      <div class="meter"><div class="l"><span>安静感 · 低唤醒+情绪平顺</span><b>${Math.round((L.calm||0)*100)}</b></div>${bar(L.calm,'var(--green)')}</div>
-      <p class="lead" style="margin:12px 0 0">想看完整可交互的内核(双时间尺度·自学习·自检)→ <a href="kg-me.html">我的审美档案 · 实验室版</a></p>
-    </div>`;
+    <div class="card"><div class="card-h"><span class="nm">三盏灯 · 你看画的状态</span><button class="ig" onclick="togInfo('ip-m')">ⓘ</button></div><div class="ipop" id="ip-m" hidden>${EXPLAIN.meters}</div>
+      ${meterBar('顿悟密度 · 心动里多少"原来如此"',L.epiphany,'')}${meterBar('审美成长 · 口味开阔度+确定度',L.growth,'gold')}${meterBar('安静感 · 低唤醒+情绪平顺',L.calm,'green')}
+      <div class="note accent" style="margin-top:10px"><span class="k">想懂它</span>这份画像,是 aha 的「美学推荐算法」算出来的。可以两种深度了解它的逻辑:<br><a href="kg-me-algo-lite.html"><b>🎈 科普版</b> · 三分钟大白话看懂</a> &nbsp;·&nbsp; <a href="kg-me-algo.html"><b><i data-ic="science"></i> 专业版</b> · 公式 / 参数 / 可证伪验证</a> &nbsp;·&nbsp; <a href="kg-me.html">实验室完整内核 →</a></div></div>`;
+  const cp=document.getElementById('cpBtn');if(cp)cp.onclick=()=>copyTxt(cp,`我的审美门派:${A.rName}派 ·「${A.sub}」型\n${A.desc}\n本命:${A.ben?A.ben.cn+'('+A.benAff+'%)':'—'} · 每100人约${A.share}人同派\n测你的 → aha.yishujia.art`);
+  loadJourney();
 }
-
-// ---------- 我的创作 ----------
-async function renderGen(b){
-  b.innerHTML=`<div class="card"><h2>我的创作 · 意图编译器生成的画</h2><div id="gn" class="empty">…</div></div>`;
-  const d=await jget('me/gen').catch(()=>({items:[]}));
-  const items=d.items||[];
-  document.getElementById('gn').outerHTML=items.length?
-    `<div class="lead">这些是你在<a href="kg-compile-v2.html">意图编译器</a>里生成并保存的图,连同它的结构化数据。</div>
-     <div class="grid">${items.map(i=>`<div class="gc" onclick="window.open('${i.file}','_blank')">
-       <img loading="lazy" src="${i.file}"><div class="cb"><div class="ct">${esc(i.style_cn||i.query||'生成图')}</div>
-       <div class="ca"><span>${esc(i.model_label||'')}</span><span>${(i.ts||'').slice(5,10)}</span></div></div></div>`).join('')}</div>`
-    :'<div class="empty">还没有创作。去<a href="kg-compile-v2.html">意图编译器</a>输入灵感 → 🎨 生成,作品会自动存到这里。</div>';
+// —— 我的收藏 ——
+function vCollections(b){
+  const st=WHO.state||{};
+  let items=st.collections_view; // 后端已解析(URL 编码+标题作者+broken 标记)
+  if(!Array.isArray(items)){      // 老后端兜底:就地把原始 key 归一成图源
+    items=(st.collections||[]).map(f=>{const s=(f||'').trim();const u=s.startsWith('http')?s:(s.startsWith('/')?s:(/^\d+$/.test(s)?'':'/'+s));return {thumb:u,full:u,broken:!u};});
+  }
+  items=(items||[]).filter(x=>x&&!x.broken&&x.thumb);
+  b.innerHTML=items.length?`<div class="card-note" style="margin-bottom:var(--s2)">${items.length} 件收藏 · 悬停卡片可<b>取消收藏</b>,或<button class="btn pill" id="cToEx">把它们存成一个展 →</button></div><div class="gal" id="colGal">${items.slice(0,120).map(i=>`<div class="gc" data-raw="${esc((i.raw||i.work_id||'')+'')}"><button class="uncol" title="取消收藏">×</button><img loading="lazy" decoding="async" src="${i.thumb}" onerror="this.onerror=null;this.src=PLACE" ${i.work_id?`onclick="location.href='work.html?id=${i.work_id}'"`:''}>${i.title?`<div class="cb"><div class="ct">${esc(i.title)}</div><div class="ca"><span>${esc(i.artist||'佚名')}</span></div></div>`:''}</div>`).join('')}</div>`:'<div class="empty">还没有收藏。在<a href="art.html">展厅</a>点 ❤ 收藏喜欢的画。</div>';
+  b.querySelectorAll('.uncol').forEach(btn=>btn.onclick=async e=>{e.stopPropagation();const card=btn.closest('.gc'),raw=card.dataset.raw;
+    btn.disabled=true;await jpost('me/collect',{uid:WHO.uid,work_id:raw,on:false}).catch(()=>{});
+    if(WHO.state){WHO.state.collections=(WHO.state.collections||[]).filter(x=>(x+'')!==raw);if(Array.isArray(WHO.state.collections_view))WHO.state.collections_view=WHO.state.collections_view.filter(x=>((x.raw||x.work_id)+'')!==raw);}
+    card.style.transition='opacity .2s';card.style.opacity='0';setTimeout(()=>card.remove(),200);toast('已取消收藏');});
+  const ex=document.getElementById('cToEx');if(ex)ex.onclick=async()=>{const ids=items.map(i=>i.work_id||i.raw).filter(Boolean);
+    const t=prompt('给这个展起个名:','我的收藏 · '+new Date().toISOString().slice(0,10));if(t===null)return;
+    const d=await jpost('me/exhibition',{uid:WHO.uid,title:t||'我的收藏',work_ids:ids,public:false}).catch(()=>null);
+    toast(d&&d.ok?'已存为展,去「我策的展」看 →':'保存失败');};
 }
-
-// ---------- 为你推荐 ----------
-async function renderForyou(b){
-  b.innerHTML=`<div class="card"><h2>为你推荐</h2><div id="fy" class="empty">正在按你的审美计算…</div></div>`;
-  const d=await jget('me/foryou?limit=30').catch(()=>({ready:false,items:[]}));
-  const fy=document.getElementById('fy');
-  if(!d.ready||!d.items.length){fy.outerHTML='<div class="empty">还在了解你的口味——去<a href="art.html">展厅</a>多看几幅,推荐会越来越准。</div>';return;}
-  fy.className='';fy.outerHTML=`<div class="lead">基于你的 12 维审美 μ,在"惊奇带"上挑既合口味、又能给你新鲜感的画(分数=契合×惊奇×品质)。</div>
-    <div class="grid">${d.items.map(i=>`<div class="gc" onclick="location.href='work.html?id=${i.work_id}'">
-      <img loading="lazy" src="${i.thumb}"><div class="cb"><div class="ct">${esc(i.title||'无题')}</div>
-      <div class="ca"><span>${esc(i.artist||'佚名')}</span><span class="sc">${Math.round(i.score*100)}</span></div></div></div>`).join('')}</div>`;
-}
-
-// ---------- 我的 ----------
-async function renderMine(b){
-  const st=WHO.state||{};const c=st.counts||{};
-  b.innerHTML=`<div class="card"><h2>概览</h2>
-      <div class="mini-row">
-        <div class="mini"><div class="v">${(st.collections||[]).length}</div><div class="l">收藏</div></div>
-        <div class="mini"><div class="v">${c.events||0}</div><div class="l">浏览行为</div></div>
-        <div class="mini"><div class="v" id="exn">…</div><div class="l">我的展</div></div>
-      </div></div>
-    <div class="card"><h2>我的收藏</h2><div id="col" class="empty">…</div></div>
-    <div class="card"><h2>我策的展</h2><div id="exh" class="empty">…</div></div>
-    <div class="card"><h2>阅读记录 · 最近看过</h2><div id="hist" class="empty">…</div></div>`;
-  const cols=st.collections||[];
-  const colImg=f=>f&&f.startsWith('http')?f:(f&&f.startsWith('img/')?'/'+f:f);
-  document.getElementById('col').outerHTML=cols.length?`<div class="grid">${cols.slice(0,40).map(f=>`<div class="gc"><img loading="lazy" src="${colImg(f)}"></div>`).join('')}</div>`:'<div class="empty">还没有收藏。在<a href="art.html">展厅</a>点 ❤ 收藏喜欢的画。</div>';
+// —— 我策的展(可管理:打开 / 改名 / 公开切换 / 删除)——
+async function vExhibitions(b){
+  b.innerHTML='<div class="skel" style="height:60px"></div>';
   const ex=await jget('me/exhibitions?uid='+encodeURIComponent(WHO.uid)).catch(()=>({items:[]}));
-  document.getElementById('exn').textContent=(ex.items||[]).length;
-  document.getElementById('exh').outerHTML=(ex.items&&ex.items.length)?ex.items.map(e=>`<div class="exh"><div class="t">${esc(e.title||'未命名展')}</div><div class="m">${(e.work_ids||[]).length} 件 · ${(e.ts||'').slice(0,10)}</div>${e.note?`<div class="m">${esc(e.note)}</div>`:''}</div>`).join(''):'<div class="empty">还没有策展。在展厅把喜欢的画存为一个展览,未来可以公开给别人看。</div>';
-  const hist=(await jget('me/history')).items||[];
-  const hImg=t=>t&&t.startsWith('http')?t:(t&&t.startsWith('img/')?'/'+t:'');
-  document.getElementById('hist').outerHTML=hist.length?`<div class="hist">${hist.map(h=>{const u=hImg(h.target);const km={open:'看',like:'❤',dwell:'驻足'}[h.kind]||h.kind;
-    return `<div class="h">${u?`<img loading="lazy" src="${u}">`:'<div style="height:62px;background:var(--paper-2)"></div>'}<div class="c"><span class="kbadge">${km}</span> ${(h.ts||'').slice(5,16).replace('T',' ')}</div></div>`}).join('')}</div>`:'<div class="empty">还没有记录,去逛逛。</div>';
+  const it=ex.items||[];
+  const head=`<div class="card-note" style="margin-bottom:var(--s2)">在这里管理你策的展——改名、公开/私密、删除。也可以去<a href="curate.html">策展台</a>从头策一个。</div>`;
+  b.innerHTML=head+(it.length?`<div class="grid cols-2" id="exGrid">${it.map(e=>exCard(e)).join('')}</div>`
+    :'<div class="empty">还没有策展。在「我的收藏」一键把收藏存成展,或去<a href="curate.html">策展台</a>策一个;公开后别人也能逛。</div>');
+  b.querySelectorAll('.ex-card').forEach(card=>{
+    const id=card.dataset.id;
+    card.querySelector('[data-a=open]').onclick=()=>location.href='curate.html?ex='+encodeURIComponent(id);
+    card.querySelector('[data-a=pub]').onclick=async ev=>{const btn=ev.currentTarget,on=btn.dataset.on==='1';
+      btn.disabled=true;const d=await jpost('me/exhibition',{uid:WHO.uid,id,public:!on}).catch(()=>null);btn.disabled=false;
+      if(d&&d.ok){btn.dataset.on=on?'0':'1';card.querySelector('.ex-badge').outerHTML=exBadge(!on);card.querySelector('[data-a=pub]').textContent=on?'设为公开':'设为私密';toast(on?'已设为私密':'已公开,可被逛了');}else toast('操作失败');};
+    card.querySelector('[data-a=ren]').onclick=async()=>{const cur=card.querySelector('.ex-nm').textContent;const t=prompt('改个展名:',cur);if(t===null)return;
+      const d=await jpost('me/exhibition',{uid:WHO.uid,id,title:t||cur}).catch(()=>null);if(d&&d.ok){card.querySelector('.ex-nm').textContent=t||cur;toast('已改名');}else toast('改名失败');};
+    card.querySelector('[data-a=del]').onclick=async()=>{if(!confirm('删除这个展?画作本身不受影响,只删这个展。'))return;
+      const d=await jpost('me/exhibition/delete',{uid:WHO.uid,id}).catch(()=>null);if(d&&d.ok){card.style.opacity=0;setTimeout(()=>card.remove(),200);toast('已删除');}else toast('删除失败');};
+  });
 }
+function exBadge(pub){return `<span class="ex-badge chip ${pub?'green':'muted'}">${pub?'公开':'私密'}</span>`;}
+function exCard(e){return `<div class="card ex-card" data-id="${esc(e.id)}"><div class="card-h"><span class="nm ex-nm">${esc(e.title||'未命名展')}</span>${exBadge(!!e.public)}</div>
+    <div class="card-note">${(e.work_ids||[]).length} 件 · ${(e.ts||'').slice(0,10)}${e.note?' · '+esc(e.note):''}</div>
+    <div class="ex-acts"><button class="btn pill" data-a="open">打开</button><button class="btn pill" data-a="pub" data-on="${e.public?1:0}">${e.public?'设为私密':'设为公开'}</button><button class="btn pill" data-a="ren">改名</button><button class="btn pill" data-a="del">删除</button></div></div>`;}
+// —— 我的创作 ——
+async function vGen(b){
+  b.innerHTML='<div class="skel" style="height:150px"></div>';
+  const d=await jget('me/gen').catch(()=>({items:[]}));const it=d.items||[];
+  b.innerHTML=it.length?`<div class="card-note">你在<a href="kg-compile-v2.html">意图编译器</a>里生成并保存的图,连同结构化数据。</div><div class="gal">${it.map(i=>`<div class="gc" onclick="window.open('${i.file}','_blank')"><img loading="lazy" decoding="async" src="${i.file}" onerror="this.onerror=null;this.src=PLACE"><div class="cb"><div class="ct">${esc(i.style_cn||i.query||'生成图')}</div><div class="ca"><span>${esc(i.model_label||'')}</span><span>${(i.ts||'').slice(5,10)}</span></div></div></div>`).join('')}</div>`:'<div class="empty">还没有创作。去<a href="kg-compile-v2.html">意图编译器</a>输入灵感生成第一幅。</div>';
+}
+// —— 为你推荐 ——
+async function vForyou(b){
+  const w=fyW();
+  b.innerHTML=`<div class="card"><div class="card-h"><span class="nm">推荐口味 · 调一调</span><button class="ig" onclick="togInfo('ip-fy')">ⓘ</button></div>
+    <div class="ipop" id="ip-fy" hidden><b>熟悉 ←→ 惊喜</b>是核心:偏<b>熟悉</b>=多给更像你已爱的(靠近你重心)· 偏<b>惊喜</b>=多给落在你惊奇带上的新鲜画。我们默认随你的档案成熟度自动取值(刚起步偏熟悉,越逛越敢给惊喜),你也可以自己拨。<b>安静</b>=低唤醒、<b>精品</b>=高品质,作为额外加分。</div>
+    <div class="fyk">
+      <label>熟悉 ←→ 惊喜 <input type="range" class="slider" id="kAha" min="0" max="1" step="0.05" value="${w.aha}"></label>
+      <label>安静 <input type="range" class="slider" id="kCalm" min="0" max="1" step="0.05" value="${w.calm}"></label>
+      <label>精品 <input type="range" class="slider" id="kQual" min="0" max="1" step="0.05" value="${w.qual}"></label>
+    </div></div>
+    <div id="fyWish"></div>
+    <div id="fyGrid"><div class="skel" style="height:150px"></div></div>`;
+  const refetch=async()=>{const g=document.getElementById('fyGrid');g.innerHTML='<div class="skel" style="height:150px"></div>';
+    const d=await jget('me/foryou?limit=30'+fyQuery()).catch(()=>({ready:false,items:[]}));
+    const wEl=document.getElementById('fyWish');
+    if(wEl)wEl.innerHTML=(d.wish&&d.wish.text)?`<div class="note accent"><span class="k">${ICO('sparkles')} 正在听你的话</span>近来你说过想看「<b>${esc(d.wish.text)}</b>」,已朝它倾斜挑画(强度 ${Math.round(d.wish.conf*100)}%)。这是<b>近来意图</b>,会随时间慢慢淡掉,不会改写你的长期审美档案。想立刻表达,去<a href="frame.html">相框</a>长按说一句。</div>`:'';
+    g.innerHTML=(d.ready&&d.items&&d.items.length)?`<div class="gal fade-in">${d.items.map(workCard).join('')}</div>`:'<div class="empty">还在了解你的口味——去<a href="art.html">展厅</a>多看几幅,推荐会越来越准。</div>';};
+  ['kAha','kCalm','kQual'].forEach(id=>{const el=document.getElementById(id);if(!el)return;
+    el.oninput=()=>setFyW({aha:+document.getElementById('kAha').value,calm:+document.getElementById('kCalm').value,qual:+document.getElementById('kQual').value});
+    el.onchange=refetch;});
+  refetch();
+}
+// —— 设置 ——
+function vSettings(b){
+  const A=ARCH;
+  b.innerHTML=`
+    <div class="card"><div class="card-h"><span class="nm">个人资料</span></div>
+      <div style="display:flex;gap:var(--s4);align-items:center;flex-wrap:wrap">
+        <div class="avbig" id="avBig" style="${avatarBg()}">${avatarInner()}</div>
+        <div style="flex:1;min-width:200px">
+          <div class="field" style="margin-bottom:var(--s3)"><span class="fl">昵称</span><input class="input" id="setNick" maxlength="24" value="${esc(WHO.nickname||'')}" placeholder="给自己起个名"></div>
+          <div style="display:flex;gap:7px;flex-wrap:wrap">
+            <button class="btn" id="avPick">${ICO('camera')} 换头像</button>
+            <button class="btn ghost" id="nickSave">${ICO('edit')} 保存昵称</button>
+          </div>
+          <input type="file" id="avFile" accept="image/*" hidden>
+        </div>
+      </div>
+      <div class="card-note" style="margin-top:12px">邮箱 <b>${esc(WHO.email||'—')}</b> · 头像支持上传(自动裁成正方);不传则用名字首字。</div>
+    </div>
+    <div class="card"><div class="card-h"><span class="nm">推荐效果 · 在线度量</span><span class="en">全站</span><button class="ig" onclick="togInfo('ip-rl')">ⓘ</button></div>
+      <div class="ipop" id="ip-rl" hidden>离线指标看不见"惊喜"的价值,所以我们记录每次<b>推荐曝光</b>,再看它之后是否真被你 <b>心动/收藏/驻足</b>。<b>lift>1</b> = 推荐比你平均更容易被参与。这是诚实检验"推荐到底有没有用"的尺子,需要累积一阵才有意义。</div>
+      <div id="recLift"><div class="skel" style="height:40px"></div></div></div>
+    ${A?`<div class="card"><div class="card-h"><span class="nm">我的审美数据</span></div>
+      <div class="card-note">审美 ID <b class="mono">${A.idCode}</b></div>
+      <div class="mono" style="font-size:11px;color:var(--ink-mute);margin-top:6px;word-break:break-all">向量 ⟨${A.vec.join(' ')}⟩</div>
+      <div style="margin-top:12px;display:flex;gap:7px;flex-wrap:wrap"><button class="btn" id="sShare">${ICO('share')} 复制分享链接</button><button class="btn" id="sDna">${ICO('download')} 存成 DNA 卡片</button><button class="btn ghost" id="sJson">复制向量 JSON</button></div></div>`:''}
+    <div class="note accent"><span class="k">关于推荐口味</span>想<b>亲手调"为你推荐"的取向</b>(顿悟/安静/探索权重)?去 <a href="#foryou" onclick="go('foryou')">为你推荐</a> 拖旋钮即时看效果。</div>
+    <div><button class="btn ghost" onclick="logout()">${ICO('logout')} 退出登录</button></div>`;
+  // 推荐效果(在线度量)
+  jget('me/rec_lift').then(d=>{const el=document.getElementById('recLift');if(!el)return;
+    if(!d||!d.ready){el.innerHTML='<div class="card-note">推荐曝光日志刚开始累积,过些天回来看效果。</div>';return;}
+    const lift=d.lift==null?'—':d.lift+'×';
+    el.innerHTML=`<div class="stats"><div class="stat"><div class="num">${d.impressions}</div><div class="lab">推荐曝光</div></div><div class="stat"><div class="num">${d.hits}</div><div class="lab">被参与</div></div><div class="stat"><div class="num">${Math.round((d.rec_ctr||0)*100)}<span class="u">%</span></div><div class="lab">推荐命中率</div></div><div class="stat"><div class="num" style="color:${d.lift>1?'var(--green)':'var(--ink-mute)'}">${lift}</div><div class="lab">vs 基础率 lift</div></div></div><div class="card-note">${d.impressions<30?'样本还少('+d.impressions+'),数字仅供参考——多用几天才稳。':d.lift>1?'推荐确实比平均更易被参与 ✓':'暂未显著优于平均,继续观察。'}</div>`;
+  }).catch(()=>{const el=document.getElementById('recLift');if(el)el.innerHTML='<div class="card-note">暂不可用</div>';});
+  // 换头像
+  const pick=document.getElementById('avPick'),file=document.getElementById('avFile');
+  if(pick&&file){pick.onclick=()=>file.click();
+    file.onchange=async()=>{const f=file.files&&file.files[0];if(!f)return;
+      if(f.size>12*1024*1024){toast('图片太大(<12MB)');return;}
+      pick.disabled=true;pick.textContent='上传中…';
+      try{const dataUrl=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(f);});
+        const d=await jpost('me/avatar',{uid:WHO.uid,image:dataUrl});
+        if(d&&d.ok){WHO.avatar=d.avatar;refreshAvatar();toast('头像已更新 ✓');}
+        else toast(d&&d.error||'上传失败');
+      }catch(e){toast('上传失败');}
+      pick.disabled=false;pick.innerHTML=ICO('camera')+' 换头像';};}
+  // 保存昵称
+  const ns=document.getElementById('nickSave');
+  if(ns)ns.onclick=async()=>{const nk=(document.getElementById('setNick').value||'').trim();
+    ns.disabled=true;const d=await jpost('me/profile_edit',{uid:WHO.uid,nickname:nk}).catch(()=>null);ns.disabled=false;
+    if(d&&d.ok){WHO.nickname=d.nickname;refreshAvatar();const nkEl=document.querySelector('.idcard .nk');if(nkEl)nkEl.textContent=userName();toast('昵称已保存 ✓');}else toast('保存失败');};
+  if(A){const s=document.getElementById('sShare');if(s)s.onclick=()=>copyTxt(s,shareUrl(A),'已复制 ✓');
+    const d=document.getElementById('sDna');if(d)d.onclick=()=>downloadCard(d);
+    const j=document.getElementById('sJson');if(j)j.onclick=()=>copyTxt(j,JSON.stringify({id:A.idCode,vec:A.vec,region:A.reg,sub:A.sub}),'已复制 ✓');}
+}
+// 头像变更后同步刷新侧栏小头像 + 设置大头像
+function refreshAvatar(){document.querySelectorAll('.idcard .av,#avBig').forEach(el=>{el.style.cssText=(el.classList.contains('avbig')?'':'')+(avatarBg()||'');el.innerHTML=avatarInner()+(el.classList.contains('av')?'<span class="cam">'+ICO('camera')+'</span>':'');});}
+function toast(msg){let t=document.getElementById('_toast');if(!t){t=document.createElement('div');t.id='_toast';t.className='toast';document.body.appendChild(t);}t.textContent=msg;t.classList.add('on');clearTimeout(window._tt);window._tt=setTimeout(()=>t.classList.remove('on'),1800);}
 
-// ---------- 登录/注册 ----------
+// —— 登录/注册:黑暗中提灯逛馆 ——
 function renderAuth(){
-  document.getElementById('app').innerHTML=`
-    <div class="card" style="max-width:430px;margin:36px auto">
-      <div class="auth-tab"><span class="on" id="tabL">登录</span><span id="tabR">注册</span></div>
-      <p class="lead">登录后,你在展厅的浏览与收藏会长成一份只属于你的<b>审美档案</b>(本命画家、门派、为你推荐)。</p>
-      <div id="form"></div><div class="msg" id="msg"></div></div>`;
+  document.body.classList.add('auth');
+  const ART=[{s:'monet/0',x:7,y:13,w:188},{s:'turner/3',x:69,y:8,w:212},{s:'friedrich/3',x:81,y:54,w:172},
+    {s:'corot/3',x:4,y:58,w:198},{s:'degas/2',x:37,y:5,w:150},{s:'shenzhou/3',x:58,y:71,w:236},
+    {s:'wuzhen/0',x:23,y:77,w:150},{s:'pissarro/2',x:89,y:28,w:158},{s:'fragonard/2',x:45,y:80,w:158},
+    {s:'delacroix/2',x:29,y:36,w:178},{s:'watteau/0',x:66,y:41,w:150},{s:'renbonian/0',x:13,y:30,w:140}];
+  const arts=ART.map(a=>`<img class="art" src="/img/artists/${a.s}.jpg" loading="lazy" decoding="async" style="left:${a.x}%;top:${a.y}%;width:${a.w}px" onerror="this.style.display='none'">`).join('');
+  const lan=`<svg class="lan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2h4M11 2v2.4M13 2v2.4"/><path d="M7.5 8a4.5 4.5 0 0 1 9 0v8a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2Z"/><path d="M12 18.5v2.5"/></svg>`;
+  document.getElementById('app').innerHTML=`<div class="lantern" id="lantern">${arts}
+    <div class="halo"></div><div class="veil"></div>
+    <div class="authwrap2">
+      <a class="a-back" href="museum.html">← 回美术馆</a>
+      <div class="a-brand">aha<span class="d">.</span> 我的美术馆</div>
+      <div class="a-sub">认领你的审美——你逛过、心动过的画,会长成一份<b>只属于你的审美档案</b>(门派 · 本命画家 · 为你推荐 · DNA 卡片)。</div>
+      <div class="a-seg"><button class="on" id="tabL">登录</button><button id="tabR">注册</button></div>
+      <div id="form"></div>
+      <div class="a-msg" id="msg"></div>
+      <div class="a-anon"><a href="museum.html">先不登录,随便逛逛 →</a></div>
+    </div>
+    <div class="hint">移动手电筒,在黑暗里照亮你的审美</div></div>`;
+  const L=document.getElementById('lantern');let moved=false;
+  const setXY=(x,y)=>{L.style.setProperty('--mx',x+'px');L.style.setProperty('--my',y+'px');};
+  L.addEventListener('pointermove',e=>{moved=true;setXY(e.clientX,e.clientY);});
+  L.addEventListener('touchmove',e=>{const t=e.touches[0];if(t){moved=true;setXY(t.clientX,t.clientY);}},{passive:true});
+  const t0=performance.now();
+  (function drift(){if(moved)return;const t=(performance.now()-t0)/1000;
+    setXY(innerWidth/2+Math.cos(t*0.5)*innerWidth*0.22, innerHeight*0.42+Math.sin(t*0.72)*innerHeight*0.15);
+    requestAnimationFrame(drift);})();
   let mode='login';
-  function draw(){
-    document.getElementById('tabL').className=mode==='login'?'on':'';document.getElementById('tabR').className=mode==='reg'?'on':'';
-    document.getElementById('form').innerHTML=`
-      <input id="email" type="email" placeholder="邮箱">
-      ${mode==='reg'?'<input id="nick" placeholder="昵称(可选)">':''}
-      <input id="pw" type="password" placeholder="密码(≥6位)">
-      <button id="go" style="width:100%;margin-top:8px">${mode==='login'?'登录':'注册'}</button>`;
-    document.getElementById('go').onclick=submit;
-  }
-  document.getElementById('tabL').onclick=()=>{mode='login';draw()};
-  document.getElementById('tabR').onclick=()=>{mode='reg';draw()};
-  async function submit(){
-    const email=document.getElementById('email').value.trim(),pw=document.getElementById('pw').value;
-    const body={email:email,password:pw};
+  function draw(){document.getElementById('tabL').classList.toggle('on',mode==='login');document.getElementById('tabR').classList.toggle('on',mode==='reg');
+    document.getElementById('form').innerHTML=`<input class="a-input" id="email" type="email" placeholder="邮箱" autocomplete="email">${mode==='reg'?'<input class="a-input" id="nick" placeholder="昵称(可选)">':''}<input class="a-input" id="pw" type="password" placeholder="密码(≥6位)" autocomplete="current-password"><button class="a-go" id="go">${lan}${mode==='login'?'提灯进馆':'点亮我的审美'}</button>`;
+    document.getElementById('go').onclick=submit;}
+  document.getElementById('tabL').onclick=()=>{mode='login';draw();};
+  document.getElementById('tabR').onclick=()=>{mode='reg';draw();};
+  async function submit(){const email=document.getElementById('email').value.trim(),pw=document.getElementById('pw').value,body={email,password:pw};
     if(mode==='reg'){body.nickname=(document.getElementById('nick').value||'').trim();body.uid=luid();}
-    const r=await jpost(mode==='reg'?'me/register':'me/login',body);
-    if(r.ok){setuid(r.uid);location.reload();}else{document.getElementById('msg').textContent=r.error||'失败';}
-  }
+    const r=await jpost(mode==='reg'?'me/register':'me/login',body);if(r.ok){setuid(r.uid);location.reload();}else{document.getElementById('msg').textContent=r.error||'失败';}}
   draw();
 }
 load();

@@ -32,7 +32,7 @@
   <h1>生成的图,落对位置了吗</h1>
   <p class="lead">把<a href="kg-gallery.html" style="color:var(--accent)">生成图库</a>里每张图<b>喂回我们自己的 VLM</b>,读出它在世界观平面的<b>实际坐标</b>,和图谱给的<b>预期坐标</b>比——这是"理解→生成"链条上**唯一能证伪自己**的一环:误差小=编译器+模型真能实现指定风格;误差大=据实暴露。</p>
   <div class="breadcrumb"><a href="museum.html"><i data-ic="home"></i> 首页</a> › <a href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a href="kg-gallery.html">生成图库</a> › <b style="color:var(--ink-soft)">生成回测</b></div>
-  <div class="conform" style="border-left-color:var(--gold);max-width:720px;margin:14px auto 0">⚠️ <b>诚实标注尺子的精度</b>:测坐标的 VLM 是"目测"。给提示词加了<b>锚点刻度+先描述后打分</b>后,重读抖动从 ±0.08 降到 <b>±0.05</b>(且每张<b>读 3 次取平均</b>)。拿真名画校准:参照干净时尺子很准(雷诺阿误差 <b>0.09</b>≈噪声底),整体残差 ~0.18 <b>大头来自"单幅画 vs 风格/个人平均坐标"的参照错配,不是尺子</b>(例:梵高《麦田》本就比其均值更"感知")。<b>所以绝对误差当粗筛(抓大错),最可信的是"同条件下模型 A vs B 的相对排名"。</b>不把目测当尺规。</div>
+  <div class="conform" style="border-left-color:var(--gold);max-width:720px;margin:14px auto 0"><i data-ic="warn"></i> <b>诚实标注尺子的精度</b>:测坐标的 VLM 是"目测"。给提示词加了<b>锚点刻度+先描述后打分</b>后,重读抖动从 ±0.08 降到 <b>±0.05</b>(且每张<b>读 3 次取平均</b>)。拿真名画校准:参照干净时尺子很准(雷诺阿误差 <b>0.09</b>≈噪声底),整体残差 ~0.18 <b>大头来自"单幅画 vs 风格/个人平均坐标"的参照错配,不是尺子</b>(例:梵高《麦田》本就比其均值更"感知")。<b>所以绝对误差当粗筛(抓大错),最可信的是"同条件下模型 A vs B 的相对排名"。</b>不把目测当尺规。</div>
 
   <div class="sec"><div class="sec-h">① 预期 → 实际 · 偏移图</div>
     <div class="sec-d">空心=图谱<b>预期</b>位置,实心=VLM 读出的<b>实际</b>位置,连线=偏移。横轴 再现→表现,纵轴 结构→感知(上为感知)。</div>
@@ -88,7 +88,7 @@ function detailTable(items){
 function conclude(items){
   const es=items.map(i=>i.backtest.error).filter(e=>e!=null);
   if(!es.length)return;const mean=es.reduce((s,x)=>s+x,0)/es.length,hit=es.filter(x=>x<0.2).length;
-  document.getElementById('conf').innerHTML=`<div class="conform">🔬 <b>诚实读数</b>:已回测 <b>${items.length}</b> 张,可比 ${es.length} 张,平均偏移 <b>${mean.toFixed(3)}</b>(平面对角线≈1.41),其中 <b>${hit}</b> 张落点很准(误差&lt;0.2)。<br><b>但要扣掉尺子噪声</b>:VLM 目测自身误差≈0.19、单读抖动±0.08(已读3次取平均)。所以这个 ${mean.toFixed(2)} <b>只略高于尺子本底</b>——能说明"没跑偏到别的区",但<b>不能精确断言模型多准</b>。这一环的真价值在<b>抓大错</b> + <b>接入第 2 个模型后的相对横评</b>(共享噪声抵消)。不把目测当尺规,正是经得起推敲。</div>`;
+  document.getElementById('conf').innerHTML=`<div class="conform"><i data-ic="science"></i> <b>诚实读数</b>:已回测 <b>${items.length}</b> 张,可比 ${es.length} 张,平均偏移 <b>${mean.toFixed(3)}</b>(平面对角线≈1.41),其中 <b>${hit}</b> 张落点很准(误差&lt;0.2)。<br><b>但要扣掉尺子噪声</b>:VLM 目测自身误差≈0.19、单读抖动±0.08(已读3次取平均)。所以这个 ${mean.toFixed(2)} <b>只略高于尺子本底</b>——能说明"没跑偏到别的区",但<b>不能精确断言模型多准</b>。这一环的真价值在<b>抓大错</b> + <b>接入第 2 个模型后的相对横评</b>(共享噪声抵消)。不把目测当尺规,正是经得起推敲。</div>`;
 }
 </script>
 <script src="js/aha-icons.js"></script>

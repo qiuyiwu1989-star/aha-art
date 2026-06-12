@@ -358,7 +358,7 @@ const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();re
 const ax=document.getElementById('axes');
 BASIS.axes.forEach(a=>{
   const from=a.from.map(f=>`<span class="fc">← ${f}</span>`).join('');
-  ax.appendChild($(`<div class="ax"><div class="ah"><span class="k">${a.k}</span><span class="cn">${a.cn}</span><span class="en">${a.en}</span></div><div class="op">${a.op.replace(/★(.+)/,'<b>★$1</b>')}</div><div class="from">${from}</div></div>`));
+  ax.appendChild($(`<div class="ax"><div class="ah"><span class="k">${a.k}</span><span class="cn">${a.cn}</span><span class="en">${a.en}</span></div><div class="op">${a.op.replace(/★(.+)/,'<b><i data-ic="star"></i>$1</b>')}</div><div class="from">${from}</div></div>`));
 });
 // vad
 const vad=document.getElementById('vad');

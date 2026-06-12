@@ -2,7 +2,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>讲解员管理中心 · aha</title>
 <meta name="description" content="aha 画作页解说员的后台管理:看/改每位讲解员的提示词、音色、情绪,新建与删除。">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--paper:#f3eee2;--card:#f8f4ea;--ink:#2a2620;--ink-soft:#5c554a;--ink-faint:#8a8170;--gold:#b0673a;--gold-deep:#8f4e28;--line:rgba(40,30,15,.14);--serif:'Noto Serif SC',serif;--sans:'Noto Sans SC',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -50,7 +50,7 @@ h1{font-family:var(--serif);font-size:28px;font-weight:700;margin:14px 0 4px}
 <body>
 <div class="wrap">
   <div class="top"><a href="log.html">‹ 产品日志</a><a href="dashboard.html">管理后台 ↗</a><a href="art.html">画作页 ↗</a><a href="art-modes.html">五模式规范 ↗</a></div>
-  <h1>🎙 讲解员管理中心</h1>
+  <h1><i data-ic="sound"></i> 讲解员管理中心</h1>
   <p class="lede">画作页"换一种眼睛看"的解说员都在这。<b>内置 6 位</b>（aha 官方 / 诗人 / 史学家 / 心理学者 / 画家自述 / 孩子）可改提示词，<b>改后不被重启覆盖</b>（数据库为准）；也能新建馆方讲解员。提示词决定 TA 怎么讲。</p>
   <div class="bar">
     <input id="pass" type="password" placeholder="馆方口令(admin_pass)" autocomplete="off">
@@ -139,4 +139,5 @@ $('pass').addEventListener('keydown',e=>{if(e.key==='Enter')load();});
 $('scrim').onclick=e=>{if(e.target.id==='scrim')closeEdit();};
 if(pass())load();
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

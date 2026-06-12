@@ -330,7 +330,7 @@ Promise.all([
       cg.appendChild($(`<a class="aw" href="${a.full||a.thumb}" target="_blank" title="${(a.title||'')} · ${(a.artist||'')}"><img loading="lazy" decoding="async" src="${a.thumb}" alt="${a.title||''}"/><span class="awt">${a.title||''}</span></a>`));});
     const note=precise
       ? `本节点<b style="color:var(--green)">精确匹配</b> <b>${ctotal}</b> 件入库真迹(预览 ${Math.min(12,cg.children.length)} 件)。<br>由原始流派标签直接对应到本细分风格,非组粒度。`
-      : `经标准码 <b>${canonZh}</b> 关联,共 <b>${ctotal}</b> 件入库真迹(预览 ${Math.min(12,cg.children.length)} 件)。<br>⚠ 按<b>「${canonZh}」组粒度</b>展示——本节点细分尚无独立标注的作品,与同组共享。`;
+      : `经标准码 <b>${canonZh}</b> 关联,共 <b>${ctotal}</b> 件入库真迹(预览 ${Math.min(12,cg.children.length)} 件)。<br><i data-ic="warn"></i> 按<b>「${canonZh}」组粒度</b>展示——本节点细分尚无独立标注的作品,与同组共享。`;
     const box=$('<div></div>');
     box.appendChild($(`<div class="worknote" style="margin-bottom:8px">${note}</div>`));
     box.appendChild(cg);

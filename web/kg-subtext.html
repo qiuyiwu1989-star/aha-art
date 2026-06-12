@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>aha · 画外音 + 感知效应层(V2 · 398 原子)</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
   :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--green-soft:#eef3f0;--purple:#7a6a9a;--purple-soft:#efebf5;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -90,20 +90,20 @@
   .scard .sv{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-top:4px}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="museum.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="top-fab" onclick="scrollTo(0,0)">↑ 顶部</div>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 画外音 · Motive</div>
   <h1>画外音层 · 为什么画 · Subtext & Motive</h1>
   <p class="lead">「效应组」的孪生之一。<b>感知效应</b>答「<b>什么感受</b>」(VAD,可像素测),<b>画外音</b>答「<b>为什么画</b>」(动机,正交于 VAD,不可像素测)。本页:① <b>VAD × 动机</b> 正交叉乘——同一情绪坐标下不同创作意图;② <b>119 幅真迹</b>的画外音语料;③ 画外音 <b>→ 风格的边</b>;④ 398 原子词典(意义/心理/关联风格)。</p>
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-effect">效应·感知+画外音</a> › <b style="color:var(--ink-soft)">画外音层</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="museum.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-effect">效应·感知+画外音</a> › <b style="color:var(--ink-soft)">画外音层</b></div>
   <div class="chain" id="chain"></div>
 
   <div class="twin">🪞 <div><b>孪生层:</b>感知效应(<b>VAD · 什么感受</b> · 可像素测)已迁往专页 → <a href="kg-affect.html">感知效应 · 像素实测 →</a>。本页专注画外音(<b>Motive · 为什么画</b>),两轴正交,合起来才是完整的"意义读出"。</div></div>
 
   <div class="vsec" id="orthoSec">
     <div class="vsec-h">① VAD × 动机:正交的两根轴</div>
-    <div class="vsec-d">同一片 <b>282 位艺术家</b>点云,横轴=效价、纵轴=唤醒(=他们在感知效应页的 VAD 坐标),但这里<b>按「为什么画」的动机型上色</b>。关键看点:动机的颜色<b>不会按 VAD 区域聚拢</b>——红(情绪表达)、蓝(存在感知)、金(叙事记忆)散布在整片情绪空间里。这就是<b>正交</b>:知道一幅画"什么感受",并不能推出它"为什么画"。<br><span style="color:var(--ink-faint)">诚实标注:实心=动机型有<b>考据</b>(类型学点名),空心环=据创作观/题材<b>推断</b>,浅灰=未归类。</span></div>
+    <div class="vsec-d">同一片 <b>282 位艺术家</b>点云,横轴=效价、纵轴=唤醒(=他们在感知效应页的 VAD 坐标),但这里<b>按「为什么画」的动机型上色</b>。关键看点:动机的颜色<b>不会按 VAD 区域聚拢</b>——红(情绪表达)、蓝(存在感知)、金(叙事记忆)散布在整片情绪空间里。这就是<b>正交</b>:知道一幅画"什么感受",并不能推出它"为什么画"。<br><span style="color:var(--ink-faint)">动机由 <b>VLM 逐位读「创作意图」</b>(自述/意义/题材)判定,带证据链;并经<b>对抗式复核</b>(维持 208/282,纠偏 74——主要砍掉被滥用的"感知实验",111→50)。诚实标注:实心=高可信<b>考据</b>(conf≥0.7,悬停看证据),空心环=中可信<b>推断</b>,浅灰=存疑/未归类。</span></div>
     <div class="mkey" id="mkey"></div>
     <div class="mwrap"><svg id="mplot" viewBox="0 0 600 460" preserveAspectRatio="xMidYMid meet"></svg></div>
     <div class="axhint"><span>← 负效价</span><span>效价 valence</span><span>正效价 →</span></div>
@@ -10932,31 +10932,40 @@ Promise.all([
   fetch('data/kg_subtext_motive.json').then(r=>r.json()).catch(()=>null),
   fetch('data/kg_subtext_artist_edges.json').then(r=>r.json()).catch(()=>null),
   fetch('data/kg_artwork_v2.json').then(r=>r.json()).catch(()=>null),
-  fetch('data/kg_subtext_style_edges.json').then(r=>r.json()).catch(()=>null)
-]).then(([AD,MO,AE,WD,SE])=>{
-  if(AD&&MO) renderOrtho(AD,MO,AE);
+  fetch('data/kg_subtext_style_edges.json').then(r=>r.json()).catch(()=>null),
+  fetch('data/kg_motive_llm.json').then(r=>r.json()).catch(()=>null)
+]).then(([AD,MO,AE,WD,SE,ML])=>{
+  if(AD&&MO) renderOrtho(AD,MO,AE,ML);
   if(WD) renderVoice(WD);
   if(SE) renderStyleEdges(SE);
 }).catch(e=>{console.error(e);});
 
 // ---- ① VAD × Motive 正交叉乘(点云 by 动机 + 锚点×动机矩阵)----
-function renderOrtho(AD,MO,AE){
+function renderOrtho(AD,MO,AE,ML){
   const arts=Object.values(AD.artists||{}).filter(a=>a&&a.affect&&a.affect.v!=null);
-  // 考据:类型学点名(按中文名)
-  const named={};(MO.types||[]).forEach(t=>(t.artists||[]).forEach(cn=>named[cn]=t.id));
+  const llm=(ML&&ML.artists)||{};
   const qmap=MO.quick_map||{};
-  // 剔除过于通用/跨型的词:它们(尤其"再现")在多数艺术家文本里都出现,会污染推断
+  // 剔除过于通用/跨型的词:它们(尤其"再现")在多数艺术家文本里都出现,会污染关键词回退
   const GENERIC={'再现':1,'见证':1,'平静':1,'喜悦':1};
   const wordsOf={};(MO.types||[]).forEach(t=>wordsOf[t.id]=(t.words||[]).filter(w=>!GENERIC[w]));
-  function infer(a){
-    if(named[a.cn]) return {tid:named[a.cn],src:'考据'};
-    // 只取「创作意图」相关文本(意义/自述/题材),不碰 voice_echo(那是世界观模板语,含"再现"等会误导)
+  function inferKeyword(a){
     const txt=[a.meaning,a.quote,a.headline,(a.subjects||[]).join(' ')].join(' ');
     const score={V1:0,V2:0,V3:0,V4:0,V5:0};
     for(const tid in wordsOf) wordsOf[tid].forEach(w=>{if(w&&txt.includes(w))score[tid]++;});
     for(const kw in qmap){if(!GENERIC[kw]&&txt.includes(kw))score[qmap[kw]]++;}
     let best=null,bv=0;for(const tid in score){if(score[tid]>bv){bv=score[tid];best=tid;}}
     return bv>0?{tid:best,src:'推断'}:{tid:null,src:'未归类'};
+  }
+  function infer(a){
+    // 优先用 LLM 读出的动机考据(带证据 + 自评可信度)
+    const L=llm[a.id];
+    if(L&&L.primary){
+      const c=L.confidence==null?0.7:L.confidence;
+      if(c>=0.7) return {tid:L.primary,src:'考据',sec:L.secondary,ev:L.evidence,conf:c};
+      if(c>=0.45) return {tid:L.primary,src:'推断',sec:L.secondary,ev:L.evidence,conf:c};
+      return {tid:null,src:'未归类'};
+    }
+    return inferKeyword(a); // LLM 缺失时回退关键词
   }
   const tagged=arts.map(a=>({a,...infer(a)}));
   const cnt={V1:0,V2:0,V3:0,V4:0,V5:0,_none:0},kao={V1:0,V2:0,V3:0,V4:0,V5:0};
@@ -10981,7 +10990,10 @@ function renderOrtho(AD,MO,AE){
       if(t.src==='考据'){c.setAttribute('r',3.7);c.setAttribute('fill',col);c.setAttribute('fill-opacity',0.92);c.setAttribute('stroke','#fff');c.setAttribute('stroke-width',1);}
       else if(t.src==='推断'){c.setAttribute('r',3.3);c.setAttribute('fill','none');c.setAttribute('stroke',col);c.setAttribute('stroke-width',1.5);c.setAttribute('stroke-opacity',0.8);}
       else{c.setAttribute('r',2.6);c.setAttribute('fill','#c9c0b0');c.setAttribute('fill-opacity',0.3);}
-      const tt=document.createElementNS(NS,'title');tt.textContent=`${t.a.cn} · ${t.tid?MTYPE[t.tid].cn+'('+t.src+')':'未归类'} · V${t.a.affect.v} A${t.a.affect.a}`;c.appendChild(tt);
+      const sec=t.sec&&MTYPE[t.sec]?' +'+MTYPE[t.sec].cn:'';
+      const conf=t.conf!=null?' conf'+t.conf:'';
+      const ev=(t.ev&&t.ev.length)?'\n证据:'+t.ev[0]:'';
+      const tt=document.createElementNS(NS,'title');tt.textContent=`${t.a.cn} · ${t.tid?MTYPE[t.tid].cn+sec+'('+t.src+conf+')':'未归类'} · V${t.a.affect.v} A${t.a.affect.a}${ev}`;c.appendChild(tt);
       link.appendChild(c);mplot.appendChild(link);
     });
   }
@@ -11010,8 +11022,9 @@ function renderOrtho(AD,MO,AE){
   // 洞察
   const multi=topAnc.filter(anc=>tids.filter(t=>(cell[anc]||{})[t]).length>=3);
   const classified=tids.reduce((s,t)=>s+cnt[t],0);
-  document.getElementById('orthoNote').innerHTML=`🧭 <b>正交的证据:</b>已能归出动机型的 <b>${classified}/${arts.length}</b> 位艺术家(其余 ${cnt._none} 位<b>动机存疑,如实留作未归类</b>,不硬塞),其颜色<b>散布在整片 VAD 空间、不按情绪区聚拢</b>——上表里有 <b>${multi.length}/${topAnc.length}</b> 个情绪锚点同时被 ≥3 种动机型占据。`+
-    `这说明<b>「什么感受」(VAD)与「为什么画」(动机)是两根独立的轴</b>:同样的"沉思/神秘",可以出自存在感知、情绪表达、也可以出自感知实验。缺了画外音这根轴,情绪坐标相同的画会被误当成同一种画。<br><span style="color:var(--ink-faint)">坦白:动机推断目前只对意图明确的少数有把握,这正是该层<b>下一步要补的考据</b>;先把"正交"这件事说清楚,不夸大覆盖率。</span>`;
+  const llmN=Object.keys(llm).length;
+  document.getElementById('orthoNote').innerHTML=`🧭 <b>正交的证据:</b>已归出动机型的 <b>${classified}/${arts.length}</b> 位艺术家(${llmN?'VLM 逐位读「创作意图」考据 '+llmN+' 位、带证据链,':''}低可信者<b>如实留作存疑</b>,不硬塞),其颜色<b>散布在整片 VAD 空间、不按情绪区聚拢</b>——上表里有 <b>${multi.length}/${topAnc.length}</b> 个情绪锚点同时被 ≥3 种动机型占据。`+
+    `这说明<b>「什么感受」(VAD)与「为什么画」(动机)是两根独立的轴</b>:同样的"沉思/神秘",可以出自存在感知、情绪表达、也可以出自感知实验。缺了画外音这根轴,情绪坐标相同的画会被误当成同一种画。<br><i data-ic="telescope"></i> 这根"动机轴"有多重要,已被量化:技法只能解释情绪的 ~20%,<b>剩下 ~80% 的残差正流向语义与动机</b> → <a href="kg-validate.html" style="color:var(--purple);font-weight:600">投影问责账本 §⑤ →</a>`;
 }
 
 // ---- ② 真迹画外音语料 119 ----
@@ -11022,7 +11035,7 @@ function renderVoice(WD){
   const ancs=Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a]);
   let active='全部';
   const card=w=>{const artist=(w.artist||'').replace(/\(.*?\)/,'').trim();const anc=(w.affect&&w.affect.primary_anchor)||'';const tags=(w.subject_tags||[]).slice(0,4).join(' · ');
-    return `<div class="vcard"><img src="/aha/img/${w.slug}.jpg" loading="lazy" alt=""/><div class="vb">`+
+    return `<div class="vcard"><img src="img/${w.slug}.jpg" loading="lazy" decoding="async" alt=""/><div class="vb">`+
       `<div class="vt2">${artist||w.title||'—'}</div>`+
       `<div class="vo">“${w.voiceover}”</div>`+
       `<div class="vm">${anc?`<span class="an2">${anc}</span>`:''}${tags}</div></div></div>`;};
@@ -11047,4 +11060,5 @@ function renderStyleEdges(SE){
   render3();
 }
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

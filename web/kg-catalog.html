@@ -53,7 +53,7 @@ input[type=search]{min-width:180px}
 <header>
   <div class="h1">aha 核心资产画廊 <small id="hcount">连 Postgres · VLM 标注</small></div>
   <div class="bar">
-    <span class="chip" id="forYou" title="按你逛出的审美口味推荐">✦ 为你推荐</span>
+    <span class="chip" id="forYou" title="按你逛出的审美口味推荐"><i data-ic="sparkles"></i> 为你推荐</span>
     <select id="fStatus"></select>
     <select id="fSource"><option value="">全部来源</option></select>
     <select id="fStyle"><option value="">全部风格</option></select>
@@ -91,7 +91,7 @@ async function loadForYou(){
   document.getElementById('meta').textContent=`为你推荐 · ${d.items.length} 件 · 按你的审美 μ 排序`;
   d.items.forEach(it=>{
     const c=document.createElement('div');c.className='card';
-    c.innerHTML=`<img loading="lazy" src="${it.thumb}" alt="">
+    c.innerHTML=`<img loading="lazy" decoding="async" src="${it.thumb}" alt="">
       <span class="q" title="契合度">${Math.round(it.score*100)}</span>
       <div class="cap"><b>${esc(it.title||'无题')}</b><br><span>${esc(it.artist||'')}</span></div>`;
     IDS.push(it.work_id);c.onclick=()=>location.href=workUrl(it.work_id);g.appendChild(c);
@@ -133,7 +133,7 @@ async function load(){
   const g=document.getElementById('grid');
   d.items.forEach(it=>{
     const c=document.createElement('div');c.className='card';
-    c.innerHTML=`<img loading="lazy" src="${it.thumb}" alt="">
+    c.innerHTML=`<img loading="lazy" decoding="async" src="${it.thumb}" alt="">
       ${it.quality!=null?`<span class="q">${it.quality.toFixed(2)}</span>`:''}
       <div class="cap"><b>${esc(it.title||'无题')}</b><br><span>${esc(it.artist||'')} ${it.anchor?'· '+it.anchor:''}</span></div>`;
     IDS.push(it.id);c.onclick=()=>location.href=workUrl(it.id);g.appendChild(c);
@@ -155,6 +155,11 @@ async function openM(id){
   const af=v.affect||{};const vad=af.vad||{};
   const tags=(v.subject_tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('');
   const st_=v.style||{};
+  // 画面动力学 · 视觉重心 / 阅读路径(并入自 kg-artworks-live 的读图叙事)
+  const rd=v.reading||{};
+  const foc=(rd.focus_top3||[]).map((f,i)=>`<div style="font-size:12.5px;margin:4px 0"><b style="color:var(--accent)">${i+1}.</b> <b>${esc(f.what||'')}</b> <span style="color:var(--soft)">· ${esc(f.where||'')}</span><br><span style="color:var(--soft);font-size:12px">${esc(f.why||'')}</span></div>`).join('');
+  const ch=af.channels||{};
+  const chh=Object.keys(ch).length?Object.entries(ch).map(([k,t])=>`<div style="font-size:12px;margin:3px 0;color:var(--soft)"><b style="color:var(--ink)">${esc(k)}</b> ${esc(t)}</div>`).join(''):'';
   document.getElementById('mw').innerHTML=`
     <div class="mimg"><img src="${a.image.thumb}" alt="" onclick="openZoom('${a.image.full}')" title="点击放大看原图"></div>
     <div class="mbody">
@@ -163,9 +168,9 @@ async function openM(id){
       ${v.voiceover?`<div class="vo">"${esc(v.voiceover)}"</div>`:''}
       <div class="sec"><div class="lbl">题材 · ${esc(v.subject||'')}</div>${tags}</div>
       ${st_.流派?`<div class="sec"><div class="lbl">风格</div>${esc(st_.流派||'')} · ${esc(st_.审美倾向||'')} · ${esc(st_.表现特征||'')}</div>`:''}
-      ${v.reading?`<div class="sec"><div class="lbl">阅读路径</div>${esc(v.reading.path||'')}</div>`:''}
+      ${foc?`<div class="sec"><div class="lbl">画面动力学 · 视线最先落在哪</div>${foc}${rd.path?`<div style="font-size:12px;color:var(--soft);margin-top:5px">动线:${esc(rd.path)}</div>`:''}</div>`:(v.reading&&rd.path?`<div class="sec"><div class="lbl">阅读路径</div>${esc(rd.path)}</div>`:'')}
       ${l7h?`<div class="sec"><div class="lbl">七大构成</div>${l7h}</div>`:''}
-      <div class="sec"><div class="lbl">感知效应 · 情绪坐标</div>${affectViz(af)}</div>
+      <div class="sec"><div class="lbl">感知效应 · 情绪坐标</div>${affectViz(af)}${chh?`<div style="margin-top:8px"><div style="font-family:var(--mono);font-size:10px;color:var(--accent);margin-bottom:3px">情绪从哪来</div>${chh}</div>`:''}</div>
       ${v.fused?`<div class="sec"><div class="lbl">整体解读</div><div class="fused">${esc(v.fused)}</div></div>`:''}
       <div class="sec" style="color:#aaa;font-size:11px">#${a.id} · ${esc(a.source||'')} · 质量 ${a.quality??'—'} · <a href="javascript:void(0)" onclick="openZoom('${a.image.full}')" style="color:var(--accent)"><i data-ic="search"></i> 放大看原图</a> · <a href="${workUrl(a.id)}" style="color:var(--accent)">↗ 独立详情页</a></div>
     </div>`;

@@ -2,10 +2,10 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>aha · 力的时间线</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/aha-kit.css">
 <style>
-  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;
-    --serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  /* token 来自 aha-kit.css;力的分类色在 JS(SVG 用十六进制);此处只放页面专属微调 */
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
   .wrap{max-width:1180px;margin:0 auto;padding:26px 16px 90px}
@@ -27,14 +27,14 @@
   .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
   .loading{text-align:center;color:var(--ink-faint);padding:40px}
 </style>
-</head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+</head><body data-board="timeline">
+<a class="home-fab" href="museum.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="tip" id="tip"></div>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 力的时间线</div>
   <h1>力的时间线 —— 反叛潮 · 复兴潮 · 跨文化潮</h1>
-  <p class="lead">关系层在世界观平面、语境层在时间轴——这里把<b>两者叠到同一条世纪轴</b>上:上半是 <b>8 种关系力</b>(每点一条边),下半是 <b>6 种语境力</b>(每点一个事件)。于是能一眼看出力的<b>节律</b>:为什么<b>1860–1930</b> 反叛、跨文化、推演会同时爆发。</p>
-  <div class="breadcrumb"><span style="color:var(--ink-mute)">艺术史动力学</span> · <a href="kg-forces.html">总图</a> · <a href="kg-dynamics.html">关系层</a> · <a href="kg-context.html">语境层</a> · <a href="kg-contingency.html">个体偶发</a> · <b style="color:var(--ink)">时间线</b> · <a href="kg-tour-forces.html">导览</a> · <a href="kg-artist-atlas.html">师承</a> · <a href="kg-drift.html">漂移</a></div>
+  <p class="lead">关系层在世界观平面、语境层在时间轴——这里把<b>两者叠到同一条世纪轴</b>上:上半是 <b>8 种关系力 · 69 条边</b>(每点一条边),下半是 <b>6 种语境力 · 52 事件</b>(每点一个事件),顶部再叠一条<b>世界观漂移</b>带。于是能一眼看出力的<b>节律</b>:为什么<b>1860–1930</b> 反叛、跨文化、推演会同时爆发。</p>
+  <div class="breadcrumb"><a href="museum.html" style="color:var(--ink-mute);text-decoration:none">aha</a> <span style="color:var(--ink-faint)">›</span> <a href="kg-forces.html" style="color:var(--accent);text-decoration:none;font-weight:600">艺术史动力学</a> · <a href="kg-forces.html">总图</a> · <a href="kg-dynamics.html">关系层</a> · <a href="kg-context.html">语境层</a> · <a href="kg-contingency.html">个体偶发</a> · <b style="color:var(--ink)">时间线</b> · <a href="kg-tour-forces.html">导览</a> · <a href="kg-artist-atlas.html">师承</a> · <a href="kg-drift.html">漂移</a></div>
   <div class="bar"><span class="seg" id="seg">
     <button data-v="all" class="on" style="background:#857d6f">全部</button>
     <button data-v="rel">只看关系力</button><button data-v="ctx">只看语境力</button>
@@ -140,4 +140,8 @@ function render(){
   });
 }
 </script>
+<footer style="max-width:1100px;margin:46px auto 0;padding:14px 16px;border-top:1px solid var(--line);display:flex;gap:8px 14px;flex-wrap:wrap;align-items:baseline;font-family:var(--mono);font-size:11px;color:var(--ink-faint)"><a href="kg-forces.html" style="color:var(--accent);text-decoration:none;font-weight:600">aha · 艺术史动力学板块</a><span style="color:var(--ink-mute)">力 = 关系 + 语境 + 个体偶发</span><span style="margin-left:auto"><a href="kg-forces.html" style="color:var(--accent);text-decoration:none">板块首页</a> · <a href="kg-dynamics.html" style="color:var(--ink-mute);text-decoration:none">关系</a> · <a href="kg-context.html" style="color:var(--ink-mute);text-decoration:none">语境</a> · <a href="kg-contingency.html" style="color:var(--ink-mute);text-decoration:none">个体</a> · <a href="kg-force-timeline.html" style="color:var(--ink-mute);text-decoration:none">时间线</a> · <a href="kg-tour-forces.html" style="color:var(--ink-mute);text-decoration:none">导览</a> · <a href="museum.html" style="color:var(--ink-mute);text-decoration:none">← aha 总站</a></span></footer>
+<script src="js/aha-chrome.js"></script>
+<script src="js/board-nav.js"></script>
+<script src="js/aha-icons.js"></script>
 </body></html>

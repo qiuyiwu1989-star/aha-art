@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>aha · 风格知识图谱 · 世界观三轴空间</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
   :root{--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -87,13 +87,13 @@
 <div class="topbar">
   <div class="kick">aha · 知识图谱 V3 · 三维探索(可选)</div>
   <h1>风格知识图谱 · 三维探索</h1>
-  <p class="lead">⚠️ V3 的世界观<b>本质是 2D</b>(只 2 条真轴)——规范视图是 <a href="kg-worldview-map.html" style="color:var(--accent)">世界观地图(2D)→</a>。此页是<b>可选的三维探索</b>:第 3 轴「卷入-抽离」仅作视觉立场参考(非世界观必需)。轴已换正交基、按 6 个世界观区上色。</p>
+  <p class="lead"><i data-ic="warn"></i> V3 的世界观<b>本质是 2D</b>(只 2 条真轴)——规范视图是 <a href="kg-worldview-map.html" style="color:var(--accent)">世界观地图(2D)→</a>。此页是<b>可选的三维探索</b>:第 3 轴「卷入-抽离」仅作视觉立场参考(非世界观必需)。轴已换正交基、按 6 个世界观区上色。</p>
   <div class="breadcrumb"><a href="kg-worldview-map.html">← 世界观地图(规范·2D)</a> · <a href="kg-worldview.html">世界观层</a> · <a href="kg-first-principles.html">第一性原理</a></div>
 </div>
 
 <div class="panel">
   <div class="ph">视图 View</div>
-  <div class="seg modeseg" id="segMode"><button data-m="3d" class="on">🌌 三维</button><button data-m="2d">🔬 解剖</button></div>
+  <div class="seg modeseg" id="segMode"><button data-m="3d" class="on"><i data-ic="galaxy"></i> 三维</button><button data-m="2d"><i data-ic="science"></i> 解剖</button></div>
   <div class="ph">主题 Theme</div>
   <div class="seg themeseg" id="segTheme"><button data-t="dark" class="on">🌙 暗</button><button data-t="light">☀ 亮</button></div>
   <div id="planeWrap">
@@ -417,4 +417,5 @@ function resize(){renderer.setSize(innerWidth,innerHeight,false);camera.aspect=i
 function animate(){requestAnimationFrame(animate);if(mode==='2d')return;controls.update();if(mouse.x>-2)pick();renderer.render(scene,camera);}
 fetch('data/kg_style.json').then(r=>r.json()).then(init).catch(e=>{document.querySelector('.lead').innerHTML='加载失败(需通过服务器打开):'+e;});
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

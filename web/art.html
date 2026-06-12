@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>aha · 画作</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link href="css/aha-frames.css" rel="stylesheet"/>
 <script src="js/frames.js"></script>
 <script src="js/aha-icons.js"></script>
@@ -18,6 +18,24 @@
   .dock{flex:none}
   .view img{max-width:86%;max-height:86%;object-fit:contain;box-shadow:0 30px 80px rgba(0,0,0,.6);cursor:zoom-in;will-change:transform}
   .view.zoomed{cursor:grab;touch-action:none}.view.zoomed img{cursor:grab}
+  /* 首次轻引导 */
+  .intro-mask{position:fixed;inset:0;z-index:200;background:rgba(8,6,4,.78);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:24px;animation:introfade .4s ease}
+  .intro-mask.on{display:flex}
+  @keyframes introfade{from{opacity:0}to{opacity:1}}
+  .intro-card{background:#15120e;border:1px solid rgba(255,255,255,.12);border-radius:18px;max-width:380px;width:100%;padding:26px 26px 22px;color:#f3eee2;box-shadow:0 30px 70px -24px rgba(0,0,0,.7)}
+  .intro-card h3{font-family:var(--serif);font-size:21px;font-weight:700;margin-bottom:4px}
+  .intro-card .sub{font-family:var(--mono);font-size:11px;color:rgba(243,238,226,.45);letter-spacing:.1em;margin-bottom:16px}
+  .intro-tip{display:flex;align-items:center;gap:13px;padding:10px 0;border-top:1px solid rgba(255,255,255,.07)}
+  .intro-tip .ti{width:34px;height:34px;flex:0 0 auto;border-radius:9px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:var(--mono);font-size:14px}
+  .intro-tip .ti .ico{width:18px;height:18px}
+  .intro-tip .tt{font-size:13.5px;line-height:1.45;color:#e8e0d0}.intro-tip .tt b{color:#fff;font-weight:600}
+  .intro-card .go{margin-top:20px;width:100%;font-family:var(--sans);font-size:14px;font-weight:600;background:var(--gold);color:#fff;border:none;border-radius:11px;padding:12px;cursor:pointer}
+  .intro-card .go:hover{background:#9a5630}
+  /* 可访问性:键盘焦点环 */
+  .view .topl a:focus-visible,.modesw-btn:focus-visible,.view .fav:focus-visible,.mtop .mt-ic:focus-visible,.modesw-menu button:focus-visible,.drawer-tab:focus-visible,.dock-tab:focus-visible,.pav:focus-visible,.fold>summary:focus-visible,.actionbar a:focus-visible,.actionbar button:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:8px}
+  /* 死链/取不到图的兜底 */
+  .imgerr{display:none;position:absolute;inset:0;z-index:4;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:#a89f8f;font-family:var(--serif);font-size:18px;text-align:center;padding:30px}
+  .imgerr a{font-family:var(--mono);font-size:13px;color:#fff;background:var(--gold);border-radius:999px;padding:10px 20px;text-decoration:none}
   /* 挂上墙(带框)模式 —— 框尺寸由 fitWall() 按 .view 实际盒子算,不用 vw/vh */
   .wallframe{display:none;position:absolute;inset:0;align-items:center;justify-content:center}
   .wallframe .aha-frame{display:inline-block;transform-origin:center center;will-change:transform}
@@ -47,13 +65,13 @@
   .mtop .mt-ic .ico{width:19px;height:19px}
   .actionbar #like2 .ico{width:15px;height:15px}
   .crumb a{display:inline-flex;align-items:center}
-  .stage[data-layout=immersive] .view .fav{z-index:6;background:rgba(255,255,255,.85)}  /* 沉浸:收藏心右下角,浮于画外音之上 */
+  .stage[data-layout=immersive] .view .fav{z-index:6;background:rgba(20,16,12,.42)}  /* 沉浸:收藏心右下角,浮于画外音之上 */
   /* 馆藏号:右上角,系统唯一码 */
   /* 馆藏号:右栏面包屑右侧(标题之上),与数据库 work_id 一致 */
   .cb-acc{margin-left:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--ink-mute);background:#fff;border:1px solid var(--line);border-radius:999px;padding:2px 9px;white-space:nowrap}
   .cb-acc:empty{display:none}
   /* 数据档案:独立一行,不挤名字 */
-  .archline{margin-top:7px}
+  .archline{margin-top:-10px;margin-bottom:18px}
   .archline .cb-arch{font-family:var(--mono);font-size:11px;color:var(--ink-mute);text-decoration:none;display:inline-flex;align-items:center;gap:5px}
   .archline .cb-arch:hover{color:var(--gold)}.archline .cb-arch .ico{width:13px;height:13px}
   /* 画外音浮层(沉浸) / 铭牌(墙),默认藏 */
@@ -100,7 +118,7 @@
      radial-gradient(56% 44% at 50% 39%,rgba(255,251,242,.72),transparent 72%),
      linear-gradient(180deg,#eae3d4 0%,#ddd3bf 60%,#ccc1ab 100%)}
   .stage[data-layout=wall] .wallframe{top:5vh;bottom:5vh;left:0;right:0}   /* 画居中铺满,加框不挪位 */
-  .stage[data-layout=wall] .plaque{display:block;position:absolute;right:30px;bottom:30px;top:auto;transform:none;z-index:6;width:248px;background:rgba(251,248,241,.95);backdrop-filter:blur(4px);border:1px solid var(--line);border-radius:6px;padding:15px 18px 16px;box-shadow:0 16px 38px -14px rgba(40,30,15,.6),0 1px 0 rgba(255,255,255,.7) inset}
+  .stage[data-layout=wall] .plaque{display:block;position:absolute;left:30px;right:auto;bottom:30px;top:auto;transform:none;z-index:6;width:248px;background:rgba(251,248,241,.95);backdrop-filter:blur(4px);border:1px solid var(--line);border-radius:6px;padding:15px 18px 16px;box-shadow:0 16px 38px -14px rgba(40,30,15,.6),0 1px 0 rgba(255,255,255,.7) inset}
   .stage[data-layout=wall] .plaque .pk{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;color:var(--ink-mute);margin-bottom:9px}
   .stage[data-layout=wall] .plaque h2{font-family:var(--serif);font-size:19px;font-weight:700;margin:0 0 3px;line-height:1.3;color:var(--ink)}
   .stage[data-layout=wall] .plaque .pby{color:var(--ink-soft);font-size:13px;margin-bottom:11px}
@@ -127,14 +145,17 @@
   /* ===== 对话:大图在上 + 居中解说员对话区(复用深色 dock),藏右栏 ===== */
   .stage[data-layout=conversation]{grid-template-columns:1fr}
   .stage[data-layout=conversation] .panel{display:none}
-  .stage[data-layout=conversation] .left{height:100vh;display:block;overflow-y:auto;background:radial-gradient(120% 70% at 50% 0%,#23201b,#0f0d0b)}
-  .stage[data-layout=conversation] .view{height:54vh;flex:none}
-  .stage[data-layout=conversation] .view:not(.walled) #pic{max-width:78%;max-height:92%;box-shadow:0 26px 60px -26px rgba(0,0,0,.72)}
-  .stage[data-layout=conversation] .dock{max-width:640px;margin:0 auto;width:100%;background:transparent;border-top:none;padding:20px 22px 72px}
-  .stage[data-layout=conversation] .dock-h{text-align:center;margin-bottom:16px}
-  /* 对话·聊天流(暗底气泡,堆叠) */
+  .stage[data-layout=conversation] .left{height:100vh;display:flex;flex-direction:column;overflow:hidden;background:radial-gradient(120% 70% at 50% 0%,#23201b,#0f0d0b)}
+  .stage[data-layout=conversation] .view{height:42vh;flex:none}
+  .stage[data-layout=conversation] .view:not(.walled) #pic{max-width:74%;max-height:92%;box-shadow:0 26px 60px -26px rgba(0,0,0,.72)}
+  .stage[data-layout=conversation] .dock{flex:1;min-height:0;display:flex;flex-direction:column;max-width:680px;margin:0 auto;width:100%;background:transparent;border-top:none;padding:0}
+  .stage[data-layout=conversation] .dock-main{flex:1;min-height:0;display:flex;flex-direction:column;padding:0 22px}
+  .stage[data-layout=conversation] .persona-row{flex:none}
+  .stage[data-layout=conversation] .dock-h{flex:none;text-align:center;margin-top:10px}
+  .stage[data-layout=conversation] .chat-input{flex:none}
+  /* 对话·聊天流(暗底气泡,堆叠);对话区可滚,输入固定底部 */
   .chat-feed{display:none}
-  .stage[data-layout=conversation] .chat-feed{display:flex;flex-direction:column;gap:12px;width:100%;max-width:640px;margin:0 auto 16px}
+  .stage[data-layout=conversation] .chat-feed{display:flex;flex-direction:column;gap:12px;flex:1;min-height:0;overflow-y:auto;width:100%;padding:14px 2px;margin:0}
   .stage[data-layout=conversation] .bubble-layer{display:none}
   .chatmsg{display:flex;gap:10px;align-items:flex-start;animation:cmin .3s ease}
   @keyframes cmin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -146,7 +167,7 @@
   .chatmsg.me .cm-av{background:var(--gold);border-color:var(--gold);font-size:12px;font-family:var(--mono)}
   .chatmsg.me .cm-body{background:rgba(176,103,58,.24);border-color:rgba(176,103,58,.42);border-top-left-radius:14px;border-top-right-radius:4px}
   .chat-input{display:none}
-  .stage[data-layout=conversation] .chat-input{display:flex;gap:8px;width:100%;max-width:640px;margin:14px auto 0}
+  .stage[data-layout=conversation] .chat-input{display:flex;gap:8px;width:100%;max-width:680px;margin:8px auto 18px}
   .stage[data-layout=conversation] .chat-input input{flex:1;font-family:var(--sans);font-size:14px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.07);color:#f3eee2;border-radius:999px;padding:11px 16px;outline:none}
   .stage[data-layout=conversation] .chat-input input::placeholder{color:rgba(243,238,226,.42)}
   .stage[data-layout=conversation] .chat-input button{font-family:var(--mono);font-size:13px;background:var(--gold);color:#fff;border:none;border-radius:999px;padding:0 18px;cursor:pointer}
@@ -164,7 +185,8 @@
   .view .subtitle.on{opacity:1}
   /* 角色 dock(画面之下) */
   .dock{background:#15120f;border-top:1px solid rgba(255,255,255,.07);padding:14px 22px 18px;color:#f3eee2}
-  .dock-h{font-family:var(--mono);font-size:10.5px;color:rgba(243,238,226,.5);letter-spacing:.05em;margin-bottom:11px;text-align:center}
+  .dock-h{font-family:var(--mono);font-size:10.5px;color:rgba(243,238,226,.5);letter-spacing:.05em;margin-top:12px;text-align:center}
+  .bubble-layer:empty{display:none}
   .persona-row{display:flex;flex-wrap:nowrap;gap:18px;align-items:flex-start;justify-content:safe center;overflow-x:auto;overflow-y:hidden;padding-bottom:6px;cursor:grab;scrollbar-width:none;-ms-overflow-style:none}
   .persona-row::-webkit-scrollbar{display:none}
   .persona-row.dragging{cursor:grabbing}
@@ -177,6 +199,12 @@
   .pav.add .av{font-size:24px;color:var(--gold);border-style:dashed}
   .dock .persona-row{align-items:center}
   .pav.speaking .av{animation:spk 1s ease-in-out infinite}
+  /* 官方 aha 头像:衬线字标「a.」替代 ◉,品牌一致 · 背景无关地可读 */
+  .aha-mark{font-family:var(--serif);font-weight:700;color:var(--gold);line-height:1;letter-spacing:-.02em}
+  .aha-mark::after{content:"."}
+  .pav.official .av,.mn-cur.official .mn-av{background:#2a241d}        /* 盘永远深色,让金字标始终可读;选中靠描边 */
+  .pav.official.on .av{border-color:var(--gold);box-shadow:0 6px 18px -4px rgba(176,103,58,.7)}
+  .cm-av.official{background:#2a241d}
   @keyframes spk{0%,100%{box-shadow:0 0 0 0 rgba(176,103,58,.5)}50%{box-shadow:0 0 0 7px rgba(176,103,58,0)}}
   /* 解读卡(右栏心脏 · 浅底大字,官方与各角色共用) */
   .readcard{background:#fff;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:11px;padding:14px 16px;margin:16px 0 6px}
@@ -219,7 +247,9 @@
   .view .topl a.bgmtop{display:none}
   .stage[data-layout=immersive] .view .topl a.bgmtop{display:flex}
   /* 收藏:右下角悬浮主行动(拇指可及) */
-  .view .fav{position:absolute;right:22px;bottom:22px;z-index:5;width:60px;height:60px;border-radius:999px;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);border:1.5px solid var(--gold);color:var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .15s,background .15s;box-shadow:0 10px 26px rgba(40,30,15,.4)}
+  .view .fav{position:absolute;right:22px;bottom:22px;z-index:5;width:52px;height:52px;border-radius:999px;background:rgba(20,16,12,.5);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.2);color:#f3eee2;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .15s,background .15s,color .15s;box-shadow:0 10px 26px rgba(0,0,0,.4)}
+  .view .fav:hover{transform:translateY(-2px);border-color:var(--gold)}
+  .view .fav .ico{width:24px;height:24px}
   .view .fav:hover{transform:scale(1.1)}
   .view .fav.on{background:var(--gold);border-color:var(--gold);color:#fff;box-shadow:0 10px 28px -6px rgba(176,103,58,.6)}
   .view .vhint{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:4;font-family:var(--mono);font-size:11px;color:rgba(243,238,226,.4);pointer-events:none;transition:opacity .6s}
@@ -229,7 +259,7 @@
   .pscroll{flex:1;overflow-y:auto;padding:28px 26px 12px}
   .crumb{font-family:var(--mono);font-size:11px;color:var(--ink-mute)}.crumb a{color:var(--gold);text-decoration:none}
   h1{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1.25;margin:10px 0 2px}
-  .artist{font-size:14px;color:var(--ink-soft);display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}.artist a{color:var(--gold);text-decoration:none}
+  .artist{font-size:14px;color:var(--ink-soft);display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:18px}.artist a{color:var(--gold);text-decoration:none}
   .voice{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:16px;line-height:1.8;margin:18px 0;border-left:3px solid #e3d3c2;padding-left:13px}
   .sec{margin-top:22px}
   .sec-h{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--ink-mute);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:10px}
@@ -286,20 +316,41 @@
   .framereset:hover{border-color:var(--gold);color:var(--gold)}
   .framecurator{display:block;text-align:center;margin-top:7px;font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);cursor:pointer;text-decoration:none}
   .framecurator:hover{color:var(--gold)}
+  .frameorder{grid-column:1/-1;margin-top:8px;padding:11px;border:none;border-radius:11px;background:var(--gold);color:#fff;font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer}
+  .frameorder:hover{filter:brightness(1.05)}
+  .ordov{position:fixed;inset:0;z-index:60;background:rgba(30,24,16,.55);display:flex;align-items:center;justify-content:center;padding:18px}
+  .ordbox{background:var(--panel,#fbf8f2);border-radius:16px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;padding:22px 24px;box-shadow:0 24px 60px -20px rgba(20,14,6,.5)}
+  .ordbox h3{font-family:var(--serif);font-size:19px;margin:0 0 3px}
+  .ordsz{display:flex;gap:7px;flex-wrap:wrap;margin:7px 0 4px}
+  .ordsz button{font-family:var(--mono);font-size:12px;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 11px;cursor:pointer}
+  .ordsz button.on{border-color:var(--gold);background:#fbf3ea;color:var(--gold);font-weight:600}
+  .ordrow{display:flex;justify-content:space-between;font-size:13px;padding:4px 0;color:var(--ink-soft)}
+  .ordrow b{color:var(--ink)}
+  .ordin{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:9px;font-size:14px;margin-top:7px;font-family:var(--sans);box-sizing:border-box}
+  .ordsub{width:100%;margin-top:12px;padding:12px;border:none;border-radius:11px;background:var(--gold);color:#fff;font-size:15px;font-weight:600;cursor:pointer}
+  .ordx{float:right;cursor:pointer;color:var(--ink-mute);font-size:20px;line-height:1;border:none;background:none}
   /* 沉浸:收起右栏 */
-  .stage.immersive{grid-template-columns:1fr}.stage.immersive .panel{display:none}
+  .stage.collapsed{grid-template-columns:1fr}.stage.collapsed .panel{display:none}
   /* 三扇门 */
   .door{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:9px;padding:7px 9px;margin-bottom:7px;cursor:pointer;transition:.15s;text-decoration:none}
   .door:hover{border-color:var(--gold);transform:translateX(2px)}.door img{width:42px;height:42px;object-fit:cover;border-radius:5px}.door .dt{font-size:12px;color:var(--ink-soft)}.door .dt b{color:var(--ink)}
   /* 你 + 行动 */
-  .you{background:#fff;border:1px solid var(--line);border-left:4px solid var(--green);border-radius:10px;padding:12px 14px;font-size:12.5px;color:var(--ink-soft);line-height:1.7;margin-top:14px}
-  .fit-h{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);letter-spacing:.04em;margin-bottom:9px}
-  .fit-bar{position:relative;height:10px;background:#e8e0d0;border-radius:999px;overflow:hidden}
-  .fit-fill{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,#5a7d6f,#b0673a);border-radius:999px;transition:width .7s cubic-bezier(.2,.8,.2,1)}
-  .fit-row{display:flex;align-items:baseline;gap:9px;margin-top:9px}
-  .fit-pct{font-family:var(--mono);font-size:22px;color:var(--green);font-weight:700;line-height:1}
-  .fit-note{font-size:13px;color:var(--ink-soft)}
-  .fit-sub{font-size:10.5px;color:var(--ink-faint);margin-top:6px;line-height:1.5}
+  /* 口味契合度卡:赭石进度环 + 中心大字 + 一句话 */
+  .you{background:#fff;border:1px solid var(--line);border-radius:13px;padding:15px 17px;margin:16px 0;box-shadow:0 8px 24px -18px rgba(40,30,15,.5)}  /* 上下都留白:其后的「众声」分隔线不再贴着卡片底边叠加 */
+  .fit-head{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);letter-spacing:.07em;margin-bottom:13px}
+  .fit-body{display:flex;align-items:center;gap:16px}
+  .fit-ring{position:relative;width:78px;height:78px;flex:0 0 auto}
+  .fit-ring svg{width:78px;height:78px;display:block}
+  .fit-ring .fr-track{fill:none;stroke:#ece4d4;stroke-width:5}
+  .fit-ring .fr-fill{fill:none;stroke:var(--gold);stroke-width:5;stroke-linecap:round;transition:stroke-dashoffset 1s cubic-bezier(.2,.8,.2,1)}
+  .fit-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+  .fit-num .v{display:flex;align-items:baseline;font-family:var(--serif);color:var(--gold-deep,#8f4e28);line-height:1}
+  .fit-num .v b{font-size:28px;font-weight:700;letter-spacing:-.01em}
+  .fit-num .v i{font-style:normal;font-size:12px;font-weight:600;margin-left:1.5px;color:var(--gold)}  /* % 改基线对齐,不再上标压住圆环 */
+  .fit-meta{flex:1;min-width:0}
+  .fit-phrase{font-family:var(--serif);font-size:15.5px;color:var(--ink);line-height:1.45}
+  .fit-sub{font-size:11px;color:var(--ink-faint);margin-top:6px;line-height:1.5}
+  .fit-empty{font-size:13px;color:var(--ink-soft);line-height:1.7}
   .acts{display:flex;flex-direction:column;gap:9px;margin-top:14px}
   .acts .pri{font-family:var(--sans);font-size:14px;font-weight:600;background:var(--gold);color:#fff;border:none;border-radius:11px;padding:13px;cursor:pointer;text-decoration:none;text-align:center;transition:filter .15s}.acts .pri:hover{filter:brightness(1.06)}
   .acts .row{display:flex;gap:8px}
@@ -318,6 +369,14 @@
   .shtabs{display:flex;gap:8px;justify-content:center}
   .shtab{font-family:var(--mono);font-size:12.5px;color:#f3eee2;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:7px 17px;cursor:pointer}
   .shtab.on{background:var(--gold);border-color:var(--gold)}.shtab:hover{border-color:var(--gold)}
+  /* 海报生成中:像在印一张带馆藏号的美术馆海报(替代裂图) */
+  .sh-load{position:relative;width:100%;aspect-ratio:1080/1500;max-height:70vh;border-radius:10px;overflow:hidden;background:#f3eee2;box-shadow:0 24px 64px rgba(0,0,0,.55);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px}
+  .sh-load .sl-thumb{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.14;filter:grayscale(.25)}
+  .sh-load:before{content:"";position:absolute;left:0;right:0;height:36%;top:-36%;background:linear-gradient(180deg,transparent,rgba(176,103,58,.20),transparent);animation:slsweep 1.8s cubic-bezier(.45,0,.55,1) infinite}  /* 印刷扫描光带 */
+  @keyframes slsweep{0%{top:-36%}100%{top:100%}}
+  .sh-load .sl-acc{position:relative;font-family:var(--mono);font-size:14px;font-weight:500;letter-spacing:.24em;color:var(--gold-deep,#8f4e28);background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 20px;box-shadow:0 6px 16px -8px rgba(40,30,15,.45)}
+  .sh-load .sl-cap{position:relative;font-family:var(--mono);font-size:9px;letter-spacing:.26em;color:var(--ink-mute);margin-top:-9px}
+  .sh-load .sl-txt{position:relative;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink-soft);display:flex;align-items:center;gap:8px}
   .home-fab{position:fixed;left:16px;top:16px;z-index:50;font-family:var(--sans);font-size:13px;text-decoration:none;color:#f3eee2;background:rgba(20,16,12,.5);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.18);border-radius:999px;height:38px;padding:0 14px;display:inline-flex;align-items:center;gap:6px;transition:.15s}.home-fab:hover{background:var(--gold);border-color:var(--gold)}
   /* 众声 · 大众点评(右栏右下角,浅色,与上面解读分开) */
   .cmtbox{display:flex;gap:7px;margin-bottom:10px}
@@ -404,11 +463,11 @@
     .stage[data-layout=editorial] .pscroll{padding:24px 18px 18px}
     .stage[data-layout=editorial] h1{font-size:26px}
     .stage[data-layout=editorial] .pullquote{font-size:19px;margin:18px 0 10px;padding-left:16px}
-    /* 💬 对话:画在上,对话流+输入往下滚 */
-    .stage[data-layout=conversation] .left{height:auto;overflow:visible}
-    .stage[data-layout=conversation] .view{height:48vh}
-    .stage[data-layout=conversation] .dock{padding:14px 14px 30px}
-    .stage[data-layout=conversation] .chatmsg .cm-body{max-width:80%}
+    /* 💬 对话:画在上,对话流可滚,输入固定底部 */
+    .stage[data-layout=conversation] .view{height:38vh}
+    .stage[data-layout=conversation] .dock-main{padding:0 14px}
+    .stage[data-layout=conversation] .chat-input{margin:8px auto 14px}
+    .stage[data-layout=conversation] .chatmsg .cm-body{max-width:82%}
     /* 版式图标:手机置于画面左上(顶部条在 .view 之外,不打架) */
     .modesw{top:10px;left:10px}.modesw-btn{width:34px;height:34px;font-size:15px}
   }
@@ -416,6 +475,7 @@
   /* 解说员气泡(画下,头像上方说话) */
   .bubble-layer{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:5px;min-height:0;margin-bottom:10px}
   .cbub{max-width:82%;background:#f3eee2;color:var(--ink);border-radius:14px;padding:8px 16px;font-family:var(--serif);font-size:16px;line-height:1.55;text-align:center;box-shadow:0 6px 16px -8px rgba(0,0,0,.5);animation:bubIn .28s ease}
+  .cbub:empty{display:none}                                  /* 没内容时不显示空泡泡 */
   .cbub.who{background:none;box-shadow:none;color:var(--gold);font-family:var(--mono);font-size:10px;padding:0 2px;animation:none}
   .cbub.thinking{padding:9px 16px}
   .bub-close{position:absolute;top:0;right:6px;font-family:var(--mono);font-size:13px;color:rgba(243,238,226,.6);cursor:pointer;z-index:2}
@@ -440,15 +500,22 @@
   .lib-go{margin-left:auto;font-family:var(--sans);font-size:14px;font-weight:600;background:var(--gold);color:#fff;border:none;border-radius:11px;padding:11px 22px;cursor:pointer}
   .lib-x{font-family:var(--mono);font-size:13px;color:var(--ink-mute);cursor:pointer}
 </style>
-</head><body>
-<a class="home-fab" href="museum.html">${window.AHAIcons?AHAIcons.svg('museum'):''}<span>美术馆</span></a>
+<script src="/js/aha-app.js" defer></script></head><body data-noshell>
+<a class="home-fab" href="museum.html"><svg class="ico" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V10"/><path d="M9 21V10"/><path d="M15 21V10"/><path d="M19 21V10"/><path d="M12 3 21 8H3Z"/></svg><span>美术馆</span></a>
 <div class="stage" id="stage"><div style="grid-column:1/-1;text-align:center;color:#8a8170;padding:80px">加载中…</div></div>
 <div class="toast" id="toast"></div>
+<div class="intro-mask" id="introMask" role="dialog" aria-label="看画引导"></div>
 <div class="shmask" id="shmask">
   <div class="shbox">
     <div class="shtabs" id="shtabs"><button class="shtab on" data-s="classic">经典</button><button class="shtab" data-s="poster">海报</button><button class="shtab" data-s="quiet">留白</button></div>
-    <img id="shimg" alt="正在生成分享卡片…">
-    <div class="shrow"><a class="shbtn pri" id="shdl" download>⬇ 保存图片</a><a class="shbtn" id="shcopy">🔗 复制链接</a><a class="shbtn" id="shclose">关闭</a></div>
+    <div class="sh-load" id="shLoad">
+      <div class="sl-thumb" id="slThumb"></div>
+      <div class="sl-acc" id="slAcc">AHA-00000</div>
+      <div class="sl-cap">馆藏编号 · COLLECTION №</div>
+      <div class="sl-txt">正在生成海报 <span class="bdots"><span></span><span></span><span></span></span></div>
+    </div>
+    <img id="shimg" alt="" style="display:none">
+    <div class="shrow"><a class="shbtn pri" id="shdl" download><i data-ic="download"></i> 保存图片</a><a class="shbtn" id="shcopy"><i data-ic="network"></i> 复制链接</a><a class="shbtn" id="shclose">关闭</a></div>
     <div class="shhint">长按图片可保存 · 三种排版任选 · 扫码即可分享给朋友</div>
   </div>
 </div>
@@ -459,7 +526,7 @@
     <div class="pform" id="pform">
       <div class="prow"><input class="emoji" id="pemoji" maxlength="2" placeholder="👁"><input id="pname" maxlength="16" placeholder="给视角起个名,如「侦探」"></div>
       <textarea id="pdesc" rows="2" maxlength="200" placeholder="一句人设:TA 怎么看画?(如:像破案一样找画里的疑点与线索)"></textarea>
-      <div class="prow" style="align-items:center"><select id="pvoice" style="flex:1"><option value="冰糖">🔊 冰糖(女)</option><option value="茉莉">🔊 茉莉(女)</option><option value="苏打">🔊 苏打(男)</option><option value="白桦">🔊 白桦(男)</option></select><button id="pcreate">创建并选中 →</button></div>
+      <div class="prow" style="align-items:center"><select id="pvoice" style="flex:1"><option value="冰糖"><i data-ic="sound"></i> 冰糖(女)</option><option value="茉莉"><i data-ic="sound"></i> 茉莉(女)</option><option value="苏打"><i data-ic="sound"></i> 苏打(男)</option><option value="白桦"><i data-ic="sound"></i> 白桦(男)</option></select><button id="pcreate">创建并选中 →</button></div>
     </div>
     <div class="lib-foot"><a class="lib-new" id="libNew">＋ 自定义一个解说员</a><button class="lib-go" id="libGo">邀请进入</button><a class="lib-x" id="libClose">关闭</a></div>
   </div>
@@ -521,7 +588,7 @@ function isRealArtist(w){const a=((w&&w.artist)||'').trim();if(!a)return false;r
 // 缩略图省带宽:COS 即时压缩 / 本地预生成 720px webp。只用于小图与预览;#pic「看原作」与 ?w= 身份保持全图
 function imgT(w,px){const f=(w&&w.file)||'';px=px||520;
   if(w&&w.work_id&&window._COSBIG&&_COSBIG[w.work_id])return '/'+_COSBIG[w.work_id];        // >32MB COS → 本地预生成
-  if(/myqcloud\.com/i.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/quality/82';
+  if(/myqcloud\.com/i.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/format/webp/quality/82';
   if(/(^|\/)img\/[^?]*\.(jpe?g|png)$/i.test(f))return f.replace(/\.(jpe?g|png)$/i,'.t720.webp');
   return (w&&w.thumb)||f;}
 document.addEventListener('error',function(e){var im=e.target;if(!im||im.tagName!=='IMG'||im.dataset.fb)return; // 缩略图失败→退原图,不裂图
@@ -550,64 +617,40 @@ function renderModeSwitch(){
 function updateModeSwitch(m){          // 触发按钮固定为"切换模式"图标,只高亮当前项
   document.querySelectorAll('#modeswMenu button').forEach(b=>b.classList.toggle('on',b.dataset.ly===m));}
 // —— 淡背景音乐(Web Audio 合成的暖色环境垫音,无需音频文件;默认开,M 键 / 按钮 开关)——
-let _bgmCtx=null,_bgmNodes=null,_bgmOn=false;try{_bgmOn=localStorage.getItem('aha_bgm')==='1';}catch(e){}  // 默认关闭背景音乐
-function _bgmImpulse(ctx,dur,decay){                              // 合成大厅混响脉冲(指数衰减噪声)
-  const rate=ctx.sampleRate,len=Math.max(1,Math.floor(rate*dur)),buf=ctx.createBuffer(2,len,rate);
-  for(let ch=0;ch<2;ch++){const d=buf.getChannelData(ch);for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/len,decay);}
-  return buf;}
+let _bgmCtx=null,_bgmOn=false;try{_bgmOn=localStorage.getItem('aha_bgm')==='1';}catch(e){}  // 默认关闭背景音乐
+// 背景音乐:优先用真音轨(往 img/audio/ 丢一个同名 mp3/ogg 即自动优先),否则回退到预渲染的干净环境垫音(纯正弦暖和弦,无噪声),解码成 AudioBuffer 后无缝循环
+const BGM_SOURCES=['img/audio/gallery-ambient.mp3','img/audio/gallery-ambient.ogg','img/audio/gallery-ambient.wav'];
+let _bgmBuf=null,_bgmSrc=null,_bgmGain=null,_bgmLoading=false;
+function _loadBgm(ctx,list,i,done){                                  // 依次尝试,第一个能解码的就用
+  if(i>=list.length){_bgmLoading=false;return;}
+  fetch(list[i]).then(r=>{if(!r.ok)throw 0;return r.arrayBuffer();}).then(b=>ctx.decodeAudioData(b)).then(buf=>{_bgmBuf=buf;_bgmLoading=false;done();}).catch(()=>_loadBgm(ctx,list,i+1,done));}
 function bgmStart(){
-  if(_bgmNodes||!_bgmOn)return;
+  if(!_bgmOn||_bgmSrc)return;
   try{const Ctx=window.AudioContext||window.webkitAudioContext;if(!Ctx)return;
     _bgmCtx=_bgmCtx||new Ctx();const ctx=_bgmCtx;if(ctx.state==='suspended')ctx.resume();
-    const now=ctx.currentTime;
-    const master=ctx.createGain();master.gain.value=0;master.connect(ctx.destination);
-    // 大厅混响:dry + wet,营造美术馆空间感
-    const conv=ctx.createConvolver();conv.buffer=_bgmImpulse(ctx,3.4,2.4);
-    const wet=ctx.createGain();wet.gain.value=0.6;conv.connect(wet);wet.connect(master);
-    const dry=ctx.createGain();dry.gain.value=0.45;dry.connect(master);
-    const bus=ctx.createGain();bus.connect(dry);bus.connect(conv);
-    const lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=900;lp.Q.value=0.5;lp.connect(bus);
-    // 按作品情绪取调:valence 低→小调偏暗,arousal 高→换和弦更快/钟鸣更密
-    const v=(W&&W.vad&&typeof W.vad.v==='number')?W.vad.v:0.5;
-    const a=(W&&W.vad&&typeof W.vad.a==='number')?W.vad.a:0.4;
-    const minor=v<0.5,root=110*Math.pow(2,(minor?-3:-1)/12);     // A 附近,暗一点
-    const scale=minor?[0,3,5,7,10,12,15]:[0,2,4,7,9,12,14];      // 小调/大调音阶(半音)
-    const prog=minor?[[0,2,4],[5,0,2],[3,5,0],[6,1,3]]:[[0,2,4],[3,5,0],[5,0,2],[4,6,1]];
-    const fr=s=>root*Math.pow(2,s/12);
-    function makeOsc(freq){const o=ctx.createOscillator();o.type='sine';o.frequency.value=freq;
-      const g=ctx.createGain();g.gain.value=0;o.connect(g);g.connect(lp);
-      const lfo=ctx.createOscillator();lfo.frequency.value=0.04+Math.random()*0.05;const ld=ctx.createGain();ld.gain.value=2.4;lfo.connect(ld);ld.connect(o.detune);lfo.start();o.start();return{o,g,lfo};}
-    let pad=[],ci=0;
-    function setChord(k){const chord=prog[k%prog.length],t=ctx.currentTime,old=pad;
-      pad=chord.map(sc=>makeOsc(fr(scale[sc])));pad.push(makeOsc(fr(scale[chord[0]])/2));   // 加低八度根音垫底
-      pad.forEach(n=>n.g.gain.linearRampToValueAtTime(0.15,t+6));                            // 6s 交叉淡入
-      old.forEach(n=>{try{n.g.gain.cancelScheduledValues(t);n.g.gain.setValueAtTime(n.g.gain.value,t);n.g.gain.linearRampToValueAtTime(0,t+6);}catch(e){}setTimeout(()=>{try{n.o.stop();n.lfo.stop();}catch(e){}},6600);});}
-    setChord(0);
-    const chordTimer=setInterval(()=>{ci++;setChord(ci);},16000-a*5000);                     // 12–16s 换和弦
-    function ping(){const s=scale[1+Math.floor(Math.random()*5)],freq=fr(s)*2,t=ctx.currentTime;  // 上方钟鸣
-      const o=ctx.createOscillator();o.type='triangle';o.frequency.value=freq;
-      const g=ctx.createGain();g.gain.setValueAtTime(0.0001,t);g.gain.linearRampToValueAtTime(0.08,t+0.05);g.gain.exponentialRampToValueAtTime(0.0006,t+3.6);
-      o.connect(g);if(ctx.createStereoPanner){const p=ctx.createStereoPanner();p.pan.value=(Math.random()*2-1)*0.6;g.connect(p);p.connect(bus);}else g.connect(bus);
-      o.start(t);o.stop(t+3.7);}
-    const pingTimer=setInterval(()=>{if(Math.random()<0.45+a*0.3)ping();},5500-a*1800);        // 稀疏,arousal 越高越密
-    master.gain.linearRampToValueAtTime(0.07,now+6);                                          // 极淡,6s 渐入
-    _bgmNodes={master,timers:[chordTimer,pingTimer]};
+    const play=()=>{
+      if(!_bgmOn||_bgmSrc||!_bgmBuf)return;                          // 期间被关掉就别再起
+      const src=ctx.createBufferSource();src.buffer=_bgmBuf;src.loop=true;
+      const g=ctx.createGain();g.gain.value=0;src.connect(g);g.connect(ctx.destination);
+      const now=ctx.currentTime;g.gain.setValueAtTime(0,now);g.gain.linearRampToValueAtTime(0.32,now+3.5); // 3.5s 缓入,轻柔背景音量
+      src.start();_bgmSrc=src;_bgmGain=g;};
+    if(_bgmBuf)return play();
+    if(_bgmLoading)return;_bgmLoading=true;_loadBgm(ctx,BGM_SOURCES,0,play);
   }catch(e){}
 }
 function bgmStop(){
-  if(!_bgmNodes)return;const n=_bgmNodes;_bgmNodes=null;
-  try{n.timers.forEach(t=>clearInterval(t));const ctx=_bgmCtx;
-    if(ctx){try{n.master.gain.cancelScheduledValues(ctx.currentTime);n.master.gain.setValueAtTime(n.master.gain.value,ctx.currentTime);n.master.gain.linearRampToValueAtTime(0,ctx.currentTime+1.4);}catch(e){}
-      setTimeout(()=>{try{ctx.close();}catch(e){}_bgmCtx=null;},1700);}    // 关上下文:彻底停所有振荡器/定时器
-  }catch(e){_bgmCtx=null;}
+  if(!_bgmSrc)return;const src=_bgmSrc,g=_bgmGain,ctx=_bgmCtx;_bgmSrc=null;_bgmGain=null;
+  try{const t=ctx.currentTime;g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(g.gain.value,t);g.gain.linearRampToValueAtTime(0,t+1.2); // 1.2s 淡出再停
+    setTimeout(()=>{try{src.stop();}catch(e){}},1400);
+  }catch(e){try{src.stop();}catch(e2){}}
 }
 function updateBgmBtn(){const b=document.getElementById('bgmBtn');if(b){b.innerHTML=window.AHAIcons?AHAIcons.svg(_bgmOn?'music':'musicOff'):'♪';b.title=(_bgmOn?'背景音乐 开':'背景音乐 关')+' · 按 M 切换';b.classList.toggle('on',_bgmOn);}}
 function bgmToggle(){_bgmOn=!_bgmOn;try{localStorage.setItem('aha_bgm',_bgmOn?'1':'0');}catch(e){}
   const lay=(document.getElementById('stage').dataset.layout)||'';
   if(_bgmOn&&lay==='immersive')bgmStart();else bgmStop();updateBgmBtn();}
 function render(){
-  W=qWork();
-  if(!W){document.getElementById('stage').innerHTML='<div style="grid-column:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;gap:16px;color:#8a8170;text-align:center;padding:40px"><div style="font-family:var(--serif);font-size:20px">没找到这幅画</div><a href="museum.html" style="font-family:var(--mono);font-size:13px;color:#fff;background:#b0673a;border-radius:999px;padding:11px 22px;text-decoration:none">🏛️ 回美术馆</a></div>';return;}
+  W=qWork();_panelWork=W?W.file:'';
+  if(!W){document.getElementById('stage').innerHTML='<div style="grid-column:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;gap:16px;color:#8a8170;text-align:center;padding:40px"><div style="font-family:var(--serif);font-size:20px">没找到这幅画</div><a href="museum.html" style="font-family:var(--mono);font-size:13px;color:#fff;background:#b0673a;border-radius:999px;padding:11px 22px;text-decoration:none"><i data-ic="museum"></i> 回美术馆</a></div>';return;}
   document.title='aha · '+cleanTitle(W.title,W.artist)+(isRealArtist(W)?' · '+W.artist:'');
   openTs=Date.now();
   if(window.AHA)AHA.event('open',{target_type:'work',target_id:W.file,work_id:W.work_id,x:W.x,y:W.y});
@@ -615,8 +658,13 @@ function render(){
   const adj=nearestOther(W),se=randSame('emo',W.emo,W),sw=randSame('wv',W.wv,W);
   const taste=STATE.taste;
   const youHTML=taste?(()=>{const dd=dist(W,taste);const pct=Math.max(0,Math.round((1-dd/1.41)*100));
-    const phrase=pct>=80?'几乎正中你的口味':pct>=60?'挺合你的胃口':pct>=40?'和你的口味有点距离':'离你常逛的区有点远——也许正好换换眼睛';
-    return `<div class="fit-h">✦ 与你逛出的口味,契合度</div><div class="fit-bar"><span class="fit-fill" style="width:${pct}%"></span></div><div class="fit-row"><b class="fit-pct">${pct}%</b><span class="fit-note">${phrase}</span></div><div class="fit-sub">在「它在哪 · 世界观平面」里,○你 和 ●这幅 的距离越近就越合你</div>`;})():'✦ 再多逛几幅,这里会算出"它有多合你"。';
+    const phrase=pct>=80?'几乎正中你的口味':pct>=60?'挺合你的胃口':pct>=40?'和你的口味有点距离':'离你常逛的区有点远 · 也许正好换换眼睛';
+    const C=163.36, off=(C*(1-pct/100)).toFixed(1);
+    return `<div class="fit-head"><i data-ic="sparkles"></i> 与你逛出的口味 · 契合度</div>
+     <div class="fit-body">
+       <div class="fit-ring"><svg viewBox="0 0 64 64"><circle class="fr-track" cx="32" cy="32" r="26"/><circle class="fr-fill" cx="32" cy="32" r="26" stroke-dasharray="${C}" stroke-dashoffset="${off}" transform="rotate(-90 32 32)"/></svg><div class="fit-num"><span class="v"><b>${pct}</b><i>%</i></span></div></div>
+       <div class="fit-meta"><div class="fit-phrase">${esc(phrase)}</div><div class="fit-sub">世界观平面里 ○你 和 ●这幅 越近越合你</div></div>
+     </div>`;})():'<div class="fit-head"><i data-ic="sparkles"></i> 口味契合度</div><div class="fit-empty">再多逛几幅,这里会算出"它有多合你"。</div>';
   const lang=W.lang&&AX.every(a=>W.lang[a]!=null)?W.lang:null;
   const TT=cleanTitle(W.title,W.artist), realA=isRealArtist(W);
   const artHTML=realA?(W.aid?`<a href="kg-artist.html?id=${encodeURIComponent(W.aid)}">${esc(W.artist)}</a>`:esc(W.artist)):`<span class="anon">${esc(W.artist&&W.artist.trim()?W.artist:'佚名 · 待考')}</span>`;
@@ -637,6 +685,7 @@ function render(){
        <div class="topl-items" id="toplItems">
          <a id="wallBtn" title="挂上墙(带框) / 看原作">${window.AHAIcons?AHAIcons.svg('frame'):'▢'}</a>
          <a id="share" title="分享">${window.AHAIcons?AHAIcons.svg('share'):'↗'}</a>
+         <a id="genBtn" href="studio.html?from=${encodeURIComponent(W.file||'')}&title=${encodeURIComponent(cleanTitle(W.title,W.artist))}&artist=${encodeURIComponent(isRealArtist(W)?W.artist:'')}" title="以此变奏 · 去生成中心">${window.AHAIcons?AHAIcons.svg('create'):'✎'}</a>
          <a id="pinBtn" title="钉点评">${window.AHAIcons?AHAIcons.svg('pin'):'•'}</a>
          <a id="dmToggle" title="弹幕">${window.AHAIcons?AHAIcons.svg('danmaku'):'…'}</a>
          <a id="collapse" title="收起解读">${window.AHAIcons?AHAIcons.svg('collapse'):'▥'}</a>
@@ -644,7 +693,8 @@ function render(){
        <a id="toplToggle" class="tt" title="更多">${window.AHAIcons?AHAIcons.svg('more'):'⋯'}</a>
      </div>
      <div class="modesw" id="modesw"><button class="modesw-btn" id="modeswBtn" title="切换阅读方式">${window.AHAIcons?AHAIcons.svg('mode'):'☰'}</button><div class="modesw-menu" id="modeswMenu"></div></div>
-     <img id="pic" src="${W.file}" alt="">
+     <img id="pic" src="${W.file}" alt="" onerror="this.style.visibility='hidden';var e=document.getElementById('imgerr');if(e)e.style.display='flex'">
+     <div class="imgerr" id="imgerr"><span><i data-ic="works"></i> 这幅画暂时取不到</span><a href="museum.html">回美术馆 →</a></div>
      <div class="wallframe" id="wallFrame"></div>
      <div class="pinlayer" id="pinlayer"></div>
      <div class="danmaku" id="danmaku"></div>
@@ -652,7 +702,7 @@ function render(){
      <div class="vhint" id="vhint">点击放大 · 滚轮缩放 · 拖动平移 · 点四周关闭 · 📌 钉点评</div>
      <div class="zoomind" id="zoomind"><span class="zi-bar"><span class="zi-fill"></span></span><span class="zi-pct">100%</span></div>
      <div class="voiceline" id="voiceline"></div>
-     <div class="ss-hint" id="ssHint">⛶ 自动播放 · 动一下暂停</div>
+     <div class="ss-hint" id="ssHint"><i data-ic="fullscreen"></i> 自动播放 · 动一下暂停</div>
      <div class="plaque" id="plaque"></div>
      <div class="drawer-tab" id="drawerTab">解读 ▸</div>
    </div>
@@ -660,8 +710,8 @@ function render(){
      <div class="dock-main">
        <div class="bubble-layer" id="bubbleLayer"></div>
        <div class="chat-feed" id="chatFeed"></div>
-       <div class="dock-h">谁来讲这幅画 · 点头像听 TA 说,或「邀请」更多人</div>
        <div class="persona-row" id="prow"></div>
+       <div class="dock-h">谁来讲这幅画 · 点头像听 TA 说,或「邀请」更多人</div>
        <div class="mnarr">
          <button class="mn-arrow" id="mnPrev">‹</button>
          <div class="mn-cur" id="mnCur"><span class="mn-av">◉</span><span class="mn-nm">aha</span></div>
@@ -714,19 +764,22 @@ function render(){
 
      <div class="you">${youHTML}${KGX('how-it-works.html','推荐算法是怎么算的')}</div>
 
-     <details class="fold" id="voices"><summary>💬 众声 · 大众点评 <b id="cmtn" style="color:var(--gold)">0</b></summary>
+     <details class="fold" id="voices"><summary><i data-ic="danmaku"></i> 众声 · 大众点评 <b id="cmtn" style="color:var(--gold)">0</b></summary>
        <div class="cmtbox"><input id="cmtin" maxlength="80" placeholder="留一句,会飘过画面…"><button id="cmtsend">发送</button></div>
        <div id="cmtlist"></div>
      </details>
      </div>
      <div class="actionbar">
-       <a class="pri" href="kg-compile-v2.html">✦ 生成</a>
+       <a class="pri" href="kg-compile-v2.html"><i data-ic="sparkles"></i> 生成</a>
        <button id="like2" class="${liked?'liked':''}">${window.AHAIcons?AHAIcons.svg('heart',{fill:liked}):'♥'} ${liked?'已收藏':'收藏'}</button>
-       <a id="share2">🔗 分享</a>
+       <a id="share2"><i data-ic="network"></i> 分享</a>
      </div>
    </div>`;
   const view=document.getElementById('view');
   const pic=document.getElementById('pic');
+  // 图片渐显:加载完成再淡入(不再"啪"地出现)
+  if(pic&&!(pic.complete&&pic.naturalWidth)){pic.style.opacity='0';pic.style.transition='opacity .55s ease';
+    pic.addEventListener('load',()=>{pic.style.opacity='1';},{once:true});}
   initZoom(view,pic);
   // 收藏(右下悬浮 + 面板按钮,同步)
   document.getElementById('fav').onclick=toggleLike;
@@ -734,11 +787,19 @@ function render(){
   // 分享
   const shareUrl=()=>location.origin+location.pathname+'?w='+encodeURIComponent(W.file);
   let _cardStyle='classic';
-  const loadCard=(style)=>{const u=shareUrl(),img=document.getElementById('shimg'),dl=document.getElementById('shdl');
-    img.removeAttribute('src');dl.removeAttribute('href');
-    const cq='&s='+encodeURIComponent(style)+'&t='+encodeURIComponent(cleanTitle(W.title,W.artist)||'')+'&a='+encodeURIComponent(isRealArtist(W)?W.artist:'')+(W.year?'&yr='+encodeURIComponent(W.year):'')+'&wv='+encodeURIComponent(W.wvcn||'')+'&em='+encodeURIComponent(W.emo||'')+'&vo='+encodeURIComponent(poeticLine(W)||'');
+  const loadCard=(style)=>{const u=shareUrl(),img=document.getElementById('shimg'),dl=document.getElementById('shdl'),ld=document.getElementById('shLoad');
+    img.removeAttribute('src');dl.removeAttribute('href');img.style.display='none';
+    if(ld){ld.style.display='flex';                                  // 生成中:像在印一张带馆藏号的海报
+      const th=document.getElementById('slThumb');if(th)th.style.backgroundImage='url("'+imgT(W,420)+'")';
+      const ac=document.getElementById('slAcc');if(ac)ac.textContent=(W.work_id!=null&&W.work_id!=='')?'AHA-'+String(W.work_id).padStart(5,'0'):(_accCode||'AHA-…');
+      const tx=ld.querySelector('.sl-txt');if(tx)tx.innerHTML='正在生成海报 <span class="bdots"><span></span><span></span><span></span></span>';}
+    img.onload=()=>{img.style.display='';if(ld)ld.style.display='none';};
+    const _acc=(W.work_id!=null&&W.work_id!=='')?'AHA-'+String(W.work_id).padStart(5,'0'):(_accCode||'');
+    const cq='&s='+encodeURIComponent(style)+'&t='+encodeURIComponent(cleanTitle(W.title,W.artist)||'')+'&a='+encodeURIComponent(isRealArtist(W)?W.artist:'')+(W.year?'&yr='+encodeURIComponent(W.year):'')+'&wv='+encodeURIComponent(W.wvcn||'')+'&em='+encodeURIComponent(W.emo||'')+'&vo='+encodeURIComponent(poeticLine(W)||'')+'&acc='+encodeURIComponent(_acc);
+    const fail=()=>{toast('卡片生成失败');if(ld){ld.style.display='flex';const tx=ld.querySelector('.sl-txt');if(tx)tx.textContent='生成失败 · 点上方排版重试';}};
+    img.onerror=fail;
     fetch('api/card?w='+encodeURIComponent(W.file)+'&u='+encodeURIComponent(u)+cq).then(r=>r.json()).then(d=>{
-      if(d&&d.url){img.src=d.url+'?t='+Date.now();dl.href=d.url;dl.setAttribute('download',((W.title||'aha').slice(0,20))+'·aha·'+style+'.png');}else toast('卡片生成失败');}).catch(()=>toast('卡片生成失败'));};
+      if(d&&d.url){img.src=d.url+'?t='+Date.now();dl.href=d.url;dl.setAttribute('download',((W.title||'aha').slice(0,20))+'·aha·'+style+'.png');}else fail();}).catch(fail);};
   const sh=()=>{document.getElementById('shmask').classList.add('on');loadCard(_cardStyle);};
   document.querySelectorAll('#shtabs .shtab').forEach(b=>b.onclick=()=>{_cardStyle=b.dataset.s;document.querySelectorAll('#shtabs .shtab').forEach(x=>x.classList.toggle('on',x===b));loadCard(_cardStyle);});
   document.getElementById('share').onclick=sh;document.getElementById('share2').onclick=sh;
@@ -746,7 +807,7 @@ function render(){
   document.getElementById('shclose').onclick=()=>document.getElementById('shmask').classList.remove('on');
   document.getElementById('shmask').onclick=e=>{if(e.target.id==='shmask')document.getElementById('shmask').classList.remove('on');};
   // 收起/展开解读
-  const cb=document.getElementById('collapse');cb.onclick=()=>{const im=document.getElementById('stage').classList.toggle('immersive');cb.textContent=im?'▦':'▤';cb.title=im?'看解读':'收起解读';cb.classList.toggle('on',im);setTimeout(fitWall,60);};
+  const cb=document.getElementById('collapse');cb.onclick=()=>{const cl=document.getElementById('stage').classList.toggle('collapsed');cb.title=cl?'看解读 ›':'收起解读';cb.classList.toggle('on',cl);setTimeout(fitWall,60);};
   const wb=document.getElementById('wallBtn');if(wb)wb.onclick=()=>{const on=!document.getElementById('view').classList.contains('walled');applyWall(on);try{localStorage.setItem('aha_wall',on?'1':'0');}catch(e){}};
   // 版式:默认剧场;左栏图标切换,记忆 localStorage(墙版强制带框,其余沿用 aha_wall 框偏好)
   // 阅读方式切换器:小按钮点开展开五种关系
@@ -764,7 +825,7 @@ function render(){
    ['pointerdown','keydown','touchstart'].forEach(ev=>addEventListener(ev,armBgm,{once:false,passive:true}));}
   {const dt=document.getElementById('drawerTab');if(dt)dt.onclick=()=>{
     ssStop();
-    if(_ssW&&_ssW.file!==W.file){location.replace('art.html?w='+encodeURIComponent(_ssW.file));return;} // 屏保切过张:先同步到当前张再读
+    if(W&&_panelWork&&W.file!==_panelWork){location.replace('art.html?w='+encodeURIComponent(W.file));return;} // 屏保切过张:重载到当前张再读(刷新面板)
     document.getElementById('stage').classList.toggle('drawer');
   };}
   // 屏保:任意交互暂停并重新计时(沉浸下空闲再启)
@@ -783,6 +844,8 @@ function render(){
   drawMap();
   renderFrames();
   initSocial();
+  a11yPass();
+  showIntro();
 }
 // —— 挂上墙(带框)/ 看原作(无框)——
 function applyWall(on){
@@ -838,8 +901,17 @@ function fillLayoutBits(){
 }
 function setLayout(m){
   if(['theater','immersive','wall','editorial','conversation'].indexOf(m)<0)m='theater';
+  // 屏保切过张:右栏面板还是旧画渲染的 → 切版式前先重载到当前张,刷新整页面板/铭牌/契合度等
+  if(W&&_panelWork&&W.file!==_panelWork){
+    try{localStorage.setItem('aha_artlayout',m);}catch(e){}
+    location.replace('art.html?w='+encodeURIComponent(W.file));return;
+  }
+  stopTurns();                                          // 切版式:停掉当前讲解 + 清空发言队列
+  if(m!=='conversation')_convoSeeded=false;             // 离开对话 → 下次进来重新开场
   const stage=document.getElementById('stage');stage.dataset.layout=m;stage.classList.remove('drawer','dockopen');
+  stage.classList.toggle('collapsed',m==='theater');   // 剧场默认收起右栏详细信息(收起按钮可展开)
   {const tp=document.getElementById('topl');if(tp)tp.classList.remove('open');}
+  {const cb=document.getElementById('collapse');if(cb)cb.classList.toggle('on',m==='theater');}
   try{localStorage.setItem('aha_artlayout',m);}catch(e){}
   updateModeSwitch(m);
   if(m==='immersive'&&_bgmOn)bgmStart();else if(m!=='immersive')bgmStop();
@@ -848,13 +920,13 @@ function setLayout(m){
   else{let pref=false;try{pref=localStorage.getItem('aha_wall')==='1';}catch(e){}applyWall(pref);} // 剧场:默认净画(可点击放大),框为可选(🖼️)
   fillLayoutBits();
   if(m!=='editorial'){const _p=document.getElementById('pic');if(_p)_p.style.transform='';}   // 离开杂志复位视差位移
-  if(m==='conversation'){const cf=document.getElementById('chatFeed');if(cf&&!cf.children.length)appendChat(OFFICIAL,poeticLine(W));} // 对话种入官方首条
+  if(m==='conversation')convoSeed();   // 对话:默认3讲解员在场 + 官方开场 + 随机一人开始讲(TTS)
   setTimeout(fitWall,40);
   ssStop();                                       // 切版式先停屏保
   if(m==='immersive')ssArm();else _ssW=null;      // 仅沉浸:空闲后启幻灯片屏保
 }
 // —— 沉浸·幻灯片屏保:空闲约 10s 自动逐张交叉淡入,任意交互暂停 ——
-let _ssOn=false,_ssIdx=-1,_ssW=null,_ssIdle=null,_ssTick=null;
+let _ssOn=false,_ssIdx=-1,_ssW=null,_ssIdle=null,_ssTick=null,_panelWork='';   // _panelWork=右栏面板当前为哪张渲染的(屏保换图后用它判断是否需重载刷新面板)
 const SS_IDLE=15000,SS_SLIDE=14000;     // 屏保:空闲 15s 后启,每 14s 换一张(放慢)
 function ssMeta(w){return [cleanTitle(w.title,w.artist),isRealArtist(w)?w.artist:'佚名',w.year].filter(Boolean).join(' · ')+(w.wvcn?'　|　'+w.wvcn+(w.emo?' · '+w.emo:''):'');}
 function ssArm(){clearTimeout(_ssIdle);const stg=document.getElementById('stage');
@@ -866,7 +938,7 @@ function ssShow(w){const pic=document.getElementById('pic');if(!pic||!w)return;
   const pre=new Image();pre.onload=()=>{pic.style.opacity='0';
     setTimeout(()=>{pic.src=w.file;pic.style.opacity='1';const vl=document.getElementById('voiceline');
       if(vl)vl.innerHTML=`<div class="vl-q">“${esc(poeticLine(w))}”</div><div class="vl-m">${esc(ssMeta(w))}</div>`;},700);};
-  pre.onerror=()=>{};pre.src=w.file;_ssW=w;
+  pre.onerror=()=>{};pre.src=w.file;_ssW=w;W=w;   // 同步 W=当前显示张:分享/收藏/弹幕/选解说员/埋点等全部跟着对(右栏面板靠 _panelWork 守,开抽屉/切版式时再重载刷新)
   try{history.replaceState(null,'','art.html?w='+encodeURIComponent(w.file));}catch(e){}}
 function ssStop(){_ssOn=false;clearTimeout(_ssTick);const h=document.getElementById('ssHint');if(h)h.classList.remove('on');
   const pic=document.getElementById('pic');if(pic)pic.style.opacity='1';}
@@ -880,18 +952,83 @@ function renderFrames(){
   prev.innerHTML=AHAFrames.wrap(`<img src="${imgT(W,480)}" alt="">`,W);
   const an=AHAFrames.BY[autoKey],lowConf=(ax.conf==='low'||ax.conf==='none');
   let h;
-  if(lowConf) h=`这幅画缺流派 / 媒材信息,暂按 <b>${an.emoji} ${an.name}</b> 兜底 <span style="color:var(--ink-mute)">⚠️待定 · 可手动挑或馆方指定</span>`;
+  if(lowConf) h=`这幅画缺流派 / 媒材信息,暂按 <b>${an.emoji} ${an.name}</b> 兜底 <span style="color:var(--ink-mute)"><i data-ic="warn"></i>待定 · 可手动挑或馆方指定</span>`;
   else if(ax.src==='llm') h=`🪄 AI 读画面为它策展:<b>${esc(ax.why)}</b> → <b>${an.emoji} ${an.name}</b>${ax.finish?` <span style="color:var(--ink-mute)">· ${esc(ax.finish)}</span>`:''}`;
   else h=`系统按<b>${esc(ax.why)}</b>,自动配了 <b>${an.emoji} ${an.name}</b>`;
   if(canon)h+=` · 馆方已指定 <b>${AHAFrames.BY[canon].name}</b>`;
   if(previewing)h+=` · 你正在试 <b>${AHAFrames.BY[cur].name}</b>`;
   hint.innerHTML=h;
   chips.innerHTML=AHAFrames.STYLES.map(s=>`<button class="fchip${s.key===cur?' on':''}" data-k="${s.key}"><span class="fe">${s.emoji}</span><span><span class="fn">${s.name}</span><span class="fd">${esc(s.desc.split(' · ')[1]||s.desc)}</span></span>${s.key===autoKey?'<span class="auto-tag">自动</span>':''}</button>`).join('')
+    +`<button class="frameorder" id="frameOrder"><i data-ic="cart"></i> 定制装裱 · 下单</button>`
     +`<button class="framereset" id="frameReset" style="grid-column:1/-1">↺ 恢复${canon?'馆方默认':'自动匹配'}</button>`
     +`<a class="framecurator" id="frameCurate" style="grid-column:1/-1">🔒 设为馆藏默认(馆方)</a>`;
   chips.querySelectorAll('.fchip').forEach(b=>b.onclick=()=>{const k=b.dataset.k;AHAFrames.setPreview(W.file,k);renderFrames();if(document.getElementById('view').classList.contains('walled'))applyWall(true);});
   const rs=document.getElementById('frameReset');if(rs)rs.onclick=()=>{AHAFrames.setPreview(W.file,'');renderFrames();if(document.getElementById('view').classList.contains('walled'))applyWall(true);};
   const cu=document.getElementById('frameCurate');if(cu)cu.onclick=()=>curateFrame(cur);
+  const od=document.getElementById('frameOrder');if(od)od.onclick=()=>openFrameOrder(cur);
+}
+
+// ===== 装裱下单(demo:尺寸/报价为估算占位,流程真实;提交落库 mu_frame_order)=====
+const ORD={rate:{wood:2.5,gilt:7,noir:3,mat:2.5,white:2.5,silver:4.5,scroll:4,float:5},
+           prof:{wood:4,gilt:6,noir:2.5,mat:3.5,white:2.5,silver:4,scroll:4,float:1.5},
+           sizes:[30,40,50,60,75,90]};
+let _ordKey='wood',_ordAspect=0.75,_ordSize=50,_ordQty=1,_ordDone=false;
+function openFrameOrder(key){_ordKey=key||AHAFrames.pick(W);_ordSize=50;_ordQty=1;_ordDone=false;
+  // 取真实画幅长宽比(短/长)
+  const im=new Image();im.onload=()=>{if(im.naturalWidth&&im.naturalHeight){_ordAspect=Math.min(im.naturalWidth,im.naturalHeight)/Math.max(im.naturalWidth,im.naturalHeight);_ordRender();}};im.src=W.file;
+  _ordRender();}
+function _ordCalc(){
+  const ar=(W.ar||(_ordAspect?1/_ordAspect:1.33)); // 宽/高
+  const longE=_ordSize,shortE=Math.max(10,Math.round(longE*_ordAspect));
+  let aw,ah; if(ar>=1){aw=longE;ah=shortE;}else{ah=longE;aw=shortE;}
+  const m=(_ordKey==='float')?0:5, p=ORD.prof[_ordKey]||4;
+  const ow=Math.round(aw+2*(m+p)),oh=Math.round(ah+2*(m+p));
+  const artA=aw*ah,matA=ow*oh-artA,perim=2*(ow+oh);
+  const price=Math.round(artA*0.18+matA*0.06+perim*(ORD.rate[_ordKey]||3))*_ordQty;
+  return {aw,ah,ow,oh,price};}
+function _ordRender(){
+  let ov=document.getElementById('ordOv');
+  if(!ov){ov=document.createElement('div');ov.id='ordOv';ov.className='ordov';document.body.appendChild(ov);
+    ov.onclick=e=>{if(e.target===ov)ov.remove();};}
+  if(_ordDone){return;}
+  const s=AHAFrames.BY[_ordKey]||{},c=_ordCalc();
+  const prev='<div class="aha-frame f-'+_ordKey+'" style="max-width:150px;margin:0 auto"><div class="aha-mat"><img src="'+esc(W.file)+'"></div></div>';
+  ov.innerHTML='<div class="ordbox"><button class="ordx" onclick="document.getElementById(\'ordOv\').remove()">×</button>'
+    +'<h3><i data-ic="cart"></i> 定制装裱</h3><div style="font-size:12px;color:var(--ink-mute);margin-bottom:12px">'+esc(cleanTitle(W.title,W.artist))+' · '+esc(W.artist||'')+'</div>'
+    +'<div style="display:grid;grid-template-columns:160px 1fr;gap:16px;align-items:start">'
+    +'<div>'+prev+'<div style="text-align:center;font-size:12px;margin-top:8px">'+(s.emoji||'')+' '+esc(s.name||'')+'</div></div>'
+    +'<div><div style="font-size:11px;color:var(--ink-mute);margin-bottom:2px">画幅长边(cm)</div><div class="ordsz">'
+    + ORD.sizes.map(z=>'<button class="'+(z===_ordSize?'on':'')+'" onclick="_ordSize='+z+';_ordRender()">'+z+'</button>').join('')+'</div>'
+    +'<div class="ordrow"><span>画心尺寸</span><b>'+c.aw+' × '+c.ah+' cm</b></div>'
+    +'<div class="ordrow"><span>成品外框(含卡纸+边框)</span><b>'+c.ow+' × '+c.oh+' cm</b></div>'
+    +'<div class="ordrow" style="align-items:center"><span>数量</span><span><button onclick="_ordQty=Math.max(1,_ordQty-1);_ordRender()" style="border:1px solid var(--line);background:#fff;border-radius:6px;width:26px;cursor:pointer">−</button> <b>'+_ordQty+'</b> <button onclick="_ordQty=Math.min(99,_ordQty+1);_ordRender()" style="border:1px solid var(--line);background:#fff;border-radius:6px;width:26px;cursor:pointer">+</button></span></div>'
+    +'<div class="ordrow" style="border-top:1px solid var(--line);margin-top:5px;padding-top:8px"><span>示例报价 <span style="font-size:10px;color:var(--ink-mute)">(画心+卡纸+框估算)</span></span><b style="color:var(--gold);font-size:17px">¥'+c.price+'</b></div>'
+    +'</div></div>'
+    +'<input class="ordin" id="ordName" placeholder="姓名 *">'
+    +'<input class="ordin" id="ordContact" placeholder="联系方式(手机 / 微信)*">'
+    +'<input class="ordin" id="ordNote" placeholder="备注(可选:加急、礼盒、特殊尺寸…)">'
+    +'<button class="ordsub" onclick="submitFrameOrder()">提交下单 / 询价</button>'
+    +'<div style="font-size:10.5px;color:var(--ink-mute);text-align:center;margin-top:8px">demo · 报价为按尺寸+框型的估算,接入供应链后以实际报价为准</div>'
+    +'</div>';
+}
+function submitFrameOrder(){
+  const name=(document.getElementById('ordName').value||'').trim();
+  const contact=(document.getElementById('ordContact').value||'').trim();
+  const note=(document.getElementById('ordNote').value||'').trim();
+  if(!name||!contact){alert('请填姓名和联系方式');return;}
+  const c=_ordCalc();
+  fetch('api/frame_order',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({work:W.file,title:cleanTitle(W.title,W.artist),frame:_ordKey,art_w:c.aw,art_h:c.ah,
+      outer_w:c.ow,outer_h:c.oh,qty:_ordQty,price_cents:c.price*100,name,contact,note})})
+   .then(r=>r.json()).then(d=>{
+     if(d&&d.ok){_ordDone=true;const ov=document.getElementById('ordOv');
+       ov.innerHTML='<div class="ordbox" style="text-align:center"><div style="font-size:44px"><i data-ic="check"></i></div>'
+        +'<h3 style="text-align:center">下单成功</h3><div style="font-family:var(--mono);font-size:15px;color:var(--gold);margin:6px 0">订单号 '+d.order_no+'</div>'
+        +'<div style="font-size:13px;color:var(--ink-soft);line-height:1.8">'+esc(cleanTitle(W.title,W.artist))+' · '+(AHAFrames.BY[_ordKey]||{}).name+'<br>成品 '+c.ow+'×'+c.oh+'cm · ×'+_ordQty+' · ¥'+c.price+'</div>'
+        +'<div style="font-size:11.5px;color:var(--ink-mute);margin-top:10px">我们会尽快用你留的联系方式与你确认尺寸与报价</div>'
+        +'<button class="ordsub" onclick="document.getElementById(\'ordOv\').remove()">完成</button></div>';
+     } else alert('提交失败:'+((d&&d.error)||'请稍后再试'));
+   }).catch(()=>alert('网络错误,请稍后再试'));
 }
 function curateFrame(key){
   let pass=''; try{pass=localStorage.getItem('aha_admin_pass')||'';}catch(e){}
@@ -903,7 +1040,7 @@ function curateFrame(key){
     else toast((d&&d.error)||'设置失败');
   }).catch(()=>toast('网络错误'));
 }
-function door(label,w){if(!w)return '';return `<a class="door" href="art.html?w=${encodeURIComponent(w.file)}"><img loading="lazy" src="${imgT(w,360)}"><div class="dt"><div>${label}</div><b>${esc(w.title||w.artist)}</b></div></a>`;}
+function door(label,w){if(!w)return '';return `<a class="door" href="art.html?w=${encodeURIComponent(w.file)}"><img loading="lazy" decoding="async" src="${imgT(w,360)}"><div class="dt"><div>${label}</div><b>${esc(w.title||w.artist)}</b></div></a>`;}
 function closeView(){history.length>1?history.back():location.href='museum.html';}
 function toggleLike(e){if(e)e.stopPropagation();const f=W.file,on=!(STATE.collections||[]).includes(f);STATE.collections=STATE.collections||[];
   if(on)STATE.collections.push(f);else STATE.collections=STATE.collections.filter(x=>x!==f);
@@ -927,7 +1064,11 @@ function drawMap(){
 }
 // ===== 解读层:多视角(人设) + 众声(弹幕/钉点) =====
 let _personas=[],_curPersona=null,_curNarr=null,_comments=[],_pinning=false,_dmTimer=null,_dmIdx=0,_ttsPersona=null,_dmOff=false,_curReading='',_invited=[],_libSel=new Set();
+// 发言队列:讲话串行、按点击/入场顺序,后点的不打断正在讲的(只排队)
+let _turnQ=[],_turnBusy=false,_turnGen=0,_speakResolve=null,_speakWatch=null,_convoSeeded=false;
 const OFFICIAL={id:'official',name:'aha',emoji:'◉',official:true};
+// 头像内容:官方=衬线品牌字标,其余=emoji
+function avHTML(p){return (p&&p.official)?'<span class="aha-mark">a</span>':esc((p&&p.emoji)||'👁');}
 const BUILTIN=['poet','historian','psych','painter','child'];
 const DEFAULT_INVITE=['painter']; // 默认只有 官方(常驻) + 作者自述,其余都靠邀请
 // iOS/手机:异步取到 TTS 后再 play() 会被拦,先在首次手势里"解锁"音频元素
@@ -938,7 +1079,7 @@ addEventListener('pointerdown',unlockAudio,{once:true});addEventListener('touchs
 const MOBILE=matchMedia('(max-width:860px)').matches;
 let _mIdx=0;
 function narrList(){return [OFFICIAL].concat(_personas.filter(p=>_invited.includes(p.id)));}
-function renderMNarr(){const c=document.getElementById('mnCur');if(!c)return;const cur=narrList()[_mIdx]||OFFICIAL;c.querySelector('.mn-av').textContent=cur.emoji||'👁';c.querySelector('.mn-nm').textContent=cur.name;}
+function renderMNarr(){const c=document.getElementById('mnCur');if(!c)return;const cur=narrList()[_mIdx]||OFFICIAL;c.classList.toggle('official',!!cur.official);c.querySelector('.mn-av').innerHTML=avHTML(cur);c.querySelector('.mn-nm').textContent=cur.name;}
 function mnGo(d){const list=narrList();_mIdx=(_mIdx+d+list.length)%list.length;renderMNarr();const cur=list[_mIdx];pickPersona(cur.id,cur,false);}
 function _uid(){return window.AHA?AHA.uid:'anon';}
 function jget(p){return fetch('api/'+p).then(r=>r.json()).catch(()=>({}));}
@@ -949,6 +1090,30 @@ function setAccDisplay(code){_accCode=code;
 function loadAccession(){
   if(W.work_id!=null&&W.work_id!==''){setAccDisplay('AHA-'+String(W.work_id).padStart(5,'0'));return;}  // 馆藏号 = 数据库 work_id,保持一致
   jget('accession?w='+encodeURIComponent(W.file)).then(d=>{if(d&&d.code)setAccDisplay(d.code);}).catch(()=>{});}
+// 首次轻引导(一次性,记 localStorage)
+function showIntro(){
+  try{if(localStorage.getItem('aha_art_intro'))return;}catch(e){}
+  const m=document.getElementById('introMask');if(!m)return;
+  const I=n=>window.AHAIcons?AHAIcons.svg(n):'';
+  m.innerHTML=`<div class="intro-card">
+    <h3>看一幅画,有几种方式</h3><div class="sub">A WORK · FIVE WAYS TO READ</div>
+    <div class="intro-tip"><span class="ti">${I('mode')}</span><span class="tt">左上角换 <b>阅读方式</b>:沉浸 / 剧场 / 馆墙 / 杂志 / 对话</span></div>
+    <div class="intro-tip"><span class="ti">←→</span><span class="tt"><b>← →</b> 上一幅 / 下一幅　·　<b>↑ ↓</b> 相邻 / 同情绪</span></div>
+    <div class="intro-tip"><span class="ti">${I('tap')}</span><span class="tt"><b>单击</b>放大画面　·　<b>双击</b>返回美术馆</span></div>
+    <div class="intro-tip"><span class="ti">${I('danmaku')}</span><span class="tt">点 <b>解说员</b>,听不同的人讲这幅画</span></div>
+    <button class="go" id="introGo">开始看画</button></div>`;
+  m.classList.add('on');
+  const dismiss=()=>{m.classList.remove('on');try{localStorage.setItem('aha_art_intro','1');}catch(e){}};
+  const g=document.getElementById('introGo');if(g){g.onclick=dismiss;g.focus();}
+  m.onclick=e=>{if(e.target===m)dismiss();};
+}
+// 可访问性:图标按钮补 aria-label / role / tabindex,#pic 补 alt
+function a11yPass(){
+  document.querySelectorAll('.view .topl a,.modesw-btn,.view .fav,.mtop .mt-ic,.drawer-tab,.dock-tab,.mn-custom').forEach(el=>{
+    if(el.title&&!el.getAttribute('aria-label'))el.setAttribute('aria-label',el.title);
+    if(el.tagName==='A'||el.classList.contains('drawer-tab')||el.classList.contains('dock-tab')){el.setAttribute('role','button');if(!el.hasAttribute('tabindex'))el.setAttribute('tabindex','0');}});
+  const pic=document.getElementById('pic');if(pic&&W)pic.alt=cleanTitle(W.title,W.artist)+(isRealArtist(W)?' · '+W.artist:'');
+}
 function jpost(p,b){return fetch('api/'+p,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({uid:_uid()},b))}).then(r=>r.json()).catch(()=>({}));}
 function initSocial(){
   loadAccession();
@@ -971,9 +1136,10 @@ function initSocial(){
     if(_dmOff){if(_dmTimer)clearTimeout(_dmTimer);[...document.querySelectorAll('.dmu')].forEach(e=>e.remove());}else{startDanmaku();}applyDm();};
   applyDm();
   const a=document.getElementById('ttsAudio');
-  a.onplay=()=>beginReveal(true);
-  a.ontimeupdate=syncBub;
-  a.onended=()=>{finishBub();setSpeaking(_ttsPersona,false);};
+  a.onplay=()=>{if(curLay()!=='conversation')beginReveal(true);};       // 对话:正文已在气泡流里,音频不再驱动字幕
+  a.ontimeupdate=()=>{if(curLay()!=='conversation')syncBub();};
+  a.onended=()=>{if(curLay()!=='conversation')finishBub();doneSpeak();}; // 播完 → 放行队列下一位
+  a.onerror=()=>{if(curLay()!=='conversation')beginReveal(false);doneSpeak();};
   // 讲解人员库弹层
   document.getElementById('libNew').onclick=()=>document.getElementById('pform').classList.toggle('on');
   document.getElementById('libGo').onclick=()=>{_invited=[..._libSel];try{localStorage.setItem('aha_invited3',JSON.stringify(_invited));}catch(e){}renderPersonas();closeLib();};
@@ -983,6 +1149,8 @@ function initSocial(){
   const px=(id,tid)=>{const e=document.getElementById(id),t=document.getElementById(tid);if(e&&t)e.onclick=()=>t.click();};
   px('mShare','share');px('mFav','fav');px('mDan','dmToggle');px('mPin','pinBtn');
   {const mc=document.getElementById('mClose');if(mc)mc.onclick=closeView;}
+  // 左上「美术馆」:回到当时点进来的位置(history.back 还原展厅+滚动),而非美术馆首页;改键点击/中键仍走新开
+  {const hf=document.querySelector('.home-fab');if(hf)hf.addEventListener('click',e=>{if(e.metaKey||e.ctrlKey||e.shiftKey||e.button===1)return;e.preventDefault();closeView();});}
   // 单击=放大(initZoom 管),双击=关闭(避免单击误触);沉浸抽屉开时单击画面先收抽屉
   {const vw=document.getElementById('view');if(vw){
     vw.addEventListener('click',e=>{
@@ -996,12 +1164,14 @@ function initSocial(){
   }}
   // Esc:有抽屉先收,否则关闭页面
   addEventListener('keydown',e=>{if(e.key!=='Escape')return;const stg=document.getElementById('stage');if(stg.classList.contains('drawer'))stg.classList.remove('drawer');else closeView();});
+  // 可访问性:Enter/Space 激活当作按钮用的 <a role=button>
+  addEventListener('keydown',e=>{const t=e.target;if((e.key==='Enter'||e.key===' ')&&t&&t.tagName==='A'&&t.getAttribute('role')==='button'){e.preventDefault();t.click();}});
   // 方向键切画:←→ 上一幅/下一幅(本批序列) · ↑ 相邻世界观 · ↓ 同情绪;不劫持输入框/组合键
   addEventListener('keydown',e=>{
     if(['INPUT','TEXTAREA'].indexOf(e.target&&e.target.tagName)>=0||e.metaKey||e.ctrlKey||e.altKey)return;
     if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].indexOf(e.key)<0)return;
     e.preventDefault();ssStop();
-    const cur=_ssW||W;                              // 屏保切过张则以当前展示张为基准
+    const cur=W;                                    // W 已与屏保显示同步
     const nav=w=>{if(w&&w.file)location.replace('art.html?w='+encodeURIComponent(w.file));};
     const n=WORKS.length,idx=WORKS.findIndex(o=>o.file===cur.file);
     if(e.key==='ArrowRight')nav(idx>=0&&n?WORKS[(idx+1)%n]:nearestOther(cur));
@@ -1019,7 +1189,7 @@ function initSocial(){
   // 手机解说员:左右切人,确认才播
   const mnPrev=document.getElementById('mnPrev');
   if(mnPrev){mnPrev.onclick=()=>mnGo(-1);document.getElementById('mnNext').onclick=()=>mnGo(1);
-    document.getElementById('mnPlay').onclick=()=>{const cur=narrList()[_mIdx]||OFFICIAL;if(cur.official)playTTS({text:poeticLine(W),voice:'苏打',who:'official'});else pickPersona(cur.id,cur,true);};
+    document.getElementById('mnPlay').onclick=()=>{const cur=narrList()[_mIdx]||OFFICIAL;pickPersona(cur.id,cur,true);};
     document.getElementById('mnCustom').onclick=openLib;
     let sx0=null;const c=document.getElementById('mnCur');
     c.addEventListener('touchstart',e=>{sx0=e.touches[0].clientX;},{passive:true});
@@ -1032,35 +1202,81 @@ function syncPins(){const pic=document.getElementById('pic'),pl=document.getElem
 // — 人设 / 多视角 —
 function loadPersonas(){_curPersona='official';_curNarr=OFFICIAL;
   try{const s=localStorage.getItem('aha_invited3');_invited=s?JSON.parse(s):DEFAULT_INVITE.slice();}catch(e){_invited=DEFAULT_INVITE.slice();}
-  jget('personas?uid='+encodeURIComponent(_uid())).then(d=>{_personas=d.items||[];renderPersonas();});}
+  jget('personas?uid='+encodeURIComponent(_uid())).then(d=>{_personas=d.items||[];renderPersonas();convoSeed();});}
 function renderPersonas(){const row=document.getElementById('prow');if(!row)return;row.innerHTML='';
-  [OFFICIAL].concat(_personas.filter(p=>_invited.includes(p.id))).forEach(p=>{const b=document.createElement('button');b.className='pav'+(_curPersona===p.id?' on':'')+(p.official?' off':'');b.title=p.descr||(p.official?'aha 的官方解读':'');b.dataset.id=p.id;
-    b.innerHTML=`<span class="av">${p.emoji||'👁'}</span><span class="nm">${esc(p.name)}</span>`;b.onclick=()=>pickPersona(p.id,p,true);row.appendChild(b);});
+  [OFFICIAL].concat(_personas.filter(p=>_invited.includes(p.id))).forEach(p=>{const b=document.createElement('button');b.className='pav'+(_curPersona===p.id?' on':'')+(p.official?' off official':'');b.title=p.descr||(p.official?'aha 的官方解读':'');b.dataset.id=p.id;
+    b.innerHTML=`<span class="av">${avHTML(p)}</span><span class="nm">${esc(p.name)}</span>`;b.onclick=()=>pickPersona(p.id,p,true);row.appendChild(b);});
   const add=document.createElement('button');add.className='pav add';add.innerHTML='<span class="av">＋</span><span class="nm">邀请</span>';add.onclick=openLib;row.appendChild(add);renderMNarr();}
-function pickPersona(id,p,auto){_curPersona=id;_curNarr=p;renderPersonas();
-  const lay=(document.getElementById('stage').dataset.layout)||'theater';
-  if(lay==='theater')linkHighlight(id);                       // 剧场:点解说员→右栏对应分析脉冲高亮
-  if(lay==='conversation')chatThinking(p);else showThinking(p);
-  jpost('work/reading',{work:W.file,persona:id,meta:{title:cleanTitle(W.title,W.artist),artist:(isRealArtist(W)?W.artist:''),year:W.year,wvcn:W.wvcn,emo:W.emo,lang:W.lang,vad:W.vad}}).then(r=>{const ok=r&&r.reading&&r.reading.body;_curReading=ok?r.reading.body:'';
-    if(!ok){if(lay==='conversation')chatResolve('没读出来 · 点头像重试');else showRetry(p);return;}
+function curLay(){return (document.getElementById('stage').dataset.layout)||'theater';}
+// 点解说员 = 把一次「发言」排进队列;讲话串行,后点的排队等待、不打断正在讲的
+function pickPersona(id,p,auto){
+  if(_turnQ.some(t=>t.id===id))return;                 // 同一位已在等待 → 忽略重复点击
+  const t={id:id,p:p,auto:auto,el:null};
+  if(curLay()==='conversation')t.el=appendChat(p,'',true);  // 立刻按点击顺序占位(思考态);轮到它再填正文
+  _turnQ.push(t);pumpTurns();
+}
+function pumpTurns(){if(_turnBusy)return;const t=_turnQ.shift();if(!t)return;_turnBusy=true;
+  runTurn(t).catch(()=>{}).then(()=>{_turnBusy=false;pumpTurns();});}
+// 停掉当前发言 + 清空队列(切版式 / 切画)
+function stopTurns(){_turnQ=[];_turnGen++;const a=document.getElementById('ttsAudio');
+  if(a){try{a.pause();}catch(e){}a.removeAttribute('src');}
+  if(_speakResolve){const r=_speakResolve;_speakResolve=null;clearTimeout(_speakWatch);r();}
+  setSpeaking(_ttsPersona,false);hideBubble();}                 // 清掉思考中/残留的小泡泡,避免"没加载却挂着泡泡"
+function runTurn(t){return new Promise(resolve=>{
+  const id=t.id,p=t.p,auto=t.auto,myGen=_turnGen,lay=curLay();
+  _curPersona=id;_curNarr=p;renderPersonas();
+  if(lay==='theater'){const stg=document.getElementById('stage');stg.classList.remove('collapsed');  // 剧场:点解说员→展开右栏 + 联动高亮
+    const cb=document.getElementById('collapse');if(cb)cb.classList.remove('on');setTimeout(fitWall,80);linkHighlight(id);}
+  if(lay!=='conversation')showThinking(p);
+  jpost('work/reading',{work:W.file,persona:id,meta:{title:cleanTitle(W.title,W.artist),artist:(isRealArtist(W)?W.artist:''),year:W.year,wvcn:W.wvcn,emo:W.emo,lang:W.lang,vad:W.vad}}).then(r=>{
+    if(myGen!==_turnGen)return resolve();             // 期间被 stopTurns 取消 → 丢弃,不留残泡
+    const ok=r&&r.reading&&r.reading.body;_curReading=ok?r.reading.body:'';
+    if(!ok){if(lay==='conversation')fillChat(t.el||appendChat(p,'',true),'没读出来 · 点头像重试');else showRetry(p);return resolve();}
     jpost('me/heard',{work:W.file,persona:id});
-    if(lay==='conversation'){chatResolve(r.reading.body);if(auto!==false)playTTS({persona:id,who:id});}
-    else{prepBub(p,r.reading.body);if(auto){showThinking(p);playTTS({persona:id,who:id});}else beginReveal(false);}});}
+    if(lay==='conversation'){fillChat(t.el||appendChat(p,'',true),r.reading.body);
+      if(auto!==false)speak({persona:id,who:id}).then(resolve);else resolve();}
+    else{prepBub(p,r.reading.body);
+      if(auto)speak({persona:id,who:id}).then(resolve);else{beginReveal(false);resolve();}}
+  }).catch(()=>resolve());
+});}
+// 朗读一段;播完(或失败/无声/超时)都 resolve,保证队列继续前进
+function speak(opts){return new Promise(resolve=>{
+  const a=document.getElementById('ttsAudio');_ttsPersona=opts.who||opts.persona||'official';setSpeaking(_ttsPersona,true);
+  _speakResolve=resolve;clearTimeout(_speakWatch);_speakWatch=setTimeout(doneSpeak,60000);   // 兜底:卡住也放行
+  const fail=()=>{if(_speakResolve!==resolve)return;if(curLay()!=='conversation')beginReveal(false);doneSpeak();};
+  const body=opts.persona?{work:W.file,persona:opts.persona}:{text:opts.text,voice:opts.voice||'苏打'};
+  jpost('tts',body).then(r=>{if(_speakResolve!==resolve)return;     // 已被取消
+    if(r&&r.url){a.src=r.url;const pr=a.play();if(pr&&pr.catch)pr.catch(fail);}else fail();}).catch(fail);
+});}
+function doneSpeak(){clearTimeout(_speakWatch);setSpeaking(_ttsPersona,false);const r=_speakResolve;_speakResolve=null;if(r)r();}
 // 剧场联动:点某解说员 → 打开并脉冲右栏最相关的分析块
 const LINK={historian:['#foldWorld','.map'],painter:['#foldRead','.l7ax'],psych:['#foldRead','.vadpad'],poet:['#foldRead','.vadpad']};
 function linkHighlight(pid){const m=LINK[pid];if(!m)return;
   const fold=document.querySelector(m[0]);if(fold&&'open'in fold)fold.open=true;
   const el=document.querySelector(m[1]);if(!el)return;
   el.classList.remove('linkpulse');void el.offsetWidth;el.classList.add('linkpulse');el.scrollIntoView({block:'nearest',behavior:'smooth'});}
-// 对话:解说员消息堆叠成聊天流(思考态→填正文)
-let _chatPending=null;
+// 对话:解说员消息堆叠成聊天流(思考态→填正文,每条独立引用,不串号)
 function appendChat(p,text,thinking){const feed=document.getElementById('chatFeed');if(!feed)return null;
-  const av=(p&&p.official)?'◉':((p&&p.emoji)||'👁'),who=(p&&p.official)?'aha · 官方':('以 '+(p?p.name:'')+' 之眼');
+  const who=(p&&p.official)?'aha · 官方':('以 '+(p?p.name:'')+' 之眼');
   const el=document.createElement('div');el.className='chatmsg';
-  el.innerHTML='<div class="cm-av">'+esc(av)+'</div><div class="cm-body"><div class="cm-who">'+esc(who)+'</div><div class="cm-text">'+(thinking?'<span class="bdots"><span></span><span></span><span></span></span>':esc(text))+'</div></div>';
+  el.innerHTML='<div class="cm-av'+((p&&p.official)?' official':'')+'">'+avHTML(p)+'</div><div class="cm-body"><div class="cm-who">'+esc(who)+'</div><div class="cm-text">'+(thinking?'<span class="bdots"><span></span><span></span><span></span></span>':esc(text))+'</div></div>';
   feed.appendChild(el);el.scrollIntoView({block:'nearest',behavior:'smooth'});return el;}
-function chatThinking(p){_chatPending=appendChat(p,'',true);}
-function chatResolve(text){if(_chatPending){_chatPending.querySelector('.cm-text').textContent=text;_chatPending=null;}}
+function fillChat(el,text){if(!el)return;const t=el.querySelector('.cm-text');if(t)t.textContent=text;el.scrollIntoView({block:'nearest',behavior:'smooth'});}
+// 对话入场:确保≥3讲解员在场;aha 开场定调;作者自述确定性开讲(经队列,顺序稳定)
+function convoSeed(){
+  if(curLay()!=='conversation')return;
+  ['painter','poet','historian'].forEach(id=>{                       // 默认 aha + 3 = 至少3位在场
+    if(_invited.length>=3)return;
+    if(_personas.some(p=>p.id===id)&&!_invited.includes(id))_invited.push(id);});
+  renderPersonas();
+  if(_convoSeeded)return;
+  const opener=_personas.find(p=>p.id==='painter'&&_invited.includes(p.id))||_personas.filter(p=>_invited.includes(p.id))[0];
+  if(!opener)return;                                                 // 人设还没加载完 → 等 loadPersonas 再调
+  _convoSeeded=true;
+  const cf=document.getElementById('chatFeed');if(cf)cf.innerHTML='';
+  appendChat(OFFICIAL,poeticLine(W));                                // ① aha 开场白(静态,不入队)
+  pickPersona(opener.id,opener,true);                                // ② 作者自述开讲(入队,排在最前)
+}
 function appendChatUser(text){const feed=document.getElementById('chatFeed');if(!feed)return;
   const el=document.createElement('div');el.className='chatmsg me';
   el.innerHTML='<div class="cm-body"><div class="cm-text">'+esc(text)+'</div></div><div class="cm-av">你</div>';
@@ -1073,9 +1289,8 @@ function setSpeaking(persona,on){[...document.querySelectorAll('.pav')].forEach(
 let _bubClauses=[],_bubCum=[],_bubShown=0,_bubIv=null,_bubP=null,_bubStarted=false;
 function clearBub(){if(_bubIv){clearInterval(_bubIv);_bubIv=null;}}
 function bubWho(p){return (p&&p.official)?'aha · 官方解读':('AI · 以 '+(p?p.name:'')+' 之眼');}
-function bubHead(p){const bl=document.getElementById('bubbleLayer');clearBub();
-  bl.innerHTML='<span class="bub-close" id="bx">✕</span><div class="cbub who">'+esc(bubWho(p))+'</div><div class="cbub" id="bubtext"></div>';
-  const x=document.getElementById('bx');if(x)x.onclick=hideBubble;return bl;}
+function bubHead(p){const bl=document.getElementById('bubbleLayer');clearBub();bl.innerHTML='';return bl;}  // 留空(:empty 隐藏);内容由各函数现建,不留空泡泡
+function bubClose(bl){if(!bl||bl.querySelector('#bx'))return;const x=document.createElement('span');x.className='bub-close';x.id='bx';x.textContent='✕';x.onclick=hideBubble;bl.appendChild(x);}
 // 只在自然标点处断句,不硬切;一句一条字幕
 function splitClauses(t){t=(t||'').replace(/\s+/g,'');
   let out=t.split(/(?<=[。！？!?；;…])/);                 // 先按句末断
@@ -1085,9 +1300,9 @@ function splitClauses(t){t=(t||'').replace(/\s+/g,'');
 // 单条字幕:替换(不叠加),换节点重放动画
 function setBubText(s){const bl=document.getElementById('bubbleLayer');if(!bl)return;
   const old=document.getElementById('bubtext'),nu=document.createElement('div');nu.className='cbub';nu.id='bubtext';nu.textContent=s;
-  if(old)old.replaceWith(nu);else bl.appendChild(nu);}
+  if(old)old.replaceWith(nu);else{bubClose(bl);bl.appendChild(nu);}}
 function revealNext(){if(_bubShown>=_bubClauses.length)return;setBubText(_bubClauses[_bubShown++]);}
-function showThinking(p){bubHead(p);const el=document.getElementById('bubtext');if(el)el.innerHTML='<span class="bdots"><span></span><span></span><span></span></span>';}
+function showThinking(p){const bl=bubHead(p);bubClose(bl);const d=document.createElement('div');d.className='cbub thinking';d.id='bubtext';d.innerHTML='<span class="bdots"><span></span><span></span><span></span></span>';bl.appendChild(d);}
 // 备好句子(此时仍显示 thinking,等 TTS 就绪/播放才开始逐句冒)
 function prepBub(p,text){clearBub();_bubP=p;_bubClauses=splitClauses(text);_bubShown=0;_bubStarted=false;
   const tot=_bubClauses.reduce((s,x)=>s+[...x].length,0)||1;let c=0;_bubCum=_bubClauses.map(x=>{c+=[...x].length;return c/tot;});}
@@ -1098,18 +1313,14 @@ function syncBub(){if(!_bubStarted)return;const a=document.getElementById('ttsAu
   const prog=a.currentTime/a.duration;while(_bubShown<_bubClauses.length){const start=_bubShown===0?0:_bubCum[_bubShown-1];if(prog>=start-0.002)revealNext();else break;}}
 function finishBub(){clearBub();while(_bubShown<_bubClauses.length)revealNext();}
 function hideBubble(){clearBub();_bubClauses=[];_bubShown=0;_bubStarted=true;const bl=document.getElementById('bubbleLayer');if(bl)bl.innerHTML='';}
-function showRetry(p){bubHead(p);_bubStarted=true;const el=document.getElementById('bubtext');if(el){el.style.cursor='pointer';el.innerHTML='没读出来 · <b style="color:var(--gold)">↻ 重试</b>';el.onclick=()=>pickPersona(p.id,p,true);}}
-function showRetry(p){const bl=bubHead(p);const d=document.createElement('div');d.className='cbub';d.style.cursor='pointer';d.innerHTML='没读出来 · <b style="color:var(--gold)">↻ 重试</b>';d.onclick=()=>pickPersona(p.id,p,true);bl.appendChild(d);}
-function playTTS(opts){const a=document.getElementById('ttsAudio');_ttsPersona=opts.who||opts.persona||'official';const who=_ttsPersona;setSpeaking(who,true);
-  const body=opts.persona?{work:W.file,persona:opts.persona}:{text:opts.text,voice:opts.voice||'苏打'};
-  jpost('tts',body).then(r=>{if(r&&r.url){a.src=r.url;a.play().catch(()=>{setSpeaking(who,false);beginReveal(false);});}else{setSpeaking(who,false);beginReveal(false);}});}
+function showRetry(p){const bl=bubHead(p);_bubStarted=true;bubClose(bl);const d=document.createElement('div');d.className='cbub';d.id='bubtext';d.style.cursor='pointer';d.innerHTML='没读出来 · <b style="color:var(--gold)">↻ 重试</b>';d.onclick=()=>pickPersona(p.id,p,true);bl.appendChild(d);}
 // 讲解人员库
 function openLib(){_libSel=new Set(_invited);renderLibGrid();document.getElementById('libmask').classList.add('on');}
 function closeLib(){document.getElementById('libmask').classList.remove('on');document.getElementById('pform').classList.remove('on');}
 function updateLibGo(){const b=document.getElementById('libGo');if(b)b.textContent='邀请进入('+_libSel.size+')';}
 function renderLibGrid(){const g=document.getElementById('libgrid');if(!g)return;g.innerHTML='';
   [OFFICIAL].concat(_personas).forEach(p=>{const on=p.official||_libSel.has(p.id);const c=document.createElement('div');c.className='lib-card'+(p.official?' fixed':'')+(on?' on':'');
-    c.innerHTML='<span class="lc-av">'+(p.emoji||'👁')+'</span><div class="lc-n">'+esc(p.name)+'</div><div class="lc-d">'+esc(p.descr||(p.official?'aha 的官方解读':''))+'</div>';
+    c.innerHTML='<span class="lc-av">'+avHTML(p)+'</span><div class="lc-n">'+esc(p.name)+'</div><div class="lc-d">'+esc(p.descr||(p.official?'aha 的官方解读':''))+'</div>';
     if(!p.official)c.onclick=()=>{if(_libSel.has(p.id))_libSel.delete(p.id);else _libSel.add(p.id);c.classList.toggle('on');updateLibGo();};
     g.appendChild(c);});updateLibGo();}
 function createPersona(){const name=document.getElementById('pname').value.trim(),emoji=document.getElementById('pemoji').value.trim()||'👁',descr=document.getElementById('pdesc').value.trim(),voice=document.getElementById('pvoice').value;
@@ -1124,7 +1335,7 @@ function renderComments(){const list=document.getElementById('cmtlist'),n=docume
   n.textContent=_comments.length;
   if(!_comments.length){list.innerHTML='<div class="cmt-empty">还没有人说话——你的看法,会是第一条。</div>';return;}
   list.innerHTML='';[..._comments].reverse().forEach(c=>{const d=document.createElement('div');d.className='cmt';
-    d.innerHTML=`<div class="ch">${c.kind==='pin'?'<span class="pin-badge">📌 钉在画上</span> ':''}<span>${esc(c.who)}</span><span class="clike" data-id="${c.id}">❤ ${c.likes||0}</span></div><div class="cb">${esc(c.body)}</div>`;
+    d.innerHTML=`<div class="ch">${c.kind==='pin'?'<span class="pin-badge">📌 钉在画上</span> ':''}<span>${esc(c.who)}</span><span class="clike" data-id="${c.id}"><i data-ic="heart"></i> ${c.likes||0}</span></div><div class="cb">${esc(c.body)}</div>`;
     d.querySelector('.clike').onclick=ev=>{const id=ev.target.dataset.id;jpost('work/comment_like',{id:id}).then(r=>{if(r&&r.likes!=null){ev.target.textContent='❤ '+r.likes;const cc=_comments.find(x=>String(x.id)===String(id));if(cc)cc.likes=r.likes;}});};
     list.appendChild(d);});}
 function sendDanmaku(){const inp=document.getElementById('cmtin'),body=inp.value.trim();if(!body)return;inp.value='';

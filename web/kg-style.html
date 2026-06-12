@@ -78,7 +78,7 @@
   </div>
 
   <div class="nav">
-    <div class="navtabs" id="navtabs"><button data-n="map" class="on"><i data-ic="map"></i> 映射 · 世界观平面</button><button data-n="time">🕰️ 时间线 · 东西双带</button><button data-n="off">隐藏</button></div>
+    <div class="navtabs" id="navtabs"><button data-n="map" class="on"><i data-ic="map"></i> 映射 · 世界观平面</button><button data-n="time"><i data-ic="timeline"></i> 时间线 · 东西双带</button><button data-n="off">隐藏</button></div>
     <div id="navbox"></div>
     <div class="navhint" id="navhint"></div>
   </div>
@@ -172,7 +172,7 @@ function card(n){
   return `<a class="st ${n.region==='east'?'e':''} ${n.conf==='low'?'low':''}" id="card-${n.id}" href="kg-style-detail.html?id=${n.id}">
     <div class="sn">${hl(n.cn)}${n.aka.length?` <span class="tag reg">+${n.aka.length}</span>`:''}</div>
     ${n.desc?`<div class="sd">${hl(n.desc)}</div>`:''}
-    <div class="meta"><span class="tag wv" style="background:${WVC[n.wv]||'#999'}">${n.wv} ${WVN[n.wv]||''}</span><span class="tag yr">${fy(n.year)}</span><span class="tag reg">${n.region==='east'?'东':'西'}</span>${view!=='xi'?`<span class="tag xi">${hl(n.xi)}</span>`:''}${n.canonical&&n.canonical!=='other'?`<span class="tag" style="background:var(--accent-soft);color:var(--accent)" title="标准码 ${n.canonical} · 详情页可调出该组入库作品">→${CANON_ZH[n.canonical]||n.canonical}</span>`:''}${n.nworks?`<span class="tag" style="background:var(--green-soft);color:var(--green)" title="本节点精确匹配 ${n.nworks} 件入库真迹">📷${n.nworks}</span>`:''}${cf}</div></a>`;
+    <div class="meta"><span class="tag wv" style="background:${WVC[n.wv]||'#999'}">${n.wv} ${WVN[n.wv]||''}</span><span class="tag yr">${fy(n.year)}</span><span class="tag reg">${n.region==='east'?'东':'西'}</span>${view!=='xi'?`<span class="tag xi">${hl(n.xi)}</span>`:''}${n.canonical&&n.canonical!=='other'?`<span class="tag" style="background:var(--accent-soft);color:var(--accent)" title="标准码 ${n.canonical} · 详情页可调出该组入库作品">→${CANON_ZH[n.canonical]||n.canonical}</span>`:''}${n.nworks?`<span class="tag" style="background:var(--green-soft);color:var(--green)" title="本节点精确匹配 ${n.nworks} 件入库真迹"><i data-ic="camera"></i>${n.nworks}</span>`:''}${cf}</div></a>`;
 }
 let lastGroups=[];
 function groups(items){

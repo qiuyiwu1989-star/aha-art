@@ -92,7 +92,7 @@ function draw(){
   const g=document.getElementById('grid');g.innerHTML='';
   if(!ITEMS.length){g.innerHTML='<div class="empty" style="grid-column:1/-1">还没有保存的图。<br>去 <a href="kg-compile-v2.html">意图编译器 v2</a> 输入灵感 → 🎨 生产(自动存入)。</div>';return;}
   VIEW.forEach((it,i)=>{
-    const rmark=it.rating===1?'<span style="color:var(--green)">👍</span>':it.rating===-1?'<span style="color:#b06a62">👎</span>':'';
+    const rmark=it.rating===1?'<span style="color:var(--green)"><i data-ic="up"></i></span>':it.rating===-1?'<span style="color:#b06a62"><i data-ic="down"></i></span>':'';
     const set=it.set_id?'<span title="对比组" style="color:var(--gold)">⊞</span>':'';
     const c=$(`<div class="card"><img loading="lazy" decoding="async" src="${it.file}" alt=""/><div class="cb"><div class="ct">${esc(it.style_cn||it.query||'生成图')}</div><div class="ca"><span class="sid">${esc(it.model_label||it.model||'')}</span><span>${rmark}${set} ${tfmt(it.ts)}</span></div></div></div>`);
     c.onclick=()=>openM(i);g.appendChild(c);
@@ -100,12 +100,12 @@ function draw(){
 }
 function btResult(it){
   const b=it.backtest;
-  if(!b) return `<span class="dl" style="cursor:pointer;border-color:var(--blue);color:var(--blue)" onclick="doBacktest('${it.id}')">🔬 回测这张(VLM 读图测坐标)</span>`;
+  if(!b) return `<span class="dl" style="cursor:pointer;border-color:var(--blue);color:var(--blue)" onclick="doBacktest('${it.id}')"><i data-ic="science"></i> 回测这张(VLM 读图测坐标)</span>`;
   const a=b.actual_wv||{},t=b.target_wv,e=b.error;
   const verd=e==null?'(无预期坐标可比)':(e<0.2?'<b style="color:var(--green)">很准 ✓</b>':e<0.35?'<b style="color:var(--gold)">接近</b>':'<b style="color:#b06a62">偏离 ⚠</b>');
   return `<div class="prm">实际落点 <b>(${a.x}, ${a.y})</b>${t?` · 预期 <b>(${t.x}, ${t.y})</b> · 误差 <b>${e}</b> ${verd}`:''}<br>
     <span style="color:var(--ink-faint)">VLM 依据:${esc(a.note||'')}</span><br>
-    <span class="dl" style="cursor:pointer;margin-top:8px;border-color:var(--blue);color:var(--blue)" onclick="doBacktest('${it.id}')">🔬 重测</span></div>`;
+    <span class="dl" style="cursor:pointer;margin-top:8px;border-color:var(--blue);color:var(--blue)" onclick="doBacktest('${it.id}')"><i data-ic="science"></i> 重测</span></div>`;
 }
 async function doBacktest(id){
   const box=document.getElementById('btbox'); if(box)box.textContent='🔬 回测中…(VLM 读图测坐标,约 20–40 秒)';
@@ -142,7 +142,7 @@ function renderModal(it){
   const sibHtml=sib.length>1?`<div class="mb-h">对比组 · 同一意图 × ${sib.length} 个模型</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px">${sib.map(s=>`<div style="text-align:center"><img src="${s.file}" style="width:100%;border-radius:8px;border:1px solid ${s.id===it.id?'var(--accent)':'var(--line)'}" onclick="openMById('${s.id}')"/><div style="font-family:var(--mono);font-size:9.5px;color:var(--ink-mute);margin-top:2px">${esc(s.model_label||s.model||'')}</div></div>`).join('')}</div>`:'';
   const r=it.rating;
   const m=document.getElementById('modal');
-  m.innerHTML=`<span class="mclose" onclick="closeM()">✕</span>
+  m.innerHTML=`<span class="mclose" onclick="closeM()"><i data-ic="close"></i></span>
     <div class="mtop"><div class="mimg"><img src="${it.file}" alt=""/></div>
       <div class="mhd"><div class="mt">${esc(it.style_cn||'生成图')}</div>
         <div class="ma">${tfmt(it.ts)} · <b style="color:var(--ink-soft)">${esc(it.model_label||it.model||'')}</b> · ${it.bytes?Math.round(it.bytes/1024)+'KB':''}</div>
@@ -150,17 +150,17 @@ function renderModal(it){
         ${it.style_id?`<div class="ma" style="margin-top:8px">风格节点: <a href="kg-style-detail.html?id=${esc(it.style_id)}" style="color:var(--accent);text-decoration:none">${esc(it.style_id)} →</a></div>`:''}
         <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
           <span style="font-family:var(--mono);font-size:11px;color:var(--ink-mute)">评分:</span>
-          <span onclick="doRate('${it.id}',1)" style="cursor:pointer;font-size:17px;${r===1?'':'opacity:.4'}">👍</span>
-          <span onclick="doRate('${it.id}',-1)" style="cursor:pointer;font-size:17px;${r===-1?'':'opacity:.4'}">👎</span>
+          <span onclick="doRate('${it.id}',1)" style="cursor:pointer;font-size:17px;${r===1?'':'opacity:.4'}"><i data-ic="up"></i></span>
+          <span onclick="doRate('${it.id}',-1)" style="cursor:pointer;font-size:17px;${r===-1?'':'opacity:.4'}"><i data-ic="down"></i></span>
           ${r!=null?`<span onclick="doRate('${it.id}',null)" style="cursor:pointer;font-family:var(--mono);font-size:10px;color:var(--ink-faint)">清除</span>`:''}
         </div>
       </div></div>
     <div class="mbody">
       ${sibHtml}
       ${flds?`<div class="mb-h">结构化数据 · 生成它的字段</div><div class="fld">${flds}</div>`:''}
-      <div class="mb-h">🔬 生成回测 · 它落对位置了吗</div><div id="btbox">${btResult(it)}</div>
+      <div class="mb-h"><i data-ic="science"></i> 生成回测 · 它落对位置了吗</div><div id="btbox">${btResult(it)}</div>
       <div class="mb-h">驱动提示词</div><div class="prm">${esc(it.prompt||'')}</div>
-      <a class="dl" href="${it.file}" download target="_blank">⬇ 下载原图</a>
+      <a class="dl" href="${it.file}" download target="_blank"><i data-ic="download"></i> 下载原图</a>
       <span class="delbtn" onclick="doDelete('${it.id}')">🗑 删除</span>
     </div>`;
   document.getElementById('ov').classList.add('on');document.body.style.overflow='hidden';

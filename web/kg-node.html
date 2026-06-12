@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>aha · 节点详情页样板 · 印象派</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
   :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--green-soft:#eef3f0;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -60,11 +60,11 @@
   .home-fab:hover{color:var(--accent)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="museum.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 节点详情页样板</div>
   <div class="demo">▶ 这是"每个知识点的详情页"长什么样的样板 · 一次演示三目标:<b style="color:var(--ink)">关联(A) · 详情(B) · 作品归类(C)</b></div>
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-graph">图谱·关系</a> › <b style="color:var(--ink-soft)">节点样板</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="museum.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-graph">图谱·关系</a> › <b style="color:var(--ink-soft)">节点样板</b></div>
 
   <div class="nh">
     <span class="cn" id="cn"></span><span class="en" id="en"></span>
@@ -213,7 +213,7 @@ const N={
    "slug": "m436965",
    "title": "The Monet Family in Their Garden at Argenteuil",
    "artist": "Edouard Manet",
-   "thumb": "/aha/img/t/m436965.jpg",
+   "thumb": "img/t/m436965.jpg",
    "valence": 0.157,
    "arousal": 0.386
   },
@@ -221,7 +221,7 @@ const N={
    "slug": "m671456",
    "title": "Chrysanthemums in the Garden at Petit-Gennevilliers",
    "artist": "Gustave Caillebotte",
-   "thumb": "/aha/img/t/m671456.jpg",
+   "thumb": "img/t/m671456.jpg",
    "valence": 0.599,
    "arousal": 0.538
   },
@@ -229,7 +229,7 @@ const N={
    "slug": "m436947",
    "title": "Boating",
    "artist": "Edouard Manet",
-   "thumb": "/aha/img/t/m436947.jpg",
+   "thumb": "img/t/m436947.jpg",
    "valence": 0.142,
    "arousal": 0.683
   },
@@ -237,7 +237,7 @@ const N={
    "slug": "m438817",
    "title": "The Dance Class",
    "artist": "Edgar Degas",
-   "thumb": "/aha/img/t/m438817.jpg",
+   "thumb": "img/t/m438817.jpg",
    "valence": 0.469,
    "arousal": 0.355
   },
@@ -245,7 +245,7 @@ const N={
    "slug": "m436135",
    "title": "Dancer with a Fan",
    "artist": "Edgar Degas",
-   "thumb": "/aha/img/t/m436135.jpg",
+   "thumb": "img/t/m436135.jpg",
    "valence": 0.897,
    "arousal": 0.225
   },
@@ -253,7 +253,7 @@ const N={
    "slug": "m436155",
    "title": "The Rehearsal of the Ballet Onstage",
    "artist": "Edgar Degas",
-   "thumb": "/aha/img/t/m436155.jpg",
+   "thumb": "img/t/m436155.jpg",
    "valence": 0.706,
    "arousal": 0.569
   },
@@ -261,7 +261,7 @@ const N={
    "slug": "m436120",
    "title": "The Old Italian Woman",
    "artist": "Edgar Degas",
-   "thumb": "/aha/img/t/m436120.jpg",
+   "thumb": "img/t/m436120.jpg",
    "valence": 0.775,
    "arousal": 0.858
   },
@@ -269,7 +269,7 @@ const N={
    "slug": "m436143",
    "title": "Fan Mount: The Ballet",
    "artist": "Edgar Degas",
-   "thumb": "/aha/img/t/m436143.jpg",
+   "thumb": "img/t/m436143.jpg",
    "valence": 0.721,
    "arousal": 0.492
   },
@@ -277,7 +277,7 @@ const N={
    "slug": "m436142",
    "title": "Fan Mount: Dancers",
    "artist": "Edgar Degas",
-   "thumb": "/aha/img/t/m436142.jpg",
+   "thumb": "img/t/m436142.jpg",
    "valence": 0.508,
    "arousal": 0.576
   },
@@ -285,7 +285,7 @@ const N={
    "slug": "m437315",
    "title": "Fan Mount: The Cabbage Gatherers",
    "artist": "Camille Pissarro",
-   "thumb": "/aha/img/t/m437315.jpg",
+   "thumb": "img/t/m437315.jpg",
    "valence": 0.729,
    "arousal": 0.874
   },
@@ -293,7 +293,7 @@ const N={
    "slug": "m437310",
    "title": "The Boulevard Montmartre on a Winter Morning",
    "artist": "Camille Pissarro",
-   "thumb": "/aha/img/t/m437310.jpg",
+   "thumb": "img/t/m437310.jpg",
    "valence": 0.416,
    "arousal": 0.187
   },
@@ -301,7 +301,7 @@ const N={
    "slug": "m437299",
    "title": "Jalais Hill, Pontoise",
    "artist": "Camille Pissarro",
-   "thumb": "/aha/img/t/m437299.jpg",
+   "thumb": "img/t/m437299.jpg",
    "valence": 0.653,
    "arousal": 0.79
   },
@@ -309,7 +309,7 @@ const N={
    "slug": "m436950",
    "title": "The Dead Christ with Angels",
    "artist": "Edouard Manet",
-   "thumb": "/aha/img/t/m436950.jpg",
+   "thumb": "img/t/m436950.jpg",
    "valence": 0.302,
    "arousal": 0.698
   }
@@ -417,7 +417,7 @@ Object.keys(GROUPS).forEach(t=>{
 document.getElementById('wc').textContent=`共 ${N.works_count} 件。`;
 const w=document.getElementById('works');
 N.works.forEach(x=>{
-  w.appendChild($(`<a class="work" href="${x.thumb? x.thumb.replace('/t/','/'):'#'}" target="_blank"><img src="${x.thumb}" alt="${x.title}" loading="lazy"/><div class="wt">${x.title}</div><div class="wa">${x.artist}</div><div class="wv"><span>效价 ${x.valence!=null?x.valence.toFixed(2):'-'}</span><span>唤醒 ${x.arousal!=null?x.arousal.toFixed(2):'-'}</span></div></a>`));
+  w.appendChild($(`<a class="work" href="${x.thumb? x.thumb.replace('/t/','/'):'#'}" target="_blank"><img src="${x.thumb}" alt="${x.title}" loading="lazy" decoding="async"/><div class="wt">${x.title}</div><div class="wa">${x.artist}</div><div class="wv"><span>效价 ${x.valence!=null?x.valence.toFixed(2):'-'}</span><span>唤醒 ${x.arousal!=null?x.arousal.toFixed(2):'-'}</span></div></a>`));
 });
 
 // schema
@@ -431,4 +431,5 @@ SC.edge_ontology.forEach(e=>{
 });
 document.getElementById('princ').innerHTML='🔬 <b>方法论</b>:'+SC.principle;
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

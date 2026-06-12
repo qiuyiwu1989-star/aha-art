@@ -1,7 +1,7 @@
 <!doctype html><html lang="zh"><head>
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>aha.art · 审美门派图鉴 · 48 种审美原型</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
 :root{--paper:#f4f1ea;--paper-2:#ece7db;--card:#fffdf8;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace;--ease:cubic-bezier(.22,.61,.36,1)}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -81,7 +81,7 @@ h1{font-family:var(--serif);font-size:clamp(24px,5vw,34px);font-weight:700;text-
 <div class="kick">审美门派图鉴 · Aesthetic Houses</div>
 <h1>48 种审美原型,你是哪一种</h1>
 <p class="lead">和 MBTI 一样,这是一套<b>给审美定位</b>的坐标:你的原型 = <b>6 大门派</b>(你怎么看世界)×<b>8 种亚型</b>(你怎么逛)。门派由人类艺术史的 <b>6 个世界观区</b>而来,掌门与稀有度由 282 位真实大师的数据算出。</p>
-<div class="breadcrumb"><a href="museum.html">🏠 首页</a> › <a href="kg-worldview.html">🌐 世界观</a> › <a href="kg-me.html">🧑‍🎨 我的审美档案</a> › <b style="color:var(--ink-soft)">门派图鉴</b></div>
+<div class="breadcrumb"><a href="museum.html"><i data-ic="home"></i> 首页</a> › <a href="kg-worldview.html"><i data-ic="worldview"></i> 世界观</a> › <a href="kg-me.html">🧑‍🎨 我的审美档案</a> › <b style="color:var(--ink-soft)">门派图鉴</b></div>
 
 <div id="content"><div class="loading">加载门派数据(6 区 · 282 大师)…</div></div>
 
@@ -201,4 +201,5 @@ Promise.all([
 }).catch(e=>{$('#content').innerHTML='<div class="loading">加载失败:'+e+'</div>';});
 </script>
 <script src="js/aha-chrome.js"></script>
+<script src="js/aha-icons.js"></script>
 </body></html>

@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>原型 · 美术馆中庭(CSS-3D 门廊)· aha</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{--ink:#2a2620;--ink-soft:#5c554a;--ink-mute:#8a8170;--gold:#b0673a;--gold-lit:#d99a5a;--mat:#f4f1ea;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -116,7 +116,7 @@
   <div class="secsub">ARTWORK = A FRAMED PAINTING · 展区是「门 / 空间」,作品是「框中之物」——一眼分得清</div>
   <div class="wallstrip" id="strip"><div class="loading">载入馆藏…</div></div>
   <div class="legend">
-    <div>🚪 <b>展区</b> = 一扇能走进去的门 / 一个房间(复数 · 有景深 · 点击进入)</div>
+    <div><i data-ic="door"></i> <b>展区</b> = 一扇能走进去的门 / 一个房间(复数 · 有景深 · 点击进入)</div>
     <div><i data-ic="works"></i> <b>作品</b> = 墙上一幅装裱好的画(单数 · 有框 · 点击走近)</div>
   </div>
 </div>
@@ -125,7 +125,7 @@
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 function mTitle(t){if(!t)return '无题';t=String(t).replace(/\.(jpe?g|png|webp|gif|tiff?|bmp|jfif)$/i,'').replace(/[_]+/g,' ').trim();return t||'无题';}
 function imgT(w,px){const f=(w&&w.file)||'';px=px||420;
-  if(/myqcloud\.com/i.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/quality/82';
+  if(/myqcloud\.com/i.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/format/webp/quality/82';
   if(/(^|\/)img\/[^?]*\.(jpe?g|png)$/i.test(f))return f.replace(/\.(jpe?g|png)$/i,'.t720.webp');
   return (w&&w.thumb)||f;}
 const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
@@ -147,8 +147,8 @@ function buildDoors(byWV){
     el.style.transform=`rotateY(${(i-2.5)*7}deg)`;
     el.dataset.base=(i-2.5)*7;
     el.innerHTML=`<div class="arch"><div class="room"><div class="lit"></div>
-        ${a?`<div class="pic p1"><img loading="lazy" src="${imgT(a,300)}"></div>`:''}
-        ${b?`<div class="pic p2"><img loading="lazy" src="${imgT(b,300)}"></div>`:''}
+        ${a?`<div class="pic p1"><img loading="lazy" decoding="async" src="${imgT(a,300)}"></div>`:''}
+        ${b?`<div class="pic p2"><img loading="lazy" decoding="async" src="${imgT(b,300)}"></div>`:''}
         <div class="rfloor"></div></div></div>
       <div class="plaque"><div class="pn">${WVN[k]}</div><div class="pc">${ws.length} 幅 · ${WVS[k]}</div></div>`;
     el.onclick=()=>{location.href='museum.html#hall=wv:'+k+'&form=salon';};
@@ -160,7 +160,7 @@ function buildStrip(W){
   // 取一批有图的代表作
   const pick=W.slice(0,16);
   pick.forEach(w=>{const el=document.createElement('div');el.className='artwork';
-    el.innerHTML=`<div class="fr"><div class="mat"><img loading="lazy" src="${imgT(w,360)}"></div></div>
+    el.innerHTML=`<div class="fr"><div class="mat"><img loading="lazy" decoding="async" src="${imgT(w,360)}"></div></div>
       <div class="cap"><div class="t">${esc(mTitle(w.title))}</div><div class="a">${esc(w.artist||'')}</div></div>`;
     el.onclick=()=>location.href='art.html?w='+encodeURIComponent(w.file);
     strip.appendChild(el);});

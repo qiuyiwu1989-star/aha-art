@@ -58,7 +58,7 @@
   <h1>一点灵感 → 图谱扩写 → 你调整 → 生产</h1>
   <p class="lead">输入<b>几个词、一种感受,或一位大师的名字</b>,编译器按策略沿生成链<b>扩写</b>成完整方案;每个维度都<b>可改</b>(改一处,其余顺图谱重算);满意了一键<b>出图</b>(自动入库)。<br><span style="font-size:11.5px">策略 A 语义扩散 · 策略 D 艺术家基因 · <a href="kg-compile.html" style="color:var(--accent)">旧版 v1 →</a></span></p>
   <div class="breadcrumb"><a href="museum.html"><i data-ic="home"></i> 首页</a> › <a href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <b style="color:var(--ink-soft)">意图编译器 v2</b></div>
-  <div class="inbar"><input id="q" type="text" placeholder="如:孤独的城市 / 压抑但有一丝希望 / 像梵高那种 / 宁静的宋代山水" value="孤独的城市 黄昏"/><button id="go" title="规则版:图谱即时扩散(秒出)">⚡ 即时</button><button id="gollm" style="background:var(--green)" title="LLM 在图谱上真实推理,约 30–60 秒,更懂矛盾与细腻输入">🧠 深度推理</button><button id="goimg" style="background:var(--blue)" title="传一张图,VLM 沿生成链拆解并映射到图谱;输入框可写「重画成X」">📷 传图</button><input type="file" id="file" accept="image/*" style="display:none"/></div>
+  <div class="inbar"><input id="q" type="text" placeholder="如:孤独的城市 / 压抑但有一丝希望 / 像梵高那种 / 宁静的宋代山水" value="孤独的城市 黄昏"/><button id="go" title="规则版:图谱即时扩散(秒出)"><i data-ic="bolt"></i> 即时</button><button id="gollm" style="background:var(--green)" title="LLM 在图谱上真实推理,约 30–60 秒,更懂矛盾与细腻输入"><i data-ic="brain"></i> 深度推理</button><button id="goimg" style="background:var(--blue)" title="传一张图,VLM 沿生成链拆解并映射到图谱;输入框可写「重画成X」"><i data-ic="camera"></i> 传图</button><input type="file" id="file" accept="image/*" style="display:none"/></div>
   <div class="ex" id="ex"></div>
   <div class="routed" id="routed"></div>
   <div id="out"></div>
@@ -174,7 +174,7 @@ async function handleImg(file){
         <div class="grow"><b>媒介</b> ${esc(an.媒介||'')}　<b>题材</b> ${esc(an.题材||'')}</div>
         <div class="grow"><b>风格观察</b> ${esc(an.风格观察||'')}</div>
         <div class="grow"><b>视觉重心</b> ${esc(an.视觉重心||'')}　<b>情绪</b> ${esc(an.情绪||'')}</div>
-        ${card.reasoning?`<div class="grow" style="color:var(--ink-mute)">🧠 ${esc(card.reasoning)}</div>`:''}
+        ${card.reasoning?`<div class="grow" style="color:var(--ink-mute)"><i data-ic="brain"></i> ${esc(card.reasoning)}</div>`:''}
       </div></div>`);
     o.insertBefore(panel,o.firstChild);
   }catch(e){document.getElementById('routed').innerHTML='⚠️ '+e;}
@@ -222,7 +222,7 @@ async function compileLLM(text){
     if(!cards.length){out.innerHTML='<div style="color:#a89f8f;padding:20px;text-align:center">无方向返回,试试 ⚡ 即时</div>';return;}
     renderDirections(cards,text);
     const o=document.getElementById('out');
-    o.insertBefore($(`<div style="background:#fff;border:1px solid var(--line);border-left:4px solid var(--green);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--ink-soft);line-height:1.7;margin-bottom:4px">🧠 <b>推理</b>:${esc(card.reasoning||'')}</div>`),o.firstChild);
+    o.insertBefore($(`<div style="background:#fff;border:1px solid var(--line);border-left:4px solid var(--green);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--ink-soft);line-height:1.7;margin-bottom:4px"><i data-ic="brain"></i> <b>推理</b>:${esc(card.reasoning||'')}</div>`),o.firstChild);
   }catch(e){document.getElementById('routed').innerHTML='⚠️ '+e+' — 可改用 ⚡ 即时';}
 }
 
@@ -417,7 +417,7 @@ function renderCard(c){
     ${DEMO?`<div class="genrow" style="font-size:12px;color:var(--ink-mute)">演示模式:方案到此为止——<b style="color:var(--ink-soft)">不出图、不入库、不花额度</b>。要真出图 → <a href="kg-compile-v2.html" style="color:var(--accent)">产品版 →</a></div>`:`<div class="genrow">
       <select class="f-model">${MODELS.map(m=>`<option value="${m.id}">${esc(m.label)}</option>`).join('')}</select>
       <button class="genbtn"><i data-ic="create"></i> 生产</button>
-      ${MODELS.length>1?'<button class="cmpbtn" style="font-family:var(--mono);font-size:13px;color:var(--accent);background:#fff;border:1px solid var(--accent);border-radius:9px;padding:9px 14px;cursor:pointer">🎨×N 对比出图</button>':''}
+      ${MODELS.length>1?'<button class="cmpbtn" style="font-family:var(--mono);font-size:13px;color:var(--accent);background:#fff;border:1px solid var(--accent);border-radius:9px;padding:9px 14px;cursor:pointer"><i data-ic="create"></i>×N 对比出图</button>':''}
       <span class="genstat"></span>
     </div>`}
     <div class="genimg"></div>

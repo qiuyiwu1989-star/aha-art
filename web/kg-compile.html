@@ -152,7 +152,7 @@ function compile(){
   out.appendChild(s4);
   document.getElementById('genbtn').addEventListener('click',()=>doGen(genPrompt,meta));
 
-  out.appendChild($('<div class="note">🔬 <b>这就是图谱的价值</b>:输出的每个字段都<b>挂着真实节点 id</b>(可追溯、可推敲),风格被拆成语言原子(<b>能组合不靠抄</b>)。同一句话换个风格节点,整份 Prompt 自动重写——这是"分类表"做不到的。</div>'));
+  out.appendChild($('<div class="note"><i data-ic="science"></i> <b>这就是图谱的价值</b>:输出的每个字段都<b>挂着真实节点 id</b>(可追溯、可推敲),风格被拆成语言原子(<b>能组合不靠抄</b>)。同一句话换个风格节点,整份 Prompt 自动重写——这是"分类表"做不到的。</div>'));
 }
 async function doGen(prompt,meta){
   const st=document.getElementById('genstat'),box=document.getElementById('genimg'),btn=document.getElementById('genbtn');

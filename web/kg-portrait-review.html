@@ -38,8 +38,8 @@ Promise.all([fetch('data/kg_artist_portraits.json').then(r=>r.json()),fetch('dat
   const verified=rows.filter(r=>!(r.source||'').startsWith('百度'));
   document.getElementById('stat').innerHTML=`共 <b>${rows.length}</b> 张 · 已核实馆藏/WikiArt <b>${verified.length}</b> · 百度待核 <b style="color:#c08a2e">${baidu.length}</b>`;
   const card=(r,warn)=>`<div class="c${warn?' warn':''}"><img loading="lazy" decoding="async" src="${r.file}" alt="${r.cn}"><div class="nm">${r.cn}</div><div class="mt">${r.region==='east'?'东':'西'} · ${r.source}</div><a href="kg-artist.html?id=${r.id}" target="_blank">详情↗</a></div>`;
-  document.getElementById('warn').innerHTML=`<div class="sh warn">⚠ 百度检索 · 未核验(${baidu.length})—— 请挑出认错的人</div><div class="sd">这些来自百度图片+AI筛"单人头像",身份未核实,可能张冠李戴。告诉我哪几个不对,我删掉。</div><div class="grid">${baidu.map(r=>card(r,true)).join('')}</div>`;
-  document.getElementById('ok').innerHTML=`<div class="sh">✓ 已核实(${verified.length})· 自画像/他人肖像/WikiArt</div><div class="grid">${verified.map(r=>card(r,false)).join('')}</div>`;
+  document.getElementById('warn').innerHTML=`<div class="sh warn"><i data-ic="warn"></i> 百度检索 · 未核验(${baidu.length})—— 请挑出认错的人</div><div class="sd">这些来自百度图片+AI筛"单人头像",身份未核实,可能张冠李戴。告诉我哪几个不对,我删掉。</div><div class="grid">${baidu.map(r=>card(r,true)).join('')}</div>`;
+  document.getElementById('ok').innerHTML=`<div class="sh"><i data-ic="check"></i> 已核实(${verified.length})· 自画像/他人肖像/WikiArt</div><div class="grid">${verified.map(r=>card(r,false)).join('')}</div>`;
 }).catch(e=>document.getElementById('stat').textContent='加载失败:'+e);
 </script><script src="js/aha-icons.js"></script>
 </body></html>

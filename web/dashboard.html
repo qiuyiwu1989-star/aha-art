@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>aha 资产后台 · Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/aha-kit.css">
 <style>
 :root{--ink:#1d1b18;--soft:#857d6f;--line:#ddd5c6;--accent:#b0673a;--bg:#f4f1ea;--card:#fffdf8;--ok:#3a8a5a;--warn:#c2792e;--dup:#9a9a9a;--rej:#b5483a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace;--sh1:0 1px 3px rgba(60,48,32,.06)}
@@ -192,7 +192,7 @@ async function load(){
     <div class="panel"><h2>核心资产 · 质量分布</h2><div class="bars">${barlist(d.qhist.map(s=>['≥'+s.b,s.n]))}</div></div>
 
     <div class="panel"><h2>最近被剔 / 归档（抽查闸门判得准不准）</h2>
-      <div class="recent">${d.recent.map(r=>`<div class="rc"><img loading="lazy" src="${r.thumb}">
+      <div class="recent">${d.recent.map(r=>`<div class="rc"><img loading="lazy" decoding="async" src="${r.thumb}">
         <div class="cap"><span class="rr">${r.status==='archived'?'归档':'剔'}·${r.reason||''}</span><br>${esc((r.title||'无题')).slice(0,16)}</div></div>`).join('')}</div>
     </div>`;
   document.getElementById('upd').textContent='更新于 '+new Date().toLocaleTimeString();
@@ -214,7 +214,7 @@ async function loadGov(){
   const styles=`<div class="stbl">${d.styles.map(s=>`<span class="stg"><b>${s.zh}</b> <i>${s.en}</i></span>`).join('')}</div>`;
   const rules=`<div class="gd2"><table class="rt"><tr><th>匹配关键词(正则)</th><th>→ 规范风格</th></tr>${d.style_rules.map(r=>`<tr><td><code>${esc(r[0])}</code></td><td>${r[1]}</td></tr>`).join('')}</table></div>`;
   document.getElementById('gov').innerHTML=`
-    <div class="panel"><h2>🛠 数据治理控制台 <span style="color:#aaa;font-weight:400;font-size:12px">（以下规则/提示词直接读自运行中的代码，即治理标准本身）</span></h2>
+    <div class="panel"><h2><i data-ic="tools"></i> 数据治理控制台 <span style="color:#aaa;font-weight:400;font-size:12px">（以下规则/提示词直接读自运行中的代码，即治理标准本身）</span></h2>
       ${det('① 管线流程',stages,true)}
       ${det('② 治理原则',`<ul class="pl">${princ}</ul>`,true)}
       ${det('③ 三路分流规则（VLM 分类 → 入库状态）',cats)}
@@ -243,7 +243,7 @@ async function loadCos(){
     const rel=(d.related||[]).map(r=>`<div class="gl"><b>${r.name}</b> <code>${r.where}</code> — ${r.note}</div>`).join('');
     document.getElementById('cos').innerHTML=`
       <div class="panel">
-        <h2>📦 COS 数据存储总览　<span style="color:#aaa;font-weight:400;font-size:12px">治理上游 · 各类原始数据落地 COS 的现状（${d.bucket}，快照 ${d.updated}）</span></h2>
+        <h2><i data-ic="box"></i> COS 数据存储总览　<span style="color:#aaa;font-weight:400;font-size:12px">治理上游 · 各类原始数据落地 COS 的现状（${d.bucket}，快照 ${d.updated}）</span></h2>
         <div class="cards">
           <div class="card"><div class="v">${fmt(s.files)}</div><div class="l">COS 文件总数</div></div>
           <div class="card"><div class="v">${gb(s.bytes)}</div><div class="l">总存储</div></div>
@@ -253,14 +253,14 @@ async function loadCos(){
         ${rows}
         <div style="margin-top:12px"><div class="csub" style="margin-bottom:5px;font-weight:600">相关数据源</div>${rel}</div>
       </div>`;
-  }catch(e){document.getElementById('cos').innerHTML='<div class="panel"><h2>📦 COS 数据存储总览</h2><div class="csub">cos_inventory.json 加载失败</div></div>';}
+  }catch(e){document.getElementById('cos').innerHTML='<div class="panel"><h2><i data-ic="box"></i> COS 数据存储总览</h2><div class="csub">cos_inventory.json 加载失败</div></div>';}
 }
 async function loadAnom(){
   const d=await (await fetch(API+'anomalies')).json();
   const types=d.types.filter(t=>t.count>0).sort((a,b)=>b.count-a.count);
   const blocks=types.map(t=>{
     const sm=t.samples.map(s=>`<a class="rc" href="work.html?id=${s.id}" target="_blank" title="${esc((s.title||'')+' · '+(s.artist||''))}">
-      <img loading="lazy" src="${s.thumb}"><div class="cap">${esc((s.note||s.title||'')).slice(0,20)}</div></a>`).join('');
+      <img loading="lazy" decoding="async" src="${s.thumb}"><div class="cap">${esc((s.note||s.title||'')).slice(0,20)}</div></a>`).join('');
     return `<details class="gov"><summary><b style="color:var(--rej)">${t.count}</b> · ${t.label}</summary><div class="gd"><div class="recent">${sm}</div></div></details>`;
   }).join('');
   document.getElementById('anom').innerHTML=`<div class="panel"><h2>🚨 异常雷达 <span style="color:#aaa;font-weight:400;font-size:12px">（已扫已过闸 ${fmt(d.scanned_gated)} 件；点缩略图进深读核对）</span></h2>${blocks||'<div class="gl">暂无异常 ✓</div>'}</div>`;
@@ -276,7 +276,7 @@ async function loadCtl(){
   const limOpt=[500,1000,2000,5000].map(v=>`<option${sel(v,_ctlSel.cLim)}>${v}</option>`).join('');
   const minOpt=['0.55','0.65','0.7','0.75','0.8'].map(v=>`<option${sel(v,_ctlSel.eMin)}>${v}</option>`).join('');
   const perOpt=[['0','不限'],['3','3'],['5','5'],['10','10']].map(([v,t])=>`<option value="${v}"${sel(v,_ctlSel.ePer)}>${t}</option>`).join('');
-  document.getElementById('ctl').innerHTML=`<div class="panel"><h2>🎛 过闸操作台</h2>
+  document.getElementById('ctl').innerHTML=`<div class="panel"><h2><i data-ic="sliders"></i> 过闸操作台</h2>
     <div class="gl">状态 <b style="color:${d.running?'var(--ok)':'var(--soft)'}">${d.running?'● 运行中':'○ 空闲'}</b> · 待过闸 <b>${fmt(d.pending)}</b> · 近10分 ${d.rate_10min} 张</div>
     <div style="margin-top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
       来源 <select id="cSrc" onchange="_ctlSel.cSrc=this.value">${srcOpt}</select> 数量 <select id="cLim" onchange="_ctlSel.cLim=this.value">${limOpt}</select>
@@ -307,13 +307,13 @@ async function loadReview(){
   document.getElementById('review').innerHTML=`<div class="panel"><h2><i data-ic="search"></i> 抽检纠错 <button class="abtn" onclick="loadReview()">换一批</button>
     <span style="color:#aaa;font-weight:400;font-size:12px">随机抽核心资产人眼核，错了直接纠（点图进深读）</span></h2>
     <div class="recent">${d.items.map(it=>`<div class="rc" id="rc${it.id}">
-      <a href="work.html?id=${it.id}" target="_blank"><img loading="lazy" src="${it.thumb}"></a>
+      <a href="work.html?id=${it.id}" target="_blank"><img loading="lazy" decoding="async" src="${it.thumb}"></a>
       <div class="cap">${esc((it.title||'无题')).slice(0,15)}<br><span style="color:#999">${it.cat||''}·q${it.quality??'?'}·${it.anchor||''}</span>
       <div class="acts"><button onclick="rExhibit(${it.id})" style="color:var(--ok)">展出</button><button onclick="rAct(${it.id},'regate')">重标</button><button onclick="rSet(${it.id},'archived')">归档</button><button onclick="rSet(${it.id},'rejected')">剔</button></div></div></div>`).join('')}</div></div>`;
 }
 async function rSet(id,st){await fetch(API+`admin/status?id=${id}&status=${st}`,{method:'POST'});rMark(id,st)}
 async function rAct(id){await fetch(API+`admin/regate?id=${id}`,{method:'POST'});rMark(id,'已重标')}
-function rMark(id,t){const e=document.getElementById('rc'+id);if(e){e.style.opacity=.45;e.querySelector('.acts').innerHTML='<span style="color:var(--ok);font-size:11px">✓ '+t+'</span>'}}
+function rMark(id,t){const e=document.getElementById('rc'+id);if(e){e.style.opacity=.45;e.querySelector('.acts').innerHTML='<span style="color:var(--ok);font-size:11px"><i data-ic="check"></i> '+t+'</span>'}}
 
 // ===== 展出与策展模块 =====
 async function colBulk(){const cid=document.getElementById('cbCol').value,st=document.getElementById('cbStyle').value;
@@ -345,7 +345,7 @@ async function loadExhibit(){
         <select id="cbCol">${d.collections.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select> 加入风格
         <select id="cbStyle"><option value="">(全部展出)</option>${(window._exhStyles||[]).map(s=>`<option value="${s.id}">${s.zh}</option>`).join('')}</select>
         的展出作品 <button class="abtn" onclick="colBulk()">加入</button><span id="cbMsg" style="color:var(--accent)"></span></div>`:''}</div>
-    <div class="panel"><h2>最近入展（点缩略图进详情，可下架）</h2><div class="recent">${d.recent.map(r=>`<div class="rc" id="ex${r.id}"><a href="work.html?id=${r.id}" target="_blank"><img loading="lazy" src="${r.thumb}"></a><div class="cap">${esc((r.title||'无题')).slice(0,14)}<div class="acts"><button onclick="exhibitOff(${r.id})">下架</button></div></div></div>`).join('')}</div></div>`;
+    <div class="panel"><h2>最近入展（点缩略图进详情，可下架）</h2><div class="recent">${d.recent.map(r=>`<div class="rc" id="ex${r.id}"><a href="work.html?id=${r.id}" target="_blank"><img loading="lazy" decoding="async" src="${r.thumb}"></a><div class="cap">${esc((r.title||'无题')).slice(0,14)}<div class="acts"><button onclick="exhibitOff(${r.id})">下架</button></div></div></div>`).join('')}</div></div>`;
 }
 async function autoExhibit2(clear){const mq=document.getElementById('eMin2').value,pa=document.getElementById('ePer2').value;document.getElementById('eMsg2').textContent='处理中…';
   const r=await (await fetch(API+`admin/auto_exhibit?min_quality=${mq}&per_artist=${pa}&clear=${clear}`,{method:'POST'})).json();
@@ -389,7 +389,7 @@ async function loadArtists(qv){
       <div class="panel"><h2>年代分布</h2><div class="bars">${barlist(era)}</div></div>
       <div class="panel"><h2>字段完整度 <span style="color:#aaa;font-weight:400;font-size:12px">达莫奈标准还缺什么(越短越缺)</span></h2><div class="bars">${barlist(fc)}</div></div>
     </div>
-    <div class="panel"><h2>⚠ 达标缺口 <span style="color:#aaa;font-weight:400;font-size:12px">点名字进主页核对 · 数字=该人真作品数(优先补高产的)</span></h2>
+    <div class="panel"><h2><i data-ic="warn"></i> 达标缺口 <span style="color:#aaa;font-weight:400;font-size:12px">点名字进主页核对 · 数字=该人真作品数(优先补高产的)</span></h2>
       <div style="margin-top:6px"><div class="csub" style="font-weight:600">缺师承 <span style="color:var(--warn)">${c.gap_counts.no_teachers}</span> 位</div><div style="margin:4px 0 12px">${gapList(c.gaps.no_teachers)}</div>
       <div class="csub" style="font-weight:600">未达标(缺任一维)<span style="color:var(--warn)">${c.gap_counts.incomplete}</span> 位</div><div style="margin:4px 0 12px">${c.gaps.incomplete.slice(0,30).map(x=>`<a href="kg-artist.html?id=${encodeURIComponent(x.id)}" target="_blank" title="缺:${x.missing.join('、')}" style="display:inline-block;margin:2px 5px 2px 0;padding:2px 9px;border:1px solid var(--line);border-radius:999px;color:var(--ink);text-decoration:none;font-size:12px">${esc(x.cn)} <span style="color:#aaa">${x.missing.length}缺</span></a>`).join('')}</div>
       <div class="csub" style="font-weight:600">缺头像 <span style="color:var(--warn)">${c.gap_counts.no_portrait}</span> 位 · 缺真作品 <span style="color:var(--warn)">${c.gap_counts.no_works}</span> 位</div>
@@ -419,16 +419,22 @@ async function loadUsers(){
   const [d,L]=await Promise.all([fetch(API+'admin/m/users').then(r=>r.json()),fetch(API+'admin/users?limit=200').then(r=>r.json())]);
   const c=d.counts;const card=(v,l)=>`<div class="card"><div class="v">${fmt(v)}</div><div class="l">${l}</div></div>`;
   const rows=(L.users||[]).map(u=>`<tr onclick="openUser('${u.uid}')" style="cursor:pointer">
-    <td><b>${esc(u.nickname||u.uid.slice(0,14))}</b>${u.admin_note?` <span class="ctag">📝</span>`:''}</td>
-    <td>${esc(u.archetype||'—')}</td><td>${esc(u.soulmate_cn||'—')}</td>
+    <td><b>${esc(u.nickname||u.uid.slice(0,12))}</b>${u.registered?' <span class="ctag" style="color:var(--ok)">登录</span>':''}${u.admin_note?` 📝`:''}</td>
+    <td>${uaDev(u.ua)}</td>
+    <td>${u.ip?`<code style="font-size:11px">${esc(u.ip)}</code>${u.ip_country?' '+esc(u.ip_country):''}`:'<span style="color:#ccc">—</span>'}</td>
+    <td>${esc((u.archetype||'—').slice(0,8))}</td>
     <td style="text-align:right">${fmt(u.n_ev)}</td><td style="text-align:right">${fmt(u.n_col)}</td>
-    <td style="text-align:right">${fmt(u.n_cmt)}</td><td style="color:var(--soft)">${(u.last_active||'').slice(0,10)}</td></tr>`).join('');
+    <td style="color:var(--soft)">${((u.last_seen||u.last_active)||'').slice(5,16).replace('T',' ')}</td></tr>`).join('');
   document.getElementById('usr').innerHTML=`
     <div class="cards">${card(c.mu_user,'匿名用户')}${card(c.mu_event,'行为事件')}${card(c.mu_comment,'众声评论')}${card(c.mu_collection,'收藏')}${card(c.mu_persona,'解读人设')}${card(c.mu_taste,'口味画像')}${card(c.mu_generation,'生成')}${card(c.mu_rating,'评分')}</div>
     <div id="usrDetail"></div>
-    <div class="panel"><h2>👥 用户列表（点行看单人画像 · 按最近活跃排）</h2>
-      <table class="rt" style="font-size:12.5px"><tr><th>用户</th><th>原型</th><th>本命</th><th>事件</th><th>收藏</th><th>评论</th><th>最近活跃</th></tr>${rows}</table></div>`;
+    <div class="panel"><h2>👥 用户列表（含匿名访客 IP/设备 · 点行看画像 · 按最近访问排）</h2>
+      <table class="rt" style="font-size:12.5px"><tr><th>用户</th><th>设备</th><th>IP / 地区</th><th>原型</th><th>事件</th><th>收藏</th><th>最近访问</th></tr>${rows}</table></div>`;
 }
+function uaDev(ua){if(!ua)return '<span style="color:#ccc">—</span>';
+  const s=ua.toLowerCase();let os=/iphone|ipad/.test(s)?'iOS':/android/.test(s)?'Android':/windows/.test(s)?'Win':/mac os/.test(s)?'Mac':/linux/.test(s)?'Linux':'?';
+  let br=/micromessenger/.test(s)?'微信':/edg\//.test(s)?'Edge':/chrome/.test(s)?'Chrome':/safari/.test(s)?'Safari':/firefox/.test(s)?'FF':'';
+  const mob=/mobile|iphone|android/.test(s);return `${mob?'📱':'💻'} ${os}${br?' · '+br:''}`;}
 async function openUser(uid){
   const d=await (await fetch(API+'admin/user?uid='+encodeURIComponent(uid))).json();
   const p=d.profile,t=d.taste;
@@ -440,12 +446,16 @@ async function openUser(uid){
   const evs=d.events.slice(0,20).map(e=>`<span class="ctag">${e.kind}${e.dwell_ms?'·'+Math.round(e.dwell_ms/1000)+'s':''}</span>`).join(' ');
   const gens=d.generations.map(g=>`<span class="ctag">${g.rating?'★'+g.rating:'未评'} ${esc((g.prompt||'').slice(0,18))}</span>`).join(' ')||'无';
   document.getElementById('usrDetail').innerHTML=`<div class="panel" style="border:2px solid var(--accent)">
-    <h2><i data-ic="me"></i> 用户画像 · ${esc(d.user.nickname||uid)} <a href="javascript:" onclick="document.getElementById('usrDetail').innerHTML=''" style="float:right;color:var(--soft);font-weight:400">✕ 关闭</a></h2>
+    <h2><i data-ic="me"></i> 用户画像 · ${esc(d.user.nickname||uid)} <a href="javascript:" onclick="document.getElementById('usrDetail').innerHTML=''" style="float:right;color:var(--soft);font-weight:400"><i data-ic="close"></i> 关闭</a></h2>
     <div class="grid2">
       <div><div class="gl"><b>审美档案</b></div>
         <div class="gl">原型 <b>${esc(p&&p.archetype||'无')}</b> · 本命 <b>${esc(p&&p.soulmate_cn||'—')}</b></div>
         <div class="gl">三盏灯 ${lights} · 离散度 ${p?(p.spread||0).toFixed(3):'—'} · 逛过 ${p?p.n:0} 幅</div>
         <div class="gl">口味坐标 ${t?`(${(t.x||0).toFixed(2)}, ${(t.y||0).toFixed(2)})`:'—'}</div>
+        <div class="gl" style="margin-top:8px"><b>访客信息（${d.user.email?'已登录':'匿名'}）</b></div>
+        <div class="gl">IP <code>${esc(d.user.ip||'—')}</code>${d.user.ip_country?' · '+esc(d.user.ip_country)+(d.user.ip_city?' '+esc(d.user.ip_city):''):''}${d.user.first_ip&&d.user.first_ip!==d.user.ip?` <span style="color:#aaa">(首次 ${esc(d.user.first_ip)})</span>`:''}</div>
+        <div class="gl">设备 ${uaDev(d.user.ua)} <span style="color:#aaa;font-size:11px">${esc((d.user.ua||'').slice(0,60))}</span></div>
+        <div class="gl">首次 ${(d.user.created||'').slice(0,16).replace('T',' ')} · 最近 ${(d.user.last_seen||'').slice(0,16).replace('T',' ')}</div>
         <div class="gl" style="margin-top:8px"><b>管理备注</b></div>
         <div style="display:flex;gap:6px"><input id="unote" value="${esc(d.user.admin_note||'')}" placeholder="给该用户加备注…" style="flex:1;font:13px inherit;padding:5px 8px;border:1px solid var(--line);border-radius:6px">
           <button class="abtn" onclick="saveNote('${uid}')">存</button></div></div>
@@ -477,12 +487,12 @@ async function loadGen(){
     <div class="panel"><h2>生成图（共 ${items.length} 张）</h2>
       <div class="recent" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr))">
         ${items.map(i=>`<div class="rc" style="position:relative">
-          <img loading="lazy" src="${i.file}" style="height:130px">
+          <img loading="lazy" decoding="async" src="${i.file}" style="height:130px">
           <div class="cap"><b>${esc(i.style_cn||i.query||'生成图')}</b><br>
             <span style="color:var(--soft)">${esc(i.who||'匿名')} · ${(i.ts||'').slice(0,10)}</span><br>
             <span style="color:var(--soft)">${esc(i.model||'')} ${i.rating===1?'👍':i.rating===-1?'👎':''}</span><br>
-            <span style="cursor:pointer" onclick="genRate('${i.id}',1)">👍</span>
-            <span style="cursor:pointer" onclick="genRate('${i.id}',-1)">👎</span>
+            <span style="cursor:pointer" onclick="genRate('${i.id}',1)"><i data-ic="up"></i></span>
+            <span style="cursor:pointer" onclick="genRate('${i.id}',-1)"><i data-ic="down"></i></span>
             <span style="cursor:pointer;color:#b06a62" onclick="genDel('${i.id}')">🗑</span>
           </div></div>`).join('')||'<div class="gl">暂无生成图</div>'}
       </div></div>`;
@@ -519,7 +529,7 @@ async function reproject(){const sc=document.getElementById('pScope').value,l=do
 // ===== VLM 提示词在线编辑(标准可改) =====
 async function loadPromptEditor(){
   const d=await (await fetch(API+'admin/prompt')).json();
-  document.getElementById('promptedit').innerHTML=`<div class="panel"><h2>✎ VLM 提示词(治理标准 · 可在线编辑)
+  document.getElementById('promptedit').innerHTML=`<div class="panel"><h2><i data-ic="edit"></i> VLM 提示词(治理标准 · 可在线编辑)
     <span style="font-weight:400;font-size:12px;color:${d.override?'var(--warn)':'#aaa'}">${d.override?'● 当前用自定义覆盖':'○ 当前用内置默认'}</span></h2>
     <textarea id="ptext" style="width:100%;min-height:220px;font:12px/1.6 ui-monospace,monospace;border:1px solid var(--line);border-radius:8px;padding:10px;resize:vertical">${esc(d.effective)}</textarea>
     <div style="margin-top:8px;display:flex;gap:8px;align-items:center">
@@ -620,9 +630,9 @@ async function weOpen(id){
       <div class="acts" style="margin-top:8px;gap:6px">
         <button class="abtn" onclick="weSave(${d.work_id})">💾 保存编辑</button>
         <button class="abtn" onclick="weReset(${d.work_id})">↩ 撤销编辑(回原值)</button>
-        <button class="abtn" style="border-color:var(--ok);color:var(--ok)" onclick="weStatus(${d.work_id},'kept')">✓ 入核心资产</button>
-        <button class="abtn stop" onclick="weStatus(${d.work_id},'rejected')">✕ 剔除</button>
-        <button class="abtn" onclick="weStatus(${d.work_id},'archived')">📦 归档</button>
+        <button class="abtn" style="border-color:var(--ok);color:var(--ok)" onclick="weStatus(${d.work_id},'kept')"><i data-ic="check"></i> 入核心资产</button>
+        <button class="abtn stop" onclick="weStatus(${d.work_id},'rejected')"><i data-ic="close"></i> 剔除</button>
+        <button class="abtn" onclick="weStatus(${d.work_id},'archived')"><i data-ic="box"></i> 归档</button>
         <span id="weMsg" style="color:var(--accent);font-size:12px"></span>
       </div></div></div></div>`;
 }
@@ -679,7 +689,7 @@ async function loadStyles(){
       ${r.auto?'<span class="ctag" style="font-size:9px">自动</span>':'<span class="ctag" style="font-size:9px;color:var(--ok)">人工</span>'}</td></tr>`).join('');
   const unmapped=d.raw_map.filter(r=>r.canon_id===0).length;
   document.getElementById('styles').innerHTML=`<div class="panel">
-    <h2>🏷 编目 · 流派归一　<span style="color:#aaa;font-weight:400;font-size:12px">164 个中英混杂原值 → 23 类规范流派（未归类 ${unmapped} 个高亮·下拉可改·人工改不被自动覆盖）</span></h2>
+    <h2><i data-ic="tag"></i> 编目 · 流派归一　<span style="color:#aaa;font-weight:400;font-size:12px">164 个中英混杂原值 → 23 类规范流派（未归类 ${unmapped} 个高亮·下拉可改·人工改不被自动覆盖）</span></h2>
     <div style="margin-bottom:10px">${chips}</div>
     <div style="max-height:420px;overflow:auto"><table class="rt" style="font-size:12.5px"><tr><th>原始 school 值</th><th>作品数</th><th>→ 规范流派</th></tr>${rows}</table></div></div>`;
 }
@@ -695,7 +705,7 @@ async function loadOps(){
       <b style="color:var(--accent)">${esc(x.action)}</b> <span style="color:#999">${esc((x.query||'').slice(0,60))}</span> <span class="ctag">${esc(x.actor)}</span></div>`).join('')||'<div class="gl">暂无操作</div>';
     const byact=l.by_action.map(a=>`<span class="ctag">${esc(a.action)} ${a.n}</span>`).join(' ');
     document.getElementById('ops').innerHTML=`<div class="panel">
-      <h2>⚙️ 运营 · 系统健康 & 操作审计</h2>
+      <h2><i data-ic="tools"></i> 运营 · 系统健康 & 操作审计</h2>
       <div class="cards">
         ${card(s.db_size,'库大小')}
         ${card((s.disk?s.disk.pct+'%':'?'),'磁盘占用',s.disk?`${s.disk.used_gb}/${s.disk.total_gb}GB`:'')}
@@ -706,11 +716,11 @@ async function loadOps(){
         ${card(fmt(l.today),'今日后台操作',`累计 ${fmt(l.total)}`)}
       </div>
       <div class="grid2">
-        <div class="panel" style="margin:0"><h2>📋 操作审计日志（谁改了什么）</h2><div style="max-height:300px;overflow:auto">${logs}</div></div>
+        <div class="panel" style="margin:0"><h2><i data-ic="clipboard"></i> 操作审计日志（谁改了什么）</h2><div style="max-height:300px;overflow:auto">${logs}</div></div>
         <div><div class="panel" style="margin:0 0 12px"><h2>操作类型分布</h2><div style="display:flex;flex-wrap:wrap;gap:4px">${byact||'—'}</div></div>
           <div class="panel" style="margin:0"><h2>库表占用 Top</h2>${s.tables.map(t=>`<div class="gl" style="font-size:12px">${esc(t.t)} <b>${fmt(t.n)}</b> 行 · ${t.sz}</div>`).join('')}</div></div>
       </div></div>`;
-  }catch(e){document.getElementById('ops').innerHTML='<div class="panel"><h2>⚙️ 运营</h2><div class="csub">加载失败</div></div>';}
+  }catch(e){document.getElementById('ops').innerHTML='<div class="panel"><h2><i data-ic="tools"></i> 运营</h2><div class="csub">加载失败</div></div>';}
 }
 
 load();setInterval(load,30000);loadGov();loadAnom();setInterval(loadAnom,120000);
@@ -727,7 +737,7 @@ function loadSpecial(){Promise.all([
   ]).then(([sp,w])=>{SPLIST=sp.items||[];SPWORKS=w.works||[];renderSP();});}
 function spc(s){if(s.work_ids&&s.work_ids.length)return s.work_ids.length;const r=s.rule||{};
   return SPWORKS.filter(w=>(!r.emo||!r.emo.length||r.emo.includes(w.emo))&&(!r.wv||!r.wv.length||r.wv.includes(w.wv))&&(!r.region||w.region===r.region)).length;}
-function spThumb(f){if(!f)return '';return /myqcloud\.com/i.test(f)?f+'?imageMogr2/thumbnail/360x/quality/80':f;}
+function spThumb(f){if(!f)return '';return /myqcloud\.com/i.test(f)?f+'?imageMogr2/thumbnail/360x/format/webp/quality/80':f;}
 function isCurated(s){return (s.work_ids&&s.work_ids.length)||(s.rule&&s.rule.spine);}
 function goCurate(url){if(!SPPW){alert('先在上方填管理口令');return;}sessionStorage.setItem('aha_admin_pass',SPPW);window.open(url,'_blank');}
 function renderSP(){const emos=[...new Set(SPWORKS.map(w=>w.emo).filter(Boolean))];const wrap=document.getElementById('spwrap');if(!wrap)return;
@@ -752,7 +762,7 @@ function renderSP(){const emos=[...new Set(SPWORKS.map(w=>w.emo).filter(Boolean)
         <div style="font-weight:600;font-size:13.5px;margin-bottom:3px">${esc2(s.title||'无题')}</div>
         <div style="font-size:11px;color:var(--soft);font-family:var(--mono);margin-bottom:8px">${n} 幅 · 脊:${esc2(r.spineLabel||r.spine||'—')} · ${s.public!==false?'已上架':'未上架'}</div>
         <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-size:12px">
-          <button onclick="goCurate('curate.html?edit=${encodeURIComponent(s.id)}')" style="padding:5px 12px;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer">✎ 编辑</button>
+          <button onclick="goCurate('curate.html?edit=${encodeURIComponent(s.id)}')" style="padding:5px 12px;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer"><i data-ic="edit"></i> 编辑</button>
           <a href="curate.html?ex=${encodeURIComponent(s.id)}" target="_blank" style="padding:5px 10px;border:1px solid var(--line);border-radius:6px;color:var(--soft);text-decoration:none">预览</a>
           <label style="margin-left:auto"><input type="checkbox" class="spc-pub" data-i="${i}" ${s.public!==false?'checked':''}> 上架</label>
           <input class="spc-seq" data-i="${i}" type="number" value="${s.seq||0}" title="排序 seq" style="width:52px;${IB};padding:4px 6px">
@@ -845,7 +855,7 @@ function fsCard(s){const sample=(FWORKS.find(w=>!AHAFrames.isEast(w))||FWORKS[0]
         <div style="grid-column:1/-1">${fsField('供应备注','fs-supnote',s.supply_note,'尺寸定制、包装、最小批量说明…')}</div>
       </div>
       <details style="margin-top:11px">
-        <summary style="cursor:pointer;font-size:10px;color:var(--soft);font-weight:600;letter-spacing:.04em">🔗 关联度 match_rule(预留 · 后续匹配用)+ 简易匹配关键词(当前生效)</summary>
+        <summary style="cursor:pointer;font-size:10px;color:var(--soft);font-weight:600;letter-spacing:.04em"><i data-ic="network"></i> 关联度 match_rule(预留 · 后续匹配用)+ 简易匹配关键词(当前生效)</summary>
         <div style="margin-top:8px;display:grid;gap:8px">
           ${fsField('简易匹配·流派关键词(逗号)','fs-mstyle',s.match_style,'巴洛克,文艺复兴,…')}
           ${fsField('简易匹配·媒材硬规则(逗号)','fs-mmedia',s.match_media,'版画,蚀刻,摄影,…')}
@@ -884,11 +894,11 @@ function saveFS(key){if(!FPW){alert('先在上方填管理口令');return;}
 function frmCard(w){const S=AHAFrames.STYLES,ax=AHAFrames.autoExplain(w),cur=FCANON[w.file]||'';
   const dft=ax.key,isAI=ax.src==='llm';
   const opt='<option value="">默认('+AHAFrames.BY[dft].name+(isAI?' · 🪄AI':'')+')</option>'+S.map(s=>`<option value="${s.key}" ${cur===s.key?'selected':''}>${s.emoji} ${s.name}</option>`).join('');
-  const aitip=isAI?`<div title="${esc2(ax.why)}" style="font-size:9px;color:var(--accent);text-align:center;margin-bottom:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🪄 ${esc2(ax.why)}${w.frame_conf!=null?' · '+w.frame_conf:''}</div>`:'';
+  const aitip=isAI?`<div title="${esc2(ax.why)}" style="font-size:9px;color:var(--accent);text-align:center;margin-bottom:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"><i data-ic="magic"></i> ${esc2(ax.why)}${w.frame_conf!=null?' · '+w.frame_conf:''}</div>`:'';
   const needs=frmNeedsReview(w);
-  const rbadge=needs?`<div style="font-size:9px;color:var(--rej);text-align:center;margin-bottom:3px">⚠️ ${w.frame_suggest?('低置信 '+(w.frame_conf!=null?w.frame_conf:'')):'无AI建议 · 待定'}</div>`:'';
+  const rbadge=needs?`<div style="font-size:9px;color:var(--rej);text-align:center;margin-bottom:3px"><i data-ic="warn"></i> ${w.frame_suggest?('低置信 '+(w.frame_conf!=null?w.frame_conf:'')):'无AI建议 · 待定'}</div>`:'';
   return `<div style="width:170px${needs?';outline:1px solid var(--rej);outline-offset:4px;border-radius:6px':''}">
-    <div style="max-width:150px;margin:0 auto 7px">${AHAFrames.wrap(`<img loading="lazy" src="${esc2(w.file)}">`,w)}</div>
+    <div style="max-width:150px;margin:0 auto 7px">${AHAFrames.wrap(`<img loading="lazy" decoding="async" src="${esc2(w.file)}">`,w)}</div>
     <div style="font-size:12px;font-weight:600;color:var(--ink,#2a2620);text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc2(frmTitle(w.title))}</div>
     <div style="font-size:10px;color:var(--soft);text-align:center;margin-bottom:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc2(w.artist||'　')}</div>
     ${rbadge}${aitip}<select class="frmsel" data-f="${esc2(w.file)}" style="width:100%;padding:5px;border:1px solid ${cur?'var(--accent)':'var(--line)'};border-radius:7px;font-size:12px;background:${cur?'#fbf3ea':'var(--card)'};cursor:pointer">${opt}</select>
@@ -914,7 +924,7 @@ function frmStats(){
       <span style="text-align:right;color:var(--soft);font-family:var(--mono)">${n} · ${pct}%</span></div>`;}).join('');
   const chip=(lbl,n,c)=>`<span style="font-size:12px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:4px 12px"><b style="color:${c};font-family:var(--mono)">${n}</b> ${lbl}</span>`;
   return `<div class="panel" style="margin-bottom:16px">
-    <h2 style="margin-bottom:10px">📊 装裱概览 · 全库 ${tot} 幅(访客实际看到的最终框)</h2>
+    <h2 style="margin-bottom:10px"><i data-ic="data"></i> 装裱概览 · 全库 ${tot} 幅(访客实际看到的最终框)</h2>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center">
       ${chip('🪄 AI 逐画策展',src.ai,'var(--accent)')}${chip('🔗 关联度打分',src.rule,'#3a8a5a')}${chip('🔒 人工指定',src.human,'#c2792e')}${chip('⚠️ 待定',src.pending,'var(--rej)')}
       <span style="font-size:11.5px;color:var(--soft)">置信 高 ${conf.high} · 中 ${conf.mid} · 低 ${conf.low+conf.none}</span></div>
@@ -927,7 +937,7 @@ function loadFrmOrders(){if(!FPW){alert('先填上方管理口令');return;}
   fetch('/api/frame_orders?pass='+encodeURIComponent(FPW)).then(r=>r.json()).then(d=>{
     if(d&&d.error){box.innerHTML='<div style="font-size:12px;color:var(--rej);padding:8px">'+esc2(d.error)+'</div>';return;}
     const it=(d&&d.items)||[];
-    if(!it.length){box.innerHTML='<div class="panel" style="margin:0 0 16px"><h2>🛒 装裱订单</h2><div style="font-size:12px;color:var(--soft)">还没有订单。去 art.html 任意画的「定制装裱·下单」试一单。</div></div>';return;}
+    if(!it.length){box.innerHTML='<div class="panel" style="margin:0 0 16px"><h2><i data-ic="cart"></i> 装裱订单</h2><div style="font-size:12px;color:var(--soft)">还没有订单。去 art.html 任意画的「定制装裱·下单」试一单。</div></div>';return;}
     const rows=it.map(o=>`<tr>
       <td class="ordtd" style="font-family:var(--mono)">${esc2(o.order_no)}</td>
       <td class="ordtd">${esc2(o.title||'—')}</td>
@@ -936,8 +946,8 @@ function loadFrmOrders(){if(!FPW){alert('先填上方管理口令');return;}
       <td class="ordtd" style="text-align:right">×${o.qty||1}</td>
       <td class="ordtd" style="text-align:right">¥${o.price_cents!=null?(o.price_cents/100):'—'}</td>
       <td class="ordtd">${esc2(o.name||'')}<div style="font-size:10px;color:var(--soft)">${esc2(o.contact||'')}</div></td>
-      <td class="ordtd" style="font-size:10px;color:var(--soft)">${o.created?o.created.slice(0,16).replace('T',' '):''}${o.note?' <span title="'+esc2(o.note)+'">📝</span>':''}</td></tr>`).join('');
-    box.innerHTML=`<div class="panel" style="margin:0 0 16px"><h2>🛒 装裱订单 · ${it.length}</h2>
+      <td class="ordtd" style="font-size:10px;color:var(--soft)">${o.created?o.created.slice(0,16).replace('T',' '):''}${o.note?' <span title="'+esc2(o.note)+'"><i data-ic="edit"></i></span>':''}</td></tr>`).join('');
+    box.innerHTML=`<div class="panel" style="margin:0 0 16px"><h2><i data-ic="cart"></i> 装裱订单 · ${it.length}</h2>
       <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px">
       <thead><tr style="color:var(--soft);text-align:left">${['订单号','作品','框','成品尺寸','数量','报价','客户','时间'].map(h=>'<th style="padding:4px 8px;border-bottom:1px solid var(--line);white-space:nowrap">'+h+'</th>').join('')}</tr></thead>
       <tbody>${rows}</tbody></table></div>
@@ -955,7 +965,7 @@ function renderFRM(){const wrap=document.getElementById('frmwrap');if(!wrap||!wi
       <span style="font-size:12.5px;color:var(--ink,#2a2620);font-weight:600">🔑 管理口令</span>
       <input id="frmpw" type="password" value="${esc2(FPW)}" placeholder="admin_pass" style="width:180px;padding:6px 9px;border:1px solid var(--line);border-radius:7px">
       <span style="font-size:11.5px;color:var(--soft)">改框目录、逐画指定、看订单都需要它</span>
-      <button onclick="loadFrmOrders()" style="padding:6px 13px;border:1px solid var(--accent);background:var(--card);color:var(--accent);border-radius:999px;cursor:pointer;font-size:12px">🛒 装裱订单</button></div>
+      <button onclick="loadFrmOrders()" style="padding:6px 13px;border:1px solid var(--accent);background:var(--card);color:var(--accent);border-radius:999px;cursor:pointer;font-size:12px"><i data-ic="cart"></i> 装裱订单</button></div>
       <div id="ordPanel"></div>`
     +frmLibraryEditable()
     +`<h3 style="font-size:13px;color:var(--accent);margin:0 0 12px">逐画指定</h3>`

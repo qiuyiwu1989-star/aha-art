@@ -2,17 +2,22 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>aha · 作品</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
-  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--green:#5a7d6f;--blue:#5b7596;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1080px;margin:0 auto;padding:22px 16px 90px}
+  .wrap{max-width:1120px;margin:0 auto;padding:22px 16px 90px}
   .breadcrumb{font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-bottom:14px}.breadcrumb a{color:var(--accent);text-decoration:none}
-  .top{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:24px;align-items:start}
-  @media(max-width:760px){.top{grid-template-columns:1fr}}
-  .stage{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;align-items:center;justify-content:center;min-height:280px}
-  .stage img{max-width:100%;max-height:74vh;border-radius:6px;display:block;box-shadow:0 6px 26px rgba(0,0,0,.16)}
+  .top{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:24px;align-items:start}
+  @media(max-width:780px){.top{grid-template-columns:1fr}}
+  .stagewrap{position:relative;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;align-items:center;justify-content:center;min-height:280px}
+  .stagewrap img.main{max-width:100%;max-height:76vh;border-radius:6px;display:block;box-shadow:0 6px 26px rgba(0,0,0,.16);cursor:zoom-in}
+  .hot{position:absolute;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-family:var(--mono);font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%);box-shadow:0 2px 8px rgba(0,0,0,.35),0 0 0 3px rgba(255,255,255,.8);cursor:default;transition:transform .15s;z-index:3}
+  .hot:hover{transform:translate(-50%,-50%) scale(1.25)}
+  .hotline{position:absolute;stroke:var(--accent);stroke-width:1.5;stroke-dasharray:4 4;opacity:.5;z-index:2}
+  .toggle{position:absolute;top:16px;right:16px;z-index:4;font-family:var(--mono);font-size:11px;color:var(--ink-soft);background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:999px;padding:4px 11px;cursor:pointer;user-select:none}
+  .toggle.on{background:var(--accent);color:#fff;border-color:var(--accent)}
   .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
   h1{font-family:var(--serif);font-size:clamp(20px,3.4vw,28px);font-weight:700;margin:6px 0 4px;line-height:1.25}
   .artist{font-family:var(--serif);font-size:16px;font-weight:600;margin-bottom:12px}
@@ -23,104 +28,204 @@
   .mr .l{font-family:var(--mono);font-size:11px;color:var(--ink-mute);width:62px;flex-shrink:0}
   .mr .v{color:var(--ink-soft)}
   .walk{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12.5px;color:#fff;background:var(--accent);border-radius:999px;padding:9px 16px;text-decoration:none;margin-top:4px}
-  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;margin-top:14px}
-  .card .sh{font-family:var(--serif);font-size:15px;font-weight:700;margin-bottom:9px;display:flex;align-items:baseline;gap:8px}
-  .card .sh small{font-family:var(--mono);font-size:10px;color:var(--ink-faint);font-weight:400}
-  .frow{display:flex;align-items:center;gap:9px;margin:6px 0;font-size:12px}
-  .frow .fk{width:34px;font-family:var(--mono);color:var(--ink-soft);text-align:right}
-  .frow .fl,.frow .fr{font-family:var(--mono);font-size:10px;color:var(--ink-mute);width:30px}
+  .anchorbig{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--accent);line-height:1.2}
+  /* sections */
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px}
+  .card .sh{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:13px;display:flex;align-items:baseline;gap:9px}
+  .card .sh small{font-family:var(--sans);font-size:11px;letter-spacing:0;text-transform:none;color:var(--ink-faint)}
+  .grid2{display:grid;grid-template-columns:240px 1fr;gap:20px;align-items:start}@media(max-width:680px){.grid2{grid-template-columns:1fr}}
+  /* reading flow */
+  .flowstep{display:flex;gap:11px;padding:9px 0;border-top:1px dashed var(--line)}.flowstep:first-child{border-top:none}
+  .flowstep .n{flex:none;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-family:var(--mono);font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center}
+  .flowstep .ft{font-size:13.5px}.flowstep .ft b{font-family:var(--serif);font-size:14.5px}
+  .flowstep .fw{font-family:var(--mono);font-size:10px;color:var(--ink-mute);background:var(--paper-2);border-radius:5px;padding:1px 6px;margin-left:6px}
+  .flowstep .fy{color:var(--ink-soft);margin-top:3px;line-height:1.65}
+  .pathline{font-size:13px;color:var(--ink-soft);line-height:1.8;background:var(--paper);border-radius:9px;padding:10px 13px;margin-top:11px}
+  .pathline .pl-k{font-family:var(--mono);font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:.06em}
+  /* poles (language7) */
+  .frow{display:flex;align-items:center;gap:9px;margin:9px 0;font-size:12px}
+  .frow .fk{width:34px;font-family:var(--serif);font-size:13px;color:var(--ink);text-align:right;flex:none}
+  .frow .fl,.frow .fr{font-family:var(--mono);font-size:10px;color:var(--ink-mute);width:30px;flex:none}
   .frow .fr{text-align:left}
   .frow .ft{flex:1;height:6px;background:var(--paper-2);border-radius:4px;position:relative}
-  .frow .fd{position:absolute;top:50%;width:11px;height:11px;border-radius:50%;transform:translate(-50%,-50%);border:2px solid #fff}
-  .frow .vn{width:30px;font-family:var(--mono);font-size:10px;color:var(--ink-mute)}
-  .wvbox{display:flex;gap:14px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--ink-soft)}
-  .wvbox b{font-family:var(--mono);color:var(--accent)}
+  .frow .fd{position:absolute;top:50%;width:12px;height:12px;border-radius:50%;transform:translate(-50%,-50%);border:2px solid #fff;background:var(--accent);box-shadow:0 1px 3px rgba(0,0,0,.25)}
+  .frow .vn{width:30px;font-family:var(--mono);font-size:10px;color:var(--ink-mute);flex:none}
+  .ldesc{font-size:11.5px;color:var(--ink-faint);line-height:1.6;margin:2px 0 8px 43px}
+  /* channels / evidence */
+  .chan{font-size:12.5px;line-height:1.7;margin:7px 0;color:var(--ink-soft)}.chan b{font-family:var(--serif);color:var(--ink)}
+  .evid{font-size:12px;color:var(--ink-soft);line-height:1.7;padding-left:16px;position:relative;margin:4px 0}.evid:before{content:"·";position:absolute;left:4px;color:var(--accent);font-weight:700}
   .chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
   .chip{font-family:var(--mono);font-size:11px;color:var(--ink-soft);background:var(--paper-2);border:1px solid var(--line);border-radius:999px;padding:4px 11px;text-decoration:none}
-  .fused{font-size:13px;line-height:1.8;color:var(--ink-soft)}
-  .rel{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:9px;margin-top:6px}
+  .conf{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);margin-top:9px}
+  .fused{font-size:13.5px;line-height:1.9;color:var(--ink-soft)}
+  .vo{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--accent);line-height:1.7;margin-top:4px}
+  .wvtag{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-top:9px}.wvtag b{color:var(--accent)}
+  /* related */
+  .rel{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:9px;margin-top:4px}
   .rc{border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff;text-decoration:none;color:inherit;display:block}
   .rc img{width:100%;height:96px;object-fit:cover;display:block;background:var(--paper-2)}
   .rc .rt{font-size:10px;color:var(--ink-mute);padding:4px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .rc .rr{font-family:var(--mono);font-size:9px;color:#fff;background:var(--accent);border-radius:4px;padding:0 5px;margin:4px 6px 0;display:inline-block}
   .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
   .empty{text-align:center;color:var(--ink-faint);padding:80px 20px}
+  /* zoom */
+  #zoom{position:fixed;inset:0;background:rgba(20,16,10,.92);z-index:200;display:none;cursor:grab}
+  #zoom.on{display:block}#zoom img{position:absolute;transform-origin:0 0;will-change:transform}
+  .zx{position:fixed;top:16px;right:20px;z-index:202;color:#f3eee2;font-family:var(--mono);font-size:22px;cursor:pointer}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
+<a class="home-fab" href="museum.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap" id="wrap"><div class="empty">加载中…</div></div>
+<div id="zoom"><span class="zx" onclick="closeZoom()">×</span><img id="zimg" alt=""></div>
 <script src="aha-mem.js"></script>
 <script>
 const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
-const POLES=[{k:"构图",l:"均衡",r:"动势"},{k:"空间",l:"纵深",r:"平面"},{k:"造型",l:"体积",r:"消融"},{k:"光影",l:"柔和",r:"强烈"},{k:"色彩",l:"沉郁",r:"明艳"},{k:"笔触",l:"隐没",r:"显露"},{k:"边缘",l:"硬朗",r:"柔化"}];
+const POLES=[{k:"构图",long:"构图与组织",l:"均衡",r:"动势"},{k:"空间",long:"透视与空间",l:"纵深",r:"平面"},{k:"造型",long:"形状与造型",l:"体积",r:"消融"},{k:"光影",long:"光影与明暗",l:"柔和",r:"强烈"},{k:"色彩",long:"色彩系统",l:"沉郁",r:"明艳"},{k:"笔触",long:"笔触与肌理",l:"隐没",r:"显露"},{k:"边缘",long:"边缘与节奏",l:"硬朗",r:"柔化"}];
 const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+const RG=[['WV1',.232,.389],['WV2',.41,.287],['WV3',.528,.457],['WV4',.533,.733],['WV5',.775,.512],['WV6',.82,.207]];
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const cleanTitle=t=>{if(!t)return '无题';t=String(t).replace(/\.(jpe?g|png|webp|gif|tiff?|bmp)$/i,'').replace(/_+/g,' ').trim();return t||'无题';};
 const isAnon=a=>{a=(a||'').trim();return !a||/佚名|待考|无名|未知|匿名|不详|无款|unknown|anonymous/i.test(a);};
+const fmt=x=>x==null?'—':(+x).toFixed(2);
+// 把 VLM 给的中文方位词("画面右上""中央")近似映射到图上 0-1 坐标,用来在画上落"观看动线"标号
+function whereXY(s){s=String(s||'');let x=0.5,y=0.5;
+  if(/左/.test(s))x=0.24;else if(/右/.test(s))x=0.76;
+  if(/上|顶|首/.test(s))y=0.22;else if(/下|底|脚/.test(s))y=0.78;
+  if(/正中|中央|中心/.test(s)&&!/上|下|左|右/.test(s)){x=0.5;y=0.5;}
+  return {x,y};}
+
 const qid=new URLSearchParams(location.search).get('id');
 const wrap=document.getElementById('wrap');
 if(!qid){wrap.innerHTML='<div class="empty">缺少作品 id</div>';}
 else fetch('/cat/work/'+encodeURIComponent(qid)).then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(d=>{
-  // 馆藏码规范化:无论从数字 id 还是码进来,落地后地址栏统一成馆藏码(分享/收藏即得码,不暴露自增 id)
-  if(d.code && qid!==d.code){ const u=new URL(location.href); u.searchParams.set('id',d.code); history.replaceState(null,'',u); }
-  const v=d.vlm||{}; const TT=cleanTitle(d.title); const A=d.artist||{};
+  if(d.code && qid!==d.code){const u=new URL(location.href);u.searchParams.set('id',d.code);history.replaceState(null,'',u);}
+  const v=d.vlm||{};const TT=cleanTitle(d.title);const A=d.artist||{};
   const anon=isAnon(A.name_cn||A.name_en);
   document.title='aha · '+TT+(anon?'':' · '+(A.name_cn||A.name_en));
-  // 作者链接:canon → 深度主页;非 canon 但有活库 id → 看 TA 全部藏画;佚名 → 不可点
   const aHref=(A.canon_id||A.artist_id)?`kg-artist.html?id=${encodeURIComponent(A.canon_id||A.artist_id)}`:null;
-  const artHTML=(!anon&&aHref)?`<a href="${aHref}">${esc(A.name_cn||A.name_en)}</a>`
-              :`<span class="${anon?'anon':''}">${esc((A.name_cn||A.name_en)||'佚名 · 待考')}</span>`;
-  // 元数据行
+  const artHTML=(!anon&&aHref)?`<a href="${aHref}">${esc(A.name_cn||A.name_en)}</a>`:`<span class="${anon?'anon':''}">${esc((A.name_cn||A.name_en)||'佚名 · 待考')}</span>`;
   const yr=d.year||(A.born?`${A.born}–${A.death||''}`:'');
   const dim=(d.w_cm&&d.h_cm)?`${d.w_cm} × ${d.h_cm} cm`:'';
-  const mrows=[['作者',artHTML],['年代',yr&&esc(yr)],['风格',d.school&&esc(d.school)],['媒材',d.medium&&esc(d.medium)],['尺寸',dim&&esc(dim)],['来源',d.source&&esc(d.source)]]
+  const mrows=[['作者',artHTML],['年代',yr&&esc(yr)],['风格',d.school&&esc(d.school)],['媒材',(v.media||d.medium)&&esc(v.media||d.medium)],['尺寸',dim&&esc(dim)],['来源',d.source&&esc(d.source)]]
     .filter(x=>x[1]).map(x=>`<div class="mr"><span class="l">${x[0]}</span><span class="v">${x[1]}</span></div>`).join('');
   const walk=(!anon&&aHref)?`<a class="walk" href="${aHref}">${A.canon_id?'看 TA 一生的画 →':'看 TA 的主页 →'}</a>`:'';
-  // 一体两面:已展出的画 → 去美术馆「看画」体验面(art.html 按文件键)
   const museum=(d.exhibited&&d.file)?`<a class="walk" style="background:var(--green);margin-left:8px" href="art.html?w=${encodeURIComponent(d.file)}"><i data-ic="museum"></i> 在美术馆里看这幅 →</a>`:'';
 
-  let html=`<div class="breadcrumb"><a href="home.html"><i data-ic="home"></i> 首页</a> › <a href="museum.html"><i data-ic="museum"></i> 美术馆</a>${(!anon&&aHref)?` › <a href="${aHref}">${esc(A.name_cn||A.name_en)}</a>`:''} › <b>${esc(TT)}</b></div>
+  const af=v.affect||{},vad=af.vad||{},wv=v.worldview||{},reading=v.reading||{};
+  const focus=Array.isArray(reading.focus_top3)?reading.focus_top3.slice(0,3):[];
+  // 图上动线标号
+  const hots=focus.map((f,i)=>{const p=whereXY(f.where);return `<div class="hot" style="left:${p.x*100}%;top:${p.y*100}%" title="${esc(f.what||'')}">${i+1}</div>`;}).join('');
+  const hotToggle=focus.length?`<span class="toggle on" id="hotTog" title="在画上显示观看动线">观看动线 ①②③</span>`:'';
+
+  let html=`<div class="breadcrumb"><a href="museum.html"><i data-ic="home"></i> 首页</a> › <a href="museum.html"><i data-ic="museum"></i> 美术馆</a>${(!anon&&aHref)?` › <a href="${aHref}">${esc(A.name_cn||A.name_en)}</a>`:''} › <b>${esc(TT)}</b></div>
   <div class="top">
-    <div class="stage"><img src="${d.image.thumb}" alt="${esc(TT)}" onerror="this.src='${d.image.full}'"></div>
+    <div class="stagewrap" id="stagewrap">
+      <img class="main" src="${d.image.thumb}" alt="${esc(TT)}" onerror="this.src='${d.image.full}'" onclick="openZoom('${d.image.full}')">
+      <div id="hotlayer">${hots}</div>${hotToggle}
+    </div>
     <div>
-      <div class="kick">aha · 馆藏真迹</div>
+      <div class="kick">aha · 馆藏真迹${d.code?' · '+esc(d.code):''}</div>
       <h1>${esc(TT)}</h1>
       <div class="artist">${artHTML}</div>
+      ${af.primary_anchor?`<div class="anchorbig">${esc(af.primary_anchor)}</div><div style="font-size:11.5px;color:var(--ink-faint);font-family:var(--mono);margin:2px 0 12px">这幅画给人的第一情绪</div>`:''}
       <div class="meta">${mrows}</div>
       ${walk}${museum}
     </div>
   </div>`;
 
-  // 这幅画的解读(VLM)
-  const wv=v.worldview||{}, af=v.affect||{}, vad=af.vad||{}, lang=v.lang||{};
-  const parts=[];
-  if(wv.x!=null||wv.wv){
-    const wvid=(String(wv.wv||'').match(/WV[1-6]/)||[])[0];
-    parts.push(`<div class="wvbox">${wvid?`<span>世界观区 <b>${wvid} ${WVN[wvid]||''}</b></span>`:''}${wv.x!=null?`<span>坐标 <b>(${(+wv.x).toFixed(2)}, ${(+wv.y).toFixed(2)})</b> <small style="color:var(--ink-faint)">再现-表现 · 结构-感知</small></span>`:''}</div>`);
+  // ① 观看这幅画 · 动线(focus_top3 + path + guide)
+  if(focus.length||reading.path){
+    const steps=focus.map((f,i)=>`<div class="flowstep"><div class="n">${i+1}</div><div class="ft"><b>${esc(f.what||'')}</b>${f.where?`<span class="fw">${esc(f.where)}</span>`:''}<div class="fy">${esc(f.why||'')}</div></div></div>`).join('');
+    html+=`<div class="card"><div class="sh">观看这幅画 <small>视线最先落在哪、怎么游走</small></div>
+      ${steps}
+      ${reading.path?`<div class="pathline"><span class="pl-k">视线动线</span><br>${esc(reading.path)}</div>`:''}
+      ${reading.guide?`<div class="pathline" style="margin-top:8px"><span class="pl-k">画家如何引导</span><br>${esc(reading.guide)}</div>`:''}</div>`;
   }
-  const langRows=POLES.filter(p=>lang[p.k]!=null).map(p=>{const x=+lang[p.k];return `<div class="frow"><span class="fk">${p.k}</span><span class="fl">${p.l}</span><span class="ft"><span class="fd" style="left:${x*100}%;background:var(--accent)"></span></span><span class="fr">${p.r}</span><span class="vn">${x.toFixed(2)}</span></div>`;}).join('');
-  if(langRows)parts.push(`<div style="margin-top:10px">${langRows}</div>`);
-  const VAD=[['v','愉悦',vad.valence],['a','唤起',vad.arousal],['d','掌控',vad.dominance]].filter(x=>x[2]!=null);
-  if(VAD.length)parts.push(`<div style="margin-top:8px">${VAD.map(x=>`<div class="frow"><span class="fk">${x[1]}</span><span class="ft"><span class="fd" style="left:${(+x[2])*100}%;background:var(--green)"></span></span><span class="vn">${(+x[2]).toFixed(2)}</span></div>`).join('')}</div>`);
-  if(af.primary_anchor)parts.push(`<div class="chips"><span class="chip">情绪锚点 · ${esc(af.primary_anchor)}</span></div>`);
-  const subj=v.subject||(Array.isArray(v.subject_tags)?v.subject_tags.join('、'):'');
-  if(subj)parts.push(`<div class="chips"><span class="chip">题材 · ${esc(subj)}</span></div>`);
-  if(v.fused)parts.unshift(`<div class="fused">${esc(v.fused)}</div>`);
-  if(parts.length)html+=`<div class="card"><div class="sh"><i data-ic="search"></i> 这幅画的解读 <small>aha 视觉模型逐张分析</small></div>${parts.join('')}
-    <div class="chips" style="margin-top:12px"><a class="chip" href="kg-language.html">七大构成 →</a><a class="chip" href="kg-affect.html">感知层 →</a><a class="chip" href="kg-v2.html">知识图谱 →</a></div></div>`;
 
-  html+=`<div class="card" id="relcard" style="display:none"><div class="sh">↔ 相关作品 <small>同画家 · 同情绪 · 同风格</small></div><div class="rel" id="rel"></div></div>`;
+  // ② 这幅画的情绪 · 感知效应(circumplex + channels + evidence)
+  const hasAff=(vad.valence!=null||vad.arousal!=null||af.channels||af.primary_anchor);
+  if(hasAff){
+    const va=+vad.valence||0,ar=+vad.arousal||0,W=190,H=190,p=18,cx=p+va*(W-2*p),cy=p+(1-ar)*(H-2*p);
+    const circ=`<svg width="${W}" height="${H}" style="background:#fff;border:1px solid var(--line);border-radius:10px;flex:none">
+      <rect x="${p}" y="${p}" width="${W-2*p}" height="${H-2*p}" fill="#faf7f1"/>
+      <line x1="${W/2}" y1="${p}" x2="${W/2}" y2="${H-p}" stroke="#ece8e1"/><line x1="${p}" y1="${H/2}" x2="${W-p}" y2="${H/2}" stroke="#ece8e1"/>
+      <text x="${W-p+1}" y="${H/2-3}" font-size="9" fill="#b3a999" text-anchor="end">愉悦</text><text x="${p}" y="${H/2-3}" font-size="9" fill="#b3a999">消极</text>
+      <text x="${W/2+3}" y="${p+9}" font-size="9" fill="#b3a999">激越</text><text x="${W/2+3}" y="${H-p-2}" font-size="9" fill="#b3a999">平静</text>
+      ${vad.valence!=null?`<circle cx="${cx}" cy="${cy}" r="8" fill="var(--accent)" opacity=".9"/><circle cx="${cx}" cy="${cy}" r="13" fill="none" stroke="var(--accent)" opacity=".35"/>`:''}</svg>`;
+    const vrows=[['愉悦 V',vad.valence],['唤起 A',vad.arousal],['掌控 D',vad.dominance]].filter(x=>x[1]!=null)
+      .map(x=>`<div style="font-size:12px;color:var(--ink-soft);margin:3px 0">${x[0]} <b style="color:var(--ink);font-family:var(--mono)">${fmt(x[1])}</b></div>`).join('');
+    const ch=af.channels||{};
+    const chh=Object.keys(ch).length?Object.entries(ch).map(([k,t])=>`<div class="chan"><b>${esc(k)}</b> · ${esc(t)}</div>`).join(''):'';
+    const ev=(af.evidence||[]).map(e=>`<div class="evid">${esc(e)}</div>`).join('');
+    html+=`<div class="card"><div class="sh">这幅画的情绪 <small>它让人感到什么 · 又为何如此</small></div>
+      <div class="grid2">
+        <div style="text-align:center">${circ}<div style="margin-top:6px">${af.primary_anchor?`<div class="anchorbig" style="font-size:18px">${esc(af.primary_anchor)}</div>`:''}${vrows}</div></div>
+        <div>${chh?`<div style="font-family:var(--mono);font-size:10px;color:var(--accent);text-transform:uppercase;margin-bottom:4px">情绪从哪来</div>${chh}`:''}
+          ${ev?`<div style="font-family:var(--mono);font-size:10px;color:var(--accent);text-transform:uppercase;margin:11px 0 4px">画面证据</div>${ev}`:''}
+          ${af.confidence!=null?`<div class="conf">读取置信度 ${Math.round(af.confidence*100)}%</div>`:''}</div>
+      </div></div>`;
+  }
+
+  // ③ 七大构成 + 世界观坐标
+  let langRows='';
+  POLES.forEach(po=>{
+    let cell=(v.lang&&v.lang[po.k]!=null)?{v:v.lang[po.k]}:((v.language7||{})[po.long]);
+    if(cell==null)return;
+    const val=(cell&&typeof cell==='object')?cell.v:cell;if(val==null)return;
+    const desc=(cell&&typeof cell==='object')?cell.desc:'';
+    langRows+=`<div class="frow"><span class="fk">${po.k}</span><span class="fl">${po.l}</span><span class="ft"><span class="fd" style="left:${(+val)*100}%"></span></span><span class="fr">${po.r}</span><span class="vn">${(+val).toFixed(2)}</span></div>${desc?`<div class="ldesc">${esc(desc)}</div>`:''}`;
+  });
+  const wvid=(String(wv.wv||'').match(/WV[1-6]/)||[])[0];
+  let wvPlane='';
+  if(wv.x!=null){const PW=180,X=x=>14+x*(PW-28),Y=y=>14+(1-y)*(PW-28);
+    wvPlane=`<svg width="${PW}" height="${PW}" style="background:radial-gradient(120% 120% at 50% 50%,#fff,#f1ead9);border:1px solid var(--line);border-radius:10px">
+      <line x1="${PW/2}" y1="10" x2="${PW/2}" y2="${PW-10}" stroke="#eadfca"/><line x1="10" y1="${PW/2}" x2="${PW-10}" y2="${PW/2}" stroke="#eadfca"/>
+      ${RG.map(r=>`<circle cx="${X(r[1])}" cy="${Y(r[2])}" r="3" fill="#cabfa0"/><text x="${X(r[1])}" y="${Y(r[2])-5}" font-size="7.5" fill="#b7ab92" text-anchor="middle">${WVN[r[0]]}</text>`).join('')}
+      <circle cx="${X(wv.x)}" cy="${Y(wv.y)}" r="7" fill="var(--accent)"/><circle cx="${X(wv.x)}" cy="${Y(wv.y)}" r="12" fill="none" stroke="var(--accent)" opacity=".4"/>
+      <text x="9" y="${PW/2-3}" font-size="8" fill="#999">再现</text><text x="${PW-9}" y="${PW/2-3}" font-size="8" fill="#999" text-anchor="end">表现</text>
+      <text x="${PW/2+2}" y="13" font-size="8" fill="#999">感知</text><text x="${PW/2+2}" y="${PW-4}" font-size="8" fill="#999">结构</text></svg>`;
+  }
+  if(langRows||wvPlane){
+    html+=`<div class="card"><div class="sh">怎么画的 <small>七大构成语言 · 世界观坐标</small></div>
+      <div class="grid2"><div>${wvPlane}${wvid?`<div class="wvtag">世界观区 <b>${wvid} ${WVN[wvid]||''}</b>${wv.x!=null?` · 坐标 (${(+wv.x).toFixed(2)}, ${(+wv.y).toFixed(2)})`:''}</div>`:''}</div>
+      <div>${langRows||'<span style="color:var(--ink-faint)">暂无构成数据</span>'}</div></div></div>`;
+  }
+
+  // ④ 题材 / 风格 / 物象
+  const st_=v.style||{};const subj=v.subject||(Array.isArray(v.subject_tags)?v.subject_tags.join('、'):'');
+  const tags=(v.subject_tags||[]).map(t=>`<span class="chip">${esc(t)}</span>`).join('');
+  const objs=(v.objects||[]).map(o=>`<span class="chip">${esc(o)}</span>`).join('');
+  if(subj||st_.流派||tags||objs){
+    html+=`<div class="card"><div class="sh">画了什么 · 什么风格</div>
+      ${subj?`<div style="font-size:13.5px;margin-bottom:7px"><b style="font-family:var(--serif)">题材</b> · ${esc(subj)}</div>`:''}
+      ${st_.流派?`<div style="font-size:13.5px;color:var(--ink-soft);margin-bottom:7px"><b style="font-family:var(--serif);color:var(--ink)">风格</b> · ${esc(st_.流派||'')}${st_.审美倾向?' · '+esc(st_.审美倾向):''}${st_.表现特征?' · '+esc(st_.表现特征):''}</div>`:''}
+      ${tags?`<div class="chips">${tags}</div>`:''}
+      ${objs?`<div style="font-family:var(--mono);font-size:10px;color:var(--accent);text-transform:uppercase;margin:11px 0 4px">画面物象</div><div class="chips">${objs}</div>`:''}</div>`;
+  }
+
+  // ⑤ 整体解读 + 画外音
+  if(v.fused||v.voiceover){
+    html+=`<div class="card"><div class="sh">整体解读 <small>aha 视觉模型逐张分析</small></div>
+      ${v.fused?`<div class="fused">${esc(v.fused)}</div>`:''}
+      ${v.voiceover?`<div class="vo">"${esc(v.voiceover)}"</div>`:''}
+      <div class="chips" style="margin-top:13px"><a class="chip" href="kg-language.html">七大构成 →</a><a class="chip" href="kg-affect.html">感知层 →</a><a class="chip" href="kg-worldview.html">世界观 →</a><a class="chip" href="kg-v2.html">知识图谱 →</a></div></div>`;
+  }
+
+  html+=`<div class="card" id="relcard" style="display:none"><div class="sh">相关作品 <small>同画家 · 同情绪 · 同风格</small></div><div class="rel" id="rel"></div></div>`;
   wrap.innerHTML=html;
 
-  // 行为埋点:喂审美档案(看/驻足 → 12维 μ,越逛越准)。work_id 用数字 id 对齐 mu_event.work_id。
+  // 动线开关
+  const tog=document.getElementById('hotTog');
+  if(tog)tog.onclick=()=>{const on=tog.classList.toggle('on');document.getElementById('hotlayer').style.display=on?'block':'none';};
+
+  // 行为埋点:看/驻足 → 12 维审美档案(work_id 用数字 id 对齐 mu_event.work_id)
   try{
-    const _wv=v.worldview||{};
     if(window.AHA && d.id!=null){
-      AHA.event('open',{target_type:'work',work_id:d.id,target_id:d.file||d.code,x:_wv.x,y:_wv.y});
+      AHA.event('open',{target_type:'work',work_id:d.id,target_id:d.file||d.code,x:wv.x,y:wv.y});
       const _t0=Date.now();
       addEventListener('beforeunload',()=>{const ms=Date.now()-_t0;
         if(ms>1500&&navigator.sendBeacon)navigator.sendBeacon('api/me/event',
-          new Blob([JSON.stringify({uid:AHA.uid,kind:'dwell',target_type:'work',work_id:d.id,target_id:d.file,x:_wv.x,y:_wv.y,dwell_ms:ms})],{type:'application/json'}));});
+          new Blob([JSON.stringify({uid:AHA.uid,kind:'dwell',target_type:'work',work_id:d.id,target_id:d.file,x:wv.x,y:wv.y,dwell_ms:ms})],{type:'application/json'}));});
     }
   }catch(e){}
 
@@ -128,9 +233,21 @@ else fetch('/cat/work/'+encodeURIComponent(qid)).then(r=>{if(!r.ok)throw new Err
     if(!rd.items||!rd.items.length)return;
     document.getElementById('relcard').style.display='block';
     const g=document.getElementById('rel');
-    rd.items.forEach(w=>g.appendChild($(`<a class="rc" href="work.html?id=${w.code||w.id}"><img loading="lazy" src="${w.thumb}" alt=""><span class="rr">${esc(w.rel)}</span><div class="rt">${esc(cleanTitle(w.title))}</div></a>`)));
+    rd.items.forEach(w=>g.appendChild($(`<a class="rc" href="work.html?id=${w.code||w.id}"><img loading="lazy" decoding="async" src="${w.thumb}" alt=""><span class="rr">${esc(w.rel)}</span><div class="rt">${esc(cleanTitle(w.title))}</div></a>`)));
   }).catch(()=>{});
-}).catch(e=>{wrap.innerHTML='<div class="empty">没找到这幅画(work_id='+esc(qid)+')<br><small>'+esc(e.message||e)+'</small></div>';});
+}).catch(e=>{wrap.innerHTML='<div class="empty">没找到这幅画(id='+esc(qid)+')<br><small>'+esc(e.message||e)+'</small></div>';});
+
+// 放大看原图
+let zS=1,zX=0,zY=0,zDrag=false,zPx=0,zPy=0;
+const zEl=document.getElementById('zoom'),zImg=document.getElementById('zimg');
+function applyZ(){zImg.style.transform=`translate(${zX}px,${zY}px) scale(${zS})`}
+function openZoom(url){zEl.classList.add('on');zImg.src=url;zImg.onload=()=>{const sw=innerWidth,sh=innerHeight,iw=zImg.naturalWidth,ih=zImg.naturalHeight;zS=Math.min(sw/iw,sh/ih);zX=(sw-iw*zS)/2;zY=(sh-ih*zS)/2;applyZ();};}
+function closeZoom(){zEl.classList.remove('on');zImg.src=''}
+zEl.addEventListener('wheel',e=>{e.preventDefault();const f=e.deltaY<0?1.18:1/1.18;zX=e.clientX-(e.clientX-zX)*f;zY=e.clientY-(e.clientY-zY)*f;zS=Math.max(.05,Math.min(zS*f,20));applyZ();},{passive:false});
+zEl.addEventListener('mousedown',e=>{if(e.target===zEl){closeZoom();return}zDrag=true;zPx=e.clientX;zPy=e.clientY;zEl.style.cursor='grabbing'});
+addEventListener('mousemove',e=>{if(!zDrag)return;zX+=e.clientX-zPx;zY+=e.clientY-zPy;zPx=e.clientX;zPy=e.clientY;applyZ()});
+addEventListener('mouseup',()=>{zDrag=false;zEl.style.cursor='grab'});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeZoom()});
 </script>
 <script src="js/aha-icons.js"></script>
 </body></html>

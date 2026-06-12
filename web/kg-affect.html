@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>aha · L3 感知效应 · VAD 模型 + 像素实测</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
   :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--purple:#7a6a9a;--gold:#b08a3a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -81,12 +81,12 @@
   .why ul{margin:5px 0 0 2px;list-style:none}.why li{padding-left:14px;position:relative;margin-top:3px}.why li:before{content:'·';position:absolute;left:3px;color:var(--accent);font-weight:700}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="museum.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · L3 感知效应</div>
   <h1>感知效应:VAD 模型,且<span style="color:var(--accent)">敢拿像素检验</span></h1>
   <p class="lead">感知效应是生成链上<b>唯一宣称"可由像素测"</b>的一环。这一页:① VAD <b>开集模型</b> + <b>282 位艺术家</b>真实情绪点云;② <b>情绪是投影</b>——语言层(怎么画)如何决定 VAD(什么感受),且<b>跨两套独立数据复现</b>;③ <b>119 幅真迹</b>逐图取证;④ 诚实交代<b>哪条相关是真的、哪条是循环假象</b>(那条著名的"饱和→唤起"被我们揪出来撤回)。</p>
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-effect">效应·感知+画外音</a> › <b style="color:var(--ink-soft)">感知效应·像素实测</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="museum.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-effect">效应·感知+画外音</a> › <b style="color:var(--ink-soft)">感知效应·像素实测</b></div>
 
   <div class="sec">
     <div class="sec-h">① VAD 情绪空间(效价 × 唤醒)</div>
@@ -952,7 +952,7 @@ fetch('data/kg_artwork_v2.json').then(r=>r.json()).then(WD=>{
     const vd=w.affect.vad, ch=w.affect.channels||{}, conf=w.affect.confidence;
     const artist=(w.artist||'').replace(/\(.*?\)/,'').trim();
     return `<div class="exc2" style="flex-direction:column;border-left-color:var(--green)">`+
-      `<div style="display:flex;gap:10px;width:100%"><img src="/aha/img/${w.slug}.jpg" loading="lazy" alt=""/><div class="exb">`+
+      `<div style="display:flex;gap:10px;width:100%"><img src="/aha/img/${w.slug}.jpg" loading="lazy" decoding="async" alt=""/><div class="exb">`+
       `<div class="exh" style="font-size:12.5px">${artist||w.title||'—'}<span class="an">${w.affect.primary_anchor||''}</span></div>`+
       `<div class="exv">愉悦 ${(+vd.valence).toFixed(2)} · 唤起 ${(+vd.arousal).toFixed(2)} · 支配 ${(+vd.dominance).toFixed(2)}${conf!=null?' · 置信 '+conf:''}</div>`+
       `<div class="exr" style="font-size:10.5px;color:var(--ink-mute)">${w.title||''}</div></div></div>`+
@@ -974,4 +974,5 @@ fetch('data/kg_artwork_v2.json').then(r=>r.json()).then(WD=>{
   render();
 }).catch(e=>{document.getElementById('gallery').innerHTML='<span style="color:#a89f8f;font-size:12px">需服务器加载 kg_artwork_v2.json</span>';});
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

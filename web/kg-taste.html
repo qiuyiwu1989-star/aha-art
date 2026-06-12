@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>aha · 审美定位 · 你在这里</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
   :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -54,7 +54,7 @@
   .empty{text-align:center;color:var(--ink-faint);padding:50px}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="museum.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 审美定位 · art that finds you</div>
   <h1>看几对画,让美来找你</h1>
@@ -104,7 +104,7 @@ function pickPair(){
 }
 function card(a){
   const im=a.imgs[Math.floor(Math.random()*a.imgs.length)];
-  const c=$(`<div class="pick"><img loading="lazy" src="${im.file}" alt="${a.cn}"/><div class="cap"><b>${a.cn}</b> · ${a.region==='east'?'东方':'西方'}「${WVN[a.wvid]||''}」<br><span style="color:var(--ink-faint)">${im.title}</span></div></div>`);
+  const c=$(`<div class="pick"><img loading="lazy" decoding="async" src="${im.file}" alt="${a.cn}"/><div class="cap"><b>${a.cn}</b> · ${a.region==='east'?'东方':'西方'}「${WVN[a.wvid]||''}」<br><span style="color:var(--ink-faint)">${im.title}</span></div></div>`);
   c.addEventListener('click',()=>choose(a));
   return c;
 }
@@ -166,7 +166,7 @@ function finish(){
   const recs=RICH.map(a=>{const dp=Math.hypot(a.wv.x-tx,a.wv.y-ty);const da=a.affect?Math.hypot(a.affect.v-tv,a.affect.a-ta):0.3;return{a,dp,score:dp+0.5*da};}).sort((p,q)=>p.score-q.score).slice(0,8);
   const top3=recs.slice(0,3).map(r=>r.a.cn).join('、');
   // 审美名片
-  res.appendChild($(`<div class="card2"><div class="c2k">你的审美定位 · art that finds you</div><div class="c2region">${nr?nr.name:''}</div><div class="c2quad">情绪偏好:${quad}</div><div class="c2coord">再现-表现 ${tx.toFixed(2)} · 结构-感知 ${ty.toFixed(2)}</div><div class="c2desc">你偏向${xside}、看重${yside}。${nr&&nr.essence?nr.essence:''}</div><div class="c2top">最合你:<b>${top3}</b> …</div><button class="sharebtn" id="sharebtn">📋 复制分享文案</button> <button class="sharebtn" id="dlbtn" style="background:#5a7d6f">🖼️ 下载审美名片</button></div>`));
+  res.appendChild($(`<div class="card2"><div class="c2k">你的审美定位 · art that finds you</div><div class="c2region">${nr?nr.name:''}</div><div class="c2quad">情绪偏好:${quad}</div><div class="c2coord">再现-表现 ${tx.toFixed(2)} · 结构-感知 ${ty.toFixed(2)}</div><div class="c2desc">你偏向${xside}、看重${yside}。${nr&&nr.essence?nr.essence:''}</div><div class="c2top">最合你:<b>${top3}</b> …</div><button class="sharebtn" id="sharebtn"><i data-ic="clipboard"></i> 复制分享文案</button> <button class="sharebtn" id="dlbtn" style="background:#5a7d6f"><i data-ic="works"></i> 下载审美名片</button></div>`));
   document.getElementById('sharebtn').onclick=function(){
     const txt=`我的 aha 审美定位:最靠近「${nr?nr.name:''}」,情绪偏「${quad}」,坐标(再现-表现 ${tx.toFixed(2)}·结构-感知 ${ty.toFixed(2)})。最合我的艺术家:${top3}。— aha,让美来找你`;
     if(navigator.clipboard)navigator.clipboard.writeText(txt);this.textContent='✓ 已复制,去分享吧';};
@@ -176,7 +176,7 @@ function finish(){
   res.appendChild($(`<div class="rh">最合你的艺术家 · 位置 + 情绪 综合</div>`));
   const rc=$(`<div class="recs"></div>`);
   recs.forEach(({a,dp})=>{const im=(IMGmap[a.id]&&IMGmap[a.id].items&&IMGmap[a.id].items[0])||null;
-    rc.appendChild($(`<a class="rec" href="kg-artist.html?id=${a.id}">${im?`<img loading="lazy" src="${im.file}">`:''}<div class="ri"><div class="rn">${a.cn}</div><div class="rm">${a.region==='east'?'东':'西'} · ${WVN[a.wv.region_id]||''}</div><div class="rd">契合 ${(100-dp*100).toFixed(0)}%</div></div></a>`));});
+    rc.appendChild($(`<a class="rec" href="kg-artist.html?id=${a.id}">${im?`<img loading="lazy" decoding="async" src="${im.file}">`:''}<div class="ri"><div class="rn">${a.cn}</div><div class="rm">${a.region==='east'?'东':'西'} · ${WVN[a.wv.region_id]||''}</div><div class="rd">契合 ${(100-dp*100).toFixed(0)}%</div></div></a>`));});
   res.appendChild(rc);
   res.appendChild($(`<button class="retake" onclick="location.reload()">↺ 重新测一次</button>`));
   window.scrollTo({top:0,behavior:'smooth'});
@@ -241,4 +241,5 @@ function wrap(ctx,text,cx,y,maxw,lh){
 // 让推荐能取到图
 fetch('data/kg_artist_images.json').then(r=>r.json()).then(d=>window.__IMG=d).catch(()=>{});
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>
