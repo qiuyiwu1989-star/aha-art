@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>aha · 风格详情</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
   :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -77,9 +77,9 @@
   .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
+<a class="home-fab" href="museum.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">风格详情</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="museum.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">风格详情</b></div>
   <div id="body"><div class="empty" style="padding:40px;text-align:center">加载中…</div></div>
   <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
 </div>
@@ -123,7 +123,7 @@ Promise.all([
   const linkOrText=nm=> styByName[nm]?`<a class="chip" href="kg-style-detail.html?id=${styByName[nm]}">${nm}</a>`:`<span class="chip">${nm}</span>`;
 
   // ① 身份
-  b.appendChild($(`<div class="nh ${east?'east':''}"><span class="cn">${cn}</span>${lo.en?`<span class="en">${lo.en}</span>`:''}<span class="badges">${gold?'<span class="bd gold">黄金范本</span>':''}${wvr?`<a class="bd wv" href="kg-worldview-region.html?id=${wvr.id}" title="V3 世界观区:${wvr.essence||''}"><i data-ic="museum"></i> ${wvr.id} ${wvr.name}</a>`:''}<span class="bd id">${n.id}</span></span></div>`));
+  b.appendChild($(`<div class="nh ${east?'east':''}"><span class="cn">${cn}</span>${lo.en?`<span class="en">${lo.en}</span>`:''}<span class="badges">${cn?`<a class="bd" href="studio.html?style=${encodeURIComponent(cn)}" style="text-decoration:none;color:var(--accent)" title="用「${cn}」风格去生成中心创作">用此风格创作 →</a>`:''}${gold?'<span class="bd gold">黄金范本</span>':''}${wvr?`<a class="bd wv" href="kg-worldview-region.html?id=${wvr.id}" title="V3 世界观区:${wvr.essence||''}"><i data-ic="museum"></i> ${wvr.id} ${wvr.name}</a>`:''}<span class="bd id">${n.id}</span></span></div>`));
   const idbits=[];
   if(lo.aka&&lo.aka.length) idbits.push('别名 '+lo.aka.join('、'));
   idbits.push((lo.type||'风格原子流')+' · '+(lo.level||'风格层'));
@@ -327,7 +327,7 @@ Promise.all([
   if(canon && canon!=='other' && cworks.length){
     const cg=$('<div class="awgrid"></div>');
     cworks.slice(0,12).forEach(a=>{if(!a.thumb)return;
-      cg.appendChild($(`<a class="aw" href="${a.full||a.thumb}" target="_blank" title="${(a.title||'')} · ${(a.artist||'')}"><img loading="lazy" src="${a.thumb}" alt="${a.title||''}"/><span class="awt">${a.title||''}</span></a>`));});
+      cg.appendChild($(`<a class="aw" href="${a.full||a.thumb}" target="_blank" title="${(a.title||'')} · ${(a.artist||'')}"><img loading="lazy" decoding="async" src="${a.thumb}" alt="${a.title||''}"/><span class="awt">${a.title||''}</span></a>`));});
     const note=precise
       ? `本节点<b style="color:var(--green)">精确匹配</b> <b>${ctotal}</b> 件入库真迹(预览 ${Math.min(12,cg.children.length)} 件)。<br>由原始流派标签直接对应到本细分风格,非组粒度。`
       : `经标准码 <b>${canonZh}</b> 关联,共 <b>${ctotal}</b> 件入库真迹(预览 ${Math.min(12,cg.children.length)} 件)。<br>⚠ 按<b>「${canonZh}」组粒度</b>展示——本节点细分尚无独立标注的作品,与同组共享。`;
@@ -344,7 +344,7 @@ Promise.all([
   if(cw.length){
     const g=$('<div class="awgrid"></div>');
     cw.slice(0,12).forEach(s=>{const a=art[s];if(!a||!a.thumb)return;
-      g.appendChild($(`<a class="aw" href="${a.image||a.thumb}" target="_blank" title="${(a.title||'')} · ${(a.artist||'')}"><img loading="lazy" src="${a.thumb}" alt="${a.title||''}" style="${a.lqip?`background:url(${a.lqip}) center/cover`:''}"/><span class="awt">${a.title||''}</span></a>`));});
+      g.appendChild($(`<a class="aw" href="${a.image||a.thumb}" target="_blank" title="${(a.title||'')} · ${(a.artist||'')}"><img loading="lazy" decoding="async" src="${a.thumb}" alt="${a.title||''}" style="${a.lqip?`background:url(${a.lqip}) center/cover`:''}"/><span class="awt">${a.title||''}</span></a>`));});
     if(g.children.length) b.appendChild(SEC('· 本馆藏相关作品(自动归类,真实画作)',g));
   }
   document.title='aha · '+cn;

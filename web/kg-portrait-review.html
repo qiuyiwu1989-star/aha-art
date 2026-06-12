@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>aha · 头像复核</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
   :root{--paper:#f4f1ea;--ink:#1d1b18;--mute:#857d6f;--line:#ddd5c6;--accent:#b0673a;--green:#5a7d6f;--gold:#c08a2e}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -23,7 +23,7 @@
   .c a{font-size:10px;color:var(--accent);text-decoration:none}
   .home-fab{position:fixed;left:14px;bottom:14px;font-family:JetBrains Mono,monospace;font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 </style></head><body>
-<a class="home-fab" href="home.html"><i data-ic="home"></i> 首页</a>
+<a class="home-fab" href="museum.html"><i data-ic="home"></i> 首页</a>
 <h1>艺术家头像 · 复核</h1>
 <div class="lead">真头像优先;<b style="color:var(--gold)">金框=百度检索·未经核验</b>,请重点核对认错的人</div>
 <div class="stat" id="stat">加载中…</div>
@@ -37,7 +37,7 @@ Promise.all([fetch('data/kg_artist_portraits.json').then(r=>r.json()),fetch('dat
   const baidu=rows.filter(r=>(r.source||'').startsWith('百度'));
   const verified=rows.filter(r=>!(r.source||'').startsWith('百度'));
   document.getElementById('stat').innerHTML=`共 <b>${rows.length}</b> 张 · 已核实馆藏/WikiArt <b>${verified.length}</b> · 百度待核 <b style="color:#c08a2e">${baidu.length}</b>`;
-  const card=(r,warn)=>`<div class="c${warn?' warn':''}"><img loading="lazy" src="${r.file}" alt="${r.cn}"><div class="nm">${r.cn}</div><div class="mt">${r.region==='east'?'东':'西'} · ${r.source}</div><a href="kg-artist.html?id=${r.id}" target="_blank">详情↗</a></div>`;
+  const card=(r,warn)=>`<div class="c${warn?' warn':''}"><img loading="lazy" decoding="async" src="${r.file}" alt="${r.cn}"><div class="nm">${r.cn}</div><div class="mt">${r.region==='east'?'东':'西'} · ${r.source}</div><a href="kg-artist.html?id=${r.id}" target="_blank">详情↗</a></div>`;
   document.getElementById('warn').innerHTML=`<div class="sh warn">⚠ 百度检索 · 未核验(${baidu.length})—— 请挑出认错的人</div><div class="sd">这些来自百度图片+AI筛"单人头像",身份未核实,可能张冠李戴。告诉我哪几个不对,我删掉。</div><div class="grid">${baidu.map(r=>card(r,true)).join('')}</div>`;
   document.getElementById('ok').innerHTML=`<div class="sh">✓ 已核实(${verified.length})· 自画像/他人肖像/WikiArt</div><div class="grid">${verified.map(r=>card(r,false)).join('')}</div>`;
 }).catch(e=>document.getElementById('stat').textContent='加载失败:'+e);

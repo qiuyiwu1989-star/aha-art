@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>[活数据] aha · 真迹读图 · VLM 看每一幅画</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
   :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -56,12 +56,13 @@
   .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
+<div style="background:#b0673a;color:#fff;font:13px/1.55 -apple-system,'PingFang SC',sans-serif;text-align:center;padding:9px 14px">本页为早期 demo,已退役 —— 统一活库画廊请用 <a href="kg-catalog.html" style="color:#fff;text-decoration:underline;font-weight:600">核心资产画廊 →</a></div>
+<a class="home-fab" href="museum.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 真迹读图</div>
   <h1>VLM 怎么读每一幅真画</h1>
   <p class="lead">119 幅<b>人类公共领域真迹</b>,每幅由视觉大模型做<b>6 维系统读图</b>:媒介 → 题材 → 风格 → 画面动力学(视觉重心/阅读路径)→ 7 大构成 → 情绪(VAD)→ 一句画外音。点任意一幅看它的完整解读。<br><span style="font-size:12px">这页是<b>深读</b>(119 幅 × 6 维);想浏览<b>全量真迹</b>(226 幅,按区/东西/艺术家筛)去 <a href="kg-works.html" style="color:var(--accent)">作品层 →</a></span></p>
-  <div class="breadcrumb"><a href="home.html"><i data-ic="home"></i> 首页</a> › <a href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a href="kg-affect.html">感知效应</a> › <b style="color:var(--ink-soft)">真迹读图</b></div>
+  <div class="breadcrumb"><a href="museum.html"><i data-ic="home"></i> 首页</a> › <a href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a href="kg-affect.html">感知效应</a> › <b style="color:var(--ink-soft)">真迹读图</b></div>
   <div class="filt" id="filt"></div>
   <div class="cnt" id="cnt"></div>
   <div class="grid" id="grid"></div>
@@ -74,24 +75,45 @@ const ANC={喜悦:'#c98a1a',鲜活:'#5a7d6f',热烈:'#a8443a',崇高:'#8a6a3a',�
 const L7=['构图','空间','造型','光影','色彩','笔触','边缘'];
 // 7 大构成双极轴(0=低极点 ↔ 1=高极点),与 kg_language_vectors.json meta.dims 对齐
 const L7P={构图:['对称稳态·秩序','动态失衡·张力'],空间:['平面铺陈·装饰','纵深幻觉·体积'],造型:['写实摹形·精确','变形抽象·写意'],光影:['平光匀涂·无戏剧','强光暗对比·戏剧'],色彩:['素净单色·克制','浓烈高彩·饱和'],笔触:['光滑隐笔·无痕','厚重显笔·书写性'],边缘:['虚化柔边·朦胧','清晰硬边·界限分明']};
-let DATA={}, cur='全部';
-fetch('data/live/artworks_v2.json').then(r=>r.json()).then(D=>{
-  DATA=D.artworks||{};
-  const arr=Object.values(DATA);
-  const anchors=[...new Set(arr.map(a=>(a.affect||{}).primary_anchor).filter(Boolean))];
+// 精简索引喂网格(全量、轻);全字段详情点开才懒加载 artworks_v2.json
+let IDX={}, cur='全部', FILTERED=[], _drawn=0, _io=null, _full=null, _fullP=null;
+fetch('data/live/artworks_index.json').then(r=>r.json()).then(D=>{
+  IDX=D.artworks||{};
+  const arr=Object.values(IDX);
+  const anchors=[...new Set(arr.map(a=>a.anchor).filter(Boolean))];
   const fc=document.getElementById('filt');
   ['全部',...anchors].forEach(a=>{const b=$(`<span class="fchip${a==='全部'?' on':''}">${a}</span>`);b.onclick=()=>{cur=a;[...fc.children].forEach(c=>c.classList.toggle('on',c.textContent===a));draw();};fc.appendChild(b);});
+  const g=document.getElementById('grid');
+  const sent=document.createElement('div');sent.id='sent';sent.style.cssText='grid-column:1/-1;height:1px';g.after(sent);
+  _io=new IntersectionObserver(es=>{if(es[0].isIntersecting&&_drawn<FILTERED.length)renderBatch();},{rootMargin:'800px'});
+  _io.observe(sent);
   draw();
-}).catch(e=>{document.getElementById('grid').innerHTML='<div style="grid-column:1/-1;text-align:center;color:#a89f8f;padding:40px">数据加载中或需服务器:'+e+'</div>';});
+}).catch(e=>{document.getElementById('grid').innerHTML='<div style="grid-column:1/-1;text-align:center;color:var(--ink-faint);padding:40px">数据加载中或需服务器:'+e+'</div>';});
 function draw(){
-  const arr=Object.values(DATA).filter(a=>cur==='全部'||(a.affect||{}).primary_anchor===cur);
-  document.getElementById('cnt').textContent=`共 ${arr.length} 幅`;
-  const g=document.getElementById('grid');g.innerHTML='';
-  arr.forEach(a=>{const an=(a.affect||{}).primary_anchor||'';
-    const c=$(`<div class="card"><img loading="lazy" src="${a.thumb}" alt=""/><div class="cb"><div class="ct">${a.title||'—'}</div><div class="ca"><span>${(a.artist||'').replace(/\\(.*?\\)/,'').trim().slice(0,12)}</span><span class="an" style="background:${ANC[an]||'#857d6f'}">${an}</span></div></div></div>`);
-    c.onclick=()=>openM(a);g.appendChild(c);});
+  FILTERED=Object.values(IDX).filter(a=>cur==='全部'||a.anchor===cur);
+  document.getElementById('cnt').textContent=`共 ${FILTERED.length} 幅`;
+  document.getElementById('grid').innerHTML='';_drawn=0;
+  renderBatch();
+}
+function renderBatch(){
+  const g=document.getElementById('grid'),frag=document.createDocumentFragment(),end=Math.min(_drawn+60,FILTERED.length);
+  for(;_drawn<end;_drawn++){const a=FILTERED[_drawn],an=a.anchor||'';
+    const c=$(`<div class="card"><img loading="lazy" decoding="async" src="${a.thumb}" alt=""/><div class="cb"><div class="ct">${a.title||'—'}</div><div class="ca"><span>${(a.artist||'').replace(/\\(.*?\\)/,'').trim().slice(0,12)}</span><span class="an" style="background:${ANC[an]||'#857d6f'}">${an}</span></div></div></div>`);
+    c.onclick=()=>openM(a);frag.appendChild(c);}
+  g.appendChild(frag);
+}
+function ensureFull(){ // 全字段:首次点详情才拉,之后缓存
+  if(_full)return Promise.resolve(_full);
+  if(!_fullP)_fullP=fetch('data/live/artworks_v2.json').then(r=>r.json()).then(D=>(_full=D.artworks||{}));
+  return _fullP;
 }
 function openM(a){
+  const m=document.getElementById('modal');
+  m.innerHTML=`<span class="mclose" onclick="closeM()">✕</span><div class="mloading" style="padding:64px 20px;text-align:center;color:var(--ink-faint);font-family:var(--mono);font-size:13px">载入解读…</div>`;
+  document.getElementById('ov').classList.add('on');document.body.style.overflow='hidden';
+  ensureFull().then(full=>{const rec=full[a.slug];const l=m.querySelector('.mloading');if(!rec){if(l)l.textContent='暂无该作品的完整解读';return;}renderM(rec);}).catch(()=>{const l=m.querySelector('.mloading');if(l)l.textContent='解读加载失败';});
+}
+function renderM(a){
   const af=a.affect||{},vd=af.vad||{},rd=a.reading||{},st=a.style||{},l7=a.language7||{};
   const tags=(a.subject_tags||[]).map(t=>`<span class="tg">${t}</span>`).join('');
   const l7rows=L7.map(k=>{const v=l7[k];if(v==null)return'';const p=L7P[k]||['',''];return `<div class="l7row"><span class="k">${k}</span><span class="pl">${p[0]}</span><span class="t"><span class="f" style="left:${(+v)*100}%"></span></span><span class="pr">${p[1]}</span><span class="v">${(+v).toFixed(2)}</span></div>`;}).join('');
@@ -113,7 +135,6 @@ function openM(a){
       ${chrows?`<div class="mb-sec"><div class="mb-h">情绪三通道 · 它为何这么判</div><div class="chgrid">${chrows}</div>${(af.evidence||[]).length?`<div class="kv" style="margin-top:6px;color:var(--ink-mute)">证据:${af.evidence.join(' · ')}</div>`:''}</div>`:''}
       ${a.style_id?`<div class="mb-sec"><a href="kg-style-detail.html?id=${a.style_id}" style="font-family:var(--mono);font-size:12px;color:var(--accent);text-decoration:none">→ 看所属风格详情</a></div>`:''}
     </div>`;
-  document.getElementById('ov').classList.add('on');document.body.style.overflow='hidden';
 }
 function closeM(){document.getElementById('ov').classList.remove('on');document.body.style.overflow='';}
 document.getElementById('ov').onclick=e=>{if(e.target.id==='ov')closeM();};

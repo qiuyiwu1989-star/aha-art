@@ -1,167 +1,206 @@
 <!doctype html>
-<html lang="zh-CN"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>aha · 艺术史的力 · 总览</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<html lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>艺术史的动力学 · aha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/aha-kit.css">
 <style>
-  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;
-    --serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1040px;margin:0 auto;padding:26px 16px 90px}
-  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
-  h1{font-family:var(--serif);font-size:clamp(22px,4vw,32px);font-weight:700;text-align:center;margin:7px 0}
-  .lead{text-align:center;color:var(--ink-mute);font-size:13.5px;line-height:1.8;max-width:780px;margin:8px auto}.lead b{color:var(--ink-soft)}
-  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
-  .principle{max-width:760px;margin:20px auto 6px;text-align:center;font-family:var(--serif);font-size:clamp(15px,2.2vw,18px);line-height:1.85;color:var(--ink)}
-  .principle b{color:var(--accent)}
-  .principle .sub{display:block;font-family:var(--sans);font-size:12.5px;color:var(--ink-mute);margin-top:7px}
-  /* family section */
-  .fam{margin-top:30px}
-  .famh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:14px}
-  .famh .no{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
-  .famh .nm{font-family:var(--serif);font-size:19px;font-weight:700}
-  .famh .ds{font-size:12.5px;color:var(--ink-mute)}
-  .famh .go{margin-left:auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;color:var(--accent);border:1px solid var(--line);border-radius:999px;padding:4px 11px;background:#fff;white-space:nowrap}
-  .famh .go:hover{border-color:var(--accent)}
-  .sub-g{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);letter-spacing:.06em;margin:10px 0 8px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:9px}
-  .fcard{display:block;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);border-left-width:4px;border-radius:11px;padding:11px 13px;transition:transform .08s,box-shadow .08s}
-  .fcard:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.08)}
-  .fcard .ct{display:flex;align-items:baseline;gap:8px}
-  .fcard .t{font-family:var(--serif);font-size:16px;font-weight:700}
-  .fcard .n{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);margin-left:auto}
-  .fcard .df{font-size:12px;color:var(--ink-soft);margin-top:3px}
-  .fcard .ex{font-size:11.5px;color:var(--ink-mute);margin-top:6px;line-height:1.5}.fcard .ex b{color:var(--ink-soft);font-weight:500}
-  .aside{font-size:12px;color:var(--ink-mute);margin-top:10px;background:#fbf9f3;border:1px solid var(--line);border-radius:9px;padding:9px 12px;line-height:1.7}
-  .aside a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--line)}
-  /* contingency prose cards */
-  .pcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:10px}
-  .pcard{background:#fff;border:1px solid var(--line);border-radius:11px;padding:13px 14px}
-  .pcard .pt{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--ink)}
-  .pcard .pd{font-size:12.5px;color:var(--ink-soft);line-height:1.75;margin-top:6px}.pcard .pd b{color:var(--ink)}
-  .pcard .pe{font-size:11.5px;color:var(--ink-mute);margin-top:7px;border-top:1px dashed var(--line);padding-top:7px;line-height:1.6}
-  /* system map */
-  .sysmap{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:9px;margin-top:14px}
-  .scard{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 12px;color:var(--ink)}
-  .scard:hover{border-color:var(--accent)}
-  .scard .st{font-family:var(--serif);font-size:14px;font-weight:700}
-  .scard .sr{font-family:var(--mono);font-size:9.5px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.08em}
-  .scard .sd{font-size:11.5px;color:var(--ink-mute);margin-top:4px;line-height:1.55}
-  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
-</style>
-</head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
-<div class="wrap">
-  <div class="kick">aha · 知识图谱 V3 · 力的总图</div>
-  <h1>艺术史的力</h1>
-  <p class="lead">是什么在推动美术史?这里把所有的"力"分成三家,给每一种力一个位置、一个例子、一道入口。<b>诚实地说:没有哪一家是全集</b>——艺术正由它们合力推动。</p>
-  <div class="breadcrumb"><span style="color:var(--ink-mute)">艺术史动力学</span> · <b style="color:var(--ink)">总图</b> · <a href="kg-dynamics.html">关系层</a> · <a href="kg-context.html">语境层</a> · <a href="kg-contingency.html">个体偶发</a> · <a href="kg-force-timeline.html">时间线</a> · <a href="kg-tour-forces.html">导览</a> · <a href="kg-artist-atlas.html">师承</a> · <a href="kg-drift.html">漂移</a></div>
-
-  <div class="principle">一件作品不会凭空出现——它总在<b>对某个东西做出反应</b>。<br/>反应的对象不同,力就不同。
-    <span class="sub">对前代 · 对异域 · 对同代 / 对媒介 · 对社会 / 对知识 …… 把这些"反应的方向"理清,就得到下面三家。</span>
+  /* 页面专属微调:只用 token */
+  .hero{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s4);box-shadow:var(--sh-1)}
+  .hero svg{width:100%;height:auto;display:block}
+  .hcap{display:flex;gap:var(--s3);align-items:center;flex-wrap:wrap;margin-top:var(--s3);
+    padding-top:var(--s3);border-top:1px solid var(--line-soft)}
+  .heroleg{display:flex;gap:var(--s4);flex-wrap:wrap;font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute)}
+  .heroleg .li{display:flex;align-items:center;gap:6px}
+  .heroleg .sw{width:15px;height:0;border-top:3px solid;border-radius:2px}
+  .hcap .btn{margin-left:auto}
+  /* 门卡:容器是 div(不嵌 <a>),门由 .enter 链接给 */
+  .door{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);
+    border-radius:var(--r);padding:var(--s4);box-shadow:var(--sh-1);height:100%}
+  .door .dh{display:flex;align-items:center;gap:var(--s2);margin-bottom:var(--s2)}
+  .door .dh i{font-size:19px;color:var(--accent);line-height:0}
+  .door .dh .nm{font-family:var(--serif);font-size:var(--fz-h3);font-weight:600;color:var(--ink)}
+  .door .dh .n{margin-left:auto;font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-faint)}
+  .door .dsub{font-size:var(--fz-small);color:var(--ink-soft);line-height:1.65}
+  .chiprow{display:flex;gap:6px;flex-wrap:wrap;margin-top:var(--s3)}
+  a.fchip{display:inline-flex;align-items:baseline;gap:5px;font-family:var(--sans);font-size:var(--fz-small);
+    color:var(--ink-soft);background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r-pill);
+    padding:2px 10px;transition:border-color var(--dur) var(--ease),color var(--dur) var(--ease)}
+  a.fchip:hover{border-color:var(--accent);color:var(--accent)}
+  a.fchip .c{font-family:var(--mono);font-size:10px;color:var(--ink-faint)}
+  .enter{display:inline-flex;align-items:center;gap:6px;margin-top:var(--s4);align-self:flex-start;
+    font-family:var(--mono);font-size:var(--fz-small);color:var(--accent);
+    border:1px solid var(--accent-line);background:var(--accent-soft);border-radius:var(--r-pill);
+    padding:6px 14px;transition:gap var(--dur) var(--ease),background var(--dur) var(--ease)}
+  .enter i{font-size:15px;line-height:0}
+  .enter:hover{gap:10px;background:var(--card)}
+  .door .chiphint{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-top:var(--s2)}
+  .mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--s2)}
+  .mini a{display:block;background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    padding:var(--s3);transition:border-color var(--dur) var(--ease),transform var(--dur) var(--ease)}
+  .mini a:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .mini .r{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint)}
+  .mini .t{font-family:var(--serif);font-size:var(--fz-small);font-weight:600;color:var(--ink);margin-top:3px}
+  .card.link .arr{margin-left:auto;color:var(--accent);font-size:16px;line-height:0;transition:transform var(--dur) var(--ease)}
+  .card.link:hover .arr{transform:translateX(3px)}
+</style></head>
+<body data-board="forces">
+<div class="page">
+  <div class="pagehead">
+    <a class="back" href="museum.html">← 回美术馆</a>
+    <div class="kicker">知识图谱 V3 · 板块首页</div>
+    <h1>艺术史的动力学</h1>
+    <p class="sub">是什么在推动美术史?把所有的「力」分成三家,给每一种力一个位置、一道入口。没有哪一家是全集——艺术由它们<b>合力</b>推动。</p>
+    <div class="meta" id="meta">加载中</div>
   </div>
 
-  <!-- 家族一 关系力 -->
-  <div class="fam">
-    <div class="famh"><span class="no">家族 ①</span><span class="nm">关系力</span><span class="ds">艺术家 → 艺术家,能画成<b>箭头</b>。回答"谁影响了谁"。</span>
-      <a class="go" href="kg-dynamics.html">进关系层 →</a></div>
-    <div id="famRel"></div>
-    <div class="aside">还有一种最基本的关系力——<b>继承 / 师承</b>(顺接、传衣钵的连续性)——不在这里,它撑起整张 <a href="kg-artist-atlas.html">全员星图</a>。本页只列"求变"的那几种。</div>
+  <!-- 它是个什么:总图 + 几个页面 -->
+  <div class="note">
+    <div class="k">怎么用这一页</div>
+    这里是「艺术史的动力学」<b>板块首页</b> —— 一张<b>总图</b>给你全局。板块里还有 <b>6 个页面</b>,下面每张卡片都是一扇<b>门</b>:点 <b>进入 →</b> 就到那一页细看,卡片里的<b>力(如「反叛 10」)</b>也能直接点进对应视图。
   </div>
 
-  <!-- 家族二 语境力 -->
-  <div class="fam">
-    <div class="famh"><span class="no">家族 ②</span><span class="nm">语境力</span><span class="ds">作用于整个画坛的"<b>场</b>",不是边。回答"什么样的世界,让这种艺术成为可能"。</span>
-      <a class="go" href="kg-context.html">进语境层 →</a></div>
-    <div class="grid" id="famCtx"></div>
+  <!-- 主视觉:一片世界观平面 + 几次「力」 -->
+  <div class="sec">
+    <div class="sec-h"><span class="t">这是一张「地图」</span><span class="d">所有的力都落在世界观平面上</span></div>
+    <div class="hero">
+      <svg id="plane" viewBox="0 0 760 360" role="img" aria-label="世界观平面上的力"></svg>
+      <div class="hcap">
+        <div class="heroleg" id="heroleg"></div>
+        <a class="btn pill" href="kg-dynamics.html">进关系层 · 看全部 69 条力 →</a>
+      </div>
+    </div>
+    <p class="muted" style="font-size:var(--fz-small);line-height:1.7;margin-top:var(--s3)">每个点是一位艺术家,落在<b style="color:var(--ink-soft)">再现↔表现 / 结构↔感知</b>的平面上;每条<b style="color:var(--ink-soft)">箭头</b>是一次「力」——从一个位置指向另一个位置的<b style="color:var(--ink-soft)">移动</b>。这里只画了 4 条作示意,完整可交互版在<b>关系层</b>。</p>
   </div>
 
-  <!-- 家族三 个体/偶发 -->
-  <div class="fam">
-    <div class="famh"><span class="no">家族 ③</span><span class="nm">个体 / 偶发</span><span class="ds"><b>不可还原为力</b>,但真实存在。承认它,才不把历史讲成纯粹的决定论。</span>
-      <a class="go" href="kg-contingency.html">进个体/偶发 →</a></div>
-    <div class="pcards">
-      <div class="pcard"><div class="pt">天才奇点</div><div class="pd">有些人本身<b>就是一种力</b>:他们不只是被前代与语境塑造,更反过来重写了二者的坐标。</div><div class="pe">米开朗基罗、毕加索——之后所有人都得回应他们。</div></div>
-      <div class="pcard"><div class="pt">创造性的误读</div><div class="pd">影响常常是<b>"美丽的误会"</b>:接收者按自己的需要曲解了对方,误读反而成了创造。</div><div class="pe">西方把浮世绘读成"平面装饰"、立体派把非洲面具读成"几何"——都不是原意,却催生了新艺术。</div></div>
-      <div class="pcard"><div class="pt">偶然</div><div class="pd">材料的意外、机缘的相遇、一次失败的实验——<b>偶然</b>也会拐走整条河道。</div><div class="pe">油画的偶得、滴画的发现、一场战争把人推到另一座城市。</div></div>
+  <!-- KPI -->
+  <div class="sec"><div class="stats" id="stats"></div></div>
+
+  <!-- 三家力 · 核心三页 -->
+  <div class="sec">
+    <div class="sec-h"><span class="t">三家力 · 核心三页</span><span class="d">点「进入」到那一层细看</span></div>
+    <div class="grid" id="families"><div class="loading">加载中</div></div>
+    <p class="muted" style="font-size:var(--fz-small);line-height:1.7;margin-top:var(--s4)">还有最基本的一种力——<b style="color:var(--ink-soft)">继承 / 师承</b>——不在这里,它撑起整张 <a href="kg-artist-atlas.html">全员星图</a>。本板块只列「求变」的那几种。</p>
+  </div>
+
+  <!-- 换个看法 · 三种玩法 -->
+  <div class="sec">
+    <div class="sec-h"><span class="t">换个看法 · 三种玩法</span><span class="d">同一批力,换时间 / 叙事 / 连线来体验</span></div>
+    <div class="grid cols-2">
+      <a class="card link" href="kg-force-timeline.html"><div class="card-h"><span class="nm">力的时间线</span><i class="arr" data-ic="arrowRight"></i></div><div class="card-note">69 条边 + 52 个语境事件叠到一条世纪轴,看反叛潮 / 复兴潮何时合流;顶部再叠一条世界观漂移带。</div></a>
+      <a class="card link" href="kg-tour-forces.html"><div class="card-h"><span class="nm">力的导览</span><i class="arr" data-ic="arrowRight"></i></div><div class="card-note">四条策展好的叙事:反叛接力 · 浮世绘征服西方 · 文人画八百年 · 1910 总爆发。</div></a>
+      <a class="card link" href="kg-force-path.html"><div class="card-h"><span class="nm">力的连线</span><span class="chip">互动</span><i class="arr" data-ic="arrowRight"></i></div><div class="card-note">任选两位艺术家,用「力」把他们连起来——艺术史的六度分隔,带可分享链接与平面缩略图。</div></a>
+      <a class="card link" href="kg-contingency.html"><div class="card-h"><span class="nm">个体 / 偶发</span><i class="arr" data-ic="arrowRight"></i></div><div class="card-note">规律之外的那一半:创造性误读、天才奇点(数据实算)、偶然(四类·带反事实)。</div></a>
     </div>
   </div>
 
   <!-- 方法论 -->
-  <div class="fam">
-    <div class="famh"><span class="no">方法论</span><span class="nm">这套力怎么来的</span><span class="ds">把话说在前头,免得被当成"客观真理"。</span></div>
-    <div class="pcards">
-      <div class="pcard"><div class="pt">怎么 curate</div><div class="pd">在 <b>282 位已建艺术家</b>(均有世界观坐标)之间人工梳理关系、在时间轴上排布语境事件。每条边/事件<b>只引用已存在的节点</b>,改一次就用脚本断言"节点可解析 + 计数一致"。</div></div>
-      <div class="pcard"><div class="pt">考据 vs 推断</div><div class="pd">史实直述 = <b style="color:#5a7d6f">考据</b>;判断性框架(综合、部分竞争、风格亲缘)= <b style="color:#9a6a2f">推断</b>。关系图上<b>推断画虚线</b>、卡片有徽标——<b>可质疑</b>,不冒充客观。<b>不伪造出处</b>。</div></div>
-      <div class="pcard"><div class="pt">刻意不含什么</div><div class="pd">不接<b>作品像素证据</b>(待自研标注库对接);<b>语境力是"场"不画成边</b>;<b>个体/偶发不可还原</b>。每页顶部都写明自己<b>讲不全艺术</b>——边界比覆盖更重要。</div></div>
+  <div class="sec">
+    <div class="note accent">
+      <div class="k">方法论 · 把话说在前头</div>
+      在 <b>282 位已建艺术家</b>(均有世界观坐标)之间人工梳理关系。史实直述记为<b>考据</b>、判断性框架记为<b>推断</b>(图上画虚线、可质疑);存疑轶事标<b>传说</b>。刻意<b>不含</b>:作品像素证据、把语境力画成边、把个体偶发当规律。每页都写明自己<b>讲不全艺术</b>——边界比覆盖更重要。
     </div>
   </div>
 
-  <!-- 体系怎么连 -->
-  <div class="fam">
-    <div class="famh"><span class="no">怎么连</span><span class="nm">这套体系</span><span class="ds">五张图,一条因果链:根 → 力 → 长程结果。</span></div>
-    <div class="sysmap">
-      <a class="scard" href="kg-worldview.html"><div class="sr">根 · 底图</div><div class="st">世界观平面</div><div class="sd">一切力都落在这片"再现↔表现 / 结构↔感知"的意义坐标上。</div></a>
-      <a class="scard" href="kg-artist-atlas.html"><div class="sr">连续力</div><div class="st">师承星图</div><div class="sd">继承——衣钵相传的那条主线,全员谱系。</div></a>
-      <a class="scard" href="kg-dynamics.html"><div class="sr">求变 · 关系</div><div class="st">关系层动力学</div><div class="sd">反叛/复兴/综合/推演/跨文化/致敬/竞争/结社,八种箭头。</div></a>
-      <a class="scard" href="kg-context.html"><div class="sr">求变 · 语境</div><div class="st">语境层</div><div class="sd">技术/制度/社会/科学/宗教/地理,六道"场"。</div></a>
-      <a class="scard" href="kg-drift.html"><div class="sr">长程结果</div><div class="st">世界观漂移</div><div class="sd">这些力合起来,一千六百年里东西方各走出的两条路。</div></a>
-    </div>
-  </div>
-
-  <!-- 换个看法 -->
-  <div class="fam">
-    <div class="famh"><span class="no">换个看法</span><span class="nm">同一批力,另两种读法</span><span class="ds">把上面的力,换成时间与叙事来体验。</span></div>
-    <div class="sysmap">
-      <a class="scard" href="kg-force-timeline.html"><div class="sr">时间 · 节律</div><div class="st">🌊 力的时间线</div><div class="sd">69 边 + 52 事件叠在一条世纪轴,看反叛潮/复兴潮/跨文化潮何时合流。</div></a>
-      <a class="scard" href="kg-tour-forces.html"><div class="sr">叙事 · 路线</div><div class="st">🧭 力的导览</div><div class="sd">反叛接力 · 浮世绘征服西方 · 文人画八百年 · 1910 总爆发。</div></a>
+  <!-- 相关 -->
+  <div class="sec">
+    <div class="sec-h"><span class="t">相关页面</span><span class="d">根 → 力 → 长程结果</span></div>
+    <div class="mini">
+      <a href="kg-worldview.html"><div class="r">根 · 底图</div><div class="t">世界观平面</div></a>
+      <a href="kg-artist-atlas.html"><div class="r">连续力</div><div class="t">师承星图</div></a>
+      <a href="kg-drift.html"><div class="r">长程结果</div><div class="t">世界观漂移</div></a>
     </div>
   </div>
 </div>
+
 <script>
-const FORCES=[
- {t:'反叛',col:'#c0492f',def:'与直接前辈决裂',fam:'对前代'},
- {t:'复兴',col:'#5a7d6f',def:'跳过近世,上溯远祖',fam:'对前代'},
- {t:'综合',col:'#b8893a',def:'熔多脉为一,集大成',fam:'对前代'},
- {t:'推演',col:'#8a5fa3',def:'顺前人逻辑推到极致',fam:'对前代'},
- {t:'跨文化',col:'#5b7596',def:'把异域传统注入本脉',fam:'对异域'},
- {t:'致敬',col:'#3f8f8a',def:'引用挪用某张具体画',fam:'对同代/作品'},
- {t:'竞争',col:'#a8567f',def:'同代的对峙与论战',fam:'对同代/作品'},
- {t:'结社',col:'#8a6d4f',def:'结社共创一种艺术',fam:'对同代/作品'},
+const FAMS=[
+ {key:'rel',ic:'forces',nm:'关系力',page:'kg-dynamics.html',enter:'进入关系层',
+  sub:'艺术家 → 艺术家,能画成<b>箭头</b>;回答「谁影响了谁」。',
+  items:['反叛','复兴','综合','推演','跨文化','致敬','竞争','结社']},
+ {key:'ctx',ic:'worldview',nm:'语境力',page:'kg-context.html',enter:'进入语境层',
+  sub:'作用于整个画坛的「<b>场</b>」,不是边;回答「什么世界让它成为可能」。',
+  items:['技术','制度','社会','科学','宗教','地理']},
+ {key:'cont',ic:'sparkles',nm:'个体 / 偶发',page:'kg-contingency.html',enter:'进入个体/偶发',
+  sub:'<b>不可还原为力</b>,但真实存在;承认它,历史才不是决定论。',
+  items:['创造性误读','天才奇点','偶然']},
 ];
-const FAMS=['对前代','对异域','对同代/作品'];
-const LANE_EX={tech:'照相术 → 逼绘画走向抽象',inst:'画商体系 → 养活印象派',soc:'第一次世界大战 → 催生达达',sci:'线性透视 → 文艺复兴的"窗口"',rel:'神智学 → 通向精神抽象',geo:'艺术之都 → 佛罗伦萨…纽约'};
+const LANEKEY={'技术':'tech','制度':'inst','社会':'soc','科学':'sci','宗教':'rel','地理':'geo'};
 
 Promise.all([
-  fetch('data/kg_relations.json').then(r=>r.json()).catch(()=>null),
-  fetch('data/kg_context.json').then(r=>r.json()).catch(()=>null),
-]).then(([REL,CTX])=>{
-  // 家族一:按子家族分组
-  const wrap=document.getElementById('famRel');
-  const cnt={},ex={};
-  if(REL){REL.edges.forEach(e=>{cnt[e.type]=(cnt[e.type]||0)+1;if(!ex[e.type])ex[e.type]=e;});}
-  FAMS.forEach(fg=>{
-    const fs=FORCES.filter(f=>f.fam===fg);if(!fs.length)return;
-    const h=document.createElement('div');h.className='sub-g';h.textContent=fg;wrap.appendChild(h);
-    const g=document.createElement('div');g.className='grid';
-    fs.forEach(f=>{const e=ex[f.t],n=cnt[f.t]||0;
-      const exs=e?`<b>${e.from_cn}</b> ${e.bidir?'⇄':'→'} <b>${e.to_cn}</b>`:'';
-      const a=document.createElement('a');a.className='fcard';a.href='kg-dynamics.html?force='+encodeURIComponent(f.t);a.style.borderLeftColor=f.col;
-      a.innerHTML=`<div class="ct"><span class="t" style="color:${f.col}">${f.t}</span><span class="n">${n} 条</span></div>
-        <div class="df">${f.def}</div><div class="ex">${exs}</div>`;
-      g.appendChild(a);});
-    wrap.appendChild(g);
-  });
-  // 家族二:语境泳道
-  const cg=document.getElementById('famCtx');
-  const lc={};if(CTX){CTX.events.forEach(e=>lc[e.lane]=(lc[e.lane]||0)+1);}
-  (CTX?CTX.lanes:[]).forEach(l=>{
-    const a=document.createElement('a');a.className='fcard';a.href='kg-context.html?lane='+l.key;a.style.borderLeftColor=l.col;
-    a.innerHTML=`<div class="ct"><span class="t" style="color:${l.col}">${l.cn.split(' · ')[0].split(' / ')[0]}</span><span class="n">${lc[l.key]||0} 个</span></div>
-      <div class="df">${l.desc}</div><div class="ex"><b>${LANE_EX[l.key]||''}</b></div>`;
-    cg.appendChild(a);
-  });
+  fetch('data/kg_relations.json').then(r=>r.json()),
+  fetch('data/kg_context.json').then(r=>r.json()),
+  fetch('data/kg_artists.json').then(r=>r.json())
+]).then(([REL,CTX,AJ])=>{
+  const A=AJ.artists, byType=REL.meta.by_type||{}, byLane=(CTX.meta&&CTX.meta.by_lane)||{};
+  const nEdges=REL.meta.edges, nForce=REL.meta.types.length, nEvt=CTX.meta.events, nLane=(CTX.lanes||[]).length;
+  const nMis=REL.edges.filter(e=>e.misread).length;
+  document.getElementById('meta').textContent=`${nForce} 种关系力 · ${nEdges} 条边 · ${nLane} 道语境场 · ${nEvt} 个事件 · 共 6 个页面`;
+
+  document.getElementById('stats').innerHTML=[
+   [nForce,'种','关系力'],[nEdges,'条','力的连接'],[nLane,'道','语境场'],[nEvt,'个','语境事件'],[nMis,'条','创造性误读']
+  ].map(s=>`<div class="stat"><div class="num">${s[0]}<span class="u">${s[1]}</span></div><div class="lab">${s[2]}</div></div>`).join('');
+
+  const cnt=(key,name)=>key==='rel'?(byType[name]||0):key==='ctx'?(byLane[LANEKEY[name]]||0):null;
+  document.getElementById('families').innerHTML=FAMS.map(f=>{
+    const tot=f.items.reduce((s,n)=>s+(cnt(f.key,n)||0),0)||f.items.length;
+    const chips=f.items.map(name=>{
+      const c=cnt(f.key,name);
+      const href=f.key==='rel'?`kg-dynamics.html?force=${encodeURIComponent(name)}`:(f.key==='ctx'?`kg-context.html?lane=${LANEKEY[name]}`:'kg-contingency.html');
+      return `<a class="fchip" href="${href}">${name}${c!=null?`<span class="c">${c}</span>`:''}</a>`;
+    }).join('');
+    return `<div class="door">
+      <div class="dh"><i data-ic="${f.ic}"></i><span class="nm">${f.nm}</span><span class="n">${tot} ${f.key==='cont'?'类':'条'}</span></div>
+      <div class="dsub">${f.sub}</div>
+      <div class="chiprow">${chips}</div><div class="chiphint">↑ 点任一力,直达过滤视图</div>
+      <a class="enter" href="${f.page}">${f.enter} <i data-ic="arrowRight"></i></a></div>`;
+  }).join('');
+
+  drawPlane(REL,A);
+  document.getElementById('heroleg').innerHTML=
+    [['反叛/复兴…对前代','var(--accent)'],['跨文化·对异域','var(--blue)'],['致敬·对同代','var(--green)']]
+    .map(([t,c])=>`<span class="li"><span class="sw" style="border-color:${c}"></span>${t}</span>`).join('');
+
+  document.querySelectorAll('.sec').forEach(el=>el.classList.add('fade-in'));
+  if(window.AHAIcons)document.querySelectorAll('[data-ic]').forEach(function(el){el.innerHTML=AHAIcons.svg(el.getAttribute('data-ic'));});
+}).catch(e=>{
+  document.getElementById('families').innerHTML='<div class="empty">数据加载失败<div class="hint">需通过服务器打开</div></div>';
+  document.getElementById('meta').textContent='—';
 });
+
+function drawPlane(REL,A){
+  const NS='http://www.w3.org/2000/svg',E=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+  const svg=document.getElementById('plane');svg.textContent='';
+  const W=760,H=360,pl=44,pr=28,pt=24,pb=34;
+  const sx=v=>pl+v*(W-pl-pr), sy=v=>H-pb-v*(H-pt-pb), f1=v=>v.toFixed(1);
+  const cnOf=id=>id.startsWith('C.')?(REL.concepts[id]||{}).cn:((A[id]||{}).cn||id);
+  const POS={};
+  Object.entries(A).forEach(([id,v])=>{if(!v._stub&&v.wv&&v.wv.x!=null)POS[id]={x:v.wv.x,y:v.wv.y,east:v.region==='east'};});
+  Object.entries(REL.concepts||{}).forEach(([id,c])=>POS[id]={x:c.x,y:c.y,concept:true});
+  svg.appendChild(E('rect',{x:pl,y:pt,width:W-pl-pr,height:H-pt-pb,fill:'var(--paper-2)','fill-opacity':.45,stroke:'var(--line)',rx:8}));
+  [.5].forEach(t=>{svg.appendChild(E('line',{x1:sx(t),y1:pt,x2:sx(t),y2:H-pb,stroke:'var(--line-soft)'}));svg.appendChild(E('line',{x1:pl,y1:sy(t),x2:W-pr,y2:sy(t),stroke:'var(--line-soft)'}));});
+  const tx=(x,y,s,o={})=>{const e=E('text',{x,y,'font-family':'JetBrains Mono','font-size':o.fs||9.5,fill:o.fill||'var(--ink-mute)','text-anchor':o.a||'middle'});if(o.st){e.setAttribute('paint-order','stroke');e.setAttribute('stroke','var(--card)');e.setAttribute('stroke-width',3);}e.textContent=s;svg.appendChild(e);};
+  tx(sx(.02),H-pb+22,'← 再现',{a:'start',fill:'var(--green)'});tx(sx(.98),H-pb+22,'表现 →',{a:'end',fill:'var(--accent)'});
+  tx(pl-4,sy(.04),'结构',{a:'end',fill:'var(--green)'});tx(pl-4,sy(.97),'感知',{a:'end',fill:'var(--accent)'});
+  Object.values(POS).forEach(p=>{if(p.concept)return;svg.appendChild(E('circle',{cx:f1(sx(p.x)),cy:f1(sy(p.y)),r:2,fill:p.east?'var(--green)':'var(--accent)','fill-opacity':.22}));});
+  const defs=E('defs',{});[['a','var(--accent)'],['b','var(--blue)'],['g','var(--green)']].forEach(([k,c])=>{
+    const m=E('marker',{id:'m'+k,viewBox:'0 0 10 10',refX:8.5,refY:5,markerWidth:6,markerHeight:6,orient:'auto-start-reverse'});
+    m.appendChild(E('path',{d:'M0 0 L10 5 L0 10 z',fill:c}));defs.appendChild(m);});svg.appendChild(defs);
+  const EX=[['ARTIST.delacroix','ARTIST.ingres','var(--accent)','a','反叛'],
+            ['ARTIST.dongqichang','ARTIST.dongyuan','var(--accent)','a','复兴'],
+            ['ARTIST.vangogh','C.ukiyoe','var(--blue)','b','跨文化'],
+            ['ARTIST.warhol','ARTIST.davinci','var(--green)','g','致敬']];
+  EX.forEach(([f,t,c,mk,lab])=>{const p=POS[f],q=POS[t];if(!p||!q)return;
+    const x1=sx(p.x),y1=sy(p.y),x2=sx(q.x),y2=sy(q.y),dx=x2-x1,dy=y2-y1,L=Math.hypot(dx,dy)||1,ux=dx/L,uy=dy/L;
+    svg.appendChild(E('line',{x1:f1(x1+ux*9),y1:f1(y1+uy*9),x2:f1(x2-ux*11),y2:f1(y2-uy*11),stroke:c,'stroke-width':1.8,'stroke-opacity':.9,'marker-end':'url(#m'+mk+')'}));
+    [[p,f],[q,t]].forEach(([nd,id])=>{
+      if(nd.concept)svg.appendChild(E('rect',{x:f1(sx(nd.x)-3.5),y:f1(sy(nd.y)-3.5),width:7,height:7,rx:1,fill:'var(--ink-mute)',stroke:'var(--card)','stroke-width':1.4}));
+      else svg.appendChild(E('circle',{cx:f1(sx(nd.x)),cy:f1(sy(nd.y)),r:3.6,fill:nd.east?'var(--green)':'var(--accent)',stroke:'var(--card)','stroke-width':1.4}));
+      tx(sx(nd.x),sy(nd.y)-7,cnOf(id),{fs:9.5,fill:'var(--ink-soft)',st:1});});
+    tx((x1+x2)/2,(y1+y2)/2-2,lab,{fs:10,fill:c,st:1});});
+}
 </script>
+<script src="js/aha-icons.js"></script>
+<script src="js/aha-chrome.js"></script>
+<script src="js/board-nav.js"></script>
 </body></html>

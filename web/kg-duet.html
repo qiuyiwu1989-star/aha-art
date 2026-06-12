@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>aha · 双画对读 · 坐标即比较</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
   :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--blue:#5b7596;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -49,12 +49,12 @@
   .empty{text-align:center;color:var(--ink-faint);padding:40px}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
+<a class="home-fab" href="museum.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 坐标即比较</div>
   <h1>双画对读 —— 两张画,差在哪里</h1>
   <p class="lead">任选两张真迹,aha 沿 V3 <b>生成链</b>把它们逐层并置:世界观坐标、题材、绘画语言、情绪、意义——让你看见两种<b>看世界的方式</b>差在何处。</p>
-  <div class="breadcrumb"><a href="kg-explain.html">一画解读</a> · <a href="kg-works.html">作品层</a> · <a href="kg-artist-atlas.html">全员星图</a> · 当前:双画对读</div>
+  <div class="breadcrumb"><a href="kg-explain.html">一画解读</a> · <a href="kg-catalog.html">作品层</a> · <a href="kg-artist-atlas.html">全员星图</a> · 当前:双画对读</div>
 
   <div class="slots">
     <div class="slot A" id="slotA"></div>
@@ -163,7 +163,7 @@ function renderGrid(){
   const list=LIST.filter(L=>(filt.side==='all'||L.ar.region===filt.side)&&(!q||L.ar.cn.toLowerCase().includes(q)||(L.ar.en||'').toLowerCase().includes(q)));
   const g=document.getElementById('grid');g.textContent='';
   document.getElementById('pkhint').innerHTML=`正在选 <b>${which==='A'?'左图 A':'右图 B'}</b> · 点一张填入 · 共 ${list.length} 张`;
-  list.slice(0,160).forEach(L=>{const el=$(`<div class="gi" title="${L.it.title} · ${L.ar.cn}"><img loading="lazy" src="${L.it.file}"><div class="gl">${L.ar.cn}</div></div>`);
+  list.slice(0,160).forEach(L=>{const el=$(`<div class="gi" title="${L.it.title} · ${L.ar.cn}"><img loading="lazy" decoding="async" src="${L.it.file}"><div class="gl">${L.ar.cn}</div></div>`);
     el.addEventListener('click',()=>{sel[which]=L;which=which==='A'?'B':'A';syncWhich();redraw();renderGrid();window.scrollTo({top:0,behavior:'smooth'});});
     g.appendChild(el);});
 }

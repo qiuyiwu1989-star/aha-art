@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>aha · 为你生成 · 让美来找你,这次是为你新画一幅</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
   :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--green:#5a7d6f;--blue:#5b7596;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -37,12 +37,12 @@
   .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
+<a class="home-fab" href="museum.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 让美来找你</div>
   <h1>为你,新画一幅</h1>
   <p class="lead">aha 的承诺是「art that finds you」。这次更进一步:挑几幅你被吸引的<b>真迹</b> → aha 定位你<b>在世界观平面的审美位置</b> → 用知识图谱<b>为你生成一幅从未存在过的画</b>。</p>
-  <div class="breadcrumb"><a href="home.html"><i data-ic="home"></i> 首页</a> › <a href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <b style="color:var(--ink-soft)">为你生成</b></div>
+  <div class="breadcrumb"><a href="museum.html"><i data-ic="home"></i> 首页</a> › <a href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <b style="color:var(--ink-soft)">为你生成</b></div>
   <div style="max-width:720px;margin:11px auto 0;border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:12px;line-height:1.6;color:var(--ink-mute);text-align:center">
     好奇 aha <b style="color:var(--ink-soft)">怎么从你的选择定位审美</b>、推荐内核每一分怎么算? → <a href="kg-me.html" style="color:var(--accent);text-decoration:none;font-weight:600">推荐内核装置(实验场)→</a>
   </div>
@@ -87,7 +87,7 @@ function nextRound(){
     <div class="pair"></div>
     <span class="skip">两幅都无感,换一对 →</span></div>`);
   const pr=s.querySelector('.pair');
-  [a,b].forEach(it=>{const c=$(`<div class="pick"><img loading="lazy" src="${it.file}" alt=""/></div>`);c.onclick=()=>{picks.push(it);round++;nextRound();};pr.appendChild(c);});
+  [a,b].forEach(it=>{const c=$(`<div class="pick"><img loading="lazy" decoding="async" src="${it.file}" alt=""/></div>`);c.onclick=()=>{picks.push(it);round++;nextRound();};pr.appendChild(c);});
   s.querySelector('.skip').onclick=()=>{ _seed+=997; nextRound(); };
   app.appendChild(s);
 }

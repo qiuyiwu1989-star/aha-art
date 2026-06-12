@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>aha · 作品层 · 全部真迹</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
   :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -36,7 +36,8 @@
   .planenote{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);text-align:center;margin-top:8px}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
+<div style="background:#b0673a;color:#fff;font:13px/1.55 -apple-system,'PingFang SC',sans-serif;text-align:center;padding:9px 14px">本页为早期 demo,已退役 —— 统一活库画廊请用 <a href="kg-catalog.html" style="color:#fff;text-decoration:underline;font-weight:600">核心资产画廊 →</a></div>
+<a class="home-fab" href="museum.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 作品层</div>
   <h1>全部真迹 · 作品层</h1>
@@ -79,7 +80,7 @@ function render(){
   document.getElementById('stat').innerHTML=`<b>${list.length}</b> 张真迹 · 共 ${WORKS.length} 张 / ${new Set(WORKS.map(w=>w.id)).size} 位画家${view==='plane'?` · <b>${coordN}</b> 张有逐张读图坐标`:''}`;
   const g=document.getElementById('grid'),pb=document.getElementById('planebox');
   if(view==='grid'){pb.style.display='none';g.style.display='';g.textContent='';
-    list.forEach(w=>g.appendChild($(`<a class="w" href="kg-artist.html?id=${w.id}"><img loading="lazy" src="${w.file}" alt="${w.title}"><div class="wi"><div class="wt">${w.title}</div><div class="wa">${w.cn} · <span class="reg">${w.region==='east'?'东':'西'}「${WVN[w.wvid]||''}」</span></div></div></a>`)));
+    list.forEach(w=>g.appendChild($(`<a class="w" href="kg-artist.html?id=${w.id}"><img loading="lazy" decoding="async" src="${w.file}" alt="${w.title}"><div class="wi"><div class="wt">${w.title}</div><div class="wa">${w.cn} · <span class="reg">${w.region==='east'?'东':'西'}「${WVN[w.wvid]||''}」</span></div></div></a>`)));
   }else{g.style.display='none';pb.style.display='';renderPlane(list);}
 }
 let tipEl;

@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>aha · 生成图库 · 图谱生成的画 + 它的数据</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
   :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -49,12 +49,12 @@
   .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
+<a class="home-fab" href="museum.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 生成图库</div>
   <h1>图谱生成的画 · 连同它的数据</h1>
   <p class="lead">这里存着从 <a href="kg-compile.html">意图编译器</a> 生成并保存的每一张图——<b>不只是图,还有生成它的结构化数据</b>(意图、命中的风格节点、7 字段、驱动提示词)。点任意一张看它"为什么长这样"。</p>
-  <div class="breadcrumb"><a href="home.html"><i data-ic="home"></i> 首页</a> › <a href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a href="kg-compile.html">意图编译器</a> › <b style="color:var(--ink-soft)">生成图库</b></div>
+  <div class="breadcrumb"><a href="museum.html"><i data-ic="home"></i> 首页</a> › <a href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a href="kg-compile.html">意图编译器</a> › <b style="color:var(--ink-soft)">生成图库</b></div>
   <div class="filt" id="filt"></div>
   <div class="cnt" id="cnt"></div>
   <div class="grid" id="grid"></div>
@@ -94,7 +94,7 @@ function draw(){
   VIEW.forEach((it,i)=>{
     const rmark=it.rating===1?'<span style="color:var(--green)">👍</span>':it.rating===-1?'<span style="color:#b06a62">👎</span>':'';
     const set=it.set_id?'<span title="对比组" style="color:var(--gold)">⊞</span>':'';
-    const c=$(`<div class="card"><img loading="lazy" src="${it.file}" alt=""/><div class="cb"><div class="ct">${esc(it.style_cn||it.query||'生成图')}</div><div class="ca"><span class="sid">${esc(it.model_label||it.model||'')}</span><span>${rmark}${set} ${tfmt(it.ts)}</span></div></div></div>`);
+    const c=$(`<div class="card"><img loading="lazy" decoding="async" src="${it.file}" alt=""/><div class="cb"><div class="ct">${esc(it.style_cn||it.query||'生成图')}</div><div class="ca"><span class="sid">${esc(it.model_label||it.model||'')}</span><span>${rmark}${set} ${tfmt(it.ts)}</span></div></div></div>`);
     c.onclick=()=>openM(i);g.appendChild(c);
   });
 }
