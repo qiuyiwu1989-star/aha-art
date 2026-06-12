@@ -101,6 +101,9 @@ select{font:13px inherit;padding:5px 8px;border:1px solid var(--line);border-rad
     <div class="wrap" id="cos"></div>
     <div class="wrap" id="vlm"></div>
     <div class="wrap" id="govdata"></div>
+    <div class="wrap" id="editor"></div>
+    <div class="wrap" id="styles"></div>
+    <div class="wrap" id="ops"></div>
     <div class="wrap" id="ctl"></div>
     <div class="wrap" id="anom"></div>
     <div class="wrap" id="review"></div>
@@ -112,7 +115,7 @@ select{font:13px inherit;padding:5px 8px;border:1px solid var(--line);border-rad
     <div class="wrap" id="exh">加载中…</div>
   </section>
   <section class="mod" id="mod-special" hidden>
-    <div class="modh"><h1>首页特展</h1><p>museum 首页「特展」区实时读这里。规则型(按情绪/世界观/区域自动选,新画自动进)或选图型。改完即时生效。</p></div>
+    <div class="modh"><h1>首页特展 · 官方策展</h1><p>museum「特展」区实时读这里。两种:<b>手策展</b>(进策展台 curate 选脊·加画·写主张,带动线呈现)/ <b>规则展</b>(按情绪/世界观/区域自动选,新画自动进)。改完即时生效。</p></div>
     <div class="wrap"><div id="spwrap">加载中…</div></div>
   </section>
   <section class="mod" id="mod-frame" hidden>
@@ -279,7 +282,7 @@ async function loadCtl(){
       来源 <select id="cSrc" onchange="_ctlSel.cSrc=this.value">${srcOpt}</select> 数量 <select id="cLim" onchange="_ctlSel.cLim=this.value">${limOpt}</select>
       <button class="abtn" onclick="runGate()">▶ 开始过闸</button><button class="abtn stop" onclick="stopGate()">■ 停止</button>
       <span id="cMsg" style="color:var(--accent);font-size:12px"></span></div>
-    <div class="gl" style="margin-top:14px;border-top:1px solid var(--line);padding-top:12px">🖼 <b>展出选图（规则A）</b> · 已选展出 <b id="exCnt">${fmt(d.exhibited)}</b>（其中可上墙 ${fmt(d.exhibited_ready)} 件含世界观坐标）</div>
+    <div class="gl" style="margin-top:14px;border-top:1px solid var(--line);padding-top:12px"><i data-ic="works"></i> <b>展出选图（规则A）</b> · 已选展出 <b id="exCnt">${fmt(d.exhibited)}</b>（其中可上墙 ${fmt(d.exhibited_ready)} 件含世界观坐标）</div>
     <div style="margin-top:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
       质量阈值 <select id="eMin" onchange="_ctlSel.eMin=this.value">${minOpt}</select>
       每艺术家上限 <select id="ePer" onchange="_ctlSel.ePer=this.value">${perOpt}</select>
@@ -301,7 +304,7 @@ async function rExhibit(id){await fetch(API+`admin/exhibit?id=${id}&on=true`,{me
 async function loadReview(){
   let d;try{d=await (await fetch(API+'admin/review?n=12')).json()}catch(e){return}
   if(!d.items)return;
-  document.getElementById('review').innerHTML=`<div class="panel"><h2>🔍 抽检纠错 <button class="abtn" onclick="loadReview()">换一批</button>
+  document.getElementById('review').innerHTML=`<div class="panel"><h2><i data-ic="search"></i> 抽检纠错 <button class="abtn" onclick="loadReview()">换一批</button>
     <span style="color:#aaa;font-weight:400;font-size:12px">随机抽核心资产人眼核，错了直接纠（点图进深读）</span></h2>
     <div class="recent">${d.items.map(it=>`<div class="rc" id="rc${it.id}">
       <a href="work.html?id=${it.id}" target="_blank"><img loading="lazy" src="${it.thumb}"></a>
@@ -369,7 +372,7 @@ async function loadArtists(qv){
     const fc=Object.entries(c.field_coverage).map(([k,n])=>[k+' '+n+'/'+c.total,n]);
     const vC=Object.entries(c.verify).map(([k,n])=>`${k} ${n}`).join(' · ');
     canonHTML=`
-    <div class="panel" style="background:linear-gradient(180deg,#fbf7f0,#fff)"><h2>🎨 策展艺术家(有完整主页的核心库)<span style="color:#aaa;font-weight:400;font-size:12px">= kg-artists.html / kg-artist.html 渲染的这批,单一事实源 = artists_canon</span></h2>
+    <div class="panel" style="background:linear-gradient(180deg,#fbf7f0,#fff)"><h2><i data-ic="create"></i> 策展艺术家(有完整主页的核心库)<span style="color:#aaa;font-weight:400;font-size:12px">= kg-artists.html / kg-artist.html 渲染的这批,单一事实源 = artists_canon</span></h2>
       <div class="cards" style="margin-top:8px">
         ${card(c.total,'策展艺术家','建有 V3 主页')}
         ${card(c.with_works,'有馆藏真作品',Math.round(c.with_works/c.total*100)+'%')}
@@ -413,15 +416,51 @@ async function loadArtists(qv){
 
 // ===== 用户互动模块 =====
 async function loadUsers(){
-  const d=await (await fetch(API+'admin/m/users')).json();const c=d.counts;
-  const card=(v,l)=>`<div class="card"><div class="v">${fmt(v)}</div><div class="l">${l}</div></div>`;
+  const [d,L]=await Promise.all([fetch(API+'admin/m/users').then(r=>r.json()),fetch(API+'admin/users?limit=200').then(r=>r.json())]);
+  const c=d.counts;const card=(v,l)=>`<div class="card"><div class="v">${fmt(v)}</div><div class="l">${l}</div></div>`;
+  const rows=(L.users||[]).map(u=>`<tr onclick="openUser('${u.uid}')" style="cursor:pointer">
+    <td><b>${esc(u.nickname||u.uid.slice(0,14))}</b>${u.admin_note?` <span class="ctag">📝</span>`:''}</td>
+    <td>${esc(u.archetype||'—')}</td><td>${esc(u.soulmate_cn||'—')}</td>
+    <td style="text-align:right">${fmt(u.n_ev)}</td><td style="text-align:right">${fmt(u.n_col)}</td>
+    <td style="text-align:right">${fmt(u.n_cmt)}</td><td style="color:var(--soft)">${(u.last_active||'').slice(0,10)}</td></tr>`).join('');
   document.getElementById('usr').innerHTML=`
     <div class="cards">${card(c.mu_user,'匿名用户')}${card(c.mu_event,'行为事件')}${card(c.mu_comment,'众声评论')}${card(c.mu_collection,'收藏')}${card(c.mu_persona,'解读人设')}${card(c.mu_taste,'口味画像')}${card(c.mu_generation,'生成')}${card(c.mu_rating,'评分')}</div>
-    <div class="grid2">
-      <div class="panel"><h2>行为事件类型</h2><div class="bars">${barlist(d.event_kinds.map(k=>[k.k,k.n]))}</div></div>
-      <div class="panel"><h2>最近评论</h2>${d.comments.length?d.comments.map(m=>`<div class="gl">[${m.status||'?'}] ${esc(m.body||'')}</div>`).join(''):'<div class="gl">暂无</div>'}</div>
-    </div>`;
+    <div id="usrDetail"></div>
+    <div class="panel"><h2>👥 用户列表（点行看单人画像 · 按最近活跃排）</h2>
+      <table class="rt" style="font-size:12.5px"><tr><th>用户</th><th>原型</th><th>本命</th><th>事件</th><th>收藏</th><th>评论</th><th>最近活跃</th></tr>${rows}</table></div>`;
 }
+async function openUser(uid){
+  const d=await (await fetch(API+'admin/user?uid='+encodeURIComponent(uid))).json();
+  const p=d.profile,t=d.taste;
+  const lights=p&&p.lights?Object.entries(p.lights).map(([k,v])=>`${k} ${(v*100).toFixed(0)}%`).join(' · '):'—';
+  const cols=d.collections.map(x=>`<span class="ctag">${esc(x.wk)}</span>`).join(' ')||'无';
+  const cmts=d.comments.map(m=>`<div class="gl">[${m.status||'ok'}] ${esc(m.body||'')} <span style="color:#aaa">@${m.wk}</span>
+     <a href="javascript:" onclick="modComment(${m.id},'hidden','${uid}')" style="color:var(--warn)">隐</a>
+     <a href="javascript:" onclick="modComment(${m.id},'deleted','${uid}')" style="color:var(--rej)">删</a></div>`).join('')||'<div class="gl">无</div>';
+  const evs=d.events.slice(0,20).map(e=>`<span class="ctag">${e.kind}${e.dwell_ms?'·'+Math.round(e.dwell_ms/1000)+'s':''}</span>`).join(' ');
+  const gens=d.generations.map(g=>`<span class="ctag">${g.rating?'★'+g.rating:'未评'} ${esc((g.prompt||'').slice(0,18))}</span>`).join(' ')||'无';
+  document.getElementById('usrDetail').innerHTML=`<div class="panel" style="border:2px solid var(--accent)">
+    <h2><i data-ic="me"></i> 用户画像 · ${esc(d.user.nickname||uid)} <a href="javascript:" onclick="document.getElementById('usrDetail').innerHTML=''" style="float:right;color:var(--soft);font-weight:400">✕ 关闭</a></h2>
+    <div class="grid2">
+      <div><div class="gl"><b>审美档案</b></div>
+        <div class="gl">原型 <b>${esc(p&&p.archetype||'无')}</b> · 本命 <b>${esc(p&&p.soulmate_cn||'—')}</b></div>
+        <div class="gl">三盏灯 ${lights} · 离散度 ${p?(p.spread||0).toFixed(3):'—'} · 逛过 ${p?p.n:0} 幅</div>
+        <div class="gl">口味坐标 ${t?`(${(t.x||0).toFixed(2)}, ${(t.y||0).toFixed(2)})`:'—'}</div>
+        <div class="gl" style="margin-top:8px"><b>管理备注</b></div>
+        <div style="display:flex;gap:6px"><input id="unote" value="${esc(d.user.admin_note||'')}" placeholder="给该用户加备注…" style="flex:1;font:13px inherit;padding:5px 8px;border:1px solid var(--line);border-radius:6px">
+          <button class="abtn" onclick="saveNote('${uid}')">存</button></div></div>
+      <div><div class="gl"><b>收藏 ${d.collections.length}</b></div><div class="stbl">${cols}</div>
+        <div class="gl" style="margin-top:8px"><b>生成 ${d.generations.length}</b></div><div class="stbl">${gens}</div>
+        <div class="gl" style="margin-top:8px"><b>近期行为</b></div><div class="stbl">${evs}</div></div>
+    </div>
+    <div class="gl" style="margin-top:8px"><b>评论 ${d.comments.length}</b>（可隐/删）</div>${cmts}</div>`;
+  document.getElementById('usrDetail').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+async function saveNote(uid){const v=document.getElementById('unote').value;
+  await fetch(API+`admin/user/note?uid=${encodeURIComponent(uid)}&note=${encodeURIComponent(v)}`,{method:'POST'});
+  document.getElementById('unote').style.borderColor='var(--ok)';}
+async function modComment(id,status,uid){if(status==='deleted'&&!confirm('删除该评论?'))return;
+  await fetch(API+`admin/comment/moderate?id=${id}&status=${status}`,{method:'POST'});openUser(uid);}
 
 // ===== 生成图库治理模块 =====
 let _genScope='all';
@@ -545,14 +584,139 @@ async function loadGovData(){
         <div><div class="csub" style="font-weight:600;margin:4px 0">📒 总账各来源 · 元数据完整度</div>${lrows}</div>
         <div><div class="csub" style="font-weight:600;margin:4px 0">🤖 VLM 优质待处理队列（绿=可直接喂VLM）</div>${vrows}</div>
       </div>
-      <div style="margin-top:10px"><div class="csub" style="font-weight:600;margin-bottom:4px">🎨 艺术家归并样例（同一人合并的 id 数）</div>${merges}</div>
+      <div style="margin-top:10px"><div class="csub" style="font-weight:600;margin-bottom:4px"><i data-ic="create"></i> 艺术家归并样例（同一人合并的 id 数）</div>${merges}</div>
     </div>`;
   }catch(e){document.getElementById('govdata').innerHTML='<div class="panel"><h2>🧹 数据治理总账</h2><div class="csub">governance.json 加载失败（先跑 govern_panel.py）</div></div>';}
 }
 
+// ===== 🔧 单条编辑(作品 + 艺术家),写 work_edit/artists,原值可逆 =====
+function loadEditor(){
+  document.getElementById('editor').innerHTML=`<div class="panel">
+    <h2>🔧 单条编辑 · 长尾精修　<span style="color:#aaa;font-weight:400;font-size:12px">改标题/作者/年代·手动过闸·归并纠错（写覆盖层,原值可逆）</span></h2>
+    <div style="display:flex;gap:8px;margin-bottom:8px"><input id="weq" placeholder="🔍 搜作品名/作者…" style="flex:1;font:13px inherit;padding:6px 10px;border:1px solid var(--line);border-radius:8px" onkeydown="if(event.key==='Enter')weSearch()"><button class="abtn" onclick="weSearch()">搜作品</button>
+      <input id="aeq" placeholder="🔍 搜艺术家…" style="flex:1;font:13px inherit;padding:6px 10px;border:1px solid var(--line);border-radius:8px" onkeydown="if(event.key==='Enter')aeSearch()"><button class="abtn" onclick="aeSearch()">搜艺术家</button></div>
+    <div id="weRes"></div><div id="weForm"></div></div>`;
+}
+async function weSearch(){const v=document.getElementById('weq').value.trim();if(!v)return;
+  const d=await(await fetch(API+'ledger?limit=20&q='+encodeURIComponent(v))).json();
+  document.getElementById('weForm').innerHTML='';
+  document.getElementById('weRes').innerHTML='<div class="csub" style="margin:4px 0">作品结果（点击编辑）</div>'+
+    (d.items||[]).map(i=>`<div class="gl" style="cursor:pointer" onclick="weOpen(${i.id})">#${i.id} 《${esc(i.title||'?')}》 — ${esc(i.artist||'佚名')} ${i.year||''} <span class="ctag">${i.source}</span></div>`).join('');
+}
+async function weOpen(id){
+  const d=await(await fetch(API+'admin/work?id='+id)).json();
+  const inp=(k,v)=>`<input id="we_${k}" value="${esc(v||'')}" style="width:100%;font:13px inherit;padding:5px 8px;border:1px solid var(--line);border-radius:6px">`;
+  document.getElementById('weForm').innerHTML=`<div class="panel" style="border:2px solid var(--accent);margin-top:8px">
+    <div style="display:flex;gap:14px"><img src="${d.thumb}" style="width:150px;height:150px;object-fit:cover;border-radius:8px" onerror="this.style.opacity=.2">
+    <div style="flex:1">
+      <div class="gl">作品 #${d.work_id} · 状态 <b>${d.status}</b> · 原标题「${esc(d.raw_title||'')}」${d.title?' · <span style="color:var(--accent)">已编辑</span>':''}</div>
+      <div class="grid2" style="gap:8px">
+        <div><div class="csub">标题</div>${inp('title',d.title||d.title_clean||d.raw_title)}</div>
+        <div><div class="csub">作者(name_cn/en)</div>${inp('artist',(d.name_cn||d.name_en||''))}<div class="csub">改作者请用下方艺术家归并;这里改的是显示名</div></div>
+        <div><div class="csub">年代</div>${inp('year',d.year||d.raw_year)}</div>
+        <div><div class="csub">流派</div>${inp('school',d.school||d.raw_school)}</div>
+        <div><div class="csub">材质</div>${inp('medium',d.medium||d.raw_medium)}</div>
+      </div>
+      <div class="acts" style="margin-top:8px;gap:6px">
+        <button class="abtn" onclick="weSave(${d.work_id})">💾 保存编辑</button>
+        <button class="abtn" onclick="weReset(${d.work_id})">↩ 撤销编辑(回原值)</button>
+        <button class="abtn" style="border-color:var(--ok);color:var(--ok)" onclick="weStatus(${d.work_id},'kept')">✓ 入核心资产</button>
+        <button class="abtn stop" onclick="weStatus(${d.work_id},'rejected')">✕ 剔除</button>
+        <button class="abtn" onclick="weStatus(${d.work_id},'archived')">📦 归档</button>
+        <span id="weMsg" style="color:var(--accent);font-size:12px"></span>
+      </div></div></div></div>`;
+}
+async function weSave(id){const g=k=>document.getElementById('we_'+k).value;
+  const p=new URLSearchParams({id});['title','year','school','medium'].forEach(k=>p.set(k,g(k)));
+  await fetch(API+'admin/work/edit?'+p,{method:'POST'});document.getElementById('weMsg').textContent='✓ 已保存';}
+async function weReset(id){await fetch(API+'admin/work/edit/reset?id='+id,{method:'POST'});weOpen(id);}
+async function weStatus(id,s){await fetch(API+`admin/work/status?id=${id}&status=${s}`,{method:'POST'});document.getElementById('weMsg').textContent='✓ 状态→'+s;}
+async function aeSearch(){const v=document.getElementById('aeq').value.trim();if(!v)return;
+  const d=await(await fetch(API+'ledger_artists?limit=20&q='+encodeURIComponent(v))).json();
+  document.getElementById('weForm').innerHTML='';
+  document.getElementById('weRes').innerHTML='<div class="csub" style="margin:4px 0">艺术家结果（点击编辑）</div>'+
+    (d.items||[]).map(a=>`<div class="gl" style="cursor:pointer" onclick="aeOpen('${a.artist_id}')">${esc(a.name||'?')} <span class="ctag">${a.works}件</span> ${a.east_west==='east'?'东':a.east_west==='west'?'西':''}</div>`).join('');
+}
+async function aeOpen(aid){
+  const d=await(await fetch(API+'artist?id='+encodeURIComponent(aid))).json().catch(()=>({}));
+  const a=d.artist||d||{};
+  const inp=(k,v)=>`<input id="ae_${k}" value="${esc(v==null?'':v)}" style="width:100%;font:13px inherit;padding:5px 8px;border:1px solid var(--line);border-radius:6px">`;
+  document.getElementById('weForm').innerHTML=`<div class="panel" style="border:2px solid var(--accent);margin-top:8px">
+    <div class="gl">艺术家 <code>${esc(aid)}</code></div>
+    <div class="grid2" style="gap:8px">
+      <div><div class="csub">中文名</div>${inp('name_cn',a.name_cn||a.cn)}</div>
+      <div><div class="csub">西文名</div>${inp('name_en',a.name_en||a.en)}</div>
+      <div><div class="csub">生年</div>${inp('born',a.born)}</div>
+      <div><div class="csub">卒年</div>${inp('death',a.death)}</div>
+      <div><div class="csub">东西(east/west)</div>${inp('east_west',a.east_west)}</div>
+    </div>
+    <div class="acts" style="margin-top:8px;gap:6px">
+      <button class="abtn" onclick="aeSave('${aid}')">💾 保存</button>
+      <button class="abtn stop" onclick="aeUnmerge('${aid}')">⚯ 拆分(取消归并)</button>
+      <span style="font-size:12px;color:var(--soft)">归并到他人:在另一个的搜索里找,把本人id填入 from</span>
+      <input id="ae_to" placeholder="归并到的目标artist_id" style="font:12px inherit;padding:4px 8px;border:1px solid var(--line);border-radius:6px"><button class="abtn" onclick="aeMerge('${aid}')">合并→</button>
+      <span id="aeMsg" style="color:var(--accent);font-size:12px"></span></div></div>`;
+}
+async function aeSave(aid){const g=k=>document.getElementById('ae_'+k).value;
+  const p=new URLSearchParams({artist_id:aid});['name_cn','name_en','born','death','east_west'].forEach(k=>{if(g(k))p.set(k,g(k))});
+  await fetch(API+'admin/artist/edit?'+p,{method:'POST'});document.getElementById('aeMsg').textContent='✓ 已保存';}
+async function aeUnmerge(aid){await fetch(API+'admin/artist/unmerge?artist_id='+encodeURIComponent(aid),{method:'POST'});document.getElementById('aeMsg').textContent='✓ 已拆分';}
+async function aeMerge(aid){const to=document.getElementById('ae_to').value.trim();if(!to)return;
+  await fetch(API+`admin/artist/merge?from=${encodeURIComponent(aid)}&to=${encodeURIComponent(to)}`,{method:'POST'});document.getElementById('aeMsg').textContent='✓ 已合并';}
+
 load();setInterval(load,30000);loadGov();loadAnom();setInterval(loadAnom,120000);
 loadCtl();setInterval(loadCtl,20000);loadReview();loadCos();loadPromptEditor();
-loadVlm();setInterval(loadVlm,30000);loadGovData();setInterval(loadGovData,60000);
+// ===== 🏷 编目:流派归一(原值→规范流派,未归类优先,下拉改) =====
+let _styleCanon=[];
+async function loadStyles(){
+  const d=await(await fetch(API+'admin/styles')).json();
+  _styleCanon=d.canon;
+  const opt=(cur)=>d.canon.map(c=>`<option value="${c.canon_id}"${c.canon_id===cur?' selected':''}>${esc(c.name_cn)}</option>`).join('');
+  const chips=d.canon.filter(c=>c.canon_id!==0).map(c=>`<span class="ctag">${esc(c.name_cn)} <i style="color:#aaa">${esc(c.name_en)}</i></span>`).join(' ');
+  const rows=d.raw_map.map(r=>`<tr${r.canon_id===0?' style="background:#fdf6ee"':''}>
+    <td>${esc(r.raw)}</td><td style="text-align:right">${fmt(r.n)}</td>
+    <td><select onchange="setStyle('${esc(r.raw).replace(/'/g,"\\'")}',this.value)" style="font:12px inherit;padding:3px 6px;border:1px solid var(--line);border-radius:5px">${opt(r.canon_id)}</select>
+      ${r.auto?'<span class="ctag" style="font-size:9px">自动</span>':'<span class="ctag" style="font-size:9px;color:var(--ok)">人工</span>'}</td></tr>`).join('');
+  const unmapped=d.raw_map.filter(r=>r.canon_id===0).length;
+  document.getElementById('styles').innerHTML=`<div class="panel">
+    <h2>🏷 编目 · 流派归一　<span style="color:#aaa;font-weight:400;font-size:12px">164 个中英混杂原值 → 23 类规范流派（未归类 ${unmapped} 个高亮·下拉可改·人工改不被自动覆盖）</span></h2>
+    <div style="margin-bottom:10px">${chips}</div>
+    <div style="max-height:420px;overflow:auto"><table class="rt" style="font-size:12.5px"><tr><th>原始 school 值</th><th>作品数</th><th>→ 规范流派</th></tr>${rows}</table></div></div>`;
+}
+async function setStyle(raw,cid){await fetch(API+`admin/style/map?raw=${encodeURIComponent(raw)}&canon_id=${cid}`,{method:'POST'});loadStyles();}
+
+// ===== ⚙️ 运营:系统健康 + 操作审计日志 =====
+async function loadOps(){
+  try{
+    const [s,l]=await Promise.all([fetch(API+'admin/sys').then(r=>r.json()),fetch(API+'admin/log?limit=60').then(r=>r.json())]);
+    const g=s.govern,r=s.review_rate;
+    const card=(v,t,sub)=>`<div class="card"><div class="v">${v}</div><div class="l">${t}</div>${sub?`<div class="s">${sub}</div>`:''}</div>`;
+    const logs=l.recent.map(x=>`<div class="gl" style="font-size:12px"><span style="color:var(--soft)">${(x.ts||'').slice(5,19).replace('T',' ')}</span>
+      <b style="color:var(--accent)">${esc(x.action)}</b> <span style="color:#999">${esc((x.query||'').slice(0,60))}</span> <span class="ctag">${esc(x.actor)}</span></div>`).join('')||'<div class="gl">暂无操作</div>';
+    const byact=l.by_action.map(a=>`<span class="ctag">${esc(a.action)} ${a.n}</span>`).join(' ');
+    document.getElementById('ops').innerHTML=`<div class="panel">
+      <h2>⚙️ 运营 · 系统健康 & 操作审计</h2>
+      <div class="cards">
+        ${card(s.db_size,'库大小')}
+        ${card((s.disk?s.disk.pct+'%':'?'),'磁盘占用',s.disk?`${s.disk.used_gb}/${s.disk.total_gb}GB`:'')}
+        ${card(fmt(g.ledger),'总账作品')}
+        ${card(fmt(g.pending),'待VLM',`kept ${fmt(g.kept)}`)}
+        ${card(fmt(r.h24),'24h过闸',`近1h ${fmt(r.h1)}`)}
+        ${card(fmt(g.edits),'人工编辑',`别名 ${fmt(g.aliases)}`)}
+        ${card(fmt(l.today),'今日后台操作',`累计 ${fmt(l.total)}`)}
+      </div>
+      <div class="grid2">
+        <div class="panel" style="margin:0"><h2>📋 操作审计日志（谁改了什么）</h2><div style="max-height:300px;overflow:auto">${logs}</div></div>
+        <div><div class="panel" style="margin:0 0 12px"><h2>操作类型分布</h2><div style="display:flex;flex-wrap:wrap;gap:4px">${byact||'—'}</div></div>
+          <div class="panel" style="margin:0"><h2>库表占用 Top</h2>${s.tables.map(t=>`<div class="gl" style="font-size:12px">${esc(t.t)} <b>${fmt(t.n)}</b> 行 · ${t.sz}</div>`).join('')}</div></div>
+      </div></div>`;
+  }catch(e){document.getElementById('ops').innerHTML='<div class="panel"><h2>⚙️ 运营</h2><div class="csub">加载失败</div></div>';}
+}
+
+load();setInterval(load,30000);loadGov();loadAnom();setInterval(loadAnom,120000);
+loadCtl();setInterval(loadCtl,20000);loadReview();loadCos();loadPromptEditor();
+loadVlm();setInterval(loadVlm,30000);loadGovData();setInterval(loadGovData,60000);loadEditor();loadStyles();
+loadOps();setInterval(loadOps,30000);
 // ===== 首页特展管理(从 admin.html 并入主后台) =====
 const WVN_SP={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
 let SPLIST=[],SPWORKS=[],SPPW='';
@@ -563,15 +727,41 @@ function loadSpecial(){Promise.all([
   ]).then(([sp,w])=>{SPLIST=sp.items||[];SPWORKS=w.works||[];renderSP();});}
 function spc(s){if(s.work_ids&&s.work_ids.length)return s.work_ids.length;const r=s.rule||{};
   return SPWORKS.filter(w=>(!r.emo||!r.emo.length||r.emo.includes(w.emo))&&(!r.wv||!r.wv.length||r.wv.includes(w.wv))&&(!r.region||w.region===r.region)).length;}
+function spThumb(f){if(!f)return '';return /myqcloud\.com/i.test(f)?f+'?imageMogr2/thumbnail/360x/quality/80':f;}
+function isCurated(s){return (s.work_ids&&s.work_ids.length)||(s.rule&&s.rule.spine);}
+function goCurate(url){if(!SPPW){alert('先在上方填管理口令');return;}sessionStorage.setItem('aha_admin_pass',SPPW);window.open(url,'_blank');}
 function renderSP(){const emos=[...new Set(SPWORKS.map(w=>w.emo).filter(Boolean))];const wrap=document.getElementById('spwrap');if(!wrap)return;
   const IB='padding:6px 9px;border:1px solid var(--line);border-radius:7px';
-  wrap.innerHTML=`<div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+  const curated=[],rules=[];SPLIST.forEach((s,i)=>{(isCurated(s)?curated:rules).push([s,i]);});
+  wrap.innerHTML=`<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap">
     <span style="font-size:12.5px;color:var(--soft)">管理口令</span><input id="sppw" type="password" placeholder="admin_pass" value="${esc2(SPPW)}" style="width:160px;${IB}">
-    <button onclick="newSP()" style="padding:6px 14px;border:1px solid var(--accent);background:var(--card);color:var(--accent);border-radius:999px;cursor:pointer">＋ 新建特展</button>
-    <span style="font-size:12px;color:var(--soft)">${SPLIST.length} 个 · 首页「特展」区实时读这里</span></div><div id="splist"></div>`;
+    <button onclick="goCurate('curate.html?admin=1')" style="padding:7px 16px;border:none;background:var(--accent);color:#fff;border-radius:999px;cursor:pointer;font-weight:600">＋ 策一个官方展<small style="font-weight:400;opacity:.85"> · 手策·带脊</small></button>
+    <button onclick="newSP()" style="padding:6px 14px;border:1px solid var(--line);background:var(--card);color:var(--soft);border-radius:999px;cursor:pointer">＋ 新建规则展</button>
+    <span style="font-size:12px;color:var(--soft)">${SPLIST.length} 个 · museum「特展」区实时读这里</span></div>
+    <h2 style="font-size:14px;margin:0 0 8px">手策展 <span style="color:#aaa;font-weight:400;font-size:12px">主张+动线脊+手拣 · 点编辑进策展台 curate</span></h2>
+    <div id="spcurated" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(238px,1fr));gap:12px;margin-bottom:24px"></div>
+    <h2 style="font-size:14px;margin:0 0 8px">规则展 <span style="color:#aaa;font-weight:400;font-size:12px">按情绪/世界观/区域自动选,新画自动进</span></h2>
+    <div id="splist"></div>`;
   document.getElementById('sppw').oninput=e=>SPPW=e.target.value;
+  // 手策展:卡片(封面+脊+编辑→curate?edit / 预览→curate?ex / 上架 / seq / 删)
+  document.getElementById('spcurated').innerHTML=curated.length?curated.map(([s,i])=>{const r=s.rule||{};
+    const cover=spThumb((s.work_ids||[])[0]),n=(s.work_ids||[]).length;
+    return `<div style="border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card)">
+      <div style="aspect-ratio:16/10;background:#e9e4d8${cover?` url('${cover}') center/cover`:''}"></div>
+      <div style="padding:10px 12px">
+        <div style="font-weight:600;font-size:13.5px;margin-bottom:3px">${esc2(s.title||'无题')}</div>
+        <div style="font-size:11px;color:var(--soft);font-family:var(--mono);margin-bottom:8px">${n} 幅 · 脊:${esc2(r.spineLabel||r.spine||'—')} · ${s.public!==false?'已上架':'未上架'}</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-size:12px">
+          <button onclick="goCurate('curate.html?edit=${encodeURIComponent(s.id)}')" style="padding:5px 12px;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer">✎ 编辑</button>
+          <a href="curate.html?ex=${encodeURIComponent(s.id)}" target="_blank" style="padding:5px 10px;border:1px solid var(--line);border-radius:6px;color:var(--soft);text-decoration:none">预览</a>
+          <label style="margin-left:auto"><input type="checkbox" class="spc-pub" data-i="${i}" ${s.public!==false?'checked':''}> 上架</label>
+          <input class="spc-seq" data-i="${i}" type="number" value="${s.seq||0}" title="排序 seq" style="width:52px;${IB};padding:4px 6px">
+          <button onclick="saveCurMeta(${i})" style="padding:5px 10px;border:1px solid var(--line);background:var(--card);border-radius:6px;cursor:pointer">存</button>
+          <button onclick="delSP('${esc2(s.id)}')" style="padding:5px 10px;border:1px solid var(--line);background:var(--card);color:#c0392b;border-radius:6px;cursor:pointer">删</button>
+        </div></div></div>`;}).join(''):'<div style="color:var(--soft);font-size:13px;grid-column:1/-1">还没有手策展——点上面「＋ 策一个官方展」,在策展台选脊、加画、发布</div>';
+  // 规则展:原有 chip 自动选编辑器
   const chip=(on,attr,val,lab)=>`<label class="${on?'spon':''}" data-${attr}="${val}" style="display:inline-block;font-size:12px;padding:3px 11px;border-radius:999px;border:1px solid var(--line);margin:2px;cursor:pointer;${on?'background:var(--accent);color:#fff;border-color:var(--accent)':''}">${lab}</label>`;
-  document.getElementById('splist').innerHTML=SPLIST.map((s,i)=>{const r=s.rule||{};
+  document.getElementById('splist').innerHTML=rules.length?rules.map(([s,i])=>{const r=s.rule||{};
     return `<div class="spcard" data-i="${i}" style="border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:12px;background:var(--card)">
       <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:7px">
         <input class="sp-title" value="${esc2(s.title)}" placeholder="标题" style="flex:1;min-width:140px;font-size:14px;font-weight:600;${IB}">
@@ -588,9 +778,14 @@ function renderSP(){const emos=[...new Set(SPWORKS.map(w=>w.emo).filter(Boolean)
         上限 <input class="sp-limit" type="number" value="${r.limit||''}" placeholder="不限" style="width:70px;padding:5px;border:1px solid var(--line);border-radius:6px">
         <button onclick="saveSP(${i})" style="margin-left:auto;padding:6px 16px;background:var(--accent);color:#fff;border:none;border-radius:7px;cursor:pointer">保存</button>
         <button onclick="delSP('${esc2(s.id)}')" style="padding:6px 12px;background:var(--card);color:#c0392b;border:1px solid var(--line);border-radius:7px;cursor:pointer">删除</button></div>
-    </div>`;}).join('');
+    </div>`;}).join(''):'<div style="color:var(--soft);font-size:13px">暂无规则展</div>';
   [...document.querySelectorAll('#splist label[data-emo],#splist label[data-wv]')].forEach(c=>c.onclick=()=>{const on=c.classList.toggle('spon');
     c.style.background=on?'var(--accent)':'';c.style.color=on?'#fff':'';c.style.borderColor=on?'var(--accent)':'var(--line)';});}
+function saveCurMeta(i){if(!SPPW){alert('先填管理口令');return;}const s=SPLIST[i];
+  const pub=document.querySelector(`.spc-pub[data-i="${i}"]`).checked,seq=+document.querySelector(`.spc-seq[data-i="${i}"]`).value||0;
+  fetch('/api/special/save',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({pass:SPPW,id:s.id,title:s.title,note:s.note,work_ids:s.work_ids,rule:s.rule,seq,public:pub})})
+    .then(r=>r.json()).then(d=>{if(d.ok)loadSpecial();else alert('失败:'+(d.error||'口令?'));});}
 function newSP(){SPLIST.unshift({id:'',title:'新特展',note:'',seq:SPLIST.length+1,public:true,rule:{}});renderSP();}
 function gatherSP(card){const emo=[...card.querySelectorAll('label.spon[data-emo]')].map(c=>c.dataset.emo);
   const wv=[...card.querySelectorAll('label.spon[data-wv]')].map(c=>c.dataset.wv);
@@ -603,7 +798,11 @@ function delSP(id){if(!id){loadSpecial();return;}if(!SPPW){alert('先填管理�
   fetch('/api/special/delete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pass:SPPW,id})}).then(r=>r.json()).then(d=>{if(d.ok)loadSpecial();else alert('失败');});}
 
 // ===== 🖼 画框 / 装裱:框样式目录(供应链)+ 给每幅画指定全站一致的框 =====
-let FWORKS=[],FCANON={},FSTYLES=[],FPW='',FQ='';
+let FWORKS=[],FCANON={},FSTYLES=[],FPW='',FQ='',FREVIEW=false;
+// 待复核:未人工指定,且(无AI策展 或 AI置信<0.7)——最该人工看一眼的画
+function frmNeedsReview(w){ if(FCANON[w.file]) return false;
+  if(!w.frame_suggest) return true;
+  return (w.frame_conf!=null && w.frame_conf<0.8); }
 function frmTitle(t){if(!t)return '无题';t=String(t).replace(/\.(jpe?g|png|webp|gif|tiff?|bmp|jfif)$/i,'').replace(/[_]+/g,' ').trim();return t||'无题';}
 function loadFrame(){Promise.all([
     fetch('/api/frames').then(r=>r.json()).catch(()=>({frames:{}})),
@@ -685,12 +884,14 @@ function saveFS(key){if(!FPW){alert('先在上方填管理口令');return;}
 function frmCard(w){const S=AHAFrames.STYLES,ax=AHAFrames.autoExplain(w),cur=FCANON[w.file]||'';
   const dft=ax.key,isAI=ax.src==='llm';
   const opt='<option value="">默认('+AHAFrames.BY[dft].name+(isAI?' · 🪄AI':'')+')</option>'+S.map(s=>`<option value="${s.key}" ${cur===s.key?'selected':''}>${s.emoji} ${s.name}</option>`).join('');
-  const aitip=isAI?`<div title="${esc2(ax.why)}" style="font-size:9px;color:var(--accent);text-align:center;margin-bottom:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🪄 ${esc2(ax.why)}</div>`:'';
-  return `<div style="width:170px">
+  const aitip=isAI?`<div title="${esc2(ax.why)}" style="font-size:9px;color:var(--accent);text-align:center;margin-bottom:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🪄 ${esc2(ax.why)}${w.frame_conf!=null?' · '+w.frame_conf:''}</div>`:'';
+  const needs=frmNeedsReview(w);
+  const rbadge=needs?`<div style="font-size:9px;color:var(--rej);text-align:center;margin-bottom:3px">⚠️ ${w.frame_suggest?('低置信 '+(w.frame_conf!=null?w.frame_conf:'')):'无AI建议 · 待定'}</div>`:'';
+  return `<div style="width:170px${needs?';outline:1px solid var(--rej);outline-offset:4px;border-radius:6px':''}">
     <div style="max-width:150px;margin:0 auto 7px">${AHAFrames.wrap(`<img loading="lazy" src="${esc2(w.file)}">`,w)}</div>
     <div style="font-size:12px;font-weight:600;color:var(--ink,#2a2620);text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc2(frmTitle(w.title))}</div>
     <div style="font-size:10px;color:var(--soft);text-align:center;margin-bottom:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc2(w.artist||'　')}</div>
-    ${aitip}<select class="frmsel" data-f="${esc2(w.file)}" style="width:100%;padding:5px;border:1px solid ${cur?'var(--accent)':'var(--line)'};border-radius:7px;font-size:12px;background:${cur?'#fbf3ea':'var(--card)'};cursor:pointer">${opt}</select>
+    ${rbadge}${aitip}<select class="frmsel" data-f="${esc2(w.file)}" style="width:100%;padding:5px;border:1px solid ${cur?'var(--accent)':'var(--line)'};border-radius:7px;font-size:12px;background:${cur?'#fbf3ea':'var(--card)'};cursor:pointer">${opt}</select>
   </div>`;}
 // 装裱概览统计:全库最终框分布 + 决策来源(人工/AI策展/关联度/待定)+ 置信。纯前端算,反映访客实际所见。
 function frmStats(){
@@ -720,23 +921,50 @@ function frmStats(){
     ${bars}
     <div style="font-size:11px;color:var(--soft);margin-top:10px">框决策优先级:人工指定 &gt; AI 逐画策展 &gt; 关联度打分(match_rule)&gt; 待定兜底</div></div>`;
 }
+// 装裱订单(demo):后台查看客户下单
+function loadFrmOrders(){if(!FPW){alert('先填上方管理口令');return;}
+  const box=document.getElementById('ordPanel');if(box)box.innerHTML='<div style="font-size:12px;color:var(--soft);padding:8px">载入中…</div>';
+  fetch('/api/frame_orders?pass='+encodeURIComponent(FPW)).then(r=>r.json()).then(d=>{
+    if(d&&d.error){box.innerHTML='<div style="font-size:12px;color:var(--rej);padding:8px">'+esc2(d.error)+'</div>';return;}
+    const it=(d&&d.items)||[];
+    if(!it.length){box.innerHTML='<div class="panel" style="margin:0 0 16px"><h2>🛒 装裱订单</h2><div style="font-size:12px;color:var(--soft)">还没有订单。去 art.html 任意画的「定制装裱·下单」试一单。</div></div>';return;}
+    const rows=it.map(o=>`<tr>
+      <td class="ordtd" style="font-family:var(--mono)">${esc2(o.order_no)}</td>
+      <td class="ordtd">${esc2(o.title||'—')}</td>
+      <td class="ordtd">${esc2((AHAFrames.BY[o.frame]||{}).name||o.frame||'—')}</td>
+      <td class="ordtd">${o.outer_w?o.outer_w+'×'+o.outer_h+'cm':'—'}</td>
+      <td class="ordtd" style="text-align:right">×${o.qty||1}</td>
+      <td class="ordtd" style="text-align:right">¥${o.price_cents!=null?(o.price_cents/100):'—'}</td>
+      <td class="ordtd">${esc2(o.name||'')}<div style="font-size:10px;color:var(--soft)">${esc2(o.contact||'')}</div></td>
+      <td class="ordtd" style="font-size:10px;color:var(--soft)">${o.created?o.created.slice(0,16).replace('T',' '):''}${o.note?' <span title="'+esc2(o.note)+'">📝</span>':''}</td></tr>`).join('');
+    box.innerHTML=`<div class="panel" style="margin:0 0 16px"><h2>🛒 装裱订单 · ${it.length}</h2>
+      <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px">
+      <thead><tr style="color:var(--soft);text-align:left">${['订单号','作品','框','成品尺寸','数量','报价','客户','时间'].map(h=>'<th style="padding:4px 8px;border-bottom:1px solid var(--line);white-space:nowrap">'+h+'</th>').join('')}</tr></thead>
+      <tbody>${rows}</tbody></table></div>
+      <style>.ordtd{padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}</style></div>`;
+  }).catch(()=>{if(box)box.innerHTML='<div style="font-size:12px;color:var(--rej);padding:8px">载入失败</div>';});}
 function renderFRM(){const wrap=document.getElementById('frmwrap');if(!wrap||!window.AHAFrames)return;
   const curated=FWORKS.filter(w=>FCANON[w.file]);
+  const review=FWORKS.filter(frmNeedsReview);
   const q=FQ.trim().toLowerCase();
-  const browse=(q?FWORKS.filter(w=>((w.title||'')+' '+(w.artist||'')).toLowerCase().includes(q)):FWORKS).slice(0,80);
+  const base=FREVIEW?review:FWORKS;
+  const browse=(q?base.filter(w=>((w.title||'')+' '+(w.artist||'')).toLowerCase().includes(q)):base).slice(0,80);
   const grid=arr=>`<div style="display:flex;flex-wrap:wrap;gap:18px">${arr.map(frmCard).join('')}</div>`;
   wrap.innerHTML=frmStats()
     +`<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px;padding:10px 13px;background:var(--card);border:1px solid var(--accent);border-radius:10px">
       <span style="font-size:12.5px;color:var(--ink,#2a2620);font-weight:600">🔑 管理口令</span>
       <input id="frmpw" type="password" value="${esc2(FPW)}" placeholder="admin_pass" style="width:180px;padding:6px 9px;border:1px solid var(--line);border-radius:7px">
-      <span style="font-size:11.5px;color:var(--soft)">改框目录、逐画指定都需要它</span></div>`
+      <span style="font-size:11.5px;color:var(--soft)">改框目录、逐画指定、看订单都需要它</span>
+      <button onclick="loadFrmOrders()" style="padding:6px 13px;border:1px solid var(--accent);background:var(--card);color:var(--accent);border-radius:999px;cursor:pointer;font-size:12px">🛒 装裱订单</button></div>
+      <div id="ordPanel"></div>`
     +frmLibraryEditable()
     +`<h3 style="font-size:13px;color:var(--accent);margin:0 0 12px">逐画指定</h3>`
     +`<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px">
+      <button onclick="FREVIEW=!FREVIEW;renderFRM()" style="padding:6px 13px;border:1px solid ${FREVIEW?'var(--rej)':'var(--line)'};background:${FREVIEW?'var(--rej)':'var(--card)'};color:${FREVIEW?'#fff':'var(--rej)'};border-radius:999px;cursor:pointer;font-size:12px;white-space:nowrap">${FREVIEW?'✓ ':''}⚠️ 待复核 ${review.length}</button>
       <input id="frmq" placeholder="搜作品名 / 作者…" value="${esc2(FQ)}" style="flex:1;min-width:170px;padding:6px 9px;border:1px solid var(--line);border-radius:7px">
       <span style="font-size:12px;color:var(--soft)">已指定 <b>${curated.length}</b> · 库 ${FWORKS.length} 幅 · 选框即时生效</span></div>
     ${curated.length?`<h3 style="font-size:13px;color:var(--accent);margin:0 0 10px">已指定的框 · ${curated.length}</h3>${grid(curated)}<hr style="border:none;border-top:1px solid var(--line);margin:22px 0">`:''}
-    <h3 style="font-size:13px;color:var(--soft);margin:0 0 10px">浏览 / 指定${q?` · 搜「${esc2(FQ)}」`:''} · 显示前 ${browse.length}${(!q&&FWORKS.length>80)?' / '+FWORKS.length+'(搜索看更多)':''}</h3>
+    <h3 style="font-size:13px;color:var(--soft);margin:0 0 10px">${FREVIEW?`⚠️ 待复核 · 无AI建议或低置信(&lt;0.8),挑一个框即钉死`:'浏览 / 指定'}${q?` · 搜「${esc2(FQ)}」`:''} · 显示前 ${browse.length}${(!q&&base.length>80)?' / '+base.length+'(搜索看更多)':''}</h3>
     ${grid(browse)}`;
   document.getElementById('frmpw').oninput=e=>FPW=e.target.value;
   const qi=document.getElementById('frmq');qi.oninput=e=>{FQ=e.target.value;clearTimeout(qi._t);qi._t=setTimeout(renderFRM,260);};
