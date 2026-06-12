@@ -8,9 +8,11 @@
    - <body data-home="xxx.html">:改顶栏 brand 指向(默认 museum.html=主页)。 */
 (function(){
   var HOME='museum.html', LOG='log.html', BEIAN='浙ICP备2021038972号-8', PRODUCER='浙江大学国际设计研究院';
+  var IDI_URL='https://idi.zju.edu.cn/', LIB_URL='https://libweb.zju.edu.cn/', ZWY_URL='https://www.zaowuyun.com/';
   var CSS=''+
   '.site-top{display:flex;align-items:center;justify-content:space-between;gap:16px;'+
-    'padding:11px 20px;background:var(--glass,rgba(244,241,234,.58));'+
+    'padding:max(11px,env(safe-area-inset-top)) max(20px,env(safe-area-inset-right)) 11px max(20px,env(safe-area-inset-left));'+
+    'background:var(--glass,rgba(244,241,234,.58));'+
     'border-bottom:1px solid var(--glass-line,rgba(221,213,198,.55));'+
     'position:sticky;top:0;z-index:40;backdrop-filter:blur(16px) saturate(1.4);'+
     '-webkit-backdrop-filter:blur(16px) saturate(1.4)}'+
@@ -50,12 +52,15 @@
         '<footer class="site-foot">'+
           '<nav class="sf-nav">'+
             '<a href="'+LOG+'">全部体验</a><span class="sf-sep">·</span>'+
+            '<a href="compass.html">体验地图</a><span class="sf-sep">·</span>'+
             '<a href="dashboard.html">管理后台</a><span class="sf-sep">·</span>'+
             '<a href="design-system.html">设计系统</a><span class="sf-sep">·</span>'+
             '<a href="sitemap.html">网站地图</a>'+
           '</nav>'+
-          '<div class="sf-row">备案 · <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">'+BEIAN+'</a>'+
-          '<span class="sf-sep">·</span>出品 · '+PRODUCER+'</div>'+
+          '<div class="sf-row">出品 · <a href="'+IDI_URL+'" target="_blank" rel="noopener">'+PRODUCER+'</a>'+
+          '<span class="sf-sep">·</span>数据支持 · <a href="'+LIB_URL+'" target="_blank" rel="noopener">浙江大学图书馆</a></div>'+
+          '<div class="sf-row">技术支持 · <a href="'+ZWY_URL+'" target="_blank" rel="noopener">造物云</a>'+
+          '<span class="sf-sep">·</span>备案 · <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">'+BEIAN+'</a></div>'+
         '</footer>'));
     }
   }

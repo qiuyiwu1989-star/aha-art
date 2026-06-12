@@ -34,6 +34,15 @@
 ### 字阶
 `--fz-display` / `--fz-h1` 25 / `--fz-h2` 19 / `--fz-h3` 16 / `--fz-body` 14 / `--fz-small` 12.5 / `--fz-tiny` 11 / `--fz-label` 10.5
 
+### 响应式 · 多端(移动优先 · 单列优先 · 触控优先)
+断点 token(仅供 @media 参照):`--bp-phone 600` · `--bp-tablet 900` · `--bp-desktop 1100`。设备分层:
+- **手机 ≤600**:全单列、页边距收窄、h1→21、stats/表格收紧。
+- **平板竖屏 600–900**(iPad portrait):cols-4 收成 2 列。
+- **平板横屏/桌面 900–1100**:grid `auto-fill minmax()` 自然多列。
+- **宽屏 ≥1100**:`.page` 最大宽 1100 居中,不无限拉伸。
+
+**触控**(`@media(hover:none),(pointer:coarse)`):去 hover 抬升、改 `:active`;可点目标 ≥44×44(`.tap`);hover 才现的信息要有常显/点击替代。**安全区**:顶栏内置 `env(safe-area-inset-*)`,吸底加 `.safe-bottom`。工具类 `.hide-phone`/`.only-phone`。**每页 `<head>` 必带** `<meta name="viewport" content="width=device-width,initial-scale=1">`。
+
 ### 间距 / 圆角 / 阴影 / 缓动
 - 间距阶 `--s1..--s7` = 4 / 8 / 12 / 16 / 24 / 32 / 48
 - 圆角 `--r-sm` 6 · `--r` 12 · `--r-lg` 16 · `--r-pill`

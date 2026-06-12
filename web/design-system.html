@@ -493,16 +493,33 @@ chip 变体:(默认赭石) .ok .warn .rej .info .green .muted</div>
 
   <!-- 断点 -->
   <section class="ds-sec" id="breakpoint">
-    <div class="ds-h"><span class="n">14</span><h2>响应式断点</h2><span class="en">Breakpoints</span></div>
-    <p class="ds-lead">移动优先。三档够用,不为想象中的设备过度切分。网格用 <span class="mono">auto-fill minmax()</span> 自适应,断点只兜底布局塌缩。</p>
+    <div class="ds-h"><span class="n">14</span><h2>响应式 · 多端</h2><span class="en">Responsive</span></div>
+    <p class="ds-lead">移动优先、单列优先、触控优先。网格用 <span class="mono">auto-fill minmax()</span> 自适应,断点只兜底布局塌缩;内容最大宽 <b>1100</b>,宽屏不无限拉伸。</p>
+
+    <p class="ds-label">设备分层 · 四档</p>
     <table class="tbl">
-      <thead><tr><th>Token</th><th class="num">宽度</th><th>用途</th></tr></thead>
+      <thead><tr><th>设备</th><th class="num">宽度</th><th>布局</th><th>要点</th></tr></thead>
       <tbody>
-        <tr><td>--bp-sm</td><td class="num">560px</td><td>单列 · 页头缩字 · stats 收窄</td></tr>
-        <tr><td>--bp-md</td><td class="num">768px</td><td>侧栏 TOC 转吸顶横滑</td></tr>
-        <tr><td>--bp-lg</td><td class="num">1100px</td><td>.page 最大内容宽</td></tr>
+        <tr><td>📱 手机(竖屏为主)</td><td class="num">≤ 600</td><td>全单列</td><td>页边距收窄、h1 降到 21、stats/表格收紧、sec 说明换行</td></tr>
+        <tr><td>▢ 平板竖屏 iPad portrait</td><td class="num">600–900</td><td>2 列</td><td>cols-4 收成 2 列、页边距 16</td></tr>
+        <tr><td>▭ 平板横屏 / 桌面</td><td class="num">900–1100</td><td>多列</td><td>grid auto-fill 自然铺、.page 居中</td></tr>
+        <tr><td>🖥 宽屏</td><td class="num">≥ 1100</td><td>多列 · 限宽</td><td>.page 最大 1100 居中,两侧留白</td></tr>
       </tbody>
     </table>
+
+    <p class="ds-label">触控优先(手机 / 平板:<span class="mono">@media(hover:none),(pointer:coarse)</span>)</p>
+    <div class="note accent"><div class="k">规则</div>
+      触控设备<b>去掉 hover 抬升</b>(改 <span class="mono">:active</span> 轻按反馈,因为触控没有悬停态);可点目标<b>最小 44×44</b>(工具类 <span class="mono">.tap</span>);hover 才浮现的信息要有常显/点击替代。
+    </div>
+
+    <p class="ds-label">安全区 & 工具类</p>
+    <div class="grid cols-2">
+      <div class="card"><div class="card-h"><span class="nm">安全区</span></div><div class="card-note">顶栏 <span class="mono">env(safe-area-inset-*)</span> 避开刘海/灵动岛(aha-chrome 内置);吸底元素加 <span class="mono">.safe-bottom</span> 避 Home 条。</div></div>
+      <div class="card"><div class="card-h"><span class="nm">按端显隐</span></div><div class="card-note"><span class="mono">.hide-phone</span> 手机隐藏 · <span class="mono">.only-phone</span> 仅手机显示 · <span class="mono">.tap</span> 44px 触控目标。viewport 必带 <span class="mono">width=device-width</span>。</div></div>
+    </div>
+    <div class="code"><button class="cp">复制</button>&lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;
+&lt;!-- 断点 token(@media 参照):--bp-phone 600 · --bp-tablet 900 · --bp-desktop 1100 --&gt;
+&lt;a class="btn hide-phone"&gt;桌面才显&lt;/a&gt;   &lt;button class="tap"&gt;⌫&lt;/button&gt;</div>
   </section>
 
   <!-- 活页原型 -->

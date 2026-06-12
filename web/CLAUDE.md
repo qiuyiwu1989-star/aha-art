@@ -41,6 +41,7 @@
    - **统一顶栏/底栏**:body 末尾必挂 `<script src="js/aha-chrome.js"></script>`(自动注入顶栏 + 底栏:备案号 浙ICP备2021038972号-8 / 出品 浙江大学国际设计研究院)。有大 hero 的页用 `<body data-no-top>` 只要底栏。备案/出品只在 `aha-chrome.js` 一处维护。
    - 顶栏 brand `aha.art` → **museum.html(主页)**;右侧"产品日志"→ **log.html**(都由 aha-chrome.js 自动给)。页面里手写的"回首页"指 museum、"看全部/日志"指 log.html;别再写 index.html/home.html 当内容链接。
 3. 认领一类**活页原型**再填内容:Live 数据页 / KG 详情页 / Dashboard / Gallery。
+   - **多端**:`<head>` 必带 `<meta name="viewport" content="width=device-width,initial-scale=1">`。移动优先·单列优先·触控优先;断点 `--bp-phone 600/--bp-tablet 900/--bp-desktop 1100`,内容最大宽 1100。触控设备去 hover 抬升、可点目标 ≥44px(`.tap`),hover 才现的信息要有点击替代;吸底加 `.safe-bottom`。详见 design-system.html「响应式·多端」。
 4. 迁旧页 = 删掉页内 `:root{…}` 退化变量 → 引 `aha-kit.css` → 类名换成语义 class。范本见 `kg-style-live.html`。
 5. 完工两件事:① 登记进 `log.html` 产品日志;② `cp` 到 `/data/pub/p/aha/`。
 

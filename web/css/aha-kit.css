@@ -58,8 +58,10 @@
   --grad-accent:linear-gradient(120deg,#c07a45,#9a5530);
   --grad-fade:linear-gradient(180deg,rgba(244,241,234,.96),rgba(244,241,234,0));
 
-  /* 响应式断点(供 @media 参照,CSS 变量不能直接用于媒体查询) */
-  --bp-sm:560px; --bp-md:768px; --bp-lg:1100px;
+  /* 响应式断点 · 设备分层(供 @media 参照;CSS 变量不能直接用于媒体查询) */
+  --bp-phone:600px;    /* ≤600  手机(竖屏为主) */
+  --bp-tablet:900px;   /* 600–900  平板竖屏 iPad portrait */
+  --bp-desktop:1100px; /* ≥900  平板横屏 / 桌面;内容最大宽 1100 */
 }
 
 /* ── 2. 基底 ────────────────────────────────────────────────────── */
@@ -269,14 +271,43 @@ b{font-weight:600} .note b,.card-note b{color:var(--accent);font-weight:500}
    js/aha-chrome.js(自带 scoped CSS、零依赖,任意页一行 script 即注入)。
    --glass / --glass-line token 保留在上方 :root,供其它磨砂场景复用。 */
 
-/* ── 17. 响应式 ─────────────────────────────────────────────────── */
-@media(max-width:560px){
+/* ── 17. 响应式 · 多端(手机 / iPad 竖横屏 / 桌面)──────────────────
+   分层:≤600 手机 · 600–900 平板竖屏 · 900–1100 平板横屏 · ≥1100 桌面。
+   原则:移动优先、单列优先、触控优先;内容最大宽 1100 不无限拉伸。 */
+
+/* 平板竖屏及以下(≤900):四列收成两列,页边距收紧 */
+@media(max-width:900px){
+  .grid.cols-4{grid-template-columns:repeat(2,1fr)}
+  .page,.page.wide{padding-left:var(--s4);padding-right:var(--s4)}
+  .stats{gap:var(--s5)}
+}
+
+/* 手机(≤600):全单列、收窄、字号微降、表格更紧 */
+@media(max-width:600px){
   .page{padding:var(--s3) var(--s3) var(--s6)}
   .pagehead h1{font-size:21px}
-  .grid,.grid.cols-2{grid-template-columns:1fr}
-  .stats{gap:var(--s4)}
-  .stat .num{font-size:24px}
+  .grid,.grid.cols-2,.grid.cols-4{grid-template-columns:1fr}
+  .stats{gap:var(--s4)} .stat .num{font-size:24px}
+  .sec-h{flex-wrap:wrap} .sec-h .d{margin-left:0;flex-basis:100%;margin-top:2px}
+  .tbl{font-size:var(--fz-tiny)} .tbl th,.tbl td{padding:var(--s2)}
+  .modal{padding:var(--s4)}
 }
+
+/* 触控设备(手机/平板):去掉 hover 抬升→改按下反馈;放大触控目标 */
+@media(hover:none),(pointer:coarse){
+  a.card:hover,.card.link:hover,.btn:hover{transform:none;box-shadow:var(--sh-1)}
+  a.card:active,.card.link:active{transform:scale(.99)}
+  .btn,.btn.pill,.chip,.tag,.seg{min-height:40px}
+  .site-top .st-link,.site-foot a,.sf-nav a{padding-top:6px;padding-bottom:6px}
+}
+
+/* 安全区:吸底避开 Home 条(顶栏安全区在 aha-chrome.js 内处理) */
+.safe-bottom{padding-bottom:max(0px,env(safe-area-inset-bottom))}
+
+/* 多端工具类:触控目标 + 按端显隐 */
+.tap{min-width:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+@media(max-width:600px){.hide-phone{display:none!important}}
+@media(min-width:601px){.only-phone{display:none!important}}
 
 /* ── 18. 降级:尊重减少动效 ─────────────────────────────────────── */
 @media(prefers-reduced-motion:reduce){
