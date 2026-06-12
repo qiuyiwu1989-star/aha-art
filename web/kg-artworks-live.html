@@ -56,12 +56,12 @@
   .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 真迹读图</div>
   <h1>VLM 怎么读每一幅真画</h1>
   <p class="lead">119 幅<b>人类公共领域真迹</b>,每幅由视觉大模型做<b>6 维系统读图</b>:媒介 → 题材 → 风格 → 画面动力学(视觉重心/阅读路径)→ 7 大构成 → 情绪(VAD)→ 一句画外音。点任意一幅看它的完整解读。<br><span style="font-size:12px">这页是<b>深读</b>(119 幅 × 6 维);想浏览<b>全量真迹</b>(226 幅,按区/东西/艺术家筛)去 <a href="kg-works.html" style="color:var(--accent)">作品层 →</a></span></p>
-  <div class="breadcrumb"><a href="home.html">🏠 首页</a> › <a href="kg-v2.html">🧭 艺术图谱</a> › <a href="kg-affect.html">感知效应</a> › <b style="color:var(--ink-soft)">真迹读图</b></div>
+  <div class="breadcrumb"><a href="home.html"><i data-ic="home"></i> 首页</a> › <a href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a href="kg-affect.html">感知效应</a> › <b style="color:var(--ink-soft)">真迹读图</b></div>
   <div class="filt" id="filt"></div>
   <div class="cnt" id="cnt"></div>
   <div class="grid" id="grid"></div>
@@ -119,4 +119,5 @@ function closeM(){document.getElementById('ov').classList.remove('on');document.
 document.getElementById('ov').onclick=e=>{if(e.target.id==='ov')closeM();};
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

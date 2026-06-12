@@ -40,12 +40,12 @@
   .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 艺术家建设清单</div>
   <h1>艺术家名单 · 世界观区 × 流派</h1>
   <p class="lead" id="lead"></p>
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-artist">实例·艺术家</a> › <b style="color:var(--ink-soft)">建设清单</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-artist">实例·艺术家</a> › <b style="color:var(--ink-soft)">建设清单</b></div>
   <div class="prog" id="prog"></div>
   <div id="regions"></div>
   <div class="cross" id="cross"></div>
@@ -104,4 +104,5 @@ Promise.all([
   prog.appendChild($(`<span>${pct}% · 全库已考究 <b style="color:var(--accent)">${totalRich}</b></span>`));
 }).catch(e=>{document.getElementById('regions').innerHTML='加载失败:'+e;});
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

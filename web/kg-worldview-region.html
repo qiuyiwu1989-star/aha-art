@@ -39,9 +39,9 @@
   .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-root">根·世界观</a> › <b style="color:var(--ink-soft)">6 区志</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-root">根·世界观</a> › <b style="color:var(--ink-soft)">6 区志</b></div>
   <div id="body"><div style="padding:40px;text-align:center;color:var(--ink-faint)">加载中…</div></div>
   <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
 </div>
@@ -106,4 +106,5 @@ Promise.all([
   b.appendChild(SEC(`⑧ 落在本区的风格 STYLES · ${r.n}`,ch));
 }).catch(e=>{document.getElementById('body').innerHTML='<div style="padding:40px;text-align:center;color:#a89f8f">加载失败(需服务器):'+e+'</div>';});
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

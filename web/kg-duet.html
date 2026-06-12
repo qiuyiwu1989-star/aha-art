@@ -49,7 +49,7 @@
   .empty{text-align:center;color:var(--ink-faint);padding:40px}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 坐标即比较</div>
   <h1>双画对读 —— 两张画,差在哪里</h1>
@@ -172,4 +172,5 @@ document.getElementById('segWhich').querySelectorAll('button').forEach(b=>b.addE
 document.getElementById('segSide').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{document.getElementById('segSide').querySelectorAll('button').forEach(x=>x.classList.remove('onA'));b.classList.add('onA');filt.side=b.dataset.v;renderGrid();}));
 document.getElementById('srch').addEventListener('input',e=>{filt.q=e.target.value;renderGrid();});
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

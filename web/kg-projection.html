@@ -38,13 +38,13 @@
   .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="tip" id="tip"></div>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 风格投影</div>
   <h1>风格 = 沿生成链的投影</h1>
   <p class="lead">V3 的核心论点做成可玩的:选一个<b>世界观区</b>或几个风格,看它们如何同时投影到 <b>世界观平面(根)</b>、<b>E向量雷达(签名)</b>、<b>7大构成(语言)</b>。同一区的风格<b>在平面上聚集、雷达形状相似</b>——这正说明"投影是连贯的、风格不是孤立标签"。<b>想反过来看两个风格的<a href="kg-style-compare.html" style="color:var(--accent)">差异</a>?去风格对比页。</b></p>
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">投影对比</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">投影对比</b></div>
   <div style="text-align:center;margin-top:10px;font-family:var(--mono);font-size:11px"><span style="color:var(--ink-faint)">两种对比工具 · </span><a href="kg-style-compare.html" style="color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 11px">⚖️ 看差异</a> <span style="background:var(--accent);color:#fff;border-radius:999px;padding:3px 11px">🎯 看聚集(本页)</span></div>
 
   <div class="controls">
@@ -144,4 +144,5 @@ function drawInsight(){
   ins.innerHTML=`已选 <b>${sel.length}</b> 个风格,跨 <b>${regs.length}</b> 个世界观区。平面离散度 σ(再现)=${sd(xs).toFixed(2)} σ(结构)=${sd(ys).toFixed(2)}。${regs.length===1?(tight?'<b>同一区→在平面上紧聚、雷达形状相近:投影连贯 ✓</b>':'同区但略有展开(区内仍有个体差异)。'):'跨区选择 → 平面上分散、雷达形状分化,正好看出不同世界观的投影差异。'}`;
 }
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

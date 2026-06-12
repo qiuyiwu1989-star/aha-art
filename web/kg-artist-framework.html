@@ -91,12 +91,12 @@
   .home-fab:hover{color:var(--accent)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 艺术家页面架构(第一性原理)</div>
   <h1>艺术家是什么 —— 链上的一片点云</h1>
   <p class="lead">旧框架把艺术家当成「<b>风格类下的一个条目</b>」,套一个 4 轴向量、10 段并列。但 V3 已证明:风格不是类、是<b>涌现的区</b>;那两条多余的轴也被下放了。这一页从公理重推:艺术家就是<b>作者</b>那一方 —— 一个在生成链上持续产出作品的人格源,他的作品在世界观平面上铺成一片<b>有重心、有离散、会漂移</b>的点云。</p>
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-artist">实例·艺术家</a> › <b style="color:var(--ink-soft)">艺术家标准</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-artist">实例·艺术家</a> › <b style="color:var(--ink-soft)">艺术家标准</b></div>
 
   <!-- 公理 -->
   <div class="sec">
@@ -324,4 +324,5 @@ Promise.all([
     lg.appendChild($(`<div class="lgi"><span class="dt" style="background:${s.col}"></span><a href="kg-artist.html?id=${s.a.id}">${s.a.cn}</a><span class="mo" style="background:${mc}">${m}</span><span style="color:var(--ink-faint);font-size:10.5px">${(s.a.wv||{}).region_cn||''}</span></div>`));});
 }).catch(e=>{document.getElementById('groups').innerHTML='加载失败:'+e;});
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

@@ -41,12 +41,12 @@
   .home-fab:hover{color:var(--accent)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 多面解构</div>
   <h1>画外音/感知:一层其实是六面</h1>
   <p class="lead">上轮发现:把"画外音/感知"398 原子一律塞进 VAD 是<b>粗的</b>——它其实混了 <b>≥6 种不同性质的"面"</b>(情感/象征/叙事/哲思/感官/时间),每种该用<b>不同机制</b>泛化。这一页把它们拆开、各归其位。</p>
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-effect">效应·感知+画外音</a> › <b style="color:var(--ink-soft)">多面解构</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-effect">效应·感知+画外音</a> › <b style="color:var(--ink-soft)">多面解构</b></div>
 
   <div class="sec">
     <div class="sec-h">① 六个面 · 各用各的机制</div>
@@ -279,4 +279,5 @@ F.motif_nodes.forEach(n=>{
 });
 document.getElementById('princ').innerHTML='🔬 <b>结论</b>:一个"层"不一定一种机制。把混杂的画外音/感知拆成六面后——情感用VAD、象征用母题节点、叙事/感官/哲思用闭集枚举、时间用坐标——每一面都干净、可推敲。这就解决了上轮"非情绪项被粗略塞进VAD"的问题。';
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

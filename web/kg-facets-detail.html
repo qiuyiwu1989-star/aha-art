@@ -37,12 +37,12 @@
   .home-fab:hover{color:var(--accent)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 四面收口</div>
   <h1>叙事 / 哲思 / 感官 / 时间</h1>
   <p class="lead">把多面解构里剩下的 <b>4 个面</b>一次收完——各落到合适机制:<b>叙事</b>=闭集 3 组、<b>哲思</b>=对立轴、<b>感官</b>=六通道、<b>时间</b>=坐标 + 模式。至此画外音/感知六面全部干净。</p>
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-effect">效应·感知+画外音</a> › <b style="color:var(--ink-soft)">四面收口</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-effect">效应·感知+画外音</a> › <b style="color:var(--ink-soft)">四面收口</b></div>
 
   <div class="facet narr">
     <div class="fh"><span class="fn">叙事结构 · Narrative</span><span class="mech">闭集枚举 · 3 组</span></div>
@@ -571,4 +571,5 @@ document.getElementById('tR').textContent=D.temporality.axis[1];
 const tm=document.getElementById('time');
 D.temporality.modes.forEach(g=> tm.appendChild($(`<div class="grp"><div class="gl">${g.cn} · ${g.items.length}</div><div class="chips">${chips(g.items)}</div></div>`)));
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

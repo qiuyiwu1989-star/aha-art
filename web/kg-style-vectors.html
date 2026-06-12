@@ -41,12 +41,12 @@
   .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 风格向量定位</div>
   <h1>每个风格定位在哪?以巡回画派为标杆</h1>
   <p class="lead">沿用你 V2 原图<b>以俄罗斯巡回画派为例</b>的 8 维 schema,其中 <b>E 风格轴向量(4 轴)</b> 是最适合匹配与生成的部分。这页给出<b>定位方法</b>、巡回画派<b>标杆全维</b>、以及已考究风格的<b>向量散点</b>。</p>
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">E向量散点</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">E向量散点</b></div>
 
   <div style="max-width:720px;margin:14px auto 0;background:var(--accent-soft);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:11px 14px;font-size:12.5px;line-height:1.7;color:var(--ink-soft)">
     <b>E 风格轴向量 ≠ 世界坐标。</b> 这页的 4 条轴是<b>画面配方</b>——可观测、可生成、可检索的画面表层属性,挂在风格节点上。它回答"<b>画面长什么样、该怎么做</b>"。另一层 <a href="kg-worldview.html" style="color:var(--accent);text-decoration:none">世界观层(世界坐标)→</a> 是<b>意义坐标</b>,回答"<b>把世界看成什么</b>",是风格的挂载点。两层都有一条「再现↔表现」轴:在这里它指<b>画面有多客观/主观</b>(输出特征);在世界观层它指<b>对"真实可否被再现"的认识论立场</b>(世界观)。同词,不同海拔。
@@ -140,4 +140,5 @@ Promise.all([
   });
 }).catch(e=>{document.getElementById('exemplar').innerHTML='加载失败(需服务器):'+e;});
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

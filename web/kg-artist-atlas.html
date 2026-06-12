@@ -47,13 +47,13 @@
   .back{display:block;text-align:center;margin-top:24px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="tip" id="tip"></div>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 艺术家星图</div>
   <h1>全员落在世界观平面</h1>
   <p class="lead">把<b>全部艺术家</b>放进同一张 V3 世界观平面(<b>再现-表现 ⊥ 结构-感知</b>)。<b>亮点=已考究</b>(可点进主页),<b>淡点=继承自所属风格的待考究节点</b>。东=绿、西=赭;6 个地标是世界观区。</p>
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-artist">实例·艺术家</a> › <b style="color:var(--ink-soft)">艺术家星图</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-artist">实例·艺术家</a> › <b style="color:var(--ink-soft)">艺术家星图</b></div>
 
   <div class="bar">
     <span class="seg" id="segAuth"><button data-v="all" class="on">全部</button><button data-v="auth">仅已考究</button></span>
@@ -220,4 +220,5 @@ document.getElementById('srch').addEventListener('input',e=>{filt.q=e.target.val
   s.addEventListener('click',e=>{if(!VB.moved && !(e.target.classList&&e.target.classList.contains('pt'))) clearFocus();});
 })();
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

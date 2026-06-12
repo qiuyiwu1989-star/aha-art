@@ -52,12 +52,12 @@
   .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 意图编译器 v2</div>
   <h1>一点灵感 → 图谱扩写 → 你调整 → 生产</h1>
   <p class="lead">输入<b>几个词、一种感受,或一位大师的名字</b>,编译器按策略沿生成链<b>扩写</b>成完整方案;每个维度都<b>可改</b>(改一处,其余顺图谱重算);满意了一键<b>出图</b>(自动入库)。<br><span style="font-size:11.5px">策略 A 语义扩散 · 策略 D 艺术家基因 · <a href="kg-compile.html" style="color:var(--accent)">旧版 v1 →</a></span></p>
-  <div class="breadcrumb"><a href="home.html">🏠 首页</a> › <a href="kg-v2.html">🧭 艺术图谱</a> › <b style="color:var(--ink-soft)">意图编译器 v2</b></div>
+  <div class="breadcrumb"><a href="home.html"><i data-ic="home"></i> 首页</a> › <a href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <b style="color:var(--ink-soft)">意图编译器 v2</b></div>
   <div class="inbar"><input id="q" type="text" placeholder="如:孤独的城市 / 压抑但有一丝希望 / 像梵高那种 / 宁静的宋代山水" value="孤独的城市 黄昏"/><button id="go" title="规则版:图谱即时扩散(秒出)">⚡ 即时</button><button id="gollm" style="background:var(--green)" title="LLM 在图谱上真实推理,约 30–60 秒,更懂矛盾与细腻输入">🧠 深度推理</button><button id="goimg" style="background:var(--blue)" title="传一张图,VLM 沿生成链拆解并映射到图谱;输入框可写「重画成X」">📷 传图</button><input type="file" id="file" accept="image/*" style="display:none"/></div>
   <div class="ex" id="ex"></div>
   <div class="routed" id="routed"></div>
@@ -65,6 +65,7 @@
   <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
 </div>
 <script>
+const DEMO=/[?&](demo\b|mode=demo)/.test(location.search);
 const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
 function esc(s){return (s==null?'':String(s)).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
 const AX=['构图','空间','造型','光影','色彩','笔触','边缘'];
@@ -73,7 +74,7 @@ const AXP={构图:['构图均衡稳定','','构图动势开放'],空间:['空间
 const ANC2V={喜悦:'V2',鲜活:'V2',热烈:'V2',崇高:'V1',张力:'V2',恐惧:'V2',神秘:'V1',忧伤:'V2',孤独:'V1',怀旧:'V3',虚无:'V1',沉思:'V1',平静:'V1',空灵:'V1'};
 const VCN={V1:'存在感知',V2:'情绪表达',V3:'叙事记忆',V4:'价值批评',V5:'感知元反思'};
 let IDX=null, MOTIVE=null, lastText='', MODELS=[{id:'seedream5',label:'艺术家 5'}];
-let STYLE_SET=null, ANCHOR_SET=null;
+let STYLE_SET=null, ANCHOR_SET=null, ANCHOR_VAD={};
 // 同义/近义扩展表:把口语词映射到图谱里"真实存在"的词条(风格名/题材key/情绪词key/锚点名)。
 // 运行时 routeTerm 会丢弃图谱里查不到的目标,所以写错也安全。纯前端,不调模型,仍秒出。
 const SYN={
@@ -112,7 +113,7 @@ Promise.all([
   fetch('data/kg_subtext_motive.json').then(r=>r.json()).catch(()=>({})),
   fetch('data/kg_gen_models.json').then(r=>r.json()).catch(()=>null),
   fetch('data/kg_gen_gallery.json?_='+Date.now()).then(r=>r.json()).catch(()=>({items:[]}))
-]).then(([d,m,mods,gal])=>{IDX=d;MOTIVE=m;STYLE_SET=new Set(IDX.style_cn_list);ANCHOR_SET=new Set(IDX.anchors.map(a=>a.cn));if(mods&&mods.models)MODELS=mods.models.filter(x=>x.enabled);buildTaste(gal.items);initEx();compile();})
+]).then(([d,m,mods,gal])=>{IDX=d;MOTIVE=m;STYLE_SET=new Set(IDX.style_cn_list);ANCHOR_SET=new Set(IDX.anchors.map(a=>a.cn));ANCHOR_VAD={};IDX.anchors.forEach(a=>{if(a.vad)ANCHOR_VAD[a.cn]=a.vad;});if(mods&&mods.models)MODELS=mods.models.filter(x=>x.enabled);buildTaste(gal.items);initEx();compile();})
  .catch(e=>{document.getElementById('out').innerHTML='<div style="text-align:center;color:#a89f8f;padding:40px">需服务器加载索引:'+e+'</div>';});
 function buildTaste(items){const t={style:{},anchor:{}};(items||[]).forEach(it=>{if(it.rating==null)return;
   if(it.style_cn)t.style[it.style_cn]=(t.style[it.style_cn]||0)+it.rating;
@@ -131,6 +132,18 @@ document.getElementById('gollm').addEventListener('click',()=>compileLLM((docume
 document.getElementById('goimg').addEventListener('click',()=>document.getElementById('file').click());
 document.getElementById('file').addEventListener('change',e=>{const f=e.target.files[0];if(f)handleImg(f);e.target.value='';});
 document.getElementById('q').addEventListener('keydown',e=>{if(e.key==='Enter')compile();});
+
+// ---------- 只读演示模式 (?demo):保留免费的图谱即时扩写,关掉一切花额度/入库的动作 ----------
+if(DEMO){
+  document.body.classList.add('demo');
+  ['gollm','goimg'].forEach(id=>{const b=document.getElementById(id);if(b)b.style.display='none';});
+  const go=document.getElementById('go');if(go)go.title='图谱即时扩散(规则版·免费·秒出)';
+  const bc=document.querySelector('.breadcrumb');
+  if(bc){const b=document.createElement('div');
+    b.style.cssText='max-width:760px;margin:11px auto 0;background:var(--accent-soft,#f0e4d8);border:1px solid #e0c4a8;border-radius:10px;padding:9px 14px;font-size:12px;line-height:1.6;color:var(--ink-soft);text-align:center';
+    b.innerHTML='<b style="color:var(--accent)">演示装置 · 只读模式</b> · 只看图谱怎么把一点灵感<b>扩写成方案、改一处其余顺图谱重算</b>;<b>不出图、不花额度、不入库</b>。要真生产出图入库 → <a href="kg-compile-v2.html" style="color:var(--accent);text-decoration:none;font-weight:600">意图编译器(产品版)→</a>';
+    bc.insertAdjacentElement('afterend',b);}
+}
 
 // ---------- 策略 C:传图解析 ----------
 function downscale(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{
@@ -234,6 +247,8 @@ function classify(text){
   Object.keys(IDX.emoword_to_anchor).forEach(w=>{ if(w.length>=2 && text.includes(w)) emoHits.push(IDX.emoword_to_anchor[w]); });
   // 同义/近义扩展:让"黄昏/赛博/治愈/梦幻"等口语词也落到图谱真实词条上(纯前端,仍秒出)
   for(const k in SYN){ if(text.includes(k)) SYN[k].forEach(t=>routeTerm(t,styleHits,subjHits,emoHits)); }
+  // 生僻输入兜底:常规没识别出任何情绪时,扫一小撮"单字也无歧义"的情绪字(避免对正常输入引噪声)
+  if(!emoHits.length){ ['孤','哀','惊','幽','诡','禅'].forEach(c=>{ if(text.includes(c)&&IDX.emoword_to_anchor[c]) emoHits.push(IDX.emoword_to_anchor[c]); }); }
   return {styleHits:[...new Set(styleHits)],subjHits:[...new Set(subjHits)],emoHits:[...new Set(emoHits)]};
 }
 function styleIdByCn(cn){ for(const id in IDX.styles){ if(IDX.styles[id].cn===cn) return id; } return null; }
@@ -247,28 +262,52 @@ function compile(){
   routeA(text);
 }
 
-// ---------- 策略 A：语义扩散 ----------
+// ---------- 策略 A：语义扩散(统一打分:多信号融合 + 情绪 VAD 连续邻近 + 口味 + 区域去重) ----------
+function targetVAD(emoHits){
+  const vs=emoHits.map(a=>ANCHOR_VAD[a]).filter(Boolean);
+  if(!vs.length) return null;
+  const m={valence:0,arousal:0,dominance:0};
+  vs.forEach(v=>{m.valence+=v.valence;m.arousal+=v.arousal;m.dominance+=v.dominance;});
+  return {valence:m.valence/vs.length,arousal:m.arousal/vs.length,dominance:m.dominance/vs.length};
+}
+function vadProx(anchorCn,tv){ // 0(远)~1(近),三维欧氏距离归一化(对角≈1.73)
+  const av=ANCHOR_VAD[anchorCn]; if(!av||!tv) return 0;
+  const d=Math.hypot(av.valence-tv.valence,av.arousal-tv.arousal,av.dominance-tv.dominance);
+  return 1-Math.min(d/1.732,1);
+}
+function clampTaste(cn){ return Math.max(-2,Math.min(2,tasteScore(cn)||0)); }
+// 给所有相关候选打一个综合分:风格直命中(强)+题材命中(中)+情绪锚点精确(中)+情绪VAD邻近(连续)+口味(轻推)
+function scoreCandidates(styleHits,subjHits,emoHits){
+  const score={},subjCnt={};
+  const add=(id,s)=>{ if(IDX.styles[id]) score[id]=(score[id]||0)+s; };
+  styleHits.forEach(cn=>{const id=styleIdByCn(cn); if(id) add(id,6);});
+  // 题材:命中任一 +3,每多命中一个仅 +0.8(防"被多个题材收录"的风格单凭此霸榜)
+  subjHits.forEach(s=>(IDX.sub_to_styles[s]||[]).forEach(id=>{ subjCnt[id]=(subjCnt[id]||0)+1; }));
+  Object.keys(subjCnt).forEach(id=>add(id, 3+0.8*(subjCnt[id]-1)));
+  // 情绪:锚点精确命中 +3
+  if(emoHits.length){ for(const id in IDX.styles){ if(emoHits.includes(IDX.styles[id].anchor)) add(id,3); } }
+  // 情绪:VAD 连续邻近 +最多3(已有候选则精修排序;无候选则用情绪给全图谱播种)
+  const tv=targetVAD(emoHits);
+  if(tv){ const ids=Object.keys(score).length?Object.keys(score):Object.keys(IDX.styles); ids.forEach(id=>add(id, 3*vadProx(IDX.styles[id].anchor,tv))); }
+  Object.keys(score).forEach(id=>{ score[id]+=0.6*clampTaste(IDX.styles[id].cn||''); });
+  return score;
+}
+// Top-N 取候选,优先世界观区域不重复(避免三方向同质)
+function pickDiverse(ranked,n){
+  const out=[],regions=new Set();
+  for(const id of ranked){ const r=(IDX.styles[id]||{}).region_cn||''; if(!regions.has(r)){out.push(id);regions.add(r);} if(out.length>=n)return out; }
+  for(const id of ranked){ if(!out.includes(id)){out.push(id); if(out.length>=n)break;} }
+  return out;
+}
 function routeA(text){
   const {styleHits,subjHits,emoHits}=classify(text);
-  let cands=[], nohit=false;
-  if(styleHits.length){ cands=styleHits.map(styleIdByCn).filter(Boolean); }
-  else if(subjHits.length){
-    const pool={};
-    subjHits.forEach(s=>(IDX.sub_to_styles[s]||[]).forEach(id=>pool[id]=(pool[id]||0)+1));
-    cands=Object.keys(pool);
-    if(emoHits.length) cands.sort((a,b)=>(emoHits.includes(IDX.styles[b].anchor)?1:0)-(emoHits.includes(IDX.styles[a].anchor)?1:0));
-    cands=cands.slice(0,8);
-  } else if(emoHits.length){
-    cands=Object.keys(IDX.styles).filter(id=>emoHits.includes(IDX.styles[id].anchor)).slice(0,8);
-  }
-  if(!cands.length){ cands=diverseFallback(8); nohit=true; }
-  // 口味回流:把你常赞的风格往前排
-  cands=sortByTaste(cands);
+  const score=scoreCandidates(styleHits,subjHits,emoHits);
+  let ranked=Object.keys(score).sort((a,b)=>score[b]-score[a]);
+  let nohit=false;
+  if(!ranked.length){ ranked=sortByTaste(diverseFallback(8)); nohit=true; }
   document.getElementById('routed').innerHTML=`策略 <b style="color:var(--accent)">A · 语义扩散</b> · 识别 → 风格[${styleHits.join('、')||'—'}] 题材[${subjHits.join('、')||'—'}] 情绪[${emoHits.join('、')||'—'}]`+tasteHint()+
     (nohit?' · <span style="color:#b06a62">没精确命中,给你几个不同方向;细腻/新词建议用 🧠 深度推理</span>':'');
-  // 单输入给≤3方向,去重多样化
-  const dirs=[]; const seen=new Set();
-  for(const id of cands){ if(seen.has(id))continue; seen.add(id); dirs.push(id); if(dirs.length>=3)break; }
+  const dirs=pickDiverse(ranked,3);
   const subj = subjHits[0] || null;
   const emo = emoHits[0] || null;
   renderDirections(dirs.map(id=>buildCard({styleId:id,subject:subj,anchor:emo,query:text,strategy:'A'})), text);
@@ -371,16 +410,16 @@ function renderCard(c){
       <label>画外音</label><select class="f-anchor">${ancOpts}</select>
       <label>动机</label><select class="f-motive">${vOpts}</select>
       <div class="lang7">${lang7}</div>
-      <div class="refart">🎨 参考艺术家:${refs||'—'}</div>
+      <div class="refart"><i data-ic="create"></i> 参考艺术家:${refs||'—'}</div>
     </div>
     <div class="promptbox"><div class="ph">正向提示词(可改)</div><textarea class="f-prompt" rows="4">${esc(c.prompt)}</textarea></div>
     <div class="promptbox neg"><div class="ph">负向提示词 · 不要画什么(来自该风格负空间)</div><textarea class="f-neg" rows="2">${esc(c.negative)}</textarea></div>
-    <div class="genrow">
+    ${DEMO?`<div class="genrow" style="font-size:12px;color:var(--ink-mute)">演示模式:方案到此为止——<b style="color:var(--ink-soft)">不出图、不入库、不花额度</b>。要真出图 → <a href="kg-compile-v2.html" style="color:var(--accent)">产品版 →</a></div>`:`<div class="genrow">
       <select class="f-model">${MODELS.map(m=>`<option value="${m.id}">${esc(m.label)}</option>`).join('')}</select>
-      <button class="genbtn">🎨 生产</button>
+      <button class="genbtn"><i data-ic="create"></i> 生产</button>
       ${MODELS.length>1?'<button class="cmpbtn" style="font-family:var(--mono);font-size:13px;color:var(--accent);background:#fff;border:1px solid var(--accent);border-radius:9px;padding:9px 14px;cursor:pointer">🎨×N 对比出图</button>':''}
       <span class="genstat"></span>
-    </div>
+    </div>`}
     <div class="genimg"></div>
   </div>`);
   // 交互:改风格→重算
@@ -404,7 +443,7 @@ function renderCard(c){
   el.querySelector('.f-anchor').addEventListener('change',()=>reflow(true));
   el.querySelector('.f-motive').addEventListener('change',()=>reflow(true));
   el.querySelector('.f-subj').addEventListener('change',()=>reflow(true));
-  el.querySelector('.genbtn').addEventListener('click',()=>doGen(el,c));
+  const gb=el.querySelector('.genbtn'); if(gb) gb.addEventListener('click',()=>doGen(el,c));
   const cmp=el.querySelector('.cmpbtn'); if(cmp) cmp.addEventListener('click',()=>doCompare(el,c));
   return el;
 }
@@ -446,4 +485,5 @@ async function doCompare(el,c){
   st.innerHTML='✅ 对比组已入库 · <a href="kg-gallery.html" style="color:var(--accent)">去图库看对比 →</a>';
 }
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

@@ -27,12 +27,12 @@
   .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 风格详情标准</div>
   <h1>统一标准框架</h1>
   <p class="lead">把<b>印象派模板</b>(精髓/源流/语言剖面/代表作)与<b>巡回画派 8 维 schema</b>(A 身份–H 画外音)<b>融合为一个标准</b>。以后<b>所有风格</b>的详情页都按这 9 段展开,体例统一、可对比、经得起推敲。</p>
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">风格详情标准</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">风格详情标准</b></div>
 
   <div class="sec">
     <div class="sec-h">两个黄金范本(已按标准填满)</div>
@@ -66,4 +66,5 @@ fetch('data/kg_style_framework.json').then(r=>r.json()).then(F=>{
   F.sections.forEach(s=> rc.appendChild($(`<div class="row"><div class="rk">${s.cn}</div><div class="rf">${s.fields}</div></div>`)));
 }).catch(e=>{document.getElementById('rows').innerHTML='加载失败:'+e;});
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

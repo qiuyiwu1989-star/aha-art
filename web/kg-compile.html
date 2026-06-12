@@ -39,12 +39,12 @@
   .home-fab:hover{color:var(--accent)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 意图编译器</div>
   <h1>一句话 → 结构化 Prompt</h1>
   <p class="lead">这是整张图谱的<b>应用落点</b>:输入一句话 → <b>命中知识节点</b>(跨五层)→ <b>推理扩写</b>(据风格典型剖面补全)→ 产出<b>结构化生成语言</b>。这就是"图谱当编译器"。</p>
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-apply">应用·工具</a> › <b style="color:var(--ink-soft)">意图编译器</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-apply">应用·工具</a> › <b style="color:var(--ink-soft)">意图编译器</b></div>
 
   <div class="inbox">
     <input id="q" type="text" placeholder="比如:画一片宁静的宋代山水,云雾留白" value="画一片宁静的宋代山水,云雾留白"/>
@@ -145,8 +145,8 @@ function compile(){
   const genPrompt=`${desc} 绘画语言:${langTxt}。${(voiceTxt&&!String(voiceTxt).includes('留白'))?'整体意境:'+voiceTxt+'。':''}媒介:${typeTxt}。${cleanStyle!=='(自由)'?cleanStyle+'风格,':''}构图讲究,色彩层次丰富,质感真实,专业绘画作品`;
   const meta={query:(document.getElementById('q').value||'').trim(),style_id:style?style.id:'',style_cn:style?style.cn:'',fields:J};
   const s4=$(`<div class="stage st4"><span class="st-h">④ 出图 · 把这份 Prompt 喂给生成模型(闭环)</span>
-    <div style="margin:6px 0 10px;font-size:12.5px;color:var(--ink-mute);line-height:1.7">理解→生成的最后一环:用上面的结构化语言驱动<b>火山方舟</b>实际出图,验证"图谱不只是能解释,还能生成"。每次出图都会<b>自动连同这份结构化数据存进图库</b>(图链 24h 失效,出图即自托管)。 <a href="kg-gallery.html" style="color:var(--accent);text-decoration:none">🖼 看图库 →</a></div>
-    <button id="genbtn" style="font-family:var(--mono);font-size:14px;color:#fff;background:var(--accent);border:none;border-radius:9px;padding:9px 18px;cursor:pointer">🎨 生成这张</button>
+    <div style="margin:6px 0 10px;font-size:12.5px;color:var(--ink-mute);line-height:1.7">理解→生成的最后一环:用上面的结构化语言驱动<b>火山方舟</b>实际出图,验证"图谱不只是能解释,还能生成"。每次出图都会<b>自动连同这份结构化数据存进图库</b>(图链 24h 失效,出图即自托管)。 <a href="kg-gallery.html" style="color:var(--accent);text-decoration:none"><i data-ic="works"></i> 看图库 →</a></div>
+    <button id="genbtn" style="font-family:var(--mono);font-size:14px;color:#fff;background:var(--accent);border:none;border-radius:9px;padding:9px 18px;cursor:pointer"><i data-ic="create"></i> 生成这张</button>
     <div id="genstat" style="font-size:12px;color:var(--ink-mute);margin-top:9px"></div>
     <div id="genimg" style="margin-top:10px"></div></div>`);
   out.appendChild(s4);
@@ -174,4 +174,5 @@ document.getElementById('go').addEventListener('click',compile);
 document.getElementById('q').addEventListener('keydown',e=>{if(e.key==='Enter')compile();});
 load();
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

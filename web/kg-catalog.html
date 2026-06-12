@@ -53,6 +53,7 @@ input[type=search]{min-width:180px}
 <header>
   <div class="h1">aha 核心资产画廊 <small id="hcount">连 Postgres · VLM 标注</small></div>
   <div class="bar">
+    <span class="chip" id="forYou" title="按你逛出的审美口味推荐">✦ 为你推荐</span>
     <select id="fStatus"></select>
     <select id="fSource"><option value="">全部来源</option></select>
     <select id="fStyle"><option value="">全部风格</option></select>
@@ -68,12 +69,43 @@ input[type=search]{min-width:180px}
 <div id="m"><span class="x" onclick="closeM()">×</span><div class="mw" id="mw"></div></div>
 <div id="zoom"><span class="zx" onclick="closeZoom()">×</span><div class="zload" id="zload">原图加载中…</div><img id="zimg" alt=""><div class="zhint">滚轮缩放 · 拖动平移 · 点空白处 / Esc 关闭</div></div>
 
+<script src="aha-mem.js"></script>
 <script>
 const API='/cat/';
-let st={status:'kept',source:'',style:'',anchor:'',q:'',offset:0,limit:60,total:0,loading:false,done:false};
+let st={status:'kept',source:'',style:'',anchor:'',q:'',offset:0,limit:60,total:0,loading:false,done:false,foryou:false};
 let IDS=[],curIdx=-1;
 
 async function j(u){const r=await fetch(API+u);return r.json()}
+
+// ✦ 为你推荐:吃 12 维审美档案的 reward 内核(/cat/foryou),按个人口味排序
+async function loadForYou(){
+  if(st.loading)return;st.loading=true;
+  const uid=(window.AHA&&AHA.uid)||'';
+  const g=document.getElementById('grid');
+  const d=await j('foryou?uid='+encodeURIComponent(uid)+'&limit=60').catch(()=>({ready:false,items:[]}));
+  if(!d.ready||!d.items.length){
+    g.innerHTML=`<div style="grid-column:1/-1;padding:60px 20px;text-align:center;color:var(--soft);line-height:1.9">
+      还在了解你的口味——去<a href="art.html" style="color:var(--accent)">展厅</a>或点开几幅画看看,<br>这里就会按你逛出的审美为你重排整馆。</div>`;
+    document.getElementById('meta').textContent='为你推荐 · 待积累';st.loading=false;st.done=true;return;
+  }
+  document.getElementById('meta').textContent=`为你推荐 · ${d.items.length} 件 · 按你的审美 μ 排序`;
+  d.items.forEach(it=>{
+    const c=document.createElement('div');c.className='card';
+    c.innerHTML=`<img loading="lazy" src="${it.thumb}" alt="">
+      <span class="q" title="契合度">${Math.round(it.score*100)}</span>
+      <div class="cap"><b>${esc(it.title||'无题')}</b><br><span>${esc(it.artist||'')}</span></div>`;
+    IDS.push(it.work_id);c.onclick=()=>location.href=workUrl(it.work_id);g.appendChild(c);
+  });
+  st.loading=false;st.done=true;
+  document.getElementById('sentinel').textContent=`— 为你挑了 ${d.items.length} 件 —`;
+}
+function toggleForYou(){
+  st.foryou=!st.foryou;
+  document.getElementById('forYou').classList.toggle('on',st.foryou);
+  ['fStatus','fSource','fStyle','fq'].forEach(id=>document.getElementById(id).disabled=st.foryou);
+  st.offset=0;st.done=false;IDS=[];document.getElementById('grid').innerHTML='';
+  if(st.foryou)loadForYou();else load();
+}
 
 async function loadFacets(){
   const f=await j('facets?status='+st.status);
@@ -135,7 +167,7 @@ async function openM(id){
       ${l7h?`<div class="sec"><div class="lbl">七大构成</div>${l7h}</div>`:''}
       <div class="sec"><div class="lbl">感知效应 · 情绪坐标</div>${affectViz(af)}</div>
       ${v.fused?`<div class="sec"><div class="lbl">整体解读</div><div class="fused">${esc(v.fused)}</div></div>`:''}
-      <div class="sec" style="color:#aaa;font-size:11px">#${a.id} · ${esc(a.source||'')} · 质量 ${a.quality??'—'} · <a href="javascript:void(0)" onclick="openZoom('${a.image.full}')" style="color:var(--accent)">🔍 放大看原图</a> · <a href="${workUrl(a.id)}" style="color:var(--accent)">↗ 独立详情页</a></div>
+      <div class="sec" style="color:#aaa;font-size:11px">#${a.id} · ${esc(a.source||'')} · 质量 ${a.quality??'—'} · <a href="javascript:void(0)" onclick="openZoom('${a.image.full}')" style="color:var(--accent)"><i data-ic="search"></i> 放大看原图</a> · <a href="${workUrl(a.id)}" style="color:var(--accent)">↗ 独立详情页</a></div>
     </div>`;
   document.getElementById('m').classList.add('on');
 }
@@ -167,6 +199,7 @@ function affectViz(af){
 function closeM(){document.getElementById('m').classList.remove('on')}
 document.getElementById('m').onclick=e=>{if(e.target.id==='m')closeM()};
 
+document.getElementById('forYou').onclick=toggleForYou;
 document.getElementById('fStatus').onchange=e=>{st.status=e.target.value;loadFacets();reset()};
 document.getElementById('fSource').onchange=e=>{st.source=e.target.value;reset()};
 document.getElementById('fStyle').onchange=e=>{st.style=e.target.value;reset()};
@@ -213,5 +246,6 @@ loadFacets().then(load);
 const _pid=new URLSearchParams(location.search).get('id');
 if(_pid) location.replace('work.html?id='+_pid);
 </script>
+<script src="js/aha-icons.js"></script>
 </body>
 </html>

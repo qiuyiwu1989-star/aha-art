@@ -34,12 +34,12 @@
   .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="hero">
     <div class="kick">aha · 艺术绘画知识图谱 V3 · 导览</div>
     <h1>一条线,读懂这张<br>经得起推敲的艺术图谱</h1>
-  <div class="breadcrumb" style="text-align:center;font-family:monospace;font-size:11px;color:#a89f8f;margin-top:8px"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <b style="color:var(--ink-soft)">一条线导览</b></div>
+  <div class="breadcrumb" style="text-align:center;font-family:monospace;font-size:11px;color:#a89f8f;margin-top:8px"><a style="color:var(--accent);text-decoration:none" href="home.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <b style="color:var(--ink-soft)">一条线导览</b></div>
     <div class="sub">不是一张标签表,而是一套从<b>第一性原理</b>长出来的体系:世界观是根,风格是它的投影,艺术家是风格的实例,关系有据可考。下面七章,一条线走完。</div>
     <div class="formula">风格 = 世界模型 × 感知策略 × 造型方法 × 语言参数 × 意义指向</div>
     <div class="scrollhint">↓ 向下滚动</div>
@@ -104,7 +104,7 @@
   <div class="end">
     <div class="quote">"经得起推敲的,不是没有不确定,而是把不确定也摆上桌。"</div>
     <a href="kg-v2.html">艺术图谱 · 全站导航</a>
-    <a href="kg-search.html">🔍 全局搜索</a>
+    <a href="kg-search.html"><i data-ic="search"></i> 全局搜索</a>
     <a href="home.html">返回首页</a>
   </div>
 </div>
@@ -121,4 +121,5 @@ Promise.all([
   if(l) document.getElementById('b-lin').innerHTML=`${(l.edges||[]).length}<small>关系链 · 带论证</small>`;
 }).catch(()=>{});
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

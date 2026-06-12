@@ -36,12 +36,12 @@
   .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 风格取舍评审</div>
   <h1>全部风格 · 取舍 + 增补建议</h1>
   <p class="lead">把现有 <b>296</b> 个风格逐个研究,给出建议:哪些<b>真风格保留</b>、哪些是<b>画家个人</b>(降为代表人物)、哪些是<b>笔法技法</b>(应移到绘画语言层)、哪些是<b>非公认/重复</b>(删并)、哪些<b>过细</b>(并入关键节点)。下面逐条标注,<b>请你审定</b>。</p>
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">风格取舍评审</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">风格取舍评审</b></div>
 
   <div class="cards" id="cards"></div>
   <div class="legend">
@@ -92,4 +92,5 @@ fetch('data/kg_style_curation.json').then(r=>r.json()).then(D=>{
   document.getElementById('concl').innerHTML=`<b>结论:</b>清理后约 <b>180 个真风格</b>(296→180)更经得起推敲;<b>31 个画家</b>归到流派的"代表人物"、<b>23 个笔法</b>归到绘画语言层(本就该在那)、<b>41 删并 + 21 并地域</b>去掉冗余。再<b>新增约 20 个</b>正典(矫饰主义/拉斐尔前派/浮世绘…)。<br/>👉 <b>请你审定:哪些同意?东方是否纳入日本/朝鲜画派?</b> 定版后我据此重整风格层数据,再按 8 维逐个考究。`;
 }).catch(e=>{document.getElementById('list').innerHTML='加载失败(需服务器):'+e;});
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

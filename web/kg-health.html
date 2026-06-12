@@ -29,12 +29,12 @@
   .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 体检看板</div>
   <h1>图谱完备性 · 一眼看清</h1>
   <p class="lead">把全图谱的<b>规模 / 结构健康 / 链端连通 / 可证伪验证 / 诚实待办</b>收口成一张 live 看板(实时拉 <code style="font-family:var(--mono);font-size:11px">kg_v3_export.json</code> 等)。绿=过关,黄=有边界已诚实标注。</p>
-  <div class="breadcrumb"><a href="home.html">🏠 首页</a> › <a href="kg-v2.html">🧭 艺术图谱</a> › <a href="kg-v2.html#g-apply">应用·工具</a> › <b style="color:var(--ink-soft)">体检看板</b></div>
+  <div class="breadcrumb"><a href="home.html"><i data-ic="home"></i> 首页</a> › <a href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a href="kg-v2.html#g-apply">应用·工具</a> › <b style="color:var(--ink-soft)">体检看板</b></div>
 
   <div class="sec"><div class="sec-h">① 规模 <span class="en">scale</span></div><div class="scale" id="scale"></div></div>
   <div class="sec"><div class="sec-h">② 结构健康 <span class="en">structure</span></div><div class="card" id="struct"></div></div>
@@ -92,4 +92,5 @@ Promise.all([
     `<div style="margin-top:6px;color:var(--ink-faint);font-size:11.5px">原则:能干净做的已做;连不动/会造数据的,诚实标边界、不硬填。</div>`;
 }).catch(e=>{document.getElementById('scale').innerHTML='<div style="color:#a89f8f;grid-column:1/-1">需服务器加载:'+e+'</div>';});
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

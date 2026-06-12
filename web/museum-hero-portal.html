@@ -117,7 +117,7 @@
   <div class="wallstrip" id="strip"><div class="loading">载入馆藏…</div></div>
   <div class="legend">
     <div>🚪 <b>展区</b> = 一扇能走进去的门 / 一个房间(复数 · 有景深 · 点击进入)</div>
-    <div>🖼️ <b>作品</b> = 墙上一幅装裱好的画(单数 · 有框 · 点击走近)</div>
+    <div><i data-ic="works"></i> <b>作品</b> = 墙上一幅装裱好的画(单数 · 有框 · 点击走近)</div>
   </div>
 </div>
 
@@ -177,4 +177,5 @@ window.addEventListener('deviceorientation',e=>{if(e.gamma!=null){tx=Math.max(-.
   stage.style.transform=`translate(-50%,-46%) rotateY(${cx*-12}deg) rotateX(${cy*6}deg)`;
   requestAnimationFrame(loop);})();
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

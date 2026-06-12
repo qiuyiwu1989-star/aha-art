@@ -40,12 +40,12 @@
   .home-fab:hover{color:var(--accent)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 数据派生的图</div>
   <h1>从分类表 → 图谱</h1>
   <p class="lead">把现有 <b>119 件作品按 id 挂到节点</b>(归类),再统计<b>同一作品里两节点的同现</b>,让节点之间的 <b>70 条边由数据长出来(含跨层:题材↔风格↔画外音)</b>——不是手画的。这一步,V2 第一次成为真正的"图"。</p>
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-graph">图谱·关系</a> › <b style="color:var(--ink-soft)">数据派生边</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-graph">图谱·关系</a> › <b style="color:var(--ink-soft)">数据派生边</b></div>
 
   <div class="metrics" id="metrics"></div>
 
@@ -1047,4 +1047,5 @@ Object.entries(G.membership).slice(0,22).forEach(([id,ws])=>{
 });
 document.getElementById('princ').innerHTML='🔬 <b>为什么这样才专业</b>:'+G.meta.method+' 边能追溯到具体作品 → 经得起推敲。下一步:扩大语料、补节点详情、把共现边写回各节点。';
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

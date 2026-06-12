@@ -35,12 +35,12 @@
   .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 全局搜索</div>
   <h1>一个框,搜遍整张图谱</h1>
   <p class="lead">风格 · 艺术家 · 世界观区 · 情绪锚点 —— <b id="tot">…</b> 个知识节点,输入即搜、点击直达。</p>
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <b style="color:var(--ink-soft)">全局搜索</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <b style="color:var(--ink-soft)">全局搜索</b></div>
   <div class="searchbar">
     <input id="q" type="search" placeholder="🔍 搜风格/艺术家/区/情绪,如「印象」「八大」「经验之光」「忧伤」…" autocomplete="off"/>
     <div class="seg" id="seg"><button data-t="all" class="on">全部</button><button data-t="风格">风格</button><button data-t="艺术家">艺术家</button><button data-t="世界观区">世界观区</button><button data-t="情绪">情绪</button></div>
@@ -100,4 +100,5 @@ function render(){
   });
 }
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

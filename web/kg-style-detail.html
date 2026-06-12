@@ -77,9 +77,9 @@
   .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">风格详情</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">风格详情</b></div>
   <div id="body"><div class="empty" style="padding:40px;text-align:center">加载中…</div></div>
   <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
 </div>
@@ -97,8 +97,9 @@ Promise.all([
   fetch('data/kg_artist_index.json').then(r=>r.json()).catch(()=>({})),
   fetch('data/kg_subject_style_edges.json').then(r=>r.json()).catch(()=>({by_style:{}})),
   fetch('data/kg_subtext_style_edges.json').then(r=>r.json()).catch(()=>({by_style:{}})),
-  fetch('data/kg_style_works.json').then(r=>r.json()).catch(()=>({by_canonical:{},count:{},canon_zh:{}}))
-]).then(([sty,graph,arts,wv,lineage,langv,aidx,subjE,subtE,swork])=>{
+  fetch('data/kg_measured.json').then(r=>r.json()).catch(()=>({styles:{}})),
+  fetch('data/kg_style_works.json').then(r=>r.json()).catch(()=>({by_node:{},by_canonical:{},count:{},count_node:{},canon_zh:{}}))
+]).then(([sty,graph,arts,wv,lineage,langv,aidx,subjE,subtE,meas,swork])=>{
   const SUBJ=(subjE.by_style)||{}; const SUBT=(subtE.by_style)||{};
   const L2V=(langv.style_vectors||{}); const L2DIM=(langv.meta&&langv.meta.dims)||[];
   const L2BY={}; L2DIM.forEach(d=>L2BY[d.short]=d);
@@ -122,7 +123,7 @@ Promise.all([
   const linkOrText=nm=> styByName[nm]?`<a class="chip" href="kg-style-detail.html?id=${styByName[nm]}">${nm}</a>`:`<span class="chip">${nm}</span>`;
 
   // ① 身份
-  b.appendChild($(`<div class="nh ${east?'east':''}"><span class="cn">${cn}</span>${lo.en?`<span class="en">${lo.en}</span>`:''}<span class="badges">${gold?'<span class="bd gold">黄金范本</span>':''}${wvr?`<a class="bd wv" href="kg-worldview-region.html?id=${wvr.id}" title="V3 世界观区:${wvr.essence||''}">🏛 ${wvr.id} ${wvr.name}</a>`:''}<span class="bd id">${n.id}</span></span></div>`));
+  b.appendChild($(`<div class="nh ${east?'east':''}"><span class="cn">${cn}</span>${lo.en?`<span class="en">${lo.en}</span>`:''}<span class="badges">${gold?'<span class="bd gold">黄金范本</span>':''}${wvr?`<a class="bd wv" href="kg-worldview-region.html?id=${wvr.id}" title="V3 世界观区:${wvr.essence||''}"><i data-ic="museum"></i> ${wvr.id} ${wvr.name}</a>`:''}<span class="bd id">${n.id}</span></span></div>`));
   const idbits=[];
   if(lo.aka&&lo.aka.length) idbits.push('别名 '+lo.aka.join('、'));
   idbits.push((lo.type||'风格原子流')+' · '+(lo.level||'风格层'));
@@ -281,10 +282,17 @@ Promise.all([
     // L2 数值指纹(若有)
     const lv=(L2V[n.id]||{}).vec;
     if(lv){const ORD=['构图','空间','造型','光影','色彩','笔触','边缘'];
+      const M=(meas.styles||{})[n.id]||null, mv=M&&M.measured;
       const fp=$('<div style="background:#fbf9f4;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:10px"></div>');
-      fp.appendChild($('<div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-bottom:6px">L2 语言指纹(0→1 连续轴 · <a href="kg-language.html" style="color:var(--accent);text-decoration:none">语言层</a>)</div>'));
-      ORD.forEach(s=>{const val=lv[s],d=L2BY[s]||{};
-        fp.appendChild($(`<div style="display:flex;align-items:center;gap:7px;margin:4px 0;font-size:11.5px"><span style="width:30px;font-family:var(--serif);font-weight:600;color:var(--ink-soft);flex-shrink:0">${s}</span><span style="width:84px;text-align:right;font-size:9px;color:var(--ink-faint);flex-shrink:0;line-height:1.2">${d.low||''}</span><span style="flex:1;height:7px;background:var(--paper-2);border-radius:4px;position:relative"><span style="position:absolute;left:50%;top:0;height:100%;width:1px;background:#cfc6b4"></span><span style="position:absolute;top:50%;left:${val*100}%;width:12px;height:12px;border-radius:50%;background:var(--accent);transform:translate(-50%,-50%);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.18)"></span></span><span style="width:84px;font-size:9px;color:var(--ink-faint);flex-shrink:0;line-height:1.2">${d.high||''}</span><span style="width:28px;text-align:right;font-family:var(--mono);font-size:10px;color:var(--ink-mute);flex-shrink:0">${val.toFixed(2)}</span></div>`));});
+      const hdr = mv
+        ? `L2 语言指纹 · <b style="color:var(--accent)">●散文派生</b> vs <b style="color:#5a7d6f">●真迹实测</b>(n=${M.n_works}${M.mean_abs_delta!=null?` · 平均差 ${M.mean_abs_delta}`:''})`
+        : `L2 语言指纹(0→1 连续轴 · <b style="color:var(--accent)">●散文派生</b>,暂无真迹实测)`;
+      fp.appendChild($(`<div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-bottom:6px">${hdr} · <a href="kg-language.html" style="color:var(--accent);text-decoration:none">语言层</a></div>`));
+      ORD.forEach(s=>{const val=lv[s],d=L2BY[s]||{};const m=mv?mv[s]:null;
+        const mdot = (m!=null)?`<span title="真迹实测 ${m.toFixed(2)}" style="position:absolute;top:50%;left:${m*100}%;width:11px;height:11px;border-radius:50%;background:#5a7d6f;transform:translate(-50%,-50%);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.18)"></span>`:'';
+        const mval = (m!=null)?`<span style="width:30px;text-align:right;font-family:var(--mono);font-size:9.5px;color:#5a7d6f;flex-shrink:0">${m.toFixed(2)}</span>`:'';
+        fp.appendChild($(`<div style="display:flex;align-items:center;gap:7px;margin:4px 0;font-size:11.5px"><span style="width:30px;font-family:var(--serif);font-weight:600;color:var(--ink-soft);flex-shrink:0">${s}</span><span style="width:84px;text-align:right;font-size:9px;color:var(--ink-faint);flex-shrink:0;line-height:1.2">${d.low||''}</span><span style="flex:1;height:7px;background:var(--paper-2);border-radius:4px;position:relative"><span style="position:absolute;left:50%;top:0;height:100%;width:1px;background:#cfc6b4"></span><span style="position:absolute;top:50%;left:${val*100}%;width:12px;height:12px;border-radius:50%;background:var(--accent);transform:translate(-50%,-50%);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.18)"></span>${mdot}</span><span style="width:84px;font-size:9px;color:var(--ink-faint);flex-shrink:0;line-height:1.2">${d.high||''}</span><span style="width:28px;text-align:right;font-family:var(--mono);font-size:10px;color:var(--accent);flex-shrink:0">${val.toFixed(2)}</span>${mval}</div>`));});
+      if(mv)fp.appendChild($(`<div style="font-size:10px;color:var(--ink-faint);margin-top:6px;line-height:1.5;border-top:1px dashed var(--line);padding-top:6px">赭点=当初按风格散文打的分;绿点=该风格 ${M.n_works} 幅真迹 VLM 实测的均值。两点越远,说明当初的断言离真迹越远——新真迹越多,绿点越可信。</div>`));
       wrap.appendChild(fp);}
     const g=$('<div class="lang7"></div>');
     SEVEN.forEach(k=>{const v=lo.lang7[k]; g.appendChild($(`<div class="l7"><a class="l7k" href="kg-language.html" title="去绘画语言层看「${k}」">${k}</a><div class="l7v">${v||'<span style="color:var(--ink-faint)">—</span>'}</div></div>`));});
@@ -342,4 +350,5 @@ Promise.all([
   document.title='aha · '+cn;
 }).catch(e=>{document.getElementById('body').innerHTML='<div class="empty" style="padding:40px;text-align:center">加载失败(需服务器):'+e+'</div>';});
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

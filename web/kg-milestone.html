@@ -54,13 +54,13 @@
   .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 里程碑</div>
   <h1>阶段性总结:一张经得起推敲的画</h1>
   <p class="lead">从「一幅画是什么」的<b>第一性原理</b>,把艺术史重做成一张<b>可交互、可调用、敢自我证伪</b>的知识图谱。这一页是它当前的全貌快照——规模、完成度、关键突破,以及<b>诚实标注的边界</b>。</p>
   <div class="stamp" id="stamp">— 数据驱动快照 · 读取 kg_v3_export.json —</div>
-  <div class="breadcrumb"><a href="home.html">🏠 首页</a> › <a href="kg-v2.html">🧭 艺术图谱</a> › <b style="color:var(--ink-soft)">阶段性总结</b></div>
+  <div class="breadcrumb"><a href="home.html"><i data-ic="home"></i> 首页</a> › <a href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <b style="color:var(--ink-soft)">阶段性总结</b></div>
 
   <div class="sec">
     <div class="sec-h"><span class="nx">论点</span>不是五层并列,是一条生成因果链</div>
@@ -164,4 +164,5 @@ fetch('data/kg_v3_export.json').then(r=>r.json()).then(D=>{
     d.innerHTML=`<div class="bt"><span>${lb}</span><span class="bv">${v}/202 · ${pct}%</span></div><div class="bg"><div class="bf" style="width:${pct}%;background:${col}"></div></div>`;b.appendChild(d);});
 }).catch(e=>{document.getElementById('nums').innerHTML='<div style="grid-column:1/-1;color:#a89f8f;font-size:12px;text-align:center">需服务器加载数据资产</div>';});
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

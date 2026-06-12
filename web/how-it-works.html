@@ -60,7 +60,7 @@
   .home-fab:hover{color:var(--accent)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 它是怎么算的</div>
   <h1>把"懂你"摊开来给你看</h1>
@@ -202,4 +202,5 @@ fetch('data/artworks.json').then(r=>r.json()).then(ws=>{
   requestAnimationFrame(()=>$('#exVals').querySelectorAll('.vf').forEach(el=>el.style.width=el.dataset.w+'%'));
 }).catch(()=>{ $('#exVals').innerHTML='<div style="font-size:13px;color:var(--ink-faint)">(样本加载中…)</div>'; });
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

@@ -52,13 +52,13 @@
   .top-fab{position:fixed;right:14px;bottom:14px;z-index:9999;font-family:var(--mono);font-size:12px;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 12px;box-shadow:0 4px 14px rgba(0,0,0,.2);cursor:pointer}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="top-fab" onclick="scrollTo(0,0)">↑ 顶部</div>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 题材层</div>
   <h1 id="title">题材层 · Subject</h1>
   <p class="lead">五大可观测层之一:<b>画什么 · 切入点</b>。从 V1.xlsx Sheet1 零损耗整合为 V2 结构——每个原子带可读 ID,大类层补<b>东/西方语义差异</b>。</p>
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-impl">实现·题材+语言</a> › <b style="color:var(--ink-soft)">题材层</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-impl">实现·题材+语言</a> › <b style="color:var(--ink-soft)">题材层</b></div>
 
   <div class="bar">
     <input class="search" id="q" type="search" placeholder="🔍 搜原子或描述,如「山」「光」「劳动」「未来」…"/>
@@ -2793,7 +2793,7 @@ function artistHtml(id){
   const arts=N2A[id]; if(!arts||!arts.length) return '';
   const chips=arts.slice(0,6).map(aid=>`<a href="kg-artist.html?id=${aid}">${esc(ID2CN[aid]||aid.replace('ARTIST.',''))}</a>`).join('');
   const more=arts.length>6?`<span class="amore">+${arts.length-6}</span>`:'';
-  return `<div class="aa">🎨 ${chips}${more}</div>`;
+  return `<div class="aa"><i data-ic="create"></i> ${chips}${more}</div>`;
 }
 function render(kw){
   kw=(kw||'').trim().toLowerCase();
@@ -2826,4 +2826,5 @@ Promise.all([
   render(q.value);
 });
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

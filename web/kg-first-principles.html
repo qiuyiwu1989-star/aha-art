@@ -75,12 +75,12 @@
   .home-fab:hover{color:var(--accent)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 第一性原理(方法论正式版)</div>
   <h1>从「画是什么」重新结构整个体系</h1>
   <p class="lead">旧 V2 把五层当作<b>并列的兄弟</b>来堆,而世界观层的轴又经不起推敲(实测冗余、镜像证伪)。这一页推倒重来:从<b>「一幅画到底是什么」</b>这个公理出发,推导出哪一层是<b>因</b>、哪些是<b>果</b>——<b>世界观先立,其余皆由它生</b>,而「风格」根本不是一层,是这条因果链上涌现出的签名。</p>
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-root">根·世界观</a> › <b style="color:var(--ink-soft)">第一性原理</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-root">根·世界观</a> › <b style="color:var(--ink-soft)">第一性原理</b></div>
 
   <!-- 公理 -->
   <div class="sec">
@@ -230,4 +230,5 @@ fetch('data/kg_worldview_v3.json').then(r=>r.json()).then(D=>{
   });
 }).catch(e=>{document.getElementById('map').innerHTML='';});
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

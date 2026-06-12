@@ -27,13 +27,13 @@
   .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="tip" id="tip"></div>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 风格演化时间线</div>
   <h1>东西双带 × 时间 × 世界观区</h1>
   <p class="lead">三条独立维度合在一张图:上下两带 = <b>西方 / 东方</b>两大文化谱系;横轴 = <b>时间</b>(已证 年代⊥视觉,故独立成轴);颜色 = <b>6 个世界观区</b>。于是能一眼看出:经验之光只在西方 19c 闪现、写意寄情贯穿东方千年、形式建构是西方 20c 独有……</p>
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">演化时间线</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">演化时间线</b></div>
 
   <div class="controls">
     <div class="seg" id="segWv"><button data-r="all" class="on" style="background:#b0673a;color:#fff">全部区</button></div>
@@ -101,4 +101,5 @@ function draw(){
 }
 function fmtYear(y){return y<0?`公元前${-y}`:`${y} 年`;}
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>aha · 艺术家 · 全量索引(276)</title>
+<title>aha · 艺术家 · 全量索引</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
   :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
@@ -49,14 +49,15 @@
   .ar.flash{box-shadow:0 0 0 3px var(--accent);border-color:var(--accent)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <button id="totop" title="回到顶部地图与搜索" style="display:none;position:fixed;right:16px;bottom:16px;z-index:9999;font-family:var(--mono);font-size:12px;color:#fff;background:var(--accent);border:none;border-radius:999px;padding:9px 15px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25)">↑ 地图 / 搜索</button>
 <div class="tip" id="tip"></div>
 <div class="wrap">
-  <div class="kick">aha · 知识图谱 V3 · 艺术家</div>
+  <div style="max-width:760px;margin:0 auto 22px;background:var(--accent-soft,#f0e4d8);border:1px solid var(--line,#ddd5c6);border-radius:12px;padding:11px 15px;font-size:13px;line-height:1.7;color:var(--ink-soft,#4b463e)"><b style="font-family:var(--mono,monospace);font-size:11px;color:var(--accent,#b0673a);letter-spacing:.04em">📁 研究存档 · 静态快照</b><br>此页为<b>知识图谱艺术家索引</b>的历史版本(数据为 artists_canon 快照,不再实时更新),作为研究过程留存。现役入口请用 <a href="artists.html" style="color:var(--accent,#b0673a);font-weight:600"><i data-ic="compass"></i> 艺术家中枢 artists.html</a>(全部 6,685 位馆藏 + 知识图谱检索)。</div>
+  <div class="kick">aha · 知识图谱 V3 · 艺术家 · 存档</div>
   <h1>艺术家 · 全量索引</h1>
   <p class="lead">艺术家 = 风格的<b>实例 / 生成源</b>。已收录 <b id="tot">…</b> 位,<b id="au">…</b> 位<b>已全部逐个考究(✓)</b>并建有完整主页(世界观坐标 / 题材 / 七大构成 / 情绪 / 画外音 / 代表作)。按所属<b>世界观区</b>或时间分组,可点进任一位。</p>
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-artist">实例·艺术家</a> › <b style="color:var(--ink-soft)">艺术家索引</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-artist">实例·艺术家</a> › <b style="color:var(--ink-soft)">艺术家索引</b></div>
   <div class="bar" style="position:sticky;top:0;z-index:30;background:var(--paper);padding:8px 0 6px;border-bottom:1px solid var(--line)">
     <input class="search" id="q" type="search" placeholder="🔍 搜艺术家名,如「莫奈」「八大」「梵高」…"/>
     <div class="ctrls">
@@ -83,24 +84,25 @@ const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验�
 const ERAS=[[-1e9,0,'上古'],[1,900,'古典·汉唐'],[901,1300,'中世·宋元'],[1301,1600,'文艺复兴·明'],[1601,1800,'巴洛克·清'],[1801,1900,'19 世纪'],[1901,1980,'现代'],[1981,1e9,'当代']];
 const TICKS=[[-2000,'史前'],[-500,'先秦'],[0,'汉'],[750,'唐'],[1100,'宋'],[1300,'元'],[1500,'明'],[1700,'清'],[1850,'19c'],[1920,'现代'],[2000,'当代']];
 let R=[],region='all',view='wv',au='all',q='',navHidden=false,CENT={},lastGroups=[],PORT={};
+// 📁 研究存档:数据取自静态快照 data/kg_artists_canon_snapshot.json(冻结,不再实时)
 Promise.all([
-  fetch('data/kg_artists.json').then(r=>r.json()),
-  fetch('data/kg_worldview_regions.json').then(r=>r.json()).catch(()=>({regions:[]})),
-  fetch('data/kg_artist_portraits.json').then(r=>r.json()).catch(()=>({}))
-]).then(([A,wv,port])=>{
-  Object.keys(port||{}).forEach(id=>{if(port[id]&&port[id].file)PORT[id]=port[id].file;});
+  fetch('data/kg_artists_canon_snapshot.json').then(r=>r.json()),
+  fetch('data/kg_worldview_regions.json').then(r=>r.json()).catch(()=>({regions:[]}))
+]).then(([C,wv])=>{
   (wv.regions||[]).forEach(r=>CENT[r.id]=[r.cx,r.cy]);
-  R=(A.roster||[]).map(r=>{const a=A.artists[r.id]||{};let rx,sp;
-    if(a.wv&&a.wv.x!=null){rx=a.wv.x;sp=a.wv.y;}
-    else if(a.inherited_vector){rx=a.inherited_vector['再现-表现'];sp=a.inherited_vector['结构-感知'];}
-    if(rx==null&&CENT[r.wv]){rx=CENT[r.wv][0]+(((r.id.length*7)%10)/10-0.5)*0.06;sp=CENT[r.wv][1]+(((r.id.length*13)%10)/10-0.5)*0.06;}
-    return {...r,rx,sp};});
+  R=(C.artists||[]).map(a=>{let rx=a.wx,sp=a.wy;
+    if((rx==null||sp==null)&&CENT[a.wv]){rx=CENT[a.wv][0]+(((a.id.length*7)%10)/10-0.5)*0.06;sp=CENT[a.wv][1]+(((a.id.length*13)%10)/10-0.5)*0.06;}
+    if(a.portrait)PORT[a.id]=a.portrait;
+    return {id:a.id,cn:a.cn,region:a.region,wv:a.wv,era:a.era,era_disp:a.era_disp,primary:a.primary,authored:a.authored!==false,n:a.n,rx,sp};});
   document.getElementById('tot').textContent=R.length;
   document.getElementById('au').textContent=R.filter(r=>r.authored).length;
   const bind=(id,key,fn)=>document.getElementById(id).addEventListener('click',e=>{const v=e.target.dataset[key];if(v==null)return;fn(v);[...e.currentTarget.children].forEach(b=>b.classList.toggle('on',b===e.target));render();});
   bind('regionseg','r',v=>region=v); bind('viewseg','v',v=>view=v); bind('auseg','a',v=>au=v);
   document.getElementById('navtoggle').addEventListener('click',e=>{navHidden=!navHidden;e.target.textContent=navHidden?'显示图表 ▾':'隐藏图表 ▴';e.target.classList.toggle('on',!navHidden);drawNav();});
   document.getElementById('q').addEventListener('input',e=>{q=e.target.value.trim();render();});
+  // 支持 ?q= 预填检索(从详情页未知人名链接跳来时)
+  const _uq=new URLSearchParams(location.search).get('q');
+  if(_uq){q=_uq.trim();const qi=document.getElementById('q');qi.value=q;}
   render();
 });
 function pass(r){if(region!=='all'&&r.region!==region)return false;if(au==='auth'&&!r.authored)return false;if(q&&!r.cn.includes(q))return false;return true;}
@@ -181,4 +183,5 @@ function render(){
   window.addEventListener('scroll',upd,{passive:true});
   b.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));upd();})();
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

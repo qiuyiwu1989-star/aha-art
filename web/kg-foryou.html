@@ -37,12 +37,15 @@
   .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="wrap">
   <div class="kick">aha · 让美来找你</div>
   <h1>为你,新画一幅</h1>
   <p class="lead">aha 的承诺是「art that finds you」。这次更进一步:挑几幅你被吸引的<b>真迹</b> → aha 定位你<b>在世界观平面的审美位置</b> → 用知识图谱<b>为你生成一幅从未存在过的画</b>。</p>
-  <div class="breadcrumb"><a href="home.html">🏠 首页</a> › <a href="kg-v2.html">🧭 艺术图谱</a> › <b style="color:var(--ink-soft)">为你生成</b></div>
+  <div class="breadcrumb"><a href="home.html"><i data-ic="home"></i> 首页</a> › <a href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <b style="color:var(--ink-soft)">为你生成</b></div>
+  <div style="max-width:720px;margin:11px auto 0;border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:12px;line-height:1.6;color:var(--ink-mute);text-align:center">
+    好奇 aha <b style="color:var(--ink-soft)">怎么从你的选择定位审美</b>、推荐内核每一分怎么算? → <a href="kg-me.html" style="color:var(--accent);text-decoration:none;font-weight:600">推荐内核装置(实验场)→</a>
+  </div>
   <div id="app"></div>
   <a class="back" href="kg-gallery.html">← 看大家生成的图库</a>
 </div>
@@ -105,7 +108,7 @@ function render(){
     <div class="you">你的审美落在 <b id="ynm"></b> 一带</div>
     <div style="text-align:center;font-size:12px;color:var(--ink-mute)">最合你的风格(可换):</div>
     <div class="matchrow" id="mrow"></div>
-    <button class="genbtn">🎨 aha 为我画一幅</button>
+    <button class="genbtn"><i data-ic="create"></i> aha 为我画一幅</button>
     <div class="genstat" id="gstat"></div><div class="genimg" id="gimg"></div><div id="whybox"></div>
     <div class="redo"><span id="redo">↺ 重新选过</span></div></div>`);
   app.appendChild(card);
@@ -153,9 +156,10 @@ async function generate(){
     const d=await r.json();
     if(d.url){ box.innerHTML='<img src="'+(d.file||d.url)+'" alt=""/>';
       st.innerHTML=d.saved?'✅ 这是 aha 为你画的 · 已存入 <a href="kg-gallery.html" style="color:var(--accent)">图库</a>':'✅ 已生成';
-      why.innerHTML=`<div class="why">🎨 <b>为什么是这幅</b>:你被吸引的画把你的审美定在 <b>${esc(s.region_cn||'')}</b> 一带,最近的风格是 <b>${esc(s.cn)}</b>;于是 aha 以它的语言(${esc(vecWords(s.vec||{}).slice(0,3).join('、')||'其典型语言')})、意境${esc(s.anchor||'—')},为你新画了一幅<b>从未存在过</b>的画。换上面的风格芯片可重画。</div>`;
+      why.innerHTML=`<div class="why"><i data-ic="create"></i> <b>为什么是这幅</b>:你被吸引的画把你的审美定在 <b>${esc(s.region_cn||'')}</b> 一带,最近的风格是 <b>${esc(s.cn)}</b>;于是 aha 以它的语言(${esc(vecWords(s.vec||{}).slice(0,3).join('、')||'其典型语言')})、意境${esc(s.anchor||'—')},为你新画了一幅<b>从未存在过</b>的画。换上面的风格芯片可重画。</div>`;
     } else st.textContent='⚠️ '+(d.error||'生成失败');
   }catch(e){ st.textContent='⚠️ '+e; }
 }
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>

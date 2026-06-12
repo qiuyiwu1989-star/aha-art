@@ -57,14 +57,14 @@
   .top-fab{position:fixed;right:14px;bottom:14px;z-index:9999;font-family:var(--mono);font-size:12px;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 12px;box-shadow:0 4px 14px rgba(0,0,0,.2);cursor:pointer}
 </style>
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<a class="home-fab" href="home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="top-fab" onclick="scrollTo(0,0)">↑ 顶部</div>
 <div class="tip" id="tip"></div>
 <div class="wrap">
   <div class="kick">aha · 知识图谱 V3 · 风格库</div>
   <h1>风格库 · 三种导航,一座种子库</h1>
   <p class="lead"><b>下面是 202 个风格的种子库</b>;上面叠了两种<b>可视化导航</b>——<b>映射</b>(世界观平面)与<b>时间线</b>(东西双带)。点导航里的一颗点 → 库里那张卡<b>滚动高亮</b>;点区/时代标签 → 跳到对应分组。可视化导航 / 时间导航 / 映射导航,三种对照着逛。</p>
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html">🏠 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html">🧭 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">风格库</b></div>
+  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="home.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-style">涌现·风格</a> › <b style="color:var(--ink-soft)">风格库</b></div>
 
   <div class="bar">
     <input class="search" id="q" type="search" placeholder="🔍 搜风格名,如「印象」「水墨」「立体」「禅」…"/>
@@ -78,7 +78,7 @@
   </div>
 
   <div class="nav">
-    <div class="navtabs" id="navtabs"><button data-n="map" class="on">🗺️ 映射 · 世界观平面</button><button data-n="time">🕰️ 时间线 · 东西双带</button><button data-n="off">隐藏</button></div>
+    <div class="navtabs" id="navtabs"><button data-n="map" class="on"><i data-ic="map"></i> 映射 · 世界观平面</button><button data-n="time">🕰️ 时间线 · 东西双带</button><button data-n="off">隐藏</button></div>
     <div id="navbox"></div>
     <div class="navhint" id="navhint"></div>
   </div>
@@ -196,4 +196,5 @@ function render(){
   drawNav();
 }
 </script>
+<script src="js/aha-icons.js"></script>
 </body></html>
