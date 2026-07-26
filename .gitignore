@@ -10,6 +10,13 @@ web/img/
 _yh_sql/
 *.sql
 
+# 数据库文件
+*.db
+*.sqlite
+
+# 大型生成数据(pipeline 输出,走 COS)
+pipeline/scripts/cos_overview.json
+
 # Python
 __pycache__/
 *.pyc
