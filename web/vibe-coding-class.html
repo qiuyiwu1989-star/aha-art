@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>和 AI 一起做产品 · vibe coding 课 — aha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4f1ea; --card:#fffdf8; --line:#ddd5c6; --line-soft:#e8e1d4;
+    --ink:#1d1b18; --ink-soft:#4b463e; --ink-mute:#857d6f; --ink-faint:#a89f8f;
+    --accent:#b0673a; --accent-soft:#f0e4d8; --accent-line:#e5d3c2;
+    --green:#5a7d6f; --green-soft:#e4ede9; --blue:#5b7596; --blue-soft:#e3e9f0;
+    --gold:#c98a1a; --gold-soft:#f3e7cb; --reb:#c0492f;
+    --serif:"Noto Serif SC","Songti SC",serif;
+    --sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:var(--sans); color:var(--ink); background:var(--paper);
+    overflow:hidden; -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(circle at 18% 12%, #fffdf8 0%, transparent 40%),
+      radial-gradient(circle at 82% 88%, #efe9dd 0%, transparent 45%);
+  }
+  .deck{position:fixed;inset:0}
+  .slide{
+    position:absolute; inset:0;
+    display:flex; flex-direction:column; justify-content:center; align-items:center;
+    padding:clamp(28px,6vw,90px);
+    opacity:0; visibility:hidden; transform:translateY(18px) scale(.992);
+    transition:opacity .5s ease, transform .5s ease;
+    text-align:center;
+  }
+  .slide.active{opacity:1; visibility:visible; transform:none; z-index:2}
+  .slide.past{transform:translateY(-18px) scale(.992)}
+  .wrap{width:100%; max-width:1080px}
+
+  /* typography */
+  .kicker{font-family:var(--sans); font-weight:700; letter-spacing:.22em;
+    font-size:clamp(11px,1.3vw,15px); color:var(--accent); text-transform:uppercase; margin-bottom:22px}
+  h1{font-family:var(--serif); font-weight:900; line-height:1.12;
+    font-size:clamp(34px,6.4vw,82px); letter-spacing:.01em}
+  h2{font-family:var(--serif); font-weight:700; line-height:1.18;
+    font-size:clamp(28px,4.6vw,58px)}
+  .lead{font-family:var(--serif); font-size:clamp(20px,2.9vw,36px); line-height:1.5; color:var(--ink-soft); margin-top:26px}
+  .sub{font-size:clamp(15px,1.8vw,22px); color:var(--ink-mute); margin-top:18px; line-height:1.7}
+  .em{color:var(--accent)}
+  .em-g{color:var(--green)} .em-b{color:var(--blue)}
+  .big-num{font-family:var(--serif); font-weight:900; color:var(--accent); font-size:clamp(40px,7vw,96px); line-height:1}
+
+  /* cover */
+  .cover h1{margin-bottom:8px}
+  .cover .tagline{font-family:var(--serif); font-size:clamp(17px,2.3vw,28px); color:var(--accent); margin-top:18px}
+  .cover .by{margin-top:40px; color:var(--ink-mute); font-size:clamp(13px,1.5vw,17px); letter-spacing:.05em}
+  .pill{display:inline-block; padding:7px 18px; border:1px solid var(--accent-line);
+    background:var(--accent-soft); color:var(--accent); border-radius:999px;
+    font-size:clamp(12px,1.4vw,15px); font-weight:700; letter-spacing:.04em}
+
+  /* section divider */
+  .divider .layer-no{font-family:var(--serif); font-weight:900; font-size:clamp(64px,13vw,180px);
+    color:var(--accent-soft); line-height:.9; -webkit-text-stroke:2px var(--accent-line)}
+  .divider h2{margin-top:-14px}
+
+  /* card grids */
+  .grid{display:grid; gap:clamp(12px,1.6vw,20px); margin-top:34px; text-align:left}
+  .grid.g3{grid-template-columns:repeat(3,1fr)}
+  .grid.g2{grid-template-columns:repeat(2,1fr)}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:clamp(16px,2vw,26px); box-shadow:0 2px 0 var(--line-soft)}
+  .card .n{font-family:var(--serif); font-weight:900; color:var(--accent); font-size:clamp(18px,2vw,24px)}
+  .card .t{font-family:var(--serif); font-weight:700; font-size:clamp(17px,2vw,25px); margin:6px 0 8px}
+  .card .d{color:var(--ink-mute); font-size:clamp(13px,1.5vw,17px); line-height:1.6}
+
+  /* flip cards (话术升级) */
+  .flips{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(12px,1.6vw,18px); margin-top:30px; perspective:1400px}
+  .flip{height:clamp(150px,20vh,200px); cursor:pointer; position:relative}
+  .flip .face{position:absolute; inset:0; border-radius:16px; backface-visibility:hidden;
+    display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
+    padding:clamp(16px,2vw,24px); text-align:left; transition:transform .55s cubic-bezier(.4,.1,.2,1)}
+  .flip .front{background:#fbf2ec; border:1.5px solid var(--accent-line)}
+  .flip .back{background:var(--green-soft); border:1.5px solid #c3d6cd; transform:rotateY(180deg)}
+  .flip.flipped .front{transform:rotateY(180deg)}
+  .flip.flipped .back{transform:rotateY(360deg)}
+  .flip .tag-bad{color:var(--reb); font-weight:700; font-size:clamp(11px,1.3vw,14px); letter-spacing:.05em; margin-bottom:10px}
+  .flip .tag-good{color:var(--green); font-weight:700; font-size:clamp(11px,1.3vw,14px); letter-spacing:.05em; margin-bottom:10px}
+  .flip .say{font-family:var(--serif); font-size:clamp(16px,1.9vw,23px); line-height:1.35; font-weight:700}
+  .flip .method{margin-top:auto; font-size:clamp(11px,1.3vw,14px); color:var(--ink-mute)}
+  .hint-click{display:inline-block; margin-top:24px; font-size:clamp(12px,1.4vw,15px); color:var(--accent);
+    border:1px dashed var(--accent-line); padding:6px 16px; border-radius:999px}
+
+  /* 实战动作 */
+  .moves{display:grid; grid-template-columns:1fr 1fr; gap:clamp(10px,1.3vw,16px); margin-top:24px; text-align:left}
+  .move{background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:clamp(12px,1.5vw,19px); display:flex; gap:13px; align-items:flex-start; box-shadow:0 2px 0 var(--line-soft)}
+  .move .mi{flex:0 0 auto; width:34px; height:34px; border-radius:9px; background:var(--accent-soft);
+    color:var(--accent); display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-weight:900; font-size:18px}
+  .move .mt{font-family:var(--serif); font-weight:700; font-size:clamp(15px,1.75vw,21px); line-height:1.25}
+  .move .md{color:var(--ink-mute); font-size:clamp(12px,1.35vw,15px); line-height:1.5; margin-top:4px}
+  .move .mq{color:var(--accent); font-size:clamp(11px,1.25vw,14px); line-height:1.45; margin-top:6px; font-style:italic}
+  .move .mq::before{content:"“"} .move .mq::after{content:"”"}
+
+  /* 关键时刻 quotes */
+  .quotes{display:flex; flex-direction:column; gap:14px; margin-top:30px; text-align:left}
+  .quote{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent);
+    border-radius:12px; padding:clamp(16px,2vw,24px); cursor:pointer; transition:.25s}
+  .quote:hover{background:#fffaf2}
+  .quote.open{border-left-color:var(--green)}
+  .quote .say{font-family:var(--serif); font-weight:700; font-size:clamp(17px,2.1vw,27px); line-height:1.4}
+  .quote .say::before{content:"“"; color:var(--accent); font-size:1.2em; line-height:0}
+  .quote .after{max-height:0; overflow:hidden; transition:max-height .4s ease, margin .4s ease; color:var(--green); font-size:clamp(14px,1.6vw,19px); line-height:1.6}
+  .quote.open .after{max-height:140px; margin-top:14px}
+  .quote .after b{color:var(--ink)}
+  .quote .lbl{font-size:clamp(11px,1.3vw,14px); color:var(--ink-faint); font-weight:700; letter-spacing:.04em; display:block; margin-bottom:8px}
+
+  /* 规律 table */
+  .law{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:32px; text-align:left}
+  .law .box{border-radius:16px; padding:clamp(18px,2.2vw,30px)}
+  .law .weak{background:#f3efe7; border:1px solid var(--line)}
+  .law .strong{background:var(--accent-soft); border:1.5px solid var(--accent-line)}
+  .law .lbl{font-weight:700; letter-spacing:.05em; font-size:clamp(12px,1.4vw,15px); margin-bottom:12px}
+  .law .weak .lbl{color:var(--ink-mute)} .law .strong .lbl{color:var(--accent)}
+  .law .ex{font-family:var(--serif); font-size:clamp(16px,2vw,24px); line-height:1.45; font-weight:700; margin-bottom:10px}
+  .law .scope{font-size:clamp(13px,1.5vw,17px); color:var(--ink-soft)}
+
+  /* 升级器 互动 */
+  .builder{margin-top:26px; width:100%}
+  .prompt-box{background:var(--ink); color:#f4ede2; border-radius:16px; padding:clamp(20px,2.6vw,34px);
+    font-family:var(--serif); font-size:clamp(18px,2.4vw,30px); line-height:1.55; text-align:left; min-height:120px;
+    display:flex; align-items:center; box-shadow:0 8px 30px rgba(40,30,20,.18)}
+  .prompt-box .core{color:#fff; font-weight:700}
+  .prompt-box .add{color:var(--gold); font-weight:500}
+  .chips{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:20px}
+  .chip{cursor:pointer; user-select:none; border:1.5px solid var(--accent-line); background:var(--card);
+    color:var(--accent); border-radius:999px; padding:9px 18px; font-size:clamp(13px,1.5vw,17px); font-weight:700;
+    transition:.18s}
+  .chip:hover{background:var(--accent-soft)}
+  .chip.on{background:var(--accent); color:#fff; border-color:var(--accent)}
+  .meter{margin-top:18px; font-size:clamp(13px,1.5vw,17px); color:var(--ink-mute)}
+  .meter b{color:var(--accent); font-family:var(--serif); font-size:1.4em}
+
+  /* end */
+  .end .gold-line{font-family:var(--serif); font-weight:900; font-size:clamp(26px,4.4vw,56px); line-height:1.3}
+  .mnemonic{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:34px}
+  .mnemonic span{background:var(--card); border:1px solid var(--line); border-radius:999px;
+    padding:8px 18px; font-family:var(--serif); font-weight:700; font-size:clamp(14px,1.7vw,21px); color:var(--accent)}
+
+  /* chrome */
+  .progress{position:fixed; top:0; left:0; height:4px; background:var(--accent); z-index:50; transition:width .4s ease}
+  .nav{position:fixed; bottom:22px; right:26px; display:flex; align-items:center; gap:12px; z-index:50}
+  .nav button{width:42px; height:42px; border-radius:50%; border:1px solid var(--line); background:var(--card);
+    color:var(--ink-soft); font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.18s}
+  .nav button:hover{background:var(--accent-soft); color:var(--accent); border-color:var(--accent-line)}
+  .counter{font-family:var(--serif); font-weight:700; color:var(--ink-mute); font-size:15px; min-width:54px; text-align:center}
+  .help{position:fixed; bottom:26px; left:26px; z-index:50; color:var(--ink-faint); font-size:13px; letter-spacing:.03em}
+  .brand{position:fixed; top:20px; left:26px; z-index:50; font-family:var(--serif); font-weight:900; color:var(--accent); font-size:17px; letter-spacing:.02em}
+
+  @media (max-width:760px){
+    .grid.g3,.flips,.law,.moves{grid-template-columns:1fr}
+    .grid.g2{grid-template-columns:1fr}
+    .flip{height:auto; min-height:130px}
+    .flip .face{position:relative}
+    .help{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="brand">aha<span style="color:var(--ink-faint);font-weight:400"> · vibe coding 课</span></div>
+
+<main class="deck" id="deck">
+
+  <!-- 1 封面 -->
+  <section class="slide cover active">
+    <div class="wrap">
+      <div class="pill">一堂关于 vibe coding 的课</div>
+      <h1 style="margin-top:26px">和 AI 一起<span class="em">做一个产品</span></h1>
+      <p class="tagline">—— 一个不写代码的人，怎么做出 139 个页面的上线产品</p>
+      <p class="sub">以 <b>aha · 懂你的人类美术馆</b> 为例，聊聊我一路的成长</p>
+      <p class="by">主讲 · 邱懿武　|　按 → 开始</p>
+    </div>
+  </section>
+
+  <!-- 2 提问 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">先问一个问题</div>
+      <h2>想做一个 App、一个网站、一个游戏——<br>是不是<span class="em">一定要先学会写代码</span>？</h2>
+      <p class="lead">几年前：是。<br>现在：<span class="em">不一定了。</span></p>
+    </div>
+  </section>
+
+  <!-- 3 重定义 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">什么是 vibe coding</div>
+      <h2>你用<span class="em">人话</span>说出想要什么，<br>AI 来写代码，<br>你来<span class="em">判断好坏</span>、然后不停地说"再这样改"。</h2>
+      <p class="lead">所以你的角色是 <span class="em">导演</span>，不是打字员。</p>
+    </div>
+  </section>
+
+  <!-- 4 三件超能力 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">真正值钱的三件事</div>
+      <h2>会<span class="em">表达</span>想要什么　·　会<span class="em-g">判断</span>好不好　·　会<span class="em-b">追问</span></h2>
+      <p class="lead">而这三样——<br><b>13 岁的你，已经有了。</b></p>
+    </div>
+  </section>
+
+  <!-- 5 案例 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">先看看成果 · aha.art</div>
+      <h2>同一批人类名画，<span class="em">千人千面</span>地重排成"懂你"的画廊</h2>
+      <div class="grid g3">
+        <div class="card"><div class="big-num">139</div><div class="d" style="margin-top:8px">个能在浏览器打开、能点能玩的页面</div></div>
+        <div class="card"><div class="big-num">0</div><div class="d" style="margin-top:8px">行我亲手写的代码——我是产品/设计背景</div></div>
+        <div class="card"><div class="big-num">1</div><div class="d" style="margin-top:8px">个真的上线、能用网址打开的产品</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 分隔:第一层 -->
+  <section class="slide divider">
+    <div class="wrap">
+      <div class="layer-no">01</div>
+      <h2>6 条经验 · <span class="em">做产品的心法</span></h2>
+      <p class="sub">这一路上，比"会用工具"更重要的事</p>
+    </div>
+  </section>
+
+  <!-- 7 六条经验 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">心法 · 越早知道越好</div>
+      <div class="grid g3">
+        <div class="card"><span class="n">1</span><div class="t">从一个"痒"开始</div><div class="d">先有一个你真想要、但现在没有的东西。代码是后面的事。</div></div>
+        <div class="card"><span class="n">2</span><div class="t">做"能点的"东西</div><div class="d">想法变成能玩的页面，你才知道它到底好不好。</div></div>
+        <div class="card"><span class="n">3</span><div class="t">品味就是超能力</div><div class="d">AI 负责做出来，你负责挑剔——说清哪里不对、想要什么。</div></div>
+        <div class="card"><span class="n">4</span><div class="t">做减法，回原点</div><div class="d">先把一件小事做对，胜过一次做十件半成品。</div></div>
+        <div class="card"><span class="n">5</span><div class="t">诚实：分清"以为/验证"</div><div class="d">AI 会很自信地胡说。当那个"等一下，真的吗？"的人。</div></div>
+        <div class="card"><span class="n">6</span><div class="t">留一条日志</div><div class="d">每做一个就登记。一学期后回看——成长是看得见的。</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 分隔:第二层 -->
+  <section class="slide divider">
+    <div class="wrap">
+      <div class="layer-no">02</div>
+      <h2>14 个实用技巧 · <span class="em">怎么跟 AI 协作</span></h2>
+      <p class="sub">6 个"怎么说话" + 8 个"怎么推进活儿"，全是我真实做过的</p>
+    </div>
+  </section>
+
+  <!-- 9 话术升级 互动 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">点一下卡片 · 把"新手说法"翻成"导演说法"</div>
+      <div class="flips" id="flips">
+        <div class="flip"><div class="face front"><div class="tag-bad">❌ 新手会说</div><div class="say">帮我做好看一点</div></div><div class="face back"><div class="tag-good">✅ 导演会说</div><div class="say">太幼稚了，我要更高级、更安静的感觉</div><div class="method">方法 · 说感觉词</div></div></div>
+        <div class="flip"><div class="face front"><div class="tag-bad">❌ 新手会说</div><div class="say">帮我做一个</div></div><div class="face back"><div class="tag-good">✅ 导演会说</div><div class="say">做 3 版给我对比着选，我选完再细化</div><div class="method">方法 · 要方案</div></div></div>
+        <div class="flip"><div class="face front"><div class="tag-bad">❌ 新手会说</div><div class="say">好的，谢谢</div></div><div class="face back"><div class="tag-good">✅ 导演会说</div><div class="say">你确定吗？为什么？这是你验证过的还是猜的</div><div class="method">方法 · 勤追问</div></div></div>
+        <div class="flip"><div class="face front"><div class="tag-bad">❌ 新手会说</div><div class="say">再加个功能</div></div><div class="face back"><div class="tag-good">✅ 导演会说</div><div class="say">退一步——这东西到底给谁、解决什么</div><div class="method">方法 · 退一步</div></div></div>
+        <div class="flip"><div class="face front"><div class="tag-bad">❌ 新手会说</div><div class="say">这个行不行</div></div><div class="face back"><div class="tag-good">✅ 导演会说</div><div class="say">假设我是用户，第一眼看到什么、会卡在哪</div><div class="method">方法 · 讲场景</div></div></div>
+        <div class="flip"><div class="face front"><div class="tag-bad">❌ 新手会说</div><div class="say">不对，重做</div></div><div class="face back"><div class="tag-good">✅ 导演会说</div><div class="say">问题在哪、因为什么、我想要的是……</div><div class="method">方法 · 指清楚</div></div></div>
+      </div>
+      <span class="hint-click">👆 卡片可以点 · 翻完看下一页：8 个"推进活儿"的实战动作</span>
+    </div>
+  </section>
+
+  <!-- 9b 实战动作 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">话术之外 · 8 个让 AI 又快又准的实战动作</div>
+      <div class="moves">
+        <div class="move"><div class="mi">看</div><div><div class="mt">给它看，别光说</div><div class="md">截图圈出"这里不对"，比打 100 个字都准。我 21% 的话都是带着图发的。</div><div class="mq">你参考这里的样式改一改（附图）</div></div></div>
+        <div class="move"><div class="mi">划</div><div><div class="mt">先要计划，再动手</div><div class="md">大事别让它直接写。先让它列步骤，你确认了再开干。</div><div class="mq">后面展开，我们先讨论用户画像</div></div></div>
+        <div class="move"><div class="mi">规</div><div><div class="mt">开头就立规矩</div><div class="md">把"红线"先说死：这张别删 / 不许编数据 / 先文字后图片。</div><div class="mq">不要替代现在的，作为新的备份</div></div></div>
+        <div class="move"><div class="mi">小</div><div><div class="mt">先做个最小的能跑的</div><div class="md">别一上来做大全套。先做个能跑的小样，验证对了再扩。</div><div class="mq">先做一个不依赖真实数据的 demo 试试看</div></div></div>
+        <div class="move"><div class="mi">检</div><div><div class="mt">让 AI 自己检查</div><div class="md">做完别全信。让它回头复核、给你一份"还差什么"的清单。</div><div class="mq">你复核下有没有逻辑错误，给我一个缺失 list</div></div></div>
+        <div class="move"><div class="mi">参</div><div><div class="mt">给它一个参照物</div><div class="md">说不清想要什么时，丢一个例子/竞品/参考图，让它照着感觉来。</div><div class="mq">首页要参考沙龙墙 / 我把参考发你看看</div></div></div>
+        <div class="move"><div class="mi">一</div><div><div class="mt">一次只改一件事</div><div class="md">一口气改五处，错了都不知道是哪处。一步一步来，好对比。</div><div class="mq">一步一步开发 / 一个一个我来审阅</div></div></div>
+        <div class="move"><div class="mi">夸</div><div><div class="mt">先肯定，再给方向</div><div class="md">"这个很好，接下来……"——协作不卡壳，AI 也更敢往前做。</div><div class="mq">这个很好，你进一步完善这个体系</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 分隔:第三层 -->
+  <section class="slide divider">
+    <div class="wrap">
+      <div class="layer-no">03</div>
+      <h2>关键时刻 · <span class="em">真实复盘</span></h2>
+      <p class="sub">让这个项目真正上台阶的，是这几句话</p>
+    </div>
+  </section>
+
+  <!-- 11 关键时刻 互动 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">点开每一句 · 看看"这句话之后发生了什么"</div>
+      <div class="quotes" id="quotes">
+        <div class="quote"><span class="lbl">决策 1 · 开局做减法</span><div class="say">我们先来做减法呢……回归原点，想想怎么做会比较好</div><div class="after"><b>这句话之后：</b>从"把所有名画都搬上网"，收敛成一句话能说清的核心。它给了 139 个页面一根<b>脊柱</b>。</div></div>
+        <div class="quote"><span class="lbl">决策 2 · 要经得起推敲</span><div class="say">这个知识图谱，要经得起推敲、要科学化、要有依据</div><div class="after"><b>这句话之后：</b>漂亮的 demo 升级成可信的系统——我们甚至<b>主动撤回</b>了一个站不住的结论。</div></div>
+        <div class="quote"><span class="lbl">决策 3 · 这是给谁的</span><div class="say">项目要分"真实产品"和"互动装置"……这是给谁的</div><div class="after"><b>这句话之后：</b>散开的页面被重新排成<b>秩序</b>：给用户用的，和给人讲引擎的，分开了。</div></div>
+        <div class="quote"><span class="lbl">决策 4 · 降门槛</span><div class="say">策展这件事，一定要降低门槛、提升互动率</div><div class="after"><b>这句话之后：</b>从"给内行看的冷功能"，变成"<b>普通人想玩</b>"的东西。</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 那条规律 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">复盘出的那条规律</div>
+      <h2>让项目上台阶的，几乎都不是"<span style="color:var(--ink-mute)">派活</span>"，<br>而是"<span class="em">定框架</span>"。</h2>
+      <div class="law">
+        <div class="box weak"><div class="lbl">派活型沟通</div><div class="ex">"帮我把按钮改红"</div><div class="scope">只决定 <b>1 个</b> 细节</div></div>
+        <div class="box strong"><div class="lbl">定框架型沟通</div><div class="ex">"做减法" · "这是给谁的" · "经不经得起推敲"</div><div class="scope">一句话决定 <b>后面几百个</b> 决定的方向</div></div>
+      </div>
+      <p class="sub">而且这些话都有个共同点——都是<span class="em">"往后退一步"</span>的话：卡住时不往前加功能，而是退回去问"我到底要什么"。</p>
+    </div>
+  </section>
+
+  <!-- 13 现场互动:升级器 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">现场试试 · 把一句烂指令"升级"成导演指令</div>
+      <div class="builder">
+        <div class="prompt-box" id="promptBox"><span class="core">帮我做个游戏</span></div>
+        <div class="chips" id="builderChips">
+          <span class="chip" data-add="，我要紧张刺激、让人上头的感觉">＋ 说感觉</span>
+          <span class="chip" data-add="，做 3 种不同玩法给我对比">＋ 要方案</span>
+          <span class="chip" data-add="，想象一个 10 岁小孩在玩，第一关 30 秒要让他笑出来">＋ 讲场景</span>
+          <span class="chip" data-add="，先想清楚这游戏到底好玩在哪一个点">＋ 退一步</span>
+          <span class="chip" data-add="，做完告诉我哪里可能不好玩">＋ 勤追问</span>
+        </div>
+        <div class="meter">导演分：<b id="score">1</b> / 6　<span id="scoreNote">— 越像导演，AI 给的东西越好</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 收尾金句 -->
+  <section class="slide end">
+    <div class="wrap">
+      <div class="kicker">如果今天只记住一句话</div>
+      <p class="gold-line">决定你作品上限的，<br>不是你<span style="color:var(--ink-mute)">会不会写代码</span>，<br>而是你<span class="em">会不会"说话"</span>。</p>
+      <div class="mnemonic">
+        <span>说感觉</span><span>要方案</span><span>勤追问</span><span>退一步</span><span>讲场景</span><span>指清楚</span>
+      </div>
+      <p class="sub" style="margin-top:34px">这六件事，越练越值钱。　谢谢大家 ✦</p>
+    </div>
+  </section>
+
+</main>
+
+<div class="nav">
+  <button id="prev" aria-label="上一页">‹</button>
+  <span class="counter" id="counter">1 / 15</span>
+  <button id="next" aria-label="下一页">›</button>
+</div>
+<div class="help">← → 翻页　·　空格 下一页</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var cur = 0;
+  var progress = document.getElementById('progress');
+  var counter = document.getElementById('counter');
+
+  function render(){
+    slides.forEach(function(s,i){
+      s.classList.remove('active','past');
+      if(i===cur) s.classList.add('active');
+      else if(i<cur) s.classList.add('past');
+    });
+    progress.style.width = ((cur)/(slides.length-1)*100)+'%';
+    counter.textContent = (cur+1)+' / '+slides.length;
+  }
+  function go(n){ cur = Math.max(0, Math.min(slides.length-1, n)); render(); }
+
+  document.getElementById('next').onclick = function(){ go(cur+1); };
+  document.getElementById('prev').onclick = function(){ go(cur-1); };
+  document.addEventListener('keydown', function(e){
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){ e.preventDefault(); go(cur+1); }
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){ e.preventDefault(); go(cur-1); }
+    else if(e.key==='Home'){ go(0); }
+    else if(e.key==='End'){ go(slides.length-1); }
+  });
+  // swipe (mobile)
+  var sx=0;
+  document.addEventListener('touchstart',function(e){ sx=e.touches[0].clientX; },{passive:true});
+  document.addEventListener('touchend',function(e){
+    var dx=e.changedTouches[0].clientX-sx;
+    if(Math.abs(dx)>50){ go(dx<0?cur+1:cur-1); }
+  },{passive:true});
+
+  // 互动 1 · 话术翻牌
+  document.getElementById('flips').addEventListener('click', function(e){
+    var f = e.target.closest('.flip'); if(f) f.classList.toggle('flipped');
+  });
+  // 互动 2 · 关键时刻展开
+  document.getElementById('quotes').addEventListener('click', function(e){
+    var q = e.target.closest('.quote'); if(q) q.classList.toggle('open');
+  });
+  // 互动 3 · 指令升级器
+  var core = '帮我做个游戏';
+  var box = document.getElementById('promptBox');
+  var scoreEl = document.getElementById('score');
+  var note = document.getElementById('scoreNote');
+  var notes = ['— 太空了，AI 只能瞎猜','— 有点意思了','— 开始像样了','— 这就是个甲方了','— 很专业！','— 满分导演！🎬'];
+  document.getElementById('builderChips').addEventListener('click', function(e){
+    var c = e.target.closest('.chip'); if(!c) return;
+    c.classList.toggle('on');
+    var html = '<span class="core">'+core+'</span>';
+    var n = 1;
+    document.querySelectorAll('#builderChips .chip.on').forEach(function(ch){
+      html += '<span class="add">'+ch.getAttribute('data-add')+'</span>';
+      n++;
+    });
+    box.innerHTML = html;
+    scoreEl.textContent = n;
+    note.textContent = notes[Math.min(n-1,5)];
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

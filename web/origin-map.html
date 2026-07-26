@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>艺术家来源地图 · aha</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/aha-kit.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+  .page{max-width:1100px}
+  .mapwrap{height:74vh;min-height:460px;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:14px;background:var(--paper)}
+  #map{height:100%;width:100%;background:#eceae4}
+  .leaflet-popup-content{font-family:"Noto Sans SC",sans-serif;font-size:13px;color:var(--ink);margin:10px 12px}
+  .leaflet-popup-content b{font-family:"Noto Serif SC",serif}
+  .leaflet-popup-content .pc{color:var(--ink-soft);font-size:12px}
+  .leaflet-popup-content .pa{color:var(--accent);font-size:12px;margin-top:3px}
+  .mstat{display:flex;gap:18px;flex-wrap:wrap;margin-top:6px}
+  .lg{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-soft);margin-top:10px;align-items:center}
+  .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="pagehead">
+    <h1>艺术家来源地图</h1>
+    <p class="lede">每座城市 = 一群从这里走出的画家。点大小 = 人数。数据来自馆藏艺术家的出生地考据。</p>
+    <div class="mstat">
+      <span class="stat"><b id="sc">—</b> 座城市</span>
+      <span class="stat"><b id="sa">—</b> 位艺术家</span>
+    </div>
+    <div class="lg">
+      <span><i class="dot" style="background:var(--accent)"></i>西方</span>
+      <span><i class="dot" style="background:#3a6ea5"></i>东方</span>
+      <span style="color:var(--ink-mute)">点越大 = 出身于此的画家越多</span>
+    </div>
+  </div>
+  <div class="mapwrap"><div id="map"></div></div>
+</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/aha-chrome.js"></script>
+<script>
+const map=L.map('map',{worldCopyJump:true,minZoom:2}).setView([42,12],4);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',{
+  attribution:'&copy; OpenStreetMap &copy; CARTO',subdomains:'abcd',maxZoom:18}).addTo(map);
+const EAST=new Set(['中国','日本','韩国','朝鲜','印度','越南','泰国','伊朗','蒙古','土耳其']);
+fetch('/cat/origin_map?min_n=1').then(r=>r.json()).then(d=>{
+  document.getElementById('sc').textContent=d.total_cities.toLocaleString();
+  document.getElementById('sa').textContent=d.total_artists.toLocaleString();
+  const max=Math.max(1,...d.points.map(p=>p.n));
+  d.points.forEach(p=>{
+    if(p.lat==null||p.lng==null)return;
+    const east=EAST.has(p.country);
+    const r=4+18*Math.sqrt(p.n/max);
+    L.circleMarker([p.lat,p.lng],{radius:r,
+      color:east?'#3a6ea5':'#b0673a',weight:1,fillColor:east?'#3a6ea5':'#b0673a',fillOpacity:.42})
+     .bindPopup(`<b>${p.name}</b> <span class="pc">${p.country||''} · ${p.n} 位</span>`
+       +(p.top&&p.top.length?`<div class="pa">代表：${p.top.join('、')}</div>`:''))
+     .addTo(map);
+  });
+}).catch(()=>{document.getElementById('sc').textContent='加载失败';});
+</script>
+</body>
+</html>

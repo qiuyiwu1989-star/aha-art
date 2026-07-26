@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 生成中心 · 产品蓝图</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/aha-kit.css">
+<style>
+  .lead{max-width:680px;margin:8px auto 0;text-align:center;color:var(--ink-mute);font-size:var(--fz-small);line-height:1.7}
+  /* 定义大卡 */
+  .def{font-family:var(--serif);font-size:clamp(16px,3.2vw,21px);line-height:1.7;color:var(--ink)}
+  .def b{color:var(--accent)}
+  .rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--s3);margin-top:var(--s4)}
+  .rule{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+  .rule .n{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--accent)}
+  .rule .t{font-family:var(--serif);font-size:var(--fz-h3);font-weight:600;margin:3px 0 4px}
+  .rule .d{font-size:var(--fz-small);color:var(--ink-mute);line-height:1.6}
+  /* 状态徽标 */
+  .st{font-family:var(--mono);font-size:var(--fz-label);padding:1px 7px;border-radius:var(--r-pill);white-space:nowrap}
+  .st.ok{color:var(--ok);background:var(--ok-soft)} .st.half{color:var(--warn);background:var(--warn-soft)} .st.todo{color:var(--ink-mute);background:var(--paper-2)}
+  /* 六层管线 */
+  .pipe{display:flex;flex-direction:column;gap:6px}
+  .layer{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:13px 16px;position:relative}
+  .layer.core{border-color:var(--accent);background:var(--accent-soft)}
+  .layer .lh{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .layer .lnum{font-family:var(--mono);font-size:var(--fz-small);color:var(--accent);font-weight:500;flex:none}
+  .layer .lname{font-family:var(--serif);font-size:var(--fz-h3);font-weight:600}
+  .layer .tag{font-family:var(--mono);font-size:var(--fz-label);color:#fff;background:var(--accent);border-radius:var(--r-pill);padding:1px 8px}
+  .layer .tag.b{background:var(--blue)}
+  .layer .lfns{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .fn{display:inline-flex;align-items:center;gap:6px;font-size:var(--fz-small);color:var(--ink-soft);background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--r-sm);padding:4px 9px}
+  .arrow{text-align:center;color:var(--ink-faint);font-size:14px;line-height:1}
+  /* 旅程 */
+  .jgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--s3)}
+  .jcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+  .jcard .jt{font-family:var(--serif);font-size:var(--fz-h3);font-weight:600}
+  .jcard .jw{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute);margin:2px 0 9px}
+  .jflow{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:var(--fz-small);color:var(--ink-soft)}
+  .jflow .stp{background:var(--paper-2);border-radius:var(--r-sm);padding:3px 8px}
+  .jflow .sep{color:var(--accent)}
+  .jcard .jn{font-size:var(--fz-tiny);color:var(--ink-mute);line-height:1.6;margin-top:9px}
+  .loop{font-family:var(--mono);font-size:var(--fz-small);color:var(--accent);text-align:center;background:var(--accent-soft);border:1px dashed var(--accent-line);border-radius:var(--r);padding:10px;margin-bottom:var(--s4)}
+  /* 架构图 */
+  .dg{width:100%;overflow-x:auto}
+  .dg svg{display:block;min-width:680px;width:100%;height:auto}
+  .nd{fill:var(--card);stroke:var(--line);stroke-width:1.5}
+  .nd.hub{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2}
+  .nd.todo{stroke-dasharray:5 4;fill:var(--paper-2)}
+  .nl{font-family:var(--serif);font-size:15px;font-weight:600;fill:var(--ink)}
+  .nl.hub{fill:var(--accent)}
+  .nsub{font-family:var(--mono);font-size:10.5px;fill:var(--ink-mute)}
+  #ah path{fill:var(--ink-faint)}
+  .ln{stroke:var(--ink-faint);stroke-width:1.4;fill:none}
+  .ln.dash{stroke-dasharray:5 4}
+  .ll{font-family:var(--mono);font-size:10.5px;fill:var(--ink-mute)}
+  /* 连接表 + 资产 + 优先级 */
+  .assets{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--s3)}
+  .asset{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+  .asset .ai{color:var(--accent)} .asset .at{font-family:var(--serif);font-weight:600;margin:5px 0 3px;font-size:var(--fz-body)}
+  .asset .ad{font-size:var(--fz-tiny);color:var(--ink-mute);line-height:1.6}
+  .prio{display:flex;flex-direction:column;gap:var(--s2)}
+  .prio .pi{display:flex;gap:11px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 15px}
+  .prio .pn{font-family:var(--mono);font-size:var(--fz-h3);color:var(--accent);font-weight:600;flex:none;width:24px;text-align:center}
+  .prio .pt{font-family:var(--serif);font-weight:600}.prio .pd{font-size:var(--fz-small);color:var(--ink-mute);line-height:1.6;margin-top:2px}
+  .tbl td .st{margin-left:4px}
+</style>
+</head><body data-home="studio.html">
+<div class="page">
+  <div class="pagehead">
+    <div class="kicker">aha · 生成中心 · 产品蓝图</div>
+    <h1 class="serif">生成中心 · 产品蓝图</h1>
+    <p class="lead">功能逻辑 · 用户体验旅程 · 与全系统的结合架构。一页看懂这个产品是什么、怎么走、怎么和 aha 其余部分咬合。<br><a href="studio.html" style="color:var(--accent)">→ 去生成中心</a></p>
+  </div>
+
+  <!-- 定义 + 规则 -->
+  <div class="sec">
+    <div class="note accent"><span class="k">产品定义 · A×B</span>
+      <div class="def" style="margin-top:6px">生成中心 = aha 因为<b>真懂人类艺术史</b>(KG),又<b>真懂你</b>(审美档案),所以能用「<b>你的眼睛</b>」、借「<b>艺术史的基因</b>」,把你的意图画成一幅<b>只属于你的画</b>。</div>
+      <div style="font-size:var(--fz-tiny);color:var(--ink-mute);margin-top:7px">C(人类美术馆)是入口 · D(版式)是模式</div>
+    </div>
+    <div class="rules">
+      <div class="rule"><div class="n">规则 ①</div><div class="t">你的意图永远是主角</div><div class="d">KG 绝不许吃掉你的话,只许在你的画面上加味。(A 压过 B)</div></div>
+      <div class="rule"><div class="n">规则 ②</div><div class="t">借基因要显式可解释</div><div class="d">不是后台偷选风格,而是摊开"借自 X 的基因:世界观/情绪/语言/谱系"。</div></div>
+      <div class="rule"><div class="n">规则 ③</div><div class="t">以你之眼要被感知</div><div class="d">推荐与排序来自你的档案 μ,并告诉你"因为你是 X 派"。</div></div>
+    </div>
+  </div>
+
+  <!-- 一、功能逻辑 -->
+  <div class="sec">
+    <div class="sec-h"><span class="t">一 · 功能逻辑</span><span class="d">六层管线,A×B 是中间内核</span></div>
+    <div class="pipe">
+      <div class="layer"><div class="lh"><span class="lnum">0</span><span class="lname">身份层 · 认人</span><span class="tag">A 燃料</span><span class="st ok">已建</span></div>
+        <div class="lfns"><span class="fn">uid(匿名也有)</span><span class="fn">审美重心 μ</span><span class="fn">本命画家</span><span class="fn">门派 / 三盏灯</span><span class="fn">me/profile</span></div></div>
+      <div class="arrow">↓</div>
+      <div class="layer"><div class="lh"><span class="lnum">1</span><span class="lname">起点层 · 四个入口</span><span class="st ok">已建</span></div>
+        <div class="lfns"><span class="fn">意图(文本)</span><span class="fn">传图 VLM</span><span class="fn">深链 ?from/?artist/?style</span><span class="fn">版式(D)</span><span class="fn">为你预热(本命/门派/收藏)</span></div></div>
+      <div class="arrow">↓</div>
+      <div class="layer core"><div class="lh"><span class="lnum">2</span><span class="lname">双柱编译层 · A×B 内核</span><span class="tag">A</span><span class="tag b">B</span><span class="st half">核心·待强化</span></div>
+        <div class="lfns"><span class="fn">柱1 你的意图(原话保留)</span><span class="fn">柱2 借的基因(风格/大师/世界观)</span><span class="fn">语义编译卡(改一处其余重算)</span><span class="fn">基因解码行</span><span class="fn">版式填空骨架</span><span class="fn">正/负向词</span></div>
+        <div style="font-size:var(--fz-tiny);color:var(--ink-soft);margin-top:8px">三引擎:⚡即时(规则+VAD,秒出)· 🧠深度(LLM grounded)· 📷传图(VLM)。<b style="color:var(--warn)">待强化:两柱还没在第一屏拆开(现靠单框猜路由)</b></div></div>
+      <div class="arrow">↓</div>
+      <div class="layer"><div class="lh"><span class="lnum">3</span><span class="lname">生成层</span><span class="st ok">已建</span></div>
+        <div class="lfns"><span class="fn">/api/generate</span><span class="fn">艺术家5(火山方舟)</span><span class="fn">自托管入库</span><span class="fn">mu_generation(template+parent_id)</span></div></div>
+      <div class="arrow">↓</div>
+      <div class="layer"><div class="lh"><span class="lnum">4</span><span class="lname">创作流层 · 出口</span><span class="st ok">已建</span></div>
+        <div class="lfns"><span class="fn">再演化(版本树)</span><span class="fn">收藏</span><span class="fn">评分→喂回口味</span><span class="fn">编进展(个人展)</span><span class="fn">改词/载入工作台再生成</span><span class="fn" style="border-style:dashed">进 AI 艺术馆(待建)</span></div></div>
+      <div class="arrow">↓</div>
+      <div class="layer"><div class="lh"><span class="lnum">5</span><span class="lname">回流层 · 闭环</span><span class="st half">半建</span></div>
+        <div class="lfns"><span class="fn">生成事件 + 评分</span><span class="fn">→ 更新 mu_taste / profile</span><span class="fn">→ 下次"以你之眼"更准</span></div></div>
+    </div>
+  </div>
+
+  <!-- 二、体验旅程 -->
+  <div class="sec">
+    <div class="sec-h"><span class="t">二 · 用户体验旅程</span><span class="d">主循环 + 四条人群旅程</span></div>
+    <div class="loop">页内主循环:起点(认人+给意图) → 选/换基因 → 编译卡(调) → 生成 → 创作流 → 再演化 ↺</div>
+    <div class="jgrid">
+      <div class="jcard"><div class="jt">A · 逛客</div><div class="jw">从美术馆来 · C 入口主场</div>
+        <div class="jflow"><span class="stp">看真迹</span><span class="sep">→</span><span class="stp">心动</span><span class="sep">→</span><span class="stp">「以此变奏」</span><span class="sep">→</span><span class="stp">借大师基因画自己</span><span class="sep">→</span><span class="stp">收藏/编进展</span></div>
+        <div class="jn">情绪:欣赏 → 冲动 → "我也能有一幅" → 拥有感。反向桥已建。</div></div>
+      <div class="jcard"><div class="jt">B · 有想法的素人</div><div class="jw">直接来 studio</div>
+        <div class="jflow"><span class="stp">输入意图</span><span class="sep">→</span><span class="stp">三个借不同基因的方向</span><span class="sep">→</span><span class="stp">换基因/调画面</span><span class="sep">→</span><span class="stp">生成</span><span class="sep">→</span><span class="stp">再演化</span></div>
+        <div class="jn">关键:你的话从头到尾在,只是被不同大师的基因"演奏"。</div></div>
+      <div class="jcard"><div class="jt">C · 创作者</div><div class="jw">经营自己的作品</div>
+        <div class="jflow"><span class="stp">反复再演化</span><span class="sep">→</span><span class="stp">长成版本树</span><span class="sep">→</span><span class="stp">攒成系列</span><span class="sep">→</span><span class="stp">编成个人展</span><span class="sep">→</span><span class="stp">进 AI 艺术馆(待建)</span></div>
+        <div class="jn">版本树血缘已建;成馆展出待建。</div></div>
+      <div class="jcard"><div class="jt">D · 冷启动新人</div><div class="jw">无档案 · A 的命门</div>
+        <div class="jflow"><span class="stp">中立推荐+灵感起点</span><span class="sep">→</span><span class="stp">生成几张、评几分</span><span class="sep">→</span><span class="stp">档案开始长</span><span class="sep">→</span><span class="stp">"以你之眼·X派"</span></div>
+        <div class="jn">要让新人不靠档案也能爽,同时自然攒出档案。待打磨。</div></div>
+    </div>
+  </div>
+
+  <!-- 三、系统架构 -->
+  <div class="sec">
+    <div class="sec-h"><span class="t">三 · 与全系统的结合架构</span><span class="d">studio 是枢纽,四条线连出去,两个反馈环回来</span></div>
+    <div class="dg">
+      <svg viewBox="0 0 920 540" role="img" aria-label="生成中心系统架构图">
+        <defs><marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z"/></marker></defs>
+        <!-- lines (draw first, under nodes) -->
+        <path class="ln" marker-end="url(#ah)" d="M460,150 L460,205"/>
+        <text class="ll" x="468" y="182">入口 · 以此变奏</text>
+        <path class="ln" marker-end="url(#ah)" d="M210,268 L335,268"/>
+        <text class="ll" x="218" y="258">读 μ/本命/门派</text>
+        <path class="ln dash" marker-end="url(#ah)" d="M335,300 C250,330 250,300 210,300"/>
+        <text class="ll" x="120" y="322">写 评分回流(闭环)</text>
+        <path class="ln" marker-end="url(#ah)" d="M460,470 L460,360"/>
+        <text class="ll" x="468" y="420">借基因(读)</text>
+        <path class="ln" marker-end="url(#ah)" d="M585,250 L705,205"/>
+        <text class="ll" x="600" y="228">编进展</text>
+        <path class="ln" marker-end="url(#ah)" d="M585,275 L705,275"/>
+        <text class="ll" x="610" y="266">作品入库</text>
+        <path class="ln dash" marker-end="url(#ah)" d="M585,300 L705,348"/>
+        <text class="ll" x="600" y="330">成馆展出(待建)</text>
+        <!-- nodes -->
+        <g><rect class="nd" x="360" y="92" width="200" height="58" rx="10"/><text class="nl" x="460" y="118" text-anchor="middle">人类美术馆 museum</text><text class="nsub" x="460" y="136" text-anchor="middle">C · 入口 · AI图不回流进它</text></g>
+        <g><rect class="nd hub" x="335" y="205" width="250" height="95" rx="12"/><text class="nl hub" x="460" y="240" text-anchor="middle">生成中心 studio</text><text class="nsub" x="460" y="262" text-anchor="middle">柱1 你的意图(A)</text><text class="nsub" x="460" y="280" text-anchor="middle">× 柱2 借的基因(B) → 生成</text></g>
+        <g><rect class="nd" x="30" y="238" width="180" height="60" rx="10"/><text class="nl" x="120" y="264" text-anchor="middle">me · 审美档案</text><text class="nsub" x="120" y="283" text-anchor="middle">profile μ / 本命 / 门派</text></g>
+        <g><rect class="nd" x="360" y="470" width="200" height="58" rx="10"/><text class="nl" x="460" y="496" text-anchor="middle">知识图谱 KG</text><text class="nsub" x="460" y="514" text-anchor="middle">kg_compile_index_v2 · 基因库</text></g>
+        <g><rect class="nd" x="705" y="150" width="185" height="55" rx="10"/><text class="nl" x="797" y="174" text-anchor="middle">curate · 策展</text><text class="nsub" x="797" y="192" text-anchor="middle">编进个人展</text></g>
+        <g><rect class="nd" x="705" y="248" width="185" height="55" rx="10"/><text class="nl" x="797" y="272" text-anchor="middle">图库 / 我的创作</text><text class="nsub" x="797" y="290" text-anchor="middle">mu_generation</text></g>
+        <g><rect class="nd todo" x="705" y="346" width="185" height="55" rx="10"/><text class="nl" x="797" y="370" text-anchor="middle">AI 艺术馆</text><text class="nsub" x="797" y="388" text-anchor="middle">独立成馆 · 待建</text></g>
+      </svg>
+    </div>
+    <table class="tbl" style="margin-top:var(--s4)">
+      <thead><tr><th>系统模块</th><th>与 studio 的关系</th><th>接口/数据</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td>museum(人类美术馆 C)</td><td>入口:反向桥进;AI 图不回流(保人类馆纯洁)</td><td><code>studio?from=</code></td><td><span class="st ok">入口已建</span></td></tr>
+        <tr><td>me / profile(认人 A)</td><td>读 μ/本命/门派;写 生成+评分→档案</td><td><code>me/profile·state·rate·collect</code></td><td><span class="st ok">已建</span></td></tr>
+        <tr><td>知识图谱 KG(基因 B)</td><td>读 风格/大师/世界观当基因库;从 kg-artist/风格页反向桥进</td><td><code>kg_compile_index_v2·/compile·/vision</code></td><td><span class="st ok">已建</span></td></tr>
+        <tr><td>curate(策展出口)</td><td>作品编进个人展</td><td><code>me/exhibition</code></td><td><span class="st ok">已建</span></td></tr>
+        <tr><td>图库 / 我的创作</td><td>作品存档+resurface,带血缘/版式</td><td><code>mu_generation·me/gen</code></td><td><span class="st ok">已建</span></td></tr>
+        <tr><td>AI 艺术馆(终点陈列)</td><td>优秀创作单独成馆(≠人类美术馆)</td><td>新页 + 新表</td><td><span class="st todo">待建</span></td></tr>
+      </tbody>
+    </table>
+    <div class="rules" style="margin-top:var(--s4)">
+      <div class="rule"><div class="n">反馈环 1 · 认人(A)</div><div class="d">看画/评分/生成 → 档案 μ 更新 → 推荐更贴你 → 更愿创作。</div></div>
+      <div class="rule"><div class="n">反馈环 2 · 理解(B)</div><div class="d">KG 越懂艺术史 → 借的基因越准 → 出图越"那个味" → 回测反哺 KG。</div></div>
+    </div>
+  </div>
+
+  <!-- 四层不可替代资产 -->
+  <div class="sec">
+    <div class="sec-h"><span class="t">为什么不是又一个文生图工具</span><span class="d">四层不可替代资产</span></div>
+    <div class="assets">
+      <div class="asset"><i class="ai" data-ic="graph"></i><div class="at">① 人类艺术史 KG</div><div class="ad">借基因——不止风格名,是世界观→语言→情绪的生成因果链。</div></div>
+      <div class="asset"><i class="ai" data-ic="me"></i><div class="at">② 你的审美档案</div><div class="ad">以你之眼——逛人类美术馆攒出的 12 维 μ、本命、门派。</div></div>
+      <div class="asset"><i class="ai" data-ic="museum"></i><div class="at">③ 美术馆语境</div><div class="ad">逛着逛着就创作——从欣赏到创作的天然桥。</div></div>
+      <div class="asset"><i class="ai" data-ic="timeline"></i><div class="at">④ 理解→生成→回测闭环</div><div class="ad">唯一能证伪自己、并越用越懂你的回路。</div></div>
+    </div>
+  </div>
+
+  <!-- 落地优先级 -->
+  <div class="sec">
+    <div class="sec-h"><span class="t">落地优先级</span><span class="d">按本蓝图建议顺序</span></div>
+    <div class="prio">
+      <div class="pi"><div class="pn">1</div><div><div class="pt">两柱输入第一屏化 <span class="st half">下一步</span></div><div class="pd">让 A×B 一进页就成立(现在还藏在结果卡里)。最该先做。</div></div></div>
+      <div class="pi"><div class="pn">2</div><div><div class="pt">「换一段基因」按钮 <span class="st todo">规划</span></div><div class="pd">同画面一键换大师/风格 → 落版本树。把"借基因"变成核心动作。</div></div></div>
+      <div class="pi"><div class="pn">3</div><div><div class="pt">冷启动旅程 D <span class="st todo">规划</span></div><div class="pd">无档案也爽 + 自然攒档案。A 的命门。</div></div></div>
+      <div class="pi"><div class="pn">4</div><div><div class="pt">AI 艺术馆(独立馆) <span class="st todo">规划</span></div><div class="pd">创作流的终点陈列,与人类美术馆分立。</div></div></div>
+    </div>
+  </div>
+
+  <a class="back" href="studio.html" style="display:block;text-align:center;margin-top:var(--s6);font-family:var(--mono);font-size:var(--fz-small);color:var(--ink-mute);text-decoration:none">← 去生成中心 studio</a>
+</div>
+<script src="js/aha-icons.js"></script>
+<script src="js/aha-chrome.js"></script>
+</body></html>

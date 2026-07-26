@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>美学竞技场 · Artist 艺术家 1.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/aha-kit.css"/>
+<style>
+  /* Artist 1.0 品牌顶栏(独立产品感):复用 aha-chrome 的 .site-top 底座,改写品牌字标 */
+  .site-top .brand{display:flex;align-items:baseline;gap:8px}
+  .site-top .brand .en{font-family:var(--latin);font-size:19px;font-weight:600;letter-spacing:.02em;color:var(--ink)}
+  .site-top .brand .zh{font-family:var(--serif);font-size:14px;letter-spacing:.12em;color:var(--ink-soft)}
+  .site-top .brand .ver{font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:1px 6px;
+    border:1px solid var(--accent-line);border-radius:var(--r-pill);color:var(--accent);align-self:center}
+  .site-top .subbrand{font-family:var(--serif);font-size:13px;color:var(--ink-mute);
+    padding-left:12px;margin-left:10px;border-left:1px solid var(--line)}
+  .site-top a.subbrand:hover{color:var(--accent)}
+  @media(max-width:600px){.site-top .subbrand{display:none}}
+  .site-top .topright{margin-left:auto;display:flex;align-items:center;gap:14px}
+  .site-top .topright a{font-family:var(--mono);font-size:11px;color:var(--ink-mute)}
+  .site-top .topright a:hover{color:var(--accent)}
+  .site-top .topright a.me b{color:var(--accent)}
+
+  /* 页面专属微调:只用 token,不重定义变量 */
+  .idbar{display:flex;align-items:center;gap:var(--s3);flex-wrap:wrap;background:var(--card);
+    border:1px solid var(--line);border-radius:var(--r);padding:10px 14px;margin:var(--s4) 0}
+  .idbar .who{font-family:var(--mono);font-size:var(--fz-small);color:var(--ink-soft)}
+  .idbar .who b{color:var(--accent)}
+  .idbar .mlink{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--accent)}
+  .idbar .mlink:hover{text-decoration:underline}
+  .idbar .prog{margin-left:auto;font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute)}
+  .modeseg{margin:var(--s4) 0}
+  .lenswrap{display:flex;align-items:center;gap:var(--s2);justify-content:center;margin-bottom:var(--s3)}
+  .lenswrap .lenslab{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute)}
+
+  /* 对决舞台:左右两图同框,固定高度锁住,移动端上下叠 */
+  .arena{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3);align-items:stretch}
+  @media(max-width:600px){.arena{grid-template-columns:1fr}}
+  .side{position:relative;background:var(--mat-dark);border:1px solid var(--line);border-radius:var(--r-lg);
+    overflow:hidden;cursor:pointer;height:62vh;display:flex;align-items:center;justify-content:center;
+    transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+  @media(max-width:600px){.side{height:38vh}}
+  .side img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;
+    transition:opacity var(--dur) var(--ease)}
+  .side img.ld{opacity:.25}             /* 加载下一对时只是变淡,不改布局 */
+  .side:hover{transform:translateY(-3px);box-shadow:var(--sh-card);border-color:var(--accent)}
+  .side .pick{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);display:inline-flex;
+    align-items:center;gap:6px;font-family:var(--mono);font-size:var(--fz-tiny);color:#fff;
+    background:rgba(20,16,10,.55);border-radius:var(--r-pill);padding:5px 13px;backdrop-filter:blur(3px);
+    opacity:0;transition:opacity var(--dur) var(--ease)}
+  .side:hover .pick{opacity:1}
+  .side .key{position:absolute;top:10px;left:10px;font-family:var(--mono);font-size:var(--fz-tiny);
+    color:#fff;background:rgba(20,16,10,.5);border-radius:var(--r-sm);padding:2px 8px}
+  /* 右上角工具:收藏 + 放大(常显,触控友好;点它们不触发选边) */
+  .side .sidetools{position:absolute;top:8px;right:8px;display:flex;gap:6px;z-index:3}
+  .side .stool{width:36px;height:36px;border-radius:var(--r-pill);border:none;cursor:pointer;
+    background:rgba(20,16,10,.5);color:#fff;display:flex;align-items:center;justify-content:center;
+    backdrop-filter:blur(3px);transition:background var(--dur) var(--ease),transform var(--dur) var(--ease)}
+  .side .stool:hover{background:var(--accent);transform:translateY(-1px)}
+  .side .stool.on{background:var(--accent)}
+  .side .stool .ic{width:19px;height:19px}
+  .side .stool .ic svg{width:19px;height:19px;display:block}   /* button 不继承字号,直接钉死 svg 尺寸,否则线性图标会缩到看不见 */
+  /* 放大灯箱 */
+  #lightScrim{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;
+    background:rgba(15,12,8,.92);padding:24px;cursor:zoom-out}
+  #lightScrim img{max-width:96vw;max-height:92vh;width:auto;height:auto;object-fit:contain;border-radius:var(--r)}
+  #lightScrim .lx{position:absolute;top:18px;right:22px;color:#fff;font-family:var(--mono);font-size:13px;cursor:pointer}
+  .gtoast{position:fixed;left:50%;bottom:32px;transform:translateX(-50%) translateY(20px);z-index:320;
+    background:var(--ink);color:var(--paper);font-family:var(--sans);font-size:var(--fz-small);
+    padding:9px 16px;border-radius:var(--r-pill);box-shadow:var(--sh-pop);opacity:0;pointer-events:none;
+    transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease)}
+  .gtoast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .vs{text-align:center;margin:var(--s3) 0;font-family:var(--serif);color:var(--ink-faint)}
+  .arena-acts{display:flex;gap:var(--s2);justify-content:center;margin-top:var(--s3);flex-wrap:wrap}
+  .arena-acts .btn.pill{min-height:40px}
+  .arena-hint{text-align:center;font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-faint);
+    margin-top:var(--s2)}
+  .pp{margin-top:var(--s4)}
+  .pp .ppwrap{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
+  @media(max-width:600px){.pp .ppwrap{grid-template-columns:1fr}}
+  /* 固定高度:不论提示词长短都占同样空间,页面永不因文字长度变高 */
+  .pp .pc{background:var(--paper-2);border:1px solid var(--line-soft);border-radius:var(--r);
+    padding:8px 11px;height:62px;overflow:hidden;cursor:pointer;transition:border-color var(--dur) var(--ease)}
+  .pp .pc:hover{border-color:var(--accent)}
+  .pp .pk{font-family:var(--mono);font-size:var(--fz-label);color:var(--ink-faint);text-transform:uppercase;margin-bottom:3px}
+  .pp .ptxt{font-size:var(--fz-small);line-height:1.5;color:var(--ink-soft);
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .pp .more{font-family:var(--mono);font-size:var(--fz-label);color:var(--accent)}
+
+  /* 速评舞台 */
+  .stage{display:grid;grid-template-columns:minmax(0,1.5fr) 360px;background:var(--card);
+    border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;height:72vh}
+  @media(max-width:780px){.stage{grid-template-columns:1fr;height:auto}}
+  .stage .left{background:var(--mat-dark);display:flex;align-items:center;justify-content:center;height:100%;min-height:0;overflow:hidden}
+  .stage .left img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block}
+  @media(max-width:780px){.stage .left{height:46vh}}
+  .stage .rt{display:flex;flex-direction:column;border-left:1px solid var(--line);height:100%;overflow:hidden}
+  @media(max-width:780px){.stage .rt{border-left:none;border-top:1px solid var(--line)}}
+  .score{display:flex;gap:8px;justify-content:center;padding:var(--s4) var(--s3) var(--s2);flex:none}
+  .sb{font-family:var(--serif);font-size:19px;font-weight:600;flex:1;min-width:48px;height:58px;
+    border-radius:var(--r);border:1px solid var(--line);background:var(--paper);color:var(--ink-soft);
+    cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+    transition:all var(--dur) var(--ease)}
+  .sb small{font-family:var(--sans);font-size:9px;font-weight:400;color:var(--ink-faint)}
+  .sb:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+  .schint{text-align:center;font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-faint);padding:0 0 var(--s2)}
+  .fb{padding:var(--s3) var(--s4) 0;border-top:1px solid var(--line)}
+  .fb textarea{width:100%;min-height:64px;resize:vertical;font-family:var(--sans);font-size:var(--fz-small);
+    line-height:1.6;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:var(--r-sm);padding:9px 11px}
+  .fb textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+  .smeta{padding:var(--s3) var(--s4);overflow:auto;flex:1;min-height:0;border-top:1px solid var(--line)}
+
+  /* 榜单 */
+  .gboard{margin-top:var(--s4)}
+  .lbgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--s3)}
+  .gc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;position:relative}
+  .gc img{width:100%;height:118px;object-fit:cover;display:block}
+  .gc .rk{position:absolute;top:6px;left:6px;font-family:var(--serif);font-weight:600;font-size:13px;color:#fff;
+    background:rgba(20,16,10,.6);border-radius:var(--r-sm);padding:1px 7px}
+  .gc .sc{padding:7px 9px;font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-soft);
+    display:flex;justify-content:space-between;align-items:center;gap:4px}
+  .gc .sc b{color:var(--accent)}
+  .gc{cursor:pointer}
+  .gc .gcfav{position:absolute;top:6px;right:6px;z-index:2;width:30px;height:30px;border:none;cursor:pointer;
+    border-radius:var(--r-pill);background:rgba(20,16,10,.5);color:#fff;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
+  .gc .gcfav:hover,.gc .gcfav.on{background:var(--accent)}
+  .gc .gcfav svg{width:16px;height:16px;display:block}
+  /* 战绩详情 */
+  .rec{display:flex;flex-direction:column;gap:var(--s3);margin-top:var(--s3)}
+  .recrow .rl{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute);margin-bottom:5px}
+  .recrow .rl b{color:var(--accent)}
+  .recstrip{display:flex;gap:6px;flex-wrap:wrap}
+  .recstrip img{width:54px;height:54px;object-fit:cover;border-radius:var(--r-sm);background:var(--paper-2)}
+  /* 贡献榜 */
+  .contrib{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:6px}
+  .crow{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line-soft);border-radius:var(--r-sm);padding:7px 11px}
+  .crow .cr{font-family:var(--serif);font-size:15px;color:var(--ink-mute);min-width:20px;text-align:center}
+  .crow:nth-child(-n+3) .cr{color:var(--accent);font-weight:600}
+  .crow .cn{flex:1;font-size:var(--fz-small);color:var(--ink)}
+  .crow .cnum{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--accent)}
+  /* 置信区间误差棒:横条=区间,圆点=点估计,越窄越可信 */
+  .gc .ci{position:relative;height:6px;margin:7px 9px 0;background:var(--paper-2);border-radius:var(--r-pill)}
+  .gc .ci .cibar{position:absolute;top:0;height:6px;background:var(--accent-soft);border-radius:var(--r-pill)}
+  .gc .ci .cidot{position:absolute;top:-1px;width:8px;height:8px;border-radius:50%;background:var(--accent);transform:translateX(-50%)}
+  .mrow{display:flex;align-items:center;gap:var(--s3);padding:9px 0;border-bottom:1px solid var(--line-soft)}
+  .mrow .mn{font-family:var(--serif);font-size:var(--fz-h3);color:var(--ink);min-width:24px}
+  .mrow .mt{flex:1}.mrow .mt .nm{font-size:var(--fz-body);color:var(--ink)}
+  .mrow .mt .meta{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute)}
+  .mrow .mt .meta a{color:var(--accent)} .mrow .mt .meta a:hover{text-decoration:underline}
+  .cattab{cursor:pointer} .cattab.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .mrow .msc{font-family:var(--serif);font-size:var(--fz-h2);font-weight:600;color:var(--accent)}
+  .fbstream{display:flex;flex-direction:column;gap:var(--s2);margin-top:var(--s3)}
+  .fbi{display:flex;gap:11px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px}
+  .fbi img{width:50px;height:50px;object-fit:cover;border-radius:var(--r-sm);flex:none;background:var(--paper-2)}
+  .fbi .fbh{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--accent);margin-bottom:3px}
+  .fbi .fbc{font-size:var(--fz-small);line-height:1.55;color:var(--ink-soft)}
+
+  /* 结论卡 */
+  .report{max-width:540px}
+  .report .rtop{text-align:center;margin-bottom:var(--s4)}
+  .report .rtop .big{font-family:var(--serif);font-size:46px;font-weight:600;color:var(--accent);line-height:1.1}
+  .report .rtop .big .u{font-size:18px;color:var(--ink-mute);font-weight:400}
+  .report .rtop .cap{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute);text-transform:uppercase;margin-top:4px}
+  .report .rline{font-size:var(--fz-small);line-height:1.7;color:var(--ink-soft);margin:var(--s2) 0}
+  .report .uniq{display:flex;gap:11px;align-items:center;margin-top:var(--s2)}
+  .report .uniq img{width:60px;height:60px;object-fit:cover;border-radius:var(--r-sm);flex:none}
+  .report .acts{display:flex;gap:var(--s2);justify-content:center;flex-wrap:wrap;margin-top:var(--s5)}
+  .ic{display:inline-flex;width:1em;height:1em;vertical-align:-.12em}
+</style></head>
+<body>
+<header class="site-top">
+  <a class="brand" href="artist-home.html"><span class="en">Artist</span><span class="zh">艺术家</span><span class="ver">1.0</span></a>
+  <a class="subbrand" href="arena.html">美学竞技场</a>
+  <span class="topright">
+    <a href="arena-method.html">方法论</a>
+    <a class="me" id="meLink" href="me.html">登录</a>
+  </span>
+</header>
+<div class="page">
+  <div class="pagehead">
+    <div class="kicker">Aesthetic Arena · 生成图评审</div>
+    <h1>美学竞技场</h1>
+    <div class="sub">两张里挑更好的那张。你的每一票既排出好图与好做法,也照见你自己的眼光。</div>
+  </div>
+
+  <div class="idbar">
+    <span class="who" id="who"></span>
+    <a class="mlink" href="arena-method.html">这分是怎么打出来的 · 方法论 →</a>
+    <span class="prog" id="prog"></span>
+  </div>
+
+  <div class="segwrap modeseg" id="modeseg">
+    <button class="seg on" data-m="battle">对决</button>
+    <button class="seg" data-m="rate">速评</button>
+    <button class="seg" data-m="board">榜单</button>
+  </div>
+
+  <div id="view-battle"><div class="empty">输入名字开始对决<div class="hint">两张里点更好的那张 · 也可按 ← → 键</div></div></div>
+  <div id="view-rate" hidden></div>
+  <div id="view-board" hidden></div>
+</div>
+
+<div class="scrim" id="reportScrim" style="display:none">
+  <div class="modal report" id="reportBox"></div>
+</div>
+<div class="scrim" id="promptScrim" style="display:none">
+  <div class="modal" id="promptBox" style="max-width:560px"></div>
+</div>
+<div id="lightScrim"><span class="lx">✕ 关闭</span><img id="lightImg" alt=""></div>
+<div class="scrim" id="cardScrim" style="display:none"><div class="modal" id="cardBox" style="max-width:640px"></div></div>
+<div class="gtoast" id="gtoast"></div>
+
+<script>
+const API='/cat';
+const $=id=>document.getElementById(id);
+const esc=s=>(s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const ic=(n,o)=>window.AHAIcons?`<span class="ic">${AHAIcons.svg(n,o)}</span>`:'';
+// 关键交互图标用死尺寸内联 SVG(不依赖 AHAIcons 注入时机/字号继承,杜绝"图标不显示")
+const SVG_HEART='<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/></svg>';
+const SVG_HEART_FILL=SVG_HEART.replace('fill="none"','fill="currentColor"');
+const SVG_ZOOM='<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8.2v5.6"/><path d="M8.2 11h5.6"/></svg>';
+const SLAB=['','很差','较差','一般','不错','极佳'];
+const ROUND=12;                 // 一轮对决场数,达到弹结论卡
+let rater='', display='', WHO=null;     // rater=身元(登录uid / 匿名aha_uid),全程传给后端
+let session=localStorage.getItem('gen_session')||'';
+if(!session){session='s'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);localStorage.setItem('gen_session',session);}
+let mode='battle', cur=null, curRate=null, busy=false, roundCount=0;
+
+function renderWho(){
+  if(WHO&&WHO.auth){
+    $('who').innerHTML=`评审 <b>${esc(display)}</b> <span class="faint">· 已登录,计入档案</span>`;
+    $('meLink').innerHTML=`我的 · <b>${esc(display)}</b>`;
+  }else{
+    $('who').innerHTML=`评审 <b>${esc(display)}</b> <span class="faint">· 访客(登录后计入你的档案)</span>`;
+    $('meLink').textContent='登录';
+  }
+}
+// 与 aha 用户体系打通:同源 cookie 会话 → whoami;登录用 uid+昵称,未登录用本机 aha_uid(同一把 key)。
+function bootIdentity(){
+  rater=localStorage.getItem('aha_uid')||'';
+  if(!rater){rater='u'+Date.now().toString(36)+Math.random().toString(36).slice(2,8);localStorage.setItem('aha_uid',rater);}
+  display='访客·'+rater.slice(-4);
+  renderWho();
+  fetch('/api/me/whoami',{credentials:'include'}).then(r=>r.json()).then(d=>{
+    if(d&&d.auth){WHO=d;rater=d.uid;display=d.nickname||((d.email||'').split('@')[0])||'我';}
+    renderWho();refresh();
+  }).catch(()=>{refresh();});
+}
+
+// ---- 模式切换 ----
+$('modeseg').querySelectorAll('.seg').forEach(b=>b.onclick=()=>{
+  $('modeseg').querySelectorAll('.seg').forEach(x=>x.classList.toggle('on',x===b));
+  mode=b.dataset.m;
+  $('view-battle').hidden=mode!=='battle';
+  $('view-rate').hidden=mode!=='rate';
+  $('view-board').hidden=mode!=='board';
+  refresh();
+});
+function refresh(){
+  if(mode==='battle')nextBattle();
+  else if(mode==='rate')nextRate();
+  else loadBoard();
+}
+
+// ---------- 对决 ----------
+// 关键:骨架只搭一次。换对只改 img.src 和提示词文字,布局尺寸恒定 → 页面绝不抖动/下滑。
+function buildArena(){
+  if($('arenaStage'))return true;
+  $('view-battle').innerHTML=`
+    <div class="bstage" id="arenaStage">
+      <div class="lenswrap"><span class="lenslab">评判镜头</span>
+        <div class="segwrap" id="lensSeg">${AXES.map(([a,l])=>`<button class="seg ${a===axis?'on':''}" data-ax="${a}">${l}</button>`).join('')}</div></div>
+      <div class="arena">
+        <div class="side tap" data-side="a"><span class="key">A · ←</span>
+          <span class="sidetools"><button class="stool" data-act="collect" data-side="a" title="收藏到我的作品">${SVG_HEART}</button><button class="stool" data-act="zoom" data-side="a" title="放大查看">${SVG_ZOOM}</button></span>
+          <img id="imgA" alt=""><span class="pick">${ic('check')} 选这张</span></div>
+        <div class="side tap" data-side="b"><span class="key">B · →</span>
+          <span class="sidetools"><button class="stool" data-act="collect" data-side="b" title="收藏到我的作品">${SVG_HEART}</button><button class="stool" data-act="zoom" data-side="b" title="放大查看">${SVG_ZOOM}</button></span>
+          <img id="imgB" alt=""><span class="pick">${ic('check')} 选这张</span></div>
+      </div>
+      <div class="arena-acts">
+        <button class="btn pill ghost tap" data-w="tie">${ic('scale')} 难分高下 <small>空格</small></button>
+        <button class="btn pill ghost tap" data-w="both_bad">${ic('close')} 都不行</button>
+      </div>
+      <div class="arena-hint" id="arenaHint"></div>
+      <div class="pp"><div class="ppwrap">
+        <div class="pc" id="ppA"></div><div class="pc" id="ppB"></div></div></div>
+    </div>`;
+  applyAxisHint();
+  $('lensSeg').querySelectorAll('.seg').forEach(b=>b.onclick=()=>{
+    axis=b.dataset.ax;localStorage.setItem('gen_axis',axis);
+    $('lensSeg').querySelectorAll('.seg').forEach(x=>x.classList.toggle('on',x===b));applyAxisHint();});
+  $('arenaStage').querySelectorAll('.side').forEach(el=>el.onclick=()=>battle(el.dataset.side==='a'?'left':'right'));
+  $('arenaStage').querySelectorAll('.arena-acts [data-w]').forEach(b=>b.onclick=()=>battle(b.dataset.w));
+  $('arenaStage').querySelectorAll('.stool').forEach(b=>b.onclick=e=>{
+    e.stopPropagation();                       // 点工具不算选边
+    const x=b.dataset.side==='a'?cur.a:cur.b;
+    if(b.dataset.act==='zoom'){zoom(x.image);return;}
+    if(b.classList.contains('on')){toast('已在你的作品里');return;}
+    doCollect(x.cos_key,()=>{b.classList.add('on');b.innerHTML=SVG_HEART_FILL;});
+  });
+  $('ppA').onclick=()=>openPrompt('A');$('ppB').onclick=()=>openPrompt('B');
+  return true;
+}
+function zoom(url){$('lightImg').src=url;$('lightScrim').style.display='flex';}
+$('lightScrim').onclick=()=>{$('lightScrim').style.display='none';$('lightImg').src='';};
+let _tt;
+function toast(msg){const t=$('gtoast');t.textContent=msg;t.classList.add('show');clearTimeout(_tt);_tt=setTimeout(()=>t.classList.remove('show'),1800);}
+function doCollect(cos_key, cb){
+  fetch('/api/me/collect',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({uid:rater, work_id:cos_key, on:true})})
+    .then(r=>r.json()).then(()=>{toast(WHO&&WHO.auth?'已收藏到我的作品':'已收藏(登录后长期保存)');cb&&cb();})
+    .catch(()=>toast('收藏失败,稍后再试'));
+}
+const CATLAB={misc:'综合',jiangnan:'江南',westlake:'西湖',landscape:'风景',fishing:'渔隐',western:'西画',figure:'人物',portrait:'肖像',flower:'花卉',horse:'骏马',architecture:'建筑',fantasy:'奇想',bird:'翎毛',animal:'走兽'};
+const AXES=[['overall','综合'],['real','去AI感'],['creative','创意']];
+const AXLAB={overall:'综合',real:'去AI感',creative:'创意'};
+const AXHINT={overall:'点更好的一张 · 键盘 ← → 选边 · 空格平局',
+  real:'点更真实、更少“AI 味”的一张 · ← → 选边 · 空格平局',
+  creative:'点更有创意、更出乎意料的一张 · ← → 选边 · 空格平局'};
+let axis=localStorage.getItem('gen_axis')||'overall';
+function applyAxisHint(){const h=$('arenaHint');if(h)h.textContent=AXHINT[axis]||AXHINT.overall;}
+function pcFill(el,tag,x){
+  const p=x.prompt||'(无提示词)';
+  const cat=x.category?`<span style="color:var(--accent)">${esc(CATLAB[x.category]||x.category)}</span> · `:'';
+  el.innerHTML=`<div class="pk">${tag} · ${cat}${esc(x.workflow||'?')} · <span class="more">看全文</span></div><div class="ptxt">${esc(p)}</div>`;
+}
+function nextBattle(){
+  if(!rater){$('view-battle').innerHTML='<div class="empty">先输入名字</div>';return;}
+  if(!$('arenaStage'))$('view-battle').innerHTML='<div class="loading">配对中</div>';
+  else{$('imgA')&&$('imgA').classList.add('ld');$('imgB')&&$('imgB').classList.add('ld');}
+  fetch(`${API}/gen/battle/next?rater=${encodeURIComponent(rater)}&session=${session}`).then(r=>r.json()).then(d=>{
+    if(d.done){$('view-battle').innerHTML='<div class="empty">你已对决足够多了,辛苦了<div class="hint">切到「榜单」看结果,或点下方看你的评审报告</div><div style="margin-top:16px"><button class="btn" id="seeRep">我的评审报告</button></div></div>';$('seeRep')&&($('seeRep').onclick=showReport);return;}
+    cur=d; $('prog').textContent=`本轮 ${roundCount}/${ROUND} · 你已对决 ${d.mine} 场`;
+    buildArena();
+    const ia=$('imgA'), ib=$('imgB');
+    ia.classList.add('ld'); ib.classList.add('ld');
+    ia.onload=()=>ia.classList.remove('ld'); ib.onload=()=>ib.classList.remove('ld');
+    ia.src=d.a.thumb; ib.src=d.b.thumb;
+    $('arenaStage').querySelectorAll('.stool[data-act="collect"]').forEach(b=>{b.classList.remove('on');b.innerHTML=SVG_HEART;});  // 新一对:收藏态归零
+    pcFill($('ppA'),'A',d.a); pcFill($('ppB'),'B',d.b);
+  });
+}
+function openPrompt(tag){
+  if(!cur)return;
+  const x=tag==='A'?cur.a:cur.b;
+  $('promptBox').innerHTML=`<h3>${tag} · ${esc(x.workflow||'?')}</h3>
+    <p style="white-space:pre-wrap">${esc(x.prompt||'(无提示词)')}</p>
+    <div class="acts"><button class="btn ghost" onclick="document.getElementById('promptScrim').style.display='none'">关闭</button></div>`;
+  $('promptScrim').style.display='flex';
+}
+$('promptScrim').onclick=e=>{if(e.target===$('promptScrim'))$('promptScrim').style.display='none';};
+function battle(winner){
+  if(busy||!cur)return;busy=true;
+  const u=`${API}/gen/battle?rater=${encodeURIComponent(rater)}&left_key=${encodeURIComponent(cur.a.cos_key)}`
+    +`&right_key=${encodeURIComponent(cur.b.cos_key)}&winner=${winner}&session=${session}&axis=${axis}`;
+  fetch(u,{method:'POST'}).then(r=>r.json()).then(d=>{
+    busy=false;roundCount++;
+    if(winner==='left'||winner==='right'){
+      if(d.leads===true)toast('和大多数人一致 ✓');
+      else if(d.leads===false)toast('你的眼光很独特 ✦');
+      else toast('已记录 · 本轮 '+roundCount+'/'+ROUND);
+    }else toast('已记录');
+    if(roundCount>=ROUND){roundCount=0;showReport();}
+    else nextBattle();
+  }).catch(()=>{busy=false;});
+}
+
+// ---------- 速评(保留 1–5) ----------
+function nextRate(){
+  if(!rater){$('view-rate').innerHTML='<div class="empty">先输入名字</div>';return;}
+  $('view-rate').innerHTML='<div class="loading">加载下一张</div>';
+  fetch(`${API}/gen/rate/next?rater=${encodeURIComponent(rater)}`).then(r=>r.json()).then(d=>{
+    if(d.done){$('view-rate').innerHTML='<div class="empty">你已评完所有图,辛苦了<div class="hint">切到「榜单」看结果</div></div>';return;}
+    curRate=d.item;$('prog').textContent=`速评:你已评 ${d.mine} 张`;
+    const pp=curRate.final_prompt||curRate.input_prompt||'(无提示词)';
+    $('view-rate').innerHTML=`<div class="stage fade-in">
+      <div class="left"><img src="${curRate.thumb}" alt=""></div>
+      <div class="rt">
+        <div class="score">${[1,2,3,4,5].map(n=>`<div class="sb" data-s="${n}"><span>${n}</span><small>${SLAB[n]}</small></div>`).join('')}</div>
+        <div class="schint">点数字打分 · 也可按 1–5 键 · 已有 ${curRate.votes} 人评过</div>
+        <div class="fb"><div class="pk" style="font-family:var(--mono);font-size:var(--fz-label);color:var(--ink-faint);margin-bottom:5px">反馈意见(可选:好在哪/差在哪/有何瑕疵)</div>
+          <textarea id="cmt" placeholder="写下你的感受、意见或建议…"></textarea></div>
+        <div class="smeta"><span class="chip">${esc(curRate.workflow||'?')}</span>
+          <div class="pk" style="font-family:var(--mono);font-size:var(--fz-label);color:var(--ink-faint);margin:9px 0 2px">提示词</div>
+          <div class="ptxt" style="font-size:var(--fz-small);line-height:1.7;color:var(--ink-soft)">${esc(pp)}</div></div>
+      </div></div>`;
+    $('view-rate').querySelectorAll('.sb').forEach(b=>b.onclick=()=>rate(+b.dataset.s));
+  });
+}
+function rate(s){
+  if(busy||!curRate)return;busy=true;
+  const c=$('cmt')?$('cmt').value.trim():'';
+  let u=`${API}/gen/rate?cos_key=${encodeURIComponent(curRate.cos_key)}&rater=${encodeURIComponent(rater)}&score=${s}`;
+  if(c)u+=`&comment=${encodeURIComponent(c)}`;
+  fetch(u,{method:'POST'}).then(r=>r.json()).then(()=>{busy=false;nextRate();}).catch(()=>{busy=false;});
+}
+
+// ---------- 榜单 ----------
+// 人评 vs AI 散点:横=人类BT分,纵=AI质量分。正斜线=AI能替人粗筛;散开=人眼看到AI没看到的。
+function insightSVG(pts){
+  if(!pts||pts.length<3)return '<div class="empty" style="padding:24px 0">数据还太少<div class="hint">需要 ≥3 张「比过≥2场」的图</div></div>';
+  const W=360,H=220,P=36;
+  const sx=pts.map(p=>p.score),sy=pts.map(p=>p.quality);
+  const x0=Math.min(...sx),x1=Math.max(...sx),y0=Math.min(...sy),y1=Math.max(...sy);
+  const mx=v=>P+(x1>x0?(v-x0)/(x1-x0):0.5)*(W-P-14);
+  const my=v=>H-P-(y1>y0?(v-y0)/(y1-y0):0.5)*(H-P-14);
+  const dots=pts.map(p=>`<circle cx="${mx(p.score).toFixed(1)}" cy="${my(p.quality).toFixed(1)}" r="${p.settled?3.4:2.4}" style="fill:var(--accent);opacity:${p.settled?.85:.35}"/>`).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:480px;height:auto">
+    <line x1="${P}" y1="${H-P}" x2="${W-8}" y2="${H-P}" style="stroke:var(--line)"/>
+    <line x1="${P}" y1="10" x2="${P}" y2="${H-P}" style="stroke:var(--line)"/>${dots}
+    <text x="${(W+P)/2}" y="${H-8}" text-anchor="middle" style="fill:var(--ink-mute);font:10px var(--mono)">人评 BT 分 →</text>
+    <text x="14" y="${(H-P)/2}" text-anchor="middle" transform="rotate(-90 14 ${(H-P)/2})" style="fill:var(--ink-mute);font:10px var(--mono)">AI 质量分 →</text></svg>`;
+}
+let boardCat='', boardAxis='overall', lastBoardImgs=[];
+// 图榜点开:大图 + 分数/区间 + 战绩(赢过谁/输给谁) + 收藏
+function openCard(key){
+  const x=(lastBoardImgs||[]).find(i=>i.cos_key===key); if(!x)return;
+  $('cardScrim').style.display='flex';
+  const cat=x.workflow?'<span style="color:var(--accent)">'+esc(CATLAB[x.vlm_category]||x.workflow)+'</span>':'';
+  $('cardBox').innerHTML=`
+    <div style="text-align:center"><img id="cardImg" src="${x.full||x.image}" alt="" style="max-width:100%;max-height:46vh;border-radius:var(--r);cursor:zoom-in"></div>
+    <div class="rline" style="margin-top:var(--s3);font-size:var(--fz-small)">
+      <b style="font-family:var(--serif);font-size:24px;color:var(--accent)">${x.score}</b> 分
+      <span class="faint">· 区间 ${x.lo}–${x.hi} · ${x.n} 战${x.workflow?' · '+esc(x.workflow):''}</span></div>
+    <div id="cardRec" class="loading" style="padding:14px 0">加载战绩…</div>
+    <div class="acts">
+      <button class="btn" id="cardFav">${SVG_HEART} 收藏</button>
+      <button class="btn ghost" onclick="document.getElementById('cardScrim').style.display='none'">关闭</button></div>`;
+  $('cardImg').onclick=()=>zoom(x.full||x.image);
+  $('cardFav').onclick=()=>{const b=$('cardFav');if(b.dataset.on)return;
+    doCollect(x.cos_key,()=>{b.dataset.on='1';b.innerHTML=SVG_HEART_FILL+' 已收藏';});};
+  fetch(`${API}/gen/image_card?cos_key=${encodeURIComponent(key)}`).then(r=>r.json()).then(rec=>{
+    const strip=arr=>arr.length?`<div class="recstrip">${arr.map(o=>`<img loading="lazy" src="${o.thumb}">`).join('')}</div>`:'<span class="faint" style="font-size:var(--fz-tiny)">暂无</span>';
+    $('cardRec').className='rec';
+    $('cardRec').innerHTML=`
+      <div class="recrow"><div class="rl">赢过 <b>${rec.beat.length}</b> 张</div>${strip(rec.beat)}</div>
+      <div class="recrow"><div class="rl">输给 <b>${rec.lost.length}</b> 张</div>${strip(rec.lost)}</div>
+      ${rec.ties?`<div class="rl">另有 ${rec.ties} 场难分高下</div>`:''}`;
+  }).catch(()=>{$('cardRec').className='';$('cardRec').innerHTML='<span class="faint">战绩加载失败</span>';});
+}
+$('cardScrim').onclick=e=>{if(e.target===$('cardScrim'))$('cardScrim').style.display='none';};
+function loadBoard(cat, ax){
+  if(ax!==undefined){boardAxis=ax;boardCat='';}   // 换镜头重置题材
+  else if(cat!==undefined)boardCat=cat;
+  $('view-board').innerHTML='<div class="loading">加载中</div>';
+  Promise.all([
+    fetch(`${API}/gen/arena?limit=18&axis=${boardAxis}${boardCat?'&category='+encodeURIComponent(boardCat):''}`).then(r=>r.json()),
+    fetch(`${API}/gen/leaderboard?limit=1`).then(r=>r.json()).catch(()=>null)
+  ]).then(([a,lb])=>{
+    const t=a.totals||{};
+    const corr=a.human_vs_vlm_corr!=null
+      ?`<div class="stat"><div class="num">${a.human_vs_vlm_corr}</div><div class="lab">人评 vs AI (${a.corr_n})</div></div>`:'';
+    const _los=(a.images||[]).map(x=>x.lo), _his=(a.images||[]).map(x=>x.hi);
+    const _mn=_los.length?Math.min(..._los):0, _mx=_his.length?Math.max(..._his):1, _rng=Math.max(1,_mx-_mn);
+    const _pct=v=>Math.max(0,Math.min(100,(v-_mn)/_rng*100));
+    lastBoardImgs=a.images||[];
+    const imgs=(a.images||[]).map((x,i)=>`<div class="gc" data-key="${x.cos_key}"><span class="rk">${i+1}</span>
+      <button class="gcfav" data-key="${x.cos_key}" title="收藏到我的作品">${SVG_HEART}</button>
+      <img loading="lazy" src="${x.image}" data-full="${x.full||x.image}">
+      <div class="ci" title="置信区间 ${x.lo}–${x.hi} · 越窄越可信">
+        <span class="cibar" style="left:${_pct(x.lo)}%;width:${Math.max(2,_pct(x.hi)-_pct(x.lo))}%"></span>
+        <span class="cidot" style="left:${_pct(x.score)}%"></span></div>
+      <div class="sc"><span>${ic('star',{fill:true})} <b>${x.score}</b></span>
+      <span>${x.settled?(x.n+'战'):'<span style="color:var(--ink-faint)">待定</span>'}</span></div></div>`).join('');
+    const baseImgs=(a.baseline||[]).map(x=>`<div class="gc base" data-key="${x.cos_key}">
+      <button class="gcfav" data-key="${x.cos_key}" title="收藏到我的作品">${SVG_HEART}</button>
+      <img loading="lazy" src="${x.image}" data-full="${x.full||x.image}">
+      <div class="sc"><span class="faint">AI 质量 ${x.quality}</span><span class="faint">${x.workflow?esc(x.workflow):''}</span></div></div>`).join('');
+    const imgBlock=(a.images&&a.images.length)
+      ? `<div class="lbgrid" style="margin-top:var(--s3)">${imgs}</div>`
+      : (a.baseline&&a.baseline.length
+        ? `<div class="card-note" style="margin:var(--s2) 0">还没有人评——先看 <b>AI 质量基线</b>(用已算好的质量分,零额外成本)。你一投票,真实人评榜就会逐步取代它。</div><div class="lbgrid">${baseImgs}</div>`
+        : '<div class="empty">还没有对决数据<div class="hint">去「对决」投出第一票</div></div>');
+    const methods=(a.methods||[]).map((m,i)=>`<div class="mrow"><span class="mn">${i+1}</span>
+      <div class="mt"><div class="nm">${esc(m.workflow)}</div>
+        <div class="meta">${m.model?esc(m.model)+' · ':''}${m.n} 次对决 · <a href="gen.html?workflow=${encodeURIComponent(m.workflow)}&from=arena">看这个做法的作品 →</a></div></div>
+      <span class="msc">${m.score}</span></div>`).join('')||'<div class="empty">暂无</div>';
+    const eyes=(a.raters||[]).map(r=>`<span class="badge">${esc(r.name||r.rater)} · 眼光 ${r.eye!=null?Math.round(r.eye*100)+'%':'—'}${r.weight&&r.weight!==1?` · 票权 ${r.weight}×`:''} <span class="faint">(${r.n})</span></span>`).join(' ')||'<span class="faint">暂无</span>';
+    const MEDAL=['①','②','③'];
+    const contribs=(a.contributors||[]).map((c,i)=>`<div class="crow"><span class="cr">${i<3?MEDAL[i]:(i+1)}</span><span class="cn">${esc(c.name||c.rater)}</span><span class="cnum">${c.n} 场</span></div>`).join('')||'<span class="faint">还没有人对决,来当第一位评审</span>';
+    const catTab=(c,lab,n)=>`<span class="chip cattab ${boardCat===c?'on':''}" data-cat="${c}">${lab}${n!=null?`<span class="faint"> ${n}</span>`:''}</span>`;
+    const tabs=`<div style="display:flex;flex-wrap:wrap;gap:6px;margin:var(--s2) 0 var(--s3)">`
+      +catTab('','全部')+(a.categories||[]).map(c=>catTab(c.cat,CATLAB[c.cat]||c.cat,c.n)).join('')+`</div>`;
+    const curLab=boardCat?(CATLAB[boardCat]||boardCat):'全部题材';
+    const axTabs=`<div style="display:flex;gap:6px;margin:var(--s2) 0 var(--s3)">`
+      +AXES.map(([av,al])=>`<span class="chip cattab ${boardAxis===av?'on':''}" data-ax="${av}">${al}</span>`).join('')+`</div>`;
+    const axLab=AXLAB[boardAxis]||'综合';
+    const fb=lb&&lb.feedback?lb.feedback.slice(0,12).map(f=>`<div class="fbi"><img loading="lazy" src="${f.thumb}">
+      <div><div class="fbh">${esc(f.rater)} · ${ic('star',{fill:true})}${f.score}</div><div class="fbc">${esc(f.comment)}</div></div></div>`).join(''):'';
+    $('view-board').innerHTML=`<div class="gboard fade-in">
+      <div class="stats" style="margin-bottom:var(--s4)">
+        <div class="stat"><div class="num">${t.battles||0}</div><div class="lab">对决场数</div></div>
+        <div class="stat"><div class="num">${t.raters||0}</div><div class="lab">评审人数</div></div>
+        <div class="stat"><div class="num">${t.images_touched||0}</div><div class="lab">参战图数</div></div>${corr}</div>
+
+      <div class="sec-h"><span class="t">评判镜头</span><span class="n">综合 / 去AI感 / 创意 各出一榜</span></div>
+      ${axTabs}
+
+      <div class="sec-h"><span class="t">题材子榜</span><span class="n">同题材内部比,更公平</span></div>
+      ${tabs}
+
+      <div class="sec-h"><span class="t">图榜 · ${axLab} · ${curLab}</span><span class="n">眼光加权 BT · 按置信下界排 · 横条=区间</span></div>
+      ${imgBlock}
+
+      <div class="sec-h" style="margin-top:var(--s5)"><span class="t">做法榜 · ${curLab}</span><span class="n">哪种 workflow 更出片</span></div>
+      <div style="margin-top:var(--s2)">${methods}</div>
+
+      <div class="sec-h" style="margin-top:var(--s5)"><span class="t">评审眼光榜</span><span class="n">与大众共识一致率 · 票权</span></div>
+      <div style="margin-top:var(--s3)">${eyes}</div>
+
+      <div class="sec-h" style="margin-top:var(--s5)"><span class="t">贡献榜</span><span class="n">感谢每一票 · 累计对决场数</span></div>
+      <div class="card-note" style="margin:var(--s2) 0">每一场对决都在帮我们筛出好图与好做法。<b>谢谢这些评审</b> —</div>
+      <div class="contrib">${contribs}</div>
+
+      <div class="sec-h" style="margin-top:var(--s5)"><span class="t">人评 vs AI · 洞察</span><span class="n">${a.human_vs_vlm_corr!=null?'相关 '+a.human_vs_vlm_corr+' · '+a.corr_n+' 图':'数据不足'}</span></div>
+      <div style="margin-top:var(--s2)">${insightSVG(a.scatter)}</div>
+      <div class="card-note" style="margin-top:var(--s2)">每点一张图:横=人类对决评分,纵=AI 质量分。越接近正斜线,AI 越能替人粗筛;散开则说明人眼看到了 AI 没看到的东西。</div>
+
+      ${fb?`<div class="sec-h" style="margin-top:var(--s5)"><span class="t">反馈意见流</span></div><div class="fbstream">${fb}</div>`:''}
+    </div>`;
+    $('view-board').querySelectorAll('[data-cat]').forEach(t=>t.onclick=()=>loadBoard(t.dataset.cat));
+    $('view-board').querySelectorAll('[data-ax]').forEach(t=>t.onclick=()=>loadBoard(undefined,t.dataset.ax));
+    $('view-board').querySelectorAll('.gc:not(.base)').forEach(c=>c.onclick=e=>{if(!e.target.closest('.gcfav'))openCard(c.dataset.key);});
+    $('view-board').querySelectorAll('.gc.base').forEach(c=>{const im=c.querySelector('img');c.onclick=e=>{if(!e.target.closest('.gcfav'))zoom(im.dataset.full);};});
+    $('view-board').querySelectorAll('.gcfav').forEach(b=>b.onclick=e=>{e.stopPropagation();
+      if(b.classList.contains('on')){toast('已在你的作品里');return;}
+      doCollect(b.dataset.key,()=>{b.classList.add('on');b.innerHTML=SVG_HEART_FILL;});});
+  });
+}
+
+// ---------- 结论卡 ----------
+function showReport(){
+  if(!rater)return;
+  $('reportScrim').style.display='flex';
+  $('reportBox').innerHTML='<div class="loading">生成你的评审报告</div>';
+  fetch(`${API}/gen/battle/summary?rater=${encodeURIComponent(rater)}&session=${session}`).then(r=>r.json()).then(renderReport)
+    .catch(()=>{$('reportBox').innerHTML='<div class="empty">报告暂不可用<div class="hint">多对决几场再来</div></div>'+repActs();bindRepActs();});
+}
+let lastReport=null;
+function renderReport(d){
+  lastReport=d;
+  if(!d||d.total==null||d.total===0){
+    $('reportBox').innerHTML=`<h3>你的评审报告</h3><div class="empty">还没有足够的对决<div class="hint">再来几局就能看出你的眼光</div></div>${repActs()}`;
+    bindRepActs();return;
+  }
+  const eyePct=d.eye!=null?Math.round(d.eye*100):null;
+  const aiPct=d.vs_ai!=null?Math.round(d.vs_ai*100):null;
+  const taste=(d.taste_lines||[]).map(l=>`<div class="rline">${ic('sparkles')} ${esc(l)}</div>`).join('');
+  const uniq=d.unique?`<div class="rline" style="margin-top:var(--s4)"><b>你最独特的一票</b></div>
+    <div class="uniq"><img src="${d.unique.thumb}" alt=""><div class="ptxt" style="font-size:var(--fz-small);color:var(--ink-soft)">你偏爱它,但大众把它排得靠后。眼光,本就千人千面。</div></div>`:'';
+  $('reportBox').innerHTML=`
+    <h3 style="text-align:center">你的审美评审报告</h3>
+    <div class="rtop">
+      <div class="big">${eyePct!=null?eyePct+'<span class="u">%</span>':'攒分中'}</div>
+      <div class="cap">${eyePct!=null?'你的眼光与大众共识一致度':'眼光需在双方都比够的对决上才算得准 · 再多比几场'}</div>
+    </div>
+    ${aiPct!=null?`<div class="rline">${ic('eye')} 你与 AI 评审的一致度 <b>${aiPct}%</b>${d.ai_flips?` · 有 ${d.ai_flips} 次你和 AI 分歧、后续证明<b>你对</b>`:''}</div>`:''}
+    ${taste}
+    ${uniq}
+    <div class="rline faint" style="margin-top:var(--s4);font-family:var(--mono);font-size:var(--fz-tiny)">
+      本轮对决 ${d.session_n||0} 场 · 累计 ${d.total} 场 · 帮排了 ${d.images_helped||0} 张图</div>
+    ${repActs()}`;
+  bindRepActs();
+}
+function repActs(){
+  return `<div class="acts">
+    <button class="btn" id="repAgain">${ic('versus')} 再来一局</button>
+    <button class="btn ghost" id="repBoard">看完整榜单</button>
+    <button class="btn ghost" id="repPoster">${ic('share')} 生成海报</button>
+    <button class="btn ghost" id="repLink">复制链接</button></div>`;
+}
+function bindRepActs(){
+  $('repAgain')&&($('repAgain').onclick=()=>{$('reportScrim').style.display='none';mode='battle';refresh();});
+  $('repBoard')&&($('repBoard').onclick=()=>{$('reportScrim').style.display='none';
+    $('modeseg').querySelector('[data-m="board"]').click();});
+  $('repPoster')&&($('repPoster').onclick=()=>makePoster(lastReport));
+  $('repLink')&&($('repLink').onclick=shareLink);
+}
+function shareLink(){
+  const url=location.origin+'/arena.html?u='+encodeURIComponent(rater);
+  if(navigator.clipboard)navigator.clipboard.writeText(url);
+  toast('已复制分享链接');
+}
+const PAL={paper:'#f4f1ea',ink:'#1d1b18',soft:'#4b463e',mute:'#857d6f',faint:'#a89f8f',accent:'#b0673a',line:'#ddd5c6',mat:'#15110b'};
+function makePoster(d){
+  if(!d||d.total==null||d.total===0){toast('多对决几场再生成海报');return;}
+  toast('正在生成海报…');
+  const draw=uimg=>{
+    const W=1080,H=1500,g=document.createElement('canvas').getContext('2d');
+    g.canvas.width=W;g.canvas.height=H;
+    g.fillStyle=PAL.paper;g.fillRect(0,0,W,H);
+    // 顶部品牌
+    g.textAlign='left';
+    g.fillStyle=PAL.ink;g.font='600 44px Georgia,serif';g.fillText('Artist',80,116);
+    g.fillStyle=PAL.soft;g.font='500 30px "Noto Serif SC",serif';g.fillText('艺术家',258,116);
+    g.fillStyle=PAL.accent;g.font='500 22px monospace';g.fillText('1.0',378,112);
+    g.fillStyle=PAL.mute;g.font='400 24px "Noto Serif SC",serif';g.fillText('美学竞技场 · 审美评审报告',80,162);
+    g.strokeStyle=PAL.line;g.lineWidth=1;g.beginPath();g.moveTo(80,196);g.lineTo(W-80,196);g.stroke();
+    // 大眼光分
+    g.textAlign='center';
+    g.fillStyle=PAL.accent;g.font='600 168px "Noto Serif SC",serif';
+    g.fillText(d.eye!=null?Math.round(d.eye*100)+'%':'攒分中',W/2,400);
+    g.fillStyle=PAL.mute;g.font='400 26px "Noto Serif SC",serif';
+    g.fillText(d.eye!=null?'眼光 · 与大众共识一致度':'眼光攒分中 · 再多比几场',W/2,452);
+    // 文字行
+    g.textAlign='left';let y=540;
+    g.fillStyle=PAL.soft;g.font='400 30px "Noto Serif SC",serif';
+    if(d.vs_ai!=null){g.fillText('与 AI 评审一致度 '+Math.round(d.vs_ai*100)+'%'+(d.ai_flips?' · '+d.ai_flips+' 次你对、AI 错':''),80,y);y+=52;}
+    (d.taste_lines||[]).forEach(l=>{g.fillStyle=PAL.accent;g.fillText('·',80,y);g.fillStyle=PAL.soft;g.fillText(' '+l,98,y);y+=52;});
+    y+=14;
+    // 独特一票图
+    if(uimg){
+      g.fillStyle=PAL.mute;g.font='400 24px "Noto Serif SC",serif';g.fillText('你最独特的一票',80,y);y+=24;
+      const bx=80,bw=W-160,bh=H-150-y;
+      const r=Math.max(bw/uimg.width,bh/uimg.height),sw=uimg.width*r,sh=uimg.height*r;
+      g.save();g.beginPath();g.rect(bx,y,bw,bh);g.clip();
+      g.drawImage(uimg,bx+(bw-sw)/2,y+(bh-sh)/2,sw,sh);g.restore();
+    }
+    // 页脚
+    g.textAlign='center';g.fillStyle=PAL.mute;g.font='400 22px "Noto Serif SC",serif';
+    g.fillText('出品 · 浙江大学国际设计研究院',W/2,H-92);
+    g.fillStyle=PAL.faint;g.font='400 19px monospace';g.fillText('aha.yishujia.art/arena.html',W/2,H-58);
+    g.canvas.toBlob(bl=>{const u=URL.createObjectURL(bl);const a=document.createElement('a');
+      a.href=u;a.download='我的审美评审报告.png';a.click();setTimeout(()=>URL.revokeObjectURL(u),3000);toast('海报已下载');},'image/png');
+  };
+  const fire=()=>{
+    if(d.unique&&d.unique.thumb){const im=new Image();im.onload=()=>draw(im);im.onerror=()=>draw(null);im.src=d.unique.thumb;}
+    else draw(null);
+  };
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fire);else fire();
+}
+$('reportScrim').onclick=e=>{if(e.target===$('reportScrim'))$('reportScrim').style.display='none';};
+
+// ---------- 键盘 ----------
+document.addEventListener('keydown',e=>{
+  if($('reportScrim').style.display==='flex'||$('promptScrim').style.display==='flex'||$('lightScrim').style.display==='flex'||$('cardScrim').style.display==='flex')return;
+  if(mode==='battle'){
+    if(busy||!cur)return;
+    if(e.key==='ArrowLeft'){battle('left');}
+    else if(e.key==='ArrowRight'){battle('right');}
+    else if(e.key===' '){e.preventDefault();battle('tie');}
+  }else if(mode==='rate'){
+    const inBox=document.activeElement&&document.activeElement.id==='cmt';
+    if(inBox){if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();rate(4);}return;}
+    if(e.key>='1'&&e.key<='5')rate(+e.key);
+  }
+});
+
+bootIdentity();
+</script>
+<script src="js/aha-icons.js"></script>
+<script src="js/aha-chrome.js"></script>
+</body></html>

@@ -1,0 +1,135 @@
+<!doctype html><html lang="zh"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 装裱预览 / 下单 demo</title>
+<meta name="description" content="aha 装裱系统预览:为每幅画自动配框(AI 逐画策展)、八框任意切换、按画幅算尺寸并下单。"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="css/aha-frames.css" rel="stylesheet"/>
+<script src="js/frames.js"></script>
+<style>
+  :root{--wall:#ddd4c2;--wall2:#cdc3ad;--ink:#2a2620;--ink-soft:#5c554a;--ink-mute:#8a8170;--gold:#b0673a;--line:#cdc3ad;--panel:#fbf8f2;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:radial-gradient(130% 90% at 50% -5%,var(--wall),var(--wall2));background-attachment:fixed;color:var(--ink);font-family:var(--sans);min-height:100vh;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:30px 22px 80px}
+  .top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+  .home{font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:7px 13px;background:rgba(255,255,255,.4)}
+  .home:hover{border-color:var(--gold);color:var(--gold)}
+  h1{font-family:var(--serif);font-size:28px;font-weight:700;margin:14px 0 4px}
+  .lede{font-size:14px;color:var(--ink-soft);max-width:680px;line-height:1.7;margin-bottom:22px}
+  .picker{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;margin-bottom:22px}
+  .pk{flex:0 0 auto;width:74px;cursor:pointer;text-align:center;opacity:.6;transition:opacity .15s}
+  .pk.on{opacity:1}
+  .pk img{width:74px;height:74px;object-fit:cover;border-radius:8px;display:block;background:#cfc6b4;border:2px solid transparent}
+  .pk.on img{border-color:var(--gold)}
+  .pk span{font-family:var(--mono);font-size:9px;color:var(--ink-mute);display:block;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .stage{display:grid;grid-template-columns:1fr 360px;gap:30px;align-items:start}
+  @media(max-width:820px){.stage{grid-template-columns:1fr}}
+  .view{background:rgba(255,255,255,.25);border-radius:16px;padding:34px;display:flex;align-items:center;justify-content:center;min-height:340px}
+  .view .aha-frame{max-width:min(420px,60vw)}
+  .meta{font-family:var(--serif);font-size:18px;font-weight:600;margin-bottom:2px}
+  .meta small{font-family:var(--sans);font-size:13px;font-weight:400;color:var(--ink-mute)}
+  .reason{font-size:13px;color:var(--ink-soft);background:rgba(255,255,255,.5);border:1px dashed var(--line);border-radius:11px;padding:10px 13px;margin:12px 0 18px;line-height:1.6}
+  .reason b{color:var(--gold)}
+  .sect{font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.06em;margin:0 0 9px}
+  .chips{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:20px}
+  .chip{display:flex;align-items:center;gap:7px;border:1px solid var(--line);background:rgba(255,255,255,.5);border-radius:10px;padding:8px 10px;cursor:pointer;font-size:12.5px}
+  .chip.on{border-color:var(--gold);background:#fff;box-shadow:0 0 0 1px var(--gold) inset}
+  .chip .e{font-size:16px}.chip .tag{margin-left:auto;font-family:var(--mono);font-size:8px;color:var(--gold);border:1px solid var(--gold);border-radius:5px;padding:1px 4px}
+  .ord{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .ordsz{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 8px}
+  .ordsz button{font-family:var(--mono);font-size:12px;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 11px;cursor:pointer}
+  .ordsz button.on{border-color:var(--gold);background:#fbf3ea;color:var(--gold);font-weight:600}
+  .row{display:flex;justify-content:space-between;font-size:13px;padding:4px 0;color:var(--ink-soft)}
+  .row b{color:var(--ink)}
+  .in{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:9px;font-size:14px;margin-top:7px;font-family:var(--sans)}
+  .sub{width:100%;margin-top:11px;padding:12px;border:none;border-radius:11px;background:var(--gold);color:#fff;font-size:15px;font-weight:600;cursor:pointer}
+  .qty button{border:1px solid var(--line);background:#fff;border-radius:6px;width:26px;cursor:pointer}
+  .note{font-size:10.5px;color:var(--ink-mute);text-align:center;margin-top:8px}
+  .loading{font-family:var(--mono);font-size:13px;color:var(--ink-mute);padding:60px;text-align:center}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="top"><a class="home" href="frames.html">‹ 框样式库</a><a class="home" href="museum.html"><i data-ic="museum"></i> 美术馆</a><a class="home" href="dashboard.html"><i data-ic="tools"></i> 后台(订单/统计)</a></div>
+  <h1>装裱预览 · 下单 demo</h1>
+  <p class="lede">每幅画由 AI 逐画读内容自动配框,你也可以八框任意切换试效果;选好尺寸即按真实画幅算出成品尺寸与示例报价,可直接下单。<b style="color:var(--gold)">报价为估算占位,接入供应链后以实际为准。</b></p>
+  <div class="picker" id="picker"></div>
+  <div id="stageWrap"><div class="loading">载入馆藏…</div></div>
+</div>
+<script>
+var esc=function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
+var ORD={rate:{wood:2.5,gilt:7,noir:3,mat:2.5,white:2.5,silver:4.5,scroll:4,float:5},
+         prof:{wood:4,gilt:6,noir:2.5,mat:3.5,white:2.5,silver:4,scroll:4,float:1.5}, sizes:[30,40,50,60,75,90]};
+var WORKS=[], CUR=null, FKEY='wood', SIZE=50, QTY=1, ASPECT=0.75, DONE=false;
+function title(t,a){t=(t||'').replace(/\.(jpe?g|png|webp|gif|tiff?|bmp|jfif)$/i,'').replace(/[_]+/g,' ').trim();return t||'无题';}
+
+function calc(){
+  var ar=(CUR.ar||(ASPECT?1/ASPECT:1.33));
+  var longE=SIZE, shortE=Math.max(10,Math.round(longE*ASPECT)), aw,ah;
+  if(ar>=1){aw=longE;ah=shortE;}else{ah=longE;aw=shortE;}
+  var m=(FKEY==='float')?0:5, p=ORD.prof[FKEY]||4;
+  var ow=Math.round(aw+2*(m+p)), oh=Math.round(ah+2*(m+p));
+  var artA=aw*ah, matA=ow*oh-artA, perim=2*(ow+oh);
+  var price=Math.round(artA*0.18+matA*0.06+perim*(ORD.rate[FKEY]||3))*QTY;
+  return {aw:aw,ah:ah,ow:ow,oh:oh,price:price};
+}
+function selectWork(w){CUR=w;FKEY=AHAFrames.pick(w);SIZE=50;QTY=1;DONE=false;
+  var im=new Image();im.onload=function(){if(im.naturalWidth){ASPECT=Math.min(im.naturalWidth,im.naturalHeight)/Math.max(im.naturalWidth,im.naturalHeight);render();}};im.src=w.file;
+  render();renderPicker();}
+function renderPicker(){
+  document.getElementById('picker').innerHTML=WORKS.map(function(w,i){
+    return '<div class="pk'+(CUR&&CUR.file===w.file?' on':'')+'" onclick="selectWork(WORKS['+i+'])"><img src="'+esc(w.thumb||w.file)+'"><span>'+esc(title(w.title))+'</span></div>';
+  }).join('');
+}
+function render(){
+  if(!CUR)return;
+  var ax=AHAFrames.autoExplain(CUR), s=AHAFrames.BY[FKEY]||{}, c=calc();
+  var framed='<div class="aha-frame f-'+FKEY+'"><div class="aha-mat"><img src="'+esc(CUR.file)+'"></div></div>';
+  var chips=AHAFrames.STYLES.map(function(st){
+    return '<div class="chip'+(st.key===FKEY?' on':'')+'" onclick="FKEY=\''+st.key+'\';DONE=false;render()"><span class="e">'+st.emoji+'</span>'+esc(st.name)+(st.key===ax.key?'<span class="tag">AI</span>':'')+'</div>';
+  }).join('');
+  var reason = ax.src==='llm' ? '🪄 AI 读画面为它策展:<b>'+esc(ax.why)+'</b> → '+s.emoji+' '+esc((AHAFrames.BY[ax.key]||{}).name)
+             : (ax.conf==='low'||ax.conf==='none') ? '这幅暂无强信号,兜底 <b>'+esc((AHAFrames.BY[ax.key]||{}).name)+'</b> · 可手动挑'
+             : '按<b>'+esc(ax.why)+'</b>自动配 '+esc((AHAFrames.BY[ax.key]||{}).name);
+  var ordHtml = DONE ? doneHtml(c) :
+    '<div class="sect">② 选尺寸 · 下单</div><div class="ord">'
+    +'<div style="font-size:11px;color:var(--ink-mute)">画幅长边(cm)</div><div class="ordsz">'
+    +ORD.sizes.map(function(z){return '<button class="'+(z===SIZE?'on':'')+'" onclick="SIZE='+z+';render()">'+z+'</button>';}).join('')+'</div>'
+    +'<div class="row"><span>画心尺寸</span><b>'+c.aw+' × '+c.ah+' cm</b></div>'
+    +'<div class="row"><span>成品外框(含卡纸+边框)</span><b>'+c.ow+' × '+c.oh+' cm</b></div>'
+    +'<div class="row qty" style="align-items:center"><span>数量</span><span><button onclick="QTY=Math.max(1,QTY-1);render()">−</button> <b>'+QTY+'</b> <button onclick="QTY=Math.min(99,QTY+1);render()">+</button></span></div>'
+    +'<div class="row" style="border-top:1px solid var(--line);margin-top:5px;padding-top:8px"><span>示例报价 <span style="font-size:10px;color:var(--ink-mute)">(画心+卡纸+框估算)</span></span><b style="color:var(--gold);font-size:17px">¥'+c.price+'</b></div>'
+    +'<input class="in" id="oName" placeholder="姓名 *"><input class="in" id="oContact" placeholder="联系方式(手机/微信)*"><input class="in" id="oNote" placeholder="备注(可选)">'
+    +'<button class="sub" onclick="submitOrder()">提交下单 / 询价</button>'
+    +'<div class="note">demo · 提交后会落库到后台「装裱订单」</div></div>';
+  document.getElementById('stageWrap').innerHTML=
+    '<div class="stage"><div class="view">'+framed+'</div><div>'
+    +'<div class="meta">'+esc(title(CUR.title))+' <small>'+esc(CUR.artist||'')+(CUR.year?' · '+esc(CUR.year):'')+'</small></div>'
+    +'<div class="reason">'+reason+'</div>'
+    +'<div class="sect">① 试框(八种)</div><div class="chips">'+chips+'</div>'
+    +ordHtml+'</div></div>';
+}
+function doneHtml(c){return '<div class="ord" style="text-align:center"><div style="font-size:40px"><i data-ic="check"></i></div><div style="font-family:var(--serif);font-size:18px;font-weight:600;margin:4px 0">下单成功</div><div style="font-family:var(--mono);font-size:15px;color:var(--gold)">'+esc(window._ordNo||'')+'</div><div style="font-size:13px;color:var(--ink-soft);margin-top:6px">'+esc(title(CUR.title))+' · '+esc((AHAFrames.BY[FKEY]||{}).name)+'<br>成品 '+c.ow+'×'+c.oh+'cm · ×'+QTY+' · ¥'+c.price+'</div><button class="sub" onclick="DONE=false;render()">再下一单</button></div>';}
+function submitOrder(){
+  var name=(document.getElementById('oName').value||'').trim(), contact=(document.getElementById('oContact').value||'').trim(), note=(document.getElementById('oNote').value||'').trim();
+  if(!name||!contact){alert('请填姓名和联系方式');return;}
+  var c=calc();
+  fetch('api/frame_order',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({work:CUR.file,title:title(CUR.title),frame:FKEY,art_w:c.aw,art_h:c.ah,outer_w:c.ow,outer_h:c.oh,qty:QTY,price_cents:c.price*100,name:name,contact:contact,note:note})})
+   .then(function(r){return r.json();}).then(function(d){
+     if(d&&d.ok){window._ordNo=d.order_no;DONE=true;render();}else alert('提交失败:'+((d&&d.error)||'请稍后再试'));
+   }).catch(function(){alert('网络错误');});
+}
+// 载入:挑一批"各框各异"的代表作
+Promise.all([AHAFrames.loadStyles(), AHAFrames.loadCanonical(),
+  fetch('/cat/exhibit?limit=800').then(function(r){return r.json();}).catch(function(){return fetch('data/gallery_works.json').then(function(r){return r.json();});})
+]).then(function(res){
+  var W=(res[2].works||[]).filter(function(w){return w.file;});
+  var seen={}, pick=[];
+  W.forEach(function(w){var k=AHAFrames.pick(w);if(!seen[k]){seen[k]=1;pick.push(w);}});  // 每种框一幅代表
+  W.forEach(function(w){if(pick.length<8&&pick.indexOf(w)<0)pick.push(w);});
+  WORKS=pick.slice(0,8);
+  if(!WORKS.length){document.getElementById('stageWrap').innerHTML='<div class="loading">暂无可预览作品</div>';return;}
+  selectWork(WORKS[0]);
+}).catch(function(e){document.getElementById('stageWrap').innerHTML='<div class="loading">载入失败:'+esc(e)+'</div>';});
+</script>
+<script src="js/aha-icons.js"></script>
+</body></html>

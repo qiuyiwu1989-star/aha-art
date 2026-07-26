@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>把作品越做越好 · vibe coding 进阶 — aha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4f1ea; --card:#fffdf8; --line:#ddd5c6; --line-soft:#e8e1d4;
+    --ink:#1d1b18; --ink-soft:#4b463e; --ink-mute:#857d6f; --ink-faint:#a89f8f;
+    --accent:#b0673a; --accent-soft:#f0e4d8; --accent-line:#e5d3c2; --accent-deep:#9a5530;
+    --green:#5a7d6f; --green-soft:#e4ede9; --blue:#5b7596; --blue-soft:#e3e9f0;
+    --gold:#c98a1a; --gold-soft:#f3e7cb; --reb:#c0492f;
+    --serif:"Noto Serif SC","Songti SC",serif;
+    --sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:var(--sans); color:var(--ink); background:var(--paper);
+    overflow:hidden; -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(circle at 18% 12%, #fffdf8 0%, transparent 40%),
+      radial-gradient(circle at 82% 88%, #efe9dd 0%, transparent 45%);
+  }
+  .deck{position:fixed;inset:0}
+  .slide{
+    position:absolute; inset:0;
+    display:flex; flex-direction:column; justify-content:center; align-items:center;
+    padding:clamp(28px,6vw,90px);
+    opacity:0; visibility:hidden; transform:translateY(18px) scale(.992);
+    transition:opacity .5s ease, transform .5s ease;
+    text-align:center;
+  }
+  .slide.active{opacity:1; visibility:visible; transform:none; z-index:2}
+  .slide.past{transform:translateY(-18px) scale(.992)}
+  .wrap{width:100%; max-width:1080px}
+
+  /* typography */
+  .kicker{font-family:var(--sans); font-weight:700; letter-spacing:.22em;
+    font-size:clamp(11px,1.3vw,15px); color:var(--accent); text-transform:uppercase; margin-bottom:22px}
+  h1{font-family:var(--serif); font-weight:900; line-height:1.12;
+    font-size:clamp(34px,6.4vw,82px); letter-spacing:.01em}
+  h2{font-family:var(--serif); font-weight:700; line-height:1.2;
+    font-size:clamp(27px,4.4vw,56px)}
+  .lead{font-family:var(--serif); font-size:clamp(20px,2.9vw,36px); line-height:1.5; color:var(--ink-soft); margin-top:26px}
+  .sub{font-size:clamp(15px,1.8vw,22px); color:var(--ink-mute); margin-top:18px; line-height:1.7}
+  .em{color:var(--accent)}
+  .mute{color:var(--ink-faint)}
+  .big-word{font-family:var(--serif); font-weight:900; color:var(--accent);
+    font-size:clamp(40px,8vw,104px); line-height:1.05; letter-spacing:.02em; margin:18px 0}
+
+  /* 80/20 第一版陷阱 */
+  .split{display:flex; gap:10px; margin-top:38px; align-items:stretch; text-align:left}
+  .split .seg{border-radius:14px; padding:clamp(16px,2vw,26px); display:flex; flex-direction:column; justify-content:center}
+  .split .easy{flex:4; background:#f0ece2; border:1px solid var(--line)}
+  .split .hard{flex:1.6; background:var(--accent-soft); border:1.5px solid var(--accent-line)}
+  .split .seg .pct{font-family:var(--serif); font-weight:900; font-size:clamp(28px,4.4vw,50px); line-height:1}
+  .split .easy .pct{color:var(--ink-mute)} .split .hard .pct{color:var(--accent)}
+  .split .seg .cap{font-size:clamp(12px,1.4vw,16px); margin-top:8px; line-height:1.4}
+  .split .easy .cap{color:var(--ink-mute)} .split .hard .cap{color:var(--accent-deep); font-weight:700}
+
+  /* cover */
+  .cover h1{margin-bottom:8px}
+  .cover .tagline{font-family:var(--serif); font-size:clamp(17px,2.3vw,28px); color:var(--accent); margin-top:18px}
+  .cover .by{margin-top:40px; color:var(--ink-mute); font-size:clamp(13px,1.5vw,17px); letter-spacing:.05em}
+  .pill{display:inline-block; padding:7px 18px; border:1px solid var(--accent-line);
+    background:var(--accent-soft); color:var(--accent); border-radius:999px;
+    font-size:clamp(12px,1.4vw,15px); font-weight:700; letter-spacing:.04em}
+
+  /* 参照系轴 外→内 */
+  .axis{display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:10px; margin-top:38px}
+  .axis .end{font-family:var(--serif); font-weight:900; color:var(--ink-faint); font-size:clamp(15px,1.8vw,22px)}
+  .axis .node{background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:clamp(11px,1.4vw,18px) clamp(13px,1.6vw,20px); min-width:96px; box-shadow:0 2px 0 var(--line-soft)}
+  .axis .node b{display:block; font-family:var(--serif); font-weight:700; font-size:clamp(15px,1.8vw,22px); color:var(--ink)}
+  .axis .node small{color:var(--ink-mute); font-size:clamp(11px,1.3vw,14px)}
+  .axis .node.accent{background:var(--accent-soft); border-color:var(--accent-line)}
+  .axis .node.accent b{color:var(--accent)}
+  .axis .ar{color:var(--accent-line); font-weight:900; font-size:clamp(16px,2vw,24px)}
+
+  /* 心法句 */
+  .play{margin-top:30px; background:var(--accent-soft); border:1.5px solid var(--accent-line);
+    border-radius:16px; padding:clamp(18px,2.4vw,30px); text-align:left}
+  .play .pt{font-family:var(--serif); font-weight:700; font-size:clamp(18px,2.3vw,30px); line-height:1.45; color:var(--ink)}
+  .play .pt b{color:var(--accent)}
+
+  /* 多项目实例 */
+  .exg{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(11px,1.4vw,16px); margin-top:18px; text-align:left}
+  .ex-item{background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:clamp(13px,1.6vw,20px); box-shadow:0 2px 0 var(--line-soft)}
+  .ex-item .pj{font-family:var(--serif); font-weight:900; color:var(--accent); font-size:clamp(14px,1.6vw,19px); margin-bottom:7px}
+  .ex-item .ed{color:var(--ink-soft); font-size:clamp(12.5px,1.45vw,16px); line-height:1.55}
+  .ex-item .ed b{color:var(--ink)}
+
+  /* 一句话行动 */
+  .act{margin-top:20px; font-family:var(--serif); font-weight:700;
+    font-size:clamp(16px,2vw,25px); line-height:1.45; color:var(--accent); text-align:left}
+  .act::before{content:"本周行动 · "; font-size:.7em; color:var(--ink-mute); font-weight:400; letter-spacing:.04em}
+
+  /* mnemonic */
+  .mnemonic{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:34px}
+  .mnemonic span{background:var(--card); border:1px solid var(--line); border-radius:999px;
+    padding:8px 18px; font-family:var(--serif); font-weight:700; font-size:clamp(14px,1.7vw,21px); color:var(--accent)}
+
+  /* 互动 症状→药方 */
+  .pick{display:grid; grid-template-columns:1fr 1fr; gap:clamp(12px,1.5vw,18px); margin-top:28px; text-align:left}
+  .pk{background:var(--card); border:1.5px solid var(--line); border-radius:16px;
+    padding:clamp(15px,1.9vw,24px); cursor:pointer; transition:.22s}
+  .pk:hover{border-color:var(--accent-line); background:#fffaf2}
+  .pk.on{border-color:var(--accent); background:var(--accent-soft)}
+  .pk .sym{font-family:var(--serif); font-weight:700; font-size:clamp(16px,1.95vw,24px); line-height:1.35}
+  .pk .sym::before{content:"“"; color:var(--accent)} .pk .sym::after{content:"”"; color:var(--accent)}
+  .pk .rx{max-height:0; overflow:hidden; transition:max-height .4s ease, margin .4s ease;
+    color:var(--accent-deep); font-size:clamp(13px,1.55vw,18px); line-height:1.55}
+  .pk.on .rx{max-height:200px; margin-top:14px}
+  .pk .rx b{color:var(--accent)}
+  .pk .tip{display:inline-block; margin-top:12px; font-size:clamp(11px,1.3vw,13px); color:var(--ink-faint)}
+  .pk.on .tip{display:none}
+
+  /* end */
+  .end .gold-line{font-family:var(--serif); font-weight:900; font-size:clamp(26px,4.4vw,56px); line-height:1.32}
+
+  /* chrome */
+  .progress{position:fixed; top:0; left:0; height:4px; background:var(--accent); z-index:50; transition:width .4s ease}
+  .nav{position:fixed; bottom:22px; right:26px; display:flex; align-items:center; gap:12px; z-index:50}
+  .nav button{width:42px; height:42px; border-radius:50%; border:1px solid var(--line); background:var(--card);
+    color:var(--ink-soft); font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.18s}
+  .nav button:hover{background:var(--accent-soft); color:var(--accent); border-color:var(--accent-line)}
+  .counter{font-family:var(--serif); font-weight:700; color:var(--ink-mute); font-size:15px; min-width:54px; text-align:center}
+  .help{position:fixed; bottom:26px; left:26px; z-index:50; color:var(--ink-faint); font-size:13px; letter-spacing:.03em}
+  .brand{position:fixed; top:20px; left:26px; z-index:50; font-family:var(--serif); font-weight:900; color:var(--accent); font-size:17px; letter-spacing:.02em}
+  .brand small{color:var(--ink-faint); font-weight:400; font-family:var(--sans)}
+
+  @media (max-width:760px){
+    .exg,.pick{grid-template-columns:1fr}
+    .split{flex-direction:column}
+    .axis .end{display:none}
+    .help{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="brand">aha<small> · 把作品越做越好</small></div>
+
+<main class="deck" id="deck">
+
+  <!-- 1 封面 -->
+  <section class="slide cover active">
+    <div class="wrap">
+      <div class="pill">vibe coding 进阶 · 怎么不停精进</div>
+      <h1 style="margin-top:26px">把作品<span class="em">越做越好</span></h1>
+      <p class="tagline">—— 卡住的时候，去哪里“借”一个更高的标准</p>
+      <p class="sub">9 个方法、两类，例子来自我做过的一堆项目：aha · colorforge · promptcard · 小红书参谋台 · 绘本课……</p>
+      <p class="by">主讲 · 邱懿武　|　按 → 开始</p>
+    </div>
+  </section>
+
+  <!-- 2 诊断 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">先说你卡住的真正原因</div>
+      <h2>东西能跑了、却深不下去——<br>多半不是你<span class="mute">不会做</span>了，<br>是身边<span class="em">没有一个更高的标准</span>在拉你往上。</h2>
+      <p class="lead">能跑 ≠ 做好。<br>差的那一截，<span class="em">到底是什么？</span></p>
+    </div>
+  </section>
+
+  <!-- 3 第一版陷阱 80/20 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">差的那一截 · “第一版陷阱”</div>
+      <h2>第一版，是最容易的那 <span class="em">80%</span>。</h2>
+      <div class="split">
+        <div class="seg easy"><div class="pct">80%</div><div class="cap">把东西“做出来”<br>几句话，AI 就帮你到这——人人都能到</div></div>
+        <div class="seg hard"><div class="pct">20%</div><div class="cap">把东西“做得更好”<br>价值全在这一段 · 大多数人停在它之前</div></div>
+      </div>
+      <p class="sub">真正拉开差距的，是后面那 20%。<span class="em">接下来 9 招，招招都在教你——怎么把这 20% 做得更好。</span></p>
+    </div>
+  </section>
+
+  <!-- 4 心法 + 轴 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">那 20%，怎么做得更好 · 一句话心法</div>
+      <h2>打磨，就是不停给作品<br>引入一个<span class="em">更高的参照系</span>，再把它<span class="em">内化</span>。</h2>
+      <div class="axis">
+        <span class="end">外</span>
+        <div class="node"><b>AI</b><small>随叫随到</small></div><span class="ar">→</span>
+        <div class="node"><b>别人的项目</b><small>GitHub · 同类</small></div><span class="ar">→</span>
+        <div class="node"><b>优秀作品</b><small>小红书等</small></div><span class="ar">→</span>
+        <div class="node accent"><b>你自己的库</b><small>opendesign</small></div>
+        <span class="end">内</span>
+      </div>
+      <p class="sub">4 个地方能借到更高的标准，<span class="em">由外到内</span>——越往里，越是“只有你会做的”。</p>
+    </div>
+  </section>
+
+  <!-- 4 方法一 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">方法一 · 跟 AI 探讨</div>
+      <h2>让它扮演一个<span class="em">会拒绝你的人</span></h2>
+      <div class="play"><div class="pt">别让 AI 当<b>夸夸机</b>。给它一个会挑刺的角色——严谨的科学家、最难搞的用户、竞品的主理人——它就会反过来对你<b>提出更高的要求</b>。</div></div>
+      <div class="exg">
+        <div class="ex-item"><div class="pj">aha</div><div class="ed">我对它说“这套图谱<b>要经得起推敲</b>”，它就从“画得好看”切换成严谨科学家，最后我们甚至<b>主动撤回</b>了一个站不住的结论。</div></div>
+        <div class="ex-item"><div class="pj">小红书参谋台</div><div class="ed">让 AI 扮演“<b>账号操盘手</b>”，它会反过来质疑你的选题，帮你把封面“去 AI 感”。</div></div>
+        <div class="ex-item"><div class="pj">绘本 / 视频课</div><div class="ed">让 AI 先当“<b>编剧</b>”写草稿，学生再当“<b>导演</b>”改——角色分清楚，东西才立得住。</div></div>
+      </div>
+      <p class="act">别问“好不好”，先指定一个会挑刺的角色，再让它给“评分 + 理由 + 三条最该改的”。</p>
+    </div>
+  </section>
+
+  <!-- 5 方法二 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">方法二 · 去 GitHub 找“同类”</div>
+      <h2>站在<span class="em">别人的肩膀上</span>，别从零开始</h2>
+      <div class="play"><div class="pt">你想做的，多半<b>别人已经做过一部分</b>。先找“同类”，把能用的拿来当地基，省下的力气全花在<b>只有你能做的那部分</b>。</div></div>
+      <div class="exg">
+        <div class="ex-item"><div class="pj">我的“克隆链”</div><div class="ed">几乎每个新项目都站在上一个的肩膀上：<b>productlens → colorforge → promptcard → 小红书参谋台</b>，一个接一个。</div></div>
+        <div class="ex-item"><div class="pj">AR 弓箭 / 手势火球</div><div class="ed">没有从零写“手势识别”，直接用现成成熟的 <b>MediaPipe</b> 库，把力气留给创意。</div></div>
+        <div class="ex-item"><div class="pj">美学竞技场</div><div class="ed">直接<b>套用</b>已有的 Artist 页面外壳，半天就立起一个新功能。</div></div>
+      </div>
+      <p class="act">动手前先搜一圈“有没有人做过类似的”，找到就站上去——别重复造轮子。</p>
+    </div>
+  </section>
+
+  <!-- 6 方法三 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">方法三 · 拆解优秀作品</div>
+      <h2>从“<span class="mute">截图收藏</span>”到“<span class="em">能复用</span>”</h2>
+      <div class="play"><div class="pt">看到好作品别只截图（那是<b>收藏夹墓地</b>）。要问“<b>它为什么好</b>”，把感觉翻译成能用的规则——甚至让 AI 帮你逆向。</div></div>
+      <div class="exg">
+        <div class="ex-item"><div class="pj">promptcard</div><div class="ed">点一张名画，AI 逆推出它的“<b>配方</b>”（提示词 + 主色 + 参数）——把好作品拆成你能复用的公式。</div></div>
+        <div class="ex-item"><div class="pj">colorforge</div><div class="ed">首页就是个“灵感库”，把每个好案例拆成<b>材质 / 颜色 / 元素</b>三个维度，照着维度改。</div></div>
+        <div class="ex-item"><div class="pj">意图画布</div><div class="ed">先拼一张<b>情绪板</b>当参照物喂给 AI，比写一长段文档更让它懂你要什么。</div></div>
+      </div>
+      <p class="act">收藏时顺手写一句“我为什么收它、能用在哪”；说不清想要什么时，丢个参照物给 AI。</p>
+    </div>
+  </section>
+
+  <!-- 7 方法四 climax -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">方法四 · 建你自己的知识库</div>
+      <h2>把灵感，变成<span class="em">会复利的资产</span></h2>
+      <div class="play"><div class="pt">前三招是<b>借别人的标准</b>；这一招是<b>长出你自己的标准</b>。把你看到的好东西、定下的规矩沉淀成一个库——库越用越准，还能反过来喂给 AI 当“<b>你的品味内核</b>”。</div></div>
+      <div class="exg">
+        <div class="ex-item"><div class="pj">opendesign.cc</div><div class="ed">我用它把看到的好设计<b>收集下来</b>；做造物云时，首页直接用上了从那儿沉淀的真实设计令牌。</div></div>
+        <div class="ex-item"><div class="pj">aha 设计系统</div><div class="ed">全站有一个 <b>aha-kit</b> 当“唯一事实源”：颜色、字、间距都从这里取，所以 100 多页是一个味道、还越做越快。</div></div>
+        <div class="ex-item"><div class="pj">给项目留“记忆”</div><div class="ed">我让 AI 给每个项目都留一份<b>记忆</b>，它越积越懂我，下次张口就知道我的偏好。</div></div>
+      </div>
+      <p class="act">给自己开一个“灵感库 / 规矩库”，每次只加一条；过阵子，AI 顺着你的库给的东西会越来越像“你”。</p>
+    </div>
+  </section>
+
+  <!-- 8 第二部分 分隔 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">第二组 · 光会“借”还不够</div>
+      <h2>还要几招，把借来的标准<br><span class="em">真正做扎实</span>。</h2>
+      <p class="sub">前 4 招讲“<span class="em">去哪借</span>”；接下来 5 招，讲“<span class="em">怎么做</span>”。</p>
+    </div>
+  </section>
+
+  <!-- 9 方法五 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">方法五 · 把它发给真人看</div>
+      <h2>最硬的镜子，是<span class="em">真实的用户</span></h2>
+      <div class="play"><div class="pt">别只问 AI 和你自己——你们都容易<b>自我感觉良好</b>。把作品放到一个真人面前，闭嘴看 ta 在哪卡住，那是最诚实的反馈。</div></div>
+      <div class="exg">
+        <div class="ex-item"><div class="pj">绘本 / 视频课</div><div class="ed">直接搬进<b>真实课堂</b>给小学生用，哪一步卡住、哪句话看不懂，当场就露馅。</div></div>
+        <div class="ex-item"><div class="pj">aha</div><div class="ed">我反复提醒自己“策展要<b>降门槛、提互动</b>”——冷功能再酷，没人玩也是零。</div></div>
+        <div class="ex-item"><div class="pj">小红书参谋台</div><div class="ed">爆文数据＝<b>真实读者的投票</b>，比任何夸奖都诚实。</div></div>
+      </div>
+      <p class="act">做完先别自夸，找一个真人用、你闭嘴，记下 ta 卡住的每一处。</p>
+    </div>
+  </section>
+
+  <!-- 10 方法六 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">方法六 · 给自己加约束</div>
+      <h2>约束，是免费的<span class="em">打磨器</span></h2>
+      <div class="play"><div class="pt">选择越多，越容易做散。主动给自己<b>加一条限制</b>——只用三种颜色、限时一小时、一个文件搞定——作品反而更利落、更有个性。</div></div>
+      <div class="exg">
+        <div class="ex-item"><div class="pj">aha 活页</div><div class="ed">全站定死“<b>单文件 + 暖纸底、赭石只点一处</b>”，约束反而让 100 多页是一个味道。</div></div>
+        <div class="ex-item"><div class="pj">做减法</div><div class="ed">一句“先<b>回归原点</b>”，把功能砍到一句话能说清，作品立刻有了脊柱。</div></div>
+        <div class="ex-item"><div class="pj">这套课件</div><div class="ed">逼自己“<b>一页只讲一件事</b>”，反而比塞满一屏更让人记得住。</div></div>
+      </div>
+      <p class="act">开工前先给自己加一条约束（三种颜色 / 限时 / 一个页面），逼出取舍。</p>
+    </div>
+  </section>
+
+  <!-- 11 方法七 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">方法七 · 小步快跑，留下脚印</div>
+      <h2>一次只改<span class="em">一件事</span>，改完就<span class="em">对比</span></h2>
+      <div class="play"><div class="pt">一口气改十处，错了都不知道是哪处。每次只动一处、改完<b>两版摆一起比</b>；并且<b>每做一个就留进日志</b>，回头能看清自己怎么长大的。</div></div>
+      <div class="exg">
+        <div class="ex-item"><div class="pj">美学竞技场</div><div class="ed">把两版<b>摆一起 AB 对决</b>，让结果替你选，而不是凭感觉。</div></div>
+        <div class="ex-item"><div class="pj">版本树</div><div class="ed">每改一版都<b>留着、能回看</b>，不怕改坏。</div></div>
+        <div class="ex-item"><div class="pj">产品日志</div><div class="ed">每做一个就登记，按时间一排，<b>成长看得见</b>。</div></div>
+      </div>
+      <p class="act">一次只改一处、改完立刻对比；做完顺手写一行日志。</p>
+    </div>
+  </section>
+
+  <!-- 12 方法八 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">方法八 · 卡住时往后退</div>
+      <h2>别往前<span class="mute">加功能</span>，往后退<span class="em">定框架</span></h2>
+      <div class="play"><div class="pt">卡住时最容易做的事是“再加一个功能”，但那常常越加越乱。真正让作品上台阶的，是退一步问：<b>这到底给谁、解决什么</b>。</div></div>
+      <div class="exg">
+        <div class="ex-item"><div class="pj">aha · 这是给谁的</div><div class="ed">一句话把散页分成“<b>真实产品</b>”和“<b>互动装置</b>”，乱摊子立刻有了秩序。</div></div>
+        <div class="ex-item"><div class="pj">aha · 先做减法</div><div class="ed">一句“回归原点”，给 <b>139 个页面</b>定下一根脊柱。</div></div>
+        <div class="ex-item"><div class="pj">规律</div><div class="ed">让项目上台阶的，几乎都不是“派活”，而是“<b>定框架</b>”。</div></div>
+      </div>
+      <p class="act">想加功能前，先退一步问“我到底要什么、给谁”——定框架，胜过派活。</p>
+    </div>
+  </section>
+
+  <!-- 13 方法九 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">方法九 · 诚实</div>
+      <h2>分清“<span class="mute">我以为</span>”和“<span class="em">我验证过</span>”</h2>
+      <div class="play"><div class="pt">AI 会<b>很自信地胡说</b>，你也会被自己的作品骗。养成一个习惯——随时问一句：“这是<b>验证过</b>的，还是<b>猜</b>的？”</div></div>
+      <div class="exg">
+        <div class="ex-item"><div class="pj">aha · 撤回墙</div><div class="ed">发现“颜色越艳→越兴奋”是<b>循环论证</b>，主动撤回、公开认错。</div></div>
+        <div class="ex-item"><div class="pj">aha · 断言 vs 测量</div><div class="ed">把散文式的猜测，用<b>真数据</b>一项项校准过来。</div></div>
+        <div class="ex-item"><div class="pj">做事习惯</div><div class="ed">当那个“<b>等一下，真的吗</b>”的人——这正是从作业到作品的分水岭。</div></div>
+      </div>
+      <p class="act">给结论分两种：“我验证过的”和“我猜的”；不确定，就大方标出来。</p>
+    </div>
+  </section>
+
+  <!-- 14 九招总览 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">九招，其实是两件事</div>
+      <h2>去哪<span class="em">借</span>更高的标准　＋　怎么把它<span class="em">做扎实</span></h2>
+      <div class="sub" style="margin:26px 0 6px;color:var(--accent);font-weight:700;letter-spacing:.04em">第一组 · 去哪借（外 → 内）</div>
+      <div class="mnemonic" style="margin-top:10px">
+        <span>找 AI 挑刺</span><span>站肩膀上</span><span>拆好作品</span><span>建自己的库</span>
+      </div>
+      <div class="sub" style="margin:22px 0 6px;color:var(--accent);font-weight:700;letter-spacing:.04em">第二组 · 做扎实</div>
+      <div class="mnemonic" style="margin-top:10px">
+        <span>给真人看</span><span>加约束</span><span>小步留日志</span><span>退一步</span><span>讲诚实</span>
+      </div>
+      <p class="sub">挑你现在最缺的<span class="em">一两招</span>，这周就用上。</p>
+    </div>
+  </section>
+
+  <!-- 9 互动 症状→药方 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">现场试试 · 你现在是哪一种卡住?点开看药方</div>
+      <div class="pick" id="pick">
+        <div class="pk"><div class="sym">感觉哪里不对，又说不上来</div><div class="rx"><b>→ 找 AI 挑刺。</b>让它扮演最难搞的用户，逐条说“第一眼会卡在哪”。<div class="tip">点一下展开</div></div></div>
+        <div class="pk"><div class="sym">想做，但不知从哪下手</div><div class="rx"><b>→ 站肩膀上。</b>先搜“有没有人做过同类”，找到就拿来当地基。<div class="tip">点一下展开</div></div></div>
+        <div class="pk"><div class="sym">说不清自己到底想要什么</div><div class="rx"><b>→ 拆好作品。</b>丢一个参照物 / 逆推一个“配方”，让 AI 照着感觉来。<div class="tip">点一下展开</div></div></div>
+        <div class="pk"><div class="sym">每次都从零、长不出风格</div><div class="rx"><b>→ 建自己的库。</b>把好东西和规矩沉淀下来，一次只加一条。<div class="tip">点一下展开</div></div></div>
+        <div class="pk"><div class="sym">自我感觉良好，但没人玩</div><div class="rx"><b>→ 给真人看。</b>找一个真人用、你闭嘴，记下 ta 卡住的每一处。<div class="tip">点一下展开</div></div></div>
+        <div class="pk"><div class="sym">越加越乱、收不住</div><div class="rx"><b>→ 退一步定框架 / 加约束。</b>别再加功能，先问“这给谁、解决什么”。<div class="tip">点一下展开</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 收尾 -->
+  <section class="slide end">
+    <div class="wrap">
+      <div class="kicker">如果今天只记住一句话</div>
+      <p class="gold-line">决定你作品上限的，<br>不是你<span class="mute">用什么工具</span>，<br>而是你<span class="em">给它找了多高的参照系</span>。</p>
+      <div class="mnemonic">
+        <span>找 AI 挑刺</span><span>站肩膀上</span><span>拆好作品</span><span>建自己的库</span><span>给真人看</span><span>加约束</span><span>小步留日志</span><span>退一步</span><span>讲诚实</span>
+      </div>
+      <p class="sub" style="margin-top:34px">这九件事，越练越值钱。　谢谢大家 ✦</p>
+    </div>
+  </section>
+
+</main>
+
+<div class="nav">
+  <button id="prev" aria-label="上一页">‹</button>
+  <span class="counter" id="counter">1 / 17</span>
+  <button id="next" aria-label="下一页">›</button>
+</div>
+<div class="help">← → 翻页　·　空格 下一页</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var cur = 0;
+  var progress = document.getElementById('progress');
+  var counter = document.getElementById('counter');
+
+  function render(){
+    slides.forEach(function(s,i){
+      s.classList.remove('active','past');
+      if(i===cur) s.classList.add('active');
+      else if(i<cur) s.classList.add('past');
+    });
+    progress.style.width = ((cur)/(slides.length-1)*100)+'%';
+    counter.textContent = (cur+1)+' / '+slides.length;
+  }
+  function go(n){ cur = Math.max(0, Math.min(slides.length-1, n)); render(); }
+
+  document.getElementById('next').onclick = function(){ go(cur+1); };
+  document.getElementById('prev').onclick = function(){ go(cur-1); };
+  document.addEventListener('keydown', function(e){
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){ e.preventDefault(); go(cur+1); }
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){ e.preventDefault(); go(cur-1); }
+    else if(e.key==='Home'){ go(0); }
+    else if(e.key==='End'){ go(slides.length-1); }
+  });
+  // swipe (mobile)
+  var sx=0;
+  document.addEventListener('touchstart',function(e){ sx=e.touches[0].clientX; },{passive:true});
+  document.addEventListener('touchend',function(e){
+    var dx=e.changedTouches[0].clientX-sx;
+    if(Math.abs(dx)>50){ go(dx<0?cur+1:cur-1); }
+  },{passive:true});
+
+  // 互动 · 症状→药方
+  document.getElementById('pick').addEventListener('click', function(e){
+    var p = e.target.closest('.pk'); if(p) p.classList.toggle('on');
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

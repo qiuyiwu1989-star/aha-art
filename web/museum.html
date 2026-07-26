@@ -1,0 +1,1139 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>人类美术馆 · aha</title>
+<meta name="description" content="aha 人类美术馆——选一间展厅,同一批真迹可切沙龙墙/长廊/平面;看一幅画有节奏地读它、推开三扇门续走;越逛越懂你。"/>
+<link rel="preconnect" href="https://aha-1254041526.cos.ap-shanghai.myqcloud.com" crossorigin/>
+<link rel="dns-prefetch" href="//aha-1254041526.cos.ap-shanghai.myqcloud.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="css/aha-frames.css" rel="stylesheet"/>
+<script src="js/frames.js"></script>
+<style>
+  :root{--wall:#ddd4c2;--wall2:#cdc3ad;--ink:#2a2620;--ink-soft:#5c554a;--ink-mute:#8a8170;--mat:#f3eee2;--frame:#2c2620;--gold:#b0673a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:radial-gradient(130% 90% at 50% -5%,var(--wall),var(--wall2));background-attachment:fixed;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;min-height:100vh}
+  a{color:inherit}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.8);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px}
+  .wrap{max-width:1180px;margin:0 auto;padding:38px 20px 90px}
+  .hero{text-align:center}
+  .hero .name{font-family:var(--serif);font-size:clamp(30px,6vw,52px);font-weight:700;letter-spacing:.02em;line-height:1.05}.hero .name .d{color:var(--gold)}
+  .hero .slogan{font-family:var(--serif);font-size:clamp(14px,3vw,18px);color:var(--gold);margin-top:8px}
+  .topnav{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-start;margin:16px 0 0}
+  .topnav a{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);background:rgba(255,255,255,.55);border:1px solid rgba(40,30,15,.12);border-radius:999px;padding:5px 13px;text-decoration:none;cursor:pointer}
+  .topnav a:hover{background:var(--frame);color:#f3eee2}.topnav a.gold{color:var(--gold);border-color:var(--gold)}.topnav a.gold:hover{background:var(--gold);color:#fff}
+  /* 今日封面 · 大刊式 hero */
+  .cover{position:relative;border-radius:16px;overflow:hidden;height:clamp(360px,60vh,620px);background:#1a1510;margin-top:6px;box-shadow:0 30px 60px -30px rgba(40,28,12,.5);cursor:pointer}
+  .cover .cv-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.05);animation:cvkb 26s ease-in-out infinite alternate}
+  @keyframes cvkb{from{transform:scale(1.04)}to{transform:scale(1.12) translate(-1.5%,-1.5%)}}
+  .cover .cv-scrim{position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,7,4,.85) 0%,rgba(10,7,4,.28) 40%,rgba(10,7,4,.04) 66%,rgba(10,7,4,.3) 100%)}
+  .cover .cv-top{position:absolute;top:18px;left:22px;right:22px;display:flex;justify-content:space-between;align-items:center;z-index:2}
+  .cover .cv-name{font-family:var(--serif);font-weight:700;font-size:clamp(18px,2.2vw,26px);color:#f7eddc;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+  .cover .cv-name b{color:var(--gold)}
+  .cover .cv-tag{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:#f0e6d4;border:1px solid rgba(240,230,212,.5);border-radius:999px;padding:5px 12px;backdrop-filter:blur(4px)}
+  .cover .cv-cap{position:absolute;left:0;right:0;bottom:0;padding:0 clamp(22px,4vw,48px) clamp(26px,4vh,46px);z-index:2;color:#f6efe2}
+  .cover .cv-voice{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(20px,3vw,38px);line-height:1.42;max-width:20ch;text-shadow:0 2px 22px rgba(0,0,0,.65)}
+  .cover .cv-by{font-family:var(--mono);font-size:12px;color:#e7d8c0;margin-top:14px}
+  .cover .cv-by b{font-family:var(--serif);font-style:normal;font-weight:600;color:#fff;font-size:14px}
+  .cover .cv-enter{display:inline-flex;align-items:center;gap:7px;margin-top:16px;font-family:var(--mono);font-size:12px;color:#1a140d;background:#e9dcc2;border-radius:999px;padding:9px 18px;text-decoration:none;cursor:pointer;transition:transform .2s,background .2s}
+  .cover .cv-enter:hover{transform:translateY(-2px);background:#fff}
+  /* 换一种方式进馆 */
+  .entryrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .entryrow a{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);background:rgba(255,255,255,.5);border:1px solid rgba(40,30,15,.12);border-radius:10px;padding:8px 13px;text-decoration:none;transition:.15s}
+  .entryrow a:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-1px)}
+  @media(max-width:600px){.cover{height:54vh}}
+  /* continue */
+  .cont{max-width:none;margin:18px 0 0;background:#fff;border:1px solid rgba(40,30,15,.12);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:14px;cursor:pointer;box-shadow:0 10px 24px -16px rgba(40,30,15,.5)}
+  .cont img{width:54px;height:54px;object-fit:cover;border-radius:8px}.cont .t{font-family:var(--serif);font-weight:600}.cont .s{font-size:12px;color:var(--ink-mute);margin-top:2px}.cont .go{margin-left:auto;color:var(--gold);font-family:var(--mono);font-size:12px}
+  /* band */
+  .band{margin-top:34px}
+  .allband .band-h .allgo{color:var(--gold);cursor:pointer;text-decoration:none}
+  .moreWrap{display:flex;justify-content:center;padding:8px 0 14px}
+  .moreBtn{font-family:var(--mono);font-size:13px;color:var(--ink);background:rgba(255,255,255,.7);border:1px solid rgba(40,30,15,.18);border-radius:999px;padding:11px 26px;cursor:pointer;transition:.16s;display:inline-flex;align-items:center;gap:8px}
+  .moreBtn span{font-size:11px;color:var(--ink-mute)}
+  .moreBtn:hover{background:var(--frame);color:#f3eee2;border-color:var(--frame);transform:translateY(-1px)}.moreBtn:hover span{color:rgba(243,238,226,.7)}
+  .moreDone{font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.1em;padding:6px}
+  .mason{display:flex;gap:14px;padding:16px 0 30px;align-items:flex-start}
+  .mcol{flex:1;display:flex;flex-direction:column;gap:14px;min-width:0}
+  @media(max-width:560px){.mason{gap:10px}.mcol{gap:10px}}
+  .mtile{cursor:pointer;margin-bottom:0}
+  /* 沙龙墙式画框:暖墙上挂一幅幅带衬纸的画 */
+  .mframe{position:relative;width:100%;background:var(--mat);padding:8px;border:1px solid rgba(0,0,0,.1);box-shadow:0 1px 0 rgba(255,255,255,.55) inset,0 16px 30px -14px rgba(40,30,15,.55);transition:transform .2s}
+  .mframe:before{content:"";position:absolute;inset:4px;border:1px solid rgba(0,0,0,.13);pointer-events:none;z-index:1}
+  .mtile:hover .mframe{transform:translateY(-5px);box-shadow:0 1px 0 rgba(255,255,255,.55) inset,0 22px 40px -16px rgba(40,30,15,.6)}
+  .mframe img{width:100%;height:auto;display:block;background:#cfc6b4}
+  .mtile{position:relative}
+  /* 铭牌:平时藏起,移上去才浮现(覆于画下沿) */
+  .mcap{position:absolute;left:6px;right:6px;bottom:6px;padding:8px 10px 9px;text-align:center;
+    background:linear-gradient(180deg,rgba(20,16,10,0),rgba(20,16,10,.82));
+    opacity:0;transform:translateY(5px);transition:opacity .18s ease,transform .18s ease;pointer-events:none;z-index:3}
+  .mtile:hover .mcap{opacity:1;transform:translateY(0)}
+  .mcap .mt{font-family:var(--serif);font-size:12.5px;font-weight:600;color:#fbf6ec;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+  .mcap .ma{font-family:var(--mono);font-size:10px;color:rgba(251,246,236,.8);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .band-h{display:flex;align-items:baseline;gap:10px;margin-bottom:12px}
+  .band-h .t{font-family:var(--serif);font-size:19px;font-weight:700}.band-h .n{font-family:var(--mono);font-size:11px;color:var(--ink-mute)}.band-h .line{flex:1;height:1px;background:rgba(40,30,15,.13)}
+  .row{display:flex;gap:14px;overflow-x:auto;padding:2px 2px 10px;scroll-snap-type:x proximity}.row::-webkit-scrollbar{height:6px}.row::-webkit-scrollbar-thumb{background:rgba(40,30,15,.2);border-radius:3px}
+  .card{position:relative;flex:0 0 230px;border-radius:10px;overflow:hidden;cursor:pointer;background:#1a1612;height:170px;display:flex;flex-direction:column;justify-content:flex-end;box-shadow:0 14px 28px -16px rgba(40,30,15,.5);transition:transform .2s;scroll-snap-align:start}
+  .card:hover{transform:translateY(-4px)}
+  .card .bg{position:absolute;inset:0;display:flex;gap:2px;opacity:.5}.card .bg img{flex:1;min-width:0;object-fit:cover;height:100%}
+  .card.link .bg{opacity:.58}.card.link .bg img{filter:saturate(1.02)}
+  .card .grad{position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,16,12,.95) 6%,rgba(20,16,12,.2) 58%,rgba(20,16,12,.05))}
+  .card .c{position:relative;padding:14px 16px;color:#f3eee2}.card .badge{position:absolute;top:9px;left:11px;font-family:var(--mono);font-size:10px;color:#f3eee2;background:rgba(0,0,0,.4);border-radius:5px;padding:2px 7px;z-index:2}
+  .card .n{font-family:var(--serif);font-size:18px;font-weight:700}.card .cd{font-size:11px;opacity:.85;margin-top:2px;line-height:1.4}
+  .card.work{flex:0 0 150px;height:190px;background:#e9e0cf;border-radius:4px;box-shadow:0 14px 28px -16px rgba(40,30,15,.55),0 0 0 1px rgba(40,30,15,.12) inset}
+  .card.work:before{content:"";position:absolute;inset:9px;border:1px solid rgba(40,30,15,.22);pointer-events:none;z-index:2}
+  .card.work .bg{opacity:1;inset:9px;display:block}.card.work .bg img{flex:none;width:100%;height:100%;min-width:0;object-fit:cover;display:block;filter:none}
+  .card.work .grad{background:linear-gradient(0deg,rgba(20,16,12,.82) 4%,transparent 46%);inset:9px;opacity:0;transition:opacity .18s}
+  .card.work:hover .grad{opacity:1}
+  .card.work .c{position:absolute;left:9px;right:9px;bottom:9px;padding:9px 11px;opacity:0;transform:translateY(4px);transition:opacity .18s,transform .18s}
+  .card.work:hover .c{opacity:1;transform:none}
+  @media(hover:none){.card.work .grad,.card.work .c{opacity:1;transform:none}}
+  /* 展区 = 一扇拱门 / 一个亮着灯的房间(区别于作品=框中画) */
+  .card.hall{flex:0 0 238px;height:194px;border-radius:80px 80px 12px 12px;background:#241a12;overflow:hidden}
+  .card.hall .bg{opacity:.8;inset:7px;border-radius:74px 74px 7px 7px;overflow:hidden;filter:saturate(1.06) brightness(.96)}
+  .card.hall .darch{position:absolute;inset:0;border-radius:80px 80px 12px 12px;pointer-events:none;
+    box-shadow:0 0 0 6px #d2c4a3 inset,0 0 0 7px rgba(40,28,12,.35) inset,0 1px 0 rgba(255,250,240,.4) inset}
+  .card.hall .dglow{position:absolute;left:8%;right:8%;top:0;height:46%;pointer-events:none;
+    background:radial-gradient(62% 100% at 50% -6%,rgba(255,228,168,.55),transparent 72%)}
+  .card.hall .dfloor{position:absolute;left:7px;right:7px;bottom:7px;height:34%;pointer-events:none;
+    background:linear-gradient(0deg,rgba(18,11,4,.78),transparent)}
+  .card.hall .grad{display:none}
+  .card.hall .c{padding:0 16px 14px}
+  .card.hall .n{font-size:18px;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+  .card.hall .cd{display:flex;align-items:center}
+  .card.hall .dgo{font-family:var(--mono);font-size:10px;color:var(--gold);opacity:0;transition:opacity .2s,transform .2s;transform:translateX(-3px)}
+  .card.hall:hover{transform:translateY(-5px)}
+  .card.hall:hover .dgo{opacity:1;transform:translateX(0)}
+  .card.hall:hover .dglow{background:radial-gradient(62% 100% at 50% -6%,rgba(255,232,180,.78),transparent 72%)}
+  .card.add{background:#cfc6b4;border:1px dashed rgba(40,30,15,.35);align-items:center;justify-content:center;text-align:center;color:var(--ink-soft);box-shadow:none}
+  .card.link{flex:0 0 260px;text-decoration:none;background:radial-gradient(120% 100% at 30% 20%,#2b2f52,#14121a 75%)}
+  .card.link:hover{transform:translateY(-4px)}
+  .card.link .grad{background:linear-gradient(0deg,rgba(10,8,16,.8),rgba(10,8,16,.05))}
+  .empty{font-size:12.5px;color:var(--ink-mute);padding:8px 2px;line-height:1.7}
+  /* hall */
+  .hall-top{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,var(--wall) 70%,rgba(221,212,194,0));padding:14px 22px 10px}
+  .hall-bar{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .hall-bar .back{font-family:var(--mono);font-size:12px;color:var(--ink-soft);cursor:pointer;text-decoration:none}
+  .hall-bar .title{font-family:var(--serif);font-size:22px;font-weight:700}.hall-bar .cnt{font-family:var(--mono);font-size:11px;color:var(--ink-mute)}
+  .hall-bar .right{margin-left:auto;display:flex;gap:8px;align-items:center}
+  .hall-bar .save{font-family:var(--mono);font-size:12px;color:var(--ink-soft);background:rgba(255,255,255,.6);border:1px solid rgba(40,30,15,.15);border-radius:999px;padding:6px 12px;cursor:pointer}
+  .hall-bar .forms{display:flex;flex-wrap:wrap;gap:6px;background:rgba(255,255,255,.5);border-radius:18px;padding:4px}
+  .hall-bar .forms button{font-family:var(--sans);font-size:12.5px;color:var(--ink-soft);background:none;border:none;border-radius:999px;padding:6px 13px;cursor:pointer}
+  .hall-bar .forms button.on{background:var(--frame);color:#f3eee2}
+  .hall-bar .wsel{font-family:var(--sans);font-size:12px;color:var(--ink-soft);background:rgba(255,255,255,.5);border:1px solid rgba(40,30,15,.12);border-radius:999px;padding:6px 10px;cursor:pointer}
+  .curnote{max-width:1200px;margin:6px auto 0;font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-soft);padding:0 22px}
+  .stagewrap{position:relative}
+  .salon{column-count:5;column-gap:28px;padding:18px 30px 80px;max-width:1500px;margin:0 auto}
+  @media(max-width:1200px){.salon{column-count:4}}@media(max-width:900px){.salon{column-count:3;column-gap:18px;padding:16px 18px 60px}}@media(max-width:560px){.salon{column-count:2;column-gap:13px;padding:14px 12px 50px}}
+  /* 沙龙墙 = 追加式弹性列瀑布(同首页全部馆藏,不用 column-count,不回流不闪) */
+  .smason{display:flex;gap:28px;padding:18px 30px 80px;max-width:1500px;margin:0 auto;align-items:flex-start}
+  .scol{flex:1;display:flex;flex-direction:column;min-width:0}
+  @media(max-width:900px){.smason{gap:18px;padding:16px 18px 60px}}@media(max-width:560px){.smason{gap:10px;padding:12px 12px 50px}}
+  /* 手机沙龙墙:小画密铺,去掉大边距/厚衬纸/占位的悬停铭牌 */
+  @media(max-width:560px){.art{margin-bottom:10px}.frame{padding:4px;box-shadow:0 6px 14px -8px rgba(40,30,15,.5)}.frame:before{inset:3px}.plate{display:none}}
+  .art{break-inside:avoid;margin-bottom:30px;cursor:pointer;transition:transform .2s}.art:hover{transform:translateY(-4px)}
+  .frame{background:var(--mat);padding:9px;border:1px solid rgba(0,0,0,.1);box-shadow:0 12px 24px -12px rgba(40,30,15,.5);position:relative}
+  .frame:before{content:"";position:absolute;inset:4px;border:1px solid rgba(0,0,0,.13);pointer-events:none}
+  .frame img{width:100%;display:block;background:#cfc6b4}
+  .plate{margin-top:8px;text-align:center;opacity:0;transition:.2s}.art:hover .plate{opacity:1}
+  .plate .t{font-family:var(--serif);font-size:12px;font-weight:600}.plate .m{font-family:var(--mono);font-size:9px;color:var(--ink-mute)}
+  .corridor{position:relative;height:78vh;overflow-x:auto;overflow-y:hidden;white-space:nowrap;cursor:grab;background:radial-gradient(140% 50% at 50% -6%,rgba(255,250,238,.85),rgba(255,250,238,0) 60%),linear-gradient(180deg,#d4cab4 0%,#d8cfbd 60%,#b6ab92 60.5%,#a99e84 100%)}
+  .corridor::-webkit-scrollbar{height:0}
+  .crail{display:inline-flex;align-items:flex-start;height:100%;padding:0 8vw}
+  .cart{display:inline-flex;flex-direction:column;align-items:center;vertical-align:top;margin:0 2.6vw;cursor:pointer;transition:transform .25s}.cart:hover{transform:translateY(-6px)}
+  .cart .wire{width:1px;background:rgba(40,30,15,.3)}.cart .frame img{max-height:42vh;width:auto}.cart .plate{opacity:1;margin-top:12px;max-width:230px}
+  .caxis{position:absolute;left:0;right:0;bottom:10px;text-align:center;font-family:var(--mono);font-size:11px;color:#4b4639;pointer-events:none}
+  .floor{position:relative;height:78vh;overflow:hidden;cursor:grab;background:radial-gradient(120% 100% at 50% 40%,#2a251e,#1a1712);border-radius:8px}
+  .flayer{position:absolute;top:0;left:0;transform-origin:0 0}
+  .fhall{position:absolute;transform:translate(-50%,-50%);font-family:var(--serif);font-size:26px;font-weight:700;color:rgba(236,228,212,.12);white-space:nowrap;pointer-events:none}
+  .fw{position:absolute;transform:translate(-50%,-50%);cursor:pointer}.fw img{display:block;width:60px;height:60px;object-fit:cover;border:3px solid #f3eee2;box-shadow:0 5px 12px -3px rgba(0,0,0,.7)}.fw:hover img{border-color:var(--gold)}
+  .floor .axhint{position:absolute;bottom:10px;left:14px;font-family:var(--mono);font-size:10.5px;color:#9a917f;pointer-events:none}
+  /* 更多逛法(同一批 works 的不同交互) */
+  .mempty{text-align:center;color:var(--ink-mute);font-family:var(--mono);font-size:13px;padding:60px}
+  /* 漂流 */
+  .mdrift{position:relative;height:80vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(120% 100% at 50% 40%,#23201b,#100e0c);border-radius:8px;cursor:pointer;overflow:hidden}
+  .mdrift .dr-img{max-width:78%;max-height:70vh;object-fit:contain;box-shadow:0 30px 80px rgba(0,0,0,.6);transition:opacity .35s;cursor:zoom-in}
+  .mdrift .dr-cap{position:absolute;left:0;right:0;bottom:30px;text-align:center;color:#f3eee2;pointer-events:none;padding:0 20px}
+  .mdrift .dr-t{font-family:var(--serif);font-size:17px;font-weight:600}.mdrift .dr-v{font-family:var(--serif);font-style:italic;font-size:13.5px;color:#cdbfa8;margin-top:5px}
+  .mdrift .dr-hint{position:absolute;top:14px;left:0;right:0;text-align:center;font-family:var(--mono);font-size:11px;color:rgba(243,238,226,.5);pointer-events:none}
+  /* 专注单幅 */
+  .mdwell{display:grid;grid-template-columns:1fr 320px;gap:0;min-height:80vh}@media(max-width:760px){.mdwell{grid-template-columns:1fr}}
+  .mdwell .dw-stage{background:radial-gradient(120% 100% at 50% 40%,#23201b,#100e0c);display:flex;align-items:center;justify-content:center;padding:20px}
+  .mdwell .dw-img{max-width:94%;max-height:74vh;object-fit:contain;box-shadow:0 24px 60px rgba(0,0,0,.55);transition:opacity .3s;cursor:zoom-in}
+  .mdwell .dw-side{background:var(--mat,#f3eee2);padding:30px 26px;display:flex;flex-direction:column;justify-content:center}
+  .mdwell .dw-idx{font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.1em}
+  .mdwell .dw-t{font-family:var(--serif);font-size:24px;font-weight:700;margin:8px 0 2px;line-height:1.3}
+  .mdwell .dw-a{font-size:14px;color:var(--ink-soft)}
+  .mdwell .dw-v{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:15px;line-height:1.8;margin:18px 0;border-left:3px solid #e3d3c2;padding-left:13px}
+  .mdwell .dw-btns{display:flex;gap:8px;margin-bottom:14px}
+  .mdwell .dw-btns button{flex:1;font-family:var(--mono);font-size:12px;color:var(--ink-soft);background:#fff;border:1px solid var(--line,#ddd5c6);border-radius:9px;padding:9px;cursor:pointer}
+  .mdwell .dw-go{font-family:var(--mono);font-size:12.5px;color:#fff;background:var(--gold);border-radius:9px;padding:10px;text-align:center;cursor:pointer;text-decoration:none}
+  /* 二选一 */
+  .mversus{padding:18px 24px 60px;text-align:center}
+  .mversus .vs-q{font-family:var(--serif);font-size:20px;font-weight:700;margin:8px 0 16px}
+  .mversus .vs-pair{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:1000px;margin:0 auto}
+  .mversus .vs-half{background:#1a1612;border-radius:8px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:border-color .15s,transform .15s}
+  .mversus .vs-half:hover{border-color:var(--gold);transform:translateY(-3px)}
+  .mversus .vs-half img{width:100%;height:52vh;object-fit:contain;background:#000;display:block}
+  .mversus .vs-trail{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:20px;min-height:46px}
+  .mversus .vs-trail img{width:42px;height:42px;object-fit:cover;border-radius:5px;cursor:pointer;box-shadow:0 0 0 2px #fff}
+  .mversus .vs-hint{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:14px}
+  /* 情绪方向盘 */
+  /* 情绪方向盘:可转动罗盘 */
+  .mdial{display:grid;grid-template-columns:380px 1fr;gap:16px;padding:18px 24px 60px;align-items:start}@media(max-width:780px){.mdial{grid-template-columns:1fr}}
+  .dl-wheelwrap{position:relative;width:340px;height:340px;margin:6px auto;touch-action:none;cursor:grab;user-select:none}.dl-wheelwrap:active{cursor:grabbing}
+  .dl-pointer{position:absolute;top:-3px;left:50%;transform:translateX(-50%);border-left:9px solid transparent;border-right:9px solid transparent;border-top:15px solid var(--gold);z-index:6;pointer-events:none}
+  .dl-wheel{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,#fffdf8 34%,#efe7d6 70%,#e2d8c2);border:2px solid rgba(40,30,15,.16);box-shadow:inset 0 2px 14px rgba(40,30,15,.12)}
+  .dl-emo{position:absolute;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 10px;font-family:var(--sans);font-size:12px;color:var(--ink-soft);cursor:pointer;white-space:nowrap;box-shadow:0 3px 8px -4px rgba(0,0,0,.45)}
+  .dl-emo i{font-style:normal;font-family:var(--mono);font-size:9px;color:var(--ink-mute);margin-left:4px}
+  .dl-emo.on{background:var(--frame);color:#f3eee2;border-color:var(--frame);box-shadow:0 4px 12px -3px rgba(176,103,58,.5)}.dl-emo.on i{color:#d9cdbb}
+  .dl-hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:138px;height:138px;border-radius:50%;background:var(--frame);color:#f3eee2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12px;pointer-events:none;box-shadow:0 10px 24px rgba(40,30,15,.4)}
+  .dl-hub .hub-e{font-family:var(--serif);font-size:21px;font-weight:700}.dl-hub .hub-c{font-family:var(--mono);font-size:10px;opacity:.7;margin:2px 0 6px}.dl-hub .hub-v{font-size:10.5px;line-height:1.45;opacity:.9}
+  .dl-stage{display:flex;flex-wrap:wrap;gap:12px;align-content:flex-start;padding-top:8px}
+  .dl-card{width:122px;cursor:pointer;animation:dlpop .4s both}.dl-card:hover{transform:translateY(-4px)}
+  @keyframes dlpop{from{opacity:0;transform:scale(.86) translateY(8px)}to{opacity:1;transform:none}}
+  .dl-card img{width:100%;height:122px;object-fit:cover;border-radius:6px;background:var(--mat);box-shadow:0 8px 16px -8px rgba(40,30,15,.5)}
+  .dl-card .dl-t{font-family:var(--mono);font-size:9.5px;color:var(--ink-mute);margin-top:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .di-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:14px 24px 6px;position:sticky;top:0;z-index:5}
+  .di-chip{font-family:var(--sans);font-size:13px;color:var(--ink-soft);background:rgba(255,255,255,.7);border:1px solid rgba(40,30,15,.14);border-radius:999px;padding:6px 14px;cursor:pointer}
+  .di-chip.on{background:var(--frame);color:#f3eee2;border-color:var(--frame)}
+  .di-grid{column-count:5;column-gap:28px;padding:14px 30px 0;max-width:1500px;margin:0 auto}
+  @media(max-width:1200px){.di-grid{column-count:4}}@media(max-width:900px){.di-grid{column-count:3;column-gap:18px;padding:14px 18px 0}}@media(max-width:560px){.di-grid{column-count:2;column-gap:13px;padding:12px}}
+  /* 雾中之馆 */
+  .mfog{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;padding:20px 30px 70px;max-width:1500px;margin:0 auto}
+  @media(max-width:560px){.mfog{grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;padding:16px 14px 50px}}
+  .fog-cell{position:relative;aspect-ratio:1/1;border-radius:6px;overflow:hidden;cursor:pointer;background:#cfc6b4}
+  .fog-cell img{width:100%;height:100%;object-fit:cover;display:block;filter:blur(11px) brightness(.62) saturate(.7);transform:scale(1.08);transition:filter .5s,transform .5s}
+  .fog-cell.seen img{filter:none;transform:none}
+  .fog-cell .fog-plate{position:absolute;left:0;right:0;bottom:0;padding:7px 9px;font-family:var(--mono);font-size:10px;color:#f3eee2;background:linear-gradient(0deg,rgba(20,16,10,.85),transparent);opacity:0;transition:opacity .3s}
+  .fog-cell.seen .fog-plate{opacity:1}.fog-cell .fog-plate b{font-family:var(--serif)}
+  /* 按艺术家 */
+  .mart{padding:14px 30px 70px;max-width:1400px;margin:0 auto}@media(max-width:560px){.mart{padding:12px 14px 50px}}
+  .ba-group{margin-bottom:34px}
+  .ba-h{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid rgba(40,30,15,.15);padding-bottom:7px;margin-bottom:14px}
+  .ba-h .ba-n{font-family:var(--serif);font-size:20px;font-weight:700}.ba-h .ba-c{font-family:var(--mono);font-size:11px;color:var(--ink-mute)}.ba-h .ba-go{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--gold);text-decoration:none}
+  .ba-wall{display:flex;flex-wrap:wrap;gap:16px}
+  .ba-fr{width:150px;cursor:pointer;transition:transform .2s}.ba-fr:hover{transform:translateY(-4px)}
+  .ba-fr img{width:100%;display:block;background:var(--mat);padding:7px;border:1px solid rgba(0,0,0,.1);box-shadow:0 10px 20px -10px rgba(40,30,15,.5)}
+  .ba-fr .ba-t{font-family:var(--serif);font-size:11px;color:var(--ink-soft);margin-top:6px;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  /* 情绪坐标(VAD)· 拖框圈选 */
+  .mvad{margin:14px 24px 40px}
+  .vad-plotwrap{position:relative;height:60vh;background:radial-gradient(120% 100% at 50% 50%,#fbf8f0,#eee6d4);border:1px solid rgba(40,30,15,.12);border-radius:10px}
+  .vad-plot{position:absolute;inset:34px 40px 40px 56px}
+  .vad-plot:before,.vad-plot:after{content:"";position:absolute;background:rgba(40,30,15,.13)}
+  .vad-plot:before{left:50%;top:0;bottom:0;width:1px}.vad-plot:after{top:50%;left:0;right:0;height:1px}
+  .vad-rect{position:absolute;display:none;border:1.5px dashed var(--gold);background:rgba(176,103,58,.1);pointer-events:none;z-index:15}
+  .vad-pt{position:absolute;transform:translate(-50%,-50%);cursor:pointer;transition:transform .15s,opacity .2s}.vad-pt:hover{transform:translate(-50%,-50%) scale(1.8);z-index:20}
+  .vad-pt img{width:46px;height:46px;object-fit:cover;border:2px solid #fff;border-radius:4px;box-shadow:0 4px 10px -3px rgba(0,0,0,.5)}
+  .vad-pt.sel img{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold),0 4px 10px -3px rgba(0,0,0,.5)}.vad-pt.dim{opacity:.2}
+  .vad-lab{position:absolute;font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);pointer-events:none}.vad-lab.tl{top:10px;left:14px}.vad-lab.tr{top:10px;right:14px}.vad-lab.bl{bottom:30px;left:14px}.vad-lab.br{bottom:30px;right:14px}
+  .vad-ax-x{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-soft);pointer-events:none}
+  .vad-ax-y{position:absolute;left:8px;top:50%;transform:rotate(-90deg);transform-origin:left;font-family:var(--mono);font-size:11px;color:var(--ink-soft);pointer-events:none}
+  .vad-note{position:absolute;bottom:8px;right:14px;font-family:var(--mono);font-size:10px;color:var(--ink-mute);pointer-events:none}
+  .vad-tray{margin-top:12px}
+  .vt-h{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-bottom:8px}
+  .vt-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;min-height:20px}
+  .vt-card{flex:0 0 90px;cursor:pointer}.vt-card img{width:90px;height:90px;object-fit:cover;border-radius:6px;box-shadow:0 6px 14px -8px rgba(40,30,15,.5)}
+  .vt-card .vt-t{font-family:var(--mono);font-size:9px;color:var(--ink-mute);margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:90px}
+  /* 风格指纹 · 滑杆扫描 */
+  .mfp{padding:18px 30px 50px}
+  .fp-slider{max-width:740px;margin:4px auto 2px}
+  .fp-track{position:relative;height:6px;background:#e2d8c2;border-radius:999px;cursor:pointer;touch-action:none}
+  .fp-fill{position:absolute;left:0;top:0;height:100%;background:var(--gold);border-radius:999px;transition:width .25s}
+  .fp-handle{position:absolute;top:50%;width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid var(--gold);transform:translate(-50%,-50%);box-shadow:0 3px 8px -2px rgba(0,0,0,.4);transition:left .25s;cursor:grab}
+  .fp-ticks{display:flex;justify-content:space-between;margin-top:11px}
+  .fp-tick{font-family:var(--sans);font-size:12.5px;color:var(--ink-soft);background:none;border:none;cursor:pointer;padding:3px 5px}.fp-tick.on{color:var(--gold);font-weight:700}
+  .mfp .fp-poles{display:flex;justify-content:space-between;align-items:center;max-width:1500px;margin:12px auto 0;padding:0 10px;font-family:var(--mono);font-size:12px;color:var(--ink-soft)}
+  .mfp .fp-poles .fp-arrow{color:var(--ink-mute);font-size:11px}
+  .fp-plot{position:relative;height:62vh;margin-top:8px;border-radius:10px;background:linear-gradient(90deg,rgba(40,30,15,.06),rgba(40,30,15,0) 14%,rgba(40,30,15,0) 86%,rgba(40,30,15,.06))}
+  .fp-pt{position:absolute;transform:translate(-50%,-50%);cursor:pointer;transition:left .55s cubic-bezier(.2,.8,.2,1),transform .2s;z-index:1}
+  .fp-pt img{width:46px;height:46px;object-fit:cover;border-radius:5px;border:2px solid #fff;box-shadow:0 3px 8px -2px rgba(0,0,0,.5)}
+  .fp-pt:hover{transform:translate(-50%,-50%) scale(2);z-index:30}
+  .fp-pt .fp-v{position:absolute;left:50%;bottom:-12px;transform:translateX(-50%);font-family:var(--mono);font-size:8px;color:var(--ink-mute);opacity:0;white-space:nowrap}.fp-pt:hover .fp-v{opacity:1}
+  /* 东西对望 */
+  .mew{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:1500px;margin:0 auto;padding:14px 24px 70px}@media(max-width:640px){.mew{grid-template-columns:1fr}}
+  .ew-col{padding:0 18px}.ew-col:first-child{border-right:1px solid rgba(40,30,15,.12)}
+  .ew-h{font-family:var(--serif);font-size:18px;font-weight:700;text-align:center;padding-bottom:10px;margin-bottom:12px;border-bottom:2px solid var(--frame)}
+  .ew-wall{column-count:2;column-gap:16px}@media(max-width:900px){.ew-wall{column-count:1}}
+  .ew-wall .art{break-inside:avoid;margin-bottom:18px}
+  /* 以色觅画:色块 */
+  /* 觅色:色环 + 觅色光束 */
+  .mchroma{padding:20px 14px 56px;display:flex;justify-content:center}
+  .cw-wrap{position:relative;width:min(78vh,620px);height:min(78vh,620px);touch-action:none;cursor:grab}.cw-wrap:active{cursor:grabbing}
+  .cw-ring{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 90deg,hsl(0 68% 55%),hsl(45 70% 55%),hsl(90 60% 50%),hsl(140 55% 48%),hsl(190 58% 50%),hsl(240 62% 60%),hsl(290 60% 60%),hsl(340 66% 56%),hsl(360 68% 55%));-webkit-mask:radial-gradient(circle,transparent 0 calc(50% - 13px),#000 calc(50% - 13px));mask:radial-gradient(circle,transparent 0 calc(50% - 13px),#000 calc(50% - 13px));opacity:.55}
+  .cw-field{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,#fbf8f1 30%,rgba(251,248,241,0) 72%)}
+  .cw-beam{position:absolute;left:50%;top:50%;height:74px;margin-top:-37px;width:49%;transform-origin:0 50%;background:linear-gradient(90deg,rgba(176,103,58,0),rgba(176,103,58,.30) 88%,rgba(176,103,58,.5));border-radius:0 999px 999px 0;pointer-events:none;opacity:0;transition:opacity .2s;z-index:0;filter:blur(1px)}
+  .cw-pt{position:absolute;transform:translate(-50%,-50%);cursor:pointer;transition:transform .25s,opacity .25s;z-index:1}
+  .cw-pt img{width:42px;height:42px;object-fit:cover;border-radius:5px;border:2px solid #fff;box-shadow:0 3px 9px -2px rgba(0,0,0,.55)}
+  .cw-pt:hover{transform:translate(-50%,-50%) scale(2.1);z-index:30}
+  .cw-pt.dim{opacity:.16}
+  .cw-pt.pop{transform:translate(-50%,-50%) scale(1.55);z-index:10}.cw-pt.pop img{border-color:var(--gold)}
+  .cw-reset{position:absolute;top:6px;right:6px;font-family:var(--mono);font-size:11px;color:var(--ink-soft);background:rgba(255,255,255,.85);border:1px solid var(--line);border-radius:999px;padding:6px 11px;cursor:pointer;opacity:0;transition:opacity .2s;z-index:40}
+  .cw-hint{position:absolute;left:50%;bottom:-30px;transform:translateX(-50%);font-family:var(--mono);font-size:11px;color:var(--ink-mute);white-space:nowrap;pointer-events:none}
+  /* detail (看画节奏) */
+  .lb{position:fixed;inset:0;background:rgba(20,16,10,.88);z-index:100;display:none;align-items:center;justify-content:center;padding:24px}.lb.on{display:flex}
+  .lb .box{max-width:1000px;width:100%;display:grid;grid-template-columns:1fr 320px;background:#16120e;border-radius:8px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6)}@media(max-width:780px){.lb .box{grid-template-columns:1fr}}
+  .lb .pic{background:#000;display:flex;align-items:center;justify-content:center;position:relative}.lb .pic img{width:100%;max-height:84vh;object-fit:contain}
+  .lb .heart{position:absolute;top:14px;left:14px;font-size:20px;cursor:pointer;background:rgba(0,0,0,.35);border-radius:999px;width:38px;height:38px;display:flex;align-items:center;justify-content:center}
+  .lb .info{background:var(--mat);padding:22px;display:flex;flex-direction:column}
+  .lb .info .t{font-family:var(--serif);font-size:21px;font-weight:700;line-height:1.3}.lb .info .a{font-size:13.5px;color:var(--ink-soft);margin-top:5px}
+  .lb .read{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:14.5px;line-height:1.7;margin:14px 0;border-left:3px solid #e3d3c2;padding-left:11px}
+  .lb .meta{font-family:var(--mono);font-size:11px;color:var(--ink-mute);line-height:1.9}
+  .lb .doors{margin-top:auto;padding-top:16px}
+  .lb .doors .dh{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-bottom:7px}
+  .lb .door{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(40,30,15,.12);border-radius:9px;padding:7px 9px;margin-bottom:7px;cursor:pointer;transition:.15s}
+  .lb .door:hover{border-color:var(--gold);transform:translateX(2px)}
+  .lb .door img{width:38px;height:38px;object-fit:cover;border-radius:5px}.lb .door .dt{font-size:12px;color:var(--ink-soft)}.lb .door .dt b{color:var(--ink)}
+  .lb .go{margin-top:12px;font-family:var(--mono);font-size:12px;color:var(--gold);text-decoration:none}
+  .lb .x{position:absolute;top:14px;right:18px;color:#f3eee2;font-size:22px;font-family:var(--mono);cursor:pointer;z-index:3}
+  .lb .trail{position:absolute;bottom:14px;right:18px;font-family:var(--mono);font-size:10.5px;color:rgba(243,238,226,.6)}
+  /* toast */
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:200;background:var(--frame);color:#f3eee2;font-size:13px;padding:10px 18px;border-radius:999px;opacity:0;transition:.3s;pointer-events:none}.toast.on{opacity:1}
+  /* 序幕 · 渐进式入口 */
+  .prologue{position:fixed;inset:0;z-index:60;background:radial-gradient(130% 90% at 50% -5%,var(--wall),var(--wall2));display:flex;flex-direction:column}
+  .pro-top{text-align:center;padding:24px 16px 6px}
+  .pro-top .nm{font-family:var(--serif);font-size:clamp(26px,5vw,40px);font-weight:700;line-height:1}.pro-top .nm .d{color:var(--gold)}
+  .pro-top .q{font-family:var(--serif);font-size:clamp(15px,2.6vw,18px);color:var(--ink-soft);margin-top:12px}
+  .pro-top .pro-sub{font-size:12.5px;color:var(--ink-mute);margin-top:7px;line-height:1.6;max-width:520px;margin-left:auto;margin-right:auto}
+  .pro-top .pg{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:8px;letter-spacing:.1em}
+  .pro-skip:hover{background:rgba(255,255,255,.92);color:var(--ink-soft)}
+  .pro-pair{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:14px clamp(14px,5vw,60px) 30px;min-height:0}@media(max-width:600px){.pro-pair{grid-template-columns:1fr;grid-template-rows:1fr 1fr}}
+  .pro-card{position:relative;border-radius:12px;overflow:hidden;cursor:pointer;background:#1a1612;box-shadow:0 18px 40px -18px rgba(40,30,15,.6);transition:transform .15s,box-shadow .15s}
+  .pro-card:hover{transform:scale(1.012);box-shadow:0 22px 50px -18px rgba(40,30,15,.7)}
+  .pro-card img{width:100%;height:100%;object-fit:cover;display:block}
+  .pro-skip{position:fixed;top:16px;right:18px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);cursor:pointer;z-index:61;background:rgba(255,255,255,.6);border-radius:999px;padding:5px 12px}
+  .pro-done{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:20px}
+  /* 冷启动:首页邀测 banner */
+  .testcta{display:flex;align-items:center;gap:13px;margin-top:16px;background:linear-gradient(100deg,rgba(176,103,58,.1),rgba(176,103,58,.04));border:1px solid rgba(176,103,58,.34);border-radius:14px;padding:13px 16px;cursor:pointer;transition:.18s}
+  .testcta:hover{border-color:var(--gold);transform:translateY(-1px);box-shadow:0 10px 24px -16px rgba(176,103,58,.6)}
+  .testcta .tc-i{font-size:18px;color:var(--gold);flex:none}
+  .testcta .tc-t{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0}
+  .testcta .tc-t b{font-family:var(--serif);font-size:15px;color:var(--ink)}
+  .testcta .tc-sub{font-size:11.5px;color:var(--ink-mute);line-height:1.4}
+  .testcta .tc-go{flex:none;font-family:var(--mono);font-size:12px;color:#fff;background:var(--gold);border-radius:999px;padding:7px 14px}
+  /* 首次点画:邀测小卡 */
+  .offermask{position:fixed;inset:0;z-index:120;background:rgba(8,6,4,.62);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:24px;animation:introfade .3s ease}
+  .offercard{background:#fff;border-radius:18px;max-width:360px;width:100%;padding:24px 24px 20px;text-align:center;box-shadow:0 30px 70px -24px rgba(0,0,0,.6)}
+  .offercard .of-h{font-family:var(--serif);font-size:19px;font-weight:700}
+  .offercard .of-s{font-size:13px;color:var(--ink-mute);line-height:1.7;margin:10px 0 18px}
+  .offercard .of-btns{display:flex;flex-direction:column;gap:9px}
+  .offercard .of-go{font-family:var(--sans);font-size:14px;font-weight:600;color:#fff;background:var(--gold);border:none;border-radius:11px;padding:12px;cursor:pointer}
+  .offercard .of-skip{font-family:var(--mono);font-size:12.5px;color:var(--ink-soft);background:none;border:none;cursor:pointer;padding:4px}
+  .offercard .of-skip:hover{color:var(--gold)}
+  /* 专业审美画像结果页 */
+  .apwrap{flex:1;overflow-y:auto;display:flex;justify-content:center;padding:18px 16px 40px}
+  .apcard{max-width:520px;width:100%;text-align:center}
+  .ap-kick{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase}
+  .ap-h{font-family:var(--serif);font-size:clamp(26px,6vw,38px);font-weight:700;margin:8px 0 3px;line-height:1.2}.ap-h b{color:var(--gold)}
+  .ap-sub2{font-family:var(--mono);font-size:11.5px;color:var(--ink-mute);letter-spacing:.05em;margin-bottom:14px}
+  .ap-read{font-family:var(--serif);font-size:15px;color:var(--ink);line-height:1.85;max-width:440px;margin:0 auto 16px;text-align:left}
+  .ap-read2{display:block;margin-top:9px;color:var(--gold);font-size:14px}
+  .ap-creed{font-size:13.5px;color:var(--ink-soft);line-height:1.7;max-width:430px;margin:0 auto 16px}.ap-creed b{color:var(--gold)}.ap-creed span{color:var(--ink-mute);font-size:12.5px}
+  .ap-share{font-family:var(--sans);font-size:13.5px;font-weight:500;color:var(--gold);background:rgba(176,103,58,.09);border:1px solid rgba(176,103,58,.4);border-radius:11px;padding:11px 22px;cursor:pointer;transition:.15s}
+  .ap-share:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+  .ap-mapwrap{position:relative}
+  .ap-map{width:100%;margin:0 auto}
+  .ap-method{position:absolute;top:9px;right:9px;z-index:2;font-family:var(--mono);font-size:10.5px;letter-spacing:.02em;color:var(--ink-mute);background:rgba(251,249,243,.84);backdrop-filter:blur(3px);border:1px solid rgba(40,30,15,.14);border-radius:999px;padding:5px 11px;text-decoration:none;transition:.15s}
+  .ap-method:hover{color:var(--gold);border-color:var(--gold);transform:translateY(-1px)}
+  .ap-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 6px}
+  .ap-st{background:rgba(255,255,255,.6);border:1px solid rgba(40,30,15,.1);border-radius:12px;padding:12px 8px}
+  .ap-sv{font-family:var(--mono);font-size:17px;font-weight:600;color:var(--ink)}.ap-sv .u{font-size:12px}
+  .ap-sl{font-size:10.5px;color:var(--ink-mute);margin-top:4px;line-height:1.4}
+  .ap-sect{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink-mute);text-align:left;margin:22px 0 10px;text-transform:uppercase}
+  .ap-arts{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+  .ap-art{text-decoration:none;color:inherit;background:#fff;border:1px solid rgba(40,30,15,.1);border-radius:10px;overflow:hidden;transition:.16s;display:block}
+  .ap-art:hover{transform:translateY(-3px);box-shadow:0 14px 28px -18px rgba(40,30,15,.5);border-color:rgba(176,103,58,.5)}
+  .ap-art .ap-th{width:100%;aspect-ratio:1/1;background:#cfc6b4;overflow:hidden}.ap-art .ap-th img{width:100%;height:100%;object-fit:cover;display:block}
+  .ap-art .ap-an{font-family:var(--serif);font-size:12.5px;font-weight:600;padding:7px 6px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ap-art .ap-aff{font-family:var(--mono);font-size:10px;color:var(--gold);padding:1px 6px 8px}
+  .ap-worlds{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .pw{background:rgba(255,255,255,.55);border:1px solid rgba(40,30,15,.12);border-radius:10px;padding:11px 8px;cursor:pointer;transition:.15s}
+  .pw:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .pw.on{background:rgba(176,103,58,.12);border-color:var(--gold)}
+  .pw .pw-n{font-family:var(--serif);font-size:13px;font-weight:600;color:var(--ink)}.pw.on .pw-n{color:var(--gold)}
+  .pw .pw-c{font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-top:3px}
+  .ap-foot{font-size:12px;color:var(--ink-mute);line-height:1.7;margin:22px auto 0;max-width:440px}.ap-foot b{color:var(--ink-soft)}
+  .ap-actions{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:20px}
+  .ap-go{font-family:var(--sans);font-size:15px;font-weight:600;color:#fff;background:var(--frame);border:none;border-radius:11px;padding:13px 28px;cursor:pointer}
+  .ap-go:hover{background:var(--gold)}
+  .ap-deep{font-family:var(--mono);font-size:12px;color:var(--gold);text-decoration:none}.ap-deep:hover{text-decoration:underline}
+  @media(max-width:560px){.ap-stats{gap:7px}.ap-sv{font-size:14px}.ap-worlds{grid-template-columns:repeat(2,1fr)}}
+  /* #1 换种逛法:固定右缘,点一下横着展开 */
+  #entryswitch{position:fixed;right:0;top:26%;z-index:60;display:flex;align-items:center;font-family:var(--mono)}
+  #entryswitch .es-tab{display:flex;align-items:center;gap:7px;background:var(--frame);color:#f3eee2;border-radius:12px 0 0 12px;padding:13px 9px;font-size:12px;letter-spacing:.14em;writing-mode:vertical-rl;cursor:pointer;box-shadow:-6px 8px 22px -12px rgba(40,30,15,.6);user-select:none;white-space:nowrap}
+  #entryswitch .es-panel{display:flex;align-items:center;gap:8px;background:rgba(247,242,234,.97);backdrop-filter:blur(10px);border:1px solid rgba(40,30,15,.14);border-right:none;border-radius:12px 0 0 12px;max-width:0;opacity:0;overflow:hidden;padding:0;transition:max-width .34s ease,opacity .26s,padding .34s;box-shadow:-10px 12px 28px -16px rgba(40,30,15,.5)}
+  #entryswitch.open .es-panel{max-width:78vw;opacity:1;padding:10px 12px}
+  #entryswitch .es-panel a{flex:none;display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--ink-soft);background:rgba(255,255,255,.7);border:1px solid rgba(40,30,15,.12);border-radius:9px;padding:7px 11px;text-decoration:none;white-space:nowrap;transition:.15s}
+  #entryswitch .es-panel a:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-1px)}
+  @media(max-width:600px){#entryswitch .es-panel{flex-wrap:wrap;max-width:72vw}#entryswitch.open .es-panel{padding:9px 10px}
+    #entryswitch .es-tab{writing-mode:horizontal-tb;border-radius:22px 0 0 22px;width:36px;height:44px;padding:0;justify-content:center;gap:0;box-shadow:-4px 6px 16px -10px rgba(40,30,15,.6)}
+    #entryswitch .es-lb{display:none}#entryswitch .es-ic{font-size:16px}}
+  /* #4 阅读小助理:固定右下角 */
+  #readbot{position:fixed;right:16px;bottom:16px;z-index:60;font-family:var(--mono)}
+  #readbot .rb-btn{display:flex;align-items:center;gap:7px;background:var(--frame);color:#f3eee2;border-radius:999px;padding:10px 15px;font-size:12px;cursor:pointer;box-shadow:0 12px 28px -12px rgba(40,30,15,.6);user-select:none}
+  #readbot .rb-btn .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(176,103,58,.6);animation:rbp 2.4s infinite}
+  @keyframes rbp{0%{box-shadow:0 0 0 0 rgba(176,103,58,.55)}70%{box-shadow:0 0 0 7px rgba(176,103,58,0)}100%{box-shadow:0 0 0 0 rgba(176,103,58,0)}}
+  #readbot .rb-panel{position:absolute;right:0;bottom:52px;width:288px;max-width:78vw;background:#fff;border:1px solid rgba(40,30,15,.14);border-radius:14px;padding:14px;box-shadow:0 24px 54px -20px rgba(40,30,15,.55);opacity:0;transform:translateY(10px) scale(.98);transform-origin:bottom right;pointer-events:none;transition:.2s}
+  #readbot.open .rb-panel{opacity:1;transform:none;pointer-events:auto}
+  #readbot .rb-h{font-family:var(--serif);font-weight:700;font-size:14px}
+  #readbot .rb-sub{font-size:11px;color:var(--ink-mute);margin:3px 0 11px;line-height:1.5}
+  #readbot .rb-item{display:flex;gap:10px;align-items:center;padding:8px;border-radius:9px;cursor:pointer;text-decoration:none;color:var(--ink)}
+  #readbot .rb-item:hover{background:rgba(40,30,15,.05)}
+  #readbot .rb-item img{width:42px;height:42px;border-radius:7px;object-fit:cover;flex:none;background:#cfc6b4}
+  #readbot .rb-item .t{font-family:var(--serif);font-size:13px;font-weight:600;line-height:1.25}
+  #readbot .rb-item .s{font-size:10px;color:var(--ink-mute);margin-top:2px}
+  #readbot .rb-empty{font-size:12px;color:var(--ink-mute);padding:12px 4px;line-height:1.6}
+  #readbot .rb-foot{margin-top:9px;padding-top:9px;border-top:1px solid rgba(40,30,15,.1);text-align:right}
+  #readbot .rb-foot a{font-size:11px;color:var(--gold);text-decoration:none}
+  @media(max-width:880px){#readbot{bottom:calc(72px + env(safe-area-inset-bottom,0px))}}
+  @media(max-width:600px){#readbot .rb-btn{position:relative;border-radius:50%;width:46px;height:46px;padding:0;justify-content:center;gap:0}
+    #readbot .rb-lb{display:none}#readbot .rb-ic{font-size:19px}
+    #readbot .rb-btn .dot{position:absolute;top:7px;right:7px}}
+  /* #7 策一个展:与拱门展卡同形(虚线拱门) */
+  .card.hall.add{flex:0 0 238px;height:194px;border-radius:80px 80px 12px 12px;background:#d9cfb8;border:2px dashed rgba(40,30,15,.3);box-shadow:none;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--ink-soft);overflow:hidden}
+  .card.hall.add .c{position:static;padding:0 18px}
+  .card.hall.add .n{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--ink-soft)}
+  .card.hall.add .cd{font-size:11px;margin-top:5px;justify-content:center;color:var(--ink-mute)}
+  .card.hall.add:hover{transform:translateY(-5px);border-color:var(--gold)}
+  .card.hall.add:hover .n,.card.hall.add:hover .cd{color:var(--gold)}
+  /* #8 互动装置卡:每张背景体现其特质 */
+  .card.lab{flex:0 0 264px;height:172px;text-decoration:none;border-radius:14px;overflow:hidden;position:relative;color:#f3eee2;box-shadow:0 16px 34px -18px rgba(20,14,30,.75)}
+  .card.lab:hover{transform:translateY(-4px)}
+  .card.lab .lab-scrim{position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,6,14,.72) 4%,transparent 58%);z-index:1}
+  .card.lab .c{position:absolute;left:0;right:0;bottom:0;padding:15px 17px;z-index:2}
+  .card.lab .n{font-family:var(--serif);font-size:18px;font-weight:700}
+  .card.lab .cd{font-size:11px;opacity:.88;margin-top:3px;line-height:1.45}
+  .card.lab.lab-glow{background:radial-gradient(60% 70% at 28% 32%,rgba(255,206,120,.55),transparent 55%),radial-gradient(52% 62% at 74% 58%,rgba(176,128,255,.46),transparent 56%),#15101e}
+  .card.lab.lab-glow:after{content:"";position:absolute;inset:0;z-index:1;opacity:.95;
+    background:radial-gradient(1.6px 1.6px at 20% 40%,#fff,transparent),radial-gradient(1.6px 1.6px at 62% 24%,#ffe6b0,transparent),radial-gradient(1.6px 1.6px at 82% 60%,#fff,transparent),radial-gradient(1.6px 1.6px at 42% 72%,#d8c0ff,transparent),radial-gradient(1.2px 1.2px at 52% 48%,#fff,transparent),radial-gradient(1.2px 1.2px at 33% 22%,#fff,transparent)}
+  .card.lab.lab-graph{background:radial-gradient(2.6px 2.6px at 25% 36%,#7aa0ff,transparent),radial-gradient(2.6px 2.6px at 70% 28%,#9be0c0,transparent),radial-gradient(2.6px 2.6px at 56% 62%,#c89bff,transparent),radial-gradient(2.6px 2.6px at 30% 72%,#ffd089,transparent),linear-gradient(135deg,#101626,#1b2440)}
+  .card.lab.lab-graph:before{content:"";position:absolute;inset:0;z-index:0;
+    background:linear-gradient(116deg,transparent 45%,rgba(150,178,255,.28) 46%,transparent 47%),linear-gradient(58deg,transparent 60%,rgba(155,224,192,.22) 61%,transparent 62%),linear-gradient(150deg,transparent 52%,rgba(200,155,255,.2) 53%,transparent 54%)}
+  .card.lab.lab-talk{background:linear-gradient(135deg,#5a3a22,#33241a)}
+  .card.lab.lab-talk:before{content:"";position:absolute;top:24px;left:26px;width:56px;height:38px;border-radius:14px 14px 14px 3px;background:rgba(255,232,200,.17);box-shadow:36px 20px 0 -6px rgba(255,232,200,.11);z-index:0}
+  .card.lab.lab-all{background:linear-gradient(135deg,#2c2620,#4a3a28)}
+  .card.lab.lab-all:before{content:"";position:absolute;inset:0;z-index:0;background:radial-gradient(60% 80% at 80% 20%,rgba(176,103,58,.4),transparent 60%)}
+  .card.lab.lab-force{background:linear-gradient(120deg,#241a3a,#6e2a3e 82%)}
+  .card.lab.lab-force:before{content:"";position:absolute;inset:0;z-index:0;
+    background:repeating-linear-gradient(118deg,transparent,transparent 13px,rgba(255,180,150,.13) 13px,rgba(255,180,150,.13) 15px)}
+</style>
+<script src="/js/aha-app.js" defer></script></head><body data-no-top>
+<div id="app"></div>
+<div class="lb" id="lb"><span class="x" onclick="closeLb()">✕</span><div class="box" id="lbbox"></div></div>
+<div class="toast" id="toast"></div>
+<script src="js/cloud.js"></script>
+<script src="aha-mem.js"></script>
+<script>
+function esc(s){return (s==null?'':String(s)).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));}
+function toast(t){const e=document.getElementById('toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),1800);}
+const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+const WVNOTE={WV1:'忠实于眼睛所见——把世界看清楚本身就是一种信仰。',WV2:'图像服务于秩序与信仰,程式先于个性。',WV3:'不求形似,以笔墨寄托心性与逸气。',WV4:'捕捉光落在眼睛里的那一瞬,瞬间比永恒更真。',WV5:'把内心情绪直接外化为色彩与笔触的强度。',WV6:'退回到形式本身——点线面与结构即是内容。'};
+// 审美原型:一个能晒的"型号名" + 一段"被猜中"的二人称读心(从看画方式,延伸到你是个怎样的人)
+const ARCHE={
+  WV1:{t:'诚实的眼睛',r:'你不爱被糊弄。一幅画好不好,你先看它有没有把世界看得清楚、看得诚——比起花哨的概念,你更信"功夫":光影、质感、那只一丝不苟的手。生活里你大概也是个细节控,别人忽略的破绽,你一眼就看见。'},
+  WV2:{t:'庄重的人',r:'打动你的,是有秩序、有分量的东西——对称、庄严、一种说不清的神圣感。喧闹和随意留不住你的眼睛;你要的是稳、是敬、是"它本该如此"。你大概也偏爱仪式感,受不了将就。'},
+  WV3:{t:'言外之意',r:'你看的从来不只是画里有什么,而是它没说出口的那部分。形似在你这儿不值钱——一笔之间的心境、留白处的那口气,才是你真正在意的。你大概也是话不说满、懂得克制的那种人。'},
+  WV4:{t:'光的捕手',r:'你迷恋"当下"——光怎么落、色怎么颤、那一瞬的空气。你不太在乎它画得像不像,在乎它"活不活"。你大概也对氛围格外敏感:一束侧光、一个黄昏,就够你停下来。'},
+  WV5:{t:'不装的人',r:'你受不了温吞。画面得有劲、有情绪、有那股"我就是要这样"的不管不顾,才勾得住你。规整漂亮却没脾气的东西,你转头就走。你大概在生活里也更看重"真",哪怕它不好看。'},
+  WV6:{t:'结构控',r:'故事和情绪对你都像干扰——你要的是点、线、色块本身的秩序,是拿掉一切多余之后的那份干净。你欣赏的是脑子,不吃煽情。你大概也偏爱极简、信奉"少即是多"。'}
+};
+let _proResult=null;
+function shareProfile(){
+  const r=_proResult||{};const url='https://aha.yishujia.art/museum.html?intro=1';
+  const txt=`我的审美型号是「${r.t||''}」——${r.wvn||''}一带。本命画家 ${r.ben||'—'},每 100 幅名作约 ${r.share||0} 幅落在我这带。\n来 aha 测测你是哪一型 → ${url}`;
+  if(navigator.share){navigator.share({title:'我的审美画像 · aha',text:txt,url}).catch(()=>{});}
+  else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(()=>toast('已复制,去发给朋友 ✓')).catch(()=>{try{prompt('复制下面这段分享',txt);}catch(e){}});}
+  else {try{prompt('复制下面这段分享',txt);}catch(e){}}
+}
+// 逛展核心 = 4 种结构性走法 + 2 个最好玩的(漂流 / 以色觅画),都摆在台面上
+const FORMS=[['salon','🖼 沙龙墙'],['corridor','🚶 长廊'],['floor','🗺 平面'],['dwell','🔎 专注单幅'],['drift','🌊 漂流'],['chroma','🎨 以色觅画']];
+// 更多玩法 = 其余装置式交互,一个没删,都在下拉里一键可达
+const MORE_FORMS=[['fog','🌫 雾中之馆'],['dial','🎛 情绪方向盘'],['versus','⚖ 二选一'],['eastwest','🌏 东西对望'],['artist','🧑‍🎨 按艺术家'],['vad','🧭 情绪坐标'],['fingerprint','📐 风格指纹']];
+const FORM_NAME=Object.fromEntries(FORMS.concat(MORE_FORMS));
+const AX7=['构图','空间','造型','光影','色彩','笔触','边缘'];
+const POLES7={构图:['均衡','动势'],空间:['平面','纵深'],造型:['消融','扎实'],光影:['柔和','强烈'],色彩:['沉郁','明艳'],笔触:['隐没','显露'],边缘:['柔化','硬朗']};
+// 自动特展:由图谱切片定义
+// 特展:后台可管(api/specials),规则型或选图型,客户端对 WORKS 解析
+let _SPECIALS=[];
+function ruleToPick(rule){if(!rule)return ()=>false;return w=>(!rule.emo||!rule.emo.length||rule.emo.includes(w.emo))&&(!rule.wv||!rule.wv.length||rule.wv.includes(w.wv))&&(!rule.region||w.region===rule.region);}
+function specialWorks(s){let ws;if(s.work_ids&&s.work_ids.length){const set=new Set(s.work_ids);ws=WORKS.filter(w=>set.has(w.file));}else{ws=WORKS.filter(ruleToPick(s.rule));}const lim=s.rule&&s.rule.limit;return lim?ws.slice(0,lim):ws;}
+let WORKS=[],byWV={},byEmo={},byFile={},STATE={taste:null,collections:[],ratings:{}},lastHall=null,trail=0,openTs=0,curW=null;
+
+// 馆藏数据源:活库 /cat/exhibit(DB,含 demo226 + 已上展真迹);失败回退到静态文件
+const CAT=p=>fetch('/cat/'+p).then(r=>r.json());
+Promise.all([
+  CAT('exhibit?limit=8000&slim=1').catch(()=>fetch('data/gallery_works.json').then(r=>r.json())),
+  (window.AHA?AHA.state():Promise.resolve({})),
+  fetch('api/specials').then(r=>r.json()).catch(()=>({items:[]})),
+  (window.AHAFrames?AHAFrames.loadCanonical():Promise.resolve({})),
+  fetch('data/cosbig.json').then(r=>r.json()).catch(()=>({}))
+]).then(([d,st,sp,_fc,cb])=>{
+  window._COSBIG=cb||{};
+  _SPECIALS=(sp&&sp.items||[]);
+  // 只取有世界观坐标的"可上墙"集,所有逛法都依赖 wv/x/y
+  WORKS=(d.works||[]).filter(w=>w.wv&&w.x!=null);
+  WORKS.forEach(w=>{byFile[w.file]=w;(byWV[w.wv]=byWV[w.wv]||[]).push(w);if(w.emo)(byEmo[w.emo]=byEmo[w.emo]||[]).push(w);});
+  // 测试图册:优先用可后台增删的 data/test_album.json,失败则用内置兜底
+  fetch('data/test_album.json').then(r=>r.json()).then(al=>{const cs=(al.items||al.codes||[]).map(x=>x.code||x).filter(Boolean);if(cs.length>=20){TEST_CODES.clear();cs.forEach(c=>TEST_CODES.add(c));}}).catch(()=>{});
+  STATE=Object.assign(STATE,st||{});
+  try{lastHall=JSON.parse(localStorage.getItem('aha_last_hall')||'null');}catch(e){}
+  if(shouldPrologue())prologue();else route();
+}).catch(e=>{document.getElementById('app').innerHTML='<div style="text-align:center;color:#8a8170;padding:60px">需服务器加载:'+e+'</div>';});
+
+// ---- 序幕:冷启动用两幅二选一学你 → 点亮 → 进你的美术馆 ----
+function shouldPrologue(){
+  // 不再"一进门就全屏弹":新用户先随意逛(顶部有「测审美」邀请 + 首次点画再邀,见 offerTest);
+  // 仅 ?intro / ?prologue 强制走测试(分享/演示用)。
+  const _q=new URLSearchParams(location.search);
+  if(_q.has('intro')||_q.has('prologue')){try{sessionStorage.removeItem('aha_seen_prologue');}catch(e){}return WORKS.length>10;}
+  return false;
+}
+function hasTaste(){return !!(STATE.taste&&(STATE.taste.n||0)>=4);}
+// 首次点画:若新用户(没测过/没提示过)→ 先邀测,可"直接看"
+function shouldOfferTest(){
+  try{if(sessionStorage.getItem('aha_test_offered'))return false;if(sessionStorage.getItem('aha_seen_prologue'))return false;}catch(e){}
+  if(hasTaste())return false;
+  if(new URLSearchParams(location.search).has('intro'))return false;
+  return WORKS.length>10;
+}
+function offerTest(w){
+  try{sessionStorage.setItem('aha_test_offered','1');}catch(e){}
+  const m=document.createElement('div');m.className='offermask';
+  m.innerHTML=`<div class="offercard"><div class="of-h">先花 30 秒,让这座馆懂你?</div>
+    <div class="of-s">选几次"更想多看哪一幅",aha 会先认出你的审美门派,再为你挑画。匿名、随时跳过。</div>
+    <div class="of-btns"><button class="of-go" id="ofGo">✦ 开始测 · 约 30 秒</button><button class="of-skip" id="ofSkip">直接看这幅 →</button></div></div>`;
+  document.body.appendChild(m);
+  m.querySelector('#ofGo').onclick=()=>{m.remove();prologue();};
+  m.querySelector('#ofSkip').onclick=()=>{m.remove();openLb(w);};
+  m.onclick=e=>{if(e.target===m){m.remove();openLb(w);}};
+}
+let proPicks=[],proRound=0;
+// 高质量/可辨识池:出自多产(=更知名)画家、剔除佚名 —— 让测试图既好看又有代表性
+let QPOOL=[],_proShown=new Set();
+// 固定策划的「测试图册」:72 幅,六个世界观区各 12 幅,皆高质量(≥0.8)、画家各异。可手工增删 code。
+const TEST_CODES=new Set(["Y473DE","F0YTKK","Q8Y44D","K1QWAB","TREWYQ","B8Q17G","A2GFTX","HVD5E8","Y1NSJK","Q06800","S9GFDQ","BXDTB9","RWKGF7","H401DG","MG0JV7","QTJ1WQ","T0XKEF","C2PANQ","WNP1XJ","K4HH46","H18TXX","PZGGZW","VMET9S","PBJRS3","JKKAC0","FYJGXX","Q022GG","CMEDXH","VJE6CY","NZ86XV","YFYXPB","AVT290","Z3ZK43","HG79BW","FCJ2Q3","XGA6S9","FT25XV","SHR2A1","DRTZ71","K0EJ58","RR4WMD","WG56M4","PSWBSJ","JPJ07Z","RHPTYF","KDPS9Q","XGEC8S","AAVVGT","D8MXS7","CAD7M1","BB0VNZ","NGQ4H0","J7RJW4","GR9FD4","VNSCQD","AHE2P8","HD8KFX","PETN6P","ZSME70","AH5QQ8","XSADWP","WCNTT5","B2NG02","XYZENM","WGCP0G","QH1HH7","EE1609","G4BQ6B","AGS78R","BQMM2V","BT2M0T","AWW9QM"]);
+function buildQPool(){
+  const anon=w=>!w.artist||/佚名|待考|无名|未知|匿名|不详|无款|unknown|anonymous/i.test(w.artist);
+  // ① 优先用固定测试图册(六区均衡、皆高质量、画家各异)
+  const anchors=WORKS.filter(w=>w.code&&TEST_CODES.has(w.code));
+  if(anchors.length>=30){QPOOL=anchors;return;}
+  // ② 回退:真·质量分(≥0.8,低质量绝不入测试)+ 每画家≤6,避免清一色印象派
+  const withQ=WORKS.filter(w=>!anon(w)&&w.quality!=null&&w.quality>=0.8);
+  if(withQ.length>=60){withQ.sort((a,b)=>b.quality-a.quality);const per={},pool=[];for(const w of withQ){const a=w.artist;if((per[a]||0)>=6)continue;per[a]=(per[a]||0)+1;pool.push(w);}QPOOL=pool.length>=40?pool:withQ.slice(0,500);return;}
+  // ③ 再回退:多产(更知名)画家
+  const ac={};WORKS.forEach(w=>{if(w.artist)ac[w.artist]=(ac[w.artist]||0)+1;});
+  QPOOL=WORKS.filter(w=>!anon(w)&&ac[w.artist]>=4);
+  if(QPOOL.length<40)QPOOL=WORKS.slice();
+}
+function _nearestQ(pool,tx,ty,ex){let best=null,bd=9;
+  for(let i=0;i<pool.length;i++){const w=pool[i];if(ex&&ex.has(w.file))continue;if(_proShown.has(w.file))continue;const d=Math.hypot(w.x-tx,w.y-ty);if(d<bd){bd=d;best=w;}}
+  if(!best)for(let i=0;i<pool.length;i++){const w=pool[i];if(ex&&ex.has(w.file))continue;const d=Math.hypot(w.x-tx,w.y-ty);if(d<bd){bd=d;best=w;}}
+  return best;}
+function farContrastPair(pool){let A=pool[0],B=pool[1],bd=-1;
+  for(let i=0;i<120;i++){const a=pool[Math.floor(Math.random()*pool.length)],b=pool[Math.floor(Math.random()*pool.length)];if(a===b||(a.artist&&a.artist===b.artist)||_proShown.has(a.file)||_proShown.has(b.file))continue;const d=Math.hypot(a.x-b.x,a.y-b.y);if(d>bd){bd=d;A=a;B=b;}}
+  return[A,B];}
+// 策略:首轮最大对比;之后绕"运行重心"沿轮换的探测轴(再现-表现/结构-感知/两对角)放一对对立画,偏移随轮次收窄(粗→细),逼出真实偏向
+function proPair(){
+  const pool=(QPOOL&&QPOOL.length>20)?QPOOL:WORKS,k=proPicks.length;
+  if(k===0)return farContrastPair(pool);
+  const cx=proPicks.reduce((s,p)=>s+p.x,0)/k,cy=proPicks.reduce((s,p)=>s+p.y,0)/k;
+  const ang=[0,Math.PI/2,Math.PI/4,-Math.PI/4][(k-1)%4],ux=Math.cos(ang),uy=Math.sin(ang),off=0.34*Math.pow(0.8,k-1);
+  const cl=v=>Math.max(0.05,Math.min(0.95,v));
+  const a=_nearestQ(pool,cl(cx+ux*off),cl(cy+uy*off));
+  const b=_nearestQ(pool,cl(cx-ux*off),cl(cy-uy*off),new Set(a?[a.file]:[]));
+  if(!a||!b||a===b||(a.artist&&a.artist===b.artist)||Math.hypot(a.x-b.x,a.y-b.y)<0.12)return farContrastPair(pool); // 同画家/对比不够→兜底拉开
+  return[a,b];
+}
+function prologue(){proPicks=[];proRound=0;_proShown.clear();buildQPool();app.innerHTML='<div class="prologue" id="pro"></div>';proStep();}
+function proStep(){
+  if(proRound>=5)return proFinish();
+  const [a,b]=proPair();_proShown.add(a.file);_proShown.add(b.file);
+  document.getElementById('pro').innerHTML=`<span class="pro-skip" onclick="proExit()">跳过,直接逛 →</span>
+    <div class="pro-top"><div class="nm">aha<span class="d">.</span></div><div class="q">${proRound===0?'凭直觉选,你更想多看哪一幅?':'再选一幅'}</div>
+      ${proRound===0?'<div class="pro-sub">没有对错,只是想把这座美术馆,慢慢调成你的样子 · 匿名、只属于你,随时能跳过或重来</div>':'<div class="pro-sub">跟着感觉走就好</div>'}
+      <div class="pg">${proRound+1} / 5 · 几秒就好</div></div>
+    <div class="pro-pair"><div class="pro-card" id="pa"><img src="${imgT(a,800)}"></div><div class="pro-card" id="pb"><img src="${imgT(b,800)}"></div></div>`;
+  document.getElementById('pa').onclick=()=>proPick(a,b);
+  document.getElementById('pb').onclick=()=>proPick(b,a);
+}
+function proPick(w,other){proPicks.push(w);
+  if(window.AHA){
+    AHA.event('like',{target_type:'work',target_id:w.file,work_id:w.work_id,x:w.x,y:w.y});
+    if(other)AHA.event('skip',{target_type:'work',target_id:other.file,work_id:other.work_id,x:other.x,y:other.y}); // 对比学习:没选的=排斥信号
+  }
+  proRound++;proStep();}
+function proExit(){try{sessionStorage.setItem('aha_seen_prologue','1');}catch(e){}route();}
+function proFinish(){
+  try{sessionStorage.setItem('aha_seen_prologue','1');}catch(e){}
+  const n=proPicks.length||1,cx=proPicks.reduce((s,p)=>s+p.x,0)/n,cy=proPicks.reduce((s,p)=>s+p.y,0)/n;
+  STATE.taste={x:+cx.toFixed(3),y:+cy.toFixed(3),n:n*3};
+  const regs=Object.keys(WVN).map(k=>{const ws=byWV[k]||[];if(!ws.length)return null;const ax=ws.reduce((s,w)=>s+w.x,0)/ws.length,ay=ws.reduce((s,w)=>s+w.y,0)/ws.length;return{k,d:Math.hypot(ax-cx,ay-cy)};}).filter(Boolean).sort((a,b)=>a.d-b.d);
+  const best=regs[0]?regs[0].k:'WV1',second=regs[1]?regs[1].k:null;
+  const share=Math.round((WORKS.length?(byWV[best]||[]).length/WORKS.length:0)*100);
+  const rlab=share<8?'稀有':share<18?'小众':'主流';
+  const arts=nearestArtists(cx,cy,3),ben=arts[0],benAff=ben?Math.round(Math.max(0,1-ben.d/0.85)*100):0;
+  _proResult={t:ARCHE[best].t,wvn:WVN[best],ben:ben?ben.artist:'',share:share};
+  const artHTML=arts.map(a=>{const aff=Math.round(Math.max(0,1-a.d/0.85)*100);
+    return `<a class="ap-art" href="art.html?w=${encodeURIComponent(a.rep.file)}"><div class="ap-th"><img loading="lazy" decoding="async" src="${imgT(a.rep,300)}"></div><div class="ap-an">${esc(a.artist)}</div><div class="ap-aff">契合 ${aff}%</div></a>`;}).join('');
+  document.getElementById('pro').innerHTML=`<div class="pro-skip" onclick="proEnter()">进入 →</div>
+    <div class="apwrap"><div class="apcard">
+      <div class="ap-kick">AESTHETIC PROFILE · 第一次画像</div>
+      <h2 class="ap-h">你是「<b>${ARCHE[best].t}</b>」</h2>
+      <div class="ap-sub2">${WVN[best]} 一带 · 你的审美型号</div>
+      <div class="ap-read">${esc(ARCHE[best].r)}${second?`<span class="ap-read2">而且——偶尔,你也会被「${WVN[second]}」那一类悄悄勾住。这,正是你不太一样的地方。</span>`:''}</div>
+      <div class="ap-mapwrap"><div id="promap" class="ap-map"></div><a class="ap-method" href="kg-worldview.html" title="这套世界观坐标怎么来的">↗ 背后的方法论</a></div>
+      <div class="ap-stats">
+        <div class="ap-st"><div class="ap-sv" style="font-family:var(--serif);color:var(--gold)">${WVN[best]}</div><div class="ap-sl">你的门派</div></div>
+        <div class="ap-st"><div class="ap-sv">${ben?esc(ben.artist):'—'}</div><div class="ap-sl">本命艺术家 · ${benAff}%</div></div>
+        <div class="ap-st"><div class="ap-sv">${share}<span class="u">%</span></div><div class="ap-sl">名作落此带 · ${rlab}</div></div>
+      </div>
+      <div class="ap-sect">与你最像的艺术家</div>
+      <div class="ap-arts">${artHTML}</div>
+      <div class="ap-sect">你所在的世界观 · 点开任一片去逛</div>
+      <div id="proworlds" class="ap-worlds"></div>
+      <div class="ap-foot">这是第一版近似——只凭你此刻的世界观位置。<b>越逛,aha 越懂你</b>;这份画像随时能在「我的」里重看、重测。</div>
+      <div class="ap-actions"><button class="ap-go" onclick="proEnter()">进入为你而设的美术馆 →</button><button class="ap-share" onclick="shareProfile()">↗ 把我的审美晒出去</button></div>
+    </div></div>`;
+  drawProMap(cx,cy,best);buildProWorlds(best);
+}
+// 本命/相像艺术家:从真实在展作品按艺术家聚质心,离你最近者(纯世界观 x,y 近似)
+function nearestArtists(cx,cy,k){
+  const byA={};WORKS.forEach(w=>{if(!w.artist)return;(byA[w.artist]=byA[w.artist]||[]).push(w);});
+  const arr=[];Object.keys(byA).forEach(a=>{const ws=byA[a];if(ws.length<2)return;const ax=ws.reduce((s,w)=>s+w.x,0)/ws.length,ay=ws.reduce((s,w)=>s+w.y,0)/ws.length;arr.push({artist:a,x:ax,y:ay,n:ws.length,rep:ws[0],d:Math.hypot(ax-cx,ay-cy)});});
+  arr.sort((p,q)=>p.d-q.d);return arr.slice(0,k);
+}
+function buildProWorlds(best){const box=document.getElementById('proworlds');if(!box)return;
+  box.innerHTML=Object.keys(WVN).map(k=>`<div class="pw${k===best?' on':''}" onclick="proEnterHall('${k}')"><div class="pw-n">${WVN[k]}</div><div class="pw-c">${(byWV[k]||[]).length} 幅</div></div>`).join('');
+}
+function proEnterHall(k){try{sessionStorage.setItem('aha_seen_prologue','1');}catch(e){}go('wv:'+k);}
+function proEnter(){route();}
+function drawProMap(cx,cy,best){const NS='http://www.w3.org/2000/svg',Wd=460,H=300,p=26,sx=v=>p+v*(Wd-2*p),sy=v=>H-p-v*(H-2*p);
+  const E=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;};
+  const WVC={WV1:'#5a7d6f',WV2:'#b0673a',WV3:'#5b7596',WV4:'#c98a1a',WV5:'#b5483a',WV6:'#857d6f'};
+  const svg=E('svg',{viewBox:`0 0 ${Wd} ${H}`,style:'width:100%;height:auto;background:#fbf9f3;border:1px solid rgba(40,30,15,.12);border-radius:12px'});
+  svg.appendChild(E('line',{x1:sx(.5),y1:p,x2:sx(.5),y2:H-p,stroke:'#ece5d6'}));
+  svg.appendChild(E('line',{x1:p,y1:sy(.5),x2:Wd-p,y2:sy(.5),stroke:'#ece5d6'}));
+  WORKS.forEach(w=>{const j=window.AHACloud?AHACloud.at(w.file,w.x,w.y):[w.x,w.y];svg.appendChild(E('circle',{cx:sx(j[0]),cy:sy(j[1]),r:2.1,fill:WVC[w.wv]||'#b0673a','fill-opacity':w.wv===best?.32:.12}));});
+  Object.keys(WVN).forEach(k=>{const ws=byWV[k]||[];if(!ws.length)return;const ax=ws.reduce((s,w)=>s+w.x,0)/ws.length,ay=ws.reduce((s,w)=>s+w.y,0)/ws.length,on=k===best;
+    const tx=E('text',{x:sx(ax),y:sy(ay),'font-size':on?12.5:10,'font-family':'Noto Serif SC','text-anchor':'middle',fill:on?'#b0673a':'#9a917f','font-weight':on?700:500,'paint-order':'stroke',stroke:'#fbf9f3','stroke-width':on?3:2});tx.textContent=WVN[k];svg.appendChild(tx);});
+  [['再现',.02,'start'],['表现 →',.98,'end']].forEach(([t,xx,a])=>{const e=E('text',{x:sx(xx),y:H-8,'font-size':9.5,'font-family':'JetBrains Mono',fill:'#9a917f','text-anchor':a});e.textContent=t;svg.appendChild(e);});
+  const halo=E('circle',{cx:sx(cx),cy:sy(cy),r:6,fill:'#b0673a','fill-opacity':.14});svg.appendChild(halo);
+  svg.appendChild(E('circle',{cx:sx(cx),cy:sy(cy),r:3,fill:'#b0673a',stroke:'#fff','stroke-width':2.5}));
+  const lab=E('text',{x:sx(cx),y:sy(cy)-13,'font-size':10.5,'font-family':'JetBrains Mono','text-anchor':'middle',fill:'#b0673a','font-weight':600,'paint-order':'stroke',stroke:'#fbf9f3','stroke-width':3});lab.textContent='你在这';svg.appendChild(lab);
+  document.getElementById('promap').appendChild(svg);
+  let r=0;const iv=setInterval(()=>{r+=1;halo.setAttribute('r',Math.min(18,6+r*1.2));if(r>=10)clearInterval(iv);},45);}
+addEventListener('hashchange',route);
+
+function exhibit(h){
+  if(h.startsWith('wv:')){const k=h.slice(3);return {type:'wv',key:k,title:WVN[k]||k,badge:k,note:WVNOTE[k]||'',works:byWV[k]||[]};}
+  if(h.startsWith('emo:')){const k=h.slice(4);return {type:'emo',key:k,title:k+' · 情绪展厅',badge:'EMO',note:'循同一种情绪,看不同画家如何处理它。',works:byEmo[k]||[]};}
+  if(h.startsWith('sp:')){const s=_SPECIALS.find(x=>('sp:'+x.id)===h);if(s)return {type:'sp',key:h,title:s.title,badge:'特展',note:s.note,works:specialWorks(s)};}
+  if(h.startsWith('artist:')){const a=h.slice(7);return {type:'artist',key:a,title:a+' 的眼睛',badge:'艺术家',note:'同一双眼睛看世界的不同瞬间。',works:WORKS.filter(w=>w.artist===a)};}
+  if(h.startsWith('foryou')){return {type:'foryou',key:'foryou',title:'为你点亮',badge:'✦',note:'reward 内核按你的口味重心 × 惊奇带,从全馆为你精排序挑出的画。',works:(window._FYREWARD&&_FYREWARD.length)?_FYREWARD:foryouWorks()};}
+  if(h.startsWith('mine')){return {type:'mine',key:'mine',title:'我的收藏',badge:'❤',note:'你心动过的画,都在这。',works:(STATE.collections||[]).map(f=>byFile[f]).filter(Boolean)};}
+  if(h==='all'){return {type:'all',key:'all',title:'全部馆藏',badge:'ALL',note:'226 幅人类公共领域真迹。',works:WORKS};}
+  return null;
+}
+function foryouWorks(){
+  const t=STATE.taste;if(!t)return [];
+  // 近邻天然同质——每位画家至多 2 幅,再要求相邻两幅不同画家,逼出多样性(不再 24 张莫奈)
+  const ranked=WORKS.map(w=>({w,d:Math.hypot(w.x-t.x,w.y-t.y)})).sort((a,b)=>a.d-b.d);
+  const out=[],per={};let lastA='';
+  for(const o of ranked){const a=o.w.artist||'?';if((per[a]||0)>=2)continue;if(a===lastA&&out.length)continue;per[a]=(per[a]||0)+1;out.push(o.w);lastA=a;if(out.length>=24)break;}
+  return out;
+}
+// 返回美术馆回到点击位置:openLb 存了 {hash,y};渲染同一展区后还原滚动
+// (含异步图片/瀑布,多次重试逼近);不匹配或非返回则照常回顶
+let _back=null;try{const _b=sessionStorage.getItem('aha_back');if(_b)_back=JSON.parse(_b);}catch(e){}
+function applyScroll(){
+  if(_back&&_back.hash===location.hash){
+    const y=_back.y||0;_back=null;try{sessionStorage.removeItem('aha_back');}catch(e){}
+    [0,100,300,650,1100].forEach(t=>setTimeout(()=>scrollTo(0,y),t));
+  }else{scrollTo(0,0);}
+}
+// 今日封面:按日期确定性挑一幅(每天换一张),首页大刊式 hero
+function coverWork(){if(!WORKS.length)return null;
+  const pool=WORKS.filter(w=>(w.quality||0)>=0.85);const P=pool.length?pool:WORKS;   // 封面是门面:只从高质量里选
+  const d=new Date();const seed=Math.abs(hash(d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()+'-'+d.getHours()));  // 每小时一张
+  return P[seed%P.length];}
+function coverHTML(w){if(!w)return '';const t=String(w.title||'无题').replace(/\.(jpe?g|png|webp|gif|tiff?|bmp|jfif)$/i,'').replace(/[_]+/g,' ').trim()||'无题';
+  return `<img class="cv-img" fetchpriority="high" decoding="async" src="${imgT(w,1400)}" alt="">
+    <div class="cv-scrim"></div>
+    <div class="cv-top"><span class="cv-name">人类美术馆<b>.</b></span><span class="cv-tag">今日封面 · COVER</span></div>
+    <div class="cv-cap"><div class="cv-voice">「${esc(readLine(w))}」</div>
+      <div class="cv-by"><b>${esc(t)}</b> · ${esc(w.artist||'佚名')}</div>
+      <span class="cv-enter">走近这幅 →</span></div>`;}
+function route(){
+  const p=new URLSearchParams(location.hash.slice(1));
+  const hall=p.get('hall'),form=p.get('form')||'salon';
+  if(hall==='mine'){location.href='me.html';return;}   // 「我的」并入个人中心 me.html(深链也跳)
+  if(hall){const ex=exhibit(hall);if(ex)return renderHall(ex,form);}
+  lobby();
+}
+function go(hall,form){location.hash='hall='+hall+'&form='+(form||'salon');}
+function setForm(f){const p=new URLSearchParams(location.hash.slice(1));p.set('form',f);location.hash=p.toString();}
+function peek(list,n){return list.slice(0,n).map(w=>`<img loading="lazy" decoding="async" src="${imgT(w,300)}">`).join('');}
+const app=document.getElementById('app');
+
+// #1 换种逛法:固定右缘的横向切换器(替代原 entryrow)
+function buildEntrySwitch(){
+  if(document.getElementById('entryswitch'))return;
+  const opts=[['museum-hero-reel.html','🎬 一画入魂'],['museum-hero-chroma.html','🌈 色谱长河'],['museum-hero-spotlight.html','🔦 光标寻画'],['museum-hero-3d.html','🏛 3D 中庭']];
+  const el=document.createElement('div');el.id='entryswitch';
+  el.innerHTML=`<div class="es-panel">${opts.map(o=>`<a href="${o[0]}">${esc(o[1])}</a>`).join('')}</div><div class="es-tab" id="esTab"><span class="es-ic">⇄</span><span class="es-lb">换种入馆</span></div>`;
+  document.body.appendChild(el);
+  el.querySelector('#esTab').onclick=(e)=>{e.stopPropagation();el.classList.toggle('open');};
+  document.addEventListener('click',e=>{if(!el.contains(e.target))el.classList.remove('open');});
+}
+// #4 阅读小助理:固定右下角,留你的阅读足迹(继续上次 + 最近看过)
+function _rbTitle(w){return String(w.title||'无题').replace(/\.(jpe?g|png|webp|gif|tiff?|bmp|jfif)$/i,'').replace(/[_]+/g,' ').trim().slice(0,18)||'无题';}
+function buildReadbot(){
+  if(document.getElementById('readbot'))return;
+  const el=document.createElement('div');el.id='readbot';
+  let items='';
+  if(lastHall&&exhibit(lastHall.hall)){const ex=exhibit(lastHall.hall);const w0=ex.works[0];
+    items+=`<a class="rb-item" onclick="go('${lastHall.hall}','${lastHall.form||'salon'}')">${w0?`<img loading="lazy" src="${imgT(w0,120)}">`:''}<div><div class="t">继续上次:${esc(ex.title)}</div><div class="s">回到你离开的地方 · ${ex.works.length} 幅</div></div></a>`;}
+  let recent=[];try{recent=JSON.parse(localStorage.getItem('aha_recent')||'[]');}catch(e){}
+  recent.slice(0,4).forEach(f=>{const w=byFile[f]||byFile[decodeURIComponent(f)];if(w)items+=`<a class="rb-item" href="art.html?w=${encodeURIComponent(w.file)}"><img loading="lazy" src="${imgT(w,120)}"><div><div class="t">${esc(_rbTitle(w))}</div><div class="s">${esc(w.artist||'佚名')}</div></div></a>`;});
+  const body=items||`<div class="rb-empty">还没有阅读记录。<br>走近任意一幅画、读过它,这里就会记下你的足迹。</div>`;
+  el.innerHTML=`<div class="rb-btn" id="rbBtn"><span class="dot"></span><span class="rb-ic">📖</span><span class="rb-lb">阅读小助理</span></div>
+    <div class="rb-panel"><div class="rb-h">你的阅读足迹</div><div class="rb-sub">逛过、读过的画,在这里留个底。</div>${body}<div class="rb-foot"><a href="me.html">完整阅读记录 →</a></div></div>`;
+  document.body.appendChild(el);
+  el.querySelector('#rbBtn').onclick=(e)=>{e.stopPropagation();el.classList.toggle('open');};
+  document.addEventListener('click',e=>{if(!el.contains(e.target))el.classList.remove('open');});
+}
+
+function lobby(){
+  const cw=coverWork();
+  let h=`<div class="wrap">`;
+  h+= cw ? `<div class="cover" id="cover" onclick="location.href='art.html?w=${encodeURIComponent(cw.file)}'">${coverHTML(cw)}</div>`
+         : `<div class="hero"><div class="name">人类美术馆<span class="d">.</span></div><div class="slogan">让美,来找你。</div></div>`;
+  h+=`<div class="topnav" style="margin-top:18px"><a class="gold" href="kg-foryou.html">✦ 为你生成</a><a href="artists.html">艺术家</a><a href="frame.html">🖼️ 相框</a><a href="kg-system.html">知识图谱</a><a href="kg-compile-v2.html">意图编译器</a><a href="me.html">❤ 我的</a><a href="architecture.html">产品架构</a></div>`;
+  if(!hasTaste())h+=`<div class="testcta" onclick="prologue()"><span class="tc-i">✦</span><span class="tc-t"><b>30 秒,测出你的审美门派</b><span class="tc-sub">凭直觉选几幅画,看看你落在哪个世界观、本命画家是谁 · 也可以直接逛</span></span><span class="tc-go">开始 →</span></div>`;
+  h+=`<div id="bands"></div></div>`;
+  app.innerHTML=h;applyScroll();
+  buildEntrySwitch();buildReadbot();
+  const B=document.getElementById('bands');
+  // 固定展区
+  B.appendChild(band('固定展区 · 常设',`6 间世界观主厅 + 全部馆藏`,
+    ['WV1','WV2','WV3','WV4','WV5','WV6'].map(k=>hallCard('wv:'+k,WVN[k],(byWV[k]||[]).length+' 幅',byWV[k]||[],k))
+    .concat([hallCard('all','全部馆藏',WORKS.length+' 幅',WORKS,'ALL')])));
+  // 为你:先用客户端口味即时兜底,再异步用后端 reward 内核升级
+  const fy=foryouWorks();
+  const fyBand=band('✦ 为你',STATE.taste?`按你逛出的口味挑的`:`逛几幅,这里就会为你长出展`,
+    fy.length?fy.slice(0,14).map(workCard).concat([hallCard('foryou','看全部为你','✦',fy,'✦')]):[emptyCard('点开几幅、心动几下,aha 就懂你了')]);
+  B.appendChild(fyBand);
+  loadForyouBand(fyBand);
+  // 📻 智能相框电台:被动看画,换台=换口味权重(接 next_frame reward 内核)
+  // 每台配一张代表作背景:按"调性"映到某个世界观区,取该区里一幅有代表性的画
+  const radioChs=[['','顺心台','跟着你的口味重心 × 惊奇带','WV4'],['calm','安静台','偏低唤醒,夜里也好看','WV3'],['masters','名作台','偏高品质名作','WV1'],['explore','探索台','故意带你出门换换眼睛','WV6'],['surprise','惊喜台','死磕你的惊奇带','WV5']];
+  const chCover=(wv)=>{const ws=byWV[wv]||WORKS;if(!ws.length)return null;return ws[Math.abs(hash('radio'+wv))%ws.length];};
+  B.appendChild(band('📻 智能相框 · 电台','被动看画 · 双击收藏 · 换台换口味',
+    radioChs.map(([ch,n,cd,wv])=>{const el=document.createElement('a');el.className='card link';el.href='frame.html'+(ch?('?ch='+ch):'');el.style.textDecoration='none';const cv=chCover(wv);
+      el.innerHTML=`${cv?`<div class="bg"><img loading="lazy" src="${imgT(cv)}"></div>`:''}<div class="grad"></div><div class="c"><div class="n">${esc(n)}</div><div class="cd">${esc(cd)}</div></div>`;return el;})));
+  // 特展(图谱切片自动策)
+  const sps=_SPECIALS.filter(s=>s.public!==false).map(s=>{const ws=specialWorks(s);return hallCard('sp:'+s.id,s.title,ws.length+' 幅 · '+(s.note||'').slice(0,12)+'…',ws,'特展');});
+  if(sps.length)B.appendChild(band('🗓 特展 · 临时',`后台策划的主题展`,sps));
+  // 主题展(后台 dashboard 策划的 collections,DB 驱动,异步)
+  const ob=band('🏛 主题展 · 策展人',`后台策划的主题展,可在数据后台增删`,[emptyCard('加载中…')]);B.appendChild(ob);
+  CAT('exhibitions').then(d=>{const cards=(d.exhibitions||[]).map(collCard);fillBand(ob,cards.length?cards:[emptyCard('还没有主题展——去后台策一个')]);}).catch(()=>fillBand(ob,[emptyCard('暂不可用')]));
+  // 热门(异步)
+  const hb=band('🔥 热门',`大家最常驻足的画与展厅`,[emptyCard('加载中…')]);B.appendChild(hb);
+  if(window.AHA)AHA.hot().then(d=>{const cards=[];(d.halls||[]).forEach(x=>{const ex=exhibit(x.hall);if(ex)cards.push(hallCard(x.hall,ex.title,x.c+' 次驻足',ex.works,'热'));});
+    (d.works||[]).forEach(x=>{const w=byFile[x.file];if(w)cards.push(workCard(w));});
+    fillBand(hb,cards.length?cards:[emptyCard('还没有热度——你就是第一个逛的人')]);});
+  // 策展人(我的展 + 占位)
+  const cb=band('🧑‍🎨 策展人之声',`你已公开展出的展在这;审核中/未公开的在「我的展」`,[emptyCard('加载中…')]);B.appendChild(cb);
+  if(window.AHA)AHA.myExhibitions().then(d=>{const cards=(d.items||[]).filter(ex=>ex.approved).map(ex=>{const ws=(ex.work_ids||[]).map(f=>byFile[f]).filter(Boolean);const _el=hallCard('','',ex.title,ws,'我策',ex.work_ids);_el.onclick=()=>location.href='curate.html?ex='+encodeURIComponent(ex.id);return _el;});
+    cards.push(addCard());fillBand(cb,cards);});
+  // 整馆逛法:逛的是整张图谱本身(跨所有展),不是某一个展里的画
+  const labCard=(href,kind,n,cd)=>{const el=document.createElement('a');el.className='card lab '+kind;el.href=href;el.innerHTML=`<div class="lab-scrim"></div><div class="c"><div class="n">${n}</div><div class="cd">${cd}</div></div>`;return el;};
+  B.appendChild(band('🎮 互动应用 · 玩转整张图谱','把整座知识图谱、两画之间、让 AI 替你策展,都变成能上手玩的应用(点末张看全部)',[
+    labCard('kg-galaxy.html','lab-glow','✨ 会发光的艺术史','654 条师承与影响连成星图,点亮一个名字,看它照亮了谁'),
+    labCard('kg-system.html','lab-graph','🕸 整个知识体系全图','一台会拿真迹检验自己、猜错就改的引擎——一张图看全(结构 + 突破 + 平台)'),
+    labCard('wander-talk.html','lab-talk','💬 对话策展','用一句话,让 AI 从全馆为你策一组画'),
+    labCard('kg-forces.html','lab-force','🌀 艺术史的动力学','关系力 × 语境力 × 偶然——看风格是被什么推着长出来的'),
+    labCard('apps.html','lab-all','🎮 全部互动应用 →','双画对读 / 潜空间 / 母题之河 / 对话策展…… 都在互动应用中心')
+  ]));
+  // 全部馆藏:Pinterest 式 append-only 瀑布(按 ar 预留高度→不跳闪;分批无限滚动)
+  const allSec=document.createElement('div');allSec.className='band allband';
+  allSec.innerHTML=`<div class="band-h"><span class="t">🗂 全部馆藏</span><span class="n">${WORKS.length}</span><span class="d">点任意一幅走近它 · <a class="allgo" onclick="go('all')">用逛法浏览全部 →</a></span><span class="line"></span></div><div class="mason" id="mason"></div><div class="moreWrap" id="moreWrap"></div>`;
+  B.appendChild(allSec);
+  const mason=allSec.querySelector('#mason');
+  const clampAr=a=>Math.max(0.5,Math.min(1.9,(+a)||1));
+  let _cols=[],_ch=[],_ai=0,_colN=0;
+  const colCount=()=>Math.max(2,Math.min(7,Math.floor((mason.clientWidth||900)/210)));
+  function buildCols(){_colN=colCount();mason.innerHTML='';_cols=[];_ch=[];for(let i=0;i<_colN;i++){const c=document.createElement('div');c.className='mcol';mason.appendChild(c);_cols.push(c);_ch.push(0);}}
+  function mTitle(t,artist){if(!t)return '';
+    t=String(t).replace(/\.(jpe?g|png|webp|gif|tiff?|bmp|jfif)$/i,'').replace(/[_]+/g,' ').trim();
+    var _CC=/^(意大利|法国|法兰西|荷兰|尼德兰|佛兰德斯|弗拉芒|德国|德意志|普鲁士|西班牙|英国|英格兰|苏格兰|爱尔兰|威尔士|美国|美利坚|俄罗斯|俄国|苏联|比利时|奥地利|瑞士|瑞典|挪威|丹麦|芬兰|波兰|希腊|葡萄牙|匈牙利|捷克|斯洛伐克|罗马尼亚|乌克兰|克罗地亚|塞尔维亚|保加利亚|日本|中国|韩国|朝鲜|印度|波斯|伊朗|土耳其|埃及|墨西哥|巴西|阿根廷|智利|加拿大|澳大利亚|新西兰|南非)/,SEP=/[\s·・,，、|/\\–-]/,segs=[];
+    if(artist){var a=String(artist).trim();if(a&&a.length>=2){t=t.split(a).join(' ');a.split(/[·・\s]+/).forEach(function(s){s=s.trim();if(s.length>=2)segs.push(s);});}}
+    var g=0;while(g++<6){t=t.replace(new RegExp('^'+SEP.source+'+'),'');var cut=false,m=t.match(_CC);
+      if(m&&(t.length===m[0].length||SEP.test(t[m[0].length]))){t=t.slice(m[0].length);cut=true;}
+      else for(var i=0;i<segs.length;i++){var s=segs[i];if(t.indexOf(s)===0&&(t.length===s.length||SEP.test(t[s.length]))){t=t.slice(s.length);cut=true;break;}}
+      if(!cut)break;}
+    t=t.replace(/\s{2,}/g,' ').replace(new RegExp('^'+SEP.source+'+|'+SEP.source+'+$','g'),'').trim();
+    if(/^(无题|untitled|无名|佚名)$/i.test(t))return '';return t;}
+  function mArtist(a){a=((a||'').trim());if(!a||/佚名|待考|无名|未知|匿名|不详|无款|unknown|anonymous|untitled/i.test(a))return '';return a;}
+  // 缩略图省带宽:COS 作品走腾讯云即时压缩(imageMogr2,不预生成);本地图无转换则原样。只动 <img> 显示,w.file 作为点击身份不变。
+  function addTile(w){let mi=0;for(let i=1;i<_colN;i++)if(_ch[i]<_ch[mi])mi=i;
+    const col=_cols[mi],cw=col.clientWidth||200,estH=cw/(w.ar?clampAr(w.ar):0.85)+40; // 像素估高,平衡列
+    const el=document.createElement('div');el.className='mtile';
+    const ma=mArtist(w.artist),mt=mTitle(w.title,w.artist);
+    const framed=window.AHAFrames?AHAFrames.wrap(`<img loading="lazy" decoding="async" src="${imgT(w,440)}">`,w,'lift'):`<div class="mframe"><img loading="lazy" decoding="async" src="${imgT(w,440)}"></div>`;
+    const cap=(mt||ma)?`<div class="mcap">${mt?`<div class="mt">${esc(mt)}</div>`:''}${ma?`<div class="ma">${esc(ma)}</div>`:''}</div>`:'';
+    el.innerHTML=`${framed}${cap}`;
+    el.onclick=()=>openLb(w,WORKS);col.appendChild(el);_ch[mi]+=estH;
+    el.querySelector('img').onload=()=>{_ch[mi]=col.offsetHeight;}; // 加载后用真实列高校正
+  }
+  function addBatch(n){for(let k=0;k<n&&_ai<WORKS.length;k++,_ai++)addTile(WORKS[_ai]);}
+  function relayout(){const keep=_ai;_ai=0;buildCols();addBatch(keep);}
+  const PER=60;                 // 每批数量
+  const moreWrap=allSec.querySelector('#moreWrap');
+  function renderMore(){const left=WORKS.length-_ai;
+    if(left<=0){moreWrap.innerHTML='<div class="moreDone">— 已是全部馆藏 —</div>';return;}
+    moreWrap.innerHTML=`<button class="moreBtn" id="moreBtn">加载更多 <span>还有 ${left} 幅</span></button>`;
+    moreWrap.querySelector('#moreBtn').onclick=()=>{addBatch(PER);renderMore();};}
+  buildCols();addBatch(108);renderMore();   // 首屏先给一百多幅,之后点按加载,有节奏
+  let _rt;addEventListener('resize',()=>{clearTimeout(_rt);_rt=setTimeout(()=>{if(colCount()!==_colN){relayout();renderMore();}},200);});
+}
+// 缩略图省带宽:>32MB COS 超大图(CI 处理不了)用本地预生成 / COS 即时压缩 / 本地 720px webp。w.file 作点击身份不变
+function imgT(w,px){const f=(w&&w.file)||'';px=px||520;
+  if(w&&w.work_id&&window._COSBIG&&_COSBIG[w.work_id])return '/'+_COSBIG[w.work_id];        // >32MB COS → 本地预生成
+  if(/myqcloud\.com/i.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/quality/82';           // COS:即时压缩
+  if(/(^|\/)img\/[^?]*\.(jpe?g|png)$/i.test(f))return f.replace(/\.(jpe?g|png)$/i,'.t720.webp'); // 本地:预生成 webp
+  return (w&&w.thumb)||f;}
+// 兜底:任何缩略图加载失败(如未及生成的超大 COS 图,imageMogr2 返 400)→ 退回原图,绝不裂图
+document.addEventListener('error',function(e){var im=e.target;if(!im||im.tagName!=='IMG'||im.dataset.fb)return;
+  var s=im.getAttribute('src')||'';if(/[?&]imageMogr2/.test(s)){im.dataset.fb='1';im.src=s.replace(/[?&]imageMogr2[^#]*/,'');}},true);
+function band(title,sub,cards){const el=document.createElement('div');el.className='band';
+  el.innerHTML=`<div class="band-h"><span class="t">${esc(title)}</span><span class="n">${esc(sub)}</span><span class="line"></span></div><div class="row"></div>`;
+  const row=el.querySelector('.row');cards.forEach(c=>row.appendChild(c));return el;}
+function fillBand(bandEl,cards){const row=bandEl.querySelector('.row');row.innerHTML='';cards.forEach(c=>row.appendChild(c));}
+function hallCard(hall,name,cd,works,badge,workIds){const el=document.createElement('div');el.className='card hall';
+  el.innerHTML=`<div class="bg">${peek(works,3)}</div><div class="dglow"></div><div class="dfloor"></div><div class="darch"></div><div class="c"><div class="n">${esc(name)}</div><div class="cd">${esc(cd)}<span class="dgo">　走进 →</span></div></div>`;
+  el.onclick=()=>{ if(hall){go(hall);} else if(workIds){ window._adhoc={title:name,works:works}; renderHall({type:'adhoc',key:'adhoc',title:name,badge:'我策',note:'',works:works},'salon'); } };
+  return el;}
+function workCard(w){const el=document.createElement('div');el.className='card work';
+  el.innerHTML=`<div class="bg"><img loading="lazy" decoding="async" src="${imgT(w,360)}"></div><div class="grad"></div><div class="c"><div class="n" style="font-size:13px">${esc(w.artist)}</div><div class="cd">${esc(w.title||'').slice(0,16)}</div></div>`;
+  el.onclick=()=>openLb(w,WORKS);return el;}
+// 后端 reward 内核(/cat/foryou)返回的 item → 卡片:命中馆藏走 openLb,否则跳作品页
+function fyItemCard(it){
+  const w=byFile[it.img]||byFile[it.thumb];
+  if(w)return workCard(w);
+  const el=document.createElement('a');el.className='card work';el.href='work.html?id='+it.work_id;el.style.textDecoration='none';
+  el.innerHTML=`<div class="bg"><img loading="lazy" src="${it.thumb||it.img}"></div><div class="grad"></div><div class="c"><div class="n" style="font-size:13px">${esc(it.artist||'')}</div><div class="cd">${esc((it.title||'').slice(0,16))}</div></div>`;
+  return el;}
+// 用后端 reward 内核(12维μ×惊奇带×calm×质量)升级"为你"区;无档案则保留客户端兜底
+function loadForyouBand(bandEl){
+  if(!window.AHA||!AHA.uid)return;
+  CAT('foryou?uid='+encodeURIComponent(AHA.uid)+'&limit=60').then(d=>{
+    if(!d||!d.ready||!d.items||!d.items.length)return;
+    // 缓存「reward 精排序」映射到馆藏的真作品,供「看全部为你」就地铺开(不是再做题/生成)
+    window._FYREWARD=d.items.map(it=>byFile[it.img]||byFile[it.thumb]).filter(Boolean);
+    const cards=d.items.slice(0,14).map(fyItemCard);
+    const more=document.createElement('a');more.className='card link';more.href='#hall=foryou&form=salon';more.style.textDecoration='none';
+    more.innerHTML='<div class="grad"></div><div class="c"><div class="n">✦ 看全部为你</div><div class="cd">reward 内核精排序 · 共 '+(window._FYREWARD.length||d.items.length)+' 幅 →</div></div>';
+    cards.push(more);
+    fillBand(bandEl,cards);
+    const n=bandEl.querySelector('.band-h .n');if(n)n.textContent='reward 内核:按你的口味重心 × 惊奇带挑的'+(d.wish?'(含心愿「'+esc(d.wish.text||'')+'」)':'');
+  }).catch(()=>{});
+}
+function emptyCard(t){const el=document.createElement('div');el.className='empty';el.textContent=t;return el;}
+function collCard(c){const el=document.createElement('div');el.className='card';
+  el.innerHTML=`<div class="bg">${c.cover?`<img loading="lazy" src="${c.cover}">`:''}</div><div class="grad"></div><div class="c"><div class="n">${esc(c.name)}</div><div class="cd">${(c.count||0)+' 幅'}${c.desc?' · '+esc(String(c.desc).slice(0,12)):''}</div></div>`;
+  el.onclick=()=>openCollection(c);return el;}
+function openCollection(c){
+  toast('正在打开「'+c.name+'」…');
+  CAT('exhibit?limit=600&collection='+c.id).then(d=>{
+    const ws=(d.works||[]).filter(w=>w.file);
+    window._adhoc={title:c.name,works:ws};
+    renderHall({type:'adhoc',key:'col'+c.id,title:c.name,badge:'主题展',note:c.desc||'',works:ws},'salon');
+  }).catch(()=>toast('打开失败'));}
+function addCard(){const el=document.createElement('div');el.className='card hall add';el.innerHTML='<div class="c"><div class="n">＋ 策一个展</div><div class="cd">进任意展厅 → 存为展</div></div>';el.onclick=()=>go('wv:WV3');return el;}
+
+function renderHall(ex,form){
+  if(window._formTimer){clearInterval(window._formTimer);window._formTimer=null;}
+  if(window.AHA&&ex.key)AHA.event('enter_hall',{target_type:'hall',target_id:'hall='+(ex.type==='wv'?'wv:'+ex.key:ex.key)});
+  if(ex.type!=='adhoc'){lastHall={hall:(ex.type==='wv'?'wv:'+ex.key:ex.key),form};try{localStorage.setItem('aha_last_hall',JSON.stringify(lastHall));}catch(e){}}
+  let h=`<div class="hall-top"><div class="hall-bar">
+     <a class="back" onclick="location.hash=''">← 回到大厅</a>
+     <span class="title">${esc(ex.title)}</span><span class="cnt">${ex.works.length} 幅</span>
+     <div class="right"><span class="save" onclick="saveHall(${JSON.stringify(ex.title).replace(/"/g,'&quot;')})">＋ 存为展</span>
+       <span style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute)">逛法</span>
+       <div class="forms">${FORMS.map(([f,n])=>`<button class="${f===form?'on':''}" onclick="setForm('${f}')">${n}</button>`).join('')}</div>
+       <select class="wsel" onchange="if(this.value)setForm(this.value)">${[['','🎲 更多玩法…']].concat(MORE_FORMS).map(([v,n])=>`<option value="${v}"${v===form?' selected':''}>${n}</option>`).join('')}</select></div>
+   </div>${ex.note?`<div class="curnote">"${esc(ex.note)}"${ex.type==='wv'?` · <a href="kg-worldview-region.html?id=${ex.key}" style="font-style:normal;font-family:var(--mono);font-size:11px;color:var(--gold);text-decoration:none">看区志 →</a>`:''}</div>`:''}</div>
+   <div class="stagewrap" id="stage"></div>`;
+  app.innerHTML=h;applyScroll();window._hallWorks=ex.works;
+  const stage=document.getElementById('stage');
+  // 逛法只是交互形式,数据一律 = 这个展里的 ex.works
+  const R={salon:formSalon,corridor:formCorridor,floor:formFloor,drift:formDrift,dwell:formDwell,versus:formVersus,dial:formDial,fog:formFog,artist:formArtist,vad:formVad,fingerprint:formFingerprint,eastwest:formEastWest,chroma:formChroma};
+  (R[form]||formSalon)(stage,ex.works);
+}
+function saveHall(title){
+  const ws=(window._hallWorks||[]).map(w=>w.file);
+  if(!ws.length){toast('展厅是空的');return;}
+  const name=prompt('给这个展起个名字:',title+' · 我的精选');if(name==null)return;
+  if(!window.AHA){toast('需要服务器');return;}
+  AHA.saveExhibition(name,'',ws,false).then(d=>{if(d.ok)toast('已存为「'+name+'」,在大厅「策展人之声」可见');else toast('保存失败');});
+}
+function formSalon(stage,works){
+  // 追加式弹性列瀑布(同首页全部馆藏):画进最矮列、估高占位、img.onload 校正真高、滚动增量加载 → 不回流不闪
+  const wall=document.createElement('div');wall.className='smason';stage.appendChild(wall);
+  const sent=document.createElement('div');sent.style.height='6px';stage.appendChild(sent);
+  const clampAr=a=>Math.max(0.5,Math.min(1.9,(+a)||1));
+  // 手机:密铺成"沙龙墙"小画(2–3 列),别一幅占半屏;平板/桌面再放宽
+  const colCount=()=>{const w=wall.clientWidth||1000;return w<700?Math.min(3,Math.max(2,Math.round(w/140))):Math.max(3,Math.min(5,Math.floor(w/270)));};
+  let cols=[],ch=[],cn=0,ai=0;
+  function build(){cn=colCount();wall.innerHTML='';cols=[];ch=[];for(let i=0;i<cn;i++){const c=document.createElement('div');c.className='scol';wall.appendChild(c);cols.push(c);ch.push(0);}}
+  function tile(w){let mi=0;for(let i=1;i<cn;i++)if(ch[i]<ch[mi])mi=i;
+    const col=cols[mi],cw=col.clientWidth||240,estH=cw/(w.ar?clampAr(w.ar):0.8)+44; // 像素估高占位,先平衡列
+    const el=document.createElement('div');el.className='art';
+    el.innerHTML=`<div class="frame"><img loading="lazy" src="${imgT(w)}"></div><div class="plate"><div class="t">${esc(w.title||'无题')}</div><div class="m">${esc(w.artist)}</div></div>`;
+    el.onclick=()=>openLb(w,works);col.appendChild(el);ch[mi]+=estH;
+    el.querySelector('img').onload=()=>{ch[mi]=col.offsetHeight;}; // 加载后用真实列高校正,后续画接着往最矮列放
+  }
+  function batch(n){for(let k=0;k<n&&ai<works.length;k++,ai++)tile(works[ai]);}
+  build();batch(Math.min(works.length,cn*4)); // 首屏先铺满
+  new IntersectionObserver(es=>{if(es[0].isIntersecting)batch(cn*3);},{rootMargin:'700px'}).observe(sent);
+}
+function formCorridor(stage,works){const sorted=works.slice().sort((a,b)=>a.x-b.x);const sc=document.createElement('div');sc.className='corridor';const rail=document.createElement('div');rail.className='crail';
+  sorted.forEach(w=>{const wireH=18+(Math.abs(hash(w.file))%64);const el=document.createElement('div');el.className='cart';
+    el.innerHTML=`<div class="wire" style="height:${wireH}px"></div><div class="frame"><img loading="lazy" src="${imgT(w)}"></div><div class="plate"><div class="t">${esc(w.title||'无题')}</div><div class="m">${esc(w.artist)}</div></div>`;
+    el.onclick=()=>openLb(w,works);rail.appendChild(el);});sc.appendChild(rail);
+  const ax=document.createElement('div');ax.className='caxis';ax.textContent='← 再现        沿此墙走过整部世界观        表现 →';sc.appendChild(ax);stage.appendChild(sc);
+  sc.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){sc.scrollLeft+=e.deltaY;e.preventDefault();}},{passive:false});
+  let dn=false,sx=0,sl=0;sc.addEventListener('pointerdown',e=>{dn=true;sx=e.clientX;sl=sc.scrollLeft;sc.style.cursor='grabbing';});addEventListener('pointermove',e=>{if(dn)sc.scrollLeft=sl-(e.clientX-sx);});addEventListener('pointerup',()=>{dn=false;sc.style.cursor='grab';});}
+function formFloor(stage,works){const box=document.createElement('div');box.className='floor';box.innerHTML='<div class="flayer"></div><div class="axhint">拖拽平移 · 滚轮缩放 · ←再现 表现→ · ↑感知 结构↓</div>';stage.appendChild(box);const layer=box.querySelector('.flayer');const W=2000,H=1500;
+  const acc={};works.forEach(w=>{if(!w.wv)return;(acc[w.wv]=acc[w.wv]||[]).push(w);});
+  Object.entries(acc).forEach(([wv,list])=>{const cx=list.reduce((s,w)=>s+w.x,0)/list.length,cy=list.reduce((s,w)=>s+w.y,0)/list.length;const e=document.createElement('div');e.className='fhall';e.style.left=(cx*W)+'px';e.style.top=((1-cy)*H)+'px';e.textContent=WVN[wv]||'';layer.appendChild(e);});
+  works.forEach(w=>{const e=document.createElement('div');e.className='fw';e.style.left=(w.x*W)+'px';e.style.top=((1-w.y)*H)+'px';e.innerHTML=`<img loading="lazy" src="${imgT(w)}">`;e.onclick=ev=>{ev.stopPropagation();openLb(w,works);};layer.appendChild(e);});
+  let z=1,px=0,py=0;const bw=box.clientWidth||innerWidth,bh=box.clientHeight||innerHeight*0.78;z=Math.min(bw/W,bh/H)*0.92;px=(bw-W*z)/2;py=(bh-H*z)/2;const apply=()=>layer.style.transform=`translate(${px}px,${py}px) scale(${z})`;apply();
+  box.addEventListener('wheel',e=>{e.preventDefault();const f=e.deltaY<0?1.12:0.89,r=box.getBoundingClientRect(),cx=e.clientX-r.left,cy=e.clientY-r.top;const wx=(cx-px)/z,wy=(cy-py)/z;z=Math.max(0.2,Math.min(6,z*f));px=cx-wx*z;py=cy-wy*z;apply();},{passive:false});
+  let dn=false,sx,sy,opx,opy;box.addEventListener('pointerdown',e=>{dn=true;sx=e.clientX;sy=e.clientY;opx=px;opy=py;box.style.cursor='grabbing';});addEventListener('pointermove',e=>{if(!dn)return;px=opx+(e.clientX-sx);py=opy+(e.clientY-sy);apply();});addEventListener('pointerup',()=>{dn=false;box.style.cursor='grab';});}
+function hash(s){let h=0;for(let k=0;k<s.length;k++)h=(h*31+s.charCodeAt(k))|0;return h;}
+
+// ============ 更多逛法:同一批 works,不同交互 ============
+// 🌊 漂流:从这批画里随机起步,每次"漂"到空间上最近的、还没看过的一幅
+function formDrift(stage,works){
+  if(!works.length){stage.innerHTML='<div class="mempty">这个展里还没有画</div>';return;}
+  const pool=works.slice();let seen=new Set(),cur=pool[Math.abs(hash(pool[0].file+pool.length))%pool.length];
+  const box=document.createElement('div');box.className='mdrift';
+  box.innerHTML='<img class="dr-img"><div class="dr-cap"><div class="dr-t"></div><div class="dr-v"></div></div><div class="dr-hint">轻点空白 = 漂向最近的下一幅 · 点画 = 走近它</div>';
+  stage.appendChild(box);
+  const img=box.querySelector('.dr-img'),t=box.querySelector('.dr-t'),v=box.querySelector('.dr-v');
+  function show(w){cur=w;seen.add(w.file);img.style.opacity=0;
+    setTimeout(()=>{img.src=imgT(w);img.style.opacity=1;t.textContent=(w.title||'无题')+' · '+w.artist;v.textContent=readLine(w);},180);
+    if(window.AHA)AHA.event('open',{target_type:'work',target_id:w.file,x:w.x,y:w.y});}
+  function next(){let cand=pool.filter(o=>!seen.has(o.file));if(!cand.length){seen=new Set([cur.file]);cand=pool.filter(o=>o.file!==cur.file);}
+    if(!cand.length)return;let b=cand[0],bd=1e9;cand.forEach(o=>{const d=Math.hypot(o.x-cur.x,o.y-cur.y);if(d<bd){bd=d;b=o;}});show(b);}
+  box.onclick=()=>next();img.onclick=e=>{e.stopPropagation();openLb(cur,works);};
+  show(cur);
+}
+// 🔎 专注单幅:一次只看一幅,顺着这批画逐幅深看
+function formDwell(stage,works){
+  if(!works.length){stage.innerHTML='<div class="mempty">这个展里还没有画</div>';return;}
+  let i=0;const box=document.createElement('div');box.className='mdwell';
+  box.innerHTML='<div class="dw-stage"><img class="dw-img"></div><div class="dw-side"><div class="dw-idx"></div><div class="dw-t"></div><div class="dw-a"></div><div class="dw-v"></div><div class="dw-btns"><button class="dw-prev">← 上一幅</button><button class="dw-next">下一幅 →</button></div><a class="dw-go">走近这幅,看懂它 →</a></div>';
+  stage.appendChild(box);
+  const img=box.querySelector('.dw-img'),idx=box.querySelector('.dw-idx'),t=box.querySelector('.dw-t'),a=box.querySelector('.dw-a'),v=box.querySelector('.dw-v'),go=box.querySelector('.dw-go');
+  function show(){const w=works[i];img.style.opacity=0;setTimeout(()=>{img.src=imgT(w);img.style.opacity=1;},150);
+    idx.textContent=(i+1)+' / '+works.length;t.textContent=w.title||'无题';a.textContent=w.artist+(w.year?' · '+w.year:'');v.textContent=readLine(w);
+    go.onclick=()=>openLb(w,works);if(window.AHA)AHA.event('open',{target_type:'work',target_id:w.file,x:w.x,y:w.y});}
+  box.querySelector('.dw-next').onclick=()=>{i=(i+1)%works.length;show();};
+  box.querySelector('.dw-prev').onclick=()=>{i=(i-1+works.length)%works.length;show();};
+  img.onclick=()=>openLb(works[i],works);show();
+}
+// ⚖ 二选一:在这批画里两两 PK,点你更心动的那张
+function formVersus(stage,works){
+  if(works.length<2){stage.innerHTML='<div class="mempty">这个展至少要两幅画才能二选一</div>';return;}
+  const box=document.createElement('div');box.className='mversus';
+  box.innerHTML='<div class="vs-q">哪一张,更打动你?</div><div class="vs-pair"><div class="vs-half" data-s="0"><img></div><div class="vs-half" data-s="1"><img></div></div><div class="vs-trail"></div><div class="vs-hint">点一张 = 选它(记进口味) · 长按/双击 = 走近它</div>';
+  stage.appendChild(box);
+  const halves=[...box.querySelectorAll('.vs-half')],trail=box.querySelector('.vs-trail');let pair=[];
+  function pick2(){let a=works[Math.abs(hash('a'+Date.now()))%works.length];let b=a,guard=0;
+    do{b=works[Math.abs(hash('b'+Date.now()+(guard++)))%works.length];}while((b.file===a.file||Math.hypot(a.x-b.x,a.y-b.y)<0.2)&&guard<40);return [a,b];}
+  function round(){pair=pick2();pair.forEach((w,k)=>{const h=halves[k];h.querySelector('img').src=imgT(w);});}
+  function choose(k){const w=pair[k];if(window.AHA){AHA.collect&&0;AHA.event('like',{target_type:'work',target_id:w.file,x:w.x,y:w.y});}
+    const im=document.createElement('img');im.src=imgT(w);im.title=w.title||w.artist;im.onclick=()=>openLb(w,works);trail.prepend(im);
+    while(trail.children.length>12)trail.removeChild(trail.lastChild);round();}
+  halves.forEach((h,k)=>{let lt;h.onclick=()=>choose(k);h.ondblclick=()=>openLb(pair[k],works);
+    h.onpointerdown=()=>{lt=setTimeout(()=>{openLb(pair[k],works);},550);};h.onpointerup=h.onpointerleave=()=>clearTimeout(lt);});
+  round();
+}
+// 🎛 情绪方向盘:这批画里实际出现的情绪做成转盘,拨到哪种就只看哪种
+// 🎛 情绪方向盘:可转动的情绪罗盘(情绪按 VAD 愉悦×唤起排布),拨到哪种,哪批画从盘心绽开
+function formDial(stage,works){
+  const cnt={},va={};
+  works.forEach(w=>{if(!w.emo)return;(cnt[w.emo]=cnt[w.emo]||[]).push(w);
+    if(w.vad){const o=va[w.emo]=va[w.emo]||{v:0,a:0,n:0};o.v+=w.vad.v;o.a+=w.vad.a;o.n++;}});
+  let emos=Object.keys(cnt);
+  if(!emos.length){stage.innerHTML='<div class="mempty">这批画还没有情绪标注</div>';return;}
+  const moodAng=e=>{const o=va[e];return o&&o.n?Math.atan2(o.a/o.n-0.5,o.v/o.n-0.5):0;};
+  emos.sort((a,b)=>moodAng(a)-moodAng(b));
+  const N=emos.length,base=emos.map((e,i)=>-90+i*360/N);
+  const box=document.createElement('div');box.className='mdial';
+  box.innerHTML=`<div class="dl-wheelwrap"><div class="dl-pointer"></div><div class="dl-wheel" id="dlwheel"></div><div class="dl-hub" id="dlhub"></div></div><div class="dl-stage" id="dlstage"></div>`;
+  stage.appendChild(box);
+  const wheel=box.querySelector('#dlwheel'),hub=box.querySelector('#dlhub'),sg=box.querySelector('#dlstage'),wrap=box.querySelector('.dl-wheelwrap');
+  emos.forEach((e,i)=>{const a=base[i]*Math.PI/180;const lab=document.createElement('button');lab.className='dl-emo';lab.dataset.i=i;
+    lab.style.left=(50+43*Math.cos(a))+'%';lab.style.top=(50+43*Math.sin(a))+'%';
+    lab.innerHTML=`<span>${esc(e)}</span><i>${cnt[e].length}</i>`;lab.onclick=()=>snapTo(i);wheel.appendChild(lab);});
+  let rot=0,active=-1;
+  function nearestTop(){let bi=0,bd=1e9;base.forEach((b,i)=>{let d=((b+rot+90)%360+360)%360;d=Math.min(d,360-d);if(d<bd){bd=d;bi=i;}});return bi;}
+  function applyRot(){wheel.style.transform=`rotate(${rot}deg)`;[...wheel.children].forEach(c=>c.style.transform=`translate(-50%,-50%) rotate(${-rot}deg)`);}
+  function setActive(i){if(i===active)return;active=i;[...wheel.children].forEach(c=>c.classList.toggle('on',+c.dataset.i===i));
+    const e=emos[i],list=cnt[e];hub.innerHTML=`<div class="hub-e">${esc(e)}</div><div class="hub-c">${list.length} 幅</div><div class="hub-v">${esc(MOODTAIL[e]||'')}</div>`;
+    sg.innerHTML='';list.forEach((w,k)=>{const el=document.createElement('div');el.className='dl-card';el.style.animationDelay=(k*30)+'ms';
+      el.innerHTML=`<img loading="lazy" src="${imgT(w)}"><div class="dl-t">${esc(w.title||'无题')} · ${esc(w.artist)}</div>`;el.onclick=()=>openLb(w,works);sg.appendChild(el);});}
+  function snapTo(i){wheel.style.transition='transform .5s cubic-bezier(.2,.85,.25,1)';rot=-90-base[i];applyRot();setActive(i);}
+  function angAt(ev){const r=wrap.getBoundingClientRect();return Math.atan2(ev.clientY-(r.top+r.height/2),ev.clientX-(r.left+r.width/2))*180/Math.PI;}
+  let dragging=false,lastA=0;
+  wrap.addEventListener('pointerdown',e=>{if(e.target.closest('.dl-emo'))return;dragging=true;wheel.style.transition='none';lastA=angAt(e);});
+  addEventListener('pointermove',e=>{if(!dragging)return;const a=angAt(e);rot+=a-lastA;lastA=a;applyRot();setActive(nearestTop());});
+  addEventListener('pointerup',()=>{if(!dragging)return;dragging=false;snapTo(nearestTop());});
+  snapTo(0);
+}
+// 🌫 雾中之馆:整批画蒙着雾,挪到/点到哪幅,哪幅才显形
+function formFog(stage,works){
+  if(!works.length){stage.innerHTML='<div class="mempty">这个展里还没有画</div>';return;}
+  const box=document.createElement('div');box.className='mfog';stage.appendChild(box);
+  works.forEach(w=>{const el=document.createElement('div');el.className='fog-cell';
+    el.innerHTML=`<img loading="lazy" src="${imgT(w)}"><div class="fog-plate"><b>${esc(w.title||'无题')}</b> · ${esc(w.artist)}</div>`;
+    el.onmouseenter=()=>el.classList.add('seen');
+    el.onclick=()=>{if(el.classList.contains('seen'))openLb(w,works);else el.classList.add('seen');};
+    box.appendChild(el);});
+}
+// 🧑‍🎨 按艺术家:把这批画按作者分成一面面"个人小墙"
+function formArtist(stage,works){
+  if(!works.length){stage.innerHTML='<div class="mempty">这个展里还没有画</div>';return;}
+  const g={};works.forEach(w=>{(g[w.artist]=g[w.artist]||[]).push(w);});
+  const groups=Object.entries(g).sort((a,b)=>b[1].length-a[1].length);
+  const box=document.createElement('div');box.className='mart';
+  groups.forEach(([name,list])=>{const aid=list[0].aid;
+    const sec=document.createElement('div');sec.className='ba-group';
+    sec.innerHTML=`<div class="ba-h"><span class="ba-n">${esc(name)}</span><span class="ba-c">${list.length} 幅</span>${aid?`<a class="ba-go" href="kg-artist.html?id=${aid}">走近 TA →</a>`:''}</div><div class="ba-wall"></div>`;
+    const wall=sec.querySelector('.ba-wall');
+    list.forEach(w=>{const el=document.createElement('div');el.className='ba-fr';el.innerHTML=`<img loading="lazy" src="${imgT(w)}"><div class="ba-t">${esc(w.title||'无题')}</div>`;el.onclick=()=>openLb(w,works);wall.appendChild(el);});
+    box.appendChild(sec);});
+  stage.appendChild(box);
+}
+// 🧭 情绪坐标:用 VAD 的 愉悦×唤起 摆一张情绪平面(区别于世界观平面)
+// 🧭 情绪坐标:愉悦×唤起平面,拖动在画上框一片情绪,框中的画落进下方的盘子
+function formVad(stage,works){
+  const has=works.filter(w=>w.vad&&w.vad.v!=null&&w.vad.a!=null);
+  if(!has.length){stage.innerHTML='<div class="mempty">这个展的画还没有情绪坐标</div>';return;}
+  const box=document.createElement('div');box.className='mvad';
+  box.innerHTML=`<div class="vad-plotwrap"><div class="vad-plot" id="vplot"><div class="vad-rect" id="vrect"></div></div>
+    <div class="vad-lab tl">↖ 不安 · 高唤起</div><div class="vad-lab tr">↗ 兴奋 · 高唤起</div><div class="vad-lab bl">↙ 低落 · 平静</div><div class="vad-lab br">↘ 安宁 · 平静</div>
+    <div class="vad-ax-x">不悦 ← 愉悦度 → 愉悦</div><div class="vad-ax-y">唤起度</div></div>
+    <div class="vad-tray"><div class="vt-h" id="vth">在画上拖一个框,框住一片情绪 →</div><div class="vt-row" id="vtrow"></div></div>`;
+  stage.appendChild(box);
+  const plot=box.querySelector('#vplot'),rect=box.querySelector('#vrect'),th=box.querySelector('#vth'),trow=box.querySelector('#vtrow');
+  const pts=has.map(w=>{const e=document.createElement('div');e.className='vad-pt';e.style.left=(w.vad.v*100)+'%';e.style.top=((1-w.vad.a)*100)+'%';
+    e.innerHTML=`<img loading="lazy" src="${imgT(w)}">`;e.title=(w.title||'无题')+' · '+w.artist;e.onclick=()=>openLb(w,works);plot.appendChild(e);return {w,el:e,fx:w.vad.v,fy:1-w.vad.a};});
+  const miss=works.length-has.length;if(miss)box.querySelector('.vad-plotwrap').insertAdjacentHTML('beforeend',`<div class="vad-note">另有 ${miss} 幅缺情绪坐标,未显示</div>`);
+  function showTray(sel){trow.innerHTML='';if(!sel.length){th.textContent='这一片里没有画 · 再拖一个框试试';return;}
+    th.textContent=`框住了 ${sel.length} 幅 · 点开走近`;sel.forEach(p=>{const c=document.createElement('div');c.className='vt-card';c.innerHTML=`<img src="${imgT(p.w)}"><div class="vt-t">${esc(p.w.title||'无题')}</div>`;c.onclick=()=>openLb(p.w,works);trow.appendChild(c);});}
+  let sel0=false,x0,y0;
+  function loc(ev){const r=plot.getBoundingClientRect();return [ev.clientX-r.left,ev.clientY-r.top,r.width,r.height];}
+  plot.addEventListener('pointerdown',e=>{if(e.target.closest('.vad-pt'))return;const [x,y]=loc(e);sel0=true;x0=x;y0=y;rect.style.display='block';rect.style.left=x+'px';rect.style.top=y+'px';rect.style.width='0px';rect.style.height='0px';});
+  addEventListener('pointermove',e=>{if(!sel0)return;const [x,y]=loc(e);rect.style.left=Math.min(x,x0)+'px';rect.style.top=Math.min(y,y0)+'px';rect.style.width=Math.abs(x-x0)+'px';rect.style.height=Math.abs(y-y0)+'px';});
+  addEventListener('pointerup',e=>{if(!sel0)return;sel0=false;const [x,y,W,H]=loc(e);
+    if(Math.abs(x-x0)<6&&Math.abs(y-y0)<6){rect.style.display='none';pts.forEach(p=>p.el.classList.remove('sel','dim'));showTray([]);th.textContent='在画上拖一个框,框住一片情绪 →';return;}
+    const l=Math.min(x,x0)/W,r=Math.max(x,x0)/W,t=Math.min(y,y0)/H,b=Math.max(y,y0)/H;
+    const sel=pts.filter(p=>p.fx>=l&&p.fx<=r&&p.fy>=t&&p.fy<=b);
+    pts.forEach(p=>{const on=sel.includes(p);p.el.classList.toggle('sel',on);p.el.classList.toggle('dim',!on);});showTray(sel);});
+}
+// 📐 风格指纹:一根可拖的滑杆扫过 7 大构成,这批画沿数轴实时滑到各自的位置
+function formFingerprint(stage,works){
+  const have=works.filter(w=>w.lang&&AX7.every(a=>w.lang[a]!=null));
+  if(!have.length){stage.innerHTML='<div class="mempty">这个展的画还没有风格指纹</div>';return;}
+  const box=document.createElement('div');box.className='mfp';
+  box.innerHTML=`<div class="fp-slider"><div class="fp-track" id="fptrack"><div class="fp-fill" id="fpfill"></div><div class="fp-handle" id="fphandle"></div></div><div class="fp-ticks" id="fpticks"></div></div>
+    <div class="fp-poles" id="fppoles"></div><div class="fp-plot" id="fpplot"></div>`;
+  stage.appendChild(box);
+  const track=box.querySelector('#fptrack'),fill=box.querySelector('#fpfill'),handle=box.querySelector('#fphandle'),ticks=box.querySelector('#fpticks'),poles=box.querySelector('#fppoles'),plot=box.querySelector('#fpplot');
+  const items=have.map(w=>{const el=document.createElement('div');el.className='fp-pt';el.style.top=(11+(Math.abs(hash(w.file))%78))+'%';
+    el.innerHTML=`<img loading="lazy" src="${imgT(w)}"><span class="fp-v"></span>`;el.title=(w.title||'无题')+' · '+w.artist;el.onclick=()=>openLb(w,works);plot.appendChild(el);return {w,el};});
+  AX7.forEach((a,i)=>{const t=document.createElement('button');t.className='fp-tick';t.textContent=a;t.onclick=()=>setDim(i);ticks.appendChild(t);});
+  const last=AX7.length-1;let di=Math.max(0,AX7.indexOf('笔触'));
+  function setDim(i){di=i;const dim=AX7[i];
+    poles.innerHTML=`<span>${POLES7[dim][0]}</span><span class="fp-arrow">沿「${dim}」从左到右 →</span><span>${POLES7[dim][1]}</span>`;
+    items.forEach(it=>{const val=it.w.lang[dim];it.el.style.left=(val*100)+'%';it.el.querySelector('.fp-v').textContent=(+val).toFixed(2);});
+    [...ticks.children].forEach((c,k)=>c.classList.toggle('on',k===i));
+    const p=i/last*100;handle.style.left=p+'%';fill.style.width=p+'%';}
+  function frac(ev){const r=track.getBoundingClientRect();return Math.max(0,Math.min(1,(ev.clientX-r.left)/r.width));}
+  let drag=false;
+  track.addEventListener('pointerdown',e=>{drag=true;setDim(Math.round(frac(e)*last));});
+  addEventListener('pointermove',e=>{if(!drag)return;setDim(Math.round(frac(e)*last));});
+  addEventListener('pointerup',()=>{drag=false;});
+  setDim(di);
+}
+// 🌏 东西对望:东方 / 西方 两栏并置
+function formEastWest(stage,works){
+  const east=works.filter(w=>w.region==='east'),west=works.filter(w=>w.region==='west');
+  const box=document.createElement('div');box.className='mew';
+  box.innerHTML=`<div class="ew-col"><div class="ew-h">东方 · ${east.length} 幅</div><div class="ew-wall" data-s="e"></div></div><div class="ew-col"><div class="ew-h">西方 · ${west.length} 幅</div><div class="ew-wall" data-s="w"></div></div>`;
+  stage.appendChild(box);
+  const put=(list,sel)=>{const wall=box.querySelector(sel);if(!list.length){wall.innerHTML='<div class="mempty" style="padding:30px">这一侧暂无</div>';return;}
+    list.forEach(w=>{const el=document.createElement('div');el.className='art';el.innerHTML=`<div class="frame"><img loading="lazy" src="${imgT(w)}"></div><div class="plate"><div class="t">${esc(w.title||'无题')}</div><div class="m">${esc(w.artist)}</div></div>`;el.onclick=()=>openLb(w,works);wall.appendChild(el);});};
+  put(east,'[data-s=e]');put(west,'[data-s=w]');
+}
+// 🎨 觅色:整批画落在色环上(角=色相,半径=饱和;中心素净,外缘浓烈),拖动光束去"觅"一种颜色
+function formChroma(stage,works){
+  const have=works.filter(w=>w.color&&w.color.h!=null);
+  if(!have.length){stage.innerHTML='<div class="mempty">这个展的画还没有色彩数据</div>';return;}
+  const box=document.createElement('div');box.className='mchroma';
+  box.innerHTML=`<div class="cw-wrap"><div class="cw-ring"></div><div class="cw-beam" id="cwbeam"></div><div class="cw-field" id="cwfield"></div><button class="cw-reset" id="cwreset">○ 显示全部</button><div class="cw-hint">在盘上拖动 = 觅色 · 点画作走近 · 中心素净 → 外缘浓烈</div></div>`;
+  stage.appendChild(box);
+  const field=box.querySelector('#cwfield'),beam=box.querySelector('#cwbeam'),wrap=box.querySelector('.cw-wrap'),reset=box.querySelector('#cwreset');
+  const pts=[];
+  have.forEach(w=>{const h=w.color.h,s=Math.min(1,w.color.s*1.7),rad=9+s*39,a=h*Math.PI/180;
+    const e=document.createElement('div');e.className='cw-pt';e.style.left=(50+rad*Math.cos(a))+'%';e.style.top=(50+rad*Math.sin(a))+'%';
+    e.innerHTML=`<img loading="lazy" src="${imgT(w)}">`;e.title=(w.title||'无题')+' · '+w.artist;e.onclick=()=>openLb(w,works);
+    field.appendChild(e);pts.push({h,el:e});});
+  let beamH=null;
+  function lite(){if(beamH==null){pts.forEach(p=>{p.el.classList.remove('dim','pop');});beam.style.opacity=0;reset.style.opacity=0;return;}
+    beam.style.opacity=1;beam.style.transform=`rotate(${beamH}deg)`;reset.style.opacity=1;
+    pts.forEach(p=>{let d=((p.h-beamH)%360+360)%360;d=Math.min(d,360-d);const on=d<=28;p.el.classList.toggle('pop',on);p.el.classList.toggle('dim',!on);});}
+  function angAt(ev){const r=wrap.getBoundingClientRect();return (Math.atan2(ev.clientY-(r.top+r.height/2),ev.clientX-(r.left+r.width/2))*180/Math.PI+360)%360;}
+  let drag=false;
+  wrap.addEventListener('pointerdown',e=>{if(e.target.closest('.cw-pt')||e.target.closest('.cw-reset'))return;drag=true;beamH=angAt(e);lite();});
+  addEventListener('pointermove',e=>{if(!drag)return;beamH=angAt(e);lite();});
+  addEventListener('pointerup',()=>{drag=false;});
+  reset.onclick=()=>{beamH=null;lite();};
+  lite();
+}
+
+// ---- 看画节奏:静观→点破→坐标 + 三扇门 + 收藏 ----
+const VOICE={WV1:['画家把眼睛全交给了世界,几乎不肯加一笔自己。','在这里,看清楚本身就是一种虔诚。','只要看得够久够诚,真实会自己显形。'],WV2:['它不为某个人画,而为一种秩序、一种共同的信仰。','程式之下,藏着一整套看待世界的敬畏。','个人退到最后,留下图像本该有的庄严。'],WV3:['寥寥几笔,画的不是眼前之物,是胸中那口气。','形似在其次——要紧的是落笔时的心境。','留白处最响,没画的地方才是画的全部。'],WV4:['它抓住的,是光落进眼睛的那一瞬。','在这里,瞬间比永恒更真。','物的轮廓被光融化,剩下一次呼吸般的观看。'],WV5:['内心的情绪被直接泼在画面上,不加掩饰。','世界在这里,是按情绪重新捏过形状的。','颜色与笔触都在喊,它先于理智抵达你。'],WV6:['退回到点线色块本身:形式即是内容。','这里没有故事,只有结构在低声说话。','它不再描摹世界,而是另起一套语法。']};
+const MOODTAIL={沉思:'一种安静在画里漫开。',空灵:'气息清透,像刚下过雨。',神秘:'有什么没说出口,留在暗处。',忧伤:'底色压着一点怅然。',孤独:'人与物都各自单独着。',虚无:'像凝视一片无边的沉默。',怀旧:'时间的味道扑面而来。',崇高:'面对它,人会安静下来。',张力:'一根弦绷着,随时会响。',热烈:'热度几乎溢出画框。',喜悦:'明朗得让人想多看一眼。',鲜活:'每一处都在轻轻跳动。',恐惧:'一种不安从画里渗出。'};
+function readLine(w){const v=VOICE[w.wv]||['一幅人类留下的画。'];const m=v[Math.abs(hash(w.file))%v.length];const t=w.emo&&MOODTAIL[w.emo]?(' '+MOODTAIL[w.emo]):'';return m+t;}
+function nearestOther(w){let best=null,bd=1e9;WORKS.forEach(o=>{if(o.file===w.file)return;const d=Math.hypot(o.x-w.x,o.y-w.y);if(d<bd){bd=d;best=o;}});return best;}
+function randFrom(list,not){const a=(list||[]).filter(o=>o&&o.file!==(not&&not.file));return a.length?a[Math.floor((Date.now()/97+a.length)%a.length)]:null;}
+function door(label,w){if(!w)return '';return `<div class="door" onclick="walkTo('${encodeURIComponent(w.file)}')"><img src="${imgT(w)}"><div class="dt"><div>${label}</div><b>${esc(w.title||w.artist)}</b></div></div>`;}
+function openLb(w){
+  // 冷启动:新用户第一次点画 → 先邀测(可"直接看这幅")
+  if(shouldOfferTest()){offerTest(w);return;}
+  // 统一画作页:点任意一幅 → 进 art.html(唯一定义)
+  if(window.AHA)AHA.event('open',{target_type:'work',target_id:w.file,x:w.x,y:w.y});
+  // 记下当前展区与滚动位置,返回时回到点击的地方(便于检索)
+  try{sessionStorage.setItem('aha_back',JSON.stringify({hash:location.hash,y:window.scrollY||document.documentElement.scrollTop||0,file:w.file}));
+      sessionStorage.setItem('aha_seen_prologue','1');}catch(e){}  // 已进画作=已参与,返回时别再弹序幕
+  location.href='art.html?w='+encodeURIComponent(w.file);
+}
+function walkTo(f){f=decodeURIComponent(f);const w=byFile[f];if(w){flushDwell();openLb(w,window._ctx);}}
+function toggleLike(f){f=decodeURIComponent(f);const on=!(STATE.collections||[]).includes(f);
+  STATE.collections=STATE.collections||[];if(on)STATE.collections.push(f);else STATE.collections=STATE.collections.filter(x=>x!==f);
+  const heart=document.querySelector('.lb .heart');if(heart)heart.textContent=on?'❤️':'🤍';
+  const w=byFile[f];if(window.AHA){AHA.collect(f,on);if(on)AHA.event('like',{target_type:'work',target_id:f,x:w?w.x:null,y:w?w.y:null});}
+  toast(on?'❤ 已收藏':'已取消');}
+function flushDwell(){if(curW&&openTs){const ms=Date.now()-openTs;if(window.AHA&&ms>1500)AHA.event('dwell',{target_type:'work',target_id:curW.file,x:curW.x,y:curW.y,dwell_ms:ms});openTs=0;}}
+function closeLb(){flushDwell();document.getElementById('lb').classList.remove('on');document.body.style.overflow='';}
+document.getElementById('lb').onclick=e=>{if(e.target.id==='lb')closeLb();};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();});
+</script>
+<script src="js/aha-chrome.js"></script>
+</body></html>

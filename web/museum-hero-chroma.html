@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>原型 · 色谱长河 · aha</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -51,7 +51,7 @@
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 function mTitle(t){if(!t)return '无题';t=String(t).replace(/\.(jpe?g|png|webp|gif|tiff?|bmp|jfif)$/i,'').replace(/[_]+/g,' ').trim();return t||'无题';}
 function imgT(w,px){const f=(w&&w.file)||'';px=px||300;
-  if(/myqcloud\.com/i.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/quality/82';
+  if(/myqcloud\.com/i.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/format/webp/quality/82';
   if(/(^|\/)img\/[^?]*\.(jpe?g|png)$/i.test(f))return f.replace(/\.(jpe?g|png)$/i,'.t720.webp');
   return (w&&w.thumb)||f;}
 function hexOf(c){if(c&&c.hex)return c.hex;if(c&&typeof c.h==='number')return 'hsl('+c.h+','+Math.round((c.s||.4)*70)+'%,'+Math.round((c.v||.5)*60+18)+'%)';return '#8a8170';}
@@ -80,7 +80,7 @@ function build(W){
     const x=X(c.h)+(((i*2654435761)>>>0)%80-40);
     const y=H*0.18+(1-(c.v||.5))*H*0.5 + Math.sin(c.h*0.13+i)*26;
     html+=`<div class="pa" style="left:${x}px;top:${Math.max(60,Math.min(H-150,y))}px;width:${sz}px" onclick="location.href='art.html?w=${encodeURIComponent(w.file)}'">
-      <div class="fr" style="background:${hexOf(c)}"><img loading="lazy" src="${imgT(w,260)}"></div>
+      <div class="fr" style="background:${hexOf(c)}"><img loading="lazy" decoding="async" src="${imgT(w,260)}"></div>
       <div class="cap">${esc(mTitle(w.title))}</div></div>`;});
   field.insertAdjacentHTML('beforeend',html);
   field.style.width=FIELD_W+'px';

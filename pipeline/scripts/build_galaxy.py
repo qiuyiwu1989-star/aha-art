@@ -5,9 +5,11 @@
 import json, math, random, re, os
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC  = os.path.join(HERE, 'data', 'kg_style.json')
-ART  = os.path.join(HERE, 'data', 'kg_artists.json')
-OUT  = os.path.join(HERE, 'data', 'kg_galaxy.json')
+# 数据底座=全站读的那份(aha-art-demo/data,含 WV 修正/新增/谱系最新);可用 AHA_DATA 覆盖
+DATA = os.environ.get('AHA_DATA', '/home/ubuntu/users/qiuyiwu/aha-art-demo/data')
+SRC  = os.path.join(DATA, 'kg_style.json')
+ART  = os.path.join(DATA, 'kg_artists.json')
+OUT  = os.path.join(DATA, 'kg_galaxy.json')
 random.seed(42)
 
 d = json.load(open(SRC, encoding='utf-8'))
@@ -165,7 +167,7 @@ idx={i:k for k,i in enumerate(ids)}
 N=len(nodes)
 
 # V3 世界观区(6 区, 无东西对称) —— 取代旧 12 模型分组; 东/西降为属性
-WV3=json.load(open(os.path.join(HERE,'data','kg_worldview_v3.json'),encoding='utf-8'))
+WV3=json.load(open(os.path.join(DATA,'kg_worldview_v3.json'),encoding='utf-8'))
 WVREG=WV3.get('regions',[])
 codes=[r['id'] for r in WVREG]                 # WV1..WV6
 wvreg={r['id']:r for r in WVREG}

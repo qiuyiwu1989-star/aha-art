@@ -1,67 +1,61 @@
 <!doctype html>
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>aha · 艺术家星图 · 全员落在世界观平面</title>
+<title>艺术家星图 · aha</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/aha-kit.css">
 <style>
-  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--accent-soft:#f0e4d8;--green:#5a7d6f;--gold:#c98a1a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1180px;margin:0 auto;padding:26px 16px 80px}
-  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
   h1{font-family:var(--serif);font-size:clamp(20px,3.6vw,28px);font-weight:700;text-align:center;margin:7px 0}
-  .lead{text-align:center;color:var(--ink-mute);font-size:13px;line-height:1.7;max-width:760px;margin:6px auto}.lead b{color:var(--ink-soft)}
-  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
-  .bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center;margin:16px 0 8px}
-  .seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff}
-  .seg button{border:none;background:#fff;font-family:var(--sans);font-size:12px;color:var(--ink-mute);padding:6px 12px;cursor:pointer;border-left:1px solid var(--line)}
-  .seg button:first-child{border-left:none}.seg button.on{background:var(--accent);color:#fff}
-  .seg.e button.on{background:var(--green)}
-  .srch{font-family:var(--sans);font-size:12.5px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:9px;padding:7px 11px;outline:none;width:170px}
+  .srch{font-family:var(--sans);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:9px;padding:7px 11px;outline:none;width:170px}
   .stat{font-family:var(--mono);font-size:11.5px;color:var(--ink-mute);text-align:center;margin:2px 0 8px}
   .stat b{color:var(--accent)}
-  .stagewrap{background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px;position:relative}
+  .stagewrap{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px;position:relative}
   .atlabels{position:absolute;inset:8px;pointer-events:none;overflow:hidden;z-index:4}
-  .atlbl{position:absolute;white-space:nowrap;font-family:var(--sans);line-height:1;text-shadow:0 0 3px #fcfaf5,0 0 2px #fcfaf5,0 0 2px #fcfaf5}
+  .atlbl{position:absolute;white-space:nowrap;font-family:var(--sans);line-height:1;text-shadow:0 0 3px var(--card),0 0 2px var(--card),0 0 2px var(--card)}
   .atlbl.rich{font-weight:600}
   #stage{cursor:grab;touch-action:pan-y pinch-zoom}
   .zoomctl{position:absolute;top:14px;right:14px;display:flex;flex-direction:column;gap:5px;z-index:5}
-  .zoomctl button{width:30px;height:30px;border:1px solid var(--line);background:#fff;border-radius:8px;font-size:15px;color:var(--ink-soft);cursor:pointer;line-height:1;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+  .zoomctl button{width:30px;height:30px;border:1px solid var(--line);background:var(--card);border-radius:8px;font-size:15px;color:var(--ink-soft);cursor:pointer;line-height:1;box-shadow:0 2px 6px rgba(0,0,0,.08)}
   .zoomctl button:hover{border-color:var(--accent);color:var(--accent)}
   .zoomhint{position:absolute;left:14px;bottom:12px;font-family:var(--mono);font-size:10px;color:var(--ink-faint);background:rgba(255,255,255,.8);border-radius:6px;padding:3px 8px;pointer-events:none}
-  .focuspop{position:absolute;left:14px;top:14px;z-index:6;max-width:300px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:11px;padding:11px 13px;box-shadow:0 6px 20px rgba(0,0,0,.16)}
+  .focuspop{position:absolute;left:14px;top:14px;z-index:6;max-width:300px;background:var(--card);border:1px solid var(--accent-line);border-radius:11px;padding:11px 13px;box-shadow:0 6px 20px rgba(0,0,0,.16)}
   .focuspop .fn{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--ink)}
   .focuspop .fm{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:2px}
   .focuspop .fc{font-size:12px;color:var(--ink-soft);line-height:1.6;margin-top:7px}
   .focuspop .fb{display:flex;gap:12px;align-items:center;margin-top:9px}
-  .focuspop .fb a{font-family:var(--mono);font-size:12px;color:#fff;background:var(--accent);border-radius:7px;padding:5px 11px;text-decoration:none}
+  .focuspop .fb a{font-family:var(--mono);font-size:12px;color:var(--card);background:var(--accent);border-radius:7px;padding:5px 11px;text-decoration:none}
   .focuspop .fb #fexit{font-family:var(--mono);font-size:11px;color:var(--ink-mute);cursor:pointer;border-bottom:1px dashed var(--line)}
   svg{width:100%;height:auto;display:block;touch-action:pan-y pinch-zoom}
   .pt{cursor:pointer}
-  .tip{position:fixed;z-index:50;pointer-events:none;background:rgba(29,27,24,.94);color:#f4f1ea;font-size:12px;padding:6px 10px;border-radius:8px;opacity:0;transition:opacity .08s;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.25)}
-  .tip .t{font-family:var(--serif);font-weight:600;font-size:13px}.tip .s{font-family:var(--mono);font-size:10px;color:#c9bfae;margin-top:1px}
+  .tip{position:fixed;z-index:50;pointer-events:none;background:var(--ink);color:var(--paper);font-size:12px;padding:6px 10px;border-radius:8px;opacity:0;transition:opacity .08s;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+  .tip .t{font-family:var(--serif);font-weight:600;font-size:13px}.tip .s{font-family:var(--mono);font-size:10px;color:var(--gold-soft);margin-top:1px}
   .legend{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:12px;font-size:12px;color:var(--ink-soft)}
   .legend .li{display:flex;align-items:center;gap:6px}
   .legend .dot{width:11px;height:11px;border-radius:50%}
-  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
   .back{display:block;text-align:center;margin-top:24px;font-family:var(--mono);font-size:12px;color:var(--ink-mute);text-decoration:none}
+  .pagehead{text-align:center;border-bottom:none}
+  .pagehead .sub{max-width:760px;margin:8px auto 0}
+  .segrow{display:flex;gap:var(--s2,8px);flex-wrap:wrap;align-items:center;justify-content:center;margin:16px 0 8px}
+  .segwrap .seg.on{background:var(--accent);color:var(--card)}
+  .segwrap.e .seg.on{background:var(--green);color:var(--card)}
 </style>
 </head><body>
-<a class="home-fab" href="museum.html" title="返回首页"><i data-ic="home"></i> 首页</a>
 <div class="tip" id="tip"></div>
-<div class="wrap">
-  <div class="kick">aha · 知识图谱 V3 · 艺术家星图</div>
-  <h1>全员落在世界观平面</h1>
-  <p class="lead">把<b>全部艺术家</b>放进同一张 V3 世界观平面(<b>再现-表现 ⊥ 结构-感知</b>)。<b>亮点=已考究</b>(可点进主页),<b>淡点=继承自所属风格的待考究节点</b>。东=绿、西=赭;6 个地标是世界观区。</p>
-  <div class="breadcrumb"><a style="color:var(--accent);text-decoration:none" href="museum.html"><i data-ic="home"></i> 首页</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html"><i data-ic="compass"></i> 艺术图谱</a> › <a style="color:var(--accent);text-decoration:none" href="kg-v2.html#g-artist">实例·艺术家</a> › <b style="color:var(--ink-soft)">艺术家星图</b></div>
-
-  <div class="bar">
-    <span class="seg" id="segAuth"><button data-v="all" class="on">全部</button><button data-v="auth">仅已考究</button></span>
-    <span class="seg e" id="segSide"><button data-v="all" class="on">东+西</button><button data-v="east">东方</button><button data-v="west">西方</button></span>
-    <span class="seg" id="segMode"><button data-v="all" class="on">全部姿态</button><button data-v="居于">居于</button><button data-v="跨越">跨越</button><button data-v="立区">立区</button></span>
-    <span class="seg" id="segEdge"><button data-v="off" class="on">连线关</button><button data-v="on">师承连线</button></span>
-    <span class="seg e" id="segDrift"><button data-v="off" class="on">漂移关</button><button data-v="on">策展→实测漂移(<span id="driftN">…</span>)</button></span>
-    <span class="seg e" id="segTaste"><button data-v="off" class="on">原色</button><button data-v="on"><i data-ic="sparkles"></i> 按你口味染色</button></span>
+<div class="page">
+  <div class="pagehead">
+    <h1>艺术家星图</h1>
+    <p class="sub">把<b>全部艺术家</b>放进同一张 V3 世界观平面(<b>再现-表现 ⊥ 结构-感知</b>)。<b>亮点=已考究</b>(可点进主页),<b>淡点=继承自所属风格的待考究节点</b>。东=绿、西=赭;6 个地标是世界观区。</p>
+    <div style="text-align:center;margin-top:8px;font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute)">这是<b>分析视图</b> · 想要沉浸式 3D 星空,换 <a href="kg-galaxy.html" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--line)">会发光的艺术史(星辰大海)→</a></div>
+  </div>
+<div class="segrow">
+    <div class="segwrap" id="segAuth"><button class="seg on" data-v="all">全部</button><button class="seg" data-v="auth">仅已考究</button></div>
+    <div class="segwrap e" id="segSide"><button class="seg on" data-v="all">东+西</button><button class="seg" data-v="east">东方</button><button class="seg" data-v="west">西方</button></div>
+    <div class="segwrap" id="segMode"><button class="seg on" data-v="all">全部姿态</button><button class="seg" data-v="居于">居于</button><button class="seg" data-v="跨越">跨越</button><button class="seg" data-v="立区">立区</button></div>
+    <div class="segwrap" id="segEdge"><button class="seg on" data-v="off">连线关</button><button class="seg" data-v="on">师承连线</button></div>
+    <div class="segwrap e" id="segDrift"><button class="seg on" data-v="off">漂移关</button><button class="seg" data-v="on">策展→实测漂移(<span id="driftN">…</span>)</button></div>
+    <div class="segwrap e" id="segTaste"><button class="seg on" data-v="off">原色</button><button class="seg" data-v="on"><i data-ic="sparkles"></i> 按你口味染色</button></div>
     <input class="srch" id="srch" placeholder="搜艺术家名…"/>
   </div>
   <div class="stat" id="stat"></div>
@@ -76,7 +70,7 @@
     <div class="li"><span class="dot" style="background:#aac3b8"></span>东方 · 待考究</div>
     <div class="li">大点=已考究(可点进)· 小点=继承占位</div>
   </div>
-  <a class="back" href="kg-v2.html">← 返回 艺术图谱</a>
+  <a class="back" href="artists.html">← 艺术家中枢</a>
 </div>
 <script>
 const NS='http://www.w3.org/2000/svg';
@@ -257,4 +251,5 @@ document.getElementById('srch').addEventListener('input',e=>{filt.q=e.target.val
 })();
 </script>
 <script src="js/aha-icons.js"></script>
+<script src="js/aha-chrome.js"></script>
 </body></html>

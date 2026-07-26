@@ -42,7 +42,7 @@ def pg():
 
 def img(cos_key, thumb=None):
     u = COS + quote(cos_key, safe="/")
-    return u + f"?imageMogr2/thumbnail/{thumb}x" if thumb else u
+    return u + f"?imageMogr2/thumbnail/{thumb}x/format/webp/quality/82" if thumb else u
 
 def build_artworks(cur, scope, limit):
     where = "w.status='kept'" if scope == "kept" else "w.exhibited"
@@ -204,6 +204,13 @@ def main():
     path = os.path.join(OUT_DIR, "artworks_v2.json")
     json.dump(data, open(path, "w"), ensure_ascii=False)
     print(f"✓ artworks_v2.json  {data['meta']['n']} 件 (scope={a.scope})")
+    # 精简索引:网格用,只留卡片要的字段(全字段详情留给 artworks_v2.json 懒加载)
+    idx = {"meta": dict(data["meta"], kind="index"),
+           "artworks": {k: {"slug": v["slug"], "title": v["title"], "artist": v["artist"],
+                            "thumb": v["thumb"], "anchor": (v.get("affect") or {}).get("primary_anchor")}
+                        for k, v in data["artworks"].items()}}
+    json.dump(idx, open(os.path.join(OUT_DIR, "artworks_index.json"), "w"), ensure_ascii=False)
+    print(f"✓ artworks_index.json  {len(idx['artworks'])} 件(精简索引,网格用)")
     pts = build_points(cur, a.scope, max(a.limit, 20000))
     json.dump(pts, open(os.path.join(OUT_DIR, "points.json"), "w"), ensure_ascii=False)
     print(f"✓ points.json  {pts['meta']['n']} 点(含世界观坐标)")

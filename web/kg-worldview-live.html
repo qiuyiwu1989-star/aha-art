@@ -1,71 +1,147 @@
 <!doctype html>
 <html lang="zh"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>[活数据] 世界观地图 · aha</title>
-<style>
-:root{--ink:#2a2620;--soft:#6b6457;--line:#e2dccd;--bg:#f7f3ea;--accent:#9a6a3a}
-*{box-sizing:border-box;margin:0}body{font:14px/1.6 -apple-system,"PingFang SC",sans-serif;color:var(--ink);background:var(--bg)}
-header{padding:14px 20px;border-bottom:1px solid var(--line);background:#fff;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
-h1{font-size:18px;margin:0}.sub{color:var(--soft);font-size:12.5px}
-.bar{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13px}
-select{font:13px inherit;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:#fff}
-.wrap{max-width:1000px;margin:0 auto;padding:18px}
-.plane{position:relative;width:100%;max-width:760px;margin:0 auto;aspect-ratio:1;background:radial-gradient(120% 120% at 50% 45%,#fff,#f1ead9);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-svg{position:absolute;inset:0;width:100%;height:100%}
-.axlab{position:absolute;font-size:12px;color:var(--soft);font-weight:600}
-.dot{cursor:pointer;transition:r .1s}
-.rgn{font-size:13px;font-weight:700;fill:#b7ab92;opacity:.75}
-.tip{position:fixed;z-index:20;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 28px rgba(0,0,0,.16);padding:8px;width:170px;pointer-events:none;display:none;font-size:12px}
-.tip img{width:100%;height:110px;object-fit:cover;border-radius:6px;display:block;background:#eee}
-.tip b{display:block;margin-top:5px}.tip span{color:var(--soft)}
-.legend{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:12px;font-size:12px;color:var(--soft)}
-.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px;vertical-align:middle}
-a.back{color:var(--accent);text-decoration:none;font-size:13px}
-</style></head>
-<body>
-<header>
-  <a class="back" href="home.html">← aha.art</a>
-  <h1>世界观地图 <span class="sub" id="sub">活数据</span></h1>
-  <div class="bar">着色 <select id="mode"><option value="wv">按世界观区</option><option value="anchor">按情绪锚</option></select>
-    <span class="sub">每点=一幅真实作品 · 悬停看图 · 点击进详情</span></div>
-</header>
-<div class="wrap">
-  <div class="plane" id="plane">
-    <svg id="svg" viewBox="0 0 1000 1000"></svg>
-    <div class="axlab" style="left:8px;top:50%">← 再现</div>
-    <div class="axlab" style="right:8px;top:50%">表现 →</div>
-    <div class="axlab" style="left:50%;top:6px;transform:translateX(-50%)">↑ 即时感知</div>
-    <div class="axlab" style="left:50%;bottom:6px;transform:translateX(-50%)">底层结构 ↓</div>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/aha-kit.css">
+<link rel="stylesheet" href="css/cloud-stage.css">
+</head>
+<body data-no-top>
+<div class="stage dark" id="stage">
+<script>try{if((localStorage.getItem('aha-theme')||'dark')==='light')document.getElementById('stage').classList.remove('dark')}catch(e){}</script>
+  <div class="plane">
+    <canvas id="cv"></canvas>
+    <span class="axl l">← 再现</span><span class="axl r">表现 →</span>
+    <span class="axl t">↑ 即时感知</span><span class="axl b">底层结构 ↓</span>
   </div>
-  <div class="legend" id="legend"></div>
+
+  <div class="hud tl">
+    <a class="back" href="museum.html">← aha.art</a>
+    <div class="kicker">Live Data · 活数据</div>
+    <h1>世界观地图</h1>
+    <div class="sub">每一点是一幅真实作品,落在「再现 × 表现 · 即时感知 × 底层结构」的世界观平面上。<br>滚轮缩放 · 拖拽平移 · 悬停看图 · 点击速览。</div>
+    <div class="cnt" id="cnt">加载中…</div>
+  </div>
+
+  <div class="hud tr">
+    <span class="lab">着色</span>
+    <span class="segwrap" id="mode">
+      <button class="seg on" data-m="wv">世界观区</button>
+      <button class="seg" data-m="anchor">情绪锚</button>
+      <button class="seg" data-m="mono">单色密度</button>
+    </span>
+  </div>
+
+  <div class="hud bl" id="lwrap"><div class="legend" id="legend"></div></div>
+
+  <div class="hud br">
+    <button class="cbtn" id="zin" title="放大">＋</button>
+    <button class="cbtn" id="zout" title="缩小">－</button>
+    <button class="cbtn" id="rst" title="复位(或双击)">⤢</button>
+    <button class="cbtn" id="theme" title="明/暗底">◐</button>
+  </div>
 </div>
-<div class="tip" id="tip"></div>
+
+<div class="tipcard" id="tip"><img id="tipimg" alt=""><b id="tipt"></b><span id="tips"></span></div>
+<div class="peek" id="peek">
+  <button class="x" id="peekx">关闭 ✕</button>
+  <img id="pkimg" alt=""><h3 id="pktitle"></h3>
+  <div class="pm" id="pkmeta"></div>
+  <a class="open-work" id="pkopen" href="#">进入作品详情 →</a>
+</div>
+
+<script src="js/cloud.js"></script>
+<script src="js/cloud-stage.js"></script>
 <script>
-const WVC={WV1:'#5a7d6f',WV2:'#9a6a3a',WV3:'#7a8abf',WV4:'#d39a3a',WV5:'#c25a4a',WV6:'#6b6457'};
+const WVC={WV1:'#5a7d6f',WV2:'#b0673a',WV3:'#5b7596',WV4:'#c98a1a',WV5:'#b5483a',WV6:'#857d6f'};
 const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
 const ANC=['喜悦','鲜活','热烈','崇高','张力','恐惧','神秘','忧伤','孤独','怀旧','虚无','沉思','平静','空灵'];
-const ANCC={};ANC.forEach((a,i)=>ANCC[a]=`hsl(${i*26},55%,52%)`);
-let D=null,mode='wv';
-const svg=document.getElementById('svg'),tip=document.getElementById('tip');
-fetch('data/live/points.json').then(r=>r.json()).then(d=>{D=d;
-  document.getElementById('sub').textContent=`活数据 · ${d.meta.n} 件（随过闸增长）`;draw();});
-function draw(){
-  const W=1000,H=1000,pad=70;
-  let h=D.regions.map(r=>`<text class="rgn" x="${pad+r.cx*(W-2*pad)}" y="${pad+(1-r.cy)*(H-2*pad)}" text-anchor="middle">${r.name}</text>`).join('');
-  h+=`<line x1="${W/2}" y1="${pad}" x2="${W/2}" y2="${H-pad}" stroke="#eadfca"/><line x1="${pad}" y1="${H/2}" x2="${W-pad}" y2="${H/2}" stroke="#eadfca"/>`;
-  h+=D.points.map(p=>{const x=pad+p.x*(W-2*pad),y=pad+(1-p.y)*(H-2*pad);
-    const col=mode==='wv'?(WVC[p.wv]||'#aaa'):(ANCC[p.anchor]||'#aaa');
-    return `<circle class="dot" cx="${x}" cy="${y}" r="6" fill="${col}" fill-opacity=".8" data-i="${p._i=D.points.indexOf(p)}" data-id="${p.id}"/>`}).join('');
-  svg.innerHTML=h;
-  svg.querySelectorAll('.dot').forEach(c=>{
-    c.onmouseenter=e=>showTip(D.points[+c.dataset.i],e);c.onmousemove=e=>posTip(e);
-    c.onmouseleave=()=>tip.style.display='none';c.onclick=()=>location.href='work.html?id='+c.dataset.id;
-    c.onmouseover=()=>c.setAttribute('r',9);c.onmouseout=()=>c.setAttribute('r',6);});
-  const keys=mode==='wv'?Object.keys(WVN):ANC;
-  document.getElementById('legend').innerHTML=keys.map(k=>`<span><i style="background:${mode==='wv'?WVC[k]:ANCC[k]}"></i>${mode==='wv'?WVN[k]:k}</span>`).join('');
+const ANCC={};ANC.forEach((a,i)=>ANCC[a]=(window.AHACloud?AHACloud.ds(i):'#b0673a'));
+const cs=getComputedStyle(document.documentElement),tok=n=>cs.getPropertyValue(n).trim();
+const mute=tok('--ink-mute'),accent=tok('--accent');
+let D=null,mode='wv',stage=null,enabled=null;
+const tip=document.getElementById('tip'),peek=document.getElementById('peek');
+const thumb=(u,w)=>u?u.replace(/thumbnail\/\d+x/,'thumbnail/'+w+'x'):'';
+function colFn(){return mode==='mono'?(()=>accent):(p=> mode==='wv'?(WVC[p.wv]||mute):(ANCC[p.anchor]||mute));}
+
+function hull(P){if(P.length<3)return P.slice();P=P.slice().sort((a,b)=>a[0]-b[0]||a[1]-b[1]);
+  const cr=(o,a,b)=>(a[0]-o[0])*(b[1]-o[1])-(a[1]-o[1])*(b[0]-o[0]);
+  const lo=[];for(const p of P){while(lo.length>=2&&cr(lo[lo.length-2],lo[lo.length-1],p)<=0)lo.pop();lo.push(p);}
+  const up=[];for(let i=P.length-1;i>=0;i--){const p=P[i];while(up.length>=2&&cr(up[up.length-2],up[up.length-1],p)<=0)up.pop();up.push(p);}
+  lo.pop();up.pop();return lo.concat(up);}
+Promise.all([
+  fetch('data/live/points.json').then(r=>r.json()),
+  fetch('data/kg_style.json').then(r=>r.json()),       // KG 权威:风格节点坐标(worldview-map 同源)
+  fetch('data/kg_worldview_v3.json').then(r=>r.json())  // KG 权威:6 区位置
+]).then(([d,sty,wv])=>{D=d;
+  const REG=wv.regions||d.regions||[];
+  const byWv={};(sty.nodes||[]).forEach(n=>{if(n.coord&&n.coord.rep_exp!=null&&n.coord.struct_perc!=null)(byWv[n.wv]=byWv[n.wv]||[]).push([n.coord.rep_exp,n.coord.struct_perc]);});
+  const labels=REG.map(r=>{const P=byWv[r.id]||[];   // 板块=KG 风格节点凸包;标签=KG 区位置
+    return {x:+r.cx,y:+r.cy,text:r.name,color:WVC[r.id]||tok('--ink-faint'),poly:P.length>=3?hull(P):null};});
+  stage=AHAStage({
+    canvas:document.getElementById('cv'), points:d.points,
+    px:p=>+p.x, py:p=>+p.y, key:p=>p.id||p.title,
+    colorOf:colFn(), groupOf:p=> mode==='wv'?p.wv:p.anchor,
+    labels, colors:{axis:tok('--line'),halo:tok('--card'),ring:tok('--accent'),label:tok('--ink-faint'),dim:tok('--ink-faint'),chip:tok('--glass'),chipLine:tok('--glass-line')},
+    onHover:showTip, onLeave:hideTip, onPick:openPeek
+  });
+  buildLegend(); updateCount();
+}).catch(()=>{document.getElementById('cnt').textContent='数据加载失败 · 检查 data/live/points.json';});
+
+function groups(){return mode==='wv'?Object.keys(WVN):ANC;}
+function gname(k){return mode==='wv'?WVN[k]:k;}
+function gcol(k){return mode==='wv'?WVC[k]:ANCC[k];}
+function buildLegend(){
+  enabled=new Set(groups());
+  const el=document.getElementById('legend');
+  el.innerHTML=groups().map(k=>`<button class="lgi" data-k="${k}"><i style="background:${gcol(k)}"></i>${gname(k)}</button>`).join('')
+    +`<button class="all" id="lall">全部</button>`;
+  el.querySelectorAll('.lgi').forEach(b=>b.onclick=()=>toggle(b.dataset.k));
+  document.getElementById('lall').onclick=()=>{enabled=new Set(groups());syncLegend();stage.setFilter(null);updateCount();};
 }
-function showTip(p,e){tip.innerHTML=`<img src="${p.thumb}"><b>${(p.title||'无题').slice(0,18)}</b><span>${p.artist||''} · ${p.anchor||''} · ${p.style||''}</span>`;tip.style.display='block';posTip(e)}
-function posTip(e){const x=Math.min(e.clientX+14,innerWidth-185),y=Math.min(e.clientY+14,innerHeight-180);tip.style.left=x+'px';tip.style.top=y+'px'}
-document.getElementById('mode').onchange=e=>{mode=e.target.value;draw()};
+function toggle(k){
+  if(enabled.has(k))enabled.delete(k); else enabled.add(k);
+  if(!enabled.size)enabled=new Set(groups());           // 不允许全空
+  syncLegend();
+  stage.setFilter(enabled.size===groups().length?null:enabled); updateCount();
+}
+function syncLegend(){document.querySelectorAll('#legend .lgi').forEach(b=>b.classList.toggle('off',!enabled.has(b.dataset.k)));}
+function updateCount(){const v=stage?stage.visibleCount():0;document.getElementById('cnt').innerHTML=`活数据 · <b>${v.toLocaleString()}</b> / ${D.meta.n.toLocaleString()} 件 · 随过闸增长`;}
+
+document.querySelectorAll('#mode .seg').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#mode .seg').forEach(x=>x.classList.toggle('on',x===b));
+  mode=b.dataset.m;
+  stage.setColor(colFn());
+  if(mode==='mono'){ document.getElementById('lwrap').style.display='none'; stage.setFilter(null); }
+  else { document.getElementById('lwrap').style.display='';
+    stage.setGroup(p=> mode==='wv'?p.wv:p.anchor); buildLegend(); stage.setFilter(null); }
+  updateCount();
+});
+
+let tipTimer=0,tipKey='';
+function showTip(p,cx,cy){
+  document.getElementById('tipt').textContent=(p.title||'无题').slice(0,20);
+  document.getElementById('tips').textContent=`${p.artist||''} · ${p.anchor||''} · ${p.style||''}`;
+  tip.style.display='block';
+  tip.style.left=Math.min(cx+15,innerWidth-194)+'px'; tip.style.top=Math.min(cy+15,innerHeight-192)+'px';
+  const want=thumb(p.thumb,140),img=document.getElementById('tipimg');     // 小图+防抖:扫过不加载,停住才拉
+  if(tipKey!==want){tipKey=want;img.classList.remove('on');clearTimeout(tipTimer);
+    tipTimer=setTimeout(()=>{img.onload=()=>img.classList.add('on');img.src=want;},90);}
+}
+function hideTip(){tip.style.display='none';clearTimeout(tipTimer);tipKey='';}
+function openPeek(p){
+  hideTip();
+  document.getElementById('pkimg').src=thumb(p.thumb,1000)||'';
+  document.getElementById('pktitle').textContent=p.title||'无题';
+  document.getElementById('pkmeta').innerHTML=`<b>${p.artist||'佚名'}</b><br>情绪锚 · ${p.anchor||'—'}<br>风格 · ${p.style||'—'}<br>世界观区 · ${WVN[p.wv]||p.wv||'—'}`;
+  document.getElementById('pkopen').href='work.html?id='+p.id;
+  peek.classList.add('open');
+}
+document.getElementById('peekx').onclick=()=>peek.classList.remove('open');
+document.getElementById('zin').onclick=()=>stage.zoomIn();
+document.getElementById('zout').onclick=()=>stage.zoomOut();
+document.getElementById('rst').onclick=()=>stage.reset();
+document.getElementById('theme').onclick=()=>{var s=document.getElementById('stage');s.classList.toggle('dark');try{localStorage.setItem('aha-theme',s.classList.contains('dark')?'dark':'light')}catch(e){}};
 </script>
+<script src="js/aha-chrome.js"></script>
 </body></html>

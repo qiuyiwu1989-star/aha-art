@@ -34,29 +34,44 @@
   '.site-foot a{color:var(--ink-mute,#857d6f);text-decoration:none}'+
   '.site-foot a:hover{color:var(--accent,#b0673a)}';
   function node(html){var t=document.createElement('template');t.innerHTML=html.trim();return t.content.firstChild;}
+  // 内部门:内部链接(产品日志/体验地图/后台/设计系统/网站地图)仅内部人可见,外部用户只看主页+版权。
+  // 内部人一次性访问 ?internal=1 设标(?internal=0 清);本机访问自动算内部。
+  // 这些页本身在 nginx 已 basic-auth 硬保护,此处只是不把入口暴露给外部。
+  function isInternal(){
+    try{
+      var u=new URL(location.href);
+      if(u.searchParams.get('internal')==='1')localStorage.setItem('aha_internal','1');
+      if(u.searchParams.get('internal')==='0')localStorage.removeItem('aha_internal');
+      if(/^(localhost|127\.|192\.168\.)/.test(location.hostname))return true;
+      return localStorage.getItem('aha_internal')==='1';
+    }catch(e){return false;}
+  }
   function mount(){
     var body=document.body, home=body.getAttribute('data-home')||HOME;
     if(!document.getElementById('aha-chrome-style')){
       var st=document.createElement('style');st.id='aha-chrome-style';st.textContent=CSS;
       document.head.appendChild(st);
     }
+    var internal=isInternal();
     if(!body.hasAttribute('data-no-top') && !document.querySelector('.site-top')){
       body.insertBefore(node(
         '<header class="site-top">'+
           '<a class="brand" href="'+home+'">aha<span class="dot">.</span>art</a>'+
-          '<a class="st-link" href="'+LOG+'">产品日志 · log</a>'+
+          (internal?'<a class="st-link" href="'+LOG+'">产品日志 · log</a>':'')+
         '</header>'), body.firstChild);
     }
     if(!document.querySelector('.site-foot')){
+      var navRow = internal ?
+        '<nav class="sf-nav">'+
+          '<a href="'+LOG+'">全部体验</a><span class="sf-sep">·</span>'+
+          '<a href="compass.html">体验地图</a><span class="sf-sep">·</span>'+
+          '<a href="dashboard.html">管理后台</a><span class="sf-sep">·</span>'+
+          '<a href="design-system.html">设计系统</a><span class="sf-sep">·</span>'+
+          '<a href="sitemap.html">网站地图</a>'+
+        '</nav>' : '';
       body.appendChild(node(
         '<footer class="site-foot">'+
-          '<nav class="sf-nav">'+
-            '<a href="'+LOG+'">全部体验</a><span class="sf-sep">·</span>'+
-            '<a href="compass.html">体验地图</a><span class="sf-sep">·</span>'+
-            '<a href="dashboard.html">管理后台</a><span class="sf-sep">·</span>'+
-            '<a href="design-system.html">设计系统</a><span class="sf-sep">·</span>'+
-            '<a href="sitemap.html">网站地图</a>'+
-          '</nav>'+
+          navRow+
           '<div class="sf-row">出品 · <a href="'+IDI_URL+'" target="_blank" rel="noopener">'+PRODUCER+'</a>'+
           '<span class="sf-sep">·</span>数据支持 · <a href="'+LIB_URL+'" target="_blank" rel="noopener">浙江大学图书馆</a></div>'+
           '<div class="sf-row">技术支持 · <a href="'+ZWY_URL+'" target="_blank" rel="noopener">造物云</a>'+

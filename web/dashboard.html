@@ -82,6 +82,9 @@ select{font:13px inherit;padding:5px 8px;border:1px solid var(--line);border-rad
   <a class="navi" data-m="exhibit"><i data-ic="works"></i> 展出与策展<small>选图进展厅</small></a>
   <a class="navi" data-m="special"><i data-ic="sparkles"></i> 首页特展<small>主题展区 · 增删改</small></a>
   <a class="navi" data-m="frame"><i data-ic="frame"></i> 画框管理中心<small>框样式库 + 逐画</small></a>
+  <div class="navgrp">讲解 · 解读</div>
+  <a class="navi" data-m="narrators"><i data-ic="sound"></i> 讲解员管理<small>人设 · 提示词 · 音色</small></a>
+  <a class="navi" data-m="archive"><i data-ic="archive"></i> 讲解 · 数据档案<small>逐画 TTS 留存 · 补全</small></a>
   <div class="navgrp">用户 · 创作</div>
   <a class="navi" data-m="user"><i data-ic="danmaku"></i> 用户 · 互动<small>museum mu_*</small></a>
   <a class="navi" data-m="gen"><i data-ic="create"></i> 生成图库<small>治理 / 优选入馆</small></a>
@@ -138,6 +141,30 @@ select{font:13px inherit;padding:5px 8px;border:1px solid var(--line);border-rad
     <div class="modh"><h1>知识结构投影</h1><p>把活库投影成知识结构页要的数据切片（旧 demo 页保留，活数据版为 -live 新页）。</p></div>
     <div class="wrap" id="proj">加载中…</div>
   </section>
+  <section class="mod" id="mod-narrators" hidden>
+    <div class="modh"><h1>讲解员管理</h1><p>画作页「换一种眼睛看」的解说员都在这。内置 6 位(aha 官方 / 诗人 / 史学家 / 心理学者 / 画家自述 / 孩子)可改提示词,改后不被重启覆盖;也能新建馆方讲解员。提示词决定 TA 怎么讲、念哪块数据。</p></div>
+    <div class="wrap">
+      <div id="narrbar" style="display:flex;gap:10px;align-items:center;margin-bottom:6px"><button class="nbtn" id="narrAdd">＋ 新建讲解员</button><span class="narr-msg" id="narrMsg"></span></div>
+      <div class="narr-grid" id="narrGrid">加载中…</div>
+    </div>
+    <div class="narr-scrim" id="narrScrim"><div class="narr-modal">
+      <h2 id="narrMT">编辑讲解员</h2>
+      <div class="narr-frow"><div style="flex:0 0 74px"><label>emoji</label><input id="nf_emoji" maxlength="4"></div><div style="flex:1"><label>名字</label><input id="nf_name" maxlength="16"></div></div>
+      <div class="narr-f"><label>一句人设(UI 短句)</label><input id="nf_descr" maxlength="60" placeholder="如:用意象与通感读画,像念一首短诗"></div>
+      <div class="narr-f"><label>提示词 · 生成视角(核心)</label><textarea id="nf_prompt" maxlength="2000" placeholder="你是…。只关心…。讲法…"></textarea></div>
+      <div class="narr-frow"><div style="flex:1"><label>音色(TTS)</label><select id="nf_voice"></select></div><div style="flex:1"><label>朗读语气 / 情绪</label><input id="nf_emotion" maxlength="40" placeholder="如:抒情轻柔、带一丝怅惘"></div></div>
+      <div class="narr-mfoot"><button class="nbtn" id="nf_save">保存</button><button class="nbtn ghost" id="nf_cancel">取消</button><button class="nbtn del" id="nf_del" style="display:none">删除</button></div>
+    </div></div>
+  </section>
+  <section class="mod" id="mod-archive" hidden>
+    <div class="modh"><h1>讲解 · 数据档案</h1><p>每幅画 × 每位讲解员的<b>解读</b>与 <b>TTS 朗读音频</b>留存与状态。绿=已生成可播放,灰=未生成(点「生成」补上,永久入档)。</p></div>
+    <div class="wrap">
+      <div class="arc-stat" id="arcStat" style="display:none"></div>
+      <div class="arc-bar"><input id="arcQ" placeholder="搜作品名 / 讲解员…"><button class="nbtn ghost" id="arcOnlyMiss">只看缺 TTS</button><button class="nbtn" id="arcGenAll">为筛选结果补全 TTS</button></div>
+      <audio id="arcAu" preload="none"></audio>
+      <div class="arc-list" id="arcList">加载中…</div>
+    </div>
+  </section>
 </main>
 </div>
 <script src="js/aha-icons.js"></script>
@@ -145,13 +172,13 @@ select{font:13px inherit;padding:5px 8px;border:1px solid var(--line);border-rad
 const API='/cat/';
 const fmt=n=>(n??0).toLocaleString();
 const _loaded={};
-const MODS=['cos','exhibit','special','frame','artist','user','gen','proj'];
-const LOADERS={exhibit:loadExhibit,special:loadSpecial,frame:loadFrame,artist:loadArtists,user:loadUsers,gen:loadGen,proj:loadProjection};
+const MODS=['cos','exhibit','special','frame','narrators','archive','artist','user','gen','proj'];
+const LOADERS={exhibit:loadExhibit,special:loadSpecial,frame:loadFrame,artist:loadArtists,user:loadUsers,gen:loadGen,proj:loadProjection,narrators:()=>{if(typeof loadNarrators==='function')loadNarrators();},archive:()=>{if(typeof loadArchive==='function')loadArchive();}};
 function showMod(m){if(MODS.indexOf(m)<0)m='cos';
   document.querySelectorAll('.navi[data-m]').forEach(x=>x.classList.toggle('on',x.dataset.m===m));
   document.querySelectorAll('.mod').forEach(s=>s.hidden=(s.id!=='mod-'+m));
   if(m!=='cos'&&!_loaded[m]){_loaded[m]=1;(LOADERS[m]||(()=>{}))();}
-  document.title='aha 后台 · '+({cos:'原始数据',exhibit:'展出策展',special:'首页特展',frame:'画框管理',artist:'艺术家',user:'用户互动',gen:'生成图库',proj:'知识投影'}[m]||'');}
+  document.title='aha 后台 · '+({cos:'原始数据',exhibit:'展出策展',special:'首页特展',frame:'画框管理',narrators:'讲解员管理',archive:'讲解·数据档案',artist:'艺术家',user:'用户互动',gen:'生成图库',proj:'知识投影'}[m]||'');}
 // 点导航 = 改 hash(写进 URL,刷新/前进后退/分享都停在该模块)
 document.querySelectorAll('.navi[data-m]').forEach(a=>a.onclick=e=>{e.preventDefault();
   if(location.hash.slice(1)===a.dataset.m)showMod(a.dataset.m);else location.hash=a.dataset.m;});
@@ -729,8 +756,46 @@ loadVlm();setInterval(loadVlm,30000);loadGovData();setInterval(loadGovData,60000
 loadOps();setInterval(loadOps,30000);
 // ===== 首页特展管理(从 admin.html 并入主后台) =====
 const WVN_SP={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
-let SPLIST=[],SPWORKS=[],SPPW='';
+let SPLIST=[],SPWORKS=[],SPPW='';try{SPPW=localStorage.getItem('aha_admin_pass')||'';}catch(e){}  // 记住口令,免得每次重输
 function esc2(s){return (s==null?'':String(s)).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
+// 审核用户公开展:待审(通过/驳回)+ 已上架(撤下)
+function exCardHtml(e,actions){const r=e.rule||{},cover=spThumb((e.work_ids||[])[0]),n=(e.work_ids||[]).length;
+  return '<div style="border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card)">'+
+    '<div style="aspect-ratio:16/10;background:#e9e4d8'+(cover?" url('"+cover+"') center/cover":'')+'"></div>'+
+    '<div style="padding:10px 12px"><div style="font-weight:600;font-size:13.5px;margin-bottom:3px">'+esc2(e.title||'无题')+'</div>'+
+    '<div style="font-size:11px;color:var(--soft);font-family:var(--mono);margin-bottom:8px">'+n+' 幅 · 脊:'+esc2(r.spineLabel||r.spine||'—')+'</div>'+
+    '<div style="display:flex;gap:6px;flex-wrap:wrap;font-size:12px">'+
+      '<a href="curate.html?ex='+encodeURIComponent(e.id)+'" target="_blank" style="padding:5px 10px;border:1px solid var(--line);border-radius:6px;color:var(--soft);text-decoration:none">预览</a>'+actions+
+    '</div></div></div>';}
+function grid(items,actionsFn){return '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(238px,1fr));gap:12px">'+items.map(e=>exCardHtml(e,actionsFn(e))).join('')+'</div>';}
+function loadPending(force){const w=document.getElementById('pendingWrap');if(!w)return;
+  if(!force)w.innerHTML='<div style="color:var(--soft);font-size:13px">读取中…</div>';
+  ensureAdminPass(force).then(()=>{ if(NPW)SPPW=NPW;   // 走后台 SSO 自动取口令,免手输
+  if(!SPPW){w.innerHTML='<div class="gl">需要管理口令(登录后台后应自动获取)</div>';return;}
+  fetch('/api/exhibitions/pending?all=1&pass='+encodeURIComponent(SPPW)).then(r=>r.json()).then(d=>{
+    if(d&&d.error){ // 缓存口令失效→清掉走 SSO 重取一次;再失败就如实报错
+      if(!force){NPW='';SPPW='';try{localStorage.removeItem('aha_admin_pass');}catch(e){}return loadPending(true);}
+      w.innerHTML='<div class="gl">无法读取待审(口令无效或未登录后台)</div>';return;}
+    const items=(d&&d.items)||[],pend=items.filter(e=>!e.approved),live=items.filter(e=>e.approved);
+    const pBtn=e=>'<button onclick="moderateEx(\''+esc2(e.id)+'\',true)" style="padding:5px 12px;background:var(--ok,#3a8a5a);color:#fff;border:none;border-radius:6px;cursor:pointer">通过</button>'+
+      '<button onclick="moderateEx(\''+esc2(e.id)+'\',false)" style="padding:5px 10px;border:1px solid var(--line);background:var(--card);color:#c0392b;border-radius:6px;cursor:pointer">驳回</button>';
+    const lBtn=e=>'<button onclick="moderateEx(\''+esc2(e.id)+'\',false)" style="padding:5px 12px;border:1px solid var(--line);background:var(--card);color:#c0392b;border-radius:6px;cursor:pointer">撤下</button>';
+    let h='<div class="panel"><h2>待审核 · 用户公开展('+pend.length+') <span style="color:#aaa;font-weight:400;font-size:12px">通过=进展览馆;驳回=退回用户私有</span></h2>'+
+      (pend.length?grid(pend,pBtn):'<div class="gl">暂无待审——用户「申请公开」的展会出现在这里</div>')+'</div>';
+    h+='<div class="panel"><h2>已上架 · 展览馆在展('+live.length+') <span style="color:#aaa;font-weight:400;font-size:12px">撤下=移出展览馆,退回用户私有</span></h2>'+
+      (live.length?grid(live,lBtn):'<div class="gl">展览馆暂无在展用户展</div>')+'</div>';
+    w.innerHTML=h;
+  }).catch(()=>{w.innerHTML='<div class="gl">读取失败</div>';});
+  });}
+function moderateEx(id,ok){if(NPW&&!SPPW)SPPW=NPW;if(!SPPW){alert('需要管理口令');return;}
+  fetch('/api/exhibition/moderate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pass:SPPW,id:id,approved:ok})})
+    .then(r=>r.json()).then(d=>{if(d&&d.ok){loadPending();refreshPendingBadge();}else alert('失败:'+((d&&d.error)||'口令?'));});}
+function refreshPendingBadge(){ensureAdminPass().then(()=>{ if(NPW&&!SPPW)SPPW=NPW; if(!SPPW)return;
+  fetch('/api/exhibitions/pending?pass='+encodeURIComponent(SPPW)).then(r=>r.json()).then(d=>{
+    const n=((d&&d.items)||[]).length,b=document.getElementById('pendingBtn');
+    if(b)b.innerHTML='审核用户展'+(n?' <b style="color:var(--accent)">'+n+'</b>':'');
+  }).catch(()=>{});
+  });}
 function loadSpecial(){Promise.all([
     fetch('/api/specials').then(r=>r.json()).catch(()=>({items:[]})),
     fetch('/cat/exhibit?limit=8000').then(r=>r.json()).catch(()=>fetch('/data/gallery_works.json').then(r=>r.json()))
@@ -739,7 +804,7 @@ function spc(s){if(s.work_ids&&s.work_ids.length)return s.work_ids.length;const 
   return SPWORKS.filter(w=>(!r.emo||!r.emo.length||r.emo.includes(w.emo))&&(!r.wv||!r.wv.length||r.wv.includes(w.wv))&&(!r.region||w.region===r.region)).length;}
 function spThumb(f){if(!f)return '';return /myqcloud\.com/i.test(f)?f+'?imageMogr2/thumbnail/360x/format/webp/quality/80':f;}
 function isCurated(s){return (s.work_ids&&s.work_ids.length)||(s.rule&&s.rule.spine);}
-function goCurate(url){if(!SPPW){alert('先在上方填管理口令');return;}sessionStorage.setItem('aha_admin_pass',SPPW);window.open(url,'_blank');}
+function goCurate(url){ensureAdminPass().then(()=>{if(NPW&&!SPPW)SPPW=NPW;if(!SPPW){alert('需要管理口令(登录后台后应自动获取)');return;}sessionStorage.setItem('aha_admin_pass',SPPW);window.open(url,'_blank');});}
 function renderSP(){const emos=[...new Set(SPWORKS.map(w=>w.emo).filter(Boolean))];const wrap=document.getElementById('spwrap');if(!wrap)return;
   const IB='padding:6px 9px;border:1px solid var(--line);border-radius:7px';
   const curated=[],rules=[];SPLIST.forEach((s,i)=>{(isCurated(s)?curated:rules).push([s,i]);});
@@ -747,12 +812,16 @@ function renderSP(){const emos=[...new Set(SPWORKS.map(w=>w.emo).filter(Boolean)
     <span style="font-size:12.5px;color:var(--soft)">管理口令</span><input id="sppw" type="password" placeholder="admin_pass" value="${esc2(SPPW)}" style="width:160px;${IB}">
     <button onclick="goCurate('curate.html?admin=1')" style="padding:7px 16px;border:none;background:var(--accent);color:#fff;border-radius:999px;cursor:pointer;font-weight:600">＋ 策一个官方展<small style="font-weight:400;opacity:.85"> · 手策·带脊</small></button>
     <button onclick="newSP()" style="padding:6px 14px;border:1px solid var(--line);background:var(--card);color:var(--soft);border-radius:999px;cursor:pointer">＋ 新建规则展</button>
+    <button id="pendingBtn" onclick="loadPending()" style="padding:6px 14px;border:1px solid var(--line);background:var(--card);color:var(--soft);border-radius:999px;cursor:pointer">审核用户展</button>
     <span style="font-size:12px;color:var(--soft)">${SPLIST.length} 个 · museum「特展」区实时读这里</span></div>
+    <div id="pendingWrap" style="margin-bottom:18px"></div>
     <h2 style="font-size:14px;margin:0 0 8px">手策展 <span style="color:#aaa;font-weight:400;font-size:12px">主张+动线脊+手拣 · 点编辑进策展台 curate</span></h2>
     <div id="spcurated" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(238px,1fr));gap:12px;margin-bottom:24px"></div>
     <h2 style="font-size:14px;margin:0 0 8px">规则展 <span style="color:#aaa;font-weight:400;font-size:12px">按情绪/世界观/区域自动选,新画自动进</span></h2>
     <div id="splist"></div>`;
-  document.getElementById('sppw').oninput=e=>SPPW=e.target.value;
+  document.getElementById('sppw').oninput=e=>{SPPW=e.target.value;try{localStorage.setItem('aha_admin_pass',SPPW);sessionStorage.setItem('aha_admin_pass',SPPW);}catch(e2){}
+    clearTimeout(window._pbT);window._pbT=setTimeout(()=>{refreshPendingBadge();loadPending();},500);};
+  refreshPendingBadge();loadPending();   // 经 ensureAdminPass SSO 自动取口令,进来直接显示待审队列
   // 手策展:卡片(封面+脊+编辑→curate?edit / 预览→curate?ex / 上架 / seq / 删)
   document.getElementById('spcurated').innerHTML=curated.length?curated.map(([s,i])=>{const r=s.rule||{};
     const cover=spThumb((s.work_ids||[])[0]),n=(s.work_ids||[]).length;
@@ -981,6 +1050,206 @@ function renderFRM(){const wrap=document.getElementById('frmwrap');if(!wrap||!wi
   wrap.querySelectorAll('.frmsel').forEach(sel=>sel.onchange=()=>saveFRM(sel.dataset.f,sel.value));}
 function saveFRM(file,key){if(!FPW){alert('先填管理口令再选框');renderFRM();return;}
   AHAFrames.saveCanonical(file,key,FPW).then(d=>{if(d&&d.ok){if(key)FCANON[file]=key;else delete FCANON[file];renderFRM();}else{alert('失败:'+((d&&d.error)||'口令?'));}}).catch(()=>alert('网络错误'));}
+</script>
+<style>
+/* 讲解·解读 模块 */
+.narr-msg,.arc-empty{font-family:var(--mono);font-size:12px;color:var(--soft)}
+.nbtn{font-family:var(--mono);font-size:12.5px;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:8px 15px;cursor:pointer}
+.nbtn.ghost{background:var(--card);color:var(--soft);border:1px solid var(--line)}.nbtn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.nbtn.del{background:none;color:#b3402f;border:1px solid rgba(179,64,47,.4);margin-left:auto}
+.narr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;margin-top:12px}
+.narr-card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:14px 15px;cursor:pointer;transition:.15s}
+.narr-card:hover{border-color:var(--accent);box-shadow:var(--sh1)}
+.narr-card .hd{display:flex;align-items:center;gap:9px}.narr-card .em{font-size:22px}.narr-card .nm{font-family:var(--serif);font-size:17px;font-weight:700}
+.narr-tags{margin-left:auto;display:flex;gap:5px}.narr-tag{font-family:var(--mono);font-size:9px;border-radius:5px;padding:2px 6px;border:1px solid var(--line);color:var(--soft)}
+.narr-tag.b{color:var(--accent);border-color:var(--accent)}.narr-tag.e{color:var(--ok);border-color:var(--ok)}
+.narr-card .ds{font-size:12.5px;color:var(--soft);margin:8px 0 7px;line-height:1.5}
+.narr-card .meta{font-family:var(--mono);font-size:10.5px;color:var(--soft)}
+.narr-card .pv{font-size:11.5px;color:var(--soft);margin-top:7px;line-height:1.5;max-height:46px;overflow:hidden;border-top:1px dashed var(--line);padding-top:6px}
+.narr-scrim{position:fixed;inset:0;background:rgba(10,8,6,.55);z-index:60;display:none;align-items:center;justify-content:center;padding:20px}.narr-scrim.on{display:flex}
+.narr-modal{background:var(--bg);border-radius:15px;max-width:620px;width:100%;max-height:90vh;overflow-y:auto;padding:22px 24px}
+.narr-modal h2{font-family:var(--serif);font-size:19px;margin-bottom:13px}
+.narr-modal label{display:block;font-family:var(--mono);font-size:11px;color:var(--soft);margin:0 0 5px}
+.narr-modal input,.narr-modal textarea,.narr-modal select{width:100%;font-family:var(--sans);font-size:13.5px;border:1px solid var(--line);border-radius:8px;padding:8px 11px;background:var(--card);color:var(--ink);resize:vertical}
+.narr-modal textarea{min-height:130px;line-height:1.6}
+.narr-f,.narr-frow{margin-bottom:12px}.narr-frow{display:flex;gap:12px}
+.narr-mfoot{display:flex;gap:10px;align-items:center;margin-top:6px}
+.arc-bar{display:flex;gap:10px;align-items:center;margin:6px 0 16px;flex-wrap:wrap}
+.arc-bar input{font-family:var(--sans);font-size:13px;border:1px solid var(--line);background:var(--card);border-radius:9px;padding:8px 13px;width:220px}
+.arc-stat{display:flex;gap:20px;margin:6px 0;font-family:var(--mono);font-size:12px;color:var(--soft);flex-wrap:wrap}
+.arc-stat b{font-family:var(--serif);font-size:18px;color:var(--accent);font-weight:700;margin-right:5px}.arc-stat .g b{color:var(--ok)}
+.arc-list{display:flex;flex-direction:column;gap:11px}
+.arc-wk{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+.arc-wk-h{display:flex;gap:12px;align-items:center}
+.arc-th{flex:0 0 50px;width:50px;height:64px;border-radius:6px;overflow:hidden;background:#1a1612}.arc-th img{width:100%;height:100%;object-fit:cover}
+.arc-t{font-family:var(--serif);font-size:15px;font-weight:600;line-height:1.3}
+.arc-m{font-family:var(--mono);font-size:10px;color:var(--soft);margin-top:3px;display:flex;gap:8px;flex-wrap:wrap}.arc-m .acc{color:var(--accent)}
+.arc-rows{margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;display:flex;flex-direction:column;gap:7px}
+.arc-row{display:flex;gap:9px;align-items:flex-start}.arc-row .nm{flex:0 0 92px;font-size:12.5px;font-weight:500}
+.arc-row .vc{font-family:var(--mono);font-size:9.5px;color:var(--soft);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:2px 7px;white-space:nowrap}
+.arc-row .sn{flex:1;min-width:0;font-size:11.5px;color:var(--soft);line-height:1.5;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.arc-chip{font-family:var(--mono);font-size:10.5px;border-radius:999px;padding:4px 9px;white-space:nowrap;cursor:pointer;border:1px solid var(--line);text-decoration:none}
+.arc-chip.has{color:var(--ok);border-color:var(--ok)}.arc-chip.gen{color:#fff;background:var(--accent);border-color:var(--accent)}.arc-chip.gen:disabled{opacity:.5;cursor:default}
+@media(max-width:620px){.arc-row{flex-wrap:wrap}.arc-row .nm{flex-basis:auto}.arc-row .sn{flex-basis:100%}}
+</style>
+<script>
+/* ===== 讲解·解读 后台模块:讲解员管理 + 数据档案(口令与全后台共用 aha_admin_pass,缺则走 SSO 静默取)===== */
+let NPW='';try{NPW=localStorage.getItem('aha_admin_pass')||'';}catch(e){}
+function ensureAdminPass(force){return new Promise(res=>{
+  if(NPW&&!force)return res(NPW);
+  fetch('/cat/admin/adminpass').then(r=>r.ok?r.json():null).then(d=>{
+    if(d&&d.pass){NPW=d.pass;try{localStorage.setItem('aha_admin_pass',NPW);}catch(e){}}
+    res(NPW);
+  }).catch(()=>res(NPW));
+});}
+const _ae=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---- 讲解员管理 ---- */
+let _narrList=[],_narrVoices=['冰糖','茉莉','苏打','白桦'],_narrCur=null;
+async function loadNarrators(){
+  await ensureAdminPass();
+  const grid=document.getElementById('narrGrid'),msg=document.getElementById('narrMsg');
+  if(!NPW){msg.textContent='需要管理口令(登录后台后应自动获取)';grid.innerHTML='';return;}
+  msg.textContent='载入中…';
+  try{
+    const d=await (await fetch('/api/personas/all?pass='+encodeURIComponent(NPW))).json();
+    if(d.error){msg.textContent='✕ '+d.error;return;}
+    _narrList=d.items||[];_narrVoices=d.voices||_narrVoices;msg.textContent='共 '+_narrList.length+' 位';renderNarr();
+  }catch(e){msg.textContent='✕ 网络错误';}
+}
+function renderNarr(){
+  const g=document.getElementById('narrGrid');g.innerHTML='';
+  _narrList.forEach(p=>{
+    const el=document.createElement('div');el.className='narr-card';
+    const tags=(p.builtin?'<span class="narr-tag b">内置</span>':'<span class="narr-tag">用户</span>')+(p.edited?'<span class="narr-tag e">已改</span>':'');
+    el.innerHTML='<div class="hd"><span class="em">'+_ae(p.emoji||'👁')+'</span><span class="nm">'+_ae(p.name)+'</span><span class="narr-tags">'+tags+'</span></div>'+
+      '<div class="ds">'+_ae(p.descr||'')+'</div>'+
+      '<div class="meta">音色 '+_ae(p.voice||'—')+'　·　语气 '+_ae(p.emotion||'—')+'</div>'+
+      '<div class="pv">'+_ae((p.prompt||'').slice(0,90))+(p.prompt&&p.prompt.length>90?'…':'')+'</div>';
+    el.onclick=()=>narrEdit(p);g.appendChild(el);
+  });
+}
+function narrFillVoices(sel){document.getElementById('nf_voice').innerHTML=_narrVoices.map(v=>'<option'+(v===sel?' selected':'')+'>'+_ae(v)+'</option>').join('');}
+function narrEdit(p){_narrCur=p||null;
+  document.getElementById('narrMT').textContent=p?('编辑 · '+p.name):'新建讲解员';
+  document.getElementById('nf_emoji').value=p?(p.emoji||''):'👁';
+  document.getElementById('nf_name').value=p?(p.name||''):'';
+  document.getElementById('nf_descr').value=p?(p.descr||''):'';
+  document.getElementById('nf_prompt').value=p?(p.prompt||''):'';
+  narrFillVoices(p?p.voice:'冰糖');
+  document.getElementById('nf_emotion').value=p?(p.emotion||''):'';
+  document.getElementById('nf_del').style.display=(p&&!p.builtin)?'':'none';
+  document.getElementById('narrScrim').classList.add('on');
+}
+function narrClose(){document.getElementById('narrScrim').classList.remove('on');_narrCur=null;}
+function narrSave(){
+  const msg=document.getElementById('narrMsg');
+  const body={pass:NPW,id:_narrCur?_narrCur.id:'',name:document.getElementById('nf_name').value.trim(),emoji:document.getElementById('nf_emoji').value.trim(),
+    descr:document.getElementById('nf_descr').value.trim(),prompt:document.getElementById('nf_prompt').value.trim(),voice:document.getElementById('nf_voice').value,emotion:document.getElementById('nf_emotion').value.trim()};
+  if(!body.name||!body.prompt){msg.textContent='名称与提示词必填';return;}
+  fetch('/api/persona/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).then(r=>r.json()).then(d=>{
+    if(d.ok){narrClose();msg.textContent='✓ 已保存';loadNarrators();}else msg.textContent='✕ '+(d.error||'保存失败');});
+}
+function narrDel(){
+  if(!_narrCur||_narrCur.builtin)return;
+  if(!confirm('删除讲解员「'+_narrCur.name+'」?'))return;
+  const msg=document.getElementById('narrMsg');
+  fetch('/api/persona/delete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pass:NPW,id:_narrCur.id})}).then(r=>r.json()).then(d=>{
+    if(d.ok){narrClose();msg.textContent='✓ 已删除';loadNarrators();}else msg.textContent='✕ '+(d.error||'删除失败');});
+}
+document.getElementById('narrAdd').onclick=()=>narrEdit(null);
+document.getElementById('nf_save').onclick=narrSave;
+document.getElementById('nf_cancel').onclick=narrClose;
+document.getElementById('nf_del').onclick=narrDel;
+document.getElementById('narrScrim').onclick=e=>{if(e.target.id==='narrScrim')narrClose();};
+
+/* ---- 讲解 · 数据档案 ---- */
+let _arcItems=[],_arcByFile={},_arcCOS={},_arcOnlyMiss=false;
+const _arcCC=/^(意大利|法国|法兰西|荷兰|尼德兰|佛兰德斯|弗拉芒|德国|德意志|普鲁士|西班牙|英国|英格兰|苏格兰|爱尔兰|威尔士|美国|美利坚|俄罗斯|俄国|苏联|比利时|奥地利|瑞士|瑞典|挪威|丹麦|芬兰|波兰|希腊|葡萄牙|匈牙利|捷克|斯洛伐克|罗马尼亚|乌克兰|克罗地亚|塞尔维亚|保加利亚|日本|中国|韩国|朝鲜|印度|波斯|伊朗|土耳其|埃及|墨西哥|巴西|阿根廷|智利|加拿大|澳大利亚|新西兰|南非)/;
+function _arcClean(t,artist){t=String(t==null?'无题':t).replace(/\.(jpe?g|png|webp|gif|tiff?|bmp|jfif)$/i,'').replace(/[_]+/g,' ').trim();
+  const SEP=/[\s·・,，、|/\\–-]/;const segs=[];if(artist){const a=String(artist).trim();if(a&&a.length>=2){t=t.split(a).join(' ');a.split(/[·・\s]+/).forEach(s=>{s=s.trim();if(s.length>=2)segs.push(s);});}}
+  let g=0;while(g++<6){t=t.replace(new RegExp('^'+SEP.source+'+'),'');let cut=false;const m=t.match(_arcCC);
+    if(m&&(t.length===m[0].length||SEP.test(t[m[0].length]))){t=t.slice(m[0].length);cut=true;}else for(const s of segs){if(t.startsWith(s)&&(t.length===s.length||SEP.test(t[s.length]))){t=t.slice(s.length);cut=true;break;}}if(!cut)break;}
+  t=t.replace(/\s{2,}/g,' ').replace(new RegExp('^'+SEP.source+'+|'+SEP.source+'+$','g'),'').trim();return t||'无题';}
+function _arcImg(w,px){const f=(w&&w.file)||'';px=px||160;
+  if(w&&w.work_id&&_arcCOS[w.work_id])return '/'+_arcCOS[w.work_id];
+  if(/myqcloud\.com/i.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/quality/82';
+  if(/(^|\/)img\/[^?]*\.(jpe?g|png)$/i.test(f))return f.replace(/\.(jpe?g|png)$/i,'.t720.webp');
+  return (w&&w.thumb)||f;}
+async function loadArchive(){
+  await ensureAdminPass();
+  const list=document.getElementById('arcList');
+  if(!NPW){list.innerHTML='<div class="arc-empty">需要管理口令(登录后台后应自动获取)</div>';return;}
+  try{
+    const [d,cb,a]=await Promise.all([
+      fetch('/cat/exhibit?limit=8000').then(r=>r.json()).catch(()=>({works:[]})),
+      fetch('data/cosbig.json').then(r=>r.json()).catch(()=>({})),
+      fetch('/api/archive?pass='+encodeURIComponent(NPW)).then(r=>r.json())
+    ]);
+    _arcCOS=cb||{};(d.works||[]).forEach(w=>_arcByFile[w.file]=w);
+    if(a&&a.error){list.innerHTML='<div class="arc-empty">口令错误</div>';return;}
+    _arcItems=(a&&a.items)||[];renderArc();
+  }catch(e){list.innerHTML='<div class="arc-empty">网络错误</div>';}
+}
+function _arcFiltered(){
+  const q=(document.getElementById('arcQ').value||'').trim().toLowerCase();
+  return _arcItems.map(w=>{
+    const meta=_arcByFile[w.work_id]||{file:w.work_id};const title=_arcClean(meta.title||w.work_id,meta.artist);
+    let ps=w.personas;
+    if(_arcOnlyMiss)ps=ps.filter(p=>!p.tts);
+    if(q){const hit=title.toLowerCase().includes(q)||ps.some(p=>(p.name||'').toLowerCase().includes(q));if(!hit)ps=ps.filter(p=>(p.name||'').toLowerCase().includes(q)||title.toLowerCase().includes(q));}
+    return {w,meta,title,ps};
+  }).filter(x=>x.ps.length);
+}
+function renderArc(){
+  const list=document.getElementById('arcList'),stat=document.getElementById('arcStat');
+  const totW=_arcItems.length,totR=_arcItems.reduce((s,w)=>s+w.personas.length,0),totT=_arcItems.reduce((s,w)=>s+w.personas.filter(p=>p.tts).length,0);
+  stat.style.display='flex';
+  stat.innerHTML='<span><b>'+totW+'</b>幅画</span><span><b>'+totR+'</b>条解读</span><span class="g"><b>'+totT+'</b>条 TTS 已存</span><span><b style="color:var(--soft)">'+(totR-totT)+'</b>缺 TTS</span>';
+  const fs=_arcFiltered();
+  if(!fs.length){list.innerHTML='<div class="arc-empty">没有匹配的记录。</div>';return;}
+  list.innerHTML=fs.map(({w,meta,title,ps})=>{
+    const acc=(meta.work_id!=null&&meta.work_id!=='')?'AHA-'+String(meta.work_id).padStart(5,'0'):'';
+    const rows=ps.map(p=>{
+      const tts=p.tts?('<a class="arc-chip has" href="#" onclick="return arcPlay(\''+_ae(p.tts)+'\')">▷ 播放 '+(p.bytes?Math.round(p.bytes/1024)+'KB':'')+'</a>')
+                      :('<button class="arc-chip gen" data-w="'+_ae(w.work_id)+'" data-p="'+_ae(p.persona_id)+'" onclick="arcGen(this)">生成 TTS</button>');
+      return '<div class="arc-row"><span class="nm">'+_ae(p.name)+'</span>'+(p.voice?'<span class="vc">'+_ae(p.voice)+'</span>':'')+
+        '<span class="sn">'+_ae(p.snippet||'')+(p.len>100?'…':'')+'</span><span>'+tts+'</span></div>';
+    }).join('');
+    return '<div class="arc-wk"><div class="arc-wk-h"><a class="arc-th" href="art.html?'+(meta.work_id?('id='+meta.work_id):('w='+encodeURIComponent(w.work_id)))+'" target="_blank">'+
+      '<img src="'+_ae(_arcImg(meta,160))+'" alt="" loading="lazy"></a>'+
+      '<div><div class="arc-t">'+_ae(title)+'</div><div class="arc-m">'+(acc?'<span class="acc">'+acc+'</span>':'')+(meta.artist?'<span>'+_ae(meta.artist)+'</span>':'')+'<span>'+ps.length+' 位讲解员</span></div></div></div>'+
+      '<div class="arc-rows">'+rows+'</div></div>';
+  }).join('');
+}
+function arcPlay(url){const au=document.getElementById('arcAu');au.src=url+'?t='+Date.now();au.play().catch(()=>{});return false;}
+function arcGen(btn){
+  const work=btn.dataset.w,persona=btn.dataset.p;btn.disabled=true;btn.textContent='生成中…';
+  fetch('/api/tts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({work:work,persona:persona})}).then(r=>r.json()).then(d=>{
+    if(d&&d.url){
+      const it=_arcItems.find(w=>w.work_id===work);if(it){const pp=it.personas.find(x=>x.persona_id===persona);if(pp){pp.tts=d.url;pp.bytes=null;}}
+      renderArc();const au=document.getElementById('arcAu');au.src=d.url+'?t='+Date.now();au.play().catch(()=>{});
+    }else{btn.disabled=false;btn.textContent='失败·重试';btn.title=(d&&d.error)||'';}
+  }).catch(()=>{btn.disabled=false;btn.textContent='失败·重试';});
+}
+function arcGenAll(){
+  const btns=[...document.querySelectorAll('#mod-archive .arc-chip.gen:not(:disabled)')];
+  if(!btns.length){alert('当前筛选下没有缺 TTS 的');return;}
+  if(!confirm('将为当前筛选结果生成 '+btns.length+' 条 TTS,逐条进行,可能花一会儿。继续?'))return;
+  let i=0;(function step(){if(i>=btns.length)return;const b=btns[i++];if(!b.dataset.w){step();return;}
+    const work=b.dataset.w,persona=b.dataset.p;b.disabled=true;b.textContent='生成中…';
+    fetch('/api/tts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({work:work,persona:persona})}).then(r=>r.json()).then(d=>{
+      if(d&&d.url){const it=_arcItems.find(w=>w.work_id===work);if(it){const pp=it.personas.find(x=>x.persona_id===persona);if(pp)pp.tts=d.url;}}
+      setTimeout(step,400);
+    }).catch(()=>setTimeout(step,400));
+  })();
+}
+document.getElementById('arcQ').addEventListener('input',renderArc);
+document.getElementById('arcOnlyMiss').onclick=function(){_arcOnlyMiss=!_arcOnlyMiss;this.classList.toggle('ghost',!_arcOnlyMiss);this.textContent=_arcOnlyMiss?'看全部':'只看缺 TTS';renderArc();};
+document.getElementById('arcGenAll').onclick=arcGenAll;
+
+/* 首屏深链直达 narrators/archive 时,定义就绪后补触发一次(LOADERS 箭头在首次 showMod 时这些函数可能尚未定义)*/
+(function(){const h=decodeURIComponent(location.hash.slice(1));if(h==='narrators'){_loaded.narrators=1;loadNarrators();}else if(h==='archive'){_loaded.archive=1;loadArchive();}})();
 </script>
 <script src="js/aha-chrome.js"></script>
 </body>

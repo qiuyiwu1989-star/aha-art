@@ -9,13 +9,20 @@ OUT='/data/pub/p/aha/data/kg_style.json'
 d=json.load(open(os.path.expanduser("~/.aha_pg.json")))
 cn=psycopg2.connect(host=d["host"],port=d["port"],dbname=d["dbname"],user=d["user"],password=d["password"])
 cur=cn.cursor()
-cur.execute("SELECT data, canonical, eastern_lineage, bridge_conf FROM style_nodes ORDER BY sort")
+cur.execute("""SELECT sn.data, sn.canonical, sn.eastern_lineage, sn.bridge_conf,
+                      sc.name_cn AS canon_cn, p.name_cn AS canon_group
+               FROM style_nodes sn
+               LEFT JOIN style_canon sc ON sc.canon_id = sn.canon_id
+               LEFT JOIN style_canon p  ON p.canon_id  = sc.parent_id
+               ORDER BY sn.sort""")
 nodes=[]
-for data,canon,el,bc in cur.fetchall():
+for data,canon,el,bc,canon_cn,canon_group in cur.fetchall():
     n=dict(data)                       # 原节点零丢失
-    n['canonical']=canon               # 桥:32 标准码(供页面接作品)
+    n['canonical']=canon               # 旧桥:32 标准码(西方节点仍用,供页面接作品)
     if el: n['eastern_lineage']=el
     if bc: n['bridge_conf']=bc
+    if canon_cn: n['canon_cn']=canon_cn          # 新主干 style_canon 归类(东方已填:文人画/山水…)
+    if canon_group: n['canon_group']=canon_group  # 顶层伞(中国画)
     nodes.append(n)
 cn.close()
 

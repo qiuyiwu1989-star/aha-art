@@ -1,0 +1,841 @@
+<!doctype html>
+<html lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>策一个展 · aha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/aha-kit.css">
+<style>
+  /* 策展台专属:全部只吃 token，不重定义颜色 */
+  .page{max-width:1180px}
+  /* 竖屏:藏掉 PWA 底部标签栏(观展/为你/策展/我的)——它会盖住本页的策展工具条 */
+  @media(orientation:portrait){
+    #aha-tabbar{display:none!important}
+    body.aha-has-tabbar{padding-bottom:0!important}
+    .site-foot{display:none}
+  }
+  .topset{display:grid;gap:var(--s4);margin-bottom:var(--s5)}
+  .spineset{display:flex;flex-wrap:wrap;gap:var(--s2);align-items:center}
+  .spineset .lab{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute);margin-right:var(--s1)}
+  .spinebtn{font-family:var(--sans);font-size:var(--fz-small);color:var(--ink-soft);background:var(--card);
+    border:1px solid var(--line);border-radius:var(--r-pill);padding:6px 13px;cursor:pointer;transition:all var(--dur) var(--ease)}
+  .spinebtn:hover{border-color:var(--accent);color:var(--accent)}
+  .spinebtn.on{background:var(--accent);color:var(--paper);border-color:var(--accent)}
+  .spinehint{font-size:var(--fz-tiny);color:var(--ink-faint);font-family:var(--mono);margin-top:var(--s1);min-height:14px}
+
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:var(--s5);align-items:start}
+  @media(max-width:900px){.cols{grid-template-columns:1fr}}
+  .pane{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);
+    box-shadow:var(--sh-card);overflow:hidden;display:flex;flex-direction:column}
+  .pane-h{padding:var(--s3) var(--s4);border-bottom:1px solid var(--line-soft);display:flex;
+    align-items:center;justify-content:space-between;gap:var(--s2)}
+  .pane-h .t{font-family:var(--serif);font-size:var(--fz-h3);font-weight:600}
+  .pane-b{padding:var(--s4);overflow-y:auto;max-height:64vh}
+
+  /* 候选三入口 tab */
+  .modes{display:flex;gap:var(--s1)}
+  .mode{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute);background:none;border:none;
+    padding:5px 9px;border-radius:var(--r-sm);cursor:pointer}
+  .mode.on{background:var(--accent-soft);color:var(--accent)}
+  .modepanel{display:none}.modepanel.on{display:block}
+  .seedrow{display:flex;gap:var(--s2);margin-bottom:var(--s3)}
+  .facets{display:flex;flex-wrap:wrap;gap:var(--s2);margin-bottom:var(--s2)}
+  .facets .select{width:auto;flex:1 1 96px;min-width:88px;font-size:var(--fz-tiny);padding:6px 8px}
+  .pickbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--s3);
+    font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute)}
+  .pickbar #pickShuffle{cursor:pointer;color:var(--accent)}
+  .pickbar #pickShuffle:hover{text-decoration:underline}
+  .seedban{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-soft);background:var(--accent-soft);
+    border:1px solid var(--accent-line);border-radius:var(--r-sm);padding:7px 11px;margin-bottom:var(--s2);line-height:1.5}
+  .seedban a{color:var(--accent);cursor:pointer;margin-left:4px}
+  /* 策展助理:对话 */
+  .chatlog{display:flex;flex-direction:column;gap:var(--s2);max-height:42vh;overflow-y:auto;margin-bottom:var(--s3)}
+  .ai-intro{font-family:var(--serif);font-size:var(--fz-body);line-height:1.75;color:var(--ink-soft);padding:2px var(--s1) 0}
+  .ai-intro b{color:var(--ink);font-weight:500}
+  .ai-intro .hint{display:block;font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-faint);margin-top:6px}
+  .bub{font-size:var(--fz-small);line-height:1.65;padding:var(--s2) var(--s3);border-radius:var(--r-lg);max-width:90%}
+  .bub.user{align-self:flex-end;background:var(--ink);color:var(--paper);border-bottom-right-radius:5px;white-space:pre-wrap}
+  .bub.ai{align-self:flex-start;background:var(--paper-2);border:1px solid var(--line-soft);color:var(--ink);border-bottom-left-radius:5px;max-width:97%}
+  .bub .bthesis{font-family:var(--serif);font-size:var(--fz-body);line-height:1.45;margin-bottom:var(--s2)}
+  .bub .brow{margin:var(--s2) 0;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+  .bub .blab{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute)}
+  .bub .brat{font-size:var(--fz-tiny);color:var(--ink-soft);line-height:1.7;margin-top:var(--s2);
+    border-top:1px solid var(--line-soft);padding-top:var(--s2)}
+  .saychips{display:flex;align-items:baseline;gap:var(--s2);flex-wrap:wrap;margin-bottom:var(--s3)}
+  .saychips .sclab{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-faint);flex:none}
+  .saychips .scrow{display:flex;flex-wrap:wrap;gap:6px}
+  .saychips .chip{cursor:pointer;font-family:var(--sans);font-size:var(--fz-tiny);background:none;
+    border:1px solid var(--line);color:var(--ink-soft);border-radius:var(--r-pill);padding:3px 11px;transition:all var(--dur) var(--ease)}
+  .saychips .chip:hover{border-color:var(--accent);color:var(--accent)}
+  .chatbar{display:flex;gap:var(--s2);align-items:flex-end;background:var(--card);
+    border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s2);transition:border-color var(--dur)}
+  .chatbar:focus-within{border-color:var(--accent)}
+  .chatbar textarea{flex:1;border:none;background:none;box-shadow:none;padding:5px 6px;resize:none;
+    min-height:22px;max-height:120px;font-family:var(--sans);font-size:var(--fz-body);color:var(--ink)}
+  .chatbar textarea:focus{outline:none;box-shadow:none}
+  .chatbar textarea::placeholder{color:var(--ink-faint)}
+  .sendbtn{flex:none;width:34px;height:34px;border-radius:50%;background:var(--accent);color:var(--paper);
+    border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity var(--dur)}
+  .sendbtn:hover{opacity:.9}.sendbtn:disabled{opacity:.4;cursor:not-allowed}
+  .sendbtn svg{width:16px;height:16px}
+  /* 策展助理简报卡(旧,保留兜底用) */
+  .brief{background:var(--accent-soft);border:1px solid var(--accent-line);border-radius:var(--r);
+    padding:var(--s3) var(--s4);margin:var(--s3) 0;font-size:var(--fz-small);line-height:1.6}
+  .brief-h{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--accent);margin-bottom:var(--s2);letter-spacing:.03em}
+  .brief-thesis{font-family:var(--serif);font-size:var(--fz-h3);color:var(--ink);line-height:1.4;margin-bottom:var(--s3)}
+  .brief-row{margin:var(--s2) 0;color:var(--ink-soft);display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+  .brief-row .lab{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute)}
+  .brief-rat{margin-top:var(--s3);color:var(--ink-soft);line-height:1.75;border-top:1px solid var(--accent-line);padding-top:var(--s2)}
+  .brief-foot{margin-top:var(--s2);font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute)}
+  .adopt{font-family:var(--sans);font-size:var(--fz-tiny);background:var(--accent);color:var(--paper);
+    border:none;border-radius:var(--r-pill);padding:3px 11px;cursor:pointer;transition:opacity var(--dur)}
+  .adopt:hover{opacity:.9}
+  .briefchip{font-family:var(--mono);font-size:var(--fz-tiny);background:var(--card);border:1px solid var(--accent-line);
+    border-radius:var(--r-pill);padding:2px 10px;cursor:pointer;color:var(--accent)}
+  .briefchip:hover{background:var(--accent);color:var(--paper)}
+
+  /* 画格 */
+  .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:var(--s3)}
+  .pcard{position:relative;border-radius:var(--r);overflow:hidden;cursor:pointer;background:var(--paper-2);
+    border:1px solid var(--line-soft);transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+  .pcard:hover{transform:translateY(-2px);box-shadow:var(--sh-card)}
+  .pcard img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+  .pcard .pm{padding:5px 7px}
+  .pcard .pn{font-size:var(--fz-tiny);color:var(--ink);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pcard .pa{font-size:9.5px;color:var(--ink-mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:var(--mono)}
+  .pcard.inbasket{outline:2px solid var(--accent);outline-offset:-2px}
+  .pcard .add{position:absolute;top:5px;right:5px;width:22px;height:22px;border-radius:var(--r-pill);
+    background:var(--accent);color:var(--paper);font-size:13px;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity var(--dur)}
+  .pcard:hover .add{opacity:1}
+  .pcard .fav{position:absolute;top:5px;left:5px;width:22px;height:22px;border-radius:var(--r-pill);
+    background:var(--glass);backdrop-filter:blur(3px);border:1px solid var(--glass-line);color:var(--ink-mute);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transition:opacity var(--dur),color var(--dur)}
+  .pcard:hover .fav{opacity:1}
+  .pcard .fav.on{opacity:1;color:var(--accent)}
+  .pcard .fav svg{width:13px;height:13px}
+  .pcard .why{position:absolute;left:0;right:0;bottom:0;background:var(--glass);backdrop-filter:blur(3px);
+    font-size:9px;font-family:var(--mono);color:var(--accent);padding:2px 6px;border-top:1px solid var(--glass-line)}
+
+  /* 篮子(右栏=我的展) */
+  .bitem{display:flex;gap:var(--s3);padding:var(--s2) 0;border-bottom:1px solid var(--line-soft);align-items:flex-start}
+  .bitem:last-child{border-bottom:none}
+  .bthumb{width:64px;height:64px;border-radius:var(--r-sm);object-fit:cover;flex:none;background:var(--paper-2)}
+  .bmeta{flex:1;min-width:0}
+  .bttl{font-size:var(--fz-small);color:var(--ink);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bart{font-size:var(--fz-tiny);color:var(--ink-mute);font-family:var(--mono);margin-bottom:4px}
+  .bnote{width:100%;font-family:var(--sans);font-size:var(--fz-tiny);color:var(--ink-soft);
+    background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--r-sm);padding:4px 8px}
+  .bnote::placeholder{color:var(--ink-faint)}
+  .bside{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex:none}
+  .baxis{font-family:var(--mono);font-size:9.5px;color:var(--accent);background:var(--accent-soft);
+    padding:2px 7px;border-radius:var(--r-pill);white-space:nowrap}
+  .brm{cursor:pointer;color:var(--ink-faint);font-size:14px;line-height:1}.brm:hover{color:var(--rej)}
+  .bcover{cursor:pointer;color:var(--ink-faint);font-size:13px;line-height:1}.bcover:hover{color:var(--accent)}
+  .bcover.on{color:var(--accent)}
+  .bmoves{display:flex;gap:2px;margin-bottom:2px}
+  .bmove{cursor:pointer;color:var(--ink-faint);font-size:13px;line-height:1;width:18px;height:18px;
+    display:flex;align-items:center;justify-content:center;border-radius:var(--r-sm)}
+  .bmove:hover{color:var(--accent);background:var(--accent-soft)}
+  .seq{font-family:var(--mono);font-size:9.5px;color:var(--ink-faint);width:18px;text-align:right;flex:none;padding-top:22px}
+  .bitem.drag{cursor:grab}.bitem.dragging{opacity:.4}
+
+  /* 底部 tray */
+  .tray{position:sticky;bottom:0;margin-top:var(--s5);background:var(--glass);backdrop-filter:blur(10px);
+    border:1px solid var(--glass-line);border-radius:var(--r-lg);padding:var(--s3) var(--s4);
+    display:flex;align-items:center;gap:var(--s3);box-shadow:var(--sh-pop);flex-wrap:wrap}
+  .tray .cnt{font-family:var(--mono);font-size:var(--fz-small);color:var(--ink-soft)}
+  .tray .cnt b{color:var(--accent);font-size:var(--fz-h3)}
+  .tray .grow{flex:1}
+  .pubtoggle{display:flex;align-items:center;gap:6px;font-size:var(--fz-tiny);color:var(--ink-mute);font-family:var(--mono);cursor:pointer}
+  .btn:disabled{opacity:.38;cursor:not-allowed;transform:none;box-shadow:none}
+  .btn:disabled:hover{transform:none;opacity:.38}
+
+  /* 预览幕 */
+  /* 画墙:等高行排——同一行的画等高、宽窄随画自身比例,长短并排、间距一致、不裁切、保序 */
+  .pv-wall{display:flex;flex-wrap:wrap;gap:var(--s5) var(--s4);align-items:flex-start;justify-content:center}
+  .pv-w{flex:0 0 auto;max-width:min(100%,560px);display:flex;flex-direction:column;align-items:center}
+  .pv-w img{height:clamp(150px,24vh,240px);width:auto;max-width:100%;border-radius:var(--r);box-shadow:var(--sh-card);display:block}
+  .pv-cap{font-size:var(--fz-tiny);color:var(--ink-mute);font-family:var(--mono);margin-top:8px;
+    text-align:center;max-width:300px;line-height:1.5}
+  .pv-cap b{color:var(--ink-soft);font-weight:500}
+  #pvCover{display:block;max-width:520px;max-height:360px;width:auto;margin:0 auto var(--s6);border-radius:var(--r);box-shadow:var(--sh-card);object-fit:contain}
+  .pv-lead{text-align:center;max-width:640px;margin:0 auto var(--s7)}
+  .pv-lead .pt{font-family:var(--serif);font-size:var(--fz-display);font-weight:600;line-height:1.15}
+  .pv-lead .pth{font-family:var(--serif);font-size:var(--fz-h3);color:var(--ink-soft);font-style:italic;margin-top:var(--s3)}
+  .pv-lead .pmeta{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute);margin-top:var(--s4)}
+  /* 脊带:把动线轴画出来,让"那条线"看得见 */
+  .spineband{max-width:680px;margin:0 auto var(--s7)}
+  .sb-lab{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute);text-align:center;letter-spacing:.04em;margin-bottom:var(--s3)}
+  .sb-track{position:relative;height:7px;border-radius:var(--r-pill);background:var(--paper-2);margin:var(--s5) var(--s2) var(--s2)}
+  .sb-track.grad{background:linear-gradient(90deg,var(--blue),var(--gold))}
+  .sb-dot{position:absolute;top:50%;width:11px;height:11px;border-radius:var(--r-pill);background:var(--accent);
+    border:2px solid var(--card);transform:translate(-50%,-50%);cursor:pointer;box-shadow:var(--sh-1);transition:transform var(--dur) var(--ease)}
+  .sb-dot:hover{transform:translate(-50%,-50%) scale(1.35)}
+  .sb-ends{display:flex;justify-content:space-between;font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-faint)}
+  .sb-ew{display:flex;height:13px;border-radius:var(--r-pill);overflow:hidden;margin:var(--s2) 0}
+  .sb-ew .e{background:var(--green-soft)} .sb-ew .w{background:var(--blue-soft)} .sb-ew .u{background:var(--paper-2)}
+  .sb-chips{display:flex;flex-wrap:wrap;gap:var(--s2);justify-content:center}
+  .sb-chip{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-soft);background:var(--paper-2);
+    border:1px solid var(--line-soft);border-radius:var(--r-pill);padding:3px 11px}
+  .sb-chip b{color:var(--accent);font-weight:500}
+  .toastwrap{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:60;display:flex;flex-direction:column;gap:8px;align-items:center}
+</style><script src="/js/aha-app.js" defer></script></head>
+<body data-home="museum.html">
+<div class="page" id="editor">
+  <div class="pagehead">
+    <a class="back" href="museum.html">← 人类美术馆</a>
+    <div class="kicker">Curator · 在知识图谱里策一个展</div>
+    <h1>策一个展</h1>
+    <p class="sub">展 ＝ 一句<b>主张</b> ＋ 一条<b>动线脊</b> ＋ 你<b>选的画</b>。脊会替你把画沿一根轴排好——这是别处的收藏夹做不到的：在 aha 的隐空间里，让画站成一句话。</p>
+  </div>
+
+  <div class="topset">
+    <div class="field" style="margin:0">
+      <input class="input" id="exTitle" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" placeholder="展名 · 如「光的简史」「孤独的房间」「东西方各自如何画山」">
+    </div>
+    <div class="field" style="margin:0">
+      <input class="input" id="exThesis" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" placeholder="一句策展词(主张)· 你想用这组画说什么">
+    </div>
+    <div>
+      <div class="spineset">
+        <span class="lab">动线脊</span>
+        <button class="spinebtn on" data-spine="free" data-ic="create" data-ic-text="自由手排"></button>
+        <button class="spinebtn" data-spine="time" data-ic="timeline" data-ic-text="时间轴"></button>
+        <button class="spinebtn" data-spine="emotion" data-ic="heart" data-ic-text="情绪弧"></button>
+        <button class="spinebtn" data-spine="eastwest" data-ic="compass" data-ic-text="东西对照"></button>
+        <button class="spinebtn" data-spine="subject" data-ic="subject" data-ic-text="母题聚类"></button>
+        <button class="spinebtn" data-spine="style" data-ic="design" data-ic-text="风格聚类"></button>
+      </div>
+      <div class="spinehint" id="spineHint"></div>
+    </div>
+  </div>
+
+  <div class="cols">
+    <!-- 左:候选库,三入口 -->
+    <div class="pane">
+      <div class="pane-h">
+        <span class="t">加画</span>
+        <div class="modes">
+          <button class="mode on" data-mode="say" data-ic="sparkles" data-ic-text="跟助理聊"></button>
+          <button class="mode" data-mode="pick" data-ic="gallery" data-ic-text="自己挑"></button>
+          <button class="mode" data-mode="seed" data-ic="network" data-ic-text="找相似"></button>
+          <button class="mode" data-mode="fav" data-ic="heart" data-ic-text="我的收藏"></button>
+        </div>
+      </div>
+      <div class="pane-b">
+        <!-- 手拣 -->
+        <div class="modepanel" data-panel="pick">
+          <div id="seedBanner" class="seedban" style="display:none"></div>
+          <div class="search" style="margin-bottom:var(--s2)">
+            <input class="input" id="pickSearch" type="search" name="curate-pick-search" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" readonly onfocus="this.removeAttribute('readonly')" placeholder="搜画家 / 画名…">
+          </div>
+          <div class="facets">
+            <select class="select" id="fStyle"><option value="">全部流派</option></select>
+            <select class="select" id="fSubject"><option value="">全部题材</option></select>
+            <select class="select" id="fEmo"><option value="">全部情绪</option></select>
+            <select class="select" id="fWv"><option value="">全部世界观</option></select>
+          </div>
+          <div class="pickbar">
+            <span id="pickCount">共 — 幅可选</span>
+            <span id="pickShuffle">🔀 换一批</span>
+          </div>
+          <div class="pgrid" id="pickGrid"></div>
+          <div class="empty" id="pickMore" style="margin-top:var(--s3);cursor:pointer;display:none">再来一批 ↓</div>
+        </div>
+        <!-- 策展助理:多轮对话 -->
+        <div class="modepanel on" data-panel="say">
+          <div id="chatLog" class="chatlog">
+            <div class="ai-intro">跟我说说你想策一个<b>什么展</b>——一个想法、一种感觉都行,我来帮你把它变成一个展:给主张、挑动线、选画。<span class="hint">都是建议,你来定夺。</span></div>
+          </div>
+          <div class="saychips"><span class="sclab">试试</span><div id="sayChips" class="scrow"></div></div>
+          <div class="chatbar">
+            <textarea id="sayInput" rows="2" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" placeholder="说想法,或提调整 · 如「再暗一点」「加几张东方的」"></textarea>
+            <button class="sendbtn" id="sayGo" title="发送" aria-label="发送"><i data-ic="arrowRight"></i></button>
+          </div>
+          <div class="pgrid" id="sayGrid" style="margin-top:var(--s3)"></div>
+        </div>
+        <!-- 种子扩展(KG 邻近) -->
+        <div class="modepanel" data-panel="seed">
+          <div class="seedrow">
+            <select class="select" id="seedSel"></select>
+            <button class="btn ghost" id="seedGo">找相邻 →</button>
+          </div>
+          <div class="note" style="font-size:9.5px;color:var(--ink-faint);margin-bottom:var(--s3)">按<b>世界观坐标·情绪 VAD·七大构成指纹</b>的相邻度，从全馆找最像种子的画——沿着图谱往外长。</div>
+          <div class="pgrid" id="seedGrid"></div>
+        </div>
+        <!-- 我的收藏 -->
+        <div class="modepanel" data-panel="fav">
+          <div class="pickbar"><span id="favCount">读取收藏…</span><span id="favAddAll" style="cursor:pointer;color:var(--accent)">＋ 全部加入</span></div>
+          <div class="pgrid" id="favGrid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右:我的展(篮子) -->
+    <div class="pane" id="minePane">
+      <div class="pane-h">
+        <span class="t">我的展</span>
+        <span style="display:flex;align-items:center;gap:var(--s3)">
+          <span id="clearDraftBtn" onclick="clearAll()" style="display:none;cursor:pointer;font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-faint)">清空</span>
+          <span class="chip" id="basketBadge">0 幅</span></span>
+      </div>
+      <div class="pane-b" id="basket">
+        <div class="empty" style="text-align:left;line-height:2.1">
+          <b style="color:var(--ink-soft)">三步策一个展</b><br>
+          ① 从左边<b>加画</b>:跟助理聊(它帮你想) / 自己挑 / 找相似,2–24 幅<br>
+          ② 上方挑一条<b>动线脊</b>,它替你把画排成一句话<br>
+          ③ 起个名 →「发布」,进美术馆、可分享<br>
+          <span style="font-size:var(--fz-tiny);color:var(--ink-faint)">没思路? 先去 <a href="exhibitions.html" target="_blank" style="color:var(--accent)">展览馆 ↗</a> 看看别人怎么策的</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="admBar" style="display:none;margin-top:var(--s4);background:var(--accent-soft);border:1px solid var(--accent-line);
+    border-radius:var(--r);padding:var(--s2) var(--s4);display:none;align-items:center;gap:var(--s3);flex-wrap:wrap;font-size:var(--fz-tiny);font-family:var(--mono);color:var(--accent)">
+    <span style="font-weight:600">官方展 · 馆方策展</span>
+    <span style="color:var(--ink-mute)">管理口令</span><input class="input" id="admPass" type="password" placeholder="admin_pass" style="width:150px;padding:5px 9px">
+    <span style="color:var(--ink-mute)">排序 seq</span><input class="input" id="admSeq" type="number" value="0" style="width:64px;padding:5px 9px">
+    <span id="admEdit" style="color:var(--ink-mute)"></span>
+  </div>
+  <div class="tray">
+    <span class="cnt" onclick="document.getElementById('minePane').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer" title="查看我的展"><b id="trayCnt">0</b> 幅 ↗</span>
+    <span style="font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute)" id="traySpine">✋ 自由手排</span>
+    <span class="grow"></span>
+    <label class="pubtoggle"><input type="checkbox" id="pubChk"> <span id="pubLabel">申请公开 · 经馆方审核后进展览馆</span></label>
+    <button class="btn ghost" id="previewBtn">预览</button>
+    <button class="btn ghost" id="shareBtn">复制分享链接</button>
+    <button class="btn" id="publishBtn">发布</button>
+  </div>
+</div>
+
+<!-- 预览幕 -->
+<div class="page" id="preview" style="display:none">
+  <div class="pagehead"><a class="back" href="#" id="pvBack">← 回到编辑</a></div>
+  <img id="pvCover" alt="" style="display:none">
+  <div class="pv-lead">
+    <div class="pt" id="pvTitle"></div>
+    <div class="pth" id="pvThesis"></div>
+    <div class="pmeta" id="pvMeta"></div>
+    <div id="pvActions" style="margin-top:var(--s5);display:flex;gap:var(--s2);justify-content:center;flex-wrap:wrap"></div>
+  </div>
+  <div class="spineband" id="pvBand" style="display:none"></div>
+  <div class="pv-wall" id="pvWall"></div>
+</div>
+
+<div class="toastwrap" id="toasts"></div>
+
+<script src="aha-mem.js"></script>
+<script>
+const CAT=p=>fetch('/cat/'+p).then(r=>r.json());
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+let WORKS=[], BYID={};
+const S={ title:'', thesis:'', spine:'free', basket:[], notes:{}, cover:'', pub:false };
+let COLLECTED=new Set();   // 我的收藏(file key);全站同 uid 共享,curate 里也能收/取
+
+function toast(msg,kind){const t=document.createElement('div');t.className='toast '+(kind||'');
+  t.innerHTML=`<span class="ti">${kind==='rej'?'✕':kind==='ok'?'✓':'◆'}</span><span>${esc(msg)}</span>`;
+  $('#toasts').appendChild(t);setTimeout(()=>t.remove(),3200);}
+
+function imgT(w,px){const f=w.thumb||w.file||'';px=px||300;
+  if(/myqcloud\.com/i.test(f)&&!/imageMogr2/.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/format/webp/quality/82';return f;}
+// 清洗标题:很多 title 把艺术家名/时代/地域前缀塞进来了(如「佩罗 巴拉岛」「近现代 朱德群 别有天地」),
+// 显示时去掉,免得和作者重复。仿 museum 的 mTitle。
+function cleanTitle(t,artist){
+  if(t==null)return '';
+  t=String(t).replace(/\.(jpe?g|png|webp|gif|tiff?|bmp|jfif)$/i,'').replace(/_+/g,' ').trim();
+  if(artist){const a=String(artist).trim();
+    if(a.length>=2){t=t.split(a).join(' ');
+      a.split(/[·・\s]+/).forEach(s=>{s=s.trim();if(s.length>=2){
+        try{t=t.replace(new RegExp('(^|[\\s·・])'+s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'(?=[\\s·・]|$)','g'),' ');}catch(e){}}});}}
+  t=t.replace(/^(近现代|现代|当代|近代|古典|文艺复兴|巴洛克|洛可可|印象派|后印象派|新古典主义|浪漫主义|现实主义|表现主义|抽象|当代艺术)[\s·・]+/,'');
+  t=t.replace(/^(意大利|法国|法兰西|荷兰|尼德兰|佛兰德斯|德国|德意志|西班牙|英国|英格兰|美国|俄罗斯|俄国|比利时|奥地利|瑞士|瑞典|挪威|丹麦|波兰|希腊|葡萄牙|匈牙利|日本|中国|韩国|朝鲜|印度)[\s·・]+/,'');
+  t=t.replace(/[\s·・]{2,}/g,' ').replace(/^[\s·・]+|[\s·・]+$/g,'').trim();
+  if(/^(无题|untitled|无名|佚名)$/i.test(t))return '';
+  return t;
+}
+
+// 从文件名兜出一个标题(当某画已不在展出集、查不到元数据时,至少图能显示、有个名)
+function fileTitle(f){try{let s=decodeURIComponent(String(f).split('/').pop().replace(/\.[a-z0-9]+$/i,''));
+  return s.replace(/[-_]+/g,' ').replace(/\s+/g,' ').replace(/\b[a-z]/g,c=>c.toUpperCase()).trim();}catch(e){return '';}}
+
+// ── 脊:排序逻辑 ───────────────────────────────────────────────
+const SPINES={
+  free:    {hint:'拖拽,或用每幅右上的 ↑↓ 调整顺序——纯手感。', axis:w=>'', sort:ids=>ids},
+  time:    {hint:'按创作年代从早到晚——讲一段历史。缺年代的画置于末尾。',
+            axis:w=>w.year?w.year+'':'—', sort:ids=>stable(ids,w=>w.year==null?1e9:w.year)},
+  emotion: {hint:'按情绪效价从沉郁到明亮(VAD·valence)——一条情绪弧。',
+            axis:w=>w.vad&&w.vad.v!=null?'V '+w.vad.v.toFixed(2):'—', sort:ids=>stable(ids,w=>w.vad&&w.vad.v!=null?w.vad.v:99)},
+  eastwest:{hint:'东方在前、西方在后,组内按年代——一场跨文明对照。',
+            axis:w=>w.region==='east'?'东':w.region==='west'?'西':'—',
+            sort:ids=>stable(ids,w=>(w.region==='east'?0:w.region==='west'?1:2)*1e6+(w.year||5000))},
+  subject: {hint:'同一母题的画聚到一起——按题材成章。',
+            axis:w=>w.subject||'—', sort:ids=>clusterBy(ids,w=>w.subject||'~')},
+  style:   {hint:'同一风格的画聚到一起——按流派成章。',
+            axis:w=>w.style||'—', sort:ids=>clusterBy(ids,w=>w.style||'~')},
+};
+function stable(ids,key){return ids.map((id,i)=>[id,i]).sort((a,b)=>{const ka=key(BYID[a[0]]),kb=key(BYID[b[0]]);return ka-kb||a[1]-b[1];}).map(x=>x[0]);}
+function clusterBy(ids,key){const order=[],seen={};ids.forEach(id=>{const k=key(BYID[id]);(seen[k]=seen[k]||[]).push(id);if(order.indexOf(k)<0)order.push(k);});
+  return order.flatMap(k=>seen[k]);}
+function ordered(){return SPINES[S.spine].sort(S.basket.slice());}
+
+// ── 种子:特征邻近度 ───────────────────────────────────────────
+function featvec(w){const v=[];const push=x=>v.push(x==null?null:+x);
+  push(w.x);push(w.y);
+  const d=w.vad||{};push(d.v);push(d.a);push(d.d);
+  const L=w.lang||{};['构图','空间','造型','光影','色彩','笔触','边缘'].forEach(k=>push(L[k]));
+  return v;}
+function dist(a,b){let s=0,n=0;for(let i=0;i<a.length;i++){if(a[i]!=null&&b[i]!=null){const d=a[i]-b[i];s+=d*d;n++;}}
+  return n?Math.sqrt(s/n):Infinity;}
+
+// ── 渲染:画格(候选) ──────────────────────────────────────────
+function heartSvg(on){return window.AHAIcons?window.AHAIcons.svg('heart',{fill:on}):(on?'♥':'♡');}
+function pcard(w,why){const inb=S.basket.includes(w.work_id),col=COLLECTED.has(w.file);
+  const el=document.createElement('div');el.className='pcard'+(inb?' inbasket':'');el.dataset.wid=w.work_id;
+  el.innerHTML=`<img loading="lazy" decoding="async" src="${imgT(w)}"><div class="fav${col?' on':''}" title="收藏到我的收藏(以后还能用)">${heartSvg(col)}</div>
+    <div class="pm"><div class="pn">${esc(cleanTitle(w.title,w.artist)||'无题')}</div><div class="pa">${esc(w.artist||'佚名')}</div></div>
+    <div class="add" title="加进当前这个展">${inb?'✓':'+'}</div>${why?`<div class="why">${esc(why)}</div>`:''}`;
+  el.onclick=()=>{toggle(w.work_id);const now=S.basket.includes(w.work_id);
+    el.classList.toggle('inbasket',now);const a=el.querySelector('.add');if(a)a.textContent=now?'✓':'+';};
+  const fv=el.querySelector('.fav');fv.onclick=(e)=>{e.stopPropagation();const now=!COLLECTED.has(w.file);
+    if(now)COLLECTED.add(w.file);else COLLECTED.delete(w.file);
+    fv.classList.toggle('on',now);fv.innerHTML=heartSvg(now);updateFavCount();
+    if(window.AHA)AHA.collect(w.file,now);toast(now?'❤ 已收藏,在「我的收藏」可取用':'已取消收藏','ok');};
+  return el;}
+function updateFavCount(){const sp=document.querySelector('.mode[data-mode="fav"] span');
+  if(sp)sp.textContent='我的收藏'+(COLLECTED.size?' '+COLLECTED.size:'');}
+function fillGrid(sel,list,whyFn){const g=$(sel);g.innerHTML='';
+  if(!list.length){g.innerHTML='<div class="empty" style="grid-column:1/-1">没有匹配——换个说法试试</div>';return;}
+  list.forEach(w=>g.appendChild(pcard(w,whyFn&&whyFn(w))));}
+
+function toggle(id){const i=S.basket.indexOf(id);
+  if(i>=0)S.basket.splice(i,1);
+  else{if(S.basket.length>=24){toast('一个展最多 24 幅,够说一件事了','warn');return;}S.basket.push(id);}
+  renderAll();}
+
+// ── 渲染:篮子 ────────────────────────────────────────────────
+let dragId=null;
+function renderBasket(){const b=$('#basket');const ord=ordered();
+  if(!ord.length){b.innerHTML='<div class="empty" style="text-align:left;line-height:2.1"><b style="color:var(--ink-soft)">三步策一个展</b><br>① 从左边<b>加画</b>:跟助理聊(它帮你想) / 自己挑 / 找相似,2–24 幅<br>② 上方挑一条<b>动线脊</b>,它替你把画排成一句话<br>③ 起个名 →「发布」,进美术馆、可分享<br><span style="font-size:var(--fz-tiny);color:var(--ink-faint)">没思路? 先去 <a href="exhibitions.html" target="_blank" style="color:var(--accent)">展览馆 ↗</a> 看看别人怎么策的</span></div>';return;}
+  b.innerHTML='';const free=S.spine==='free';
+  ord.forEach((id,idx)=>{const w=BYID[id];if(!w)return;
+    const it=document.createElement('div');it.className='bitem'+(free?' drag':'');it.draggable=free;
+    it.innerHTML=`<div class="seq">${idx+1}</div>
+      <img class="bthumb" src="${imgT(w,160)}">
+      <div class="bmeta"><div class="bttl">${esc(cleanTitle(w.title,w.artist)||'无题')}</div>
+        <div class="bart">${esc(w.artist||'佚名')}${w.year?' · '+w.year:''}</div>
+        <input class="bnote" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" placeholder="给这幅加一句注(可选)" value="${esc(S.notes[id]||'')}"></div>
+      <div class="bside">${free?`<span class="bmoves"><span class="bmove" data-d="-1" title="上移">↑</span><span class="bmove" data-d="1" title="下移">↓</span></span>`:''}<span class="baxis">${esc(SPINES[S.spine].axis(w)||'·')}</span>
+        <span class="bcover${(S.cover||ord[0])===id?' on':''}" title="设为封面">${(S.cover||ord[0])===id?'★封面':'☆封面'}</span>
+        <span class="brm"><i data-ic="close"></i></span></div>`;
+    it.querySelector('.bnote').oninput=e=>{S.notes[id]=e.target.value;saveDraft();};
+    it.querySelector('.brm').onclick=()=>toggle(id);
+    it.querySelector('.bcover').onclick=()=>{S.cover=id;renderBasket();};
+    it.querySelectorAll('.bmove').forEach(mv=>mv.onclick=()=>{const dir=+mv.dataset.d,from=S.basket.indexOf(id),to=from+dir;
+      if(to<0||to>=S.basket.length)return;const t=S.basket[from];S.basket[from]=S.basket[to];S.basket[to]=t;renderAll();});
+    if(free){
+      it.ondragstart=()=>{dragId=id;it.classList.add('dragging');};
+      it.ondragend=()=>{dragId=null;it.classList.remove('dragging');};
+      it.ondragover=e=>{e.preventDefault();};
+      it.ondrop=e=>{e.preventDefault();if(dragId==null||dragId===id)return;
+        const from=S.basket.indexOf(dragId),to=S.basket.indexOf(id);
+        S.basket.splice(from,1);S.basket.splice(to,0,dragId);renderAll();};
+    }
+    b.appendChild(it);
+  });}
+
+function renderAll(){
+  $('#basketBadge').textContent=S.basket.length+' 幅';
+  $('#trayCnt').textContent=S.basket.length;
+  $('#traySpine').textContent=$('.spinebtn.on').textContent;
+  $('#spineHint').textContent=SPINES[S.spine].hint+nullNote();
+  const ready=S.basket.length>=2;   // 不够 2 幅时禁用发布/预览/分享,按钮态即提示
+  ['#publishBtn','#previewBtn','#shareBtn'].forEach(s=>{const b=$(s);if(b)b.disabled=!ready;});
+  renderBasket();refreshSeedSel();syncCardStates();
+  const cl=$('#clearDraftBtn');if(cl)cl.style.display=S.basket.length?'inline':'none';
+  saveDraft();
+}
+// 只更新候选卡的「在篮中」态,不重渲网格——避免加画时滚动跳回顶部/闪烁
+function syncCardStates(){$$('.pcard[data-wid]').forEach(el=>{const inb=S.basket.includes(+el.dataset.wid);
+  el.classList.toggle('inbasket',inb);const a=el.querySelector('.add');if(a)a.textContent=inb?'✓':'+';});}
+function nullNote(){if(S.spine==='time'){const n=S.basket.filter(id=>BYID[id].year==null).length;return n?`　⚠ ${n} 幅缺年代,已置末`:'';}
+  if(S.spine==='eastwest'){const n=S.basket.filter(id=>BYID[id].region==null).length;return n?`　⚠ ${n} 幅无东西标记,已置末`:'';}return '';}
+
+// ── 三入口逻辑 ───────────────────────────────────────────────
+// 手拣:搜索 + 分批
+let pickN=40, pickCache=null, SEED_FILES=null;   // SEED_FILES:从某展厅「以此策展」带来的选画池
+const WVN_PICK={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+function topVals(field,n){const c={};WORKS.forEach(w=>{const v=w[field];if(v)c[v]=(c[v]||0)+1;});
+  return Object.entries(c).sort((a,b)=>b[1]-a[1]).slice(0,n).map(e=>[e[0],e[1]]);}
+function fillSel(id,label,pairs,namer){const s=$(id);if(!s)return;
+  s.innerHTML='<option value="">'+label+'</option>'+pairs.map(([v,n])=>`<option value="${esc(v)}">${esc(namer?namer(v):v)} · ${n}</option>`).join('');}
+function buildFacets(){
+  fillSel('#fStyle','全部流派',topVals('style',20));
+  fillSel('#fSubject','全部题材',topVals('subject',20));
+  fillSel('#fEmo','全部情绪',topVals('emo',16));
+  fillSel('#fWv','全部世界观',['WV1','WV2','WV3','WV4','WV5','WV6'].filter(k=>WORKS.some(w=>w.wv===k)).map(k=>[k,WORKS.filter(w=>w.wv===k).length]),k=>k+' '+(WVN_PICK[k]||''));
+}
+function pickList(){const q=$('#pickSearch').value.trim().toLowerCase();
+  const fs=$('#fStyle').value,fj=$('#fSubject').value,fe=$('#fEmo').value,fw=$('#fWv').value;
+  return WORKS.filter(w=>(!SEED_FILES||SEED_FILES.has(w.file))&&(!fs||w.style===fs)&&(!fj||w.subject===fj)&&(!fe||w.emo===fe)&&(!fw||w.wv===fw)
+    &&(!q||[w.title,w.artist,w.style,w.subject,w.emo].some(s=>s&&String(s).toLowerCase().includes(q))));}
+function readSeed(){try{const s=JSON.parse(sessionStorage.getItem('aha_curate_seed')||'null');if(s&&s.files&&s.files.length){sessionStorage.removeItem('aha_curate_seed');return s;}}catch(e){}return null;}
+function applySeed(seed){const inter=(seed.files||[]).filter(f=>BYFILE[f]);if(!inter.length)return;  // 与语料无交集→忽略
+  SEED_FILES=new Set(inter);const bn=$('#seedBanner');if(bn){bn.style.display='block';
+    bn.innerHTML=`来自展厅<b>「${esc(seed.title||'')}」</b> · 在这 ${inter.length} 幅里挑　<a id="seedClear"><i data-ic="close"></i> 改为全馆</a>`;
+    $('#seedClear').onclick=()=>{SEED_FILES=null;bn.style.display='none';pickRefilter();};}
+  $$('.mode').forEach(x=>x.classList.toggle('on',x.dataset.mode==='pick'));   // 带着素材来→切到「自己挑」
+  $$('.modepanel').forEach(p=>p.classList.toggle('on',p.dataset.panel==='pick'));
+  pickRefilter();}
+function pickArr(){return pickCache||pickList();}            // pickCache=换一批后的乱序;否则质量序
+function renderPick(){const arr=pickArr();fillGrid('#pickGrid',arr.slice(0,pickN));
+  const c=$('#pickCount');if(c)c.textContent='共 '+arr.length+' 幅可选'+(arr.length>pickN?' · 显示前 '+pickN:'');
+  $('#pickMore').style.display=arr.length>pickN?'block':'none';}
+function pickRefilter(){pickCache=null;pickN=40;renderPick();}  // 改筛选/搜索→回质量序
+function pickShuffle(){const a=pickList();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}pickCache=a;pickN=40;renderPick();}
+
+// 一句话:关键词→母题/情绪/风格,匹配真语料
+const DICT=[
+  [/悲|忧|哀|孤独|寂寞|失落|沉/,['孤独','沉思','疏离'],{vlt:.45}],
+  [/希望|治愈|温暖|慰藉|温柔|爱/,['温情','母与子','光'],{vgt:.6}],
+  [/平静|安静|宁静|放松|安宁|静/,['宁静','沉思','自然'],{aLt:.4}],
+  [/明亮|明媚|阳光|开朗|快乐|欢/,['明媚','光','休闲'],{vgt:.65}],
+  [/壮丽|崇高|震撼|宏大|力量|雄/,['崇高','自然之力','海'],{agt:.6}],
+  [/热闹|夜|喧嚣|人群|派对|都市|城市/,['夜生活','人群','现代']],
+  [/自然|海|山|水|风|户外|风景/,['自然','海','山','风景']],
+  [/光|光影/,['光','光影']],
+  [/神圣|宗教|超越|信仰|灵性/,['灵性','宗教','升腾']],
+  [/东方|禅|诗意|月|水墨/,['东方','诗意','月'],{region:'east'}],
+];
+function sayMatch(text){
+  const themes=new Set();let vc=null;const constr=[];
+  DICT.forEach(([re,ts,c])=>{if(re.test(text)){ts.forEach(t=>themes.add(t));if(c)constr.push(c);}});
+  const tarr=[...themes];
+  return WORKS.map(w=>{let s=0;const bag=[w.subject,w.emo,w.style,w.voiceover,w.title].map(x=>String(x||'')).join(' ');
+    tarr.forEach(t=>{if(bag.includes(t))s+=2;});
+    if(/东方|禅|月|水墨/.test(text)&&w.region==='east')s+=2;
+    if(/西方|油画/.test(text)&&w.region==='west')s+=1;
+    constr.forEach(c=>{const v=(w.vad||{});
+      if(c.vlt&&v.v!=null&&v.v<=c.vlt)s++;if(c.vgt&&v.v!=null&&v.v>=c.vgt)s++;
+      if(c.aLt&&v.a!=null&&v.a<=c.aLt)s++;if(c.agt&&v.a!=null&&v.a>=c.agt)s++;
+      if(c.region&&w.region===c.region)s++;});
+    return {w,s,hit:tarr.filter(t=>bag.includes(t))[0]};})
+    .filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,24);}
+// 关键词兜底(LLM 不通时用)
+function fallbackSay(text){const m=sayMatch(text);fillGrid('#sayGrid',m.map(x=>x.w),w=>{const h=m.find(x=>x.w===w);return h&&h.hit?'#'+h.hit:'近似';});
+  if(!m.length)toast('没抓到那种感觉,换个说法?');}
+// 把助理给的词表选画准则套到全馆,浮出候选
+function assistPick(pick){pick=pick||{};const sty=new Set(pick.styles||[]),sub=new Set(pick.subjects||[]),emo=new Set(pick.emotions||[]),kw=(pick.keywords||[]).map(s=>String(s).toLowerCase());
+  return WORKS.map(w=>{let s=0;
+    if(sty.size&&sty.has(w.style))s+=2; if(sub.size&&sub.has(w.subject))s+=2; if(emo.size&&emo.has(w.emo))s+=2;
+    kw.forEach(k=>{if(k&&[w.title,w.artist,w.style,w.subject].some(x=>x&&String(x).toLowerCase().includes(k)))s+=1;});
+    return {w,s};}).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,24).map(x=>x.w);}
+function buildVocab(){return{styles:topVals('style',24).map(p=>p[0]),subjects:topVals('subject',24).map(p=>p[0]),
+  emotions:topVals('emo',20).map(p=>p[0]),worldviews:['WV1','WV2','WV3','WV4','WV5','WV6'].map(k=>k+' '+(WVN_PICK[k]||''))};}
+function setSpineByKey(sp){const b=$(`.spinebtn[data-spine="${sp}"]`);if(b){$$('.spinebtn').forEach(x=>x.classList.remove('on'));b.classList.add('on');S.spine=sp;renderAll();}}
+// ── 策展助理:多轮对话 ────────────────────────────────────────
+let chatHist=[];   // [{role:'user'|'assistant', text}]
+function chatScroll(){const l=$('#chatLog');if(l)l.scrollTop=l.scrollHeight;}
+function pushBub(role,text){const d=document.createElement('div');d.className='bub '+role;d.textContent=text;$('#chatLog').appendChild(d);chatScroll();return d;}
+function basketSummary(){return ordered().map(id=>{const w=BYID[id];return (w.artist||'')+'《'+(w.title||'无题')+'》'+(w.style?'·'+w.style:'');});}
+const SPN_LBL={time:'时间轴',emotion:'情绪弧',eastwest:'东西对照',subject:'母题聚类',style:'风格聚类',free:'自由编排'};
+function aiBubble(b){const div=document.createElement('div');div.className='bub ai';
+  const spLab=SPN_LBL[b.spine]||b.spine||'';
+  div.innerHTML=`<div class="bthesis">「${esc(b.thesis||'')}」</div>
+    <div class="brow"><span class="blab">主张</span><button class="adopt bThesis">用作主张</button>
+      ${(b.titles||[]).slice(0,3).map(t=>`<span class="briefchip bTitle" data-v="${esc(t)}">${esc(t)}</span>`).join('')}</div>
+    <div class="brow"><span class="blab">动线脊</span><b>${esc(spLab)}</b><span class="blab">${esc(b.spine_reason||'')}</span><button class="adopt bSpine">采用</button></div>
+    <div class="brat">${esc(b.rationale||'')}</div>`;
+  const bt=div.querySelector('.bThesis');if(bt)bt.onclick=()=>{$('#exThesis').value=b.thesis||'';toast('已填入主张','ok');};
+  div.querySelectorAll('.bTitle').forEach(c=>c.onclick=()=>{$('#exTitle').value=c.dataset.v;toast('已填入展名','ok');});
+  const sb=div.querySelector('.bSpine');if(sb&&b.spine)sb.onclick=()=>{setSpineByKey(b.spine);toast('已采用「'+spLab+'」脊','ok');};
+  $('#chatLog').appendChild(div);chatScroll();}
+function askAssistant(){const idea=$('#sayInput').value.trim();if(!idea){toast('先说说你的想法','warn');return;}
+  const hist=chatHist.slice();
+  pushBub('user',idea);chatHist.push({role:'user',text:idea});$('#sayInput').value='';
+  const btn=$('#sayGo');btn.disabled=true;
+  const think=pushBub('ai','✦ 助理在想…(约 10–30 秒)');
+  fetch('api/curate/assist',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({idea:idea,history:hist,basket:basketSummary(),vocab:buildVocab()})})
+    .then(r=>r.json()).then(d=>{btn.disabled=false;think.remove();
+      if(d&&d.brief){const b=d.brief;chatHist.push({role:'assistant',text:b.thesis||''});aiBubble(b);
+        fillGrid('#sayGrid',assistPick(b.pick||{}),()=>'助理选');}
+      else{pushBub('ai',((d&&d.error)||'没接通')+' —— 先用关键词帮你找');fallbackSay(idea);}})
+    .catch(()=>{btn.disabled=false;think.remove();pushBub('ai','超时了,先用关键词帮你找');fallbackSay(idea);});}
+
+// 种子:篮子里选一幅→找邻近
+function refreshSeedSel(){const sel=$('#seedSel');const cur=sel.value;
+  sel.innerHTML=S.basket.length?S.basket.map(id=>{const w=BYID[id];return `<option value="${id}">${esc((w.title||'无题').slice(0,14))} · ${esc(w.artist||'')}</option>`;}).join('')
+    :'<option value="">先往篮子加一幅作种子</option>';
+  if(cur&&S.basket.includes(+cur))sel.value=cur;}
+function renderSeed(){const id=+$('#seedSel').value;if(!id){toast('先往篮子加一幅作种子');return;}
+  const seed=featvec(BYID[id]);
+  const ranked=WORKS.filter(w=>!S.basket.includes(w.work_id))
+    .map(w=>({w,d:dist(seed,featvec(w))})).filter(x=>isFinite(x.d)).sort((a,b)=>a.d-b.d).slice(0,18);
+  fillGrid('#seedGrid',ranked.map(x=>x.w),w=>{const r=ranked.find(x=>x.w===w);return '邻 '+r.d.toFixed(2);});}
+
+// ── 我的收藏:平时点♡收的画,取来策展 ─────────────────────────────
+let FAVS=[];
+function loadFavs(){const g=$('#favGrid'),c=$('#favCount');
+  if(!window.AHA){c.textContent='收藏需服务';g.innerHTML='<div class="empty" style="grid-column:1/-1">记忆服务未就绪</div>';return;}
+  c.textContent='读取收藏…';
+  AHA.state().then(s=>{COLLECTED=new Set((s&&s.collections)||[]);updateFavCount();const keys=[...COLLECTED];
+    FAVS=keys.map(f=>BYFILE[f]).filter(Boolean);const miss=keys.length-FAVS.length;
+    c.textContent=FAVS.length?(FAVS.length+' 幅可布展'+(miss>0?' · 另 '+miss+' 幅暂不可布展':'')):'还没有收藏';
+    if(!FAVS.length){$('#favAddAll').style.display='none';
+      g.innerHTML='<div class="empty" style="grid-column:1/-1">还没有收藏——去美术馆点 ♡ 收藏画作,这里就能取来策展</div>';return;}
+    $('#favAddAll').style.display='';fillGrid('#favGrid',FAVS);
+  }).catch(()=>{c.textContent='读取失败';g.innerHTML='<div class="empty" style="grid-column:1/-1">读取收藏失败,请刷新</div>';});}
+function favAddAll(){if(!FAVS.length)return;let added=0;
+  FAVS.forEach(w=>{if(!S.basket.includes(w.work_id)&&S.basket.length<24){S.basket.push(w.work_id);added++;}});
+  renderAll();loadFavs();
+  toast(added?('已加入 '+added+' 幅'+(S.basket.length>=24?' · 已满 24 幅':'')):'收藏都已在展里','ok');}
+
+// ── 发布 / 分享 / 预览 ────────────────────────────────────────
+function buildShareUrl(){
+  const ids=ordered().join('.');
+  const notes={};ordered().forEach(id=>{if(S.notes[id])notes[id]=S.notes[id];});
+  const ord=ordered();const cid=(S.cover&&ord.includes(S.cover))?S.cover:ord[0];
+  const q=new URLSearchParams({t:$('#exTitle').value,th:$('#exThesis').value,sp:S.spine,ids});
+  if(Object.keys(notes).length)q.set('n',JSON.stringify(notes));
+  if(cid&&BYID[cid])q.set('c',BYID[cid].file);
+  return location.origin+location.pathname+'#'+q.toString();}
+function doShare(){if(S.basket.length<2){toast('至少 2 幅才成展','warn');return;}
+  const url=buildShareUrl();
+  (navigator.clipboard?navigator.clipboard.writeText(url):Promise.reject())
+    .then(()=>toast('分享链接已复制','ok')).catch(()=>prompt('复制此链接:',url));}
+function doPublish(){
+  const title=$('#exTitle').value.trim();
+  if(!title){toast('给展起个名字','warn');$('#exTitle').focus();return;}
+  if(S.basket.length<2){toast('至少 2 幅才成展','warn');return;}
+  const ord=ordered();const files=ord.map(id=>BYID[id].file);
+  const thesis=$('#exThesis').value.trim();
+  const captions={};ord.forEach(id=>{if(S.notes[id])captions[BYID[id].file]=S.notes[id];});
+  const coverFile=(S.cover&&S.basket.includes(S.cover))?BYID[S.cover].file:files[0];
+  const rule={spine:S.spine,spineLabel:$('.spinebtn.on').textContent.trim(),thesis:thesis,captions:captions,cover:coverFile};
+  const note=((thesis||'')+' · 脊:'+rule.spineLabel).slice(0,140);
+  if(ADMIN){ // 官方展 → /api/special/save(口令守),存 kind=special
+    const pass=($('#admPass').value.trim())||sessionStorage.getItem('aha_admin_pass')||'';
+    if(!pass){toast('先填管理口令','warn');$('#admPass').focus();return;}
+    sessionStorage.setItem('aha_admin_pass',pass);
+    $('#publishBtn').disabled=true;
+    fetch('api/special/save',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({pass:pass,id:EDIT_ID||'',title:title,note:note,work_ids:files,rule:rule,
+        seq:+$('#admSeq').value||0,public:$('#pubChk').checked})})
+      .then(r=>r.json()).then(d=>{$('#publishBtn').disabled=false;
+        if(d&&d.ok){EDIT_ID=d.id;$('#admEdit').textContent='已存为 '+d.id;
+          toast('官方展已发布 → museum「特展」区','ok');
+          viewFromSaved({id:d.id,title:title,note:note,work_ids:files,rule:rule,owner:'admin',kind:'special'});}
+        else toast('保存失败:'+((d&&d.error)||'口令?'),'rej');});
+    return;
+  }
+  if(!window.AHA){toast('记忆服务未就绪,先用分享链接保存','warn');doShare();return;}
+  $('#publishBtn').disabled=true;
+  AHA.saveExhibition(title,note,files,$('#pubChk').checked,rule,PERSONAL_EDIT_ID||null).then(d=>{
+    $('#publishBtn').disabled=false;
+    if(d&&d.ok){PERSONAL_EDIT_ID=d.id||PERSONAL_EDIT_ID;clearDraft();$('#publishBtn').textContent='更新这个展';
+      toast(d.updated?'已更新「'+title+'」':('已保存「'+title+'」'+($('#pubChk').checked?' · 已申请公开,馆方审核通过后进展览馆;你的「我的展」随时可见':' · 在你的「我的展」可见')),'ok');
+      viewFromSaved({id:PERSONAL_EDIT_ID,title:title,note:note,work_ids:files,rule:rule,owner:(window.AHA&&AHA.uid)||'',kind:'personal'});}
+    else toast('保存失败,已生成分享链接兜底','warn'),doShare();
+  }).catch(()=>{$('#publishBtn').disabled=false;toast('保存失败,已生成分享链接','warn');doShare();});}
+
+// 统一阅读视图:model={title,thesis,spineLabel,items:[{work,caption}]} ; mode: preview|share|saved
+function showView(model,mode){
+  const cov=$('#pvCover');if(model.cover){cov.src=imgT({file:model.cover},800);cov.style.display='block';}else{cov.style.display='none';}
+  $('#pvTitle').textContent=model.title||'无题之展';
+  $('#pvThesis').textContent=model.thesis?'「'+model.thesis+'」':'';
+  $('#pvMeta').textContent=`${model.items.length} 幅${model.spineLabel?' · 动线脊：'+model.spineLabel:''}${model.status?' · '+model.status:''}`;
+  $('#pvWall').innerHTML='';
+  model.items.forEach((it,i)=>{const w=it.work;if(!w)return;const c=document.createElement('div');c.className='pv-w';c.id='pvw-'+i;
+    c.innerHTML=`<img loading="lazy" decoding="async" src="${imgT(w,700)}">
+      <div class="pv-cap"><b>${String(i+1).padStart(2,'0')}　${esc(cleanTitle(w.title,w.artist)||'无题')}</b> · ${esc(w.artist||'佚名')}${it.caption?'　— '+esc(it.caption):''}</div>`;
+    $('#pvWall').appendChild(c);});
+  renderSpineBand(model.spine,model.items);
+  // 动作条 + 返回键随来源而变
+  const back=$('#pvBack'),acts=$('#pvActions');acts.innerHTML='';
+  const mkBtn=(label,ghost,fn)=>{const b=document.createElement('button');b.className='btn'+(ghost?' ghost':'');b.textContent=label;b.onclick=fn;return b;};
+  if(mode==='preview'){
+    back.textContent='← 回到编辑';back.onclick=e=>{e.preventDefault();closeView();};
+  }else{
+    back.textContent='← 返回';back.onclick=e=>{e.preventDefault();goBack();};
+    acts.appendChild(mkBtn('复制分享链接',true,()=>{const u=model.shareUrl||location.href;
+      (navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>toast('链接已复制','ok')).catch(()=>prompt('复制此链接:',u));}));
+    if(mode==='share'&&model.editable)acts.appendChild(mkBtn('✎ 编辑这个展',true,()=>{restoreFromHash();closeView();renderPick();renderAll();}));
+    if(model.owned){acts.appendChild(mkBtn('✎ 编辑',true,()=>editOwn(model.exItem)));
+      acts.appendChild(mkBtn('删除',true,()=>deleteOwn(model.exItem.id)));}
+    acts.appendChild(mkBtn('＋ 我也策一个',false,()=>location.href='curate.html'));
+  }
+  $('#editor').style.display='none';$('#preview').style.display='block';window.scrollTo(0,0);}
+function closeView(){$('#preview').style.display='none';$('#editor').style.display='block';}
+// 关闭/删除后回到来时的页面(同源 referrer,如「我策的展」列表),否则去展览馆
+function goBack(){try{if(document.referrer&&new URL(document.referrer).origin===location.origin&&history.length>1){history.back();return;}}catch(e){}
+  location.href='exhibitions.html';}
+
+// 脊带:把动线轴可视化——脊不再只决定顺序,而是看得见的一条线
+function renderSpineBand(spine,items){const el=$('#pvBand');if(!el)return;el.innerHTML='';el.style.display='none';
+  if(!spine||spine==='free')return;
+  const LAB={time:'时间轴 · 从早到晚',emotion:'情绪弧 · 沉郁 → 明亮',eastwest:'东西对照 · 两条轨',subject:'母题成章',style:'风格成章'};
+  let body='';
+  if(spine==='time'){
+    const ys=items.map((it,i)=>({i,y:it.work&&it.work.year})).filter(x=>x.y!=null);
+    if(ys.length<2)return;const mn=Math.min(...ys.map(x=>x.y)),mx=Math.max(...ys.map(x=>x.y)),span=(mx-mn)||1;
+    body=`<div class="sb-track">${ys.map(x=>`<span class="sb-dot" style="left:${((x.y-mn)/span*100).toFixed(1)}%" title="${x.y}" data-i="${x.i}"></span>`).join('')}</div>
+      <div class="sb-ends"><span>${mn}</span><span>${mx}</span></div>`;
+  }else if(spine==='emotion'){
+    const vs=items.map((it,i)=>({i,v:it.work&&it.work.vad&&it.work.vad.v})).filter(x=>x.v!=null);
+    if(vs.length<2)return;
+    body=`<div class="sb-track grad">${vs.map(x=>`<span class="sb-dot" style="left:${(x.v*100).toFixed(1)}%" title="效价 ${x.v.toFixed(2)}" data-i="${x.i}"></span>`).join('')}</div>
+      <div class="sb-ends"><span>沉郁</span><span>明亮</span></div>`;
+  }else if(spine==='eastwest'){
+    const e=items.filter(it=>it.work&&it.work.region==='east').length,w=items.filter(it=>it.work&&it.work.region==='west').length,u=items.length-e-w,tot=(e+w+u)||1;
+    body=`<div class="sb-ew"><span class="e" style="width:${(e/tot*100).toFixed(1)}%"></span><span class="u" style="width:${(u/tot*100).toFixed(1)}%"></span><span class="w" style="width:${(w/tot*100).toFixed(1)}%"></span></div>
+      <div class="sb-ends"><span>东 ${e}</span>${u?`<span>未标 ${u}</span>`:''}<span>西 ${w}</span></div>`;
+  }else if(spine==='subject'||spine==='style'){
+    const key=spine==='subject'?(w=>w.subject):(w=>w.style);const order=[],cnt={};
+    items.forEach(it=>{const k=(it.work&&key(it.work))||'—';if(!(k in cnt)){order.push(k);cnt[k]=0;}cnt[k]++;});
+    body=`<div class="sb-chips">${order.map(k=>`<span class="sb-chip">${esc(k)} <b>×${cnt[k]}</b></span>`).join('')}</div>`;
+  }
+  if(!body)return;
+  el.innerHTML=`<div class="sb-lab">${LAB[spine]||''}</div>${body}`;el.style.display='block';
+  el.querySelectorAll('.sb-dot').forEach(d=>d.onclick=()=>{const t=document.getElementById('pvw-'+d.dataset.i);if(t)t.scrollIntoView({behavior:'smooth',block:'center'});});}
+
+function openPreview(){if(S.basket.length<2){toast('至少 2 幅才成展','warn');return;}
+  const ord=ordered();const cid=(S.cover&&ord.includes(S.cover))?S.cover:ord[0];
+  showView({title:$('#exTitle').value.trim()||'无题之展',thesis:$('#exThesis').value.trim(),
+    spine:S.spine,spineLabel:$('.spinebtn.on').textContent.trim(),cover:cid?BYID[cid].file:'',
+    items:ord.map(id=>({work:BYID[id],caption:S.notes[id]||SPINES[S.spine].axis(BYID[id])}))},'preview');}
+
+// 从分享 hash 直接进阅读视图(不进编辑器)
+function viewFromHash(){const q=new URLSearchParams(location.hash.slice(1));
+  const ids=(q.get('ids')||'').split('.').filter(Boolean).map(Number).filter(id=>BYID[id]);
+  if(!ids.length)return false;
+  let notes={};try{notes=JSON.parse(q.get('n')||'{}');}catch(e){}
+  const sp=q.get('sp')||'free';const lbl=(($(`.spinebtn[data-spine="${sp}"]`)||{}).textContent||'').trim();
+  showView({title:q.get('t')||'无题之展',thesis:q.get('th')||'',spine:sp,spineLabel:lbl,editable:true,shareUrl:location.href,
+    cover:q.get('c')||(ids[0]&&BYID[ids[0]]?BYID[ids[0]].file:''),
+    items:ids.map(id=>({work:BYID[id],caption:notes[id]||(SPINES[sp]?SPINES[sp].axis(BYID[id]):'')}))},'share');
+  return true;}
+
+// 从已发布的展(?ex=id)进阅读视图
+function viewFromSaved(item){if(!item)return;
+  const r=item.rule||{};const caps=r.captions||{};
+  const files=(item.work_ids||[]);
+  const lbl=r.spineLabel||({time:'时间轴',emotion:'情绪弧',eastwest:'东西对照',subject:'母题聚类',style:'风格聚类',free:'自由手排'}[r.spine]||'');
+  const owned=!!(window.AHA&&AHA.uid&&item.owner===AHA.uid&&item.kind!=='special');
+  const status=owned?(item.public?(item.approved?'✓ 已在展览馆':'⏳ 审核中 · 仅你可见,通过后进展览馆'):'私有 · 仅你可见'):'';
+  showView({title:item.title||'无题之展',thesis:r.thesis||item.note||'',spine:r.spine||'free',spineLabel:lbl,
+    cover:r.cover||files[0]||'',status:status,
+    shareUrl:location.origin+location.pathname+'?ex='+encodeURIComponent(item.id),
+    owned:owned,exItem:item,
+    // 直接按展存的 file 渲染:查不到元数据(已移出展出集)也照样显示图,不留白
+    items:files.map(f=>({work:BYFILE[f]||{file:f,work_id:null,title:fileTitle(f),artist:''},caption:caps[f]||''}))},'saved');}
+
+// ── 事件绑定 ─────────────────────────────────────────────────
+$$('.spinebtn').forEach(b=>b.onclick=()=>{$$('.spinebtn').forEach(x=>x.classList.remove('on'));b.classList.add('on');S.spine=b.dataset.spine;renderAll();});
+$$('.mode').forEach(b=>b.onclick=()=>{$$('.mode').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+  $$('.modepanel').forEach(p=>p.classList.toggle('on',p.dataset.panel===b.dataset.mode));
+  if(b.dataset.mode==='pick')renderPick();if(b.dataset.mode==='seed')refreshSeedSel();if(b.dataset.mode==='fav')loadFavs();});
+$('#exTitle').oninput=saveDraft;$('#exThesis').oninput=saveDraft;
+$('#pickSearch').oninput=pickRefilter;
+['#fStyle','#fSubject','#fEmo','#fWv'].forEach(s=>$(s).onchange=pickRefilter);
+$('#pickShuffle').onclick=pickShuffle;
+$('#pickMore').onclick=()=>{pickN+=40;renderPick();};
+$('#sayGo').onclick=askAssistant;
+$('#sayInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();askAssistant();}});
+$('#seedGo').onclick=renderSeed;$('#seedSel').onchange=()=>{if($('#seedSel').value)renderSeed();};
+$('#favAddAll').onclick=favAddAll;
+$('#previewBtn').onclick=openPreview;$('#shareBtn').onclick=doShare;$('#publishBtn').onclick=doPublish;
+$('#pvBack').onclick=e=>{e.preventDefault();$('#preview').style.display='none';$('#editor').style.display='block';};
+['关于孤独的城市','光怎样穿过一天','东西方各自如何画山','一场从沉静到狂喜','女性凝视的目光','属于秋天的色彩'].forEach(q=>{
+  const c=document.createElement('button');c.className='chip';c.style.cursor='pointer';c.textContent=q;
+  c.onclick=()=>{$('#sayInput').value=q;askAssistant();};$('#sayChips').appendChild(c);});
+
+// ── 草稿:把编辑中的每一步都存进本地,预览/导航/刷新都不丢 ───────────────
+const DRAFT_KEY='aha_curate_draft';
+function saveDraft(){
+  if(ADMIN||PERSONAL_EDIT_ID||EDIT_ID)return;   // 只存「新策的草稿」;编辑已存展靠后端,不写草稿
+  if(!S.basket.length&&!$('#exTitle').value&&!$('#exThesis').value){try{localStorage.removeItem(DRAFT_KEY);}catch(e){}return;}
+  try{localStorage.setItem(DRAFT_KEY,JSON.stringify({title:$('#exTitle').value,thesis:$('#exThesis').value,
+    spine:S.spine,basket:S.basket,notes:S.notes,cover:S.cover,ts:Date.now()}));}catch(e){}
+}
+function clearDraft(){try{localStorage.removeItem(DRAFT_KEY);}catch(e){}}
+function restoreDraft(){
+  try{const d=JSON.parse(localStorage.getItem(DRAFT_KEY)||'null');if(!d)return false;
+    const basket=(d.basket||[]).filter(id=>BYID[id]);
+    if(!basket.length&&!d.title&&!d.thesis)return false;
+    S.basket=basket;S.notes=d.notes||{};S.cover=d.cover||'';
+    $('#exTitle').value=d.title||'';$('#exThesis').value=d.thesis||'';
+    const sp=d.spine||'free',b=$(`.spinebtn[data-spine="${sp}"]`);
+    if(b){$$('.spinebtn').forEach(x=>x.classList.remove('on'));b.classList.add('on');S.spine=sp;}
+    return true;
+  }catch(e){return false;}
+}
+function clearAll(){if(S.basket.length&&!confirm('清空当前草稿,重新开始?'))return;
+  S.basket=[];S.notes={};S.cover='';S.spine='free';PERSONAL_EDIT_ID='';
+  $('#exTitle').value='';$('#exThesis').value='';
+  $$('.spinebtn').forEach(x=>x.classList.toggle('on',x.dataset.spine==='free'));
+  $('#publishBtn').textContent='发布';clearDraft();renderAll();toast('已清空,重新开始','ok');}
+
+function restoreFromHash(){const h=location.hash.slice(1);if(!h)return false;
+  const q=new URLSearchParams(h);const ids=(q.get('ids')||'').split('.').filter(Boolean).map(Number).filter(id=>BYID[id]);
+  if(!ids.length)return false;
+  $('#exTitle').value=q.get('t')||'';$('#exThesis').value=q.get('th')||'';
+  const sp=q.get('sp')||'free';const b=$(`.spinebtn[data-spine="${sp}"]`);if(b){$$('.spinebtn').forEach(x=>x.classList.remove('on'));b.classList.add('on');S.spine=sp;}
+  S.basket=ids;try{Object.assign(S.notes,JSON.parse(q.get('n')||'{}'));}catch(e){}
+  return true;}
+
+// ── 管理员模式:官方展(kind=special) ────────────────────────────
+let ADMIN=false, EDIT_ID='', PERSONAL_EDIT_ID='', BYFILE={};
+function qp(k){return new URLSearchParams(location.search).get(k);}
+function exParam(){return qp('ex');}
+function enableAdmin(editId){ADMIN=true;EDIT_ID=editId||'';
+  $('#admBar').style.display='flex';
+  const sp=sessionStorage.getItem('aha_admin_pass')||'';if(sp)$('#admPass').value=sp;
+  $('#pubLabel').textContent='在 museum「特展」区上架';$('#pubChk').checked=true;
+  $('#publishBtn').textContent=editId?'保存官方展':'发布官方展';
+  document.querySelector('.kicker').textContent='Curator · 馆方官方策展';}
+// 把一个已存的展反填进编辑器(官方/个人共用)
+function populateEditor(it){
+  const r=it.rule||{},caps=r.captions||{};
+  $('#exTitle').value=it.title||'';$('#exThesis').value=r.thesis||'';
+  const sp=r.spine||'free',b=$(`.spinebtn[data-spine="${sp}"]`);
+  if(b){$$('.spinebtn').forEach(x=>x.classList.remove('on'));b.classList.add('on');S.spine=sp;}
+  S.basket=[];S.notes={};S.cover='';
+  (it.work_ids||[]).forEach(f=>{const w=BYFILE[f];if(w){S.basket.push(w.work_id);if(caps[f])S.notes[w.work_id]=caps[f];}});
+  if(r.cover&&BYFILE[r.cover])S.cover=BYFILE[r.cover].work_id;
+}
+function loadForEdit(id){
+  fetch('api/exhibition?id='+encodeURIComponent(id)).then(r=>r.json()).then(j=>{
+    const it=j&&j.item;if(!it){toast('没找到这个展','rej');enableAdmin('');return;}
+    populateEditor(it);enableAdmin(id);if(it.seq!=null)$('#admSeq').value=it.seq||0;
+    renderPick();renderAll();toast('已载入官方展,改完点「保存官方展」','ok');
+  }).catch(()=>{toast('载入失败','rej');enableAdmin(id);});}
+// 个人展:本人编辑(更新原 id,不再发重复展)/ 删除
+function editOwn(it){PERSONAL_EDIT_ID=it.id;populateEditor(it);closeView();
+  $('#pubChk').checked=true;$('#publishBtn').textContent='更新这个展';
+  renderPick();renderAll();toast('改完点「更新这个展」','ok');}
+function deleteOwn(id){if(!confirm('删除这个展?不可撤销'))return;
+  if(!window.AHA){toast('记忆服务未就绪','rej');return;}
+  AHA.deleteExhibition(id).then(d=>{if(d&&d.ok){toast('已删除','ok');setTimeout(goBack,700);}
+    else toast('删除失败(只能删自己的展)','rej');});}
+
+CAT('exhibit?limit=8000').then(d=>{
+  WORKS=(d.works||[]).filter(w=>w.file);WORKS.forEach(w=>{BYID[w.work_id]=w;BYFILE[w.file]=w;});
+  buildFacets();renderPick();renderAll();
+  if(window.AHA)AHA.state().then(s=>{COLLECTED=new Set((s&&s.collections)||[]);updateFavCount();
+    if($('.mode.on')&&$('.mode.on').dataset.mode==='pick')renderPick();}).catch(()=>{});
+  const ex=exParam(),editId=qp('edit'),adminNew=qp('admin')==='1';
+  if(ex){ // 已发布的展 → 阅读视图
+    fetch('api/exhibition?id='+encodeURIComponent(ex)).then(r=>r.json())
+      .then(j=>{if(j&&j.item)viewFromSaved(j.item);else toast('没找到这个展','rej');})
+      .catch(()=>toast('打开失败','rej'));
+  }else if(editId){ loadForEdit(editId); }      // 后台编辑官方展
+  else if(adminNew){ enableAdmin(''); }          // 后台新建官方展
+  else if(location.hash.slice(1)){ viewFromHash(); } // 分享链接 → 阅读视图
+  else { const seed=readSeed(); if(seed)applySeed(seed);
+    else if(restoreDraft()){renderAll();toast('已恢复上次未发布的草稿 · 不想要可点「清空」','ok');} } // 展厅素材 / 本地草稿
+}).catch(()=>{toast('馆藏加载失败,请刷新','rej');});
+</script>
+<script src="js/aha-icons.js"></script>
+<script src="js/aha-chrome.js"></script>
+</body></html>

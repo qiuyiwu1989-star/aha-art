@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>人类美术馆 · 无限长廊</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--wall:#d8cfbd;--wall-top:#cabfa8;--ink:#2a2620;--ink-soft:#5c554a;--ink-mute:#8a8170;--mat:#f3eee2;--frame:#2c2620;--gold:#b0673a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;overflow:hidden}
+  body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased}
+  /* 墙:顶光 + 地面进深 */
+  .hall{position:fixed;inset:0;background:
+     radial-gradient(140% 60% at 50% -8%, rgba(255,250,238,.9), rgba(255,250,238,0) 60%),
+     linear-gradient(180deg,#cdc3ad 0%,#d8cfbd 46%,#cabfa8 66%,#b6ab92 66.5%,#a99e84 100%);}
+  .ceil{position:fixed;top:0;left:0;right:0;height:7%;background:linear-gradient(180deg,#bfb59c,rgba(191,181,156,0));z-index:1}
+  .scroller{position:absolute;inset:0;overflow-x:auto;overflow-y:hidden;white-space:nowrap;scroll-behavior:smooth;z-index:2;cursor:grab}
+  .scroller::-webkit-scrollbar{height:0}
+  .rail{display:inline-flex;align-items:flex-start;height:100%;padding:0 8vw}
+  /* 每幅:从顶部挂线垂下 */
+  .hangline{position:fixed;top:8.5%;left:0;right:0;height:1px;background:rgba(40,30,15,.18);z-index:1}
+  .art{display:inline-flex;flex-direction:column;align-items:center;vertical-align:top;margin:0 3.2vw;position:relative;cursor:pointer;transition:transform .25s}
+  .art:hover{transform:translateY(-6px)}
+  .wire{width:1px;background:rgba(40,30,15,.3);margin:0 auto}
+  .frame{background:var(--mat);padding:11px;border:1px solid rgba(0,0,0,.12);box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 26px 40px -16px rgba(40,30,15,.6);position:relative}
+  .frame:before{content:"";position:absolute;inset:5px;border:1px solid rgba(0,0,0,.16);pointer-events:none}
+  .frame img{display:block;max-height:46vh;width:auto;background:#cfc6b4}
+  .plate{margin-top:14px;text-align:center;max-width:240px}
+  .plate .t{font-family:var(--serif);font-size:13px;font-weight:600;line-height:1.3}
+  .plate .m{font-family:var(--mono);font-size:9.5px;color:var(--ink-mute);margin-top:3px}
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:center;gap:14px;padding:14px;pointer-events:none}
+  .topbar .brand{font-family:var(--serif);font-size:19px;font-weight:700}.topbar .brand .d{color:var(--gold)}
+  .modes{position:fixed;top:14px;right:14px;z-index:40;display:flex;gap:6px}
+  .modes a{font-family:var(--mono);font-size:11px;color:var(--ink-soft);background:rgba(255,255,255,.6);border:1px solid rgba(0,0,0,.08);border-radius:999px;padding:5px 11px;text-decoration:none}
+  .modes a.on,.modes a:hover{background:var(--frame);color:#f3eee2}
+  /* 行进指示:你正走过哪个世界观 */
+  .nav{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:12px 18px 16px;background:linear-gradient(0deg,rgba(169,158,132,.92),rgba(169,158,132,0));text-align:center}
+  .nav .now{font-family:var(--serif);font-size:15px;font-weight:600;color:#2a2620}
+  .nav .axis{max-width:560px;margin:7px auto 0;height:4px;border-radius:3px;background:rgba(40,30,15,.18);position:relative}
+  .nav .axis .dot{position:absolute;top:-3px;width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(176,103,58,.25);transition:left .1s}
+  .nav .ends{max-width:560px;margin:4px auto 0;display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:#4b4639}
+  .hint{position:fixed;left:50%;bottom:64px;transform:translateX(-50%);z-index:21;font-family:var(--mono);font-size:11px;color:#4b4639;opacity:.8;animation:fade 3s ease 2s forwards}
+  @keyframes fade{to{opacity:0}}
+  /* lightbox */
+  .lb{position:fixed;inset:0;background:rgba(20,16,10,.85);z-index:100;display:none;align-items:center;justify-content:center;padding:30px;white-space:normal}
+  .lb.on{display:flex}.lb .box{max-width:980px;width:100%;display:grid;grid-template-columns:1fr 280px;background:#1a1612;border-radius:6px;overflow:hidden}@media(max-width:760px){.lb .box{grid-template-columns:1fr}}
+  .lb .pic{background:#000;display:flex;align-items:center;justify-content:center}.lb .pic img{width:100%;max-height:82vh;object-fit:contain}
+  .lb .info{background:var(--mat);padding:22px}.lb .info .t{font-family:var(--serif);font-size:20px;font-weight:700}.lb .info .a{font-size:13.5px;color:var(--ink-soft);margin-top:6px}.lb .info .meta{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:12px;line-height:1.9}.lb .info .go{display:block;margin-top:16px;font-family:var(--mono);font-size:12px;color:var(--gold);text-decoration:none}
+  .lb .x{position:absolute;top:18px;right:22px;color:#f3eee2;font-size:22px;font-family:var(--mono);cursor:pointer}
+</style>
+</head><body>
+<div class="hall"></div><div class="ceil"></div><div class="hangline"></div>
+<div class="topbar"><span class="brand">人类美术馆<span class="d">.</span></span></div>
+<div class="modes" id="modes"></div>
+<div class="scroller" id="scroller"><div class="rail" id="rail"></div></div>
+<div class="hint">↔ 滚轮 / 拖拽 · 往里走</div>
+<div class="nav"><div class="now" id="now">—</div><div class="axis"><div class="dot" id="dot" style="left:0"></div></div><div class="ends"><span>← 再现</span><span>表现 →</span></div></div>
+<div class="lb" id="lb"><span class="x" onclick="closeLb()"><i data-ic="close"></i></span><div class="box" id="lbbox"></div></div>
+<script>
+const MODES=[['museum-salon.html','沙龙墙'],['museum-corridor.html','无限长廊'],['museum-halls.html','展厅之馆'],['museum-floor.html','馆即平面']];
+const mc=document.getElementById('modes');MODES.forEach(([h,n])=>{const a=document.createElement('a');a.href=h;a.textContent=n;if(location.pathname.endsWith(h))a.className='on';mc.appendChild(a);});
+function esc(s){return (s==null?'':String(s)).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));}
+let WORKS=[];const rail=document.getElementById('rail'),scroller=document.getElementById('scroller');
+function art(w){
+  const wireH=20+((Math.abs(hash(w.file))%70));
+  const el=document.createElement('div');el.className='art';el.dataset.x=w.x;el.dataset.wv=w.wvcn||'';
+  el.innerHTML=`<div class="wire" style="height:${wireH}px"></div><div class="frame"><img loading="lazy" decoding="async" src="${w.file}" alt=""></div><div class="plate"><div class="t">${esc(w.title||'无题')}</div><div class="m">${esc(w.artist)}${w.year?' · '+esc(w.year):''}</div></div>`;
+  el.onclick=()=>openLb(w);return el;
+}
+function hash(s){let h=0;for(let k=0;k<s.length;k++)h=(h*31+s.charCodeAt(k))|0;return h;}
+function openLb(w){location.href='art.html?w='+encodeURIComponent(w.file);}
+function closeLb(){document.getElementById('lb').classList.remove('on');}
+document.getElementById('lb').onclick=e=>{if(e.target.id==='lb')closeLb();};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();});
+// 滚轮→横向
+scroller.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){scroller.scrollLeft+=e.deltaY;e.preventDefault();}},{passive:false});
+// 拖拽
+let down=false,sx=0,sl=0;
+scroller.addEventListener('pointerdown',e=>{down=true;sx=e.clientX;sl=scroller.scrollLeft;scroller.style.cursor='grabbing';});
+addEventListener('pointermove',e=>{if(down)scroller.scrollLeft=sl-(e.clientX-sx);});
+addEventListener('pointerup',()=>{down=false;scroller.style.cursor='grab';});
+// 行进指示:取屏幕中心那幅
+scroller.addEventListener('scroll',()=>{
+  const cx=scroller.scrollLeft+innerWidth/2;let best=null,bd=1e9;
+  [...rail.children].forEach(c=>{const m=c.offsetLeft+c.offsetWidth/2,d=Math.abs(m-cx);if(d<bd){bd=d;best=c;}});
+  if(best){document.getElementById('now').textContent='正走过 · '+(best.dataset.wv||'—');document.getElementById('dot').style.left=(parseFloat(best.dataset.x)*100)+'%';}
+});
+fetch('data/gallery_works.json').then(r=>r.json()).then(d=>{
+  WORKS=(d.works||[]).slice().sort((a,b)=>a.x-b.x); // 沿再现→表现走
+  WORKS.forEach(w=>rail.appendChild(art(w)));
+  scroller.dispatchEvent(new Event('scroll'));
+}).catch(e=>{rail.innerHTML='<div style="padding:40px;color:#4b4639">需服务器加载:'+e+'</div>';});
+</script>
+<script src="js/aha-icons.js"></script>
+</body></html>

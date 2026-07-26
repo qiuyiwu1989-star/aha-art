@@ -1,0 +1,107 @@
+{
+ "updated": "2026-06-12 23:01",
+ "ledger": {
+  "total": 179891,
+  "by_source": [
+   {
+    "src": "wikiart",
+    "rows": 76405,
+    "completeness": 0.626,
+    "has_title": 76405
+   },
+   {
+    "src": "yh",
+    "rows": 59867,
+    "completeness": 0.881,
+    "has_title": 59867
+   },
+   {
+    "src": "yishujia",
+    "rows": 28372,
+    "completeness": 0.092,
+    "has_title": 3448
+   },
+   {
+    "src": "nbfox",
+    "rows": 15021,
+    "completeness": 0.805,
+    "has_title": 15021
+   },
+   {
+    "src": "demo",
+    "rows": 226,
+    "completeness": 0.423,
+    "has_title": 226
+   }
+  ],
+  "east_west": {
+   "east": 3166,
+   "west": 176725
+  }
+ },
+ "artists": {
+  "source": 8224,
+  "canonical": 6877,
+  "merged": 1347,
+  "curated_aligned": 372,
+  "aliases": 1387,
+  "top_merge": [
+   {
+    "name": "透纳",
+    "ids": 3
+   },
+   {
+    "name": "Lyonel Feininger",
+    "ids": 2
+   },
+   {
+    "name": "William Holman Hunt",
+    "ids": 2
+   },
+   {
+    "name": "伦勃朗",
+    "ids": 2
+   },
+   {
+    "name": "Guy Rose",
+    "ids": 2
+   },
+   {
+    "name": "Hubert Robert",
+    "ids": 2
+   }
+  ]
+ },
+ "vlm_queue": {
+  "ready_total": 74383,
+  "pending_total": 74396,
+  "by_source": [
+   {
+    "src": "yh",
+    "ready": 39060,
+    "pending": 39064
+   },
+   {
+    "src": "yishujia",
+    "ready": 27820,
+    "pending": 27820
+   },
+   {
+    "src": "wikiart",
+    "ready": 6497,
+    "pending": 6506
+   },
+   {
+    "src": "nbfox",
+    "ready": 1006,
+    "pending": 1006
+   }
+  ]
+ },
+ "quality": {
+  "placeholder": 660,
+  "tiny": 791,
+  "dup": 25882,
+  "untrusted_clusters": 80
+ }
+}

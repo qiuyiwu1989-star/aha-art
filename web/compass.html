@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>aha · 体验地图 · 网点结构 & 用户旅程</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/aha-kit.css">
+<style>
+  body{background:var(--paper);color:var(--ink)}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px 40px}
+  /* hero */
+  .hero{padding:30px 0 14px;border-bottom:1px solid var(--line-soft)}
+  .hero .kick{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--accent);text-transform:uppercase}
+  .hero h1{font-family:var(--serif);font-size:clamp(26px,4.4vw,38px);font-weight:600;margin:.32em 0 .18em;letter-spacing:-.01em}
+  .hero p{color:var(--ink-mute);font-size:14px;line-height:1.8;max-width:760px}
+  .hero p b{color:var(--ink-soft);font-weight:500}
+  /* controls bar */
+  .bar{position:sticky;top:0;z-index:30;background:var(--glass,rgba(244,241,234,.82));backdrop-filter:blur(14px) saturate(1.3);
+       -webkit-backdrop-filter:blur(14px) saturate(1.3);margin:0 -20px;padding:11px 20px;border-bottom:1px solid var(--line-soft);
+       display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .seg{display:inline-flex;background:var(--paper-2);border:1px solid var(--line);border-radius:99px;padding:3px}
+  .seg button{font-family:var(--sans);font-size:13px;color:var(--ink-mute);background:none;border:none;cursor:pointer;
+       padding:6px 16px;border-radius:99px;transition:all .18s;font-weight:500}
+  .seg button.on{background:var(--ink);color:var(--paper)}
+  .filters{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .pill{font-family:var(--mono);font-size:11px;cursor:pointer;padding:4px 10px;border-radius:99px;border:1px solid var(--line);
+       background:var(--card);color:var(--ink-mute);transition:all .15s;user-select:none;display:inline-flex;align-items:center;gap:5px}
+  .pill .dot{width:7px;height:7px;border-radius:50%}
+  .pill.off{opacity:.34;filter:grayscale(.6)}
+  .search{margin-left:auto;display:flex;align-items:center;gap:7px;background:var(--card);border:1px solid var(--line);
+       border-radius:99px;padding:6px 13px}
+  .search input{border:none;background:none;outline:none;font-family:var(--sans);font-size:13px;color:var(--ink);width:150px}
+  .search .ic{color:var(--ink-faint);font-size:13px}
+  /* status colors */
+  .c-prod{--c:var(--accent);--cs:var(--accent-soft)}
+  .c-live{--c:var(--ok);--cs:var(--ok-soft)}
+  .c-study{--c:var(--gold);--cs:var(--gold-soft)}
+  .c-demo{--c:var(--blue);--cs:var(--blue-soft)}
+  .c-lab{--c:var(--warn);--cs:var(--warn-soft)}
+  .c-infra{--c:var(--ink-faint);--cs:var(--paper-2)}
+  /* node chip */
+  .node{display:flex;flex-direction:column;gap:2px;padding:8px 11px;border:1px solid var(--line);
+       border-radius:var(--r-sm,8px);background:var(--card);text-decoration:none;transition:transform .16s,border-color .16s,box-shadow .16s;position:relative}
+  .node:hover{transform:translateY(-1px);border-color:var(--c);box-shadow:0 4px 14px -8px rgba(0,0,0,.18)}
+  .node .t{font-size:13px;color:var(--ink);line-height:1.35;font-weight:500}
+  .node .m{font-family:var(--mono);font-size:9.5px;color:var(--ink-faint);display:flex;gap:6px;align-items:center}
+  .node .badge{font-family:var(--mono);font-size:9px;padding:1px 6px;border-radius:99px;background:var(--cs);color:var(--c);font-weight:500}
+  .node.hide{display:none}
+  /* ===== JOURNEY VIEW ===== */
+  #journey{padding:26px 0}
+  .stage{margin:0 auto 0}
+  .flow{display:flex;flex-direction:column;align-items:center;gap:0}
+  .step{width:100%;max-width:880px}
+  .step-h{display:flex;align-items:baseline;gap:10px;margin-bottom:9px}
+  .step-h .no{font-family:var(--mono);font-size:11px;color:var(--paper);background:var(--ink);width:20px;height:20px;border-radius:50%;
+       display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .step-h .lab{font-family:var(--serif);font-size:18px;font-weight:600}
+  .step-h .sub{font-size:12px;color:var(--ink-mute)}
+  .step-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:7px}
+  .arrow{font-size:18px;color:var(--accent);margin:12px 0;opacity:.7}
+  .loopnote{font-family:var(--mono);font-size:11px;color:var(--accent);border:1px dashed var(--accent-line);border-radius:99px;
+       padding:6px 16px;margin-top:14px;background:var(--accent-soft)}
+  .zones{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-bottom:6px}
+  .zone{font-family:var(--sans);font-size:12px;color:var(--ink-soft);background:var(--paper-2);border:1px solid var(--line);
+       border-radius:99px;padding:5px 13px}
+  .zone b{color:var(--accent)}
+  .fork{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;width:100%}
+  @media(max-width:720px){.fork{grid-template-columns:1fr 1fr}}
+  .col-h{font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--ink-soft);margin-bottom:7px;display:flex;gap:6px;align-items:center}
+  .col-h .e{font-size:15px}
+  /* ===== PANORAMA VIEW ===== */
+  #pano{padding:22px 0;display:none}
+  .tier{margin-bottom:26px}
+  .tier-h{display:flex;align-items:baseline;gap:10px;margin-bottom:4px;border-bottom:1px solid var(--line);padding-bottom:7px}
+  .tier-h .e{font-size:19px}
+  .tier-h h2{font-family:var(--serif);font-size:20px;font-weight:600;margin:0}
+  .tier-h .n{font-family:var(--mono);font-size:12px;color:var(--ink-faint)}
+  .tier-h .d{font-size:12.5px;color:var(--ink-mute);margin-left:4px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:7px;margin-top:12px}
+  .sub-h{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--ink-mute);margin:14px 0 2px;text-transform:uppercase}
+  .empty{grid-column:1/-1;color:var(--ink-faint);font-size:12px;padding:8px 0}
+  .legend{font-size:11.5px;color:var(--ink-faint);margin-top:8px}
+  .pairnote{font-family:var(--mono);font-size:9px;color:var(--ok);margin-top:2px}
+</style></head>
+<body data-no-top>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="kick">Experience Map · 体验地图</div>
+    <h1>网点结构 &amp; 用户旅程</h1>
+    <p>aha.art 现有 <b>113 个活页</b>。但用户真正要走的只有一条主路径——<b>逛 → 看 → 懂你 → 为你</b>。这页把成品、知识图谱、实验、后台四层摊开:<b>「旅程」</b>看用户怎么走,<b>「全景」</b>看 113 页各归何处。每个节点标了它的现役状态。</p>
+  </div>
+
+  <div class="bar">
+    <div class="seg" id="seg">
+      <button data-v="journey" class="on"><i data-ic="wander"></i> 旅程视角</button>
+      <button data-v="pano"><i data-ic="map"></i> 全景视角</button>
+    </div>
+    <div class="filters" id="filters"></div>
+    <div class="search"><span class="ic">⌕</span><input id="q" placeholder="搜页面…"></div>
+  </div>
+
+  <!-- ===================== JOURNEY ===================== -->
+  <div id="journey">
+   <div class="flow">
+
+    <div class="step">
+      <div class="step-h"><span class="no">1</span><span class="lab">进馆</span><span class="sub">唯一入口 · index 0 秒重定向到馆内</span></div>
+      <div class="step-grid" data-mount="enter"></div>
+    </div>
+    <div class="arrow">↓ 进馆即分流 · 5 个展区接住不同来意</div>
+    <div class="zones">
+      <span class="zone">固定展 · 馆藏</span><span class="zone"><b>为你</b> · 千人千面</span>
+      <span class="zone">特展 · 策划主题</span><span class="zone">热门 · 大众</span><span class="zone">策展 · 用户自组</span>
+    </div>
+
+    <div class="arrow">↓ 进入展区后,4 条动作分支</div>
+    <div class="step">
+      <div class="fork">
+        <div><div class="col-h"><span class="e"><i data-ic="works"></i></span>看一幅</div><div class="step-grid" data-mount="see"></div></div>
+        <div><div class="col-h"><span class="e"><i data-ic="wander"></i></span>换种逛法</div><div class="step-grid" data-mount="wander"></div></div>
+        <div><div class="col-h"><span class="e">🧑‍🎨</span>谁画的</div><div class="step-grid" data-mount="who"></div></div>
+        <div><div class="col-h"><span class="e"><i data-ic="sparkles"></i></span>为我生成</div><div class="step-grid" data-mount="make"></div></div>
+      </div>
+    </div>
+
+    <div class="arrow">↓ 每一次停留 / 评分 / 生成,都沉淀进「我」</div>
+    <div class="step" style="max-width:560px">
+      <div class="step-h"><span class="no">3</span><span class="lab">懂你</span><span class="sub">12 维档案 · 本命画家 · 审美门派 · 三盏灯</span></div>
+      <div class="step-grid" data-mount="me"></div>
+    </div>
+
+    <div class="loopnote">⟲ 口味反哺「为你」展区 —— 闭环:逛得越多,馆越懂你</div>
+   </div>
+  </div>
+
+  <!-- ===================== PANORAMA ===================== -->
+  <div id="pano"></div>
+
+</div>
+<script src="js/aha-chrome.js"></script>
+<script>
+const GROUPS = {"入口 · 主页/导航": [{"f": "architecture.html", "t": "aha · 产品架构 · Architecture"}, {"f": "gallery.html", "t": "aha · 懂你的人类美术馆"}, {"f": "kg-search.html", "t": "aha · 知识图谱 · 全局搜索"}, {"f": "kg-tour.html", "t": "aha · 艺术绘画知识图谱 V3 · 导览"}, {"f": "log.html", "t": "aha.art · 产品日志(全部活页索引)"}, {"f": "museum.html", "t": "人类美术馆"}], "知识图谱 KG": [{"f": "kg-affect-live.html", "t": "情绪云"}, {"f": "kg-affect.html", "t": "aha · L3 感知效应 · VAD 模型 + 像素实测"}, {"f": "kg-artist-atlas.html", "t": "aha · 艺术家星图 · 全员落在世界观平面"}, {"f": "kg-artist-framework.html", "t": "aha · 艺术家页面 · 第一性原理架构 V3"}, {"f": "kg-artist-live.html", "t": "艺术家世界观星图"}, {"f": "kg-artist-roster.html", "t": "aha · 艺术家名单 · 区 × 流派"}, {"f": "kg-artist.html", "t": "aha · 艺术家"}, {"f": "kg-artists-live.html", "t": "艺术家索引"}, {"f": "kg-artists.html", "t": "aha · 艺术家 · 全量索引(276)"}, {"f": "kg-artworks-live.html", "t": "aha · 真迹读图 · VLM 看每一幅画"}, {"f": "kg-artworks.html", "t": "aha · 真迹读图 · VLM 看每一幅画"}, {"f": "kg-audit.html", "t": "aha · V2 科学化自检"}, {"f": "kg-backtest.html", "t": "aha · 生成回测 · 生成的图落对位置了吗"}, {"f": "kg-catalog.html", "t": "aha 核心资产画廊 · 连库 VLM 标注"}, {"f": "kg-compile-v2.html", "t": "aha · 意图编译器 v2 · 灵感 → 扩写 → 调整 → 生产"}, {"f": "kg-compile.html", "t": "aha · 意图编译器 · 一句话 → 结构化 Prompt"}, {"f": "kg-context.html", "t": "aha · 语境层 · 艺术史的语境力"}, {"f": "kg-contingency.html", "t": "aha · 个体 / 偶发"}, {"f": "kg-data.html", "t": "aha · 知识图谱 V3 · 数据资产 / 数据字典"}, {"f": "kg-drift.html", "t": "aha · 世界观漂移 · 一千六百年的两条路"}, {"f": "kg-duet.html", "t": "aha · 双画对读 · 坐标即比较"}, {"f": "kg-dynamics.html", "t": "aha · 关系层 · 艺术史动力学"}, {"f": "kg-explain.html", "t": "aha · 一画解读 · 坐标即解释"}, {"f": "kg-facets-detail.html", "t": "aha · 四面收口 · 叙事/哲思/感官/时间"}, {"f": "kg-facets.html", "t": "aha · 画外音/感知层 · 多面解构"}, {"f": "kg-first-principles.html", "t": "aha · 艺术绘画知识图谱 · 第一性原理重构"}, {"f": "kg-force-timeline.html", "t": "aha · 力的时间线"}, {"f": "kg-forces.html", "t": "aha · 艺术史的力 · 总览"}, {"f": "kg-foryou.html", "t": "aha · 为你生成 · 让美来找你,这次是为你新画一幅"}, {"f": "kg-galaxy-roadmap.html", "t": "aha · 风格星辰大海 · 路线图"}, {"f": "kg-galaxy.html", "t": "会发光的艺术史"}, {"f": "kg-gallery.html", "t": "aha · 生成图库 · 图谱生成的画 + 它的数据"}, {"f": "kg-graph.html", "t": "aha · 数据派生的图谱(作品归类 + 共现边)"}, {"f": "kg-health.html", "t": "aha · 知识图谱 · 完备性体检看板"}, {"f": "kg-language.html", "t": "aha · 7大构成 · 绘画语言层(V2 · 383 原子)"}, {"f": "kg-lineage.html", "t": "aha · 风格关系考究 · 承自 / 影响 / 对抗"}, {"f": "kg-map.html", "t": "aha · 我理解的知识图谱与标注(请确认)"}, {"f": "kg-me-algo.html", "t": "aha · 推荐内核算法流程图 · KG×美学奖励 v0.6"}, {"f": "kg-me-types.html", "t": "aha · 审美门派图鉴 · 48 种审美原型"}, {"f": "kg-me.html", "t": "aha · 我的审美档案 · KG×美学奖励 推荐内核"}, {"f": "kg-milestone.html", "t": "aha · 知识图谱 V3 · 阶段性总结(里程碑)"}, {"f": "kg-node.html", "t": "aha · 节点详情页样板 · 印象派"}, {"f": "kg-ontology.html", "t": "aha · 知识图谱 · 权威本体(Ontology)"}, {"f": "kg-openness.html", "t": "aha · 节点开放性 · 闭集 vs 开集(题材收成关键节点)"}, {"f": "kg-plane-standard.html", "t": "aha · 世界观平面 · 逻辑图标准(对照基准)"}, {"f": "kg-portrait-review.html", "t": "aha · 头像复核"}, {"f": "kg-projection.html", "t": "aha · 风格投影 · 沿生成链对比"}, {"f": "kg-provenance.html", "t": "aha · 数据可信度 · 每个数字从哪来"}, {"f": "kg-schema.html", "t": "aha · V2 统一正交基 + 跨五层标注模板"}, {"f": "kg-style-3d.html", "t": "aha · 风格知识图谱 · 世界观三轴空间"}, {"f": "kg-style-compare.html", "t": "aha · 风格对比 · 多风格,看清差异"}, {"f": "kg-style-curation.html", "t": "aha · 风格层取舍 + 增补评审"}, {"f": "kg-style-detail.html", "t": "aha · 风格详情"}, {"f": "kg-style-framework.html", "t": "aha · 风格详情 · 统一标准框架"}, {"f": "kg-style-live.html", "t": "风格语言指纹"}, {"f": "kg-style-stats.html", "t": "aha · 风格层统计"}, {"f": "kg-style-vectors.html", "t": "aha · 风格向量定位 · 以俄罗斯巡回画派为标杆"}, {"f": "kg-style.html", "t": "aha · 风格层 V3(202 风格 · 多模态导航)"}, {"f": "kg-subject-live.html", "t": "题材图谱"}, {"f": "kg-subject-map.html", "t": "aha · 题材地图 · 题材是世界观的投影"}, {"f": "kg-subject.html", "t": "aha · 题材层(V2 · 518 原子)"}, {"f": "kg-subtext.html", "t": "aha · 画外音 + 感知效应层(V2 · 398 原子)"}, {"f": "kg-taste.html", "t": "aha · 审美定位 · 你在这里"}, {"f": "kg-timeline.html", "t": "aha · 风格演化时间线 · 东西双带"}, {"f": "kg-tour-forces.html", "t": "aha · 力的导览路线"}, {"f": "kg-v2.html", "t": "aha · 艺术绘画知识图谱 V3 · 总览"}, {"f": "kg-validate.html", "t": "aha · 生成链 · 可证伪验证"}, {"f": "kg-works.html", "t": "aha · 作品层 · 全部真迹"}, {"f": "kg-worldview-live.html", "t": "世界观地图"}, {"f": "kg-worldview-map.html", "t": "aha · 世界观地图 · V3(两真轴 · 6 区)"}, {"f": "kg-worldview-region.html", "t": "aha · 世界观区志"}, {"f": "kg-worldview-science.html", "t": "aha · 世界观层 · 科学性自检"}, {"f": "kg-worldview.html", "t": "aha · 世界观层 · V3(第一性原理)"}], "漫游 Wander": [{"f": "wander-chroma.html", "t": "aha · 以色觅画"}, {"f": "wander-dial.html", "t": "aha · 情绪方向盘"}, {"f": "wander-dwell.html", "t": "aha · 专注单幅"}, {"f": "wander-fog.html", "t": "aha · 雾中之馆"}, {"f": "wander-galaxy.html", "t": "aha · 银河漫游"}, {"f": "wander-mobile.html", "t": "aha · 手机版"}, {"f": "wander-talk.html", "t": "aha · 对话策展"}, {"f": "wander-versus.html", "t": "aha · 二选一之路"}, {"f": "wander.html", "t": "aha · 逛法实验"}], "概念实验 Concept/Variant": [{"f": "concept-curator.html", "t": "aha · 策展台"}, {"f": "concept-latent.html", "t": "aha · 审美潜空间"}, {"f": "concept-path.html", "t": "aha · 两画之间"}, {"f": "concept-river.html", "t": "aha · 母题之河"}, {"f": "concepts.html", "t": "aha · 概念实验场"}, {"f": "variant-crossroads.html", "t": "aha · 岔路 Crossroads"}, {"f": "variant-drift.html", "t": "aha · 漂流 Drift"}, {"f": "variant-resonance.html", "t": "aha · 并置 Resonance"}], "其它": [{"f": "admin.html", "t": "已合并 · 跳转管理后台"}, {"f": "aesthetic-lab.html", "t": "aha · 美学实验室 — 读懂你审美的算法"}, {"f": "aha-standalone.html", "t": "aha · 一张会随你重排的人类艺术地图"}, {"f": "arch-demo.html", "t": "aha · 三层架构 · 活体演示"}, {"f": "art.html", "t": "aha · 画作"}, {"f": "artist.html", "t": "艺术家"}, {"f": "artwork.html", "t": "aha · 画作页"}, {"f": "compare.html", "t": "aha · 选一种方式逛美术馆"}, {"f": "dashboard.html", "t": "aha 资产后台 · Dashboard"}, {"f": "data-sample.html", "t": "aha 数据样本"}, {"f": "how-it-works.html", "t": "aha · 它是怎么算的 — 美学推荐算法科普"}, {"f": "me.html", "t": "我的 · aha 审美档案"}, {"f": "museum-corridor.html", "t": "人类美术馆 · 无限长廊"}, {"f": "museum-floor.html", "t": "人类美术馆 · 馆即平面"}, {"f": "museum-halls.html", "t": "人类美术馆 · 展厅之馆"}, {"f": "museum-salon.html", "t": "人类美术馆 · 沙龙墙"}, {"f": "work.html", "t": "作品"}]};
+// 全量 [{f,t}]
+const ALL = Object.values(GROUPS).flat();
+const byFile = Object.fromEntries(ALL.map(p=>[p.f,p]));
+
+// ---- 状态分类 ----
+const STATUS = {
+  prod:  {e:'🎨', label:'现役·产品',   cls:'c-prod',  desc:'用户真正使用的成品体验'},
+  live:  {e:'🟢', label:'现役·活库',   cls:'c-live',  desc:'读活库投影 JSON,点重投影即刷新'},
+  study: {e:'📐', label:'研究·方法论', cls:'c-study', desc:'知识图谱推演与自检,支撑层'},
+  demo:  {e:'📦', label:'封存·demo',   cls:'c-demo',  desc:'历史静态版,已被 -live 取代或定格'},
+  lab:   {e:'🧪', label:'实验·存档',   cls:'c-lab',   desc:'上一代交互探索,已被 museum 四走法收敛;保留可召回'},
+  infra: {e:'⚙️', label:'后台·基建',   cls:'c-infra', desc:'运营/规范/导航工具'},
+};
+const PROD = new Set(['museum.html','museum-corridor.html','museum-floor.html','museum-halls.html','museum-salon.html',
+  'art.html','artwork.html','artist.html','me.html','kg-foryou.html','kg-compile-v2.html','gallery.html','compare.html',
+  'kg-galaxy.html','aha-standalone.html','kg-tour.html','kg-search.html','aesthetic-lab.html','how-it-works.html']);
+const INFRA = new Set(['dashboard.html','admin.html','design-system.html','sitemap.html','log.html','home.html','index.html',
+  'data-sample.html','arch-demo.html','architecture.html','compass.html']);
+const isLab = f => /^(wander|concept|variant)/.test(f);
+const DEMO_OF = { // live现役 ← demo真·旧版(仅 artworks 是同一页的数据升级;其余 -live 与同名 demo 是"不同的图",归研究层)
+  'kg-artworks-live.html':'kg-artworks.html'};
+const DEMOFILES = new Set(Object.values(DEMO_OF));
+
+function statusOf(f){
+  if(PROD.has(f)) return 'prod';
+  if(INFRA.has(f)) return 'infra';
+  if(isLab(f)) return 'lab';
+  if(f.endsWith('-live.html')) return 'live';
+  if(DEMOFILES.has(f)) return 'demo';
+  if(f.startsWith('kg-')) return 'study';
+  return 'demo';
+}
+const tierOf = s => ({prod:'T1',live:'T2',study:'T2',demo:'T2',lab:'T3',infra:'T4'})[s];
+
+// 短标题:去掉 "aha · " 前缀
+const short = t => t.replace(/^aha\s*·\s*/,'').replace(/^aha\.art\s*·\s*/,'');
+
+let active = new Set(Object.keys(STATUS)); // 当前开启的状态
+let query = '';
+
+function nodeHTML(f){
+  const p = byFile[f]; if(!p) return '';
+  const s = statusOf(f), st = STATUS[s];
+  const pair = DEMO_OF[f] ? `<div class="pairnote">↩ 取代 ${DEMO_OF[f]}</div>` : '';
+  return `<a class="node ${st.cls}" href="${f}" data-f="${f}" data-s="${s}" data-t="${(p.t+' '+f).toLowerCase()}">
+    <span class="t">${short(p.t)}</span>
+    <span class="m"><span class="badge">${st.e} ${st.label}</span><span>${f}</span></span>${pair}
+  </a>`;
+}
+
+// ---- 旅程挂载 ----
+const MOUNTS = {
+  enter:['museum.html'],
+  see:['art.html','kg-artworks-live.html','kg-galaxy.html'],
+  wander:['museum-salon.html','museum-corridor.html','museum-halls.html','museum-floor.html'],
+  who:['artist.html','kg-artist-live.html'],
+  make:['kg-foryou.html','kg-compile-v2.html'],
+  me:['me.html','kg-me.html','kg-me-types.html','kg-taste.html'],
+};
+for(const [k,files] of Object.entries(MOUNTS)){
+  const el = document.querySelector(`[data-mount="${k}"]`);
+  if(el) el.innerHTML = files.map(nodeHTML).join('');
+}
+
+// ---- 全景挂载 ----
+const TIERS = {
+  T1:{e:'🎨',name:'前台主路径',d:'用户真正会走的成品 —— 越少越清晰越好'},
+  T2:{e:'🧬',name:'支撑 · 知识图谱',d:'五层数据研究 + 艺术史的力 · 多为人机协作产物'},
+  T3:{e:'🧪',name:'实验存档 · 上一代',d:'逛法/概念变体的早期探索 —— 已被 museum 四走法收敛,理念部分进现役;留档可召回'},
+  T4:{e:'⚙️',name:'后台 · 基建',d:'运营、规范、导航工具'},
+};
+// T2 内部再按子主题分簇
+function subcluster(f){
+  if(f.endsWith('-live.html')) return '🟢 现役·接活库';
+  if(/worldview/.test(f)) return '世界观层';
+  if(/style/.test(f)) return '风格层';
+  if(/subject/.test(f)) return '题材层';
+  if(/affect|facets|subtext/.test(f)) return '感知/画外音层';
+  if(/language/.test(f)) return '语言层';
+  if(/artist/.test(f)) return '艺术家';
+  if(/forces|dynamics|context|contingency|drift|lineage|timeline|tour-forces|force-/.test(f)) return '艺术史的力';
+  if(/compile|foryou|gallery|backtest|projection|validate/.test(f)) return '生成链';
+  if(/schema|ontology|audit|health|provenance|data|map|milestone|plane|openness|first-principle|node|v2|works|graph|catalog|portrait|duet|explain/.test(f)) return '架构/方法论';
+  return '其它';
+}
+const SUBORDER = ['🟢 现役·接活库','世界观层','风格层','题材层','感知/画外音层','语言层','艺术家','艺术史的力','生成链','架构/方法论','其它'];
+
+function renderPano(){
+  const tiers = {T1:[],T2:[],T3:[],T4:[]};
+  ALL.forEach(p=>tiers[tierOf(statusOf(p.f))].push(p.f));
+  let html='';
+  for(const [tk,t] of Object.entries(TIERS)){
+    const files = tiers[tk];
+    let inner='';
+    if(tk==='T2'){
+      const clusters={};
+      files.forEach(f=>{(clusters[subcluster(f)] ||= []).push(f);});
+      SUBORDER.forEach(sc=>{ if(clusters[sc]){
+        inner += `<div class="sub-h">${sc} · ${clusters[sc].length}</div><div class="grid">${clusters[sc].map(nodeHTML).join('')}</div>`;
+      }});
+    } else {
+      inner = `<div class="grid">${files.map(nodeHTML).join('')}</div>`;
+    }
+    html += `<div class="tier"><div class="tier-h"><span class="e">${t.e}</span><h2>${t.name}</h2>
+      <span class="n">${files.length} 页</span><span class="d">${t.d}</span></div>${inner}</div>`;
+  }
+  document.getElementById('pano').innerHTML = html;
+  applyFilter();
+}
+
+// ---- 筛选 pills ----
+const fbar = document.getElementById('filters');
+fbar.innerHTML = Object.entries(STATUS).map(([k,s])=>
+  `<span class="pill" data-k="${k}" title="${s.desc}"><span class="dot" style="background:var(${s.cls==='c-prod'?'--accent':s.cls==='c-live'?'--ok':s.cls==='c-study'?'--gold':s.cls==='c-demo'?'--blue':s.cls==='c-lab'?'--warn':'--ink-faint'})"></span>${s.label}</span>`
+).join('');
+fbar.querySelectorAll('.pill').forEach(p=>p.onclick=()=>{
+  const k=p.dataset.k;
+  if(active.has(k)){active.delete(k);p.classList.add('off');} else {active.add(k);p.classList.remove('off');}
+  applyFilter();
+});
+
+function applyFilter(){
+  document.querySelectorAll('.node').forEach(n=>{
+    const okS = active.has(n.dataset.s);
+    const okQ = !query || n.dataset.t.includes(query);
+    n.classList.toggle('hide', !(okS&&okQ));
+  });
+}
+document.getElementById('q').oninput = e=>{query=e.target.value.trim().toLowerCase();applyFilter();};
+
+// ---- 视图切换 ----
+document.getElementById('seg').addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  document.querySelectorAll('#seg button').forEach(x=>x.classList.toggle('on',x===b));
+  const v=b.dataset.v;
+  document.getElementById('journey').style.display = v==='journey'?'block':'none';
+  document.getElementById('pano').style.display = v==='pano'?'block':'none';
+});
+
+renderPano();
+applyFilter();
+</script>
+<script src="js/aha-icons.js"></script>
+</body></html>

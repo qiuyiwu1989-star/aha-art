@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 艺术家中枢</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/aha-kit.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  /* 页面专属微调 —— 只用 token */
+  .modes{display:flex;gap:var(--s2);justify-content:center;margin-top:var(--s4)}
+  .modes .mode{display:inline-flex;align-items:center;gap:7px;font-family:var(--sans);font-size:var(--fz-body);
+    font-weight:500;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:var(--r-pill);
+    padding:9px 18px;cursor:pointer;transition:all var(--dur) var(--ease)}
+  .modes .mode .c{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-faint)}
+  .modes .mode.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .modes .mode.on .c{color:#fff;opacity:.85}
+  .modes .mode:not(.on):hover{border-color:var(--accent);color:var(--accent)}
+  .filterbar{position:sticky;top:0;z-index:40;background:var(--paper);display:flex;gap:var(--s3);
+    align-items:center;justify-content:center;flex-wrap:wrap;padding:var(--s3) 0;margin-top:var(--s3);border-bottom:1px solid var(--line)}
+  .filterbar .search{flex:1;min-width:200px;max-width:440px}
+  .statline{text-align:center;font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute);margin-top:var(--s2)}
+  .statline b{color:var(--accent)}
+  .hide{display:none!important}
+  /* nav chart card */
+  .navbox{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s3);margin-top:var(--s4)}
+  .navtabs{display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap;margin-bottom:6px;
+    font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-faint)}
+  .navsvg{width:100%;height:auto;display:block}
+  .navhint{font-family:var(--mono);font-size:var(--fz-label);color:var(--ink-faint);text-align:center;margin-top:5px;line-height:1.5}
+  .tip{position:fixed;z-index:99;pointer-events:none;background:var(--card);border:1px solid var(--line);
+    box-shadow:var(--sh-pop);border-radius:var(--r-sm);padding:5px 10px;font-size:var(--fz-small);opacity:0;transition:opacity .08s}
+  .tip.show{opacity:1}
+  /* KG grouped list */
+  .grp{margin-top:var(--s5)}
+  .grp-h{display:flex;align-items:baseline;gap:var(--s3);border-bottom:2px solid var(--gc,var(--accent));padding-bottom:6px}
+  .grp-h .code{font-family:var(--mono);font-size:var(--fz-small);font-weight:600;color:#fff;background:var(--gc,var(--accent));border-radius:var(--r-sm);padding:2px 9px}
+  .grp-h .cn{font-family:var(--serif);font-size:var(--fz-h3);font-weight:600}
+  .grp-h .ct{font-family:var(--mono);font-size:var(--fz-tiny);color:#fff;background:var(--ink-faint);border-radius:var(--r-pill);padding:1px 9px;margin-left:auto}
+  .agrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(212px,1fr));gap:var(--s2);margin-top:var(--s3)}
+  .ac{display:flex;gap:var(--s3);align-items:flex-start;padding:9px 11px;border-left:3px solid var(--gc,var(--accent))}
+  .ac .av{width:46px;height:46px;border-radius:50%;flex-shrink:0;object-fit:cover;object-position:center top;
+    background:var(--paper-2);display:flex;align-items:center;justify-content:center;font-family:var(--serif);
+    font-size:19px;font-weight:600;color:#fff;overflow:hidden}
+  .ac .tx{flex:1;min-width:0}
+  .ac .nm{font-family:var(--serif);font-size:var(--fz-h3);font-weight:600;color:var(--ink);line-height:1.2}
+  .ac .en{font-family:var(--mono);font-size:var(--fz-label);color:var(--ink-faint);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .ac .meta{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px;align-items:center}
+  .ac .pp{font-size:var(--fz-tiny);color:var(--ink-mute);margin-top:3px}
+  .ac.flash{box-shadow:0 0 0 3px var(--accent);border-radius:var(--r)}
+  /* Ledger gallery cards */
+  .gcard{display:block;overflow:hidden;padding:0}
+  .gcard .thumb{position:relative;aspect-ratio:1;background:var(--paper-2)}
+  .gcard .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .gcard .kgbadge{position:absolute;left:7px;top:7px;font-family:var(--mono);font-size:var(--fz-label);
+    color:#fff;background:rgba(176,103,58,.92);border-radius:var(--r-pill);padding:2px 8px;backdrop-filter:blur(2px)}
+  .gcard .cap{padding:8px 11px}
+  .gcard .cap .nm{font-family:var(--serif);font-size:var(--fz-body);font-weight:600;color:var(--ink);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .gcard .cap .en{font-family:var(--mono);font-size:var(--fz-label);color:var(--ink-faint);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+  .gcard .cap .n{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute);margin-top:4px;display:block}
+  .gcard:hover .nm{color:var(--accent)}
+  #totop{display:none;position:fixed;right:16px;bottom:16px;z-index:60;font-family:var(--mono);font-size:var(--fz-small);
+    color:#fff;background:var(--accent);border:none;border-radius:var(--r-pill);padding:9px 15px;cursor:pointer;box-shadow:var(--sh-pop)}
+  /* 移动端:全部馆藏画廊保持双列(kit 默认会变单列,画廊单列图太大);筛选/模式按钮放大可点 */
+  @media(max-width:600px){
+    #g{grid-template-columns:repeat(2,1fr)!important;gap:var(--s2)}
+    .modes .mode{flex:1;justify-content:center;padding:10px 12px}
+    .filterbar{gap:var(--s2)}
+    .agrid{grid-template-columns:1fr}
+    .navbox{padding:var(--s2)}
+  }
+  @media(hover:none),(pointer:coarse){.seg,.mode{min-height:40px}}
+</style>
+</head><body>
+<button id="totop" title="回到顶部">↑ 顶部</button>
+<div class="tip" id="tip"></div>
+<div class="page wide">
+  <div class="pagehead">
+    <a class="back" href="museum.html">← 美术馆</a>
+    <div class="kicker">aha · 艺术家中枢</div>
+    <h1>艺术家</h1>
+    <div class="sub">两种进入方式合于一处。<b><i data-ic="compass"></i> 知识图谱</b> 是 <b><i data-ic="works"></i> 全部馆藏</b> 中<b>已逐个考究</b>的那一小批——同一批人,只是看得更深。</div>
+    <div style="margin-top:var(--s3)"><a href="kg-artist-atlas.html" style="font-family:var(--mono);font-size:var(--fz-small);color:var(--accent);text-decoration:none;border:1px solid var(--accent-line);background:var(--accent-soft);border-radius:var(--r-pill);padding:6px 15px;transition:all var(--dur) var(--ease)" onmouseover="this.style.background='var(--card)'" onmouseout="this.style.background='var(--accent-soft)'"><i data-ic="compass"></i> 艺术家星图 · 在世界观平面上看全员的坐标与师承 →</a></div>
+    <div style="margin-top:var(--s2)"><a href="kg-artist-candidates.html" style="font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute);text-decoration:none;border:1px solid var(--line);border-radius:var(--r-pill);padding:4px 12px;transition:all var(--dur) var(--ease)" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--line)';this.style.color='var(--ink-mute)'">策展候选 · 该给谁做详细页 →</a></div>
+  </div>
+
+  <div class="modes" id="modes">
+    <button class="mode on" data-m="kg"><i data-ic="compass"></i> 知识图谱 <span class="c" id="m-kg">307</span></button>
+    <button class="mode" data-m="ledger"><i data-ic="works"></i> 全部馆藏 <span class="c" id="m-all">6,685</span></button>
+    <button class="mode" data-m="map"><i data-ic="map"></i> 来源地图</button>
+  </div>
+  <div class="note accent" id="modenote" style="max-width:680px;margin:var(--s3) auto 0">
+    <div class="k"><span></span><span id="modek">知识图谱 · 已考究 307 位</span></div>
+    <span id="modedesc">落在世界观平面上,每位都有完整主页(世界观坐标 / 七大构成 / 情绪 / 画外音 / 代表作)。</span>
+  </div>
+
+  <div class="filterbar">
+    <div class="search"><input class="input" id="q" type="search" placeholder="搜艺术家名,如「莫奈」「八大」「梵高」…"></div>
+    <div class="segwrap" id="regionseg"><button class="seg on" data-r="all">东+西</button><button class="seg" data-r="west">西方</button><button class="seg" data-r="east">东方</button></div>
+    <div class="segwrap kgonly" id="viewseg"><button class="seg on" data-v="wv">世界观区</button><button class="seg" data-v="era">时间</button></div>
+    <div class="segwrap kgonly" id="auseg"><button class="seg on" data-a="all">全部</button><button class="seg" data-a="auth">仅已考究</button></div>
+  </div>
+  <div class="statline" id="stat"></div>
+
+  <!-- KG mode -->
+  <div id="kgview">
+    <div class="navbox kgonly">
+      <div class="navtabs"><span>图表跟随上方分类 ·</span><button class="seg on" id="navtoggle">隐藏图表 ▴</button></div>
+      <div id="navbox"></div>
+      <div class="navhint" id="navhint"></div>
+    </div>
+    <div id="list"></div>
+  </div>
+
+  <!-- Ledger mode -->
+  <div id="ledgerview" class="hide">
+    <div id="cityfilter" class="hide" style="margin-bottom:var(--s2)"></div>
+    <div class="grid cols-4 tight" id="g"></div>
+    <div class="empty" id="end"></div>
+  </div>
+
+  <!-- Map mode:来源地图检索 -->
+  <div id="mapview" class="hide">
+    <div id="amap" style="height:70vh;min-height:440px;border:1px solid var(--line);border-radius:var(--r-card);overflow:hidden;background:#eceae4"></div>
+    <p class="micro" style="color:var(--ink-mute);margin-top:var(--s2);text-align:center">点城市 → 看从这里走出的画家。点越大 = 出身于此的画家越多。</p>
+  </div>
+</div>
+<script src="js/aha-chrome.js"></script>
+<script src="js/aha-app.js"></script>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const NS='http://www.w3.org/2000/svg';
+const E=(n,a,t)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(t!=null)e.textContent=t;return e;};
+const esc=s=>(s==null?'':String(s)).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+const WVC={WV1:'#b0673a',WV2:'#9a7b3a',WV3:'#5a7d6f',WV4:'#5b7596',WV5:'#8a5a7a',WV6:'#4a6a8a'};
+const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+const ERAS=[[-1e9,0,'上古'],[1,900,'古典·汉唐'],[901,1300,'中世·宋元'],[1301,1600,'文艺复兴·明'],[1601,1800,'巴洛克·清'],[1801,1900,'19 世纪'],[1901,1980,'现代'],[1981,1e9,'当代']];
+const TICKS=[[-2000,'史前'],[-500,'先秦'],[0,'汉'],[750,'唐'],[1100,'宋'],[1300,'元'],[1500,'明'],[1700,'清'],[1850,'19c'],[1920,'现代'],[2000,'当代']];
+let mode='kg';
+const tip=document.getElementById('tip');
+const elStat=document.getElementById('stat');
+
+function setMode(m){
+  if(m===mode)return; mode=m;
+  document.querySelectorAll('#modes .mode').forEach(b=>b.classList.toggle('on',b.dataset.m===m));
+  document.getElementById('kgview').classList.toggle('hide',m!=='kg');
+  document.getElementById('ledgerview').classList.toggle('hide',m!=='ledger');
+  document.getElementById('mapview').classList.toggle('hide',m!=='map');
+  document.querySelectorAll('.kgonly').forEach(e=>e.classList.toggle('hide',m!=='kg'));
+  document.querySelector('.filterbar').classList.toggle('hide',m==='map');
+  document.getElementById('q').value='';
+  document.getElementById('modek').textContent = m==='kg'?'知识图谱 · 已考究 '+R.filter(r=>r.authored).length+' 位':(m==='map'?'来源地图 · 按出生地检索':'全部馆藏 · 跨源归并 '+(total?total.toLocaleString():'6,685')+' 位');
+  document.getElementById('modedesc').textContent = m==='kg'
+    ? '落在世界观平面上,每位都有完整主页(世界观坐标 / 七大构成 / 情绪 / 画外音 / 代表作)。'
+    : (m==='map' ? '艺术家从哪里来——点一座城市,看从这里走出的画家。另一种检索方式。'
+    : '全部真实艺术家,带真迹缩略图。标 🧭 的同时在「知识图谱」里,点进去是深度主页;其余点进去看 TA 的全部藏画。');
+  if(m==='kg'){ q=''; render(); }
+  else if(m==='map'){ initMap(); }
+  else { if(!ledgerInited) initLedger(); else { resetLedger(); } }
+}
+/* ===== 来源地图检索 ===== */
+let amap=null;
+function initMap(){
+  if(amap){setTimeout(()=>amap.invalidateSize(),60);return;}
+  amap=L.map('amap',{worldCopyJump:true,minZoom:2}).setView([42,12],4);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',{attribution:'&copy; OSM &copy; CARTO',subdomains:'abcd',maxZoom:18}).addTo(amap);
+  const EAST=new Set(['中国','日本','韩国','朝鲜','印度','越南','泰国','伊朗','蒙古','土耳其']);
+  fetch('/cat/origin_map?min_n=1').then(r=>r.json()).then(d=>{
+    const max=Math.max(1,...d.points.map(p=>p.n));
+    d.points.forEach(p=>{ if(p.lat==null||p.lng==null)return;
+      const east=EAST.has(p.country),col=east?'#3a6ea5':'#b0673a';
+      L.circleMarker([p.lat,p.lng],{radius:4+18*Math.sqrt(p.n/max),color:col,weight:1,fillColor:col,fillOpacity:.42})
+       .bindPopup(`<b style="font-family:var(--serif)">${p.name}</b> <span style="color:var(--ink-soft);font-size:12px">${p.country||''} · ${p.n}位</span>`
+         +(p.top&&p.top.length?`<div style="color:var(--accent);font-size:12px;margin-top:3px">代表：${p.top.join('、')}</div>`:'')
+         +`<div style="margin-top:6px"><a href="javascript:void(0)" onclick="cityFilter('${p.name.replace(/'/g,"")}')" style="color:var(--accent);font-family:var(--mono);font-size:12px">→ 看 ${p.name} 的全部画家</a></div>`)
+       .addTo(amap);
+    });
+  });
+  setTimeout(()=>amap.invalidateSize(),60);
+}
+function cityFilter(city){
+  st.city=city; document.getElementById('regionseg').querySelectorAll('.seg').forEach(b=>b.classList.toggle('on',b.dataset.r==='all')); region='all'; st.east_west='';
+  const cf=document.getElementById('cityfilter');
+  cf.className=''; cf.innerHTML=`<span class="chip"><i data-ic="map"></i> 出生地：<b>${city}</b> <a href="javascript:void(0)" onclick="clearCity()" style="color:var(--accent)">✕</a></span>`;
+  setMode('ledger');   // setMode→ledger 会带 st.city 重新加载
+}
+function clearCity(){st.city='';document.getElementById('cityfilter').className='hide';resetLedger();}
+document.getElementById('modes').addEventListener('click',e=>{const b=e.target.closest('.mode');if(!b)return;
+  if(b.dataset.m!=='ledger'&&st&&st.city){st.city='';const cf=document.getElementById('cityfilter');if(cf)cf.className='hide';}
+  setMode(b.dataset.m);});
+
+/* ============ KG mode (canon) ============ */
+let R=[],region='all',view='wv',au='all',q='',navHidden=false,CENT={},lastGroups=[],PORT={};
+Promise.all([
+  fetch('/cat/artists_canon').then(r=>r.json()),
+  fetch('data/kg_worldview_regions.json').then(r=>r.json()).catch(()=>({regions:[]}))
+]).then(([C,wv])=>{
+  (wv.regions||[]).forEach(r=>CENT[r.id]=[r.cx,r.cy]);
+  R=(C.artists||[]).map(a=>{let rx=a.wx,sp=a.wy;
+    if((rx==null||sp==null)&&CENT[a.wv]){rx=CENT[a.wv][0]+(((a.id.length*7)%10)/10-0.5)*0.06;sp=CENT[a.wv][1]+(((a.id.length*13)%10)/10-0.5)*0.06;}
+    if(a.portrait)PORT[a.id]=a.portrait;
+    return {id:a.id,cn:a.cn,en:a.en,region:a.region,wv:a.wv,era:a.era,era_disp:a.era_disp,primary:a.primary,authored:a.authored!==false,n:a.n,rx,sp};});
+  const AUN=R.filter(r=>r.authored).length;
+  document.getElementById('m-kg').textContent=AUN;
+  document.getElementById('modek').textContent='知识图谱 · 已考究 '+AUN+' 位';
+  render();
+}).catch(()=>{document.getElementById('list').innerHTML='<div class="empty">知识图谱加载失败(需经服务器打开)</div>';});
+
+const bindseg=(id,key,fn)=>document.getElementById(id).addEventListener('click',e=>{const b=e.target.closest('.seg');if(!b)return;const v=b.dataset[key];if(v==null)return;fn(v);[...e.currentTarget.children].forEach(x=>x.classList.toggle('on',x===b));render();});
+bindseg('viewseg','v',v=>view=v); bindseg('auseg','a',v=>au=v);
+document.getElementById('navtoggle').addEventListener('click',e=>{navHidden=!navHidden;e.target.textContent=navHidden?'显示图表 ▾':'隐藏图表 ▴';e.target.classList.toggle('on',!navHidden);drawNav();});
+
+function pass(r){if(region!=='all'&&r.region!==region)return false;if(au==='auth'&&!r.authored)return false;if(q&&!(r.cn.includes(q)||(r.en||'').toLowerCase().includes(q.toLowerCase())))return false;return true;}
+function fy(y){return y==null?'—':(y<0?`前${-y}`:`${y}`);}
+function gotoCard(id){const el=document.getElementById('acard-'+id);if(!el)return;el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),1600);}
+function gotoGroup(v,key){if(view!==v){view=v;document.querySelectorAll('#viewseg .seg').forEach(b=>b.classList.toggle('on',b.dataset.v===v));render();}
+  setTimeout(()=>{const i=lastGroups.findIndex(g=>g.key===key);if(i>=0)document.getElementById('ag'+i).scrollIntoView({behavior:'smooth',block:'start'});},60);}
+function adot(svg,x,y,r,rad){const c=E('circle',{cx:x,cy:y,r:rad||4,fill:WVC[r.wv]||'#999','fill-opacity':r.authored?0.92:0.5,stroke:r.authored?'#fff':WVC[r.wv]||'#999','stroke-width':r.authored?0.7:0.9,style:'cursor:pointer'});
+  c.addEventListener('mouseenter',ev=>{tip.className='tip show';tip.innerHTML=`<b>${esc(r.cn)}</b>${r.authored?' <span style="color:var(--green)"><i data-ic="check"></i></span>':''}<br><span style="font-family:var(--mono);font-size:10px;color:${WVC[r.wv]}">${r.wv} ${WVN[r.wv]||''} · ${r.region==='east'?'东':'西'} · ${r.era_disp||fy(r.era)}</span>`;tip.style.left=(ev.clientX+13)+'px';tip.style.top=(ev.clientY-8)+'px';});
+  c.addEventListener('mousemove',ev=>{tip.style.left=(ev.clientX+13)+'px';tip.style.top=(ev.clientY-8)+'px';});
+  c.addEventListener('mouseleave',()=>tip.className='tip');
+  c.addEventListener('click',()=>{tip.className='tip';gotoCard(r.id);});svg.appendChild(c);}
+function drawPlane(items){
+  const W=1000,H=440,pad=46,xv=v=>pad+v*(W-2*pad),yv=v=>H-pad-v*(H-2*pad);
+  const svg=E('svg',{viewBox:`0 0 ${W} ${H}`,class:'navsvg'});
+  svg.appendChild(E('rect',{x:pad,y:pad,width:W-2*pad,height:H-2*pad,fill:'#fcfaf5',stroke:'#e8e0d0'}));
+  [.25,.5,.75].forEach(t=>{svg.appendChild(E('line',{x1:xv(t),y1:pad,x2:xv(t),y2:H-pad,stroke:'#efe9dc'}));svg.appendChild(E('line',{x1:pad,y1:yv(t),x2:W-pad,y2:yv(t),stroke:'#efe9dc'}));});
+  const T=(x,y,s,o={})=>{const t=E('text',{x,y,'font-family':o.f||'JetBrains Mono','font-size':o.fs||11,fill:o.fill||'#857d6f','text-anchor':o.a||'middle'},s);if(o.w)t.setAttribute('font-weight',o.w);if(o.st){t.setAttribute('paint-order','stroke');t.setAttribute('stroke','#fcfaf5');t.setAttribute('stroke-width',3);}if(o.click){t.style.cursor='pointer';t.addEventListener('click',o.click);}svg.appendChild(t);};
+  T(xv(0.02),yv(.5)+4,'再现',{a:'start',fill:'#5a7d6f',w:600});T(xv(.98),yv(.5)+4,'表现',{a:'end',fill:'#b0673a',w:600});
+  T(xv(.5),yv(0)+13,'结构',{fill:'#5a7d6f',w:600});T(xv(.5),yv(1)-6,'感知',{fill:'#b0673a',w:600});
+  items.forEach(r=>{if(r.rx==null)return;adot(svg,xv(r.rx),yv(r.sp),r);});
+  Object.entries(CENT).forEach(([id,c])=>{svg.appendChild(E('circle',{cx:xv(c[0]),cy:yv(c[1]),r:9,fill:WVC[id],stroke:'#fff','stroke-width':2,style:'cursor:pointer'}));
+    T(xv(c[0]),yv(c[1])-13,WVN[id],{f:'Noto Serif SC',fs:12.5,fill:WVC[id],w:600,st:1,click:()=>gotoGroup('wv',id)});});
+  return svg;
+}
+function ts(y){const bx=70,ex=930,split=0.24;return y<1300?bx+(ex-bx)*split*(y-(-2500))/3800:bx+(ex-bx)*(split+(1-split)*(y-1300)/725);}
+function hashv(s){let h=0;for(const c of s)h=(h*131+c.charCodeAt(0))&0xffff;return h/0xffff;}
+function drawTimeline(items){
+  const W=1000,H=340,TOP=44,BOT=H-40,MID=(TOP+BOT)/2;
+  const svg=E('svg',{viewBox:`0 0 ${W} ${H}`,class:'navsvg'});
+  svg.appendChild(E('rect',{x:70,y:TOP-2,width:860,height:MID-TOP-6,fill:'#fbf6ef'}));svg.appendChild(E('rect',{x:70,y:MID+6,width:860,height:BOT-MID-6,fill:'#f1f4f1'}));
+  const T=(x,y,s,o={})=>{const t=E('text',{x,y,'font-family':o.f||'JetBrains Mono','font-size':o.fs||10,fill:o.fill||'#9a917f','text-anchor':o.a||'middle'},s);if(o.w)t.setAttribute('font-weight',o.w);svg.appendChild(t);};
+  T(62,(TOP+MID)/2,'西',{a:'end',f:'Noto Serif SC',fs:14,fill:'#b0673a',w:600});T(62,(MID+BOT)/2,'东',{a:'end',f:'Noto Serif SC',fs:14,fill:'#5a7d6f',w:600});
+  svg.appendChild(E('line',{x1:70,y1:MID,x2:930,y2:MID,stroke:'#d8cfbf','stroke-width':1.2}));
+  TICKS.forEach(([y,lab])=>{const x=ts(y);svg.appendChild(E('line',{x1:x,y1:TOP-2,x2:x,y2:BOT,stroke:'#ece4d4'}));T(x,MID+4,lab);});
+  const sx=ts(1300);svg.appendChild(E('line',{x1:sx,y1:TOP-2,x2:sx,y2:BOT,stroke:'#e0c9b0','stroke-dasharray':'3 3'}));
+  items.forEach(r=>{if(r.era==null)return;const west=r.region!=='east';const c0=west?TOP:MID+14,c1=west?MID-14:BOT;adot(svg,ts(r.era),c0+hashv(r.id)*(c1-c0),r,3.6);});
+  return svg;
+}
+function drawNav(){
+  const box=document.getElementById('navbox'),hint=document.getElementById('navhint');box.innerHTML='';
+  if(navHidden){hint.textContent='图表已隐藏 · 点上方「显示图表」打开';return;}
+  const items=R.filter(pass);
+  if(view==='wv'){box.appendChild(drawPlane(items));hint.innerHTML='🗺️ 世界观平面 · 点一颗点 → 定位到下方该艺术家并高亮 · 点区名 → 跳到该区分组';}
+  else{box.appendChild(drawTimeline(items));hint.innerHTML='🕰️ 时间线 · 点一颗点 → 定位到下方该艺术家 · 上带西方/下带东方 · 横轴时间';}
+}
+function kcard(r){
+  const c=WVC[r.wv]||'#999';
+  const ew=r.region==='east'?'var(--green)':'var(--accent)';
+  const eraTxt=r.era_disp||fy(r.era);
+  const port=PORT[r.id];
+  const av=port?`<img class="av" loading="lazy" decoding="async" src="${port}" alt="${esc(r.cn)}" onerror="this.outerHTML='<div class=&quot;av&quot; style=&quot;background:${r.region==='east'?'#5a7d6f':'#b0673a'}&quot;>'+[...'${esc(r.cn)}'][0]+'</div>'">`
+              :`<div class="av" style="background:${r.region==='east'?'#5a7d6f':'#b0673a'}">${[...r.cn][0]||'?'}</div>`;
+  return `<a class="card link ac" id="acard-${r.id}" style="--gc:${c}" href="kg-artist.html?id=${r.id}">${av}<div class="tx">
+    <div class="nm">${esc(r.cn)}</div><span class="en">${esc(r.en||'')}</span>
+    <div class="meta"><span class="chip">${eraTxt}</span><span class="chip" style="color:${ew}"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:${ew};margin-right:2px"></span>${r.region==='east'?'东方':'西方'}</span></div>
+    <div class="pp">${esc(r.primary||'')}</div></div></a>`;
+}
+function render(){
+  if(mode!=='kg')return;
+  const items=R.filter(pass).slice().sort((a,b)=>(a.era||0)-(b.era||0));
+  const list=document.getElementById('list');list.innerHTML='';
+  let groups;
+  if(view==='wv'){groups=['WV1','WV2','WV3','WV4','WV5','WV6'].map(id=>({key:id,color:WVC[id],head:`<span class="code" style="background:${WVC[id]}">${id}</span><span class="cn">${WVN[id]}</span>`,items:items.filter(r=>r.wv===id)}));}
+  else{groups=ERAS.map(([a,b,lab])=>({key:lab,color:'var(--accent)',head:`<span class="cn">${lab}</span>`,items:items.filter(r=>r.era>=a&&r.era<=b)}));}
+  groups=groups.filter(g=>g.items.length);lastGroups=groups;
+  groups.forEach((g,i)=>{const sec=$(`<div class="grp" id="ag${i}" style="--gc:${g.color}"></div>`);
+    sec.innerHTML=`<div class="grp-h" style="--gc:${g.color}">${g.head}<span class="ct">${g.items.length}</span></div><div class="agrid"></div>`;
+    const grid=sec.querySelector('.agrid');g.items.forEach(r=>grid.appendChild($(kcard(r))));list.appendChild(sec);});
+  const ac=items.filter(r=>r.authored).length;
+  elStat.innerHTML=`显示 <b>${items.length}</b> / ${R.length} 位 · 已考究 ${ac} · 视角:${view==='wv'?'世界观区':'时间'}`;
+  drawNav();
+}
+
+/* ============ Ledger mode (all) ============ */
+let ledgerInited=false;
+let st={east_west:'',q:'',city:''},off=0,total=0,loading=false,done=false;
+const g=document.getElementById('g'),end=document.getElementById('end');
+function initLedger(){ledgerInited=true;st.east_west=(region==='all'?'':region);resetLedger();}
+function resetLedger(){off=0;done=false;g.innerHTML='';end.textContent='';loadLedger();}
+function qsLedger(){const p=new URLSearchParams();if(st.east_west)p.set('east_west',st.east_west);if(st.city)p.set('city',st.city);if(st.q)p.set('q',st.q);p.set('offset',off);p.set('limit',60);return p.toString();}
+async function loadLedger(){
+  if(loading||done||mode!=='ledger')return;loading=true;end.textContent='加载中…';
+  try{
+    const d=await(await fetch('/cat/ledger_artists?'+qsLedger())).json();
+    total=d.total;
+    document.getElementById('m-all').textContent=total.toLocaleString();
+    document.getElementById('modek').textContent='全部馆藏 · 跨源归并 '+total.toLocaleString()+' 位';
+    elStat.innerHTML=`共 <b>${total.toLocaleString()}</b> 位规范艺术家(跨源归并后)`;
+    d.items.forEach(i=>{
+      const href=`kg-artist.html?id=${encodeURIComponent(i.kg||i.artist_id)}`;
+      const ensec=(i.en&&i.en!==i.name)?`<span class="en">${esc(i.en)}</span>`:'';
+      const badge=i.kg?`<span class="kgbadge"><i data-ic="compass"></i> 考究</span>`:'';
+      const ph='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect width=%22100%22 height=%22100%22 fill=%22%23ece7db%22/></svg>';
+      g.appendChild($(`<a class="card link gcard" href="${href}">
+        <div class="thumb"><img loading="lazy" decoding="async" src="${esc(i.thumb)}" onerror="this.onerror=null;this.src='${ph}'">${badge}</div>
+        <div class="cap"><span class="nm">${esc(i.name||'佚名')}</span>${ensec}<span class="n">${(i.works||0).toLocaleString()} 件 · ${i.east_west==='east'?'东方':i.east_west==='west'?'西方':'—'}</span></div></a>`));
+    });
+    off+=d.items.length;
+    if(d.items.length<60||off>=total){done=true;end.textContent=`— 已展示 ${off.toLocaleString()} / ${total.toLocaleString()} 位 —`;}
+    else end.textContent='';
+  }catch(e){end.textContent='加载失败(需经服务器打开)';}
+  loading=false;
+}
+
+/* ============ shared ============ */
+let qt;
+document.getElementById('q').addEventListener('input',e=>{
+  const v=e.target.value.trim();
+  if(mode==='kg'){q=v;render();}
+  else{clearTimeout(qt);qt=setTimeout(()=>{st.q=v;resetLedger();},350);}
+});
+document.getElementById('regionseg').addEventListener('click',e=>{
+  const b=e.target.closest('.seg');if(!b)return;
+  [...e.currentTarget.children].forEach(x=>x.classList.toggle('on',x===b));
+  const v=b.dataset.r;region=v;
+  if(mode==='kg'){render();}else{st.east_west=(v==='all'?'':v);resetLedger();}
+});
+window.addEventListener('scroll',()=>{
+  if(mode==='ledger'&&innerHeight+scrollY>=document.body.offsetHeight-700)loadLedger();
+},{passive:true});
+(function(){const b=document.getElementById('totop');
+  const upd=()=>{b.style.display=window.scrollY>520?'inline-flex':'none';};
+  window.addEventListener('scroll',upd,{passive:true});
+  b.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));upd();})();
+</script>
+<script src="js/aha-icons.js"></script>
+</body></html>

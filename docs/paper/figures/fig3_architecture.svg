@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="520" viewBox="0 0 880 520" font-family="Noto Sans SC,system-ui,sans-serif">
+<rect width="880" height="520" fill="#faf8f3"/>
+<defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#857d6f"/></marker></defs>
+<text x="28" y="34" font-size="15" font-weight="700" fill="#1d1b18" font-family="Noto Serif SC,serif">从四种「逛法」到下一帧</text>
+<text x="120" y="62" font-size="11" fill="#b0673a" text-anchor="middle" font-family="JetBrains Mono,monospace" letter-spacing="1">① 四种逛法 / 模态</text>
+<text x="375" y="62" font-size="11" fill="#b0673a" text-anchor="middle" font-family="JetBrains Mono,monospace" letter-spacing="1">② 三张信号表</text>
+<text x="640" y="62" font-size="11" fill="#b0673a" text-anchor="middle" font-family="JetBrains Mono,monospace" letter-spacing="1">③ 三层时间尺度</text>
+<text x="800" y="62" font-size="11" fill="#b0673a" text-anchor="middle" font-family="JetBrains Mono,monospace">④ 推荐</text>
+<rect x="30" y="78" width="180" height="84" rx="10" fill="#fff" stroke="#5a7d6f" stroke-width="1.5"/>
+<text x="120.0" y="100" font-size="13.5" font-weight="600" fill="#1d1b18" text-anchor="middle" font-family="Noto Serif SC,serif">看展</text>
+<text x="120.0" y="118" font-size="10.5" fill="#857d6f" text-anchor="middle">浏览·停留·心动</text>
+<text x="120.0" y="133" font-size="10.5" fill="#857d6f" text-anchor="middle">收藏·跳过</text>
+<rect x="30" y="180" width="180" height="84" rx="10" fill="#fff" stroke="#5a7d6f" stroke-width="1.5"/>
+<text x="120.0" y="202" font-size="13.5" font-weight="600" fill="#1d1b18" text-anchor="middle" font-family="Noto Serif SC,serif">相框电台</text>
+<text x="120.0" y="220" font-size="10.5" fill="#857d6f" text-anchor="middle">被动轮播·双击</text>
+<text x="120.0" y="235" font-size="10.5" fill="#857d6f" text-anchor="middle">展示≠观看</text>
+<rect x="30" y="282" width="180" height="84" rx="10" fill="#fff" stroke="#5a7d6f" stroke-width="1.5"/>
+<text x="120.0" y="304" font-size="13.5" font-weight="600" fill="#1d1b18" text-anchor="middle" font-family="Noto Serif SC,serif">语音心愿</text>
+<text x="120.0" y="322" font-size="10.5" fill="#857d6f" text-anchor="middle">ASR→LLM 解析</text>
+<text x="120.0" y="337" font-size="10.5" fill="#857d6f" text-anchor="middle">会处理否定</text>
+<rect x="30" y="384" width="180" height="84" rx="10" fill="#fff" stroke="#5a7d6f" stroke-width="1.5"/>
+<text x="120.0" y="406" font-size="13.5" font-weight="600" fill="#1d1b18" text-anchor="middle" font-family="Noto Serif SC,serif">生成</text>
+<text x="120.0" y="424" font-size="10.5" fill="#857d6f" text-anchor="middle">意图编译器</text>
+<text x="120.0" y="439" font-size="10.5" fill="#857d6f" text-anchor="middle">主动要的方向</text>
+<rect x="290" y="88" width="170" height="70" rx="10" fill="#fff" stroke="#5b7596" stroke-width="1.5"/>
+<text x="375.0" y="110" font-size="13.5" font-weight="600" fill="#1d1b18" text-anchor="middle" font-family="Noto Serif SC,serif">mu_event</text>
+<text x="375.0" y="128" font-size="10.5" fill="#857d6f" text-anchor="middle">行为 revealed</text>
+<text x="375.0" y="143" font-size="10.5" fill="#857d6f" text-anchor="middle">like/dwell/skip/expose</text>
+<rect x="290" y="230" width="170" height="70" rx="10" fill="#fff" stroke="#5b7596" stroke-width="1.5"/>
+<text x="375.0" y="252" font-size="13.5" font-weight="600" fill="#1d1b18" text-anchor="middle" font-family="Noto Serif SC,serif">mu_wish</text>
+<text x="375.0" y="270" font-size="10.5" fill="#857d6f" text-anchor="middle">陈述 stated</text>
+<text x="375.0" y="285" font-size="10.5" fill="#857d6f" text-anchor="middle">text/av/vv/region</text>
+<rect x="290" y="350" width="170" height="56" rx="10" fill="#fff" stroke="#5b7596" stroke-width="1.5"/>
+<text x="375.0" y="372" font-size="13.5" font-weight="600" fill="#1d1b18" text-anchor="middle" font-family="Noto Serif SC,serif">mu_generation</text>
+<text x="375.0" y="390" font-size="10.5" fill="#857d6f" text-anchor="middle">创作</text>
+<line x1="210" y1="120" x2="290" y2="123" stroke="#857d6f" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="210" y1="222" x2="290" y2="265" stroke="#857d6f" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="210" y1="324" x2="290" y2="265" stroke="#857d6f" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="210" y1="426" x2="290" y2="385" stroke="#857d6f" stroke-width="1.4" marker-end="url(#ar)"/>
+<rect x="560" y="88" width="190" height="92" rx="10" fill="#fff" stroke="#b0673a" stroke-width="1.5"/>
+<text x="655.0" y="110" font-size="13.5" font-weight="600" fill="#1d1b18" text-anchor="middle" font-family="Noto Serif SC,serif">此刻心情</text>
+<text x="655.0" y="128" font-size="10.5" fill="#857d6f" text-anchor="middle">≤30min</text>
+<text x="655.0" y="143" font-size="10.5" fill="#857d6f" text-anchor="middle">→ 相框 next_frame</text>
+<rect x="560" y="208" width="190" height="92" rx="10" fill="#fff" stroke="#c98a1a" stroke-width="1.5"/>
+<text x="655.0" y="230" font-size="13.5" font-weight="600" fill="#1d1b18" text-anchor="middle" font-family="Noto Serif SC,serif">近来意图</text>
+<text x="655.0" y="248" font-size="10.5" fill="#857d6f" text-anchor="middle">7天半衰期</text>
+<text x="655.0" y="263" font-size="10.5" fill="#857d6f" text-anchor="middle">→ 为你推荐 foryou</text>
+<rect x="560" y="328" width="190" height="92" rx="10" fill="#fff" stroke="#5a7d6f" stroke-width="1.5"/>
+<text x="655.0" y="350" font-size="13.5" font-weight="600" fill="#1d1b18" text-anchor="middle" font-family="Noto Serif SC,serif">长期身份</text>
+<text x="655.0" y="368" font-size="10.5" fill="#857d6f" text-anchor="middle">只看行为</text>
+<text x="655.0" y="383" font-size="10.5" fill="#857d6f" text-anchor="middle">→ 审美档案 μ</text>
+<line x1="460" y1="123" x2="560" y2="134" stroke="#857d6f" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="460" y1="265" x2="560" y2="254" stroke="#857d6f" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="460" y1="265" x2="560" y2="330" stroke="#857d6f" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="460" y1="385" x2="560" y2="360" stroke="#857d6f" stroke-width="1.4" marker-end="url(#ar)"/>
+<rect x="778" y="200" width="92" height="120" rx="10" fill="#fff" stroke="#b0673a" stroke-width="1.5"/>
+<text x="824.0" y="222" font-size="13.5" font-weight="600" fill="#1d1b18" text-anchor="middle" font-family="Noto Serif SC,serif">打分</text>
+<text x="824.0" y="240" font-size="10.5" fill="#857d6f" text-anchor="middle">熟悉↔惊喜</text>
+<text x="824.0" y="255" font-size="10.5" fill="#857d6f" text-anchor="middle">rel=(1−ex)·sim</text>
+<text x="824.0" y="270" font-size="10.5" fill="#857d6f" text-anchor="middle">+ ex·aha</text>
+<text x="824.0" y="285" font-size="10.5" fill="#857d6f" text-anchor="middle">倒U·d*</text>
+<line x1="750" y1="134" x2="778" y2="205" stroke="#857d6f" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="750" y1="254" x2="778" y2="235" stroke="#857d6f" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="750" y1="374" x2="778" y2="265" stroke="#857d6f" stroke-width="1.4" marker-end="url(#ar)"/>
+<text x="28" y="504" font-size="10.5" fill="#857d6f" font-family="JetBrains Mono,monospace">说的话调「给你看什么」(stated→此刻/近来) · 做的事定「你是谁」(revealed→身份 μ);两者结合、互不覆盖。</text>
+</svg>

@@ -1,0 +1,82 @@
+<!doctype html><html lang=zh><head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>aha · 全藏画廊（连库 v_ledger）</title>
+<style>
+:root{--ink:#1a1a1a;--soft:#6b6b6b;--line:#e6e3dd;--accent:#9a6a3a;--bg:#f5f3ee}
+*{box-sizing:border-box}body{margin:0;font:14px/1.6 -apple-system,"PingFang SC",sans-serif;color:var(--ink);background:var(--bg)}
+header{position:sticky;top:0;z-index:10;background:#fffdf9;border-bottom:1px solid var(--line);padding:12px 20px}
+.tit{font-size:17px;font-weight:700}.tit small{color:var(--soft);font-weight:400;font-size:12px;margin-left:8px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+select,input{font:13px inherit;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:#fff}
+input{flex:1;min-width:140px;max-width:280px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{border:0;background:#fff;padding:6px 11px;cursor:pointer;font-size:12.5px;color:var(--soft)}
+.seg button.on{background:var(--accent);color:#fff}
+.wrap{max-width:1280px;margin:0 auto;padding:16px 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
+figure{margin:0;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer;transition:.15s}
+figure:hover{box-shadow:0 4px 16px rgba(0,0,0,.08);transform:translateY(-2px)}
+figure img{width:100%;height:190px;object-fit:cover;display:block;background:#eee}
+figcaption{padding:8px 10px}figcaption b{font-size:13px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+figcaption .a{color:var(--accent);font-size:12px}figcaption .m{color:var(--soft);font-size:11px;margin-top:2px}
+.tag{display:inline-block;font-size:10px;background:var(--bg);border-radius:8px;padding:0 6px;margin-right:3px;color:var(--soft)}
+.end{text-align:center;color:var(--soft);padding:24px;font-size:13px}
+#lb{position:fixed;inset:0;background:rgba(20,16,12,.92);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
+#lb img{max-width:96%;max-height:88%;object-fit:contain;border-radius:6px}
+#lb .cap{position:fixed;bottom:18px;left:0;right:0;text-align:center;color:#f3eee2;font-size:14px}
+</style></head><body>
+<header>
+  <div class="tit">aha · 全藏画廊 <small id="cnt">连库 v_ledger 加载中…</small></div>
+  <div class="bar">
+    <div class="seg" id="src"><button data-v="" class=on>全部来源</button><button data-v="yh">油画</button><button data-v="wikiart">WikiArt</button><button data-v="nbfox">麦田</button><button data-v="yishujia">yishujia</button></div>
+    <div class="seg" id="ew"><button data-v="" class=on>东西不限</button><button data-v="east">东方</button><button data-v="west">西方</button></div>
+    <div class="seg" id="tier"><button data-v="" class=on>清晰度不限</button><button data-v="hd">高清</button><button data-v="mid">中</button></div>
+    <select id="style" onchange="st.style=this.value;reset()"><option value="">全部流派</option></select>
+    <input id="q" placeholder="搜作品名 / 艺术家…">
+  </div>
+</header>
+<div class="wrap"><div class="grid" id="g"></div><div class="end" id="end"></div></div>
+<div id="lb"><img id="lbi"><div class="cap" id="lbc"></div></div>
+<script>
+const g=document.getElementById('g'),end=document.getElementById('end'),cnt=document.getElementById('cnt');
+const _u=new URLSearchParams(location.search),_artist=_u.get('artist'),_aname=_u.get('name');
+let st={source:'',east_west:'',res_tier:'',style:_u.get('style')||'',q:'',artist:_artist||''},off=0,total=0,loading=false,done=false;
+fetch('/cat/styles').then(r=>r.json()).then(d=>{const s=document.getElementById('style');if(s)d.styles.forEach(x=>s.innerHTML+=`<option value="${x.canon_id}">${x.name_cn}（${x.n}）</option>`);}).catch(()=>{});
+if(_artist){document.querySelector('.tit').innerHTML=`<a href="artists-live.html" style="color:var(--accent);text-decoration:none">← 艺术家</a> · ${_aname||''} <small id="cnt"></small><div id="aInfo" class="bar" style="font-size:12.5px;color:var(--soft)"></div>`;
+  fetch('/cat/assoc/artist?id='+encodeURIComponent(_artist)).then(r=>r.json()).then(d=>{
+    if(!d.found)return;const a=d.artist,el=document.getElementById('aInfo');if(!el)return;
+    const styles=(a.styles||[]).slice(0,3).map(s=>`<a href="?style=${s.canon_id}" style="color:var(--accent);text-decoration:none">${s.name}</a>(${s.n})`).join(' · ');
+    const life=a.born?`${a.born}–${a.death||''}`:'';
+    const con=(d.contemporaries||[]).slice(0,5).map(c=>c.name_cn||c.name_en).filter(Boolean).join('、');
+    el.innerHTML=[styles&&'流派 '+styles, life&&'生卒 '+life, a.region&&'出生地 '+a.region, a.east_west&&(a.east_west==='east'?'东方':'西方')].filter(Boolean).join(' ｜ ')
+      +(con?`<div style="margin-top:3px">同代人：${con}</div>`:'');
+  }).catch(()=>{});}
+function seg(id,key){document.getElementById(id).onclick=e=>{const b=e.target.closest('button');if(!b)return;
+  [...e.currentTarget.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');st[key]=b.dataset.v;reset();};}
+seg('src','source');seg('ew','east_west');seg('tier','res_tier');
+let qt;document.getElementById('q').oninput=e=>{clearTimeout(qt);qt=setTimeout(()=>{st.q=e.target.value.trim();reset();},350);};
+function reset(){off=0;done=false;g.innerHTML='';end.textContent='';load();}
+function qs(){const p=new URLSearchParams();for(const k in st)if(st[k])p.set(k==='q'?'q':k,st[k]);p.set('offset',off);p.set('limit',60);return p.toString();}
+async function load(){
+  if(loading||done)return;loading=true;end.textContent='加载中…';
+  try{
+    const d=await(await fetch('/cat/ledger?'+qs())).json();
+    total=d.total;document.getElementById('cnt').textContent=_artist?`${total.toLocaleString()} 幅作品`:`共 ${total.toLocaleString()} 幅（治理总账·已去重·排除占位）`;
+    d.items.forEach(i=>{
+      const f=document.createElement('figure');
+      const tags=[i.east_west==='east'?'东':i.east_west==='west'?'西':'',i.res_tier==='hd'?'高清':''].filter(Boolean).map(t=>`<span class=tag>${t}</span>`).join('');
+      f.innerHTML=`<img loading=lazy src="${i.thumb}" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22190%22 height=%22190%22><rect width=%22190%22 height=%22190%22 fill=%22%23e8e4dc%22/><text x=%2295%22 y=%2298%22 font-size=%2212%22 fill=%22%239a8f7d%22 text-anchor=%22middle%22>源图过大·点开看</text></svg>'"><figcaption><b>${i.title||'无题'}</b>
+        <span class=a>${i.artist||'佚名'}</span><div class=m>${tags}${i.year||''} · ${i.school||i.source}</div></figcaption>`;
+      f.onclick=()=>{document.getElementById('lbi').src=i.full;document.getElementById('lbc').textContent=`${i.artist||''}《${i.title||'无题'}》${i.year||''}`;document.getElementById('lb').style.display='flex';};
+      g.appendChild(f);
+    });
+    off+=d.items.length;
+    if(d.items.length<60||off>=total){done=true;end.textContent=`— 已展示 ${off.toLocaleString()} / ${total.toLocaleString()} —`;}
+    else end.textContent='';
+  }catch(e){end.textContent='加载失败';}
+  loading=false;
+}
+document.getElementById('lb').onclick=()=>document.getElementById('lb').style.display='none';
+addEventListener('scroll',()=>{if(innerHeight+scrollY>=document.body.offsetHeight-600)load();});
+load();
+</script></body></html>

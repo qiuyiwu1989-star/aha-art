@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 生成中心 · 以你之眼,把意图画出来</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/aha-kit.css">
+<style>
+/* —— 生成中心专属微调:只用 var() token,不写 :root / 十六进制 —— */
+  .studio-lead{max-width:660px;margin:6px auto 0;text-align:center;color:var(--ink-mute);font-size:var(--fz-small);line-height:1.7}
+  .studio-lead b{color:var(--ink-soft)}
+  /* 起点区 */
+  .start{display:flex;flex-direction:column;gap:var(--s4)}
+  .warm{display:flex;flex-wrap:wrap;gap:var(--s2);align-items:center}
+  .warm .wl{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-faint);letter-spacing:.04em;margin-right:2px}
+  .seed{display:inline-flex;align-items:center;gap:6px;font-size:var(--fz-small);color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:var(--r-pill);padding:4px 11px;cursor:pointer;transition:all var(--dur) var(--ease)}
+  .seed:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+  .seed.soul{border-color:var(--accent-line);background:var(--accent-soft)}
+  .seed .th{width:20px;height:20px;border-radius:50%;background-size:cover;background-position:center;flex:none}
+  .seed svg{width:14px;height:14px}
+  .inbar{display:flex;gap:var(--s2);margin-top:2px}
+  .inbar .input{flex:1}
+  .ibtn{font-family:var(--mono);font-size:var(--fz-body);color:#fff;background:var(--accent);border:none;border-radius:var(--r);padding:0 16px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+  .ibtn.g{background:var(--green)} .ibtn.b{background:var(--blue)}
+  .ibtn svg{width:15px;height:15px}
+  .ibtn:disabled{opacity:.5;cursor:default}
+  /* 口味滑杆 */
+  .tasterow{display:flex;align-items:center;gap:10px;font-size:var(--fz-tiny);color:var(--ink-mute);font-family:var(--mono)}
+  .tasterow input[type=range]{flex:1;max-width:260px;accent-color:var(--accent)}
+  /* 版式层 */
+  .tpls{display:flex;gap:var(--s2);overflow-x:auto;padding:2px 0 6px;scrollbar-width:thin}
+  .tpl{flex:none;width:124px;border:1px solid var(--line);background:var(--card);border-radius:var(--r);padding:11px 12px;cursor:pointer;transition:all var(--dur) var(--ease)}
+  .tpl:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .tpl.on{border-color:var(--accent);background:var(--accent-soft);box-shadow:var(--sh-1)}
+  .tpl .ti{width:20px;height:20px;color:var(--accent)} .tpl .ti svg{width:20px;height:20px}
+  .tpl .tn{font-family:var(--serif);font-size:var(--fz-small);font-weight:600;color:var(--ink);margin-top:6px}
+  .tpl .td{font-size:var(--fz-tiny);color:var(--ink-mute);line-height:1.4;margin-top:2px}
+  /* routed */
+  .routed{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-faint);margin:4px 0 0;line-height:1.7}
+  .routed b{color:var(--ink-soft)}
+  /* 编译卡 */
+  .ccard{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:16px 18px;margin-top:var(--s3);box-shadow:var(--sh-1)}
+  .ccard .ct{font-family:var(--serif);font-size:var(--fz-h3);font-weight:600;border-bottom:2px solid var(--accent);padding-bottom:6px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .fld{display:grid;grid-template-columns:74px 1fr;gap:8px 12px;align-items:center}
+  .fld>label{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute);text-align:right}
+  .fld .ro{font-size:var(--fz-small);color:var(--ink-soft)} .fld .ro b{color:var(--accent)}
+  .lang7{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:5px;margin-top:2px}
+  .lang7 .lc{font-family:var(--mono);font-size:var(--fz-label);color:var(--ink-soft);background:var(--paper-2);border-radius:var(--r-sm);padding:2px 7px}
+  .refart{grid-column:1/-1;font-size:var(--fz-tiny);color:var(--ink-mute);line-height:1.7}.refart a{color:var(--accent);text-decoration:none}
+  .pbox{margin-top:13px}.pbox .ph{font-family:var(--mono);font-size:var(--fz-label);color:var(--accent);margin-bottom:4px}
+  .pbox textarea{width:100%;font-family:var(--sans);font-size:var(--fz-small);line-height:1.6;color:var(--ink-soft);background:var(--paper);border:1px solid var(--line);border-radius:var(--r-sm);padding:9px 11px;resize:vertical}
+  .pbox.neg textarea{color:var(--reb)}
+  .tplchip{grid-column:1/-1;display:flex;align-items:center;gap:6px;font-size:var(--fz-tiny);color:var(--ink-mute)}.tplchip b{color:var(--accent)}
+  .genrow{display:flex;align-items:center;gap:10px;margin-top:13px;flex-wrap:wrap}
+  .genrow .select{width:auto;min-width:120px}
+  .genstat{font-size:var(--fz-small);color:var(--ink-mute)}
+  .genimg{margin-top:12px}.genimg img{max-width:100%;border-radius:var(--r);border:1px solid var(--line);display:block}
+  /* 方向 tab */
+  .dirs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 0}
+  .dirtab{font-size:var(--fz-small);color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:var(--r-pill);padding:5px 13px;cursor:pointer}
+  .dirtab.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+  /* 创作流 */
+  .flowwrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--s3)}
+  .fitem{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+  .fitem img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:var(--paper-2)}
+  .fitem .fmeta{padding:7px 9px;font-size:var(--fz-tiny);color:var(--ink-mute);line-height:1.4}
+  .fitem .fmeta .fs{color:var(--ink-soft);font-weight:500}
+  .fitem .lin{font-family:var(--mono);font-size:var(--fz-label);color:var(--accent)}
+  .facts{display:flex;flex-wrap:wrap;gap:3px;padding:0 7px 8px}
+  .fact{font-size:var(--fz-label);color:var(--ink-mute);background:var(--paper-2);border:none;border-radius:var(--r-sm);padding:3px 7px;cursor:pointer;display:inline-flex;align-items:center;gap:3px;transition:all var(--dur) var(--ease)}
+  .fact:hover{color:var(--accent);background:var(--accent-soft)}
+  .fact svg{width:12px;height:12px}
+  .fact.on{color:var(--accent)}
+  .evobar{display:flex;align-items:center;gap:8px;font-size:var(--fz-small);color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent-line);border-radius:var(--r);padding:8px 12px;margin-bottom:10px}
+  .evobar button{margin-left:auto;font-size:var(--fz-tiny);color:var(--ink-mute);background:none;border:none;cursor:pointer;text-decoration:underline}
+  /* 版式示意图 + 填空槽 */
+  .tsk{height:48px;border-radius:var(--r-sm);overflow:hidden;background:var(--paper);border:1px solid var(--line-soft)}
+  .tsk svg{display:block;width:100%;height:100%}
+  .slot{display:inline-block;background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent-line);border-radius:var(--r-sm);padding:0 5px;margin:0 1px;font-weight:500}
+  .tplchip .f-skel{line-height:1.8}
+  /* 基因解码行(B 被看见) */
+  .genome-ln{font-size:var(--fz-small);color:var(--ink-mute);line-height:2;margin:2px 0 10px}
+  .genome-ln .src{color:var(--accent)}
+  .gch{display:inline-block;background:var(--paper-2);border-radius:var(--r-sm);padding:2px 8px;margin:0 3px;white-space:nowrap}
+  .gch b{color:var(--ink-soft);font-weight:500}
+  .gch.eye{background:var(--accent-soft);color:var(--accent)}
+  .tplslots{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:2px}
+  .tplslots .slk{font-family:var(--mono);font-size:var(--fz-label);color:var(--accent)}
+  .slt{display:inline-flex;align-items:center;gap:5px;font-size:var(--fz-small)}
+  .slt b{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute);font-weight:500}
+  .slt .sl-in{width:auto;min-width:96px;padding:5px 8px}
+  .fitem img{cursor:pointer} .fitem .fmeta{cursor:pointer}
+  /* 作品弹窗 */
+  .wkmodal{position:relative;max-width:760px;width:92vw;max-height:88vh;overflow:auto;background:var(--card);border-radius:var(--r-lg);box-shadow:var(--sh-pop);display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .wkimg{width:100%;height:100%;max-height:88vh;object-fit:contain;background:var(--paper-2);border-right:1px solid var(--line)}
+  .wkbody{padding:18px 20px;min-width:0}
+  .wkx{position:absolute;top:8px;right:10px;z-index:2;font-size:18px;line-height:1;color:var(--ink-mute);background:var(--card);border:1px solid var(--line);border-radius:50%;width:28px;height:28px;cursor:pointer}
+  .wkh{font-family:var(--serif);font-size:var(--fz-h3);font-weight:600;color:var(--ink)}
+  .wksub{font-size:var(--fz-small);color:var(--ink-mute);margin:2px 0 6px}
+  @media(max-width:600px){.wkmodal{grid-template-columns:1fr}.wkimg{max-height:42vh;border-right:none;border-bottom:1px solid var(--line)}}
+</style>
+</head><body data-home="museum.html">
+<div class="page">
+  <div class="pagehead">
+    <div class="kicker">aha · 生成中心</div>
+    <h1 class="serif">以你之眼,借艺术史的基因,画你的画</h1>
+    <p class="studio-lead">你说<b>想画什么</b>(你的原话我们忠实保留),aha 借<b>一段艺术史的基因</b>——某种风格、某位大师、某个世界观——叠在你的画面上,生成一幅<b>只属于你</b>的画。基因怎么借,可由你的<b>审美档案</b>为你推荐。<br><span style="font-size:var(--fz-tiny)">你的意图永远是主角 · 艺术史只加味 · <a href="kg-compile-v2.html" style="color:var(--accent)">老版编辑器 →</a></span></p>
+  </div>
+
+  <!-- ① 起点区 -->
+  <div class="sec">
+    <div class="sec-h"><span class="t">① 从哪里开始</span><span class="d" id="meHint">认人中…</span></div>
+    <div class="start">
+      <div class="warm" id="warm"><span class="wl">为你预热</span><span class="muted" style="font-size:var(--fz-small)">读取你的口味…</span></div>
+      <div class="inbar">
+        <input id="q" class="input" type="text" placeholder="如:孤独的城市 黄昏 / 压抑但有一丝希望 / 像梵高那种 / 宁静的宋代山水" value="孤独的城市 黄昏"/>
+        <button id="go" class="ibtn" title="图谱即时扩散(秒出)">即时</button>
+        <button id="gollm" class="ibtn g" title="LLM 在图谱上真实推理,约 30–60 秒">深度</button>
+        <button id="goimg" class="ibtn b" title="传一张图,反推并映射到图谱">传图</button>
+        <input type="file" id="file" accept="image/*" style="display:none"/>
+      </div>
+      <div class="tasterow">
+        <span>自由探索</span>
+        <input type="range" id="taste" min="0" max="100" value="50"/>
+        <span>以我之眼</span>
+        <span id="tasteHint" style="color:var(--ink-faint)"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 版式层 -->
+  <div class="sec">
+    <div class="sec-h"><span class="t">② 选一个版式(可选)</span><span class="d">学自填空式配方:版式定骨架,图谱填空</span></div>
+    <div class="tpls" id="tpls"></div>
+  </div>
+
+  <!-- ③ 工作台 -->
+  <div class="sec">
+    <div class="sec-h"><span class="t">③ 工作台 · 语义编译卡</span><span class="d">每格可改 · 改一处其余顺图谱重算</span></div>
+    <div class="routed" id="routed"></div>
+    <div id="out"></div>
+  </div>
+
+  <!-- ④ 创作流 -->
+  <div class="sec">
+    <div class="sec-h"><span class="t">④ 我的创作流</span><span class="d" id="flowd">生成的作品会留在这里 · 可再演化/收藏/编进展</span></div>
+    <div id="evo"></div>
+    <div class="flowwrap" id="flow"><div class="empty" style="grid-column:1/-1">还没有作品。给个灵感,生成第一张 →</div></div>
+  </div>
+</div>
+
+<script src="js/aha-icons.js"></script>
+<script src="js/aha-chrome.js"></script>
+<script>
+const $=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+function esc(s){return (s==null?'':String(s)).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
+function ic(n,o){try{return AHAIcons.svg(n,o||{})}catch(e){return ''}}
+const API='api/';
+function uid(){let u;try{u=localStorage.getItem('aha_uid')}catch(e){}; if(!u){u='u_'+Math.random().toString(16).slice(2,10)+Date.now().toString(36);try{localStorage.setItem('aha_uid',u)}catch(e){}} return u;}
+const U=uid();
+async function jget(p){try{return await (await fetch(API+p)).json()}catch(e){return null}}
+async function jpost(p,b){try{return await (await fetch(API+p,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({uid:U},b))})).json()}catch(e){return null}}
+function toast(msg){const t=$(`<div class="toast">${esc(msg)}</div>`);document.body.appendChild(t);setTimeout(()=>t.classList.add('show'),10);setTimeout(()=>{t.classList.remove('show');setTimeout(()=>t.remove(),300)},2200);}
+
+/* —————— 引擎(承自 kg-compile-v2,统一打分 + 同义扩展) —————— */
+const AX=['构图','空间','造型','光影','色彩','笔触','边缘'];
+const AXP={构图:['构图均衡稳定','','构图动势开放'],空间:['空间平面化','','强透视纵深'],造型:['形体消融松动','','体积扎实写实'],
+  光影:['光影柔和','','强烈戏剧明暗'],色彩:['色调沉郁克制','','色彩明艳跳跃'],笔触:['笔触隐没平滑','','笔触松散显露'],边缘:['边缘柔化溶解','','边缘硬朗清晰']};
+const ANC2V={喜悦:'V2',鲜活:'V2',热烈:'V2',崇高:'V1',张力:'V2',恐惧:'V2',神秘:'V1',忧伤:'V2',孤独:'V1',怀旧:'V3',虚无:'V1',沉思:'V1',平静:'V1',空灵:'V1'};
+const VCN={V1:'存在感知',V2:'情绪表达',V3:'叙事记忆',V4:'价值批评',V5:'感知元反思'};
+let IDX=null, MOTIVE=null, lastText='', MODELS=[{id:'seedream5',label:'艺术家 5'}];
+let STYLE_SET=null, ANCHOR_SET=null, ANCHOR_VAD={};
+let TASTE={style:{},anchor:{}}, tasteW=0.6, PERSONAL=null;  // PERSONAL={x,y}=你审美档案的世界观重心 μ
+const SYN={
+  '黄昏':['暮色','夜色'],'傍晚':['暮色','夜色'],'夕阳':['暮色','夜色'],'落日':['暮色','夜色'],'暮':['暮色'],'夕照':['暮色'],
+  '夜':['夜色','月亮'],'夜晚':['夜色','月亮'],'深夜':['夜色','月亮'],'午夜':['夜色'],'凌晨':['晨雾'],'清晨':['曙光','晨雾'],'黎明':['曙光'],
+  '都市':['都市','城市'],'都会':['都市','城市'],'城里':['城市'],'街':['霓虹街道','都市'],'街头':['霓虹街道','都市'],'街角':['霓虹街道'],'马路':['都市'],
+  '雨':['雨'],'下雨':['雨'],'雨天':['雨'],'雨夜':['雨','夜色'],'阴雨':['雨'],
+  '雪':['雪景'],'下雪':['雪景'],'雪天':['雪景'],
+  '海':['海洋','海'],'大海':['海洋','海'],'海边':['海洋'],
+  '山':['山岳','山'],'高山':['山岳','山'],'群山':['山岳'],'山峰':['山岳'],
+  '森林':['森林'],'树林':['森林'],'林':['森林'],
+  '花':['花卉'],'鲜花':['花卉'],'花海':['花卉'],'河':['江河'],'江':['江河'],'湖':['湖泊'],
+  '科幻':['霓虹街道','数字','都市'],'未来':['霓虹街道','数字'],'未来感':['霓虹街道','数字'],'赛博':['霓虹街道','数字'],'赛博朋克':['霓虹街道','数字'],'霓虹':['霓虹街道'],'科技':['数字'],
+  '肖像':['肖像'],'人像':['肖像'],'头像':['肖像'],'自拍':['自画像'],'人物':['人物'],'少女':['少女形象'],'美女':['美人','仕女'],
+  '战争':['战争'],'战斗':['战争'],'爱情':['爱情'],'恋爱':['爱情'],'浪漫':['爱情'],
+  '风景':['风景'],'景色':['风景'],'风光':['风景'],'田园':['田园'],'乡村':['田园'],'静物':['静物'],
+  '孤单':['孤独'],'寂寞':['孤独'],'一个人':['孤独'],
+  '治愈':['温暖','平和'],'温馨':['温暖','平和'],'温柔':['温暖'],'暖':['温暖'],'温暖':['温暖'],
+  '悲':['忧郁'],'悲伤':['忧郁'],'难过':['忧郁'],'伤感':['忧郁'],'忧郁':['忧郁'],'忧伤':['忧伤'],'抑郁':['忧郁'],
+  '压抑':['压抑'],'沉闷':['压抑'],'郁闷':['压抑'],
+  '宁静':['宁静'],'安静':['安静'],'平静':['平静'],'平和':['平和'],'恬静':['恬淡'],
+  '震撼':['壮阔'],'壮观':['壮阔'],'壮丽':['壮阔'],'宏伟':['宏大'],'史诗':['史诗叙事'],'辽阔':['壮阔'],
+  '童年':['童年'],'小时候':['童年'],'乡愁':['乡愁'],'思乡':['乡愁'],'怀念':['回忆'],'回忆':['回忆'],
+  '禅':['禅'],'禅意':['禅'],'空灵':['空灵'],'仙':['仙山'],
+  '神秘':['神秘'],'诡异':['神秘'],'幽暗':['暗影'],'恐怖':['恐惧'],'可怕':['恐惧'],'惊悚':['恐惧'],
+  '热闹':['快乐'],'欢乐':['快乐'],'快乐':['快乐'],'开心':['快乐'],'喜庆':['喜悦'],
+  '激情':['激情'],'热烈':['热烈'],'狂野':['奔放'],
+  '梦':['梦境'],'梦境':['梦境'],'梦幻':['梦境'],'虚幻':['梦境'],'幻':['幻觉'],
+  '抽象':['纯抽象'],'几何':['几何构成'],'拼贴':['拼贴'],'水墨':['山水','墨竹'],'山水':['山水'],
+  '古风':['仕女','高士'],'古典':['高士']
+};
+
+/* —————— 版式层(学 PromptFill:版式=带 {{槽}} 的骨架,图谱自动填空;dir 供 LLM/传图路径追加) —————— */
+const TEMPLATES=[
+  {id:'free',  name:'单图 · 自由', desc:'不加版式约束,纯凭意图', skeleton:null, slots:[],
+    dir:''},
+  {id:'poster',name:'美术馆海报', desc:'主体居中偏上,上下留标题区',
+    skeleton:'美术馆展览海报:{{主体}},{{风格}},主体居中偏上,顶部与底部留出标题与信息排版空间{{标题}},极简留白,印刷级质感,{{情绪}}的整体气质',
+    slots:[{key:'标题',type:'text',ph:'海报标题(可空)',def:'',wrap:',画面上方排版标题文字「%s」'}],
+    dir:'。版式:美术馆展览海报构图,主体居中偏上,顶部与底部留出标题与信息排版空间,极简留白,印刷级质感'},
+  {id:'triptych',name:'三联画', desc:'横向三格,连续叙事',
+    skeleton:'横向三联画:{{主体}}的三段连续叙事{{三幕}},{{风格}},统一光线与色调,画格之间留窄缝,{{情绪}}基调',
+    slots:[{key:'三幕',type:'text',ph:'三个关键词 如 黎明·正午·黄昏',def:'',wrap:',三段依次表现 %s'}],
+    dir:'。版式:横向三联画,三个画格连续叙事,统一光线与色调,画格之间留窄缝'},
+  {id:'picturebook',name:'绘本跨页', desc:'插画居中,一侧留文字区',
+    skeleton:'儿童绘本插画跨页:{{主体}},{{风格}},主体居中,一侧留出文字区域,温暖叙事感,边缘干净{{文案}},{{情绪}}氛围',
+    slots:[{key:'文案',type:'text',ph:'这页要写的话(可空)',def:'',wrap:',文字区写「%s」'}],
+    dir:'。版式:儿童绘本插画跨页,主体居中,一侧留出文字区域,温暖叙事感,边缘干净'},
+  {id:'card',  name:'收藏卡牌', desc:'竖版,边框+角标+信息条',
+    skeleton:'竖版收藏卡牌:{{主体}}为主视觉,{{风格}},装饰性边框,顶部标题角标{{稀有度}},底部信息条,精致质感,{{情绪}}调性',
+    slots:[{key:'稀有度',type:'select',opts:['SSR','SR','R','N',''],def:'SSR',wrap:',右上角稀有度角标 %s'}],
+    dir:'。版式:竖版收藏卡牌,装饰性边框,顶部标题角标,底部信息条,精致质感'},
+  {id:'grid9', name:'九宫格变体', desc:'同主体 9 种变体',
+    skeleton:'3x3 九宫格:{{主体}}的九种变体{{变体}},{{风格}},网格整齐对齐,{{情绪}}统一基调',
+    slots:[{key:'变体',type:'select',opts:['姿态','角度','光线','季节','配色'],def:'姿态',wrap:'(按%s依次变化)'}],
+    dir:'。版式:3x3 九宫格,同一主体的九种姿态/角度/光线变体,网格整齐对齐'}
+];
+let curTpl=TEMPLATES[0];
+/* 版式布局示意图(诚实的"参考案例":画的是版式结构本身,不是假生成图) */
+function tplSVG(id){const a='var(--accent)',l='var(--line)',f='var(--accent-soft)',o='var(--paper-2)';const g=(b)=>`<svg viewBox="0 0 104 64" width="104" height="64" preserveAspectRatio="none">${b}</svg>`;
+  if(id==='free')   return g(`<rect x="14" y="6" width="76" height="52" rx="3" fill="${o}" stroke="${l}"/><circle cx="52" cy="30" r="13" fill="${f}" stroke="${a}"/>`);
+  if(id==='poster') return g(`<rect x="22" y="4" width="60" height="56" rx="2" fill="${o}" stroke="${l}"/><rect x="28" y="9" width="48" height="33" rx="1.5" fill="${f}" stroke="${a}"/><rect x="30" y="46" width="40" height="3.5" rx="1.5" fill="${a}"/><rect x="30" y="52" width="26" height="2.5" rx="1" fill="${l}"/>`);
+  if(id==='triptych')return g(`${[6,38,70].map(x=>`<rect x="${x}" y="14" width="28" height="36" rx="2" fill="${f}" stroke="${a}"/>`).join('')}`);
+  if(id==='picturebook')return g(`<rect x="8" y="8" width="88" height="48" rx="3" fill="${o}" stroke="${l}"/><rect x="13" y="13" width="44" height="38" rx="2" fill="${f}" stroke="${a}"/>${[16,24,32,40].map(y=>`<rect x="63" y="${y}" width="28" height="3" rx="1.5" fill="${l}"/>`).join('')}`);
+  if(id==='card')   return g(`<rect x="34" y="3" width="36" height="58" rx="4" fill="${o}" stroke="${a}"/><rect x="38" y="7" width="28" height="6" rx="2" fill="${a}"/><rect x="38" y="16" width="28" height="30" rx="1.5" fill="${f}" stroke="${a}"/><rect x="38" y="50" width="28" height="7" rx="1.5" fill="${l}"/>`);
+  if(id==='grid9')  return g(`${[0,1,2].flatMap(r=>[0,1,2].map(c=>`<rect x="${20+c*22}" y="${6+r*18}" width="18" height="14" rx="1.5" fill="${f}" stroke="${a}"/>`)).join('')}`);
+  return g('');
+}
+
+/* —————— 数据加载 —————— */
+Promise.all([
+  fetch('data/kg_compile_index_v2.json').then(r=>r.json()),
+  fetch('data/kg_subtext_motive.json').then(r=>r.json()).catch(()=>({})),
+  fetch('data/kg_gen_models.json').then(r=>r.json()).catch(()=>null),
+  fetch('data/kg_gen_gallery.json?_='+Date.now()).then(r=>r.json()).catch(()=>({items:[]}))
+]).then(([d,m,mods,gal])=>{
+  IDX=d;MOTIVE=m;STYLE_SET=new Set(IDX.style_cn_list);ANCHOR_SET=new Set(IDX.anchors.map(a=>a.cn));
+  ANCHOR_VAD={};IDX.anchors.forEach(a=>{if(a.vad)ANCHOR_VAD[a.cn]=a.vad;});
+  if(mods&&mods.models)MODELS=mods.models.filter(x=>x.enabled);
+  buildSubBank();buildTaste(gal.items);renderTpls();initWarm();applyDeepLink();loadHistory();
+}).catch(e=>{document.getElementById('out').innerHTML='<div class="empty">需服务器加载图谱索引:'+esc(''+e)+'</div>';});
+
+function buildTaste(items){const t={style:{},anchor:{}};(items||[]).forEach(it=>{if(it.rating==null)return;
+  if(it.style_cn)t.style[it.style_cn]=(t.style[it.style_cn]||0)+it.rating;
+  const a=(it.fields&&it.fields.画外音)||''; if(a)t.anchor[a]=(t.anchor[a]||0)+it.rating;});TASTE=t;}
+function tasteScore(cn){return TASTE.style[cn]||0;}
+function tasteHintTxt(){const top=Object.entries(TASTE.style).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1]).slice(0,3).map(x=>x[0]);return top.length?'你常赞:'+top.join('、'):'';}
+
+/* 题材词库(datalist):图谱 113 题材 + 可自定义 —— 学 PromptFill 的"词库" */
+function buildSubBank(){
+  if(document.getElementById('subbank'))return;
+  const dl=document.createElement('datalist');dl.id='subbank';
+  Object.keys(IDX.sub_to_styles||{}).forEach(s=>{const o=document.createElement('option');o.value=s;dl.appendChild(o);});
+  document.body.appendChild(dl);
+}
+/* —————— 版式渲染 —————— */
+function renderTpls(){
+  const box=document.getElementById('tpls');box.innerHTML='';
+  TEMPLATES.forEach(t=>{
+    const el=$(`<div class="tpl${t.id===curTpl.id?' on':''}" data-id="${t.id}"><div class="tsk">${tplSVG(t.id)}</div><div class="tn">${esc(t.name)}</div><div class="td">${esc(t.desc)}</div></div>`);
+    el.onclick=()=>{curTpl=t;renderTpls();const v=(document.getElementById('q').value||'').trim();if(v&&IDX){compile();}};
+    box.appendChild(el);
+  });
+}
+
+/* —————— 认人 / 为你预热 —————— */
+let PROF=null;
+async function initWarm(){
+  const warm=document.getElementById('warm'), hint=document.getElementById('meHint');
+  const [prof,state,fy]=await Promise.all([jget('me/profile?uid='+U),jget('me/state?uid='+U),jget('me/foryou?uid='+U+'&limit=6')]);
+  PROF=prof;
+  if(prof&&prof.ready&&prof.vec&&prof.vec.length>=2&&prof.vec[0]!=null)PERSONAL={x:prof.vec[0],y:prof.vec[1]};
+  warm.innerHTML='<span class="wl">为你预热</span>';
+  let any=false;
+  if(prof&&prof.ready&&prof.soulmate&&prof.soulmate.cn){
+    any=true;hint.textContent='门派 · '+(prof.arche_region_name||'—')+(PERSONAL?' · 已以你之眼排序':'');
+    const s=prof.soulmate;
+    const chip=$(`<span class="seed soul" title="以本命画家的基因生成">${s.file?`<span class="th" style="background-image:url('${s.file.startsWith('http')?s.file:'/'+s.file}')"></span>`:ic('artists')}本命 · ${esc(s.cn)}</span>`);
+    chip.onclick=()=>{setInput(s.cn);compile();};warm.appendChild(chip);
+  }else{hint.textContent='匿名 · 逛展登录后这里会以你之眼预热';}
+  // 收藏 / 为你推荐 的真迹 → 变奏起点
+  const fyItems=(fy&&fy.ready&&fy.items)||[];
+  fyItems.slice(0,4).forEach(it=>{
+    any=true;const a=it.artist||'';
+    const chip=$(`<span class="seed" title="从这幅你可能喜欢的画变奏">${it.thumb?`<span class="th" style="background-image:url('${it.thumb}')"></span>`:ic('gallery')}变奏 · ${esc((it.title||a||'作品').slice(0,8))}</span>`);
+    chip.onclick=()=>{setInput(a||it.title||'');compile();};warm.appendChild(chip);
+  });
+  // 灵感起点(始终给)
+  ['孤独的城市 黄昏','压抑但有一丝希望','像梵高那种','宁静的宋代山水','赛博朋克 雨夜'].forEach(s=>{
+    const chip=$(`<span class="seed">${ic('sparkles')}${s}</span>`);chip.onclick=()=>{setInput(s);compile();};warm.appendChild(chip);
+  });
+  if(!any){/* 仅灵感起点也 OK */}
+  if(PERSONAL){const v=(document.getElementById('q').value||'').trim();if(v&&IDX)compile();}  // 档案到位后按 μ 重排一次
+}
+function setInput(v){document.getElementById('q').value=v;}
+
+/* —————— 深链:从体系任意位置进入 —————— */
+function applyDeepLink(){
+  const sp=new URLSearchParams(location.search);
+  const q=sp.get('q'),artist=sp.get('artist'),style=sp.get('style'),from=sp.get('from');
+  if(artist){setInput(artist);compile();return;}
+  if(style){setInput(style);compile();return;}
+  if(q){setInput(q);compile();return;}
+  if(from){const t=sp.get('title')||'',a=sp.get('artist')||'';setInput(a||t||from);document.getElementById('meHint').textContent='变奏自馆藏:'+esc((t||from).slice(0,16));compile();return;}
+  compile(); // 默认用占位灵感
+}
+
+/* —————— 分类 + 同义扩展 —————— */
+function routeTerm(t,sh,jh,eh){
+  if(STYLE_SET.has(t)) sh.push(t);
+  else if(IDX.sub_to_styles[t]) jh.push(t);
+  else if(IDX.emoword_to_anchor[t]) eh.push(IDX.emoword_to_anchor[t]);
+  else if(ANCHOR_SET.has(t)) eh.push(t);
+}
+function classify(text){
+  const sh=[],jh=[],eh=[];
+  IDX.style_cn_list.forEach(cn=>{ if(cn.length>=2 && text.includes(cn)) sh.push(cn); });
+  Object.keys(IDX.sub_to_styles).forEach(s=>{ if(s.length>=2 && text.includes(s)) jh.push(s); });
+  Object.keys(IDX.emoword_to_anchor).forEach(w=>{ if(w.length>=2 && text.includes(w)) eh.push(IDX.emoword_to_anchor[w]); });
+  for(const k in SYN){ if(text.includes(k)) SYN[k].forEach(t=>routeTerm(t,sh,jh,eh)); }
+  if(!eh.length){ ['孤','哀','惊','幽','诡','禅'].forEach(c=>{ if(text.includes(c)&&IDX.emoword_to_anchor[c]) eh.push(IDX.emoword_to_anchor[c]); }); }
+  return {styleHits:[...new Set(sh)],subjHits:[...new Set(jh)],emoHits:[...new Set(eh)]};
+}
+function styleIdByCn(cn){ for(const id in IDX.styles){ if(IDX.styles[id].cn===cn) return id; } return null; }
+function findArtist(text){let hit=null;IDX.artist_cn_list.forEach(cn=>{ if(cn.length>=2 && text.includes(cn) && (!hit||cn.length>hit.length)) hit=cn; });return hit;}
+
+/* —————— 统一打分 —————— */
+function targetVAD(eh){const vs=eh.map(a=>ANCHOR_VAD[a]).filter(Boolean);if(!vs.length)return null;
+  const m={valence:0,arousal:0,dominance:0};vs.forEach(v=>{m.valence+=v.valence;m.arousal+=v.arousal;m.dominance+=v.dominance;});
+  return {valence:m.valence/vs.length,arousal:m.arousal/vs.length,dominance:m.dominance/vs.length};}
+function vadProx(anc,tv){const av=ANCHOR_VAD[anc];if(!av||!tv)return 0;
+  const d=Math.hypot(av.valence-tv.valence,av.arousal-tv.arousal,av.dominance-tv.dominance);return 1-Math.min(d/1.732,1);}
+function clampTaste(cn){return Math.max(-2,Math.min(2,tasteScore(cn)||0));}
+function scoreCandidates(sh,jh,eh){
+  const score={},subjCnt={};const add=(id,s)=>{if(IDX.styles[id])score[id]=(score[id]||0)+s;};
+  sh.forEach(cn=>{const id=styleIdByCn(cn);if(id)add(id,6);});
+  jh.forEach(s=>(IDX.sub_to_styles[s]||[]).forEach(id=>{subjCnt[id]=(subjCnt[id]||0)+1;}));
+  Object.keys(subjCnt).forEach(id=>add(id,3+0.8*(subjCnt[id]-1)));
+  if(eh.length){for(const id in IDX.styles){if(eh.includes(IDX.styles[id].anchor))add(id,3);}}
+  const tv=targetVAD(eh);
+  if(tv){const ids=Object.keys(score).length?Object.keys(score):Object.keys(IDX.styles);ids.forEach(id=>add(id,3*vadProx(IDX.styles[id].anchor,tv)));}
+  Object.keys(score).forEach(id=>{score[id]+=tasteW*clampTaste(IDX.styles[id].cn||'');});
+  // 认人:把候选往你审美档案的世界观重心 μ 拉(有档案即生效,不止靠已评分生成图)
+  if(PERSONAL){Object.keys(score).forEach(id=>{const co=IDX.styles[id].coord;if(co&&co.x!=null)score[id]+=tasteW*2.5*coordProx(co,PERSONAL);});}
+  return score;
+}
+function coordProx(co,p){const d=Math.hypot((co.x||0.5)-p.x,(co.y||0.5)-p.y);return 1-Math.min(d/1.414,1);}
+function diverseFallback(n){const seen={},out=[];for(const id in IDX.styles){const r=IDX.styles[id].region_cn;if(!seen[r]){seen[r]=1;out.push(id);if(out.length>=n)break;}}return out;}
+function pickDiverse(ranked,n){const out=[],reg=new Set();
+  for(const id of ranked){const r=(IDX.styles[id]||{}).region_cn||'';if(!reg.has(r)){out.push(id);reg.add(r);}if(out.length>=n)return out;}
+  for(const id of ranked){if(!out.includes(id)){out.push(id);if(out.length>=n)break;}}return out;}
+
+/* —————— 路由 —————— */
+function compile(){
+  const out=document.getElementById('out');out.innerHTML='';document.getElementById('routed').innerHTML='';
+  if(!IDX)return;const text=(document.getElementById('q').value||'').trim();if(!text)return;
+  const artist=findArtist(text);if(artist){routeD(artist,text);return;}routeA(text);
+}
+function routeA(text){
+  const {styleHits,subjHits,emoHits}=classify(text);
+  const score=scoreCandidates(styleHits,subjHits,emoHits);
+  let ranked=Object.keys(score).sort((a,b)=>score[b]-score[a]);let nohit=false;
+  if(!ranked.length){ranked=diverseFallback(8);nohit=true;}
+  document.getElementById('routed').innerHTML=`策略 <b style="color:var(--accent)">A · 语义扩散</b> · 风格[${styleHits.join('、')||'—'}] 题材[${subjHits.join('、')||'—'}] 情绪[${emoHits.join('、')||'—'}]`+(curTpl.id!=='free'?` · 版式[<b>${esc(curTpl.name)}</b>]`:'')+(nohit?' · <span style="color:var(--reb)">没精确命中,给几个方向;细腻/新词试试「深度」</span>':'');
+  const dirs=pickDiverse(ranked,3);
+  // 场景=用户原话(忠实保留),三个方向=同一场景的三种风格处理
+  const emo=emoHits[0]||null;
+  renderDirections(dirs.map(id=>buildCard({styleId:id,subject:text,anchor:emo,query:text,strategy:'A'})),text);
+}
+function routeD(artistCn,text){
+  const a=IDX.artists_brief[artistCn];if(!a){routeA(text);return;}
+  document.getElementById('routed').innerHTML=`策略 <b style="color:var(--gold)">D · 艺术家基因</b> · 解码 <b>${esc(artistCn)}</b>`+(curTpl.id!=='free'?` · 版式[<b>${esc(curTpl.name)}</b>]`:'');
+  const styleCn=(a.styles&&a.styles[0])||'';
+  // 场景=原话去掉画家名(只借基因画你的内容);若只输入了画家名,用 TA 的典型题材兜底
+  const scene=text.replace(artistCn,'').replace(/像|那种|风格|的画|画风/g,'').trim()||(a.subjects||[])[0]||'画面主体';
+  const card=buildCard({styleId:styleIdByCn(styleCn),subject:scene,anchor:null,query:text,strategy:'D',artist:a,artistCn});
+  renderDirections([card],text);
+}
+
+/* —————— 造卡 + 提示词 —————— */
+function vecWords(vec){const w=[];AX.forEach(ax=>{const v=vec[ax];if(v==null)return;if(v<=0.4&&AXP[ax][0])w.push(AXP[ax][0]);else if(v>=0.6&&AXP[ax][2])w.push(AXP[ax][2]);});return w;}
+function buildCard(o){
+  const s=IDX.styles[o.styleId]||{};
+  const card={styleId:o.styleId,styleCn:s.cn||'(自由)',region:s.region_cn||'',vec:Object.assign({},s.vec||{}),
+    subject:o.subject||(s.subjects&&s.subjects[0])||'画面主体',anchor:o.anchor||s.anchor||'',
+    avoid:(s.avoid||[]).slice(),artists:(s.artists||[]).slice(0,5),query:o.query,strategy:o.strategy,
+    artistCn:o.artistCn||'',color:'',language:''};
+  card.motive=ANC2V[card.anchor]||'V1';
+  if(o.artist){const a=o.artist;if(a.lang&&Object.keys(a.lang).length)card.vec=Object.assign({},a.lang);card.language=a.language||'';card.color=a.color||'';card.refArtist=o.artistCn;}
+  card.tplVals={};(curTpl.slots||[]).forEach(s=>card.tplVals[s.key]=s.def||'');
+  card.prompt=compose(card);card.negative=card.avoid.join('、');
+  return card;
+}
+function styleWord(c){const s=c.refArtist||(c.styleCn!=='(自由)'?c.styleCn:'');if(!s)return '自由风格';return /风格$/.test(s)?s:s+'风格';}
+// 只取偏离中性(0.5)最远的 2-3 条语言特征,避免 7 条技法词互相打架
+function topVecWords(vec,n){
+  return AX.map(ax=>({ax,v:vec[ax]})).filter(o=>o.v!=null).map(o=>({ax:o.ax,v:o.v,d:Math.abs(o.v-0.5)}))
+    .sort((a,b)=>b.d-a.d).slice(0,n||3)
+    .map(o=>o.v<=0.45?AXP[o.ax][0]:(o.v>=0.55?AXP[o.ax][2]:'')).filter(Boolean);
+}
+function slotVal(c,sl){const v=(c.tplVals&&c.tplVals[sl.key]!=null)?c.tplVals[sl.key]:(sl.def||'');return v?(sl.wrap?sl.wrap.replace('%s',v):v):'';}
+function fillSkeleton(sk,c){
+  let s=sk.replace(/\{\{主体\}\}/g,c.subject||'画面主体').replace(/\{\{风格\}\}/g,styleWord(c)+(c.region?`(${c.region})`:'')).replace(/\{\{情绪\}\}/g,c.anchor||'自然');
+  (curTpl.slots||[]).forEach(sl=>{s=s.replace(new RegExp('\\{\\{'+sl.key+'\\}\\}','g'),slotVal(c,sl));});
+  return s;
+}
+// 显示用:把 {{槽}} 渲染成高亮填空 —— 让"图谱填空"这件事看得见(这才是学 PromptFill 的点)
+function skeletonHTML(sk,c){
+  let s=esc(sk).replace(/\{\{主体\}\}/g,`<span class="slot">${esc(c.subject||'主体')}</span>`).replace(/\{\{风格\}\}/g,`<span class="slot">${esc(styleWord(c))}</span>`).replace(/\{\{情绪\}\}/g,`<span class="slot">${esc(c.anchor||'自然')}</span>`);
+  (curTpl.slots||[]).forEach(sl=>{const v=(c.tplVals&&c.tplVals[sl.key])||'';
+    s=s.replace(new RegExp('\\{\\{'+sl.key+'\\}\\}','g'), v?`<span class="slot">${esc(v)}</span>`:`<span class="slot" style="opacity:.45">${esc(sl.key)}?</span>`);});
+  return s;
+}
+function dimTail(c){const t=[];const vw=topVecWords(c.vec,3);if(vw.length)t.push(vw.join('、'));if(c.color)t.push('色彩'+c.color);if(c.anchor)t.push(c.anchor+'的氛围');t.push('高质量绘画,细节丰富');return t.join(',');}
+// 策略:你的原话=场景主体(忠实保留),图谱只在其上"加味"(风格+2-3技法+色彩+情绪)
+function compose(c){
+  const scene=(c.subject||'画面主体').trim();
+  if(curTpl.skeleton){ return fillSkeleton(curTpl.skeleton,c)+','+dimTail(c); }
+  const parts=[scene];
+  const sn=styleWord(c); if(sn&&sn!=='自由风格') parts.push(sn+(c.region?`(${c.region})`:''));
+  const vw=topVecWords(c.vec,3); if(vw.length) parts.push(vw.join('、'));
+  if(c.color) parts.push('色彩'+c.color);
+  if(c.anchor) parts.push(`${c.anchor}的氛围`);
+  parts.push('高质量绘画,细节丰富');
+  return parts.filter(Boolean).join(',');
+}
+
+/* 把"借自 X 的基因"解码成可见的链条(让 B「艺术史的基因」被看见) */
+function genomeHTML(c){
+  const src=c.refArtist||(c.styleCn!=='(自由)'?c.styleCn:'自由');
+  const chips=[];
+  if(c.region)chips.push(`<span class="gch">世界观 <b>${esc(c.region)}</b></span>`);
+  if(c.anchor)chips.push(`<span class="gch">情绪基因 <b>${esc(c.anchor)}</b></span>`);
+  const vw=topVecWords(c.vec,3);if(vw.length)chips.push(`<span class="gch">语言 <b>${esc(vw.join('·'))}</b></span>`);
+  const lin=(c.artists||[]).slice(0,3).join('、');if(lin)chips.push(`<span class="gch">谱系 <b>${esc(lin)}</b></span>`);
+  const mine=(PERSONAL&&PROF&&PROF.arche_region_name)?`<span class="gch eye">以你之眼 · ${esc(PROF.arche_region_name)}派</span>`:'';
+  return `<div class="genome-ln">借自 <b class="src">${esc(src)}</b> 的基因,叠在<b>你的画面</b>上 ${chips.join('')} ${mine}</div>`;
+}
+/* —————— 渲染编译卡 —————— */
+function renderDirections(cards,query){
+  const out=document.getElementById('out');out.innerHTML='';
+  if(cards.length>1){
+    const tabs=$(`<div class="dirs"></div>`);out.appendChild(tabs);
+    const holder=$(`<div id="dh"></div>`);out.appendChild(holder);
+    cards.forEach((c,i)=>{const t=$(`<span class="dirtab${i===0?' on':''}">方向${i+1} · ${esc(c.styleCn)}</span>`);
+      t.onclick=()=>{[...tabs.children].forEach(x=>x.classList.remove('on'));t.classList.add('on');holder.innerHTML='';holder.appendChild(renderCard(c));};
+      tabs.appendChild(t);});
+    holder.appendChild(renderCard(cards[0]));
+  }else if(cards.length){out.appendChild(renderCard(cards[0]));}
+}
+function renderCard(c){
+  const styleOpts=IDX.style_cn_list.map(cn=>`<option ${cn===c.styleCn?'selected':''}>${esc(cn)}</option>`).join('');
+  const ancOpts=['',...IDX.anchors.map(a=>a.cn)].map(a=>`<option ${a===c.anchor?'selected':''}>${a||'(无)'}</option>`).join('');
+  const vOpts=Object.keys(VCN).map(v=>`<option value="${v}" ${v===c.motive?'selected':''}>${v} ${VCN[v]}</option>`).join('');
+  const lang7=AX.map(ax=>{const v=c.vec[ax];return v==null?'':`<span class="lc">${ax} ${(+v).toFixed(2)}</span>`;}).join('');
+  const refs=c.artists.map(cn=>{const b=IDX.artists_brief[cn];return b?`<a href="kg-artist.html?id=${b.id}">${esc(cn)}</a>`:esc(cn);}).join('、');
+  const modelOpts=MODELS.map(m=>`<option value="${m.id}">${esc(m.label)}</option>`).join('');
+  const el=$(`<div class="ccard">
+    <div class="ct">${ic('create')} 你的画面 <span style="color:var(--ink-faint);font-weight:400">×</span> 借自 <span class="ct-src">${esc(c.refArtist||c.styleCn)}</span> 的基因</div>
+    <div class="gwrap">${genomeHTML(c)}</div>
+    <div class="fld">
+      <label>画面</label><input class="input f-subj" list="subbank" value="${esc(c.subject)}" placeholder="你想画的场景(你的原话即可)"/>
+      <label>风格</label><select class="select f-style">${styleOpts}</select>
+      <label>世界观</label><div class="ro f-wv"><b>${esc(c.region||'—')}</b></div>
+      <label>画外音</label><select class="select f-anchor">${ancOpts}</select>
+      <label>动机</label><select class="select f-motive">${vOpts}</select>
+      <div class="lang7">${lang7}</div>
+      <div class="refart">参考艺术家:${refs||'—'}</div>
+      ${(curTpl.slots&&curTpl.slots.length)?`<div class="tplslots"><span class="slk">版式填空</span>${curTpl.slots.map(sl=>slotControl(sl,c)).join('')}</div>`:''}
+      ${curTpl.skeleton?`<div class="tplchip"><span style="flex:none;color:var(--accent)">版式骨架</span><span class="f-skel">${skeletonHTML(curTpl.skeleton,c)}</span></div>`:''}
+    </div>
+    <div class="pbox"><div class="ph">正向提示词(可改)</div><textarea class="f-prompt" rows="4">${esc(c.prompt)}</textarea></div>
+    <div class="pbox neg"><div class="ph">负向提示词 · 不要画什么(来自该风格负空间)</div><textarea class="f-neg" rows="2">${esc(c.negative)}</textarea></div>
+    <div class="genrow">
+      <select class="select f-model">${modelOpts}</select>
+      <button class="btn genbtn">${ic('sparkles')} 生成</button>
+      <span class="genstat"></span>
+    </div>
+  </div>`);
+  const reflow=(rebuild)=>{
+    c.subject=el.querySelector('.f-subj').value;
+    el.querySelectorAll('.sl-in').forEach(inp=>{c.tplVals=c.tplVals||{};c.tplVals[inp.dataset.slot]=inp.value;});
+    const newStyleCn=el.querySelector('.f-style').value;
+    if(newStyleCn!==c.styleCn){const nid=styleIdByCn(newStyleCn);const s=IDX.styles[nid]||{};
+      c.styleId=nid;c.styleCn=newStyleCn;c.region=s.region_cn||'';c.vec=Object.assign({},s.vec||{});
+      c.anchor=s.anchor||'';c.avoid=(s.avoid||[]).slice();c.artists=(s.artists||[]).slice(0,5);c.refArtist='';
+      el.querySelector('.f-wv').innerHTML='<b>'+esc(c.region||'—')+'</b>';
+      el.querySelector('.f-anchor').value=c.anchor;
+      el.querySelector('.f-neg').value=c.avoid.join('、');
+      el.querySelector('.refart').innerHTML='参考艺术家:'+(c.artists.map(cn=>{const b=IDX.artists_brief[cn];return b?`<a href="kg-artist.html?id=${b.id}">${esc(cn)}</a>`:esc(cn);}).join('、')||'—');
+      el.querySelector('.lang7').innerHTML=AX.map(ax=>{const v=c.vec[ax];return v==null?'':`<span class="lc">${ax} ${(+v).toFixed(2)}</span>`;}).join('');
+    }
+    c.anchor=el.querySelector('.f-anchor').value.replace('(无)','');
+    c.motive=el.querySelector('.f-motive').value;
+    if(rebuild){c.prompt=compose(c);el.querySelector('.f-prompt').value=c.prompt;
+      const sk=el.querySelector('.f-skel');if(sk&&curTpl.skeleton)sk.innerHTML=skeletonHTML(curTpl.skeleton,c);
+      const sr=el.querySelector('.ct-src');if(sr)sr.textContent=c.refArtist||c.styleCn;
+      const gw=el.querySelector('.gwrap');if(gw)gw.innerHTML=genomeHTML(c);}
+  };
+  el.querySelector('.f-style').addEventListener('change',()=>reflow(true));
+  el.querySelector('.f-anchor').addEventListener('change',()=>reflow(true));
+  el.querySelector('.f-motive').addEventListener('change',()=>reflow(true));
+  el.querySelector('.f-subj').addEventListener('change',()=>reflow(true));
+  el.querySelectorAll('.sl-in').forEach(inp=>inp.addEventListener('change',()=>reflow(true)));
+  el.querySelector('.genbtn').addEventListener('click',()=>doGen(el,c));
+  return el;
+}
+function slotControl(sl,c){
+  const v=(c.tplVals&&c.tplVals[sl.key]!=null)?c.tplVals[sl.key]:(sl.def||'');
+  if(sl.type==='select'){const o=sl.opts.map(x=>`<option value="${esc(x)}" ${x===v?'selected':''}>${esc(x||'(无)')}</option>`).join('');
+    return `<span class="slt"><b>${esc(sl.key)}</b><select class="select sl-in" data-slot="${esc(sl.key)}">${o}</select></span>`;}
+  return `<span class="slt"><b>${esc(sl.key)}</b><input class="input sl-in" data-slot="${esc(sl.key)}" value="${esc(v)}" placeholder="${esc(sl.ph||'')}"/></span>`;
+}
+
+/* —————— 生成 + 创作流 —————— */
+let pendingParent='';   // 再演化:本次生成的父
+const FLOW=[];          // 本会话创作流
+function imgURL(file){return file.startsWith('http')?file:(file.startsWith('img/')?'/'+file:file);}
+function pushFlow(item){FLOW.unshift(item);renderFlow();}
+function tplName(id){const t=TEMPLATES.find(x=>x.id===id);return t?t.name:'';}
+/* 跨会话:启动拉取「我的创作」持久化历史(含 parent_id 血缘) */
+async function loadHistory(){
+  const d=await jget('me/gen?uid='+U);if(!d||!d.items||!d.items.length){renderFlow();return;}
+  FLOW.length=0;
+  d.items.forEach(it=>FLOW.push({id:it.id,file:it.file,styleCn:it.style_cn||'',styleId:it.style_id||'',subject:it.subject||it.query||'',prompt:it.prompt||'',negative:'',model:it.model||'',tplId:it.template||'free',tpl:tplName(it.template),parent:it.parent_id||'',rating:it.rating||0,fav:false}));
+  renderFlow();
+}
+/* 血缘排序:每个根后面紧跟其后代(演化树相邻展示) */
+function orderByLineage(list){
+  const byId={};list.forEach(f=>byId[f.id]=f);const ch={};
+  list.forEach(f=>{const p=(f.parent&&byId[f.parent])?f.parent:'';(ch[p]=ch[p]||[]).push(f);});
+  const out=[];(function walk(pid,dep){(ch[pid]||[]).forEach(f=>{f._dep=dep;out.push(f);walk(f.id,dep+1);});})('',0);
+  return out.length?out:list;
+}
+function doGenRaw(prompt,negative,model,meta){return fetch('api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt,negative,meta,uid:U})}).then(r=>r.json());}
+function closeWork(){const s=document.getElementById('wkscrim');if(s)s.remove();}
+function loadToBench(f,prompt){
+  const sid=f.styleId||styleIdByCn(f.styleCn);
+  const card=buildCard({styleId:sid,subject:f.subject,anchor:null,query:f.subject||'',strategy:'edit'});
+  if(prompt)card.prompt=prompt;
+  renderDirections([card],f.subject||'');document.getElementById('out').scrollIntoView({behavior:'smooth'});
+  toast('已载入工作台 · 可调全部维度再生成');
+}
+function openWork(f){
+  closeWork();
+  const par=f.parent?FLOW.find(x=>x.id===f.parent):null;
+  const modelOpts=MODELS.map(m=>`<option value="${m.id}" ${m.id===f.model?'selected':''}>${esc(m.label)}</option>`).join('');
+  const scrim=$(`<div class="scrim show" id="wkscrim"></div>`);
+  const m=$(`<div class="modal wkmodal" role="dialog">
+    <button class="wkx" title="关闭">×</button>
+    <img class="wkimg" src="${imgURL(f.file)}" alt=""/>
+    <div class="wkbody">
+      <div class="wkh">${esc(f.styleCn)}${f.tpl&&f.tpl!=='单图 · 自由'?' · '+esc(f.tpl):''}</div>
+      <div class="wksub">${esc(f.subject||'')}${par?` · ↳ 演化自 ${esc(par.styleCn)}`:''}</div>
+      <div class="pbox"><div class="ph">提示词(可改后再生成)</div><textarea class="wkp" rows="5">${esc(f.prompt)}</textarea></div>
+      <div class="pbox neg"><div class="ph">负向</div><textarea class="wkn" rows="2">${esc(f.negative||'')}</textarea></div>
+      <div class="genrow"><select class="select wkm">${modelOpts}</select>
+        <button class="btn wkregen">${ic('sparkles')} 改这段词,再生成</button>
+        <button class="btn ghost wkbench">载入工作台 · 全维度调</button>
+        <span class="genstat wkstat"></span></div>
+      <div class="facts" style="padding:10px 0 0">
+        <button class="fact wkfav">${ic('heart',{fill:f.fav})}收藏</button>
+        <button class="fact wkcp">${ic('share')}复制词</button>
+        <button class="fact wkex">${ic('museum')}编进展</button>
+      </div>
+    </div>`);
+  scrim.appendChild(m);scrim.onclick=e=>{if(e.target===scrim)closeWork();};
+  m.querySelector('.wkx').onclick=closeWork;
+  m.querySelector('.wkregen').onclick=()=>{
+    const p=m.querySelector('.wkp').value.trim(),n=m.querySelector('.wkn').value.trim(),mo=m.querySelector('.wkm').value;
+    const stt=m.querySelector('.wkstat');stt.textContent='⏳ 生成中…';
+    const meta={query:f.subject||'',style_cn:f.styleCn,style_id:f.styleId,strategy:'edit',model_id:mo,template:f.tplId||'free',parent_id:f.id,fields:{风格:f.styleCn,版式:f.tpl}};
+    doGenRaw(p,n,mo,meta).then(d=>{if(d.url||d.file){const src=d.file||d.url;
+      pushFlow({id:d.id||('g'+Date.now()),file:src,styleCn:f.styleCn,styleId:f.styleId,subject:f.subject,prompt:p,negative:n,model:mo,tplId:f.tplId,tpl:f.tpl,parent:f.id,rating:0,fav:false});
+      toast('已生成新版本 · 记录了血缘');closeWork();}
+      else stt.textContent='⚠️ '+esc(d.error||'失败');}).catch(e=>stt.textContent='⚠️ '+esc(''+e));
+  };
+  m.querySelector('.wkbench').onclick=()=>{const p=m.querySelector('.wkp').value;closeWork();loadToBench(f,p);};
+  m.querySelector('.wkfav').onclick=()=>{f.fav=!f.fav;jpost('me/collect',{work_id:f.file,on:f.fav});toast(f.fav?'已收藏':'已取消');renderFlow();};
+  m.querySelector('.wkcp').onclick=()=>{const t=m.querySelector('.wkp').value;navigator.clipboard&&navigator.clipboard.writeText(t);toast('已复制');};
+  m.querySelector('.wkex').onclick=()=>addToExhibition(f);
+  document.body.appendChild(scrim);
+}
+function doGen(el,c){
+  const btn=el.querySelector('.genbtn'),st=el.querySelector('.genstat');
+  const prompt=el.querySelector('.f-prompt').value.trim(),negative=el.querySelector('.f-neg').value.trim();
+  const modelId=el.querySelector('.f-model').value;
+  btn.disabled=true;st.textContent='⏳ 生成中…约 10–25 秒,自动入库';
+  const meta={query:c.query,style_id:c.styleId,style_cn:c.styleCn,strategy:c.strategy,model_id:modelId,
+    template:curTpl.id,parent_id:pendingParent||'',
+    fields:{画面题材:c.subject,风格:c.styleCn,世界观:c.region,画外音:c.anchor,动机:VCN[c.motive]||'',参考艺术家:c.refArtist||c.artists.join('、'),版式:curTpl.name}};
+  fetch('api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt,negative,meta,uid:U})})
+    .then(r=>r.json()).then(d=>{
+      if(d.url||d.file){const src=d.file||d.url;
+        st.textContent='✅ 已入库';
+        pushFlow({id:d.id||('g'+Date.now()),file:src,styleCn:c.styleCn,styleId:c.styleId,subject:c.subject,prompt,negative,model:modelId,tplId:curTpl.id,tpl:curTpl.name,parent:pendingParent,rating:0,fav:false});
+        if(pendingParent){pendingParent='';renderEvo();}
+      }else st.textContent='⚠️ '+esc(d.error||'生成失败');
+    }).catch(e=>{st.textContent='⚠️ '+esc(''+e);}).finally(()=>{btn.disabled=false;});
+}
+function renderEvo(){
+  const box=document.getElementById('evo');
+  if(!pendingParent){box.innerHTML='';return;}
+  const p=FLOW.find(f=>f.id===pendingParent);
+  box.innerHTML='';const bar=$(`<div class="evobar">${ic('sparkles')} 正在「${esc((p&&p.styleCn)||'上一张')}」基础上<b style="margin:0 3px">再演化</b> · 改几个维度再生成,会记录血缘<button>取消</button></div>`);
+  bar.querySelector('button').onclick=()=>{pendingParent='';renderEvo();};box.appendChild(bar);
+}
+function renderFlow(){
+  const flow=document.getElementById('flow');document.getElementById('flowd').textContent=FLOW.length?`${FLOW.length} 件 · 可再演化/收藏/编进展`:'生成的作品会留在这里';
+  if(!FLOW.length){flow.innerHTML='<div class="empty" style="grid-column:1/-1">还没有作品。给个灵感,生成第一张 →</div>';return;}
+  flow.innerHTML='';
+  orderByLineage(FLOW).forEach(f=>{
+    const par=f.parent?FLOW.find(x=>x.id===f.parent):null;
+    const it=$(`<div class="fitem">
+      <img src="${imgURL(f.file)}" alt="" title="点开看大图 / 改词再生成"/>
+      <div class="fmeta"><span class="fs">${esc(f.styleCn)}</span>${f.tpl&&f.tpl!=='单图 · 自由'?' · '+esc(f.tpl):''}${f._dep?` <span class="lin">v${f._dep+1}</span>`:''}<br>${esc((f.subject||'').slice(0,12))}${par?`<br><span class="lin">↳ 演化自 ${esc(par.styleCn)}</span>`:''}</div>
+      <div class="facts">
+        <button class="fact fav" title="收藏">${ic('heart',{fill:f.fav})}</button>
+        <button class="fact rate-up" title="赞">▲</button>
+        <button class="fact rate-dn" title="踩">▼</button>
+        <button class="fact evo" title="再演化">${ic('sparkles')}再演化</button>
+        <button class="fact toex" title="编进展">${ic('museum')}编进展</button>
+        <button class="fact cp" title="复制提示词">${ic('share')}词</button>
+      </div></div>`);
+    it.querySelector('.fav').onclick=()=>{f.fav=!f.fav;jpost('me/collect',{work_id:f.file,on:f.fav});toast(f.fav?'已收藏':'已取消');renderFlow();};
+    it.querySelector('.rate-up').onclick=()=>{jpost('me/rate',{target_id:f.id,rating:1});toast('已赞 · 会喂回你的口味');};
+    it.querySelector('.rate-dn').onclick=()=>{jpost('me/rate',{target_id:f.id,rating:-1});toast('已踩');};
+    it.querySelector('.evo').onclick=()=>{pendingParent=f.id;renderEvo();document.getElementById('out').scrollIntoView({behavior:'smooth'});toast('已锁定父版本,改维度后再生成');};
+    it.querySelector('.toex').onclick=()=>addToExhibition(f);
+    it.querySelector('.cp').onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText(f.prompt);toast('提示词已复制');};
+    it.querySelector('img').onclick=()=>openWork(f);
+    it.querySelector('.fmeta').onclick=()=>openWork(f);
+    flow.appendChild(it);
+  });
+}
+
+/* 编进展:把生成图加入「工作室创作」个人展(create-or-append) */
+async function addToExhibition(f){
+  let exId=null,list=[];try{exId=localStorage.getItem('aha_studio_ex');list=JSON.parse(localStorage.getItem('aha_studio_ex_w')||'[]')}catch(e){}
+  if(!list.includes(f.file))list.push(f.file);
+  const body={title:'工作室创作',note:'studio 生成中心',work_ids:list,public:false};
+  if(exId)body.id=exId;
+  const r=await jpost('me/exhibition',body);
+  if(r&&r.ok){try{localStorage.setItem('aha_studio_ex',r.id||exId||'');localStorage.setItem('aha_studio_ex_w',JSON.stringify(list))}catch(e){}
+    toast('已编进《工作室创作》·共'+list.length+'件');}
+  else toast('编进展失败(可能需登录)');
+}
+
+/* —————— 交互绑定 —————— */
+document.getElementById('go').addEventListener('click',compile);
+document.getElementById('q').addEventListener('keydown',e=>{if(e.key==='Enter')compile();});
+document.getElementById('gollm').addEventListener('click',()=>compileLLM((document.getElementById('q').value||'').trim()));
+document.getElementById('goimg').addEventListener('click',()=>document.getElementById('file').click());
+document.getElementById('file').addEventListener('change',e=>{const f=e.target.files[0];if(f)handleImg(f);e.target.value='';});
+const tasteEl=document.getElementById('taste');
+tasteEl.addEventListener('input',()=>{tasteW=(tasteEl.value/100)*1.2;const h=document.getElementById('tasteHint');h.textContent=tasteW>0.7?(tasteHintTxt()||'偏个性化'):(tasteW<0.4?'偏中立':'');const v=(document.getElementById('q').value||'').trim();if(v&&IDX)compile();});
+
+/* —————— 深度推理(LLM grounded) —————— */
+function styleBrief(id){const s=IDX.styles[id];if(!s)return null;return {style_id:id,style_cn:s.cn,region_cn:s.region_cn,coord:s.coord,subjects:(s.subjects||[]).slice(0,5),anchor:s.anchor,avoid:(s.avoid||[]).slice(0,4),artists:(s.artists||[]).slice(0,4)};}
+function buildContext(text){
+  const MOT=['V1存在','V2情绪','V3叙事','V4价值','V5元反思'];const artist=findArtist(text);
+  if(artist){const a=IDX.artists_brief[artist];const ids=(a.styles||[]).map(styleIdByCn).filter(Boolean).slice(0,4);
+    return {strategy:'D',artist:Object.assign({cn:artist},a),candidates:ids.map(styleBrief).filter(Boolean),anchors:IDX.anchors.map(x=>x.cn),motives:MOT};}
+  const {styleHits,subjHits,emoHits}=classify(text);const score=scoreCandidates(styleHits,subjHits,emoHits);
+  let ids=Object.keys(score).sort((a,b)=>score[b]-score[a]).slice(0,10);if(!ids.length)ids=diverseFallback(8);
+  return {strategy:'A',candidates:ids.map(styleBrief).filter(Boolean),anchors:IDX.anchors.map(x=>x.cn),motives:MOT};
+}
+function cardFromLLM(dir){let sid=dir.style_id;if(!IDX.styles[sid])sid=styleIdByCn(dir.style_cn);if(!sid)return null;
+  const c=buildCard({styleId:sid,subject:dir.subject,anchor:dir.anchor,query:lastText,strategy:'LLM'});
+  if(dir.motive)c.motive=dir.motive;if(dir.subject)c.subject=dir.subject;
+  if(dir.prompt)c.prompt=dir.prompt+(curTpl.dir||'');if(dir.negative)c.negative=dir.negative;return c;}
+async function compileLLM(text){
+  if(!text||!IDX)return;lastText=text;const out=document.getElementById('out');out.innerHTML='';
+  document.getElementById('routed').innerHTML='🧠 深度推理中…(LLM 在图谱上推理,约 30–60 秒)';
+  const ctx=buildContext(text);
+  try{const r=await fetch('api/compile',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({input:text,strategy:ctx.strategy,context:ctx})});
+    const d=await r.json();if(!d.card){document.getElementById('routed').innerHTML='⚠️ 推理失败:'+esc(d.error||'')+' — 可改用「即时」';return;}
+    const card=d.card;document.getElementById('routed').innerHTML=`策略 <b style="color:var(--green)">${esc(card.strategy||ctx.strategy)} · 🧠 深度推理</b>(图谱内,零幻觉)`+(curTpl.id!=='free'?` · 版式[<b>${esc(curTpl.name)}</b>]`:'');
+    const cards=(card.directions||[]).map(cardFromLLM).filter(Boolean);if(!cards.length){out.innerHTML='<div class="empty">无方向返回,试试「即时」</div>';return;}
+    renderDirections(cards,text);
+  }catch(e){document.getElementById('routed').innerHTML='⚠️ '+esc(''+e)+' — 可改用「即时」';}
+}
+
+/* —————— 传图(VLM) —————— */
+function downscale(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{
+  const max=1024,sc=Math.min(1,max/Math.max(im.width,im.height));const cv=document.createElement('canvas');
+  cv.width=Math.round(im.width*sc);cv.height=Math.round(im.height*sc);cv.getContext('2d').drawImage(im,0,0,cv.width,cv.height);
+  const url=cv.toDataURL('image/jpeg',0.85);res({url,b64:url.split(',')[1]});};im.onerror=rej;im.src=r.result;};r.onerror=rej;r.readAsDataURL(file);});}
+async function handleImg(file){
+  if(!IDX)return;const hint=(document.getElementById('q').value||'').trim();const out=document.getElementById('out');out.innerHTML='';
+  document.getElementById('routed').innerHTML='📷 读图中…(VLM 沿生成链拆解并映射到图谱,约 30–60 秒)';
+  let img;try{img=await downscale(file);}catch(e){document.getElementById('routed').innerHTML='⚠️ 图片读取失败';return;}
+  lastText='传图'+(hint?'·'+hint:'');
+  try{const r=await fetch('api/vision',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({image_b64:img.b64,media_type:'image/jpeg',styles:IDX.style_cn_list,anchors:IDX.anchors.map(x=>x.cn),hint})});
+    const d=await r.json();if(!d.card){document.getElementById('routed').innerHTML='⚠️ 读图失败:'+esc(d.error||'');return;}
+    const card=d.card;document.getElementById('routed').innerHTML='策略 <b style="color:var(--blue)">C · 📷 传图解析</b>(图谱内,零幻觉)';
+    const cards=(card.directions||[]).map(cardFromLLM).filter(Boolean);if(!cards.length){out.innerHTML='<div class="empty">未能解析出方向</div>';return;}
+    renderDirections(cards,lastText);
+  }catch(e){document.getElementById('routed').innerHTML='⚠️ '+esc(''+e);}
+}
+</script>
+</body></html>

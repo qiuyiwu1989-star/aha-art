@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>aha · 产品架构 · Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/aha-kit.css">
+<style>
+  /* 页面专属微调 —— 仅用 token,不重定义颜色 */
+  .pagehead.hero{text-align:center;max-width:760px;margin:0 auto}
+  .pagehead.hero h1{font-family:var(--serif);font-size:clamp(24px,4.6vw,34px);font-weight:600;margin:var(--s2) 0}
+  .pagehead.hero .sub{margin:var(--s2) auto 0;max-width:62ch}
+  .pagehead.hero .meta{margin-top:var(--s3)}
+  /* 架构栈 */
+  .stack{max-width:580px;margin:var(--s5) auto var(--s2)}
+  .tier{display:flex;align-items:center;gap:var(--s3);border-radius:var(--r);padding:11px 16px;margin:6px 0;color:var(--paper);text-decoration:none;transition:transform var(--dur) var(--ease)}
+  .tier:hover{transform:translateX(3px)}
+  .tier .rn{font-family:var(--mono);font-size:var(--fz-small);opacity:.85;width:22px}
+  .tier .tn{font-family:var(--serif);font-size:16px;font-weight:600}
+  .tier .td{font-size:var(--fz-small);opacity:.92;margin-left:auto;text-align:right}
+  .tier.l-entry{background:var(--ink-mute)}.tier.l-cog{background:var(--accent)}.tier.l-create{background:var(--green)}
+  .tier.l-you{background:var(--gold)}.tier.l-exp{background:var(--blue)}.tier.l-gov{background:var(--ink)}.tier.l-arch{background:var(--ink-faint)}
+  .stacknote{text-align:center;font-size:var(--fz-small);color:var(--ink-faint);margin-top:var(--s2)}
+  .legend{display:flex;flex-wrap:wrap;gap:var(--s3);justify-content:center;margin:var(--s4) 0 0;font-size:var(--fz-small);color:var(--ink-mute)}
+  .legend i{font-style:normal}.legend .dt{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;vertical-align:middle}
+  .toc{position:sticky;top:0;background:var(--glass);backdrop-filter:blur(6px);z-index:20;display:flex;flex-wrap:wrap;gap:5px;justify-content:center;padding:var(--s2) 0;margin-top:var(--s4);border-bottom:1px solid var(--line)}
+  .toc a{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute);text-decoration:none;padding:3px 9px;border-radius:var(--r-sm)}
+  .toc a:hover{background:var(--card);color:var(--accent)}
+  .archlayer{margin-top:var(--s6);scroll-margin-top:46px}
+  .lh{display:flex;align-items:baseline;gap:var(--s3);border-bottom:2px solid var(--c,var(--accent));padding-bottom:var(--s2);margin-bottom:var(--s2)}
+  .lh .rn{font-family:var(--mono);font-size:14px;color:var(--c,var(--accent));font-weight:600}
+  .lh .t{font-family:var(--serif);font-size:var(--fz-h2);font-weight:600}
+  .lh .en{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-faint);text-transform:uppercase;letter-spacing:.1em;margin-left:auto}
+  .ld{font-size:var(--fz-small);color:var(--ink-mute);margin:var(--s3) 0 var(--s4);line-height:1.75}.ld b{color:var(--ink-soft)}
+  .clusters{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}@media(max-width:680px){.clusters{grid-template-columns:1fr}}
+  .cl.full{grid-column:1/-1}
+  .cl .ch{font-family:var(--serif);font-size:14.5px;font-weight:600;margin-bottom:2px}
+  .cl .cd{font-size:var(--fz-tiny);color:var(--ink-mute);line-height:1.6;margin-bottom:var(--s3)}
+  .links{display:flex;flex-wrap:wrap;gap:6px}
+  .links a{display:inline-flex;align-items:center;gap:5px;font-size:var(--fz-small);color:var(--ink-soft);background:var(--paper-2);border-radius:var(--r-sm);padding:4px 10px;text-decoration:none;border:1px solid transparent;transition:background var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+  .links a:hover{background:var(--accent-soft);color:var(--accent);border-color:var(--accent-line)}
+  .links a .dt{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+  .d-core{background:var(--accent)}.d-new{background:var(--green)}.d-tool{background:var(--blue)}.d-exp{background:var(--gold)}.d-arch{background:var(--ink-faint)}
+  .archsec .cl{background:var(--paper-2);border-style:dashed}
+</style></head>
+<body data-no-top>
+<div class="page">
+  <div class="pagehead hero">
+    <div class="kicker">aha · 产品架构 · Architecture</div>
+    <h1>一张图谱,三种用法,一层可信</h1>
+    <p class="sub">aha 把<b>人类绘画</b>建成一张<b>会拿真迹检验自己</b>的知识图谱,并在其上长出<b>理解 · 生成 · 懂你</b>三种能力,落成一个网站+平台。下面是整个产品的分层架构——每一页都归在它该在的层级里。</p>
+    <div class="meta" id="meta"></div>
+  </div>
+
+  <div class="stack">
+    <a class="tier l-entry" href="#t0"><span class="rn">0</span><span class="tn">入口</span><span class="td">全图 · 导览 · 搜索</span></a>
+    <a class="tier l-cog" href="#t1"><span class="rn">Ⅰ</span><span class="tn">认知层 · 理解一幅画</span><span class="td">知识图谱本体 + 连库资产</span></a>
+    <a class="tier l-create" href="#t2"><span class="rn">Ⅱ</span><span class="tn">创造层 · 生成一幅画</span><span class="td">意图编译 → 出图 → 回测</span></a>
+    <a class="tier l-you" href="#t3"><span class="rn">Ⅲ</span><span class="tn">人端 · 懂你</span><span class="td">审美定位与个性化</span></a>
+    <a class="tier l-exp" href="#t4"><span class="rn">Ⅳ</span><span class="tn">体验 · 逛美术馆</span><span class="td">让美来找你</span></a>
+    <a class="tier l-gov" href="#tg"><span class="rn">⌂</span><span class="tn">治理层 · 断言 → 测量</span><span class="td">会自我检验的诚实底座</span></a>
+  </div>
+  <div class="stacknote">认知是根,创造与懂你由它生;治理层贯穿全栈——让"经得起推敲"成为产品属性,而非口号。</div>
+
+  <div class="legend">
+    <span><i class="dt d-core"></i>核心</span><span><i class="dt d-new"></i>新/重点</span><span><i class="dt d-tool"></i>工具/可视化</span><span><i class="dt d-exp"></i>体验/实验</span><span><i class="dt d-arch"></i>档案(过程稿/旧版,保留可查)</span>
+  </div>
+
+  <div class="toc" id="toc"></div>
+  <div id="body"></div>
+  <p class="muted" style="text-align:center;margin-top:var(--s6)"><a href="kg-system.html" style="color:var(--accent);text-decoration:none">← 回到知识体系全图</a></p>
+</div>
+<script>
+const LAYERS=[
+ {id:'t0',rn:'0',t:'入口',en:'Entry',cv:'var(--ink-mute)',d:'四个总入口:一眼看懂整套体系、看方法论全貌、走一条线、直达任意节点。',
+  clusters:[
+   {ch:'总入口',cd:'从这里进入整个产品',items:[
+     ['kg-system.html','知识体系全图·对外传播','new'],['kg-v2.html','知识图谱总览·方法论','core'],['kg-tour.html','一条线导览','core'],['kg-search.html','全局搜索','tool'],
+     ['home.html','全部体验导航','core'],['kg-milestone.html','阶段性总结/里程碑','tool'],['architecture.html','本页·产品架构','new']]}]},
+ {id:'t1',rn:'Ⅰ',t:'认知层 · 理解一幅画',en:'Cognition · Knowledge Graph',cv:'var(--accent)',
+  d:'aha 的根:从「一幅画是什么」的第一性原理,把绘画建成一条生成因果链(世界观→题材+语言→感知→画外音),风格是其上的涌现签名,艺术家是链上的产出实例。这一层既有策展精修的本体(282 艺术家/202 风格),也有<b>连库的核心资产(Postgres ~20 万幅)</b>。',
+  clusters:[
+   {ch:'方法论 · 根·世界观',cd:'2 条真轴 + 6 个数据发现的区',items:[
+     ['kg-first-principles.html','第一性原理','core'],['kg-worldview.html','世界观层','core'],['kg-worldview-map.html','世界观地图 2D','core'],['kg-worldview-region.html','6 区志','tool'],['kg-worldview-science.html','科学性自检','tool'],['kg-plane-standard.html','逻辑图标准','tool']]},
+   {ch:'生成链中段 · 题材/语言/感知/画外音',cd:'实现 → 效应(VAD·可测) → 意义(动机·正交)',items:[
+     ['kg-subject.html','题材层','core'],['kg-subject-map.html','题材地图','tool'],['kg-language.html','7 大构成·双极点轴','core'],['kg-openness.html','闭集/开集','tool'],['kg-affect.html','感知效应 VAD','core'],['kg-subtext.html','画外音·动机考据','new'],['kg-facets.html','多面解构','tool'],['kg-facets-detail.html','四面收口','tool']]},
+   {ch:'风格(涌现签名)',cd:'202 风格 = 链上被命名的投影 · 风格页带派生vs实测对账',items:[
+     ['kg-style.html','风格层 202','core'],['kg-style-detail.html','风格详情·实测对账','new'],['kg-style-compare.html','风格对比','core'],['kg-projection.html','沿链投影','tool'],['kg-timeline.html','演化时间线','tool'],['kg-style-stats.html','统计','tool'],['kg-style-vectors.html','E向量散点','tool'],['kg-style-3d.html','三维探索·legacy','arch']]},
+   {ch:'艺术家(链上实例)',cd:'282 位全考究 · 会动的点云',items:[
+     ['artists.html','艺术家中枢','core'],['kg-artist.html','艺术家页','core'],['kg-artist-framework.html','艺术家标准','tool'],['kg-artist-atlas.html','全员星图','tool'],['kg-artist-roster.html','名单','tool']]},
+   {ch:'核心资产 · 连库(Postgres)',cd:'~20 万幅真迹连库,每幅一页(work_id 主键)',items:[
+     ['kg-catalog.html','核心资产画廊·连库 20万','new'],['artwork.html','画作原子页·连库(?id)','new'],['kg-artworks.html','真迹读图(VLM·119)','core'],['kg-works.html','作品层·全量','tool'],['kg-explain.html','一画解读','tool'],['kg-duet.html','双画对读','tool']]},
+   {ch:'关系与动力学',cd:'承自/影响/对抗 · 艺术史的力',items:[
+     ['kg-lineage.html','关系考究','core'],['kg-galaxy.html','星辰大海 3D','core'],['kg-dynamics.html','艺术史动力学','tool'],['kg-drift.html','世界观漂移','tool'],['kg-forces.html','艺术史的力·总览','tool'],['kg-context.html','语境力','tool'],['kg-contingency.html','个体/偶发','tool'],['kg-force-timeline.html','力的时间线','tool'],['kg-tour-forces.html','力的导览','tool']]}]},
+ {id:'t2',rn:'Ⅱ',t:'创造层 · 生成一幅画',en:'Creation · Generation',cv:'var(--green)',
+  d:'图谱不只是能解释,还能生成。一点灵感经策略推理(扩散/艺术家基因/传图)编译成方案 → 出图 → 自动入库 → 回测验证。理解→生成→验证 的闭环。',
+  clusters:[
+   {ch:'意图编译器',cd:'灵感→扩写→调整→生产,grounded 零幻觉',items:[
+     ['kg-compile-v2.html','意图编译器 v2','new'],['kg-compile.html','编译器 v1·对照','arch']]},
+   {ch:'生成产物与验证',cd:'存档 · 回测 · 为你生成',items:[
+     ['kg-gallery.html','生成图库','new'],['kg-backtest.html','生成回测(可证伪)','new'],['kg-foryou.html','为你生成一幅','new']]}]},
+ {id:'t3',rn:'Ⅲ',t:'人端 · 懂你',en:'Personalization',cv:'var(--gold)',
+  d:'同一张图谱,千人千面:把你的审美定位成世界观平面上的一个点云,再据此推荐、生成、解释。art that finds you 的内核。',
+  clusters:[
+   {ch:'审美定位与档案',cd:'你在这里 · 你的审美 DNA',items:[
+     ['kg-taste.html','审美定位','core'],['kg-me.html','我的审美档案','core'],['kg-me-types.html','48 审美门派','tool'],['kg-me-algo.html','推荐内核算法','tool'],['aesthetic-lab.html','美学实验室·旗舰','core'],['how-it-works.html','算法科普','tool']]}]},
+ {id:'t4',rn:'Ⅳ',t:'体验 · 逛美术馆',en:'Experience',cv:'var(--blue)',
+  d:'面向普通人的「逛」:同一批名画 + 同一张图谱,多种操作哲学(漂流/岔路/并置/以色觅画…),口味在各页之间共享、越逛越准。美术馆数据已接连库。',
+  clusters:[
+   {ch:'人类美术馆 · 连库无限画廊',cd:'真迹连库,多种走法,化作可无限漫游的美术馆',items:[
+     ['museum.html','美术馆入口','new'],['museum-salon.html','沙龙墙','new'],['museum-corridor.html','无限长廊','new'],['museum-halls.html','展厅之馆','new'],['museum-floor.html','馆即平面','new'],['art.html','画作页(永久/分享)','new']]},
+   {ch:'交互方案',cd:'同内容 · 不同操作哲学',items:[
+     ['index.html','经典完整版','exp'],['variant-drift.html','漂流 Drift','exp'],['variant-crossroads.html','岔路 Crossroads','exp'],['variant-resonance.html','并置 Resonance','exp'],['compare.html','方案总览','exp']]},
+   {ch:'逛法',cd:'多种「逛」的方法',items:[
+     ['wander.html','逛法总览','exp'],['wander-mobile.html','手机原生版','exp'],['wander-chroma.html','以色觅画','exp'],['wander-galaxy.html','银河漫游','exp'],['wander-dwell.html','专注单幅','exp'],['wander-talk.html','对话策展','exp'],['wander-fog.html','雾中之馆','exp'],['wander-dial.html','情绪方向盘','exp'],['wander-versus.html','二选一之路','exp']]},
+   {ch:'概念实验',cd:'更实验性的玩法',items:[
+     ['concepts.html','概念实验场','exp'],['concept-curator.html','策展台','exp'],['concept-latent.html','审美潜空间','exp'],['concept-path.html','两画之间','exp'],['concept-river.html','母题之河','exp']]}]},
+ {id:'tg',rn:'⌂',t:'治理层 · 断言 → 测量',en:'Governance · Self-auditing',cv:'var(--ink)',
+  d:'aha 区别于一切艺术标签库的底座:它<b>不写死断言</b>,而是拿真迹/像素持续检验自己、对账、<b>猜错就撤回纠偏</b>。已撤回"饱和→唤起"循环论证、用真迹纠偏印象派指纹、对抗复核 282 位动机(感知实验 111→50)、量化技法只解释情绪 ~20%。这让"经得起推敲"成为可验证的产品属性。',
+  clusters:[
+   {ch:'断言→测量 · 可证伪验证',cd:'拿真迹/像素对账,诚实标注派生vs实测',items:[
+     ['kg-validate.html','投影问责账本·拱顶石','new'],['kg-affect.html','感知效应·像素实测(撤回循环)','new'],['kg-style-detail.html','风格页·派生vs实测对账','new'],['kg-subtext.html','动机·对抗式复核','new']]},
+   {ch:'本体与资产 · 治理后台',cd:'图谱说明书 · 可调用导出 · 连库治理',items:[
+     ['kg-ontology.html','权威本体','core'],['kg-data.html','数据资产/字典','core'],['kg-health.html','完备性体检','tool'],['kg-provenance.html','数据可信度','tool'],['admin.html','数据管理后台','tool'],['dashboard.html','治理后台·连库','new']]}]},
+ {id:'tx',rn:'▣',t:'档案 · 过程稿与旧版',en:'Archive',cv:'var(--ink-faint)',arch:true,
+  d:'保留可查、不进主路径:V2 时期的科学稿、早期样板与规范、计划文档。它们记录了方法论如何一步步被推翻重建——本身就是"经得起推敲"的证据,故不删除,只归档。',
+  clusters:[
+   {ch:'V2 遗留(已被 V3 取代)',cd:'三轴/12镜像时代的稿',items:[
+     ['kg-audit.html','V2 科学化自检','arch'],['kg-schema.html','V2 正交基/标注','arch'],['kg-graph.html','数据派生边·V2','arch'],['kg-node.html','节点样板','arch']]},
+   {ch:'样板 · 规范 · 计划稿',cd:'内部交接与早期演示',items:[
+     ['kg-map.html','理解确认稿','arch'],['kg-style-framework.html','风格详情标准框架','arch'],['kg-style-curation.html','风格取舍评审','arch'],['kg-galaxy-roadmap.html','星辰大海路线图','arch'],['arch-demo.html','三层架构活体演示','arch']]}]}
+];
+const TAGCLS={core:'d-core',new:'d-new',tool:'d-tool',exp:'d-exp',arch:'d-arch'};
+const body=document.getElementById('body'),toc=document.getElementById('toc');
+let total=0;
+LAYERS.forEach(L=>{
+  const sec=document.createElement('div');sec.className='archlayer'+(L.arch?' archsec':'');sec.id=L.id;sec.style.setProperty('--c',L.cv);
+  let h=`<div class="lh"><span class="rn">${L.rn}</span><span class="t">${L.t}</span><span class="en">${L.en}</span></div><div class="ld">${L.d}</div><div class="clusters">`;
+  L.clusters.forEach(cl=>{
+    const full=cl.items.length>=8?' full':'';
+    h+=`<div class="card cl${full}"><div class="ch">${cl.ch}</div><div class="cd">${cl.cd}</div><div class="links">`;
+    cl.items.forEach(([href,name,tag])=>{total++;h+=`<a href="${href}"><span class="dt ${TAGCLS[tag]}"></span>${name}</a>`;});
+    h+='</div></div>';
+  });
+  h+='</div>';sec.innerHTML=h;body.appendChild(sec);
+  const a=document.createElement('a');a.href='#'+L.id;a.textContent=L.rn+' '+L.t.split(' · ')[0];toc.appendChild(a);
+});
+document.getElementById('meta').textContent=`6 层架构 · ${total} 个页面 · ~20 万幅画连库 · 全部保留、各归其位`;
+</script>
+<script src="js/aha-chrome.js"></script>
+<script src="js/aha-icons.js"></script>
+</body></html>

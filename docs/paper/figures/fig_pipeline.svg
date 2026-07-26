@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="330" viewBox="0 0 880 330" font-family="Noto Sans SC,system-ui,sans-serif">
+<rect width="880" height="330" fill="#faf8f3"/>
+<defs><marker id="a" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#b0673a"/></marker></defs>
+<rect x="28" y="110" width="128" height="128" rx="10" fill="#fff" stroke="#ddd5c6" stroke-width="1.5"/>
+<rect x="40" y="122" width="104" height="80" fill="#e9e0cf"/>
+<circle cx="70" cy="160" r="16" fill="#cdbf9c"/><rect x="92" y="150" width="44" height="40" fill="#b8c3b0"/>
+<text x="92" y="228" font-size="12" fill="#857d6f" text-anchor="middle" font-weight="400" font-family="Noto Sans SC,sans-serif">画作图像</text>
+<text x="92" y="93" font-size="11" fill="#b0673a" text-anchor="middle" font-weight="600" font-family="JetBrains Mono,monospace">① 输入</text>
+<rect x="196" y="118" width="150" height="112" rx="10" fill="#fff" stroke="#b0673a" stroke-width="1.5"/>
+<text x="271" y="150" font-size="13.5" fill="#b0673a" text-anchor="middle" font-weight="600" font-family="Noto Serif SC,serif">视觉语言模型</text>
+<text x="271" y="170" font-size="11" fill="#857d6f" text-anchor="middle" font-weight="400" font-family="Noto Sans SC,sans-serif">(小米 MiMo)</text>
+<text x="271" y="192" font-size="10.5" fill="#857d6f" text-anchor="middle" font-weight="400" font-family="Noto Sans SC,sans-serif">沿锚定刻度逐幅解析</text>
+<text x="271" y="208" font-size="10" fill="#857d6f" text-anchor="middle" font-weight="400" font-family="Noto Sans SC,sans-serif">照相写实≈.1 睡莲≈.9</text>
+<text x="271" y="103" font-size="11" fill="#b0673a" text-anchor="middle" font-weight="600" font-family="JetBrains Mono,monospace">② 多维解析</text>
+<rect x="386" y="86" width="236" height="178" rx="10" fill="#fff" stroke="#5a7d6f" stroke-width="1.5"/>
+<text x="504" y="103" font-size="11" fill="#5a7d6f" text-anchor="middle" font-weight="600" font-family="JetBrains Mono,monospace">③ 12 维审美坐标</text>
+<rect x="398" y="108" width="6" height="42" rx="3" fill="#5b7596"/>
+<text x="412" y="120" font-size="11.5" fill="#5b7596" text-anchor="start" font-weight="600" font-family="Noto Sans SC,sans-serif">世界观 ·2</text>
+<text x="412" y="136" font-size="10.5" fill="#857d6f" text-anchor="start" font-weight="400" font-family="JetBrains Mono,monospace">再现↔表现 .80</text>
+<text x="412" y="151" font-size="10.5" fill="#857d6f" text-anchor="start" font-weight="400" font-family="JetBrains Mono,monospace">结构↔感知 .70</text>
+<rect x="398" y="160" width="6" height="42" rx="3" fill="#c98a1a"/>
+<text x="412" y="172" font-size="11.5" fill="#c98a1a" text-anchor="start" font-weight="600" font-family="Noto Sans SC,sans-serif">绘画语言 ·7</text>
+<text x="412" y="188" font-size="10.5" fill="#857d6f" text-anchor="start" font-weight="400" font-family="JetBrains Mono,monospace">色彩 1.0  笔触 1.0</text>
+<text x="412" y="203" font-size="10.5" fill="#857d6f" text-anchor="start" font-weight="400" font-family="JetBrains Mono,monospace">造型 .9  构图 .8  …</text>
+<rect x="398" y="212" width="6" height="27" rx="3" fill="#b0673a"/>
+<text x="412" y="224" font-size="11.5" fill="#b0673a" text-anchor="start" font-weight="600" font-family="Noto Sans SC,sans-serif">情绪 VAD ·3</text>
+<text x="412" y="240" font-size="10.5" fill="#857d6f" text-anchor="start" font-weight="400" font-family="JetBrains Mono,monospace">愉悦 .7  唤起 .8</text>
+<rect x="662" y="110" width="190" height="128" rx="12" fill="#fff" stroke="#1d1b18" stroke-width="1.5"/>
+<text x="757" y="103" font-size="11" fill="#b0673a" text-anchor="middle" font-weight="600" font-family="JetBrains Mono,monospace">④ 知识图谱 / 审美流形</text>
+<circle cx="700" cy="150" r="3" fill="#ddd5c6"/>
+<circle cx="720" cy="135" r="3" fill="#ddd5c6"/>
+<circle cx="745" cy="160" r="3" fill="#ddd5c6"/>
+<circle cx="775" cy="140" r="3" fill="#ddd5c6"/>
+<circle cx="800" cy="168" r="3" fill="#ddd5c6"/>
+<circle cx="730" cy="185" r="3" fill="#ddd5c6"/>
+<circle cx="770" cy="200" r="3" fill="#ddd5c6"/>
+<circle cx="810" cy="150" r="3" fill="#ddd5c6"/>
+<circle cx="690" cy="175" r="3" fill="#ddd5c6"/>
+<circle cx="757" cy="170" r="6" fill="#b0673a"/>
+<text x="757" y="222" font-size="10.5" fill="#857d6f" text-anchor="middle" font-weight="400" font-family="Noto Sans SC,sans-serif">2.2 万+ 作品 · 人画同空间</text>
+<line x1="158" y1="174" x2="194" y2="174" stroke="#b0673a" stroke-width="1.6" marker-end="url(#a)"/>
+<line x1="348" y1="174" x2="384" y2="174" stroke="#b0673a" stroke-width="1.6" marker-end="url(#a)"/>
+<line x1="624" y1="174" x2="660" y2="174" stroke="#b0673a" stroke-width="1.6" marker-end="url(#a)"/>
+<text x="28" y="40" font-size="15" fill="#1d1b18" text-anchor="start" font-weight="700" font-family="Noto Serif SC,serif">从一幅画到审美图谱:视觉语言模型驱动的多维语义解析</text>
+<text x="28" y="62" font-size="11" fill="#857d6f" text-anchor="start" font-weight="400" font-family="Noto Sans SC,sans-serif">每幅画被解析为 12 维可解释审美坐标(世界观2 + 语言7 + 情绪3),作品与用户同处一图;“风格是其它层的投影”。</text>
+</svg>

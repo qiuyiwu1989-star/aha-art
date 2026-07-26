@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>艺术史的动力学 · aha</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/aha-kit.css">
+<style>
+  /* 页面专属微调:只用 token */
+  .pagehead{text-align:center;border-bottom:none;padding-bottom:var(--s2)}
+  .pagehead .sub{margin-left:auto;margin-right:auto}
+  /* 大全图 */
+  .map{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);
+    padding:var(--s3);box-shadow:var(--sh-card);position:relative;overflow:hidden}
+  .map svg{width:100%;height:auto;display:block;cursor:pointer}
+  .mapbar{display:flex;gap:var(--s3);align-items:center;flex-wrap:wrap;margin-top:var(--s3);
+    padding-top:var(--s3);border-top:1px solid var(--line-soft)}
+  .mapleg{display:flex;gap:var(--s4);flex-wrap:wrap;font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute)}
+  .mapleg .li{display:flex;align-items:center;gap:6px}.mapleg .sw{width:16px;height:0;border-top:3px solid;border-radius:2px}
+  .mapbar .btn{margin-left:auto}
+  .tip{position:fixed;z-index:60;pointer-events:none;background:var(--ink);color:var(--paper);
+    font-size:var(--fz-tiny);padding:7px 11px;border-radius:var(--r-sm);opacity:0;transition:opacity .1s;
+    max-width:280px;box-shadow:var(--sh-pop);line-height:1.5;font-family:var(--sans)}
+  .tip .t{font-family:var(--serif);font-weight:600}
+  .maphint{text-align:center;font-size:var(--fz-small);color:var(--ink-mute);line-height:1.7;margin-top:var(--s3)}
+  /* 分类门卡 */
+  .door{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);
+    border-radius:var(--r);padding:var(--s4);box-shadow:var(--sh-1);height:100%;
+    transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+  .door:hover{transform:translateY(-2px);box-shadow:var(--sh-card);border-color:var(--accent-line)}
+  .door .dh{display:flex;align-items:center;gap:var(--s2);margin-bottom:var(--s2)}
+  .door .dh i{font-size:20px;color:var(--accent);line-height:0}
+  .door .dh .nm{font-family:var(--serif);font-size:var(--fz-h3);font-weight:600;color:var(--ink)}
+  .door .dh .n{margin-left:auto;font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-faint)}
+  .door .dsub{font-size:var(--fz-small);color:var(--ink-soft);line-height:1.7;flex:1}
+  .enter{display:inline-flex;align-items:center;gap:6px;margin-top:var(--s4);align-self:flex-start;
+    font-family:var(--mono);font-size:var(--fz-small);color:var(--accent);
+    border:1px solid var(--accent-line);background:var(--accent-soft);border-radius:var(--r-pill);
+    padding:6px 14px;transition:gap var(--dur) var(--ease),background var(--dur) var(--ease)}
+  .enter i{font-size:15px;line-height:0}.enter:hover{gap:10px;background:var(--card)}
+  .card.link .arr{margin-left:auto;color:var(--accent);font-size:16px;line-height:0;transition:transform var(--dur) var(--ease)}
+  .card.link:hover .arr{transform:translateX(3px)}
+  .mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--s2)}
+  .mini a{display:block;background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    padding:var(--s3);transition:border-color var(--dur) var(--ease),transform var(--dur) var(--ease)}
+  .mini a:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .mini .r{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint)}
+  .mini .t{font-family:var(--serif);font-size:var(--fz-small);font-weight:600;color:var(--ink);margin-top:3px}
+  /* 分区里的招牌图预览(缩略) */
+  .mini-viz{width:100%;height:auto;display:block;background:var(--card);
+    border:1px solid var(--line-soft);border-radius:var(--r-sm);margin-bottom:var(--s3)}
+  .door{cursor:pointer}
+  .door:hover .mini-viz,.card.link:hover .mini-viz{border-color:var(--accent-line)}
+  .card.link{display:flex;flex-direction:column}
+  .card.link .mini-viz{margin-bottom:var(--s2)}
+</style></head>
+<body data-board="forces" data-no-top>
+<div class="tip" id="tip"></div>
+<div class="page">
+  <div class="pagehead">
+    <a class="back" href="artist-home.html" onclick="if(document.referrer){history.back();return false;}">← 返回</a>
+    <p class="sub" style="font-size:var(--fz-body)"><b style="color:var(--ink)">艺术史的动力学</b> —— 是什么在推动美术史?把所有的「力」摊在一张图上,反叛、复兴、跨文化、致敬…… 每一笔都是从一个位置指向另一个位置的<b style="color:var(--ink)">移动</b>。</p>
+    <div class="meta" id="meta">加载中</div>
+  </div>
+
+  <!-- ① 大全图(进来第一眼) -->
+  <div class="sec" style="margin-top:var(--s4)">
+    <div class="map">
+      <svg id="map" viewBox="0 0 1000 520" role="img" aria-label="艺术史动力学全图"></svg>
+      <div class="mapbar">
+        <div class="mapleg" id="mapleg"></div>
+        <a class="btn pill" href="kg-dynamics.html">进关系层 · 交互细看 →</a>
+      </div>
+    </div>
+    <p class="maphint" id="maphint">悬停任一条线,看那是一次什么「力」 · 点图进入关系层</p>
+  </div>
+
+  <!-- KPI -->
+  <div class="sec"><div class="stats" id="stats" style="justify-content:center"></div></div>
+
+  <!-- ② 三家力 · 分类入口 -->
+  <div class="sec">
+    <div class="sec-h"><span class="t">三家力</span><span class="d">一件作品总在「对某个东西做出反应」——反应的对象不同,力就不同</span></div>
+    <div class="grid" id="families"><div class="loading">加载中</div></div>
+    <p class="muted" style="font-size:var(--fz-small);line-height:1.7;margin-top:var(--s4);text-align:center">还有最基本的一种力——<b style="color:var(--ink-soft)">继承 / 师承</b>——不在这里,它撑起整张 <a href="kg-artist-atlas.html">全员星图</a>。本板块只列「求变」的那几种。</p>
+  </div>
+
+  <!-- ③ 换个看法 -->
+  <div class="sec">
+    <div class="sec-h"><span class="t">换个看法</span><span class="d">同一批力,换时间 / 叙事 / 连线来体验 —— 每张卡是该页招牌图的预览</span></div>
+    <div class="grid">
+      <a class="card link" href="kg-force-timeline.html"><svg class="mini-viz" id="mv-time" viewBox="0 0 240 116" aria-hidden="true"></svg><div class="card-h"><span class="nm">力的时间线</span><i class="arr" data-ic="arrowRight"></i></div><div class="card-note">69 条边 + 52 个语境事件叠到一条世纪轴,看反叛潮 / 复兴潮何时合流;顶部再叠一条世界观漂移带。</div></a>
+      <a class="card link" href="kg-tour-forces.html"><svg class="mini-viz" id="mv-tour" viewBox="0 0 240 116" aria-hidden="true"></svg><div class="card-h"><span class="nm">力的导览</span><i class="arr" data-ic="arrowRight"></i></div><div class="card-note">四条策展好的叙事:反叛接力 · 浮世绘征服西方 · 文人画八百年 · 1910 总爆发。</div></a>
+      <a class="card link" href="kg-force-path.html"><svg class="mini-viz" id="mv-path" viewBox="0 0 240 116" aria-hidden="true"></svg><div class="card-h"><span class="nm">力的连线</span><span class="chip">互动</span><i class="arr" data-ic="arrowRight"></i></div><div class="card-note">任选两位艺术家,用「力」把他们连起来——艺术史的六度分隔,路径上每人挂一张代表作。</div></a>
+    </div>
+  </div>
+
+  <!-- ④ 方法论 -->
+  <div class="sec">
+    <div class="note accent">
+      <div class="k">方法论 · 把话说在前头</div>
+      在 <b>282 位已建艺术家</b>(均有世界观坐标)之间人工梳理关系。史实直述记为<b>考据</b>、判断性框架记为<b>推断</b>(图上画虚线、可质疑);存疑轶事标<b>传说</b>。刻意<b>不含</b>:作品像素证据(力的真迹另见各页)、把语境力画成边、把个体偶发当规律。每页都写明自己<b>讲不全艺术</b>——边界比覆盖更重要。
+    </div>
+  </div>
+
+  <!-- ⑤ 相关 -->
+  <div class="sec">
+    <div class="sec-h"><span class="t">相关页面</span><span class="d">根 → 力 → 长程结果</span></div>
+    <div class="mini">
+      <a href="kg-worldview.html"><div class="r">根 · 底图</div><div class="t">世界观平面</div></a>
+      <a href="kg-artist-atlas.html"><div class="r">连续力</div><div class="t">师承星图</div></a>
+      <a href="kg-dynamics.html"><div class="r">求变 · 关系</div><div class="t">关系层</div></a>
+      <a href="kg-context.html"><div class="r">求变 · 语境</div><div class="t">语境层</div></a>
+      <a href="kg-drift.html"><div class="r">长程结果</div><div class="t">世界观漂移</div></a>
+    </div>
+  </div>
+</div>
+
+<script>
+const FAMS=[
+ {key:'rel',ic:'forces',nm:'关系力',page:'kg-dynamics.html',enter:'进入关系层',
+  sub:'艺术家 → 艺术家,能画成<b>箭头</b>;回答「谁影响了谁」。八种力:反叛 / 复兴 / 综合 / 推演 / 跨文化 / 致敬 / 竞争 / 结社。'},
+ {key:'ctx',ic:'worldview',nm:'语境力',page:'kg-context.html',enter:'进入语境层',
+  sub:'作用于整个画坛的「<b>场</b>」,不是边;回答「什么世界让它成为可能」。六道场:技术 / 制度 / 社会 / 科学 / 宗教 / 地理。'},
+ {key:'cont',ic:'sparkles',nm:'个体 / 偶发',page:'kg-contingency.html',enter:'进入个体/偶发',
+  sub:'<b>不可还原为力</b>,但真实存在;承认它,历史才不是决定论。三种:创造性误读 / 天才奇点 / 偶然。'},
+];
+const fcol=t=>(['反叛','复兴','综合','推演'].includes(t))?'var(--accent)':(t==='跨文化'?'var(--blue)':'var(--green)');
+const tip=document.getElementById('tip');
+
+// 颜色:mini 预览图运行时从 aha-kit token 取真实色值(SVG 属性不解析 var(),也避免页内写死十六进制)
+const _CS=getComputedStyle(document.documentElement),cv=(n,fb)=>{const v=_CS.getPropertyValue(n).trim();return v||fb;};
+const FTOK={'反叛':'--reb','复兴':'--rev','综合':'--syn','推演':'--psh','跨文化':'--cro','致敬':'--hom','竞争':'--riv','结社':'--she'};
+const fhex=t=>cv(FTOK[t]||'--ink-mute','#857d6f');
+const COL={paper2:cv('--paper-2','#ece7db'),line:cv('--line','#e3ddd0'),lineSoft:cv('--line-soft','#eee9de'),ink:cv('--ink','#3a3530'),inkMute:cv('--ink-mute','#857d6f'),card:cv('--card','#fffdf8'),accent:cv('--accent','#b0673a'),green:cv('--green','#5a7d6f'),blue:cv('--blue','#5b7596'),foil:cv('--foil','#c0492f'),model:cv('--model','#5a7d6f'),chance:cv('--chance','#8a7d6f'),y:cv('--y','#a8567f')};
+const NSm='http://www.w3.org/2000/svg';
+function mvk(id){const s=document.getElementById(id);if(s)s.textContent='';return s;}
+function mE(s,n,a){const e=document.createElementNS(NSm,n);for(const k in a)e.setAttribute(k,a[k]);s.appendChild(e);return e;}
+
+Promise.all([
+  fetch('data/kg_relations.json').then(r=>r.json()),
+  fetch('data/kg_context.json').then(r=>r.json()),
+  fetch('data/kg_artists.json').then(r=>r.json())
+]).then(([REL,CTX,AJ])=>{
+  const A=AJ.artists, byType=REL.meta.by_type||{}, byLane=(CTX.meta&&CTX.meta.by_lane)||{};
+  const nEdges=REL.meta.edges, nForce=REL.meta.types.length, nEvt=CTX.meta.events, nLane=(CTX.lanes||[]).length;
+  const nMis=REL.edges.filter(e=>e.misread).length, nNode=new Set(REL.edges.flatMap(e=>[e.from,e.to])).size;
+  document.getElementById('meta').textContent=`${nForce} 种关系力 · ${nEdges} 条边 · ${nLane} 道语境场 · ${nEvt} 个事件 · 共 6 个页面`;
+
+  document.getElementById('stats').innerHTML=[
+   [nForce,'种','关系力'],[nEdges,'条','力的连接'],[nNode,'个','涉及艺术家'],[nLane,'道','语境场'],[nEvt,'个','语境事件']
+  ].map(s=>`<div class="stat"><div class="num">${s[0]}<span class="u">${s[1]}</span></div><div class="lab">${s[2]}</div></div>`).join('');
+
+  document.getElementById('families').innerHTML=FAMS.map(f=>{
+    const tot=f.key==='rel'?nEdges:(f.key==='ctx'?nEvt:nMis);
+    return `<div class="door" onclick="location.href='${f.page}'">
+      <svg class="mini-viz" id="mv-${f.key}" viewBox="0 0 240 116" aria-hidden="true"></svg>
+      <div class="dh"><i data-ic="${f.ic}"></i><span class="nm">${f.nm}</span><span class="n">${tot} ${f.key==='cont'?'处误读':(f.key==='ctx'?'事件':'条边')}</span></div>
+      <div class="dsub">${f.sub}</div>
+      <a class="enter" href="${f.page}">${f.enter} <i data-ic="arrowRight"></i></a></div>`;
+  }).join('');
+
+  document.getElementById('mapleg').innerHTML=
+    [['对前代 · 反叛/复兴/综合/推演','var(--accent)'],['对异域 · 跨文化','var(--blue)'],['对同代 · 致敬/竞争/结社','var(--green)']]
+    .map(([t,c])=>`<span class="li"><span class="sw" style="border-color:${c}"></span>${t}</span>`).join('')+
+    `<span class="li" style="color:var(--ink-faint)">○ 艺术家 · ▢ 外部传统</span>`;
+
+  const POS=buildPOS(REL,A);
+  drawMap(REL,A,POS);
+  document.querySelectorAll('.sec').forEach(el=>el.classList.add('fade-in'));
+  if(window.AHAIcons)document.querySelectorAll('[data-ic]').forEach(function(el){el.innerHTML=AHAIcons.svg(el.getAttribute('data-ic'));});
+  [['mv-rel',()=>miniRel('mv-rel',REL,POS)],['mv-ctx',()=>miniCtx('mv-ctx',CTX)],['mv-cont',()=>miniCont('mv-cont',REL)],
+   ['mv-time',()=>miniTime('mv-time',REL,A)],['mv-tour',()=>miniTour('mv-tour')],['mv-path',()=>miniPath('mv-path',POS)]]
+   .forEach(([k,fn])=>{try{fn();}catch(err){console.warn('mini '+k,err);}});
+}).catch(e=>{
+  document.getElementById('families').innerHTML='<div class="empty">数据加载失败<div class="hint">需通过服务器打开</div></div>';
+  document.getElementById('meta').textContent='—';
+});
+
+function buildPOS(REL,A){const POS={};
+  Object.entries(A).forEach(([id,v])=>{if(!v._stub&&v.wv&&v.wv.x!=null)POS[id]={x:v.wv.x,y:v.wv.y,east:v.region==='east'};});
+  Object.entries(REL.concepts||{}).forEach(([id,c])=>POS[id]={x:c.x,y:c.y,concept:true});
+  return POS;}
+function drawMap(REL,A,POS){
+  const NS='http://www.w3.org/2000/svg',E=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+  const svg=document.getElementById('map');svg.textContent='';
+  const W=1000,H=520,pl=56,pr=34,pt=26,pb=42;
+  const sx=v=>pl+v*(W-pl-pr), sy=v=>H-pb-v*(H-pt-pb), f1=v=>(+v).toFixed(1);
+  const cnOf=id=>id.startsWith('C.')?(REL.concepts[id]||{}).cn:((A[id]||{}).cn||id);
+  // 底板 + 网格 + 轴
+  svg.appendChild(E('rect',{x:pl,y:pt,width:W-pl-pr,height:H-pt-pb,fill:'var(--paper-2)','fill-opacity':.4,stroke:'var(--line)',rx:10}));
+  [.25,.5,.75].forEach(t=>{svg.appendChild(E('line',{x1:sx(t),y1:pt,x2:sx(t),y2:H-pb,stroke:'var(--line-soft)'}));svg.appendChild(E('line',{x1:pl,y1:sy(t),x2:W-pr,y2:sy(t),stroke:'var(--line-soft)'}));});
+  const tx=(x,y,s,o={})=>{const e=E('text',{x,y,'font-family':o.f||'JetBrains Mono','font-size':o.fs||10,fill:o.fill||'var(--ink-mute)','text-anchor':o.a||'middle','font-weight':o.w||400});if(o.st){e.setAttribute('paint-order','stroke');e.setAttribute('stroke','var(--card)');e.setAttribute('stroke-width',o.sw||3.2);}e.textContent=s;svg.appendChild(e);return e;};
+  tx(sx(.01),H-pb+24,'← 再现',{a:'start',fill:'var(--green)',w:600,fs:12});tx(sx(.99),H-pb+24,'表现 →',{a:'end',fill:'var(--accent)',w:600,fs:12});
+  tx(pl-8,sy(.02),'结构',{a:'end',fill:'var(--green)',w:600,fs:12});tx(pl-8,sy(.98),'感知',{a:'end',fill:'var(--accent)',w:600,fs:12});
+  // 点云
+  Object.values(POS).forEach(p=>{if(p.concept)return;svg.appendChild(E('circle',{cx:f1(sx(p.x)),cy:f1(sy(p.y)),r:2.4,fill:p.east?'var(--green)':'var(--accent)','fill-opacity':.28}));});
+  // 边(曲线·家族色·hover)
+  const deg={};
+  REL.edges.forEach(e=>{const p=POS[e.from],q=POS[e.to];if(!p||!q)return;
+    deg[e.from]=(deg[e.from]||0)+1;deg[e.to]=(deg[e.to]||0)+1;
+    const c=fcol(e.type),X1=sx(p.x),Y1=sy(p.y),X2=sx(q.x),Y2=sy(q.y);
+    const dx=X2-X1,dy=Y2-Y1,L=Math.hypot(dx,dy)||1,ux=dx/L,uy=dy/L;
+    const off=Math.min(0.14*L,46)*(e.from<e.to?1:-1),cx=(X1+X2)/2-uy*off,cy=(Y1+Y2)/2+ux*off;
+    const path=E('path',{d:`M${f1(X1)} ${f1(Y1)} Q${f1(cx)} ${f1(cy)} ${f1(X2)} ${f1(Y2)}`,fill:'none',stroke:c,'stroke-width':1.3,'stroke-opacity':.42,class:'edge'});
+    if(e.conf==='推断')path.setAttribute('stroke-dasharray','5 4');
+    path.addEventListener('mousemove',ev=>{tip.style.opacity=1;tip.style.left=Math.min(ev.clientX+12,innerWidth-290)+'px';tip.style.top=(ev.clientY+12)+'px';
+      path.setAttribute('stroke-width',2.6);path.setAttribute('stroke-opacity',.95);
+      tip.innerHTML=`<div class="t" style="color:${c}">${cnOf(e.from)} ${e.bidir?'⇄':'→'} ${cnOf(e.to)}</div>${e.type}${e.note?' · '+e.note:''}`;});
+    path.addEventListener('mouseleave',()=>{tip.style.opacity=0;path.setAttribute('stroke-width',1.3);path.setAttribute('stroke-opacity',.42);});
+    path.addEventListener('click',()=>location.href='kg-dynamics.html?force='+encodeURIComponent(e.type));
+    svg.appendChild(path);});
+  // 节点
+  const inv=new Set();REL.edges.forEach(e=>{inv.add(e.from);inv.add(e.to);});
+  inv.forEach(id=>{const p=POS[id];if(!p)return;
+    if(p.concept)svg.appendChild(E('rect',{x:f1(sx(p.x)-4),y:f1(sy(p.y)-4),width:8,height:8,rx:1.5,fill:'var(--ink-mute)',stroke:'var(--card)','stroke-width':1.4}));
+    else svg.appendChild(E('circle',{cx:f1(sx(p.x)),cy:f1(sy(p.y)),r:(deg[id]||0)>=3?4.2:3,fill:p.east?'var(--green)':'var(--accent)',stroke:'var(--card)','stroke-width':1.4}));});
+  // 枢纽标名(度≥3)
+  inv.forEach(id=>{const p=POS[id];if(!p)return;if((deg[id]||0)>=3)tx(sx(p.x),sy(p.y)-9,cnOf(id),{f:'Noto Serif SC',fs:11,fill:'var(--ink)',w:600,st:1,sw:3.4});});
+  // 点空白进关系层
+  svg.querySelector('rect').addEventListener('click',()=>location.href='kg-dynamics.html');
+}
+
+/* ===== 分区招牌图 · mini 预览(复用已 fetch 的数据;240×116) ===== */
+function frame(s){mE(s,'rect',{x:.5,y:.5,width:239,height:115,rx:6,fill:COL.paper2,'fill-opacity':.5,stroke:COL.lineSoft});}
+
+// 关系层:世界观平面 + 点云 + 每种力取代表边(有向)
+function miniRel(id,REL,POS){const s=mvk(id);if(!s)return;frame(s);
+  const mx=x=>10+x*220,my=y=>106-y*96;
+  let i=0;for(const k in POS){const p=POS[k];if(p.concept){i++;continue;}if(i++%2)continue;mE(s,'circle',{cx:mx(p.x).toFixed(1),cy:my(p.y).toFixed(1),r:1.2,fill:p.east?COL.green:COL.accent,'fill-opacity':.2});}
+  const seen={};REL.edges.forEach(e=>{const p=POS[e.from],q=POS[e.to];if(!p||!q)return;if((seen[e.type]||0)>=2)return;seen[e.type]=(seen[e.type]||0)+1;
+    const X1=mx(p.x),Y1=my(p.y),X2=mx(q.x),Y2=my(q.y),dx=X2-X1,dy=Y2-Y1,L=Math.hypot(dx,dy)||1,o=Math.min(.18*L,11);
+    const cx=(X1+X2)/2-dy/L*o,cy=(Y1+Y2)/2+dx/L*o;
+    mE(s,'path',{d:`M${X1.toFixed(1)} ${Y1.toFixed(1)} Q${cx.toFixed(1)} ${cy.toFixed(1)} ${X2.toFixed(1)} ${Y2.toFixed(1)}`,fill:'none',stroke:fhex(e.type),'stroke-width':1.2,'stroke-opacity':.82});
+    mE(s,'circle',{cx:X2.toFixed(1),cy:Y2.toFixed(1),r:1.7,fill:fhex(e.type)});});
+}
+// 语境层:6 道水平泳道 + 事件圆点(按年份落位)
+function miniCtx(id,CTX){const s=mvk(id);if(!s)return;frame(s);
+  const lanes=CTX.lanes||[],evs=CTX.events||[];const tmin=(CTX.meta&&CTX.meta.tmin)||1100,tmax=(CTX.meta&&CTX.meta.tmax)||2000;
+  const sx=yr=>30+(Math.max(tmin,Math.min(tmax,yr))-tmin)/(tmax-tmin)*200;
+  mE(s,'line',{x1:28,y1:12,x2:28,y2:104,stroke:COL.line});
+  lanes.slice(0,6).forEach((l,i)=>{const ly=18+i*15;mE(s,'line',{x1:30,y1:ly,x2:232,y2:ly,stroke:l.col||COL.inkMute,'stroke-opacity':.4});mE(s,'circle',{cx:25,cy:ly,r:2,fill:l.col||COL.inkMute});});
+  evs.forEach(ev=>{const li=lanes.findIndex(l=>l.key===ev.lane);if(li<0||li>5)return;const yr=(typeof ev.year==='number')?ev.year:parseInt(ev.year||ev.era);if(isNaN(yr))return;mE(s,'circle',{cx:sx(yr).toFixed(1),cy:18+li*15,r:1.6,fill:lanes[li].col||COL.accent,'fill-opacity':.85});});
+}
+// 个体/偶发:三栏指纹(误读流程链 / 奇点双向柱[实算] / 偶然四类)
+function miniCont(id,REL){const s=mvk(id);if(!s)return;frame(s);
+  [80,160].forEach(x=>mE(s,'line',{x1:x,y1:14,x2:x,y2:102,stroke:COL.lineSoft}));
+  // ① 误读:本义→误读→成果
+  const bx=[[14,COL.model],[34,COL.y],[54,COL.accent]];bx.forEach(([x,c])=>mE(s,'rect',{x:x,y:50,width:14,height:14,rx:2.5,fill:c,'fill-opacity':.85}));
+  [[28,38],[48,54]].forEach(([a,b])=>mE(s,'line',{x1:a,y1:57,x2:b,y2:57,stroke:COL.inkMute,'stroke-width':1.2}));
+  // ② 奇点:被指向度 Top3 双向柱(反叛=标靶 / 其它=典范)
+  const inc={};REL.edges.forEach(e=>{const k=e.to;(inc[k]=inc[k]||{f:0,m:0})[e.type==='反叛'?'f':'m']++;});
+  Object.entries(inc).map(([k,v])=>[v.f+v.m,v]).sort((a,b)=>b[0]-a[0]).slice(0,3).forEach((row,i)=>{const v=row[1],y=44+i*15,cx=120;
+    mE(s,'rect',{x:cx-Math.min(v.f*6,32),y:y,width:Math.min(v.f*6,32),height:7,fill:COL.foil,'fill-opacity':.85});
+    mE(s,'rect',{x:cx,y:y,width:Math.min(v.m*6,32),height:7,fill:COL.model,'fill-opacity':.85});
+    mE(s,'line',{x1:cx,y1:y-2,x2:cx,y2:y+9,stroke:COL.line});});
+  // ③ 偶然:四类
+  for(let i=0;i<4;i++)mE(s,'rect',{x:172,y:30+i*15,width:52,height:8,rx:2,fill:COL.chance,'fill-opacity':.55});
+}
+// 力的时间线:世纪轴 + 顶部东西漂移双曲线 + 三家族力点(潮汐)
+function miniTime(id,REL,A){const s=mvk(id);if(!s)return;frame(s);
+  const tmin=1300,tmax=2000,sx=yr=>16+(Math.max(tmin,Math.min(tmax,yr))-tmin)/(tmax-tmin)*210;
+  for(let y=1400;y<2000;y+=100)mE(s,'line',{x1:sx(y).toFixed(1),y1:44,x2:sx(y).toFixed(1),y2:108,stroke:COL.lineSoft});
+  const g={west:{},east:{}};for(const k in A){const v=A[k];if(!v.born||!v.wv||v.wv.x==null)continue;const c=Math.round(v.born/100)*100;(g[v.region==='east'?'east':'west'][c]=g[v.region==='east'?'east':'west'][c]||[]).push(v.wv.x);}
+  const curve=(side,col)=>{const pts=Object.keys(g[side]).map(Number).filter(c=>c>=tmin&&c<=tmax).sort((a,b)=>a-b).map(c=>{const a=g[side][c];return sx(c).toFixed(1)+','+(10+(1-a.reduce((q,x)=>q+x,0)/a.length)*28).toFixed(1);});if(pts.length>1)mE(s,'polyline',{points:pts.join(' '),fill:'none',stroke:col,'stroke-width':1.5,'stroke-opacity':.9});};
+  curve('west',COL.accent);curve('east',COL.green);
+  const band=t=>(['反叛','复兴','综合','推演'].includes(t))?82:(t==='跨文化'?94:104);
+  REL.edges.forEach(e=>{if(e.year==null)return;mE(s,'circle',{cx:sx(e.year).toFixed(1),cy:band(e.type),r:1.5,fill:fhex(e.type),'fill-opacity':.8});});
+}
+// 力的导览:四条纵向叙事路线 + 步点
+function miniTour(id){const s=mvk(id);if(!s)return;frame(s);
+  [['反叛',5],['跨文化',6],['复兴',6],['推演',5]].forEach((c,i)=>{const x=34+i*56,col=fhex(c[0]);
+    mE(s,'line',{x1:x,y1:18,x2:x,y2:100,stroke:col,'stroke-opacity':.38,'stroke-width':1.5});
+    for(let k=0;k<c[1];k++)mE(s,'circle',{cx:x,cy:(20+k*(78/(c[1]-1))).toFixed(1),r:2.3,fill:col});});
+}
+// 力的连线:淡点云底图 + 一条贯穿路径(起点/终点强调)
+function miniPath(id,POS){const s=mvk(id);if(!s)return;frame(s);
+  const mx=x=>10+x*220,my=y=>106-y*96,ids=[];let i=0;
+  for(const k in POS){const p=POS[k];if(p.concept)continue;if(i++%2===0)mE(s,'circle',{cx:mx(p.x).toFixed(1),cy:my(p.y).toFixed(1),r:1.1,fill:p.east?COL.green:COL.accent,'fill-opacity':.16});ids.push(k);}
+  ids.sort((a,b)=>POS[a].x-POS[b].x);
+  const pk=[0,.25,.5,.75,1].map(t=>ids[Math.floor(t*(ids.length-1))]).filter((v,j,arr)=>arr.indexOf(v)===j);
+  const pts=pk.map(k=>[mx(POS[k].x),my(POS[k].y)]);
+  if(pts.length>1)mE(s,'polyline',{points:pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' '),fill:'none',stroke:COL.accent,'stroke-width':1.6,'stroke-opacity':.8});
+  pts.forEach((p,j)=>mE(s,'circle',{cx:p[0].toFixed(1),cy:p[1].toFixed(1),r:j===0||j===pts.length-1?3:2.1,fill:j===0?COL.green:(j===pts.length-1?COL.ink:COL.card),stroke:COL.accent,'stroke-width':1.2}));
+}
+</script>
+<script src="js/aha-icons.js"></script>
+<script src="js/aha-chrome.js"></script>
+<script src="js/board-nav.js"></script>
+<script src="js/board-works.js"></script>
+</body></html>

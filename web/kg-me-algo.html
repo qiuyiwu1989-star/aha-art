@@ -193,7 +193,7 @@ td.k{font-family:var(--mono);color:var(--accent);white-space:nowrap}
 <div class="cols">
   <div class="box"><h3>① 惊奇带 d* 自学习</h3><div class="d">从你接受的作品到 μ 的距离均值反学你的个人惊奇带。<b>有人爱大跳、有人只小步</b>,d* 因人而异、越逛越准,不再写死。</div></div>
   <div class="box"><h3>② 对比学习:没选的也是信号</h3><div class="d">序幕二选一里被拒的那幅记为 <b>skip</b>;累计 ≥2 时,把 μ 沿"远离被略过那类"推一点(μ += 0.35·(μ−μ_neg),逐维有界)。每轮取舍把 μ 拉得更准。</div></div>
-  <div class="box"><h3>③ 三盏灯(整段旅程质量)</h3><div class="d"><b>顿悟密度</b>=心动里落在新异上的比例 · <b>审美成长</b>=区覆盖熵+确定度 · <b>安静感</b>=序列唤起贴设定点且平顺。衡量体验,不是单帧。</div></div>
+  <div class="box"><h3>③ 三盏灯(近期看画状态)</h3><div class="d">取<b>最近约 50 次参与的滑动窗</b>,相对你<b>稳定的终身重心 μ / 惊奇带 d*</b>来算,所以会随近况自然波动(而非冻结的一生平均)。<b>顿悟密度</b>=近期强心动落在你"惊奇甜点 d*"附近的程度(以 d* 为峰的高斯倒U;旧版用"到 μ 平均距离"做自指阈值会恒等于 1,已弃) · <b>审美成长</b>=近窗重心偏离 μ 的漂移 + 触及世界观区的开阔度(探新升、守旧落) · <b>安静感</b>=近窗唤起的低唤醒(设定点 0.34)且平顺。</div></div>
   <div class="box" style="border-color:var(--green)"><h3>④ Σ 协方差椭球(实验室版)</h3><div class="d">离散从"一个半径"升级为"各轴各自的 std"——世界观平面画成<b>椭圆</b>,报出你<b>最笃定/最摇摆</b>的轴。即 N(μ,<b>Σ</b>) 里的 Σ。</div></div>
 </div>
 
@@ -204,6 +204,15 @@ td.k{font-family:var(--mono);color:var(--accent);white-space:nowrap}
   <div class="box" style="border-color:var(--accent)"><h3>② 在线 lift 埋点</h3><div class="d">离线代理<b>看不见 serendipity</b>。所以记录每次<b>推荐曝光</b>(mu_rec_log),再看它之后是否真被 心动/收藏/驻足。<b>lift&gt;1</b> = 推荐比平均更易被参与。设置页有看板,随真实使用累积。</div></div>
   <div class="box" style="border-color:var(--green)"><h3>③ 冷启动置信门控</h3><div class="d">12 维 μ 要 ~20+ 正反馈才稳。档案按数据量诚实分级:<b>初识(&lt;8)/ 成形中(&lt;20)/ 清晰(≥20)</b>,低成熟度标"初步看",<b>不把冷启动当定论</b>。</div></div>
   <div class="box"><h3>④ 用户分两类(已实证)</h3><div class="d">数据充足的用户里,有人"<b>口味一致</b>"(下一个 like 在 μ 附近)、有人"<b>爱探索</b>"(是跳跃),<b>需要相反策略</b>。没法自动判别 → 暴露成「熟悉↔惊喜」旋钮。这就是 v0.8 的设计动因。</div></div>
+</div>
+
+<!-- 七半、v0.9 多峰召回 -->
+<div class="sec-t">七½ · v0.9 精度升级(多峰召回 + 学维度权重 · A/B 中)</div>
+<div class="cols">
+  <div class="box" style="border-color:var(--accent)"><h3>① 不用单一重心:kNN 多峰召回</h3><div class="d">单质心会把<b>多峰口味</b>(既爱宋画留白、又爱浓烈表现主义)平均成"平庸的中间",推出来谁都不像。新路径按候选到你 <b>k 个最近喜欢作品</b>的距离打分(取最近 3 个的均值),保住每个口味簇。<b>&lt;3 个正样本自动回退</b>重心法。</div></div>
+  <div class="box" style="border-color:var(--green)"><h3>② 学每人维度权重</h3><div class="d">旧距离 7 个语言维等权。新路径按你喜欢作品在每维的<b>方差</b>定权:你越一致(方差小)=越在意 → 权重越高,归一到均值 1。<b>个性化距离</b>,有人吃色彩、有人吃构图,各得其所。</div></div>
+  <div class="box"><h3>③ 默认不变,可证伪再切</h3><div class="d">作为 opt-in 路径(<span class="mono">?algo=knn</span>),<b>不动默认</b>;曝光埋点标 <span class="mono">strat=knn</span>,用第七节那把 <b>在线 lift</b> 尺子和重心法 A/B,<b>赢了才切默认</b>。诚实:精度提升是假设,等数据判。</div></div>
+  <div class="box"><h3>④ 之后:协同 / 竞技场 BT / MMR</h3><div class="d">再往后(未做):<b>协同过滤</b>(口味相似的人还喜欢)需用户量;用<b>美学竞技场</b>的人类 BT 共识<b>校准</b>现在的"精品"先验(把 VLM 断言换成实测);<b>MMR</b> 多样性重排(一屏别都长一样)。</div></div>
 </div>
 
 <!-- 八、参数表 -->
@@ -217,12 +226,14 @@ td.k{font-family:var(--mono);color:var(--accent);white-space:nowrap}
   <tr><td class="k">d* 惊奇带</td><td>从你接受的跳跃幅度反学,clamp[0.15,0.6]</td><td>学习·初始0.30</td></tr>
   <tr><td class="k">arousalSet</td><td>安静设定点(低唤醒)</td><td>0.34</td></tr>
   <tr><td class="k">子空间权重 SPW</td><td>世界观 : 语言 : 情绪</td><td>0.5 : 0.3 : 0.2</td></tr>
+  <tr><td class="k">algo(召回法 · v0.9)</td><td>空=重心法(默认);knn=多峰召回(到最近3个喜欢作品)+学维度权重</td><td>?algo=knn 开</td></tr>
+  <tr><td class="k">kNN k / 维度权重</td><td>取最近 k 个正样本均值;语言维权重=1/(该维方差+0.15) 归一均值1</td><td>k=3</td></tr>
   <tr><td class="k">事件权重 EVENT_W</td><td>like/collect 3 · dwell/gen 2 · open 1 · view 0.3 · skip −1</td><td>—</td></tr>
   <tr><td class="k">wish 半衰期 / 窗口</td><td>近来意图衰减(halflife / window)</td><td>7天 / 45天</td></tr>
   <tr><td class="k">wish 拉动 GAMMA · conf</td><td>μ_eff = clamp(μ + GAMMA·conf·(target−μ))</td><td>0.6 · ≤1</td></tr>
   <tr><td class="k">相框 strike 自愈 τ</td><td>曝光衰减半衰常数(电台自愈)</td><td>3 天</td></tr>
 </table>
-<div class="legend"><b>v0.8 一句话:</b>打分从"纯倒U"升级为「<b>熟悉↔惊喜</b>」混合(补上缺失的相似度极),配比随成熟度、也交给用户;并第一次装上<b>可证伪的尺子</b>(离线评估台 + 在线 lift)和<b>冷启动诚实门控</b>。<br><b>三处用真实 KG 做强:</b>打分空间用语言7轴/世界观/VAD 真坐标;近来 wish 走 LLM 解析;成长用 6 个世界观区当课程。<br><span style="color:var(--ink-faint)">生产引擎 profile.py(8093)· 实验室完整内核 kg-me.html · 诚实:倒U惊奇=真科学(Berlyne);权重与默认配比仍部分手调,正用评估台走向"数据定参数";谱系锚/MMR/Σ 尚在实验室、未进生产。</span></div>
+<div class="legend"><b>v0.8 一句话:</b>打分从"纯倒U"升级为「<b>熟悉↔惊喜</b>」混合(补上缺失的相似度极),配比随成熟度、也交给用户;并第一次装上<b>可证伪的尺子</b>(离线评估台 + 在线 lift)和<b>冷启动诚实门控</b>。<br><b>三处用真实 KG 做强:</b>打分空间用语言7轴/世界观/VAD 真坐标;近来 wish 走 LLM 解析;成长用 6 个世界观区当课程。<br><br><b>v0.9 续:</b>新增<b>多峰召回(kNN)+ 学每人维度权重</b>作 opt-in 路径(<span class="mono">?algo=knn</span>),修单质心对"多峰口味"的钝感;默认不变,走在线 lift A/B,赢了再切。<br><span style="color:var(--ink-faint)">生产引擎 _profile_aha.py(8093)· 实验室完整内核 kg-me.html · 诚实:倒U惊奇=真科学(Berlyne);权重与默认配比仍部分手调,正用评估台走向"数据定参数";协同过滤/竞技场BT校准/MMR/谱系锚/Σ 尚未进生产。</span></div>
 </div>
 
 <div class="cta"><a href="me.html">→ 去「我的」实跑这套算法</a><a class="ghost" href="kg-me.html">实验室完整内核</a><a class="ghost" href="frame.html">相框电台</a></div>

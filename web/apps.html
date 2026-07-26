@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>互动应用中心 · aha</title>
+<meta name="description" content="aha 互动应用中心:精选几个最好玩的互动应用——把整座知识图谱、两幅画之间的距离、让 AI 替你策展,都变成能上手玩的事。"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--wall:#ddd4c2;--wall2:#cdc3ad;--ink:#2a2620;--ink-soft:#5c554a;--ink-mute:#8a8170;--ink-faint:#a89f8f;--mat:#f6f1e7;--line:#d8cfbd;--hair:rgba(40,30,15,.13);--gold:#b0673a;--green:#5a7d6f;--blue:#5b7596;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:radial-gradient(130% 80% at 50% -8%,var(--wall),var(--wall2));background-attachment:fixed;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;min-height:100vh}
+  a{color:inherit;text-decoration:none}
+  .bar{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 20px;background:rgba(246,241,231,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--hair)}
+  .bar a{font-family:var(--mono);font-size:12px;color:var(--ink-soft)}.bar a:hover{color:var(--gold)}
+  .bar .bn{font-family:var(--serif);font-weight:700;font-size:16px}
+  .wrap{max-width:1020px;margin:0 auto;padding:40px 22px 110px}
+  /* hero */
+  .hero{text-align:center;margin-bottom:8px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+  h1{font-family:var(--serif);font-size:clamp(27px,5vw,42px);font-weight:700;margin:11px 0 9px;letter-spacing:.01em}
+  .lead{color:var(--ink-soft);font-size:14.5px;line-height:1.8;max-width:540px;margin:0 auto}
+  /* featured 旗舰通栏 */
+  .feat{position:relative;display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px;margin-top:34px;
+    background:linear-gradient(180deg,var(--mat),#f1ebde);border:1px solid var(--line);border-radius:22px;padding:30px 34px;overflow:hidden;transition:transform .18s,box-shadow .18s,border-color .18s}
+  .feat:hover{transform:translateY(-3px);box-shadow:0 28px 54px -30px rgba(40,30,15,.6);border-color:rgba(176,103,58,.5)}
+  .feat .no{position:absolute;top:18px;left:26px;font-family:var(--mono);font-size:12px;color:var(--ink-faint);letter-spacing:.1em}
+  .feat .ftag{position:absolute;top:18px;right:26px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(176,103,58,.4);border-radius:999px;padding:3px 11px}
+  .feat .ft{font-family:var(--serif);font-size:clamp(24px,3.4vw,32px);font-weight:700;line-height:1.2;margin:14px 0 8px}
+  .feat .fd{color:var(--ink-soft);font-size:14px;line-height:1.75;max-width:520px}
+  .feat .fgo{margin-top:16px;display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:12.5px;color:var(--gold)}
+  .feat .fgo svg{transition:transform .18s}.feat:hover .fgo svg{transform:translateX(4px)}
+  .feat .glyph{width:118px;height:118px;color:var(--gold);opacity:.92;flex:none}
+  @media(max-width:680px){.feat{grid-template-columns:1fr}.feat .glyph{display:none}}
+  /* section */
+  .sec{margin-top:46px}
+  .sh{display:flex;align-items:baseline;gap:13px;padding-bottom:11px;margin-bottom:20px;border-bottom:1px solid var(--hair)}
+  .sh .st{font-family:var(--serif);font-size:20px;font-weight:700}
+  .sh .sn{font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.04em}
+  .sh .sx{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(266px,1fr));gap:18px}
+  /* 展签 plate */
+  .app{position:relative;display:flex;flex-direction:column;background:var(--mat);border:1px solid var(--line);border-radius:15px;padding:20px 21px 18px;
+    transition:transform .16s ease,box-shadow .16s,border-color .16s}
+  .app:hover{transform:translateY(-5px);box-shadow:0 22px 42px -24px rgba(40,30,15,.5);border-color:rgba(176,103,58,.5)}
+  .app .top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:13px}
+  .app .no{font-family:var(--mono);font-size:25px;font-weight:500;color:var(--ink-faint);line-height:1;letter-spacing:.02em;transition:color .16s}
+  .app:hover .no{color:var(--gold)}
+  .app .glyph{width:30px;height:30px;color:var(--gold);opacity:.78;flex:none}
+  .app .t{font-family:var(--serif);font-size:17.5px;font-weight:700;line-height:1.32}
+  .app .d{font-size:12.5px;color:var(--ink-mute);line-height:1.66;margin-top:7px;flex:1}
+  .app .ft{display:flex;align-items:center;gap:9px;margin-top:14px;padding-top:12px;border-top:1px solid var(--hair)}
+  .app .cat{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--ink-mute)}
+  .app .go{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--gold);opacity:0;transform:translateX(-4px);transition:.18s}
+  .app:hover .go{opacity:1;transform:none}
+  .app .badge{font-family:var(--mono);font-size:9px;letter-spacing:.05em;color:var(--gold);background:rgba(176,103,58,.09);border:1px solid rgba(176,103,58,.28);border-radius:999px;padding:2px 8px}
+  .foot{text-align:center;margin-top:54px;font-size:12px;color:var(--ink-faint);line-height:1.95}
+  .foot a{color:var(--gold)}
+</style>
+<script src="/js/aha-app.js" defer></script></head>
+<body data-noshell>
+<div class="bar"><a href="museum.html">← 人类美术馆</a><span class="bn">互动应用</span><a href="me.html">我的 →</a></div>
+<div class="wrap">
+  <div class="hero">
+    <div class="kick">aha · interactive</div>
+    <h1>互动应用中心</h1>
+    <p class="lead">不是看某一个展里的画——挑几个最好玩的,把整座知识图谱、两幅画之间的距离、让 AI 替你策展,都变成能上手玩的事。</p>
+  </div>
+
+  <div id="feat"></div>
+
+  <div class="sec">
+    <div class="sh"><span class="st">玩转整张图谱</span><span class="sn">看引擎本身</span><span class="sx" id="x-graph"></span></div>
+    <div class="grid" id="g-graph"></div>
+  </div>
+
+  <div class="sec">
+    <div class="sh"><span class="st">两画之间 · 让 AI 做事</span><span class="sn">对读 · 潜空间 · 策展</span><span class="sx" id="x-apply"></span></div>
+    <div class="grid" id="g-apply"></div>
+  </div>
+
+  <div class="foot">这里是精选的"好玩"入口。想看背后完整的研究装置档案,去 <a href="lab.html">实验场</a>;回去逛画,回 <a href="museum.html">人类美术馆</a>。</div>
+</div>
+<script>
+// —— 单色线描图标(monoline · 描边取 currentColor=赭石)——
+const G={
+  galaxy:'<path d="M12 2.5l1.7 7.8 7.8 1.7-7.8 1.7L12 21.5l-1.7-7.8L2.5 12l7.8-1.7z"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/>',
+  network:'<circle cx="5.5" cy="6.5" r="2.1"/><circle cx="18.5" cy="8" r="2.1"/><circle cx="11" cy="18" r="2.1"/><path d="M7.4 7.4l9.2.4M6.6 8.4l3.7 7.8M16.8 9.7l-5 6.7"/>',
+  forces:'<path d="M4 12a8 8 0 1 1 8 8"/><path d="M12 20l-3.2-1M12 20l1-3.2"/><path d="M12 12a4 4 0 1 0 4 4"/>',
+  drift:'<path d="M3 15.5C6.5 5.5 9.5 6 11 12.5S16.5 19.5 21 9"/><path d="M3 19.5h18"/>',
+  map:'<path d="M9 4L3 6.2v13.6L9 17.6l6 2.2 6-2.2V6.2L15 4 9 6.2z"/><path d="M9 6.2v11.4M15 4v13.6"/>',
+  affect:'<path d="M12 20.3S4 14.6 4 9.2A3.6 3.6 0 0 1 12 6a3.6 3.6 0 0 1 8 3.2c0 5.4-8 11.1-8 11.1z"/><path d="M6.5 11h2.2l1.3-2.6 1.8 5 1.2-2.4h4" stroke-width="1.2"/>',
+  scales:'<path d="M12 4.5v15M7.5 19.5h9M5.5 7.5h13"/><path d="M5.5 7.5l-2.6 5.4a2.8 2.8 0 0 0 5.2 0zM18.5 7.5l-2.6 5.4a2.8 2.8 0 0 0 5.2 0z"/>',
+  path:'<circle cx="6" cy="18" r="1.9"/><circle cx="18" cy="6" r="1.9"/><path d="M7.6 16.7C12.5 12.6 11 9.6 15.6 7.4" stroke-dasharray="2.4 2.4"/>',
+  scatter:'<rect x="3.5" y="3.5" width="17" height="17" rx="2"/><circle cx="8" cy="9" r="1" fill="currentColor" stroke="none"/><circle cx="14" cy="8" r="1" fill="currentColor" stroke="none"/><circle cx="11" cy="13" r="1" fill="currentColor" stroke="none"/><circle cx="16" cy="15.5" r="1" fill="currentColor" stroke="none"/><circle cx="8" cy="16" r="1" fill="currentColor" stroke="none"/>',
+  river:'<path d="M3 8c4 0 4 2 8 2s4-2 8-2M3 13c4 0 4 2 8 2s4-2 8-2M3 18c4 0 4 2 8 2s4-2 8-2"/>',
+  chat:'<path d="M4.5 5.5h15v10H9.5l-4 3.5v-3.5h-1z"/><path d="M8.5 9h7M8.5 12h4.5" stroke-width="1.2"/>',
+  frame:'<rect x="4" y="4" width="16" height="16" rx="1.5"/><rect x="7.5" y="7.5" width="9" height="9" rx="1"/><path d="M9.5 13.5l2-2.2 1.6 1.6 1.4-1.6" stroke-width="1.2"/>'
+};
+function ico(k,cls){return `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${G[k]||''}</svg>`;}
+
+// [href, glyph, 标题, 描述, 标签]
+const APPS={
+  graph:[
+    ['kg-galaxy.html','galaxy','会发光的艺术史','654 条真实师承与影响连成星图,点亮一个名字,看它照亮了谁。','旗舰'],
+    ['kg-system.html','network','整个知识体系全图','一台会拿真迹检验自己、猜错就改的引擎——结构 + 突破 + 平台,一张图看全。',''],
+    ['kg-forces.html','forces','艺术史的动力学','关系力 × 语境力 × 偶然——风格是被什么推着长出来的。',''],
+    ['kg-drift.html','drift','世界观漂移','一千六百年,东西两条世界观路径如何各自漂移。',''],
+    ['kg-worldview-live.html','map','世界观地图 · 活数据','真实馆藏在"再现↔表现 × 结构↔感知"平面上的实时分布。','活数据'],
+    ['kg-affect.html','affect','感知效应 · VAD','情绪三维(愉悦×唤起×掌控)模型 + 像素实测取证。','可验证']
+  ],
+  apply:[
+    ['kg-duet.html','scales','双画对读','并排两幅,坐标即比较——同一套维度量它们到底差在哪。',''],
+    ['concept-path.html','path','两画之间','从一幅画平滑走到另一幅,看中间渐变出的过渡地带。',''],
+    ['concept-latent.html','scatter','审美潜空间','把全馆压进一张可漫游的低维地图,相近的画自然聚拢。',''],
+    ['concept-river.html','river','母题之河','同一个母题,在历史长河里如何被一代代重画。',''],
+    ['wander-talk.html','chat','对话策展','说一句你此刻想要的感觉,AI 从全馆两千多幅里为你策一组。','已激活'],
+    ['concept-curator.html','frame','策展台','把你看上的画拖进来,亲手策成一个有主张的展。','']
+  ]
+};
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+const arrow='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const CATN={graph:'图谱',apply:'应用'};
+let N=0; const pad2=n=>String(n).padStart(2,'0');
+
+// 旗舰抽出来做通栏
+const flag=APPS.graph.find(a=>a[4]==='旗舰');
+if(flag){N++;
+  document.getElementById('feat').innerHTML=`<a class="feat" href="${flag[0]}">
+    <span class="no">No.${pad2(N)}</span><span class="ftag">旗舰 · flagship</span>
+    <div><div class="ft">${esc(flag[2])}</div><div class="fd">${esc(flag[3])}</div>
+      <span class="fgo">进入星图 ${arrow}</span></div>
+    ${ico(flag[1],'glyph')}
+  </a>`;
+}
+function render(key){
+  const list=APPS[key].filter(a=>a[4]!=='旗舰');
+  document.getElementById('x-'+key).textContent=APPS[key].length+' 个';
+  document.getElementById('g-'+key).innerHTML=list.map(([href,g,t,d,tag])=>{N++;
+    return `<a class="app" href="${href}">
+      <div class="top"><span class="no">No.${pad2(N)}</span>${ico(g,'glyph')}</div>
+      <div class="t">${esc(t)}</div>
+      <div class="d">${esc(d)}</div>
+      <div class="ft"><span class="cat">${CATN[key]}</span>${tag?`<span class="badge">${esc(tag)}</span>`:''}<span class="go">打开 →</span></div>
+    </a>`;}).join('');
+}
+['graph','apply'].forEach(render);
+</script>
+</body></html>

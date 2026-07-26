@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>aha 相框 · 让美来找你</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;background:#16140f;font-family:"Noto Serif SC",serif;color:#e8e0d0;user-select:none}
+#stage{position:fixed;inset:0;background:radial-gradient(120% 120% at 50% 38%,#23201a,#100e0a);transition:background 1.6s ease}
+.layer{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 1.4s ease}
+.layer.on{opacity:1}
+.art{max-width:88vw;max-height:84vh;display:block;border-radius:2px;box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 10px #1c1812,0 0 0 11px rgba(180,140,90,.25);background:#0d0b08;transform:scale(1);animation:kb 14s ease forwards}
+@keyframes kb{from{transform:scale(1.005)}to{transform:scale(1.05)}}
+@media(prefers-reduced-motion:reduce){.art{animation:none}}
+.plate{position:fixed;left:0;right:0;bottom:34px;text-align:center;opacity:0;transition:opacity .8s ease;pointer-events:none}
+.plate.on{opacity:1}
+.plate .t{font-size:18px;font-weight:600}
+.plate .a{font-family:"JetBrains Mono",monospace;font-size:12px;color:#b6a98e;margin-top:3px}
+/* 进度环 */
+.ring{position:fixed;top:18px;right:20px;width:26px;height:26px;opacity:.5}
+.ring svg{transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:2.5}
+.ring .bg{stroke:rgba(232,224,208,.18)}
+.ring .fg{stroke:#c79a5e;stroke-dasharray:69.1;stroke-dashoffset:69.1;transition:stroke-dashoffset .25s linear}
+/* 顶角品牌 + 懂你 */
+.brand{position:fixed;top:16px;left:20px;font-size:13px;color:#c9bda6;opacity:.55;display:flex;gap:8px;align-items:baseline}
+.brand b{font-weight:600}.brand .d{color:#c79a5e}
+.brand .lk{font-family:"JetBrains Mono",monospace;font-size:11px}
+/* 控制条(单击唤出) */
+.ctrl{position:fixed;left:0;right:0;bottom:0;display:flex;gap:14px;justify-content:center;align-items:center;padding:18px;background:linear-gradient(transparent,rgba(0,0,0,.55));transform:translateY(100%);transition:transform .3s ease}
+.ctrl.on{transform:none}
+.ctrl button,.ctrl a{font-family:"Noto Serif SC",serif;font-size:14px;background:rgba(255,255,255,.08);color:#e8e0d0;border:1px solid rgba(232,224,208,.2);border-radius:24px;padding:10px 20px;cursor:pointer;text-decoration:none;backdrop-filter:blur(6px)}
+.ctrl button.love{background:#b0673a;border-color:#b0673a}
+/* 心动 ❤ 漂浮 */
+.heart{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.2);font-size:120px;color:#d06a44;opacity:0;pointer-events:none;filter:drop-shadow(0 6px 20px rgba(0,0,0,.5))}
+.heart.go{animation:heart 1.1s ease forwards}
+@keyframes heart{15%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}45%{transform:translate(-50%,-58%) scale(1)}100%{opacity:0;transform:translate(-50%,-86%) scale(.95)}}
+.toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:rgba(176,103,58,.92);color:#fff;font-size:13px;padding:8px 18px;border-radius:20px;opacity:0;transition:opacity .3s;font-family:"Noto Sans SC",sans-serif}
+.toast.on{opacity:1}
+.hint{position:fixed;left:50%;bottom:60px;transform:translateX(-50%);font-family:"JetBrains Mono",monospace;font-size:11px;color:#9c917a;opacity:.7;text-align:center;line-height:1.7}
+.loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;font-family:"JetBrains Mono",monospace;font-size:13px;color:#9c917a}
+/* 频道电台 + 铺满模式 */
+.ctrl{flex-direction:column;gap:11px}
+.stations{display:flex;gap:7px;justify-content:center;flex-wrap:wrap}
+.stations .st{font-family:"Noto Sans SC",sans-serif;font-size:12.5px;color:#cabfa8;background:rgba(255,255,255,.06);border:1px solid rgba(232,224,208,.18);border-radius:18px;padding:5px 13px;cursor:pointer}
+.stations .st.on{background:#b0673a;color:#fff;border-color:#b0673a}
+.cbtns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;align-items:center}
+/* 铺满 = 整幅画无裁切地最大化适配屏(画框/留白去掉,环境色填边) */
+body.full .art{max-width:100vw!important;max-height:100vh!important;width:auto;height:auto;object-fit:contain;border-radius:0;box-shadow:none;animation:none;transform:none}
+/* 长按语音浮层 */
+.mic{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:rgba(16,14,10,.82);z-index:20;color:#e8e0d0;font-size:16px;text-align:center;padding:0 24px}
+.mic.on{display:flex}
+.mic .dot{width:66px;height:66px;border-radius:50%;background:#b0673a;display:flex;align-items:center;justify-content:center;font-size:30px;animation:pulse 1.2s ease-in-out infinite}
+.mic .sub{font-size:12.5px;color:#9c917a}
+@keyframes pulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(176,103,58,.5)}50%{transform:scale(1.08);box-shadow:0 0 0 20px rgba(176,103,58,0)}}
+</style></head>
+<body>
+<div id="stage"></div>
+<div class="plate" id="plate"><div class="t" id="pt"></div><div class="a" id="pa"></div></div>
+<div class="brand"><span><b>aha</b><span class="d">.</span> 相框</span><span class="lk" id="lk"></span></div>
+<div class="ring"><svg width="26" height="26"><circle class="bg" cx="13" cy="13" r="11"/><circle class="fg" id="ringfg" cx="13" cy="13" r="11"/></svg></div>
+<div class="heart" id="heart"><i data-ic="heart"></i></div>
+<div class="toast" id="toast"><i data-ic="heart"></i> 已收藏</div>
+<div class="mic" id="mic"><div class="dot">🎤</div><div id="micMain">在听… 说说此刻想看什么</div><div class="sub">如:安静的山水 · 明亮温暖 · 抽象一点 · 有力量的</div></div>
+<div class="hint" id="hint">双击收藏 · 下滑/✕ 不喜欢 · 长按说话松手识别 · 越看越懂你<br>单击进全屏 / 唤出控制</div>
+<div class="ctrl" id="ctrl">
+  <div class="stations" id="stations"></div>
+  <div class="cbtns">
+    <button class="love" id="cLove"><i data-ic="heart"></i> 收藏</button>
+    <button id="cDis"><i data-ic="close"></i> 少看这类</button>
+    <button id="cNext">下一幅 →</button>
+    <button id="cPause">⏸ 暂停</button>
+    <button id="cFit"><i data-ic="fullscreen"></i> 铺满</button>
+    <button id="cFull"><i data-ic="fullscreen"></i> 全屏</button>
+    <a href="me.html">我的档案</a>
+    <a href="museum.html">退出</a>
+  </div>
+</div>
+<div class="loading" id="load">正在为你挑画…</div>
+<script>
+const API='api/';
+function uid(){let u;try{u=localStorage.getItem('aha_uid')}catch(e){}if(!u){u=Date.now().toString(36)+Math.random().toString(36).slice(2,8);try{localStorage.setItem('aha_uid',u)}catch(e){}}return u;}
+const UID=uid();
+const $=id=>document.getElementById(id);
+let CH='';try{CH=localStorage.getItem('aha_frame_ch')||''}catch(e){}
+function tint(vad){if(!vad||vad.length<2)return null;const val=vad[0],ar=vad[1];const hue=Math.round(210-val*190);const sat=Math.round(16+ar*16);return `radial-gradient(120% 120% at 50% 38%, hsl(${hue} ${sat}% 13%), hsl(${hue} ${Math.round(sat*0.55)}% 6%))`;}
+function post(p,b){fetch(API+p,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({uid:UID},b))}).catch(()=>{});}
+// 本场已看(含已入队未播):传给后端剔除,杜绝同一会话重播
+const SEEN=new Set(),SEEN_ORDER=[];
+function markSeen(id){if(id!=null&&!SEEN.has(id)){SEEN.add(id);SEEN_ORDER.push(id);}}
+function seenParam(){const r=SEEN_ORDER.slice(-220);return r.length?'&seen='+encodeURIComponent(r.join(',')):'';}
+async function batch(){try{const q='&n=10&tod='+new Date().getHours()+(CH?'&ch='+CH:'')+seenParam();const d=await fetch(API+'me/next_frame?uid='+encodeURIComponent(UID)+q).then(r=>r.json());return d.items||[];}catch(e){return [];}}
+
+const DUR=11000;
+let QUEUE=[],cur=null,liked=false,likes=0,paused=false,t0=0,raf=null,advTimer=null,layerA=null,layerB=null,frameHidden=false,wakeLock=null,lpFired=false,lpTimer=null,lpX=0,lpY=0;
+async function reqWake(){try{if('wakeLock' in navigator){wakeLock=await navigator.wakeLock.request('screen');}}catch(e){}}
+document.addEventListener('visibilitychange',()=>{if(document.hidden){frameHidden=true;clearTimeout(advTimer);cancelAnimationFrame(raf);}else{reqWake();startTimer();}});
+async function fill(){if(QUEUE.length<3){const b=await batch();const fresh=[];for(const it of b){const id=it.work_id;if(id!=null&&SEEN.has(id))continue;markSeen(id);fresh.push(it);}QUEUE.push(...fresh);fresh.slice(0,3).forEach(it=>{if(it.thumb){const im=new Image();im.src=it.thumb;}});}}
+function plate(it){$('pt').textContent=it.title||'';$('pa').textContent=(it.artist||'佚名');$('plate').classList.add('on');setTimeout(()=>$('plate').classList.remove('on'),4200);}
+function show(it){
+  const old=layerA;
+  const nv=document.createElement('div');nv.className='layer';
+  const im=document.createElement('img');im.className='art';im.alt='';im.src=it.hi||it.thumb||it.img;
+  im.onerror=()=>{if(it.thumb&&im.src!==it.thumb){im.src=it.thumb;return;} if(cur===it){QUEUE=QUEUE.filter(q=>q!==it);advance(false);}}; // 高清失败→退缩略图→跳过
+  nv.appendChild(im);
+  $('stage').appendChild(nv);void nv.offsetWidth;nv.classList.add('on');
+  if(old){old.classList.remove('on');setTimeout(()=>old.remove(),1500);}
+  layerA=nv;cur=it;liked=false;frameHidden=false;plate(it);
+  const bg=tint(it.vad);if(bg)$('stage').style.background=bg; // VAD 氛围色:暖/冷随情绪
+  if(QUEUE[0]){const p=new Image();p.src=QUEUE[0].hi||QUEUE[0].thumb;}
+}
+async function advance(strike){
+  if(strike&&cur&&!liked&&!frameHidden)post('me/event',{kind:'expose',target_type:'work',target_id:cur.cos_key,work_id:cur.work_id}); // 放了没双击且确在看=一次衰减
+  await fill();const it=QUEUE.shift();if(!it){startTimer();return;}show(it);startTimer();
+}
+function startTimer(){clearTimeout(advTimer);cancelAnimationFrame(raf);t0=Date.now();
+  if(paused){$('ringfg').style.strokeDashoffset=0;return;}
+  advTimer=setTimeout(()=>advance(true),DUR);tick();}
+function tick(){const p=Math.min(1,(Date.now()-t0)/DUR);$('ringfg').style.strokeDashoffset=(69.1*(1-p)).toFixed(1);if(p<1&&!paused)raf=requestAnimationFrame(tick);}
+function like(){if(!cur||liked)return;liked=true;likes++;$('lk').textContent='懂你 '+likes;
+  post('me/event',{kind:'like',target_type:'work',target_id:cur.cos_key,work_id:cur.work_id});
+  post('me/collect',{work_id:cur.work_id,on:true});
+  const h=$('heart');h.classList.remove('go');void h.offsetWidth;h.classList.add('go');
+  const to=$('toast');to.classList.add('on');setTimeout(()=>to.classList.remove('on'),1400);
+  clearTimeout(advTimer);advTimer=setTimeout(()=>advance(false),2400);startTimerOnlyRing();}
+function startTimerOnlyRing(){t0=Date.now();}
+function dislike(){if(!cur)return;post('me/event',{kind:'dislike',target_type:'work',target_id:cur.cos_key,work_id:cur.work_id});
+  const to=$('toast');to.textContent='✕ 少看这类';to.classList.add('on');setTimeout(()=>{to.classList.remove('on');setTimeout(()=>to.textContent='❤ 已收藏',300);},1300);
+  advance(false);}
+// 交互:双击收藏 / 单击控制
+let ctrlOn=false,tapT=0;
+function toggleCtrl(on){ctrlOn=on==null?!ctrlOn:on;$('ctrl').classList.toggle('on',ctrlOn);if(ctrlOn)clearTimeout(window._ch),window._ch=setTimeout(()=>toggleCtrl(false),4000);}
+$('stage').addEventListener('dblclick',e=>{e.preventDefault();like();});
+$('stage').addEventListener('click',e=>{if(lpFired){lpFired=false;return;}const now=Date.now();if(now-tapT<320){tapT=0;like();return;}tapT=now;setTimeout(()=>{if(tapT&&Date.now()-tapT>=300){tryFullOnce();toggleCtrl();}},320);});
+// 长按画面 → 录音说出想看什么 → 小米 MiMo ASR 转文字 → 成为推荐变量(按住说话,松手识别)
+function toastMsg(s){const to=$('toast');to.textContent=s;to.classList.add('on');setTimeout(()=>{to.classList.remove('on');setTimeout(()=>to.textContent='❤ 已收藏',300);},2000);}
+function setMicMain(s){const m=$('micMain');if(m)m.textContent=s;}
+function showMic(on,main){$('mic').classList.toggle('on',on);if(on&&main)setMicMain(main);}
+function sendWish(t){t=(t||'').trim();if(!t)return;
+  toastMsg('🎤 听到了:「'+t.slice(0,16)+'」,这就为你挑画');           // 即时反馈,不等后端
+  fetch(API+'me/wish',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({uid:UID,text:t})}).catch(()=>{}); // LLM 解析较慢,后台记录(30 分钟内生效)
+  setTimeout(()=>{QUEUE=QUEUE.slice(0,1);},6000);}                     // 稍后让队列自然补给吃到偏置,不冻结画面
+function blobToDataURL(b){return new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>res(fr.result);fr.onerror=rej;fr.readAsDataURL(b);});}
+function fallbackPrompt(){showMic(false);const t=prompt('说说此刻想看点什么?(如:安静的山水 / 明亮温暖)');if(t)sendWish(t);}
+// 录音(MediaRecorder)→ /me/asr
+let mediaRec=null,recChunks=[],recStream=null,recActive=false,recStopTimer=null,recCancelled=false;
+function cleanupRec(){if(recStream){recStream.getTracks().forEach(t=>t.stop());recStream=null;}}
+async function startRec(){if(recActive)return;
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||!window.MediaRecorder){fallbackPrompt();return;}
+  try{recStream=await navigator.mediaDevices.getUserMedia({audio:true});}catch(e){fallbackPrompt();return;}
+  recChunks=[];recCancelled=false;let mt='';
+  ['audio/webm;codecs=opus','audio/webm','audio/mp4','audio/ogg'].some(t=>{if(MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(t)){mt=t;return true;}return false;});
+  try{mediaRec=mt?new MediaRecorder(recStream,{mimeType:mt}):new MediaRecorder(recStream);}catch(e){try{mediaRec=new MediaRecorder(recStream);}catch(e2){cleanupRec();fallbackPrompt();return;}}
+  mediaRec.ondataavailable=ev=>{if(ev.data&&ev.data.size)recChunks.push(ev.data);};
+  mediaRec.onstop=finishRec;
+  recActive=true;showMic(true,'在听… 说说此刻想看什么');
+  try{mediaRec.start();}catch(e){recActive=false;cleanupRec();fallbackPrompt();return;}
+  recStopTimer=setTimeout(()=>stopRec(),8000); // 安全上限 8s
+}
+function stopRec(){if(!recActive)return;recActive=false;clearTimeout(recStopTimer);setMicMain('识别中…');try{mediaRec.stop();}catch(e){cleanupRec();showMic(false);}}
+function cancelRec(){recCancelled=true;if(recActive){recActive=false;clearTimeout(recStopTimer);try{mediaRec.stop();}catch(e){cleanupRec();}}showMic(false);}
+async function finishRec(){const type=(mediaRec&&mediaRec.mimeType)||'audio/webm';const blob=new Blob(recChunks,{type});cleanupRec();
+  if(recCancelled||!blob.size){showMic(false);return;}
+  try{const dataUrl=await blobToDataURL(blob);
+    const d=await fetch(API+'me/asr',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({uid:UID,audio:dataUrl})}).then(r=>r.json());
+    showMic(false);
+    if(d&&d.text)sendWish(d.text);else toastMsg('没太听清,再试一次');
+  }catch(e){showMic(false);toastMsg('语音识别失败');}}
+$('mic').onclick=()=>cancelRec();
+function lpStart(e){lpFired=false;const p=e.touches?e.touches[0]:e;lpX=p.clientX;lpY=p.clientY;clearTimeout(lpTimer);lpTimer=setTimeout(()=>{lpFired=true;if(navigator.vibrate)navigator.vibrate(18);startRec();},620);}
+function lpMove(e){const p=e.touches?e.touches[0]:e;if(Math.abs(p.clientX-lpX)>16||Math.abs(p.clientY-lpY)>16)clearTimeout(lpTimer);}
+function lpEnd(){clearTimeout(lpTimer);if(recActive)stopRec();}
+$('stage').addEventListener('pointerdown',lpStart);$('stage').addEventListener('pointermove',lpMove);$('stage').addEventListener('pointerup',lpEnd);$('stage').addEventListener('pointercancel',lpEnd);
+$('cLove').onclick=e=>{e.stopPropagation();like();toggleCtrl(false);};
+$('cDis').onclick=e=>{e.stopPropagation();dislike();toggleCtrl(false);};
+$('cNext').onclick=e=>{e.stopPropagation();advance(true);toggleCtrl(false);};
+let _ty=0;$('stage').addEventListener('touchstart',e=>{_ty=e.touches[0].clientY;},{passive:true});
+$('stage').addEventListener('touchend',e=>{const dy=e.changedTouches[0].clientY-_ty;if(dy>90)dislike();},{passive:true});
+$('cPause').onclick=e=>{e.stopPropagation();paused=!paused;$('cPause').textContent=paused?'▶ 播放':'⏸ 暂停';if(paused){clearTimeout(advTimer);cancelAnimationFrame(raf);}else startTimer();};
+function fsEl(){return document.fullscreenElement||document.webkitFullscreenElement;}
+function toggleFull(){const d=document,el=d.documentElement;
+  if(!fsEl()){(el.requestFullscreen||el.webkitRequestFullscreen||function(){}).call(el);}
+  else{(d.exitFullscreen||d.webkitExitFullscreen||function(){}).call(d);}}
+$('cFull').onclick=e=>{e.stopPropagation();toggleFull();toggleCtrl(false);};
+document.addEventListener('fullscreenchange',()=>{const b=$('cFull');if(b)b.textContent=fsEl()?'⛶ 退出全屏':'⛶ 全屏';reqWake();});
+let _fsTried=false;
+function tryFullOnce(){if(_fsTried)return;_fsTried=true;toggleFull();} // 首次点击(用户手势)顺势进全屏
+// 频道电台
+const STATIONS=[['','顺心'],['calm','安静'],['masters','名作'],['explore','探索'],['home','同派'],['surprise','惊喜']];
+function renderStations(){$('stations').innerHTML=STATIONS.map(s=>`<span class="st ${s[0]===CH?'on':''}" data-ch="${s[0]}">${s[1]}</span>`).join('');
+  $('stations').querySelectorAll('.st').forEach(el=>el.onclick=ev=>{ev.stopPropagation();CH=el.dataset.ch;try{localStorage.setItem('aha_frame_ch',CH)}catch(e){}renderStations();QUEUE=[];advance(false);});}
+// 铺满 / 画框
+function applyFit(){const cover=(localStorage.getItem('aha_frame_fit')==='cover');document.body.classList.toggle('full',cover);const b=$('cFit');if(b)b.textContent=cover?'🖼 画框':'⛶ 铺满';}
+$('cFit').onclick=e=>{e.stopPropagation();try{localStorage.setItem('aha_frame_fit',(localStorage.getItem('aha_frame_fit')==='cover')?'frame':'cover')}catch(e2){}applyFit();toggleCtrl(false);};
+document.addEventListener('keydown',e=>{if(e.key===' '){e.preventDefault();$('cPause').click();}else if(e.key==='ArrowRight')advance(true);else if(e.key==='Enter')like();});
+setTimeout(()=>$('hint').style.display='none',9000);
+(async()=>{reqWake();renderStations();applyFit();await fill();$('load').remove();const it=QUEUE.shift();if(it){show(it);startTimer();}else $('stage').innerHTML='<div class="loading">暂时没有片源,稍后再来</div>';})();
+</script>
+<script src="js/aha-icons.js"></script>
+</body></html>

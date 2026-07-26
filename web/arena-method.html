@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>美学竞技场 · 评分方法论 · Artist 艺术家 1.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/aha-kit.css"/>
+<style>
+  /* Artist 1.0 品牌顶栏(独立产品感):复用 .site-top 底座,改写品牌字标 */
+  .site-top .brand{display:flex;align-items:baseline;gap:8px}
+  .site-top .brand .en{font-family:var(--latin);font-size:19px;font-weight:600;letter-spacing:.02em;color:var(--ink)}
+  .site-top .brand .zh{font-family:var(--serif);font-size:14px;letter-spacing:.12em;color:var(--ink-soft)}
+  .site-top .brand .ver{font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:1px 6px;
+    border:1px solid var(--accent-line);border-radius:var(--r-pill);color:var(--accent);align-self:center}
+  .site-top .subbrand{font-family:var(--serif);font-size:13px;color:var(--ink-mute);
+    padding-left:12px;margin-left:10px;border-left:1px solid var(--line)}
+  @media(max-width:600px){.site-top .subbrand{display:none}}
+  .site-top .topright{margin-left:auto;display:flex;align-items:center;gap:14px}
+  .site-top .topright a{font-family:var(--mono);font-size:11px;color:var(--ink-mute)}
+  .site-top .topright a:hover{color:var(--accent)}
+  .site-top .subbrand a{color:inherit} .site-top .subbrand a:hover{color:var(--accent)}
+
+  .flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:var(--fz-tiny);
+    color:var(--ink-soft);background:var(--paper-2);border:1px solid var(--line-soft);border-radius:var(--r);padding:12px 14px}
+  .flow b{color:var(--accent)} .flow .ar{color:var(--ink-faint)}
+  .step{font-family:var(--latin);font-size:var(--fz-h3);color:var(--accent);margin-right:8px}
+  .formula{font-family:var(--mono);font-size:13px;background:var(--mat-dark);color:var(--paper);
+    border-radius:var(--r);padding:13px 15px;overflow-x:auto;line-height:1.7;margin:var(--s3) 0}
+  .formula .c{color:var(--gold)}
+  .deflist{font-size:var(--fz-small);line-height:1.8;color:var(--ink-soft)}
+  .deflist b{font-family:var(--mono);color:var(--ink);font-weight:500}
+  code.k{font-family:var(--mono);font-size:.92em;background:var(--paper-2);border:1px solid var(--line-soft);
+    border-radius:4px;padding:1px 6px;color:var(--ink-soft)}
+</style></head>
+<body>
+<header class="site-top">
+  <a class="brand" href="artist-home.html"><span class="en">Artist</span><span class="zh">艺术家</span><span class="ver">1.0</span></a>
+  <span class="subbrand"><a href="arena.html">美学竞技场</a> · 方法论</span>
+  <span class="topright"><a href="arena-paper.html">论文构想</a><a href="arena.html">← 回竞技场</a></span>
+</header>
+
+<div class="page narrow">
+  <div class="pagehead">
+    <div class="kicker">Aesthetic Arena · Methodology</div>
+    <h1>评分方法论:从一票,到一份可信的排名</h1>
+    <div class="sub">这页把美学竞技场背后的整套算法摊开讲清楚——每一张图的分数、每一种做法的高下、每一位评审的眼光,是怎么从一次次「二选一」里算出来的。诚实是底线:能测的才说,测不了的明说。</div>
+  </div>
+
+  <div class="sec">
+    <div class="flow"><b>一场对决</b> <span class="ar">→</span> 记录胜负 <span class="ar">→</span> <b>Bradley-Terry</b> 聚合
+      <span class="ar">→</span> 图榜 / 做法榜 / 眼光榜 <span class="ar">→</span> <b>你的评审报告</b></div>
+    <p class="card-note" style="margin-top:var(--s3)">核心一句:我们<b>不让人给单张图打绝对分</b>(那很不稳),而是让人反复做「两张里挑更好的一张」。成对比较的一致性远高于绝对打分——这是 LMSYS Chatbot Arena、图像 arena 共同的选择。所有排名都是这些成对投票的<b>统计聚合</b>。</p>
+    <div class="note accent"><span class="k">系统全貌:一份信号,四个产出</span>
+      同一批<b>人类成对偏好</b>,我们同时榨出四样东西,并把"评估"反过来变成"照见自己":<br>
+      ① <b>图榜</b>(哪张好)· ② <b>做法榜</b>(哪种 workflow/模型更出片——回流生产)· ③ <b>评审眼光榜</b>(谁的判断更准,并据此<b>给票加权</b>)· ④ <b>个人审美档案</b>(你的口味/门派,喂回推荐)。<br>
+      这套设计里真正不一样的不是"又一个图像 arena",而是:<b>把评估抬到「做法」层、给评审本身评级并回灌权重、再把同一份评估劳动转成个体画像与参与动机</b>。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="t"><span class="step">①</span>谁能上场</span><span class="n">资格口径</span></div>
+    <p class="deflist">参赛图来自我们生成区(artist 平台 + 造物云团队的油画),只取<b>成品输出</b>、<b>未被判废</b>的图。SQL 口径(与速评取图完全一致):</p>
+    <div class="formula">role = <span class="c">'output'</span>  AND  q_status <span class="c">≠</span> <span class="c">'rejected'</span>
+AND ( source <span class="c">IS NULL</span>  OR  (source=<span class="c">'zaowuyun_team'</span> AND category <span class="c">LIKE</span> <span class="c">'art/%'</span>) )</div>
+    <p class="card-note">当前合格池约 <b>2.7 万</b> 张。明显的废图不进场,避免浪费宝贵的人类对决。</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="t"><span class="step">②</span>怎么配对</span><span class="n">信息量最大化</span></div>
+    <p class="deflist">每次给你两张图,挑选规则:<br>
+      • <b>低曝光优先</b>——先服务对决次数最少的图(统计 <code class="k">gen_battle</code> 里作为左/右出现的次数,升序),让覆盖快速铺开;<br>
+      • <b>同题材优先(约 7 成)</b>——尽量配<b>同一题材</b>的两张(江南↔江南、肖像↔肖像),这样比的是<b>画得好不好</b>,而不是“你更喜欢哪个题材”;剩下约 3 成跨题材,保持全局排名连通。题材取自 <code class="k">category</code>(造物云艺术图有,缺失则自由配)。<br>
+      • <b>避免重复</b>——跳过你已经比过的同一对;<br>
+      • 同分附近优先(有了 Elo 之后)——势均力敌的两张信息量最大。</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="t"><span class="step">③</span>一场对决记什么</span><span class="n">gen_battle</span></div>
+    <p class="deflist">每点一次,写一行:谁(<b>rater</b>=登录 uid 或匿名 id)、左图、右图、<b>结果</b>、本轮 session、时间。结果有四态:</p>
+    <p><span class="chip">左胜 left</span> <span class="chip">右胜 right</span> <span class="chip muted">难分高下 tie</span> <span class="chip rej">都不行 both_bad</span></p>
+    <p class="card-note"><b>tie</b> 记成「双方各得半场」;<b>both_bad</b> 不进 Bradley-Terry(没有胜者),只用于统计淘汰。</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="t"><span class="step">④</span>Bradley-Terry:从胜负到分数</span><span class="n">核心</span></div>
+    <p class="deflist">给每个对象一个隐含<b>实力 p<sub>i</sub> &gt; 0</b>。模型假设:i 战胜 j 的概率只取决于两者实力之比——</p>
+    <div class="formula">P( i 胜 j )  =  p<span class="c">ᵢ</span> / ( p<span class="c">ᵢ</span> + p<span class="c">ⱼ</span> )</div>
+    <p class="deflist">已知每个对象的<b>胜场 W<sub>i</sub></b>(含 tie 的 0.5)和两两对局次数 <b>n<sub>ij</sub></b>,用极大似然估计 p。我们用经典的 <b>MM(minorization-maximization)不动点迭代</b>,不依赖任何外部库:</p>
+    <div class="formula">重复直到收敛:
+  p<span class="c">ᵢ</span>  ←  W<span class="c">ᵢ</span>  /  Σ<span class="c">ⱼ</span> [  n<span class="c">ᵢⱼ</span> / ( p<span class="c">ᵢ</span> + p<span class="c">ⱼ</span> )  ]
+每轮把所有 p 的<span class="c">几何均值归一到 1</span>,防止整体漂移。</div>
+    <p class="deflist">为了好读,把实力换算成<b>象棋式 Elo 分</b>(均值 1000,相差 400 分 ≈ 10:1 的胜率):</p>
+    <div class="formula">score<span class="c">ᵢ</span>  =  1000  +  400 · log<span class="c">₁₀</span>( p<span class="c">ᵢ</span> )</div>
+    <p class="card-note">为什么用 Bradley-Terry 而不是在线 Elo?在线 Elo <b>受对局顺序影响</b>;BT 把所有对决<b>一次性</b>拟合,顺序无关、更稳。LMSYS 也在 2023 年底从 Elo 换成了它。</p>
+    <div class="note accent"><span class="k">数据少时会怎样 · 三道护栏</span> 一张图只比过一两场时,裸 BT 分会很极端(胜→很高、负→很低)。我们用三件事驯服它:<br>
+      ① <b>收缩(shrinkage)</b>——每张图先天带一场「1 胜 1 负 对均值」的虚拟战绩,没比够的图分数自动往 1000 收,不再出 −2600 这种吓人值;<br>
+      ② <b>bootstrap 置信区间</b>——把对决重采样上百次各算一遍,得到每张图的分数<b>区间</b>(榜上那条横条),越窄越可信;<br>
+      ③ <b>按置信下界排序</b>——“稳稳地好”才靠前,“只赢一场的幸运儿”待定。这样图榜不会再出假冠军。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="t"><span class="step">⑤</span>图榜 · <span class="step">⑥</span>做法榜</span><span class="n">同一批票,两种聚合</span></div>
+    <p class="deflist"><b>图榜</b>:直接对每张图(cos_key)跑 BT,按分数排。<br>
+      <b>做法榜</b>:把每场对决的胜负<b>归并到图背后的做法</b>(workflow / 模型)——A 图所属 workflow 战胜 B 图所属 workflow(同 workflow 的对决跳过,无区分意义),再对 workflow 跑一遍 BT。于是同一批投票,既告诉你<b>哪张图好</b>,也告诉你<b>哪种做法更出片</b>。后者正是「筛选出好的做法」的直接答案。</p>
+    <div class="note accent"><span class="k">两个筛选维度</span> 榜单可按<b>评判镜头</b>(综合 / 去AI感 / 创意——对决时选哪个镜头,这一票就只计入那个镜头的榜)和<b>题材</b>(江南/肖像…)双重切换。镜头让你分开问“哪张更真实”和“哪张更有创意”;题材让同类相比更公平。各维度数据独立,稀疏处照实显空。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="t"><span class="step">⑦</span>评审眼光</span><span class="n">给评审也排个序</span></div>
+    <p class="deflist">arena 不只给图打分,也能给<b>评审</b>打分。对你的每一场决断,看你选的那一边在<b>全局 BT 榜</b>上是不是真的更高——一致的比例就是你的<b>眼光分</b>:</p>
+    <div class="formula">眼光  =  (你选中的一方 BT 分更高的场次)  /  (你的有效决断场次)</div>
+    <div class="note accent"><span class="k">为什么不是每个人都 100%</span> 眼光<b>只在“双方都已比够(各 ≥3 场)”的对决上计</b>。否则:你赢的那张天然分高、对手只比过这一场,几乎必然“你选的=分更高的”,眼光会<b>虚高到 100%</b>——那是 BT 稀疏退化,不是你眼力好。够格样本太少时,报告显示<b>“攒分中”</b>而不是假分。</div>
+    <p class="card-note"><b>眼光加权(已启用)</b>:眼光准的评审,票更重——权重 = <code class="k">clamp(2 × 眼光, 0.5, 2.0)</code>(眼光 0.5 中性 1×、1.0 满分 2×、低则封底 0.5×)。图榜/做法榜用<b>加权 BT</b>,自动抗噪、压制乱投。注意:<b>眼光本身仍按无权共识来测</b>(先无权算一遍定眼光,再加权重排榜),避免“自己抬自己”的反馈环。</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="t"><span class="step">⑧</span>人评 vs AI</span><span class="n">AI 能替人吗</span></div>
+    <p class="deflist">我们有一套 VLM 给每张图打的<b>质量分</b>。把人评聚合出的 BT 分与 VLM 质量分做<b>皮尔逊相关</b>(只取比过 ≥2 场的图),就能回答「AI 自动打分,在多大程度上能代替人」。相关越高,越能放心让 AI 先粗筛。</p>
+    <p class="card-note">榜单页「人评 vs AI · 洞察」把这画成<b>散点图</b>:横=人类 BT 分、纵=AI 质量分。越接近正斜线,AI 越能替人;<b>散开的点</b>就是“人眼看到了 AI 没看到的东西”——最值得研究的样本。</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="t"><span class="step">⑨</span>结论卡的口味倾向</span><span class="n">照见你自己</span></div>
+    <p class="deflist">一轮结束,我们对<b>你选为胜者的那些图</b>做轻量聚合,反推你的偏好:<br>
+      • <b>色调</b>——你的胜者里最常见的主色(hue);<br>
+      • <b>做法</b>——你最常挑中的 workflow;<br>
+      • <b>四轴</b>——这些图的 VLM 分在 美感 / 技法 / 构图 / 连贯 上谁最高,即你最看重的维度。<br>
+      加上<b>眼光分</b>、<b>你 vs AI</b>、<b>独特一票</b>(你偏爱、但全局排名最低的那张),凑成你的审美评审报告。</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="t"><span class="step">⑩</span>即时反馈 · 战绩 · 贡献</span><span class="n">对决之外的三件小事</span></div>
+    <p class="deflist">
+      • <b>即时反馈</b>——你投完一票,我们当场比较你选的那张和对手的<b>历史胜率</b>(双方各 ≥2 场才算):你选的更受欢迎就提示「和大多数人一致」,反之「你的眼光很独特」。让对决有手感,也是眼光的即时小镜子。<br>
+      • <b>战绩可解释</b>——点图榜任意一张,看它<b>赢过谁、输给谁</b>(对战缩略图)。排名不是黑箱,凭什么靠前看得见。<br>
+      • <b>贡献榜</b>——按累计对决场数列出每位评审,<b>对每一票表示感谢</b>。你的每一场都在帮我们筛出好图与好做法。</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="t"><span class="step">⑪</span>诚实边界</span><span class="n">不夸大</span></div>
+    <div class="note accent"><span class="k">本期明确不做</span>
+      生成图目前<b>只有质量标注,没有 aha 真迹那套 12 维审美坐标</b>(世界观 / 绘画语言 / 情绪),所以结论卡<b>不输出完整「门派 / 本命画家」</b>——那需要先给生成图补 12 维 VLM 标注。现在给的口味倾向是能可靠算出的轻量版,稀疏处宁可留空,绝不编一个门派给你。</div>
+    <p class="card-note" style="margin-top:var(--s3)">登录后,你的对决与眼光会<b>计入你的账号</b>(跨设备同步、榜上显示昵称);未登录则以本机匿名身份累积,随时登录即可认领。</p>
+  </div>
+
+  <div class="sec" style="text-align:center;margin-top:var(--s6)">
+    <a class="btn" href="arena.html">去对决 · 试试你的眼光</a>
+  </div>
+</div>
+<script src="js/aha-icons.js"></script>
+<script src="js/aha-chrome.js"></script>
+</body></html>

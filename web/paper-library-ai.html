@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>AI 时代图书馆数据的价值激活——以"人类美术馆"艺术知识图谱项目为例</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500&family=JetBrains+Mono&display=swap" rel="stylesheet"/>
+<style>
+  :root{--ink:#1a1a1a;--soft:#444;--mute:#777;--line:#dcdcdc;--accent:#7a2e2e;--bg:#fff;
+        --serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#eceae6;color:var(--ink);font-family:var(--serif);line-height:1.85;font-size:16px}
+  .sheet{max-width:820px;margin:24px auto;background:var(--bg);padding:56px 64px 80px;box-shadow:0 2px 24px rgba(0,0,0,.1)}
+  @media(max-width:680px){.sheet{padding:34px 22px}}
+  .pub{font-family:var(--sans);font-size:12px;color:var(--mute);text-align:center;letter-spacing:.04em;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:26px}
+  h1{font-size:25px;font-weight:700;line-height:1.4;text-align:center;margin-bottom:6px}
+  h1 .sub{display:block;font-size:18px;font-weight:500;color:var(--soft);margin-top:8px}
+  .authors{text-align:center;font-family:var(--sans);font-size:15px;margin:18px 0 4px}
+  .aff{text-align:center;font-family:var(--sans);font-size:12.5px;color:var(--mute);line-height:1.7;margin-bottom:24px}
+  .abs{background:#f7f5f1;border:1px solid var(--line);border-radius:4px;padding:18px 22px;font-size:14px;line-height:1.9;margin-bottom:10px}
+  .abs .lbl{font-family:var(--sans);font-weight:600;color:var(--accent);margin-right:6px}
+  .meta-line{font-family:var(--sans);font-size:12.5px;color:var(--mute);margin-bottom:30px}
+  h2{font-size:19px;font-weight:700;margin:34px 0 12px;padding-top:6px}
+  h3{font-size:16.5px;font-weight:600;margin:22px 0 8px;color:var(--soft)}
+  p{margin:0 0 13px;text-align:justify;text-justify:inter-ideograph}
+  .lead-i{text-indent:0}
+  p{text-indent:2em}
+  h2+p,h3+p,.nofirst,li p,.abs p,blockquote p{text-indent:0}
+  ul,ol{margin:0 0 13px 2em}li{margin:4px 0;text-align:justify}
+  blockquote{margin:14px 0;padding:12px 18px;background:#faf8f4;border-left:3px solid var(--accent);font-size:14.5px;color:var(--soft)}
+  .fig{margin:22px 0;text-align:center}
+  .figcap{font-family:var(--sans);font-size:12.5px;color:var(--mute);margin-top:8px;text-align:center;text-indent:0}
+  table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:13px;margin:8px 0 6px}
+  caption{font-family:var(--sans);font-size:12.5px;color:var(--mute);text-align:left;margin-bottom:6px;caption-side:top}
+  th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+  th{background:#f4f2ee;font-weight:600}
+  .tnum{font-family:var(--mono);text-align:right}
+  .refs{font-family:var(--sans);font-size:13px;line-height:1.8}
+  .refs li{margin:6px 0;text-align:left}
+  sup{color:var(--accent);font-family:var(--sans);font-size:11px}
+  .en{margin-top:30px;padding-top:22px;border-top:1px solid var(--line)}
+  .en h1{font-size:18px}.en .abs{font-family:var(--sans)}
+  .note{font-family:var(--sans);font-size:12px;color:var(--mute);background:#fbfaf7;border:1px dashed var(--line);border-radius:4px;padding:10px 14px;margin:18px 0}
+  /* 三阶段框架图 */
+  .frame{display:flex;gap:0;align-items:stretch;font-family:var(--sans);margin:6px 0}
+  .frame .st{flex:1;border:1px solid var(--line);padding:14px 12px;background:#faf8f4}
+  .frame .st:not(:last-child){border-right:none}
+  .frame .st .t{font-weight:700;font-size:14px;color:var(--accent)}
+  .frame .st .e{font-size:11px;color:var(--mute);font-family:var(--mono);margin-bottom:6px}
+  .frame .st .d{font-size:12px;color:var(--soft);line-height:1.6}
+  .arrowrow{text-align:center;font-family:var(--mono);color:var(--accent);font-size:13px;letter-spacing:.3em;margin:2px 0}
+  a{color:var(--accent)}
+  .backlink{font-family:var(--mono);font-size:12px;margin-bottom:14px;display:block}
+</style>
+</head><body>
+<div class="sheet">
+<a class="backlink" href="museum.html">← aha 人类美术馆</a>
+<div class="pub">投稿建议刊物：《大学图书馆学报》（Journal of Academic Libraries）· 案例研究 / 实践探索 · 工作稿</div>
+
+<h1>AI 时代高校图书馆数据的价值激活：治理、知识化与激活的路径
+<span class="sub">——以图书馆参与供数的"人类美术馆"艺术知识图谱项目为例</span></h1>
+
+<div class="authors">［作者信息投稿时补充］</div>
+<div class="aff">［作者单位 / 通信地址 / 邮编 投稿时补充］</div>
+
+<div class="abs nofirst">
+<p><span class="lbl">摘要</span>大量数字馆藏长期处于"藏而不用"的沉睡状态，其潜在价值未被充分释放。多模态大模型的成熟为破解这一困境提供了新契机。本文以高校图书馆参与供数的"人类美术馆"艺术知识图谱项目为案例，提出"可信—可见—可用"三阶段数据价值化框架：在<strong>治理</strong>阶段，通过多源归集、精确与感知双重去重、视觉大模型质量闸与客观分辨率阈值，将分散、重复、良莠不齐的原始数据沉淀为可信的核心资产，并坚持"软策展、永不物理删除"的可回溯原则；在<strong>知识化</strong>阶段，以视觉大模型对每幅作品做六维系统标注，构建包含世界观、感知、绘画语言等层次的艺术知识图谱，并将抽象数据转化为可交互的可视化解读；在<strong>激活</strong>阶段，将用户建模为与作品同构的十二维审美向量，驱动个性化推荐与生成式再创作，使静态馆藏转变为持续产生价值的"活的知识资产"。本文同时坦陈实践中的关键教训：视觉大模型在高置信下识别作者的错误率高达约 85%，故 AI 标注必须辅以人工校验与"诚实标注"原则；低分辨率名画缩略图会获得高艺术价值评分却不具备展陈可用性，需以客观分辨率闸补足；跨源近重复比例可高达约七成，去重不可或缺。研究表明，在 AI 时代，图书馆的角色正从数据的"保存者"扩展为知识的"激活者"，本文提出的框架与方法对高校图书馆盘活数字资源、参与数据要素价值化具有可迁移的参考意义。</p>
+<p style="margin-top:10px"><span class="lbl">关键词</span>智慧图书馆；数据治理；数据资产；数字人文；多模态大模型；知识图谱；个性化服务</p>
+</div>
+<div class="meta-line">中图分类号：G250.7　　文献标识码：A</div>
+
+<h2>0　引言</h2>
+<p>经过二十余年的数字化建设，我国高校图书馆已积累了规模庞大的数字资源：扫描古籍、艺术图像、机构知识库、特色专题库、采购数据库等。然而，这些资源在很大程度上仍以"扫描件—元数据—检索接口"的传统形态存在，被动地等待用户以关键词来"查找"。其结果是：海量数据被妥善保存，却很少被真正"使用"——既难以被机器深度理解，也难以被普通读者愉快地探索，更谈不上在其之上生长出新的知识与体验。这种"藏而不用"的沉睡状态，是数字馆藏价值释放的核心瓶颈。</p>
+<p>与此同时，以大语言模型与多模态大模型为代表的人工智能技术取得突破性进展，使机器第一次具备了对图像、文本进行语义级理解的通用能力。这为图书馆数据的价值激活提供了前所未有的契机：原本只能"被检索"的馆藏，如今可以被"被理解、被组织、被生成、被个性化推送"。在国家大力推进数据要素市场化配置、数据资产入表<sup>[1]</sup>与发展新质生产力的政策背景下，如何让图书馆数据在 AI 时代真正"发挥价值"，已成为图情领域亟待回答的现实问题。</p>
+<p>本文以一个具体项目为案例对此作出回应。"人类美术馆"（aha）是一个面向公众的人类名画知识图谱与个性化画廊，其数据由浙江大学图书馆等机构提供支持。项目历时数月，完成了从二十余万幅原始艺术图像的归集治理，到多模态标注与知识图谱构建，再到个性化推荐与生成式应用的全链路实践。本文不止于描述"我们做了什么"，更试图从中提炼一套<strong>可迁移的方法框架</strong>，并诚实记录其中的经验与教训，供同行参考。具体而言，本文回答三个问题：(1) 图书馆海量异构数据如何被治理为可信资产？(2) 如何借助 AI 将数据知识化、可视化，使其"可见"？(3) 如何进一步激活数据，使其在读者侧持续产生价值？</p>
+
+<h2>1　相关研究与背景</h2>
+<h3>1.1　智慧图书馆与数据驱动的服务转型</h3>
+<p>智慧图书馆被认为具有互联、高效、便利等特征<sup>[2]</sup>，其本质是以数据与技术驱动的服务升级<sup>[3]</sup>。已有研究多聚焦于物理空间智能化、资源发现系统优化与读者行为分析，而对"如何让既有数字馆藏本身变得更'聪明'"——即在数据层面进行深度语义加工与价值再造——讨论相对不足。本文关注的正是后者。</p>
+<h3>1.2　数据治理与数据资产化</h3>
+<p>数据治理强调通过标准、流程与质量控制，提升数据的可用性与可信度。随着《企业数据资源相关会计处理暂行规定》的实施<sup>[1]</sup>，"数据资产"从概念走向实践，图书馆作为公共文化数据的重要持有者，其数据如何从"保管成本"转化为"可计量、可增值的资产"，成为新的命题。治理是资产化的前提：未经治理的脏、散、重数据无法成为可信资产。</p>
+<h3>1.3　数字人文与文化遗产的智能组织</h3>
+<p>数字人文推动了文化遗产数据的关联化、结构化与可视化<sup>[4]</sup>。艺术藏品作为典型的多模态文化遗产，其知识组织长期依赖人工著录，成本高、覆盖窄。GLAM（图书馆、档案馆、博物馆）领域已开始探索以机器学习辅助元数据生成与负责任的 AI 应用<sup>[5][6]</sup>。</p>
+<h3>1.4　大模型在图书馆场景的应用</h3>
+<p>大语言模型与以 CLIP 为代表的图文对齐模型<sup>[7]</sup>、GPT 系列多模态模型<sup>[8]</sup>，使"读图—理解—生成"成为可能。但大模型固有的"幻觉"问题，使其在以严谨著称的图书馆场景中的应用必须慎重。本文在第 6 节将以实证数据讨论这一风险及其治理。</p>
+
+<h2>2　案例概况与总体框架</h2>
+<h3>2.1　项目概况</h3>
+<p>"人类美术馆"项目以世界名画为对象，目标是构建一个"千人千面"的人类艺术知识图谱与个性化画廊。其数据来自多个渠道：公共领域艺术图像数据集、艺术机构高清图库、专业油画数据集，以及前期积累的人工标注语料，并由浙江大学图书馆提供数据与学术支持。截至本文写作时，系统累计归集约 20.9 万条作品记录，经治理后沉淀核心资产约 3.7 万件，并仍在持续扩充。</p>
+<p>技术上，项目以一个关系数据库（PostgreSQL）作为唯一事实源，以对象存储托管图像，所有对外页面均为数据库的"投影"。这一架构保证了在数十万量级下系统不致因数据膨胀而崩溃，也使"治理一次、多处复用"成为可能。</p>
+<h3>2.2　"可信—可见—可用"三阶段价值化框架</h3>
+<p>我们将全部工作收敛为一个递进的价值化框架（图 1）。它既是项目的工作主线，也是本文向同行提供的、可复用的方法论尺度。该框架可视为经典 DIKW 体系<sup>[9]</sup>在 AI 时代的具体化：数据（Data）经治理成为可信资产，经知识化成为可被理解的信息与知识（Information/Knowledge），最终经激活在读者侧转化为个性化的体验与智慧（Wisdom）。</p>
+<div class="fig">
+  <div class="arrowrow">数据价值化的递进路径</div>
+  <div class="frame">
+    <div class="st"><div class="t">① 治理</div><div class="e">GOVERN · 可信</div><div class="d">多源归集 · 双重去重 · 质量闸 · 分辨率闸 · 规范化 · 软策展永不删</div></div>
+    <div class="st"><div class="t">② 知识化</div><div class="e">ENRICH · 可见</div><div class="d">多模态六维标注 · 五层知识图谱 · 世界观/情绪/语言可视化 · 单画深读</div></div>
+    <div class="st"><div class="t">③ 激活</div><div class="e">ACTIVATE · 可用</div><div class="d">12 维审美档案 · 个性化推荐 · 生成式再创作 · 千人千面</div></div>
+  </div>
+  <div class="arrowrow" style="letter-spacing:0">脏散重的原始数据　→　可信的核心资产　→　可被理解的活知识　→　持续产生价值的服务</div>
+  <div class="figcap">图 1　"可信—可见—可用"三阶段数据价值化框架</div>
+</div>
+
+<h2>3　数据治理：让数据可信</h2>
+<p>治理的目标，是把来自不同渠道、格式不一、大量重复、质量参差的原始图像，沉淀为一套干净、规范、可信的"核心资产"。我们设计了一条标准化的入库整理流水线（图 2），任何来源的数据汇入后均走同一道闸门。</p>
+<div class="fig">
+<svg viewBox="0 0 720 250" width="100%" style="max-width:720px" font-family="Noto Sans SC,sans-serif">
+  <defs><marker id="a2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#7a2e2e"/></marker></defs>
+  <!-- 顺序阶段 -->
+  <g font-size="12" text-anchor="middle">
+    <rect x="6" y="96" width="96" height="50" rx="5" fill="#f4f2ee" stroke="#cfcabf"/>
+    <text x="54" y="116">多源数据</text><text x="54" y="133" font-size="10" fill="#777">4 个来源</text>
+    <rect x="142" y="96" width="104" height="50" rx="5" fill="#faf8f4" stroke="#cfcabf"/>
+    <text x="194" y="116">双重去重</text><text x="194" y="133" font-size="10" fill="#777">SHA-256 + pHash</text>
+    <rect x="286" y="96" width="110" height="50" rx="5" fill="#faf8f4" stroke="#cfcabf"/>
+    <text x="341" y="116">质量闸</text><text x="341" y="133" font-size="10" fill="#777">视觉大模型</text>
+    <rect x="436" y="96" width="104" height="50" rx="5" fill="#faf8f4" stroke="#cfcabf"/>
+    <text x="488" y="116">分辨率闸</text><text x="488" y="133" font-size="10" fill="#777">最短边 ≥600px</text>
+  </g>
+  <g stroke="#7a2e2e" stroke-width="1.4" marker-end="url(#a2)">
+    <line x1="104" y1="121" x2="140" y2="121"/><line x1="248" y1="121" x2="284" y2="121"/>
+    <line x1="398" y1="121" x2="434" y2="121"/>
+  </g>
+  <!-- 三路分流 -->
+  <g font-size="12" text-anchor="middle">
+    <rect x="586" y="34" width="128" height="38" rx="5" fill="#eef3ee" stroke="#9bb59b"/><text x="650" y="58">核心资产 kept（绘画）</text>
+    <rect x="586" y="102" width="128" height="38" rx="5" fill="#f6f1e8" stroke="#cbb78f"/><text x="650" y="126">归档 archived（非绘画）</text>
+    <rect x="586" y="170" width="128" height="38" rx="5" fill="#f4eaea" stroke="#cfa3a3"/><text x="650" y="194">剔除 rejected（垃圾）</text>
+  </g>
+  <g stroke="#7a2e2e" stroke-width="1.2" fill="none" marker-end="url(#a2)">
+    <path d="M540,118 C562,110 564,58 584,53"/><path d="M540,121 L584,121"/><path d="M540,124 C562,134 564,186 584,189"/>
+  </g>
+  <text x="563" y="20" font-size="10.5" fill="#777" text-anchor="middle">三路分流</text>
+  <text x="160" y="178" font-size="10.5" fill="#999">素材层 pending：永不物理删，状态可回溯</text>
+</svg>
+<div class="figcap">图 2　数据治理流水线：多源归集 → 双重去重 → 质量闸 → 分辨率闸 → 三路分流</div>
+</div>
+<h3>3.1　多源归集与统一数据模型</h3>
+<p>针对每个数据源编写独立的"适配器"，将异构来源（含关系型数据库导出、对象存储目录、带元数据的图库等）统一映射为"艺术家—作品—文件"三层数据模型，并保留来源批次与原始标识以便追溯。所有新入库记录初始状态均为"素材层（pending）"，等待后续处理。</p>
+<h3>3.2　精确与感知双重去重</h3>
+<p>同一幅名画在不同来源、不同分辨率下反复出现，是艺术数据的常态。我们采用两级去重：以 SHA-256 哈希识别字节级完全相同的文件；以感知哈希（pHash/dHash/wHash，汉明距离阈值 ≤6）识别"同画不同文件"的近重复，并通过并查集聚类、每簇保留最高分辨率主图。去重的必要性在实践中得到强烈印证：在一次"世界大师"批次的灌入中，5 493 幅候选图像经精确与感知双重比对，约<strong>七成</strong>被判定为已有资产的重复，仅约 1 400 幅为真正新增（详见 6.3 节）。若无去重，画廊将充斥重复条目，知识图谱的统计也将严重失真。</p>
+<h3>3.3　多模态质量闸与三路分流</h3>
+<p>去重后的幸存者进入质量闸：调用视觉大模型对每幅图像一次性产出"策展分类 + 质量评分 + 多维语义标注"。据分类结果做三路分流：架上绘画类晋升为<strong>核心资产（kept）</strong>；雕塑、器物、建筑等非绘画实物单独<strong>归档（archived）</strong>以备他用；局部裁切、草图、模糊低清、截图等则<strong>剔除（rejected）</strong>。质量评分由可解释的复合公式给出：</p>
+<blockquote>质量 = 0.35 × 艺术价值 + 0.25 × 清晰度 + 0.15 × 完整度 + 0.25 × 分辨率（客观项）</blockquote>
+<h3>3.4　客观分辨率闸：弥补"价值≠可用"的缺口</h3>
+<p>实践中我们发现一个反直觉的现象：视觉大模型评估的是作品的<strong>艺术价值</strong>，因而即便是一幅仅有约 250 像素的名画缩略图，模型也会给出很高的价值评分；但这样的缩略图在支持放大浏览的画廊中根本无法使用。换言之，"艺术价值高"不等于"图像可用"。为此我们引入一道客观的分辨率闸：将最短边低于 600 像素的图像一律不纳入核心资产。这一标准成为全局通用规则，并前置到入库与过闸环节，既保证了展陈品质，也避免在不可用的低清图上浪费宝贵的模型算力。</p>
+<h3>3.5　软策展：永不物理删除</h3>
+<p>治理过程贯彻一条数据伦理原则——<strong>软策展、永不物理删除</strong>。"删减"在系统中只是"不晋升"或"降级归档"，原始文件与记录永久保留、状态可回溯、决策可反悔。这既符合图书馆长期保存的天职，也为日后标准变化、模型升级后的重新评估保留了可能。唯一被直接删除的是确认无价值的系统垃圾文件（如随图像附带的操作系统元数据残余）。</p>
+<h3>3.6　规范化与中外文考据</h3>
+<p>原始数据中风格名称中英混杂、写法不一，我们建立了以中文为主、预留多语言、共三十余类的规范风格表，并以关键词规则函数实现增量自动归一。对艺术家，则在自动归集之外，针对核心名家进行人工考据，建立约 280 位艺术家的中外文名对照与权威小传，并通过规范化姓名将多来源作品挂接到统一身份之上。这一步把"机器可处理的数据"与"专业可信的知识"衔接起来，正是图书馆专业价值的体现。</p>
+
+<h2>4　知识化与可视化：让数据可见</h2>
+<p>治理解决了"数据可信"，知识化与可视化则解决"数据可见"——让机器能理解、让读者能看见。</p>
+<h3>4.1　多模态六维系统标注</h3>
+<p>我们设计了一套结构化的标注模式，由视觉大模型对每幅作品系统产出六个维度的信息：媒介、题材、风格、<strong>画面动力学</strong>（视觉重心与阅读动线）、<strong>绘画语言</strong>（构图、空间、造型、光影、色彩、笔触、边缘七项，各以 0–1 连续值表达）、<strong>情绪</strong>（效价—唤起—支配三维向量及情绪锚点），并辅以一段融合解读与一句"画外音"。这套标注一次调用即同时完成策展判断与语义刻画，已覆盖核心资产中两万余件作品。</p>
+<h3>4.2　五层艺术知识图谱</h3>
+<p>在标注之上，我们构建了一个分层的艺术知识图谱，其核心思想是"风格是其它层次的投影"：底层为可观测的绘画语言与感知效应，中层为题材与世界观，上层为风格与艺术家。其中"世界观"层尤具特色——用"再现↔表现""结构↔感知"两条轴将一切作品定位到一个二维平面，并划分出六个世界观区（图 3）。基于真实标注数据，我们得以将原本停留在论断层面的艺术史叙事，转化为<strong>可测量</strong>的结构，例如东西方绘画在"再现—表现"轴上跨越千余年的不同漂移节奏。</p>
+<div class="fig">
+<svg viewBox="0 0 360 330" width="100%" style="max-width:360px" font-family="Noto Sans SC,sans-serif">
+  <rect x="40" y="40" width="240" height="240" fill="#faf8f4" stroke="#cfcabf"/>
+  <line x1="160" y1="40" x2="160" y2="280" stroke="#e2ddd2"/><line x1="40" y1="160" x2="280" y2="160" stroke="#e2ddd2"/>
+  <!-- 轴标 -->
+  <g font-size="11" fill="#555"><text x="24" y="164">再现</text><text x="284" y="164">表现</text>
+    <text x="160" y="32" text-anchor="middle">感知</text><text x="160" y="298" text-anchor="middle">结构</text></g>
+  <!-- 6 区 (x:再现0→表现1, y:结构0→感知1) -->
+  <g font-size="10.5">
+    <circle cx="95.7" cy="186.6" r="5" fill="#7a2e2e"/><text x="95.7" y="174" text-anchor="middle">摹写之眼</text>
+    <circle cx="138.4" cy="211.1" r="5" fill="#7a2e2e"/><text x="138.4" y="227" text-anchor="middle">礼制图式</text>
+    <circle cx="166.7" cy="170.3" r="5" fill="#7a2e2e"/><text x="200" y="160" text-anchor="middle">写意寄情</text>
+    <circle cx="167.9" cy="103.9" r="5" fill="#7a2e2e"/><text x="167.9" y="95" text-anchor="middle">经验之光</text>
+    <circle cx="226" cy="157.1" r="5" fill="#7a2e2e"/><text x="236" y="150" text-anchor="middle">表现外化</text>
+    <circle cx="236.8" cy="230.3" r="5" fill="#7a2e2e"/><text x="236.8" y="247" text-anchor="middle">形式建构</text>
+  </g>
+</svg>
+<div class="figcap">图 3　世界观二维平面：以"再现—表现""结构—感知"两轴定位作品，划分六个世界观区（点位据真实标注数据）</div>
+</div>
+<h3>4.3　从数据到可交互的解读</h3>
+<p>抽象的标注若仅以数字呈现则无人问津。我们将其转化为一系列可交互的可视化页面：海量作品以连库画廊形式支持筛选与无限滚动；单幅作品则拥有一个"富解读"详情页，把模型读出的<strong>阅读动线以编号标记直接叠加在画面上</strong>（视线最先落在哪、为何吸睛），并以情绪坐标盘、世界观坐标、绘画语言极点轴等可视化方式呈现其"为什么长这样"（图 4）。可视化使专业的艺术分析对普通读者变得可感、可玩，这正是数据"被看见"的关键一跃。</p>
+<div class="fig">
+<svg viewBox="0 0 560 300" width="100%" style="max-width:560px" font-family="Noto Sans SC,sans-serif">
+  <defs><marker id="a4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#7a2e2e"/></marker></defs>
+  <!-- 画框 + 阅读动线 -->
+  <rect x="20" y="24" width="240" height="250" rx="4" fill="#efece5" stroke="#cfcabf"/>
+  <text x="140" y="16" font-size="10.5" fill="#777" text-anchor="middle">画面（阅读动线叠加）</text>
+  <g stroke="#7a2e2e" stroke-width="1.3" stroke-dasharray="4 4" fill="none" marker-end="url(#a4)">
+    <path d="M150,86 C120,120 100,150 96,176"/><path d="M104,188 C140,210 180,210 198,206"/>
+  </g>
+  <g font-family="JetBrains Mono,monospace" font-size="13" font-weight="700">
+    <circle cx="150" cy="78" r="13" fill="#7a2e2e"/><text x="150" y="83" fill="#fff" text-anchor="middle">1</text>
+    <circle cx="96" cy="182" r="13" fill="#7a2e2e"/><text x="96" y="187" fill="#fff" text-anchor="middle">2</text>
+    <circle cx="208" cy="204" r="13" fill="#7a2e2e"/><text x="208" y="209" fill="#fff" text-anchor="middle">3</text>
+  </g>
+  <text x="140" y="262" font-size="9.5" fill="#888" text-anchor="middle">① 看的是什么 / 在哪 / 为何吸睛</text>
+  <!-- 右侧解读面板 -->
+  <g font-size="11.5" text-anchor="middle">
+    <rect x="300" y="28" width="240" height="56" rx="5" fill="#faf8f4" stroke="#cfcabf"/><text x="420" y="52">情绪坐标（效价-唤起-支配）</text><text x="420" y="70" font-size="10" fill="#777">+ 情绪从何而来（三通道）</text>
+    <rect x="300" y="98" width="240" height="56" rx="5" fill="#faf8f4" stroke="#cfcabf"/><text x="420" y="122">绘画语言 7 轴极点</text><text x="420" y="140" font-size="10" fill="#777">构图/空间/造型/光影/色彩/笔触/边缘</text>
+    <rect x="300" y="168" width="240" height="56" rx="5" fill="#faf8f4" stroke="#cfcabf"/><text x="420" y="192">世界观坐标 + 风格 / 题材</text><text x="420" y="210" font-size="10" fill="#777">融合解读 + 画外音</text>
+  </g>
+  <line x1="260" y1="150" x2="300" y2="120" stroke="#cfcabf" stroke-width="1"/>
+</svg>
+<div class="figcap">图 4　单幅作品"富解读"示意：模型读出的阅读动线以①②③叠加于画面，右侧呈现情绪、绘画语言、世界观等多维解读（实现见 <span class="mono">work.html</span>）</div>
+</div>
+
+<h2>5　数据激活：让数据产生价值</h2>
+<p>治理与知识化使数据"可信、可见"，但价值的最终实现，发生在读者与数据相遇的那一刻。激活的核心，是让数据围绕"人"持续产生个性化价值。</p>
+<h3>5.1　用户与作品同构的审美向量</h3>
+<p>我们注意到一个可被利用的结构对称：每幅作品的标注恰好可组成一个十二维向量（世界观 2 维 + 绘画语言 7 维 + 情绪 3 维）。于是，用户的审美偏好也可用同一空间中的一个向量来刻画——即其浏览、停留、喜爱过的作品向量的加权平均。由此，"人"与"作品"被放进了同一个可计算的坐标系（图 5）。</p>
+<div class="fig">
+<svg viewBox="0 0 640 250" width="100%" style="max-width:640px" font-family="Noto Sans SC,sans-serif">
+  <defs><marker id="a5" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#7a2e2e"/></marker></defs>
+  <g font-size="11" text-anchor="middle">
+    <rect x="8" y="34" width="118" height="40" rx="5" fill="#faf8f4" stroke="#cfcabf"/><text x="67" y="58">喜爱的作品 · 12维</text>
+    <rect x="8" y="100" width="118" height="40" rx="5" fill="#faf8f4" stroke="#cfcabf"/><text x="67" y="124">停留的作品 · 12维</text>
+    <rect x="8" y="166" width="118" height="40" rx="5" fill="#faf8f4" stroke="#cfcabf"/><text x="67" y="190">浏览的作品 · 12维</text>
+  </g>
+  <g stroke="#7a2e2e" stroke-width="1.3" fill="none" marker-end="url(#a5)">
+    <path d="M126,54 C160,70 180,100 206,114"/><path d="M126,120 L206,120"/><path d="M126,186 C160,170 180,140 206,126"/>
+  </g>
+  <text x="168" y="100" font-size="9.5" fill="#888" text-anchor="middle">加权平均</text>
+  <rect x="208" y="86" width="186" height="68" rx="6" fill="#f4f2ee" stroke="#9a7a7a"/>
+  <text x="301" y="112" font-size="12.5" font-weight="700" text-anchor="middle">用户审美向量 μ</text>
+  <text x="301" y="132" font-size="10" fill="#777" text-anchor="middle">世界观 2 + 绘画语言 7 + 情绪 3</text>
+  <g stroke="#7a2e2e" stroke-width="1.3" fill="none" marker-end="url(#a5)">
+    <path d="M394,108 C430,92 446,58 468,52"/><path d="M394,120 L468,120"/><path d="M394,132 C430,148 446,182 468,188"/>
+  </g>
+  <g font-size="11.5" text-anchor="middle">
+    <rect x="470" y="32" width="162" height="40" rx="5" fill="#eef3ee" stroke="#9bb59b"/><text x="551" y="56">本命画家 · 门派 · 三盏灯</text>
+    <rect x="470" y="100" width="162" height="40" rx="5" fill="#eef3ee" stroke="#9bb59b"/><text x="551" y="124">个性化推荐（越逛越准）</text>
+    <rect x="470" y="168" width="162" height="40" rx="5" fill="#eef3ee" stroke="#9bb59b"/><text x="551" y="192">生成式再创作</text>
+  </g>
+</svg>
+<div class="figcap">图 5　用户与作品同构的十二维审美向量：用户 μ 为其参与作品向量的加权平均，进而驱动审美画像、个性化推荐与生成</div>
+</div>
+<h3>5.2　审美档案：本命画家、门派与"三盏灯"</h3>
+<p>基于该向量，系统为每位读者生成一份"审美档案"：与其审美最接近的<strong>本命画家</strong>（即向量距离最近的艺术家质心）、由六个世界观区与八种探索性格交叉而成的四十八种<strong>审美门派</strong>、以及刻画其观看状态的"<strong>三盏灯</strong>"（顿悟密度、审美成长、安静感）。这使冷冰冰的行为日志，转化为读者乐于探索与分享的自我画像。</p>
+<h3>5.3　个性化推荐与生成式再创作</h3>
+<p>审美向量进一步驱动两类应用。其一是<strong>个性化推荐</strong>：以一个"美学奖励内核"为候选作品打分，兼顾"契合度"与"惊奇度"（在用户能接受的探索半径上给予恰到好处的新鲜感），实现"越逛越懂你"的画廊。其二是<strong>生成式再创作</strong>：将知识图谱中的结构化语义编译为提示词，驱动图像生成模型创作新的作品，并将生成结果连同其结构化数据一并归档。至此，馆藏数据不再只是被消费的终点，而成为新知识、新创作的起点。</p>
+
+<h2>6　成效与关键经验</h2>
+<h3>6.1　治理成效（可信）</h3>
+<p>截至本文写作时，系统归集约 20.9 万条记录，其状态分布见表 1。其中经分辨率闸归档的低清图像逾 8 万件、经去重判定的重复约 2.8 万件——这些"被筛掉"的数据恰恰证明了治理的价值：核心资产由此收敛为约 3.7 万件可信、可用、可展陈的优质作品。</p>
+<table>
+  <caption>表 1　归集数据经治理后的状态分布（约数）</caption>
+  <tr><th>状态</th><th>含义</th><th class="tnum">数量</th></tr>
+  <tr><td>核心资产 kept</td><td>晋升的优质绘画，对外画廊只读它</td><td class="tnum">36 800</td></tr>
+  <tr><td>素材 pending</td><td>已入库待过闸</td><td class="tnum">60 200</td></tr>
+  <tr><td>归档 archived</td><td>低分辨率/非绘画，留底备用</td><td class="tnum">83 200</td></tr>
+  <tr><td>重复 dup</td><td>精确或近重复，留底可回溯</td><td class="tnum">28 100</td></tr>
+  <tr><td>剔除 rejected</td><td>确认低质</td><td class="tnum">600</td></tr>
+  <tr><td><strong>合计</strong></td><td></td><td class="tnum"><strong>208 900</strong></td></tr>
+</table>
+<h3>6.2　激活成效（可用）</h3>
+<p>数据被激活后，读者的使用方式发生了质变：从"输入关键词检索"转变为"被理解、被推荐、被陪伴地探索"。新匿名用户仅浏览数幅作品，系统即可生成其十二维审美档案与门派归属，并据此为其重排整馆作品；读者在任意一幅画上的停留与喜爱，又会实时回流、令后续推荐"越来越准"。可视化解读则让非专业读者也能"看懂"一幅画的构成与情绪。</p>
+<h3>6.3　关键经验与教训（最值得同行借鉴之处）</h3>
+<p>本项目最有价值的产出之一，是若干诚实的教训。我们认为，在 AI 应用中，<strong>坦陈失败与边界比报喜更具学术信用，也更对同行有用</strong>。</p>
+<p><strong>(1) 大模型"幻觉"必须治理，AI 标注不可盲信。</strong>我们曾尝试让视觉大模型直接识别作品的作者与标题，结果发现：在模型给出<strong>高置信</strong>的、且有真实作者可核对的样本中，其作者识别正确率仅约 <strong>15%</strong>——即高置信下约 85% 为"自信的幻觉"（如将甲画家的作品言之凿凿地认成另一位名家）。据此我们果断放弃用该字段回填权威数据，将其降级为"未核验线索"，并专门建立异常监测。<strong>启示</strong>：AI 适合做"可大规模、可容错"的语义刻画（如情绪、构成），而权威性元数据（作者、年代）仍须人工考据或可信来源比对——这恰是图书馆专业不可替代的价值所在。</p>
+<p><strong>(2)"艺术价值高"不等于"图像可用"。</strong>如 3.4 节所述，模型对低清名画缩略图给出高价值评分，但其不具展陈可用性。这提示我们：面向应用的数据治理，必须在主观语义评分之外，保留客观的、与使用场景挂钩的硬指标（如分辨率）。</p>
+<p><strong>(3) 去重不是可选项。</strong>跨源重复比例可高达约七成，若不治理将严重污染馆藏统计与读者体验。</p>
+<p><strong>(4) 成本与节奏需要规划。</strong>大模型标注存在固有的速率与算力成本，需以小批量、可监控、可中断的方式分批推进，而非一蹴而就。</p>
+
+<h2>7　讨论</h2>
+<h3>7.1　可迁移的方法论</h3>
+<p>本文框架并不依赖于"艺术"这一特定题材。任何持有大规模数字资源的图书馆，都可沿"治理（多源归集—去重—质量与客观闸—规范化—软策展）→知识化（大模型语义标注—知识图谱—可视化）→激活（用户建模—个性化—生成）"的路径，分阶段推进。其中，治理阶段几乎普适；知识化阶段的标注维度可按资源类型定制；激活阶段则取决于服务目标。</p>
+<h3>7.2　伦理、版权与可信</h3>
+<p>项目坚持三条底线：优先使用公共领域与开放许可（CC0）资源、厘清版权边界；对 AI 生成的标注与作品明确标识，不冒充人工考据、不冒充真实评论；以"软策展、永不物理删除"保障数据可追溯。这些原则使 AI 的引入不以牺牲图书馆的严谨与公信为代价。</p>
+<h3>7.3　图书馆角色的再定位</h3>
+<p>在该实践中，图书馆不再只是数据的<strong>保存者</strong>与<strong>提供方</strong>，而进一步成为数据的<strong>治理者</strong>、知识的<strong>组织者</strong>与价值的<strong>激活者</strong>。其专业积淀——对元数据规范的把握、对权威性的坚持、对长期保存伦理的恪守——恰恰是 AI 时代最稀缺、最不可替代的能力。AI 不会取代图书馆，反而放大了图书馆专业价值的杠杆。</p>
+
+<h2>8　结论与展望</h2>
+<p>本文以"人类美术馆"项目为案例，提出并验证了"可信—可见—可用"三阶段数据价值化框架，系统阐述了在 AI 时代将沉睡的数字馆藏转化为"活的知识资产"的路径与方法，并诚实记录了大模型幻觉治理、客观可用性把关、去重等关键经验。研究表明，多模态大模型为图书馆数据价值的释放提供了强大杠杆，但其效果高度依赖于扎实的数据治理与图书馆专业的人工介入。</p>
+<p>未来工作包括：将该框架推广到古籍、机构知识库等其它资源类型；探索图书馆数据资产的计量与价值评估方法，以对接数据要素市场；以及深化人机协同的标注校验机制，进一步压低 AI 幻觉风险。我们期望本文的框架与教训，能为同行在 AI 时代盘活数字资源提供一份可操作的参考。</p>
+
+<div class="note">说明：本文为面向《大学图书馆学报》体例撰写的工作稿；文中数据为项目某一时点的近似值，正式投稿前应核定为确切数据并配以线上可视化截图（图 2 等）。参考文献为按主题整理的起始书目，正式投稿前请逐条核验出版信息、补全卷期页码并按 GB/T 7714—2015 统一著录。建议邀请浙江大学图书馆相关研究人员共同署名，以完善图情理论锚定与文献综述。</div>
+
+<h2>参考文献</h2>
+<ol class="refs">
+  <li>财政部. 企业数据资源相关会计处理暂行规定[Z]. 财会〔2023〕11 号. 北京: 财政部, 2023.</li>
+  <li>王世伟. 论智慧图书馆的三大特点[J]. 中国图书馆学报, 2012, 38(6): 22-28.</li>
+  <li>初景利, 段美珍. 从智慧图书馆到智慧化服务[J]. 图书情报工作, 2018, 62(1): 6-12.</li>
+  <li>刘炜, 叶鹰. 数字人文的技术体系与理论结构探讨[J]. 中国图书馆学报, 2017, 43(5): 32-41.</li>
+  <li>PADILLA T. Responsible operations: data science, machine learning, and AI in libraries[R]. Dublin, Ohio: OCLC Research, 2019.</li>
+  <li>CORDELL R. Machine learning + libraries: a report on the state of the field[R]. Washington, DC: LC Labs, Library of Congress, 2020.</li>
+  <li>RADFORD A, KIM J W, HALLACY C, et al. Learning transferable visual models from natural language supervision[C]//Proceedings of the 38th International Conference on Machine Learning (ICML). 2021: 8748-8763.</li>
+  <li>OpenAI. GPT-4 technical report[R/OL]. arXiv:2303.08774, 2023.</li>
+  <li>ACKOFF R L. From data to wisdom[J]. Journal of Applied Systems Analysis, 1989, 16: 3-9.</li>
+  <li>夏翠娟. 面向人文研究的"数据基础设施"建设[J]. 中国图书馆学报, 2020, 46(4): 25-40.</li>
+  <li>柯平, 宫平. 数据治理研究综述[J]. 图书情报工作, 2020, 64(20): 各页.（待核）</li>
+  <li>张智雄, 等. 大语言模型对图书情报领域的影响与机遇[J]. 中国图书馆学报, 2023.（待核卷期页）</li>
+  <li>EUROPEANA FOUNDATION. AI in relation to GLAMs task force: report and recommendations[R]. The Hague: Europeana, 2021.</li>
+</ol>
+
+<div class="en">
+<h1>Activating the Value of Academic Library Data in the AI Era: A Path of Governance, Enrichment and Activation<br><span style="font-size:14px;color:var(--soft)">A Case Study of the "Human Art Museum" Art Knowledge-Graph Project Supported by the Library</span></h1>
+<div class="abs nofirst">
+<p><span class="lbl">Abstract:</span> Vast amounts of digitized library collections remain dormant—well preserved yet underused—and their potential value largely unrealized. The maturation of multimodal large models offers a new opportunity to break this impasse. Taking the "Human Art Museum" art knowledge-graph project, supported with data by an academic library, as a case study, this paper proposes a three-stage data value-activation framework of "Trustworthy—Visible—Usable" (Governance—Enrichment—Activation). In the <em>governance</em> stage, multi-source aggregation, dual exact-and-perceptual deduplication, a vision-large-model quality gate and an objective resolution threshold transform scattered, duplicated and uneven raw data into trustworthy core assets, under a reversible "soft-curation, never physically delete" principle. In the <em>enrichment</em> stage, each artwork is systematically annotated along six dimensions by a vision large model to build a layered art knowledge graph (worldview, perception, pictorial language, etc.), and abstract data are turned into interactive visual interpretations. In the <em>activation</em> stage, users are modeled as twelve-dimensional aesthetic vectors isomorphic to artworks, driving personalized recommendation and generative re-creation, so that static collections become "living knowledge assets" that continuously generate value. The paper also candidly reports key lessons: the vision model's author-identification error rate reaches about 85% even at high confidence, so AI annotation must be complemented by human verification and an "honest-annotation" principle; low-resolution masterpiece thumbnails receive high artistic-merit scores yet are unusable for display, requiring an objective resolution gate; and cross-source near-duplicates can account for about 70%, making deduplication indispensable. The study suggests that in the AI era the library's role is expanding from a "preserver" of data to an "activator" of knowledge, and the proposed framework and methods offer transferable references for academic libraries to revitalize digital resources and engage in the value realization of data as a factor of production.</p>
+<p style="margin-top:10px"><span class="lbl">Key words:</span> Smart library; Data governance; Data asset; Digital humanities; Multimodal large model; Knowledge graph; Personalized service</p>
+</div>
+</div>
+
+</div>
+</body></html>

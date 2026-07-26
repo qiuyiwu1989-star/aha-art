@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>我的审美历史轨迹 · aha</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/aha-kit.css">
+<script src="js/aha-icons.js"></script>
+<style>
+  html,body{height:100%}
+  body{overflow:hidden;background:radial-gradient(130% 110% at 50% 42%,#fbf8f1,var(--paper-2))}
+  #sky{position:fixed;inset:0;touch-action:none;cursor:grab;z-index:1}
+  #sky:active{cursor:grabbing}
+  /* 轨迹线:旧→淡灰,近→赭石(逐段在 JS 里上色) */
+  #sky .seg{stroke-linecap:round;fill:none}
+  /* 回看弧:看过多次的画,虚线弯回到你最后一次重看它的时刻(虚线=回访,区别于实线主轨迹) */
+  #sky .arc{fill:none;stroke:var(--accent);stroke-width:.7;stroke-dasharray:1.5 5;stroke-linecap:round}
+  .cnode{cursor:pointer}
+  .cnode .ring{fill:none;stroke:#fff;stroke-width:1.6;opacity:.92}
+  .cnode.loved .ring{stroke:var(--accent);stroke-width:2.6}
+  .cnode.last .ring{stroke:var(--accent);stroke-width:3.2}
+  .cnode.sel .ring{stroke:var(--accent);stroke-width:3.6}
+  .endlab{font-family:var(--mono);font-size:11px;fill:var(--ink-mute)}
+  .endlab.now{fill:var(--accent)}
+  /* 顶部 HUD */
+  .hud{position:fixed;left:0;right:0;top:0;z-index:5;padding:14px 18px;pointer-events:none;
+    background:linear-gradient(180deg,rgba(244,241,234,.94),rgba(244,241,234,.55) 72%,rgba(244,241,234,0))}
+  .hud>*{pointer-events:auto}
+  .hud .top{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .hud .back{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--accent);text-decoration:none}
+  .hud .share{margin-left:auto;font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute);background:none;border:none;cursor:pointer;text-decoration:underline dotted}
+  .hud .kicker{font-family:var(--mono);font-size:var(--fz-label);letter-spacing:.14em;color:var(--accent);text-transform:uppercase;margin-top:6px}
+  .hud h1{font-family:var(--serif);font-size:clamp(19px,3.4vw,26px);font-weight:600;margin:1px 0 0}
+  .hud .portrait{font-family:var(--serif);font-size:var(--fz-small);color:var(--ink-soft);line-height:1.6;margin-top:5px;max-width:62ch}
+  .hud .portrait b{color:var(--accent);font-weight:500}
+  .hud .meta{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute);margin-top:6px}
+  .hud .themes{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+  .hud .themes .st{font-size:var(--fz-tiny);color:var(--ink);background:var(--accent-soft);border:1px solid var(--accent-line);border-radius:var(--r-pill);padding:2px 10px}
+  @media(max-width:600px){.hud .portrait{display:none}}
+  .hint{position:fixed;left:0;right:0;bottom:14px;text-align:center;z-index:4;font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-faint);pointer-events:none;transition:opacity .8s ease}
+  /* 预览卡 */
+  .pv{position:fixed;z-index:20;width:min(86vw,300px);background:var(--card);border:1px solid var(--line);
+    border-radius:var(--r-lg);box-shadow:var(--sh-pop);overflow:hidden;opacity:0;transform:translateY(6px) scale(.98);
+    transition:opacity .16s var(--ease),transform .16s var(--ease);pointer-events:none}
+  .pv.on{opacity:1;transform:none;pointer-events:auto}
+  .pv .pimg{width:100%;height:190px;object-fit:cover;display:block;background:var(--paper-2)}
+  .pv .pbody{padding:12px 14px 14px}
+  .pv .pt{font-family:var(--serif);font-size:15px;font-weight:600;line-height:1.3}
+  .pv .pa{font-size:12px;color:var(--ink-mute);margin-top:2px}
+  .pv .pmeta{font-family:var(--mono);font-size:10.5px;color:var(--accent);margin-top:7px}
+  .pv .pctx{font-size:11.5px;color:var(--ink-soft);line-height:1.7;margin-top:8px;border-top:1px dashed var(--line);padding-top:8px}
+  .pv .pctx b{color:var(--ink)}.pv .pctx .ar{color:var(--accent)}
+  .pv .pacts{display:flex;gap:8px;margin-top:12px}.pv .pacts .btn{flex:1;justify-content:center}
+  .pv .pclose{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;border:none;background:rgba(20,16,10,.5);color:#fff;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  /* 海报灯箱 */
+  .plb{position:fixed;inset:0;z-index:40;background:rgba(20,16,10,.84);display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:24px}
+  .plb.on{display:flex}
+  .plb img{max-width:min(92vw,420px);max-height:76vh;border-radius:8px;box-shadow:0 24px 70px rgba(0,0,0,.6)}
+  .plb .ph{font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.85);text-align:center}
+  .plb .pacts{display:flex;gap:10px}
+  .plb .pacts a,.plb .pacts button{font-family:var(--sans);font-size:13px;color:#1c1308;background:#e9dcc2;border:none;border-radius:999px;padding:9px 18px;cursor:pointer;text-decoration:none}
+  .plb .pacts .gh{background:rgba(255,255,255,.14);color:#f3eee2}
+  .ico{display:inline-flex;vertical-align:-.12em}
+  .loading,.empty{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;flex-direction:column;gap:10px;padding:0 24px;z-index:3;color:var(--ink-mute)}
+</style></head>
+<body data-no-top>
+<div id="sky"><div class="loading">把你看过的画,沿时间连成一条轨迹…</div></div>
+
+<div class="hud" id="hud" style="display:none">
+  <div class="top"><a class="back" href="me.html">← 我的</a><button class="share" id="posterBtn">生成海报</button><button class="share" id="linkBtn">复制链接</button></div>
+  <div class="kicker">Your Trail · 审美历史轨迹</div>
+  <h1 id="title">这是你一路看过来的轨迹</h1>
+  <div class="portrait" id="portrait"></div>
+  <div class="meta" id="stats"></div>
+  <div class="themes" id="themes"></div>
+</div>
+<div class="hint" id="hint" style="display:none">从中心(最早)绕到外圈(最近) · 大=回看多 · 拖动平移 / 滚轮缩放 · 点星看详情</div>
+<div class="pv" id="pv"></div>
+<div class="plb" id="plb"><div class="pbox" id="pbox"></div></div>
+
+<script src="aha-mem.js"></script>
+<script>
+const CAT=p=>fetch('/cat/'+p).then(r=>r.json());
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function thumb(w,px){const f=(w&&(w.file))||'';px=px||160;
+  return /myqcloud\.com/i.test(f)&&!/imageMogr2/.test(f)?f+'?imageMogr2/thumbnail/'+px+'x/format/webp/quality/80':(w&&w.thumb)||f;}
+function cleanTitle(t,artist){if(t==null)return '';
+  t=String(t).replace(/\.(jpe?g|png|webp|gif|tiff?|bmp|jfif)$/i,'').replace(/_+/g,' ').trim();
+  if(artist){const a=String(artist).trim();if(a.length>=2){t=t.split(a).join(' ');
+    a.split(/[·・\s]+/).forEach(s=>{s=s.trim();if(s.length>=2){try{t=t.replace(new RegExp('(^|[\\s·・])'+s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'(?=[\\s·・]|$)','g'),' ');}catch(e){}}});}}
+  t=t.replace(/^(近现代|现代|当代|近代|古典|文艺复兴|巴洛克|洛可可|印象派|后印象派|新古典主义|浪漫主义|现实主义|表现主义|抽象|当代艺术)[\s·・]+/,'');
+  t=t.replace(/[\s·・]{2,}/g,' ').replace(/^[\s·・]+|[\s·・]+$/g,'').trim();
+  if(/^(无题|untitled|无名|佚名)$/i.test(t))return '';return t;}
+function fmtDur(ms){const m=Math.round(ms/60000);if(m<1)return '刚开始';if(m<60)return m+' 分钟';return (m/60).toFixed(1)+' 小时';}
+function fmtSpan(a,b){if(!a||!b)return '';const d=Math.max(1,Math.round((new Date(b)-new Date(a))/864e5));return d+' 天';}
+function ago(t){if(!t)return '';const d=Math.round((Date.now()-new Date(t))/864e5);if(d<=0)return '今天';if(d===1)return '昨天';if(d<30)return d+' 天前';return Math.round(d/30)+' 个月前';}
+const sharedUid=new URLSearchParams(location.search).get('u');
+const uid=sharedUid||(window.AHA&&AHA.uid)||'';
+const isShared=!!sharedUid;
+let COLLECTED=new Set(), TRAIL=null, TRAIL_NARC=0;
+
+// 阿基米德螺旋:第 k 颗(按时间)沿螺旋弧均匀串珠,中心=最早,外缘=最近 → 连线即是一条干净的旅程
+function layoutSpiral(pts){
+  const n=pts.length, maxN=Math.max(1,...pts.map(p=>p.n));
+  const rad=pts.map(p=>11+Math.sqrt(p.n/maxN)*13);          // 大小=回看多
+  const turnGap=Math.max(46, 2*Math.max(...rad)+12);        // 相邻圈半径间距(避免重叠)
+  const b=turnGap/(2*Math.PI);
+  let theta=0, R=turnGap*0.5, pos=[];
+  for(let k=0;k<n;k++){
+    pos.push({x:Math.cos(theta)*R, y:Math.sin(theta)*R, r:rad[k]});
+    const step=rad[k]+ (pts[k+1]?rad[k+1]:rad[k]) + 14;     // 沿弧的珠间距
+    const dth=step/Math.max(R,12); theta+=dth; R+=b*dth;
+  }
+  return pos;
+}
+
+let CAM={tx:0,ty:0,s:1};
+function applyCam(){const g=$('#cam');if(g)g.setAttribute('transform',`translate(${CAM.tx.toFixed(1)},${CAM.ty.toFixed(1)}) scale(${CAM.s.toFixed(3)})`);}
+
+function renderTrail(pts){
+  const W=innerWidth, H=innerHeight, n=pts.length;
+  const pos=layoutSpiral(pts);
+  const maxR=Math.max(...pos.map(p=>Math.hypot(p.x,p.y)+p.r));
+  CAM.s=Math.min(1.1,(Math.min(W,H)*0.46)/maxR); CAM.tx=W/2; CAM.ty=H/2;
+  // 轨迹分段:旧→淡灰,近→赭石
+  let segs='';
+  for(let k=0;k<n-1;k++){const t=n>1?k/(n-1):1, a=pos[k], c=pos[k+1];
+    const col=t<.5?'#c9bda6':'var(--accent)', op=(0.22+t*0.5).toFixed(2), wdt=(1.1+t*1.6).toFixed(1);
+    segs+=`<line class="seg" x1="${a.x.toFixed(1)}" y1="${a.y.toFixed(1)}" x2="${c.x.toFixed(1)}" y2="${c.y.toFixed(1)}" stroke="${col}" stroke-opacity="${op}" stroke-width="${wdt}"/>`;}
+  // 回看弧:看过多次(n≥2)的画 → 一条虚线弯回它"最后一次被重看"的时刻在轨迹上的位置
+  const firsts=pts.map(p=>p.first?new Date(p.first).getTime():null);
+  function posAtTime(L){if(L==null)return null;let j=0;while(j<n-1&&firsts[j+1]!=null&&firsts[j+1]<=L)j++;
+    if(j>=n-1)return pos[n-1];const t0=firsts[j],t1=firsts[j+1];if(t0==null||t1==null||t1<=t0)return pos[j];
+    const f=Math.max(0,Math.min(1,(L-t0)/(t1-t0)));return {x:pos[j].x+(pos[j+1].x-pos[j].x)*f,y:pos[j].y+(pos[j+1].y-pos[j].y)*f};}
+  let arcs='', nArc=0;
+  pts.forEach((p,i)=>{if(p.n>=2&&p.last&&p.first){const L=new Date(p.last).getTime();if(!(L>firsts[i]))return;
+    const a=pos[i], t=posAtTime(L);if(!t)return;const dx=t.x-a.x,dy=t.y-a.y,len=Math.hypot(dx,dy);if(len<6)return;
+    const mx=(a.x+t.x)/2,my=(a.y+t.y)/2,bow=Math.min(70,len*0.32),cx=mx-dy/len*bow,cy=my+dx/len*bow;
+    arcs+=`<path class="arc" d="M${a.x.toFixed(1)} ${a.y.toFixed(1)} Q${cx.toFixed(1)} ${cy.toFixed(1)} ${t.x.toFixed(1)} ${t.y.toFixed(1)}" stroke-opacity="${Math.min(.32,.08+p.n*.04).toFixed(2)}"/>`;nArc++;}});
+  // 节点
+  let nodes=pts.map((p,i)=>{const w=p.w, lov=COLLECTED.has(w.file), last=(i===n-1), r=pos[i].r, id='gc'+i;
+    return `<g class="cnode${lov?' loved':''}${last?' last':''}" data-i="${i}" transform="translate(${pos[i].x.toFixed(1)},${pos[i].y.toFixed(1)})">
+      <clipPath id="${id}"><circle r="${r.toFixed(1)}"/></clipPath>
+      <image href="${thumb(w,120)}" x="${(-r).toFixed(1)}" y="${(-r).toFixed(1)}" width="${(2*r).toFixed(1)}" height="${(2*r).toFixed(1)}" clip-path="url(#${id})" preserveAspectRatio="xMidYMid slice"/>
+      <circle r="${r.toFixed(1)}" class="ring"/></g>`;}).join('');
+  // 起止标注
+  const p0=pos[0], pN=pos[n-1];
+  const labs=`<text class="endlab" x="${(p0.x).toFixed(1)}" y="${(p0.y-p0.r-7).toFixed(1)}" text-anchor="middle">最早</text>`+
+    `<text class="endlab now" x="${(pN.x).toFixed(1)}" y="${(pN.y-pN.r-9).toFixed(1)}" text-anchor="middle">最近看的 ●</text>`;
+  $('#sky').innerHTML=`<svg width="100%" height="100%" id="svg"><g id="cam"><g id="trail">${segs}</g><g id="arcs">${arcs}</g><g id="lab">${labs}</g><g id="nodes">${nodes}</g></g></svg>`;
+  TRAIL_NARC=nArc;
+  applyCam();
+  TRAIL={pts,pos,n};
+  // 路径"自己画出来"的入场:轨迹与节点淡入(尊重 reduced-motion)
+  const cam=$('#cam'); cam.style.opacity=0; cam.style.transition='opacity .8s ease'; requestAnimationFrame(()=>cam.style.opacity=1);
+  bindSky();
+}
+
+let selI=-1;
+function bindSky(){
+  const sky=$('#sky');let dragging=false,moved=0,lx=0,ly=0,downT=0,pid=0;
+  sky.onpointerdown=e=>{dragging=true;moved=0;downT=Date.now();lx=e.clientX;ly=e.clientY;pid=e.pointerId;sky.setPointerCapture&&sky.setPointerCapture(e.pointerId);};
+  sky.onpointermove=e=>{if(!dragging)return;const dx=e.clientX-lx,dy=e.clientY-ly;lx=e.clientX;ly=e.clientY;moved+=Math.abs(dx)+Math.abs(dy);CAM.tx+=dx;CAM.ty+=dy;applyCam();};
+  sky.onpointerup=e=>{dragging=false;
+    if(moved<8&&Date.now()-downT<400){const g=e.target.closest&&e.target.closest('.cnode');
+      if(g){selNode(+g.dataset.i,e.clientX,e.clientY);}else{hidePreview();}}};
+  sky.onpointercancel=()=>{dragging=false;};
+  sky.onwheel=e=>{e.preventDefault();const f=e.deltaY<0?1.12:0.89, ns=Math.max(0.3,Math.min(4,CAM.s*f));
+    // 以光标为中心缩放
+    CAM.tx=e.clientX-(e.clientX-CAM.tx)*(ns/CAM.s);CAM.ty=e.clientY-(e.clientY-CAM.ty)*(ns/CAM.s);CAM.s=ns;applyCam();};
+}
+function selNode(i,x,y){
+  document.querySelectorAll('.cnode.sel').forEach(el=>el.classList.remove('sel'));
+  const el=document.querySelector(`.cnode[data-i="${i}"]`);if(el)el.classList.add('sel');
+  selI=i;showPreview(i,x,y);
+}
+// 预览卡:缩略图 + 标题/作者 + 历史(回看/停留/初见) + 轨迹上下文(之前/之后看了哪幅)
+function showPreview(i,clientX,clientY){
+  const {pts,n}=TRAIL, p=pts[i], w=p.w;
+  const title=cleanTitle(w.title,w.artist)||'无题', artist=w.artist||'佚名';
+  const meta=[];meta.push('你的第 '+(i+1)+'/'+n+' 颗星');meta.push(p.n>1?'回看 '+p.n+' 次':'看过 1 次');
+  if(p.dwell)meta.push('停留 '+fmtDur(p.dwell));if(p.first)meta.push('初见 '+ago(p.first));
+  const nm=k=>{if(k<0||k>=n)return null;const o=pts[k].w;return (cleanTitle(o.title,o.artist)||'无题');};
+  const prev=nm(i-1), next=nm(i+1);
+  const ctx=`<div class="pctx">${prev?`这之前你在看 <b>《${esc(prev)}》</b><br>`:''}${next?`之后你看了 <b>《${esc(next)}》</b>`:(prev?'':'轨迹的起点。')}${(!prev&&i===0)?'这是你轨迹的<span class="ar">起点</span>。':''}${(i===n-1)?'<br>这是你<span class="ar">最近</span>看的一幅。':''}</div>`;
+  const pv=$('#pv');
+  pv.innerHTML=`<button class="pclose" id="pvC">×</button>
+    <img class="pimg" src="${thumb(w,420)}" alt="" onerror="this.style.background='#ece7db'">
+    <div class="pbody"><div class="pt">${esc(title)}</div><div class="pa">${esc(artist)}</div>
+      <div class="pmeta">${meta.join(' · ')}</div>${ctx}
+      <div class="pacts"><a class="btn" href="art.html?w=${encodeURIComponent(w.file)}">${window.AHAIcons?AHAIcons.svg('frame'):''} 进画</a>
+        <button class="btn ghost" id="pvC2">关闭</button></div></div>`;
+  const cw=Math.min(innerWidth*0.86,300),gap=14;
+  let left=(clientX||innerWidth/2)+gap, top=(clientY||innerHeight/2)+gap;
+  if(left+cw>innerWidth-10)left=Math.max(10,(clientX||innerWidth/2)-cw-gap);
+  if(top+340>innerHeight-10)top=Math.max(10,innerHeight-350);
+  pv.style.left=left+'px';pv.style.top=top+'px';pv.classList.add('on');
+  pv.querySelector('#pvC').onclick=pv.querySelector('#pvC2').onclick=hidePreview;
+}
+function hidePreview(){$('#pv').classList.remove('on');document.querySelectorAll('.cnode.sel').forEach(el=>el.classList.remove('sel'));selI=-1;}
+
+function go(){
+  if(!uid){$('#sky').innerHTML='<div class="empty">未识别身份——请在本机美术馆里逛过后再来。</div>';return;}
+  const tasks=[CAT('exhibit?limit=8000').catch(()=>({works:[]})),
+    fetch('api/me/trail?uid='+encodeURIComponent(uid)).then(r=>r.json()).catch(()=>({items:[],total:0}))];
+  if(!isShared&&window.AHA)tasks.push(AHA.state().catch(()=>({})));
+  Promise.all(tasks).then(([cat,trail,st])=>{
+    if(st&&st.collections)COLLECTED=new Set(st.collections);
+    const BYFILE={},BYID={};(cat.works||[]).forEach(w=>{if(w.file)BYFILE[w.file]=w;BYID[w.work_id]=w;});
+    const raw=trail.items||[];let pts=[];
+    raw.forEach(it=>{const w=BYID[it.work_id]||BYFILE[it.file];if(w&&w.file)pts.push({w,n:it.n||1,dwell:it.dwell||0,first:it.first,last:it.last});});
+    $('#hud').style.display='';
+    if(isShared){$('#title').textContent='一条审美历史轨迹';$('.back').textContent='← 也看我的';$('.back').href='trail.html';}
+    if(!pts.length){$('#title').textContent=isShared?'这条轨迹还很空':'你的轨迹还没有星';
+      $('#sky').innerHTML='<div class="empty"><div>'+(raw.length?('看过 '+raw.length+' 幅,但多在旧数据里、暂时连不上。'):'还没有阅读记录。')+'</div><a class="btn" href="museum.html">去看几幅画 →</a></div>';return;}
+    // 题材/情绪画像
+    const cnt=(f)=>{const m={};pts.forEach(p=>{const v=p.w[f];if(v)m[v]=(m[v]||0)+1;});return Object.entries(m).sort((a,b)=>b[1]-a[1]).map(x=>x[0]);};
+    const subj=cnt('subject').slice(0,2), emo=cnt('emo').slice(0,2), styl=cnt('style').slice(0,1);
+    const themes=[...subj,...emo,...styl].filter((v,i,a)=>v&&a.indexOf(v)===i).slice(0,5);
+    const totalDwell=pts.reduce((s,p)=>s+p.dwell,0);
+    // 按时间排序(初见先后)= 真正的"轨迹历史";缺时间的排末尾
+    pts.sort((a,b)=>(a.first?new Date(a.first):8e15)-(b.first?new Date(b.first):8e15));
+    const span=fmtSpan(pts[0].first,pts[pts.length-1].first);
+    $('#portrait').innerHTML=isShared
+      ? `一条穿过 <b>${pts.length}</b> 幅画的审美轨迹${subj.length?`,多是<b>${esc(subj[0])}</b>`:''}。`
+      : `从第一幅到最近一幅,你一路看过 <b>${pts.length}</b> 幅${subj.length?`,多是 ${subj.map(s=>'<b>'+esc(s)+'</b>').join('、')}`:''}${emo.length?`,透着 ${emo.map(s=>'<b>'+esc(s)+'</b>').join('、')}`:''}。`;
+    $('#stats').innerHTML=`遇见 <b style="color:var(--ink)">${pts.length}</b> 幅${span?` · 跨越 ${span}`:''} · 累计停留 ${fmtDur(totalDwell)}`;
+    $('#themes').innerHTML=themes.map(t=>`<span class="st">#${esc(t)}</span>`).join('');
+    // 轨迹优先级:保留最有记忆的 ~80 颗(回看·停留·新近),仍按时间串
+    const CAP=80, now=Date.now();
+    if(pts.length>CAP){const sc=p=>p.n*3000+p.dwell+(p.first?Math.max(0,30-((now-new Date(p.first))/864e5))*1500:0);
+      const keep=new Set(pts.slice().sort((a,b)=>sc(b)-sc(a)).slice(0,CAP));pts=pts.filter(p=>keep.has(p));}
+    renderTrail(pts);
+    $('#hint').innerHTML='从中心(最早)绕到外圈(最近) · 大=回看多'+(TRAIL_NARC?' · <span style="color:var(--accent)">虚线弧=你回看过的画</span>':'')+' · 拖动平移 / 滚轮缩放 · 点星看详情';
+    $('#hint').style.display='';setTimeout(()=>{const h=$('#hint');if(h)h.style.opacity='0';},7000);
+    $('#linkBtn').onclick=()=>{const url=location.origin+location.pathname+'?u='+encodeURIComponent(uid);
+      (navigator.clipboard?navigator.clipboard.writeText(url):Promise.reject()).then(()=>{$('#linkBtn').textContent='已复制 ✓';setTimeout(()=>$('#linkBtn').textContent='复制链接',1800);}).catch(()=>prompt('复制此链接:',url));};
+    $('#posterBtn').onclick=makePoster;
+  }).catch(()=>{$('#sky').innerHTML='<div class="empty">加载失败,请刷新</div>';});
+}
+// 生成海报:服务端 PIL 合成全局星图+局部亮点+二维码,弹灯箱可保存/下载
+function makePoster(){
+  const lb=$('#plb'),box=$('#pbox');lb.classList.add('on');
+  box.innerHTML='<div class="ph">正在把你的轨迹合成海报…<br>(首次约十几秒,要逐幅取画)</div>';
+  const sub=encodeURIComponent(($('#portrait').textContent||'你一路看过来的轨迹').slice(0,60));
+  const stats=encodeURIComponent(($('#stats').textContent||'').slice(0,46));
+  fetch(`api/me/trail_poster?uid=${encodeURIComponent(uid)}&sub=${sub}&stats=${stats}`).then(r=>r.json()).then(d=>{
+    if(d&&d.url){const src='/'+d.url;
+      box.innerHTML=`<img src="${src}" alt="我的审美轨迹海报"><div class="ph">长按图片保存 · 或下载分享</div>
+        <div class="pacts"><a href="${src}" download="我的审美轨迹.png">下载海报</a><button class="gh" id="plbX">关闭</button></div>`;
+      box.querySelector('#plbX').onclick=()=>lb.classList.remove('on');
+    }else{box.innerHTML=`<div class="ph">生成失败:${esc((d&&d.error)||'稍后再试')}</div><div class="pacts"><button class="gh" id="plbX">关闭</button></div>`;
+      box.querySelector('#plbX').onclick=()=>lb.classList.remove('on');}
+  }).catch(()=>{box.innerHTML='<div class="ph">生成失败,请重试</div><div class="pacts"><button class="gh" id="plbX2">关闭</button></div>';box.querySelector('#plbX2').onclick=()=>lb.classList.remove('on');});
+}
+$('#plb').addEventListener('click',e=>{if(e.target.id==='plb')e.currentTarget.classList.remove('on');});
+let RZ;addEventListener('resize',()=>{clearTimeout(RZ);RZ=setTimeout(()=>{if(TRAIL)renderTrail(TRAIL.pts);},250);});
+go();
+</script>
+</body></html>

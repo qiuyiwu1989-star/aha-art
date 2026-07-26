@@ -106,7 +106,7 @@ Promise.all([
   (wv.regions||[]).forEach(r=>{WVQ[r.id]=r.q;CENT[r.id]=[r.cx,r.cy];});
   const CN_NODE=swork.count_node||{};
   NODES=sty.nodes.map(n=>({id:n.id,cn:n.cn,wv:n.wv,year:n.year,xi:n.xi||'—',region:n.region,conf:n.conf||'high',
-    canonical:n.canonical,nworks:CN_NODE[n.id]||0,
+    canonical:n.canonical,canon_cn:n.canon_cn,canon_group:n.canon_group,nworks:CN_NODE[n.id]||0,
     rx:(n.coord||{}).rep_exp,sp:(n.coord||{}).struct_perc,aka:n.aka||[],desc:((n.lore||{}).essence)||(n.def||'').slice(0,40)}));
   document.getElementById('q').addEventListener('input',e=>{kw=e.target.value.trim();render();});
   document.getElementById('viewseg').addEventListener('click',e=>{if(!e.target.dataset.v)return;view=e.target.dataset.v;seg(e);render();});
@@ -172,7 +172,7 @@ function card(n){
   return `<a class="st ${n.region==='east'?'e':''} ${n.conf==='low'?'low':''}" id="card-${n.id}" href="kg-style-detail.html?id=${n.id}">
     <div class="sn">${hl(n.cn)}${n.aka.length?` <span class="tag reg">+${n.aka.length}</span>`:''}</div>
     ${n.desc?`<div class="sd">${hl(n.desc)}</div>`:''}
-    <div class="meta"><span class="tag wv" style="background:${WVC[n.wv]||'#999'}">${n.wv} ${WVN[n.wv]||''}</span><span class="tag yr">${fy(n.year)}</span><span class="tag reg">${n.region==='east'?'东':'西'}</span>${view!=='xi'?`<span class="tag xi">${hl(n.xi)}</span>`:''}${n.canonical&&n.canonical!=='other'?`<span class="tag" style="background:var(--accent-soft);color:var(--accent)" title="标准码 ${n.canonical} · 详情页可调出该组入库作品">→${CANON_ZH[n.canonical]||n.canonical}</span>`:''}${n.nworks?`<span class="tag" style="background:var(--green-soft);color:var(--green)" title="本节点精确匹配 ${n.nworks} 件入库真迹"><i data-ic="camera"></i>${n.nworks}</span>`:''}${cf}</div></a>`;
+    <div class="meta"><span class="tag wv" style="background:${WVC[n.wv]||'#999'}">${n.wv} ${WVN[n.wv]||''}</span><span class="tag yr">${fy(n.year)}</span><span class="tag reg">${n.region==='east'?'东':'西'}</span>${view!=='xi'?`<span class="tag xi">${hl(n.xi)}</span>`:''}${n.canon_cn?`<span class="tag" style="background:var(--accent-soft);color:var(--accent)" title="归属 ${n.canon_group?n.canon_group+' · ':''}${n.canon_cn}">→${n.canon_group?n.canon_group+'·':''}${n.canon_cn}</span>`:(n.canonical&&n.canonical!=='other'?`<span class="tag" style="background:var(--accent-soft);color:var(--accent)" title="标准码 ${n.canonical} · 详情页可调出该组入库作品">→${CANON_ZH[n.canonical]||n.canonical}</span>`:'')}${n.nworks?`<span class="tag" style="background:var(--green-soft);color:var(--green)" title="本节点精确匹配 ${n.nworks} 件入库真迹"><i data-ic="camera"></i>${n.nworks}</span>`:''}${cf}</div></a>`;
 }
 let lastGroups=[];
 function groups(items){

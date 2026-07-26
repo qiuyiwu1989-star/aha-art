@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 画作页</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:24px 18px 90px}
+  .crumb{font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-bottom:14px}.crumb a{color:var(--accent);text-decoration:none}
+  .art{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:26px}@media(max-width:780px){.art{grid-template-columns:1fr}}
+  .imgwrap{background:#15120f;border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center;position:sticky;top:18px;max-height:88vh}
+  .imgwrap img{max-width:100%;max-height:88vh;display:block}
+  .ttl{font-family:var(--serif);font-size:25px;font-weight:600;line-height:1.25}
+  .sub{color:var(--ink-mute);font-size:13px;margin:6px 0 2px;line-height:1.7}.sub a{color:var(--accent);text-decoration:none}
+  .vo{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--accent);border-left:3px solid var(--line);padding-left:12px;margin:14px 0}
+  .sec{margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
+  .lbl{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.06em;font-weight:600;margin-bottom:7px}
+  .tag{display:inline-block;font-size:12px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:2px 10px;margin:2px 5px 2px 0;color:var(--ink-soft)}
+  .frow{display:flex;align-items:center;gap:9px;margin:7px 0;font-size:11.5px}
+  .frow .fk{width:34px;font-family:var(--serif);font-weight:600;color:var(--ink-soft);flex-shrink:0;text-align:right}
+  .frow .fl,.frow .fr{width:92px;font-size:9.5px;color:var(--ink-faint);flex-shrink:0;line-height:1.2}.frow .fl{text-align:right}
+  .ft{flex:1;height:7px;background:var(--paper-2);border-radius:4px;position:relative}
+  .ft::before{content:'';position:absolute;left:50%;top:0;height:100%;width:1px;background:#cfc6b4}
+  .fd{position:absolute;top:50%;width:13px;height:13px;border-radius:50%;background:var(--accent);transform:translate(-50%,-50%);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.18);cursor:help}
+  .fv{width:30px;text-align:right;font-family:var(--mono);font-size:10px;color:var(--ink-mute);flex-shrink:0}
+  .vad{display:flex;gap:8px;flex-wrap:wrap}
+  .vad .vc{flex:1;min-width:90px;background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 10px;text-align:center}
+  .vad .vc b{font-family:var(--mono);font-size:18px;color:var(--accent)}.vad .vc span{display:block;font-size:11px;color:var(--ink-mute);margin-top:2px}
+  .anc{display:inline-block;font-family:var(--mono);font-size:11px;color:#fff;background:var(--green);border-radius:5px;padding:1px 8px;margin-left:6px}
+  .fused{font-size:13px;line-height:1.85;color:var(--ink-soft);background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+  .rel{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-top:6px}
+  .rc{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;text-decoration:none;color:inherit;display:block}
+  .rc img{width:100%;height:110px;object-fit:cover;display:block;background:var(--paper-2)}
+  .rc .rb{padding:7px 9px}.rc .rt{font-size:11.5px;font-weight:600;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .rc .rr{font-family:var(--mono);font-size:9px;color:#fff;background:var(--accent);border-radius:4px;padding:0 5px;display:inline-block;margin-top:4px}.rc .ra{font-size:10px;color:var(--ink-mute);margin-top:3px}
+  .foot{font-size:11px;color:var(--ink-faint);margin-top:16px}.foot a{color:var(--accent)}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:99;display:inline-flex;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .msg{text-align:center;color:var(--ink-mute);padding:80px 20px;font-size:14px}
+</style>
+</head><body>
+<a class="home-fab" href="kg-catalog.html" title="返回画廊"><i data-ic="works"></i> 画廊</a>
+<div class="wrap" id="wrap"><div class="msg" id="msg">载入中…</div></div>
+<script>
+const API='/cat/';
+// 7 大构成双极轴:长名/短名 → [短名, 低极点, 高极点]。与 kg_language_vectors.json meta.dims 对齐。
+const DIMS=[
+ ['构图与组织','构图','对称稳态·秩序','动态失衡·张力'],
+ ['透视与空间','空间','平面铺陈·装饰','纵深幻觉·体积'],
+ ['形状与造型','造型','写实摹形·精确','变形抽象·写意'],
+ ['光影与明暗','光影','平光匀涂·无戏剧','强光暗对比·戏剧'],
+ ['色彩系统','色彩','素净单色·克制','浓烈高彩·饱和'],
+ ['笔触与肌理','笔触','光滑隐笔·无痕','厚重显笔·书写性'],
+ ['边缘与节奏','边缘','虚化柔边·朦胧','清晰硬边·界限分明']];
+const esc=s=>(s||'').replace(/[<>&]/g,m=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[m]));
+const fmt=x=>x==null?'—':(+x).toFixed(2);
+const qs=new URLSearchParams(location.search);
+
+function lookup(l7,longk,shortk){
+  if(!l7) return null;
+  const o = (longk in l7)?l7[longk] : (shortk in l7?l7[shortk]:null);
+  if(o==null) return null;
+  if(typeof o==='object') return {v:o.v, desc:o.desc||''};
+  return {v:o, desc:''};
+}
+
+async function render(id){
+  let a, rel={items:[]};
+  try{
+    a = await fetch(API+'work/'+id).then(r=>{if(!r.ok)throw 0;return r.json()});
+    rel = await fetch(API+'related/'+id).then(r=>r.json()).catch(()=>({items:[]}));
+  }catch(e){ document.getElementById('msg').textContent='没找到这幅画(id='+esc(id)+')。'; return; }
+  const v=a.vlm||{}, af=v.affect||{}, vad=af.vad||{}, l7=v.language7||{};
+  const artist=a.artist||{}, name=artist.name_cn||artist.name_en||'佚名';
+  const life=artist.born?` · ${artist.born}–${artist.death||''}`:'';
+  const dims=DIMS.map(([lk,sk,lo,hi])=>{const o=lookup(l7,lk,sk);if(!o||o.v==null)return '';
+    return `<div class="frow"><span class="fk">${sk}</span><span class="fl">${lo}</span><span class="ft"><span class="fd" style="left:${o.v*100}%"${o.desc?` title="${esc(o.desc)}"`:''}></span></span><span class="fr">${hi}</span><span class="fv">${(+o.v).toFixed(2)}</span></div>`;}).join('');
+  const tags=(v.subject_tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('');
+  const st=v.style||{};
+  const relcards=(rel.items||[]).map(r=>`<a class="rc" href="artwork.html?id=${r.id}"><img loading="lazy" decoding="async" src="${r.thumb}" alt=""/><div class="rb"><div class="rt">${esc(r.title||'无题')}</div><span class="rr">${esc(r.rel||'')}</span><div class="ra">${esc(r.artist||'')}</div></div></a>`).join('');
+  document.title='aha · '+(a.title||'画作页');
+  document.getElementById('wrap').innerHTML=`
+    <div class="crumb"><a href="kg-catalog.html"><i data-ic="works"></i> 核心资产画廊</a> › <b style="color:var(--ink-soft)">${esc(a.title||'无题')}</b></div>
+    <div class="art">
+      <div class="imgwrap"><img src="${a.image.full}" alt="${esc(a.title||'')}"/></div>
+      <div class="info">
+        <div class="ttl">${esc(a.title||'无题')}</div>
+        <div class="sub">${esc(name)}${life}${a.year?' · '+a.year:''}${a.school?' · '+esc(a.school):''}${a.medium?' · '+esc(a.medium):''}${a.w_cm&&a.h_cm?` · ${a.w_cm}×${a.h_cm}cm`:''}</div>
+        ${v.voiceover?`<div class="vo">"${esc(v.voiceover)}"</div>`:''}
+        ${tags?`<div class="sec"><div class="lbl">题材 · ${esc(v.subject||'')}</div>${tags}</div>`:''}
+        ${st.流派?`<div class="sec"><div class="lbl">风格</div><span style="font-size:13px;color:var(--ink-soft)">${esc(st.流派||'')}${st.审美倾向?' · '+esc(st.审美倾向):''}${st.表现特征?' · '+esc(st.表现特征):''}</span></div>`:''}
+        ${dims?`<div class="sec"><div class="lbl">七大构成 · 双极轴(点=立场,悬停看依据)</div>${dims}</div>`:''}
+        <div class="sec"><div class="lbl">感知效应 · VAD${af.primary_anchor?`<span class="anc">${esc(af.primary_anchor)}</span>`:''}</div>
+          <div class="vad"><div class="vc"><b>${fmt(vad.valence)}</b><span>愉悦 valence</span></div><div class="vc"><b>${fmt(vad.arousal)}</b><span>唤起 arousal</span></div><div class="vc"><b>${fmt(vad.dominance)}</b><span>支配 dominance</span></div></div></div>
+        ${v.reading&&v.reading.path?`<div class="sec"><div class="lbl">阅读路径</div><span style="font-size:13px;color:var(--ink-soft);line-height:1.7">${esc(v.reading.path)}</span></div>`:''}
+        ${v.fused?`<div class="sec"><div class="lbl">整体解读</div><div class="fused">${esc(v.fused)}</div></div>`:''}
+        <div class="foot">#${a.id} · ${esc(a.source||'')} · 质量 ${a.quality??'—'} · <a href="${a.image.full}" target="_blank">原图 ↗</a></div>
+      </div>
+    </div>
+    ${relcards?`<div class="sec" style="margin-top:34px"><div class="lbl">相关作品</div><div class="rel">${relcards}</div></div>`:''}`;
+}
+
+const id=qs.get('id');
+if(id) render(id);
+else document.getElementById('msg').innerHTML='缺少 ?id= 参数。<a href="kg-catalog.html" style="color:var(--accent)">去画廊 →</a>';
+</script>
+<script src="js/aha-icons.js"></script>
+</body></html>

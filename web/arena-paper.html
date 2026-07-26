@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>美学竞技场 · 论文构想 / Research · Artist 艺术家 1.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/aha-kit.css"/>
+<style>
+  .site-top .brand{display:flex;align-items:baseline;gap:8px}
+  .site-top .brand .en{font-family:var(--latin);font-size:19px;font-weight:600;letter-spacing:.02em;color:var(--ink)}
+  .site-top .brand .zh{font-family:var(--serif);font-size:14px;letter-spacing:.12em;color:var(--ink-soft)}
+  .site-top .brand .ver{font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:1px 6px;
+    border:1px solid var(--accent-line);border-radius:var(--r-pill);color:var(--accent);align-self:center}
+  .site-top .subbrand{font-family:var(--serif);font-size:13px;color:var(--ink-mute);padding-left:12px;margin-left:10px;border-left:1px solid var(--line)}
+  .site-top .subbrand a{color:inherit}.site-top .subbrand a:hover{color:var(--accent)}
+  @media(max-width:600px){.site-top .subbrand{display:none}}
+  .site-top .topright{margin-left:auto;display:flex;align-items:center;gap:14px}
+  .site-top .topright a{font-family:var(--mono);font-size:11px;color:var(--ink-mute)}
+  .site-top .topright a:hover{color:var(--accent)}
+  .abs{background:var(--paper-2);border:1px solid var(--line-soft);border-radius:var(--r);padding:16px 18px;line-height:1.7;font-size:var(--fz-small);color:var(--ink-soft)}
+  .abs.en{font-family:var(--latin)}
+  .deflist{font-size:var(--fz-small);line-height:1.85;color:var(--ink-soft)}
+  .deflist b{color:var(--ink)}
+  .step{font-family:var(--latin);color:var(--accent);margin-right:6px}
+  .tbl2{width:100%;border-collapse:collapse;font-size:var(--fz-small)}
+  .tbl2 th,.tbl2 td{border-bottom:1px solid var(--line-soft);padding:7px 8px;text-align:left;vertical-align:top}
+  .tbl2 th{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute);text-transform:uppercase}
+  .tbl2 .k{font-family:var(--mono);color:var(--accent);white-space:nowrap}
+</style></head>
+<body>
+<header class="site-top">
+  <a class="brand" href="artist-home.html"><span class="en">Artist</span><span class="zh">艺术家</span><span class="ver">1.0</span></a>
+  <span class="subbrand"><a href="arena.html">美学竞技场</a> · 论文构想</span>
+  <span class="topright"><a href="arena-method.html">方法论</a><a href="arena.html">← 回竞技场</a></span>
+</header>
+
+<div class="page narrow">
+  <div class="pagehead">
+    <div class="kicker">Aesthetic Arena · Research Concept</div>
+    <h1>从「评估」到「照见自己」:一份偏好信号的四种产出</h1>
+    <div class="sub">把美学竞技场写成一篇研究论文的构想:定位、贡献、结构、评估计划与投稿目标。面向 HCI 顶会(CHI)主线。<b>这是工作中文档,非已投稿件。</b></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="t">摘要 · Abstract(中)</span></div>
+    <div class="abs">众包成对「竞技场」评估已成为给生成模型排名的标准范式,但它把人类评审仅当作打标工具,除了聚合排名之外丢弃了一切。我们提出<b>美学竞技场(Aesthetic Arena)</b>:一个已部署的系统,把对 AI 生成艺术的同一股成对审美判断<b>同时</b>用于——(1) 给单张图排名,并(这是本工作的新意)给图背后的<b>生成"做法"(workflow/模型)</b>排名,从而把评估闭环回流到生产;(2) 估计每位评审的<b>眼光</b>并据此<b>给票加权</b>;(3) 反推出个人<b>审美画像</b>并作为「审美报告」回馈给评审本人,把评估劳动变成一次<b>自我发现</b>,反过来维持参与。聚合采用<b>带收缩先验的 Bradley-Terry</b>,以 bootstrap 置信区间与<b>下界排序</b>呈现;沿可解释的<b>多轴(综合 / 去 AI 感 / 创意)</b>分解偏好,并按<b>题材分层配对</b>把"质量判断"和"题材偏好"分开。我们描述系统设计与"集体评估→个体个性化"之桥,并报告一项部署研究,考察参与度、眼光加权对抗噪声的有效性,以及"自我发现"框架是否提升持续参与。<span class="faint">[实证结果待采集]</span></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="t">Abstract(EN)</span></div>
+    <div class="abs en">Crowdsourced pairwise "arena" evaluation has become the standard for ranking generative models, yet it treats the human evaluator as a mere labeling instrument and discards everything but the aggregate ranking. We present <b>Aesthetic Arena</b>, a deployed system in which a single stream of pairwise aesthetic judgments over AI-generated art is used <b>simultaneously</b> to (1) rank individual images and—novel to our setting—the generation <b>methods</b> (workflows/models) behind them, closing the loop back to production; (2) estimate each evaluator's <b>discernment</b> and weight their votes accordingly; and (3) infer a personal <b>aesthetic profile</b> that we reflect back to the evaluator as a "taste report," turning evaluation labor into an act of <b>self-discovery</b> that sustains participation. We aggregate votes with a <b>shrinkage-regularized Bradley-Terry</b> model reported with bootstrap confidence intervals and <b>lower-bound ranking</b>, decompose preference along interpretable axes (overall / "de-AI-ness" / creativity), and <b>stratify pairings by subject</b> to separate quality from subject preference. We detail the system and the bridge from collective evaluation to individual personalization, and report a deployment study on participation, the noise-robustness of discernment-weighting, and whether the self-discovery framing increases sustained engagement.</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="t">核心贡献</span><span class="n">为什么不是"又一个图像 arena"</span></div>
+    <p class="deflist">既有 arena(Chatbot Arena / GenAI Arena / 3D Arena / MEF)已确立"成对投票 + Bradley-Terry + 置信区间"范式——所以这<b>不是</b>卖点。本工作的新意在四点叠加:</p>
+    <p class="deflist">
+      <span class="step">C1</span><b>做法层排名</b>:把图级胜负归并到背后的生成 workflow/模型,排"哪种做法更出片",评估直接回流生产决策。<br>
+      <span class="step">C2</span><b>评审元评估 + 加权聚合</b>:用"你选的那侧是否真在共识里更高"度量眼光(仅在双方都比够时算,避免稀疏退化),再把眼光映成票权回灌进 BT——给评估者评级并抗噪。<br>
+      <span class="step">C3</span><b>评估即个性化(双用)</b>:同一份成对偏好既产出集体公榜,又反推个体审美画像/门派并回馈本人;后者是<b>维持参与的动机引擎</b>。<br>
+      <span class="step">C4</span><b>多轴分解 + 公平配对 + 人–AI 校准</b>:沿"综合 / 去 AI 感 / 创意"分解偏好;按题材分层配对;用人类共识校准 VLM 自动质量先验。</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="t">论文结构 · Outline</span></div>
+    <table class="tbl2">
+      <tr><th>节</th><th>内容</th></tr>
+      <tr><td class="k">1 Intro</td><td>问题:arena 浪费了"评审"本身;论点:一份信号、四个产出 + 自我发现。贡献 C1–C4。</td></tr>
+      <tr><td class="k">2 Related</td><td>arena 评估(Chatbot/GenAI/3D Arena、MEF);美学质量评估;标注者质量/反作弊建模;审美推荐;游戏化众包。</td></tr>
+      <tr><td class="k">3 System</td><td>对决 UI(键盘/多轴镜头/收藏/放大)、结论卡、三榜、贡献榜;低唤醒设计语言。</td></tr>
+      <tr><td class="k">4 Aggregation</td><td>BT(MM 迭代)+ 收缩先验 + bootstrap CI + 下界排序;<b>做法层聚合(C1)</b>;<b>两遍眼光加权 BT(C2)</b>;题材分层配对;多轴。</td></tr>
+      <tr><td class="k">5 Bridge</td><td><b>评估→个性化(C3)</b>:生成图 12 维审美 VLM 标注 → 口味向量/门派 → 推荐(多峰 kNN + 学维度权重)。</td></tr>
+      <tr><td class="k">6 Human–AI</td><td>人类 BT 共识 vs VLM 质量分(相关/散点),何时可让 AI 替人粗筛;用共识校准先验(C4)。</td></tr>
+      <tr><td class="k">7 Study</td><td>部署 + 用户研究:参与/留存、眼光加权抗噪验证、自我发现框架是否提升持续参与、做法榜是否改善生产选择。</td></tr>
+      <tr><td class="k">8 Discuss</td><td>局限与伦理:冷启动、参数手调、数据规模;偏差;"给评审评级"的伦理与透明。</td></tr>
+    </table>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="t">评估计划</span><span class="n">论文的实证骨架</span></div>
+    <p class="deflist">
+      • <b>参与/留存</b>:回合制 + 结论卡(自我发现)对场均场次、回访率的影响(A/B:有/无结论卡)。<br>
+      • <b>眼光加权抗噪</b>:注入金标准对与随机乱投账号,验证加权 BT 比无权 BT 更稳(排名与已知真值的相关)。<br>
+      • <b>做法榜效用</b>:做法榜 top 做法产出的图,在独立人评里是否真的更优(回流生产的验证)。<br>
+      • <b>人–AI 一致性</b>:BT 共识与 VLM quality 的相关、分歧样本分析。<br>
+      • <b>桥的有效性</b>:用对决反推的口味向量,预测该用户后续 like 的命中率(离线 + 在线 lift)。</p>
+    <div class="note accent"><span class="k">诚实边界(论文必写)</span> 生成图 12 维标注尚未全量;眼光加权/收缩参数部分手调;<b>真实大规模投票数据尚需采集</b>(冷启动用 AI 质量基线兜底)。学术化第一步=上线采集 + 跑完标注桥。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="t">投稿目标 · 近期截稿</span><span class="n">截至 2026-06</span></div>
+    <table class="tbl2">
+      <tr><th>venue</th><th>框架</th><th>近期截稿</th></tr>
+      <tr><td class="k">ACM CHI 2027</td><td>HCI 系统(首推)</td><td><b>2026-09-10</b> 全文</td></tr>
+      <tr><td class="k">ACM CSCW (PACM HCI)</td><td>众包/集体智慧</td><td>滚动投稿</td></tr>
+      <tr><td class="k">IEEE TMM / ACM TOMM / TiiS / IJHCS</td><td>全系统(期刊)</td><td>滚动</td></tr>
+      <tr><td class="k">NeurIPS Eval&amp;Datasets / ACM MM</td><td>数据集+基准</td><td>2026 轮已过 → 2027</td></tr>
+      <tr><td class="k">RecSys / ICCC</td><td>推荐 / 计算创造力</td><td>2026 已过 → 2027</td></tr>
+    </table>
+    <p class="card-note" style="margin-top:var(--s3)">最优路径:以 <b>CHI 2027(9/10)</b> 为目标,这 3 个月用来上线采集投票 + 用户研究 + 跑完 12 维标注桥;赶不上转 <b>CSCW 滚动</b> 或 <b>TiiS/IJHCS 期刊</b>。</p>
+  </div>
+
+  <div class="sec" style="text-align:center;margin-top:var(--s6)">
+    <a class="btn" href="arena-method.html">看完整方法论 →</a>
+  </div>
+</div>
+<script src="js/aha-icons.js"></script>
+<script src="js/aha-chrome.js"></script>
+</body></html>

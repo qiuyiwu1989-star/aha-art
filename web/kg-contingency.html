@@ -8,39 +8,35 @@
   /* token / 个体偶发分类色(--mis..)均来自 aha-kit.css;此处只放页面专属微调 */
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
-  .wrap{max-width:900px;margin:0 auto;padding:26px 16px 90px}
-  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
   h1{font-family:var(--serif);font-size:clamp(20px,3.6vw,28px);font-weight:700;text-align:center;margin:7px 0}
-  .lead{text-align:center;color:var(--ink-mute);font-size:13px;line-height:1.75;max-width:780px;margin:6px auto}.lead b{color:var(--ink-soft)}
-  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
   .sec{margin-top:32px}
   .sh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:2px solid;padding-bottom:8px;margin-bottom:6px}
   .sh .no{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
   .sh .nm{font-family:var(--serif);font-size:19px;font-weight:700}
-  .sh .tag{font-family:var(--mono);font-size:10px;color:#fff;border-radius:5px;padding:1px 8px;margin-left:auto}
+  .sh .tag{font-family:var(--mono);font-size:10px;color:var(--card);border-radius:5px;padding:1px 8px;margin-left:auto}
   .intro{font-size:13px;color:var(--ink-soft);line-height:1.9;margin:11px 0 16px}.intro b{color:var(--ink)}.intro .q{color:var(--ink-mute);font-style:italic}
   /* 误读三段链 */
-  .mcard{background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 14px;margin-bottom:10px}
+  .mcard{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:12px 14px;margin-bottom:10px}
   .mhd{font-family:var(--serif);font-size:15px;font-weight:700;margin-bottom:9px}
   .mhd a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
   .mhd .ar{color:var(--mis);font-family:var(--mono);font-size:13px;margin:0 5px}
-  .mhd .f{font-family:var(--mono);font-size:10px;color:#fff;background:var(--mis);border-radius:5px;padding:1px 7px;margin-left:6px;vertical-align:1px}
+  .mhd .f{font-family:var(--mono);font-size:10px;color:var(--card);background:var(--mis);border-radius:5px;padding:1px 7px;margin-left:6px;vertical-align:1px}
   .mflow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
   .mb{flex:1;min-width:150px;padding:8px 10px;border-radius:9px;font-size:12.5px;line-height:1.6}
   .mb .k{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.06em;margin-bottom:3px;opacity:.85}
-  .mb.x{background:#f1efe8;color:var(--ink-soft)}.mb.x .k{color:var(--model)}
-  .mb.y{background:#f7eef2;color:var(--ink-soft)}.mb.y .k{color:var(--y)}
-  .mb.z{background:#f6ece2;color:var(--ink)}.mb.z .k{color:var(--accent)}
+  .mb.x{background:var(--paper-2);color:var(--ink-soft)}.mb.x .k{color:var(--model)}
+  .mb.y{background:var(--rej-soft);color:var(--ink-soft)}.mb.y .k{color:var(--y)}
+  .mb.z{background:var(--accent-soft);color:var(--ink)}.mb.z .k{color:var(--accent)}
   .marr{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;color:var(--ink-faint);padding:0 7px;white-space:nowrap}
   @media(max-width:620px){.mflow{flex-direction:column}.marr{padding:4px 0;transform:rotate(90deg)}}
-  .mnote{background:#fbf9f3;border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:12.5px;line-height:1.8;color:var(--ink-soft);margin-top:4px}.mnote b{color:var(--accent)}
+  .mnote{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:12.5px;line-height:1.8;color:var(--ink-soft);margin-top:4px}.mnote b{color:var(--accent)}
   /* 奇点 双向柱 */
   .singh{font-size:13px;color:var(--ink-soft);line-height:1.9;margin-bottom:12px}.singh b{color:var(--ink)}
   .types{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
-  .ty{flex:1;min-width:200px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:12.5px;line-height:1.6}
+  .ty{flex:1;min-width:200px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:12.5px;line-height:1.6}
   .ty .tt{font-family:var(--serif);font-weight:700;font-size:14px}.ty .td{color:var(--ink-soft);margin-top:3px}
-  .ty.foil{border-left:4px solid var(--foil)}.ty.model{border-left:4px solid var(--model)}
-  .bars{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .ty.foil{border-top:3px solid var(--foil)}.ty.model{border-top:3px solid var(--model)}
+  .bars{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
   .dleg{display:grid;grid-template-columns:1fr 116px 1fr;font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-bottom:8px}
   .dleg .l{text-align:right;color:var(--foil)}.dleg .c{text-align:center}.dleg .r{text-align:left;color:var(--model)}
   .dgrid{display:grid;grid-template-columns:1fr 116px 1fr;align-items:center;row-gap:5px;column-gap:6px}
@@ -55,41 +51,51 @@
   .singnote{font-size:12px;color:var(--ink-soft);margin-top:11px;line-height:1.85}.singnote b{color:var(--ink)}
   .canonh{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);letter-spacing:.03em;margin:18px 0 9px;border-top:1px dashed var(--line);padding-top:13px;line-height:1.6}
   .canon{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:8px}
-  .cn2{background:#fff;border:1px solid var(--line);border-left:3px solid var(--sing);border-radius:9px;padding:9px 11px}
-  .cn2.east{border-left-color:var(--model)}
+  .cn2{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--sing);border-radius:9px;padding:9px 11px}
+  .cn2.east{border-top-color:var(--model)}
   .cn2 .nm{font-family:var(--serif);font-weight:700;font-size:14px}.cn2 .nm a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
   .cn2 .wy{font-size:11.5px;color:var(--ink-soft);line-height:1.55;margin-top:3px}
   /* 偶然 */
-  .ccard{background:#fff;border:1px solid var(--line);border-left:4px solid var(--chance);border-radius:11px;padding:12px 14px;margin-bottom:9px}
-  .ccard .ct{font-family:var(--serif);font-size:15px;font-weight:700}.ccard .ct .ty{font-family:var(--mono);font-size:10px;color:#fff;background:var(--chance);border-radius:5px;padding:1px 7px;margin-left:6px;vertical-align:1px}
+  .ccard{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--chance);border-radius:11px;padding:12px 14px;margin-bottom:9px}
+  .ccard .ct{font-family:var(--serif);font-size:15px;font-weight:700}.ccard .ct .ty{font-family:var(--mono);font-size:10px;color:var(--card);background:var(--chance);border-radius:5px;padding:1px 7px;margin-left:6px;vertical-align:1px}
   .ccard .cd{font-size:12.5px;color:var(--ink-soft);line-height:1.75;margin-top:6px}.ccard .cd a{color:var(--ink)}.ccard .cd b{color:var(--ink)}
   .ccard .cf{font-size:12.5px;line-height:1.7;margin-top:8px;border-top:1px dashed var(--line);padding-top:7px;color:var(--ink)}
   .ccard .cf b{color:var(--accent)}
-  .lg{font-family:var(--mono);font-size:9px;color:#9a6a2f;background:#f3e9d8;border:1px dashed #cdab78;border-radius:4px;padding:0 4px;margin:0 3px;vertical-align:1px;white-space:nowrap}
+  .lg{font-family:var(--mono);font-size:9px;color:var(--accent-deep);background:var(--gold-soft);border:1px dashed var(--accent-line);border-radius:4px;padding:0 4px;margin:0 3px;vertical-align:1px;white-space:nowrap}
   /* 回路 */
-  .loopwrap{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:14px}
+  .loopwrap{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:14px}
   .loop{display:flex;align-items:center;gap:7px;flex-wrap:wrap;justify-content:center}
   .lc{font-size:12px;border-radius:999px;padding:5px 12px;white-space:nowrap;font-weight:500}
-  .lc.ctx{background:#eef2f4;color:#3f6b80}.lc.ind{background:#f7eef2;color:#8a3f6a}.lc.sing{background:#f6ece2;color:#9a5a2f}.lc.coord{background:#eef2ee;color:#3f6b55}
+  .lc.ctx{background:var(--blue-soft);color:var(--blue)}.lc.ind{background:var(--rej-soft);color:var(--riv)}.lc.sing{background:var(--accent-soft);color:var(--sing)}.lc.coord{background:var(--green-soft);color:var(--green)}
   .la{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
   .loopd{font-size:12.5px;color:var(--ink-soft);line-height:1.85;margin-top:10px;text-align:center}.loopd b{color:var(--accent)}
   .chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-top:22px}
-  .chip{font-size:12px;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 12px}.chip:hover{border-color:var(--accent);color:var(--accent)}
-  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .chip{font-size:12px;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 12px}.chip:hover{border-color:var(--accent);color:var(--accent)}
   .loading{text-align:center;color:var(--ink-faint);padding:20px}
+  .chviz{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 6px 4px;margin:8px 0 6px;overflow-x:auto}
+  #chanceScatter{width:100%;min-width:560px;height:auto;display:block}
+  .chcap{font-size:12.5px;color:var(--ink-soft);line-height:1.8;text-align:center;margin:2px auto 14px;max-width:760px}.chcap b{color:var(--ink)}
+  .mrviz{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 10px 6px;margin:10px 0 6px;overflow-x:auto}
+  #misreadArc{width:100%;min-width:560px;height:auto;display:block}
+  .mrcap{font-family:var(--mono);font-size:10px;color:var(--ink-faint);text-align:center;margin:2px 0 14px}
+  .planeh{font-size:12.5px;color:var(--ink-soft);line-height:1.8;margin:16px 0 8px}.planeh b{color:var(--ink)}
+  .planewrap{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px}
+  #singplane{width:100%;height:auto;display:block}
+  .pagehead{text-align:center;border-bottom:none}
+  .pagehead .sub{max-width:760px;margin:8px auto 0}
 </style>
-</head><body data-board="contingency">
-<a class="home-fab" href="museum.html" title="返回首页"><i data-ic="home"></i> 首页</a>
-<div class="wrap">
-  <div class="kick">aha · 知识图谱 V3 · 家族③</div>
-  <h1>个体 / 偶发 —— 不可还原的那一半</h1>
-  <p class="lead">关系力与语境力都假设艺术"有规律"。但历史不是决定论。这一家收的是<b>规律之外的三种力</b>——而且它们的<b>逻辑各不相同</b>:误读有一条清晰的因果链,奇点能被网络客观定位,偶然则只能指认、不能解释。</p>
-  <div class="breadcrumb"><a href="museum.html" style="color:var(--ink-mute);text-decoration:none">aha</a> <span style="color:var(--ink-faint)">›</span> <a href="kg-forces.html" style="color:var(--accent);text-decoration:none;font-weight:600">艺术史动力学</a> · <a href="kg-forces.html">总图</a> · <a href="kg-dynamics.html">关系层</a> · <a href="kg-context.html">语境层</a> · <b style="color:var(--ink)">个体偶发</b> · <a href="kg-force-timeline.html">时间线</a> · <a href="kg-tour-forces.html">导览</a> · <a href="kg-artist-atlas.html">师承</a> · <a href="kg-drift.html">漂移</a></div>
-
-  <!-- ① 误读 -->
+</head><body data-board="contingency" data-no-top>
+<div class="page">
+  <div class="pagehead">
+    <h1>个体 / 偶发 · 不可还原的那一半</h1>
+    <p class="sub">关系力与语境力都假设艺术"有规律"。但历史不是决定论。这一家收的是<b>规律之外的三种力</b>——而且它们的<b>逻辑各不相同</b>:误读有一条清晰的因果链,奇点能被网络客观定位,偶然则只能指认、不能解释。</p>
+  </div>
+<!-- ① 误读 -->
   <div class="sec">
     <div class="sh" style="border-color:var(--mis)"><span class="no">①</span><span class="nm" style="color:var(--mis)">创造性的误读</span><span class="tag" style="background:var(--mis)">逻辑:本义 → 误读 → 成果</span></div>
     <div class="intro">影响很少是<b>准确</b>的传递。接收者带着<b>自己的问题</b>去看来源,于是把对方读成了<b>自己需要的样子</b>。<b>"本义"与"被读成"之间的那道裂缝,正是创造发生的地方</b>。误读不是失败的影响,而是影响的<span class="q">引擎</span>。<br>下面每条都拆成同一条逻辑链:来源<b style="color:var(--model)">本义 X</b> → 被<b style="color:var(--y)">误读为 Y</b> → 于是<b style="color:var(--accent)">催生 Z</b>。注意箭头:永远是 <b>接收者 ← 来源</b>。</div>
+    <div class="mrviz"><svg id="misreadArc" viewBox="0 0 1000 460" role="img" aria-label="创造性误读网络:来源传统 → 被谁误读"></svg></div>
+    <div class="mrcap">每条弧 = 一次创造性误读(来源本义 → 被读成别的);按力着色:跨文化 / 复兴 / 跨域 / 重估 —— 下方逐条展开</div>
     <div id="misread"></div>
     <div class="mnote">↳ 看出门道了吗?<b>"复兴"其实也是一种误读</b>——新古典从拉斐尔与希腊"读"出的"秩序",从来不是真实的拉斐尔与希腊。关系层里每一条<b>跨文化</b>与<b>复兴</b>边,翻到背面,都是一次创造性的误会。</div>
   </div>
@@ -104,6 +110,8 @@
     </div>
     <div class="bars" id="singular"><div class="loading">从 69 条边实时计算…</div></div>
     <div class="singnote" id="singread"></div>
+    <div class="planeh">▸ 把这些"被指向最多的人"放回<b>世界观平面</b>:点越大 = 被越多力指向(引力越强),颜色 = <span style="color:var(--foil)">偏标靶(被反对)</span> / <span style="color:var(--model)">偏典范(被趋向)</span>。看它们落在哪——奇点多挤在<b>"再现"一侧的正统坐标</b>,后人正是绕着它们给自己定位。</div>
+    <div class="planewrap"><svg id="singplane" viewBox="0 0 1000 540" role="img" aria-label="奇点在世界观平面上的引力分布"></svg></div>
     <div class="canonh">▸ 美术史公认的奇点 · 从历史上找(上面的柱状图只算了本板块 69 条边;真正改写过坐标系的人更多,这里补一批公认的——<span style="color:var(--sing)">赭=西</span> · <span style="color:var(--model)">绿=东</span>)</div>
     <div class="canon" id="canon"></div>
   </div>
@@ -112,6 +120,8 @@
   <div class="sec">
     <div class="sh" style="border-color:var(--chance)"><span class="no">③</span><span class="nm" style="color:var(--chance)">偶然</span><span class="tag" style="background:var(--chance)">逻辑:反事实「若非 → 则无」</span></div>
     <div class="intro">前两种还能被<b>逻辑与网络</b>照亮,第三种不能。偶然的本质是<b>反事实</b>:它本可以不发生,而历史会<b>因此完全不同</b>。我们不解释它,只<b>指认</b>它——并按它<b>拐弯的方式</b>分四类(最后一类,会反咬上一节的奇点榜)。每条都给出那句<b style="color:var(--accent)">"若非 X,则无 Y"</b>。<br><span style="color:var(--ink-faint)">标注约定:<span class="lg">传说</span>=广为流传却学界存疑的轶事 · <span class="lg">推测</span>=史家的合理推断 · 其余为信史。</span></div>
+    <div class="chviz"><svg id="chanceScatter" viewBox="0 0 1000 300" role="img" aria-label="四类偶然:一地能指认却连不成线的转折点"></svg></div>
+    <div class="chcap">① 误读是一条<b>因果链</b>、② 奇点是一张<b>网</b>、③ 偶然只是<b>一地散点</b>——这些被运气拐过弯的转折点,能一个个<b>指认</b>,却连不成线。点开下面四类细看(圆点可点进艺术家)。</div>
     <div id="chance"></div>
   </div>
 
@@ -222,10 +232,35 @@ document.getElementById('misread').innerHTML=MIS.map(m=>`<div class="mcard">
     <div class="mb z"><span class="k">催生 Z</span>${m.z}</div>
   </div></div>`).join('');
 
+/* ① 误读网络:来源 → 被谁误读(弧线图,按力着色)*/
+function drawMisArc(){
+  var svg=document.getElementById('misreadArc'); if(!svg)return; svg.textContent='';
+  var NS='http://www.w3.org/2000/svg',E=function(n,a,p){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e;};
+  var CS=getComputedStyle(document.documentElement),cv=function(n,f){return CS.getPropertyValue(n).trim()||f;};
+  var FC={'跨文化':cv('--cro','#5b7596'),'复兴':cv('--rev','#5a7d6f'),'跨域':cv('--psh','#8a5fa3'),'重估':cv('--syn','#b8893a')};
+  var ORD={'跨文化':0,'复兴':1,'跨域':2,'重估':3};
+  var strip=function(s){return s.replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim();};
+  var links=MIS.map(function(m){return {src:strip(m.src),recv:strip(m.recv),f:m.f};});
+  links.sort(function(a,b){return (ORD[a.f]==null?9:ORD[a.f])-(ORD[b.f]==null?9:ORD[b.f]);});
+  var srcs=[]; links.forEach(function(l){if(srcs.indexOf(l.src)<0)srcs.push(l.src);});
+  var rowH=21, padT=26, W=1000, lx=330, rx=670;
+  var Hn=Math.max(srcs.length,links.length), H=padT+Hn*rowH+10;
+  svg.setAttribute('viewBox','0 0 '+W+' '+H);
+  var offL=(Hn-srcs.length)*rowH/2, offR=(Hn-links.length)*rowH/2;
+  var syL=function(i){return padT+offL+i*rowH+rowH/2;}, syR=function(i){return padT+offR+i*rowH+rowH/2;};
+  links.forEach(function(l,i){var si=srcs.indexOf(l.src),y1=syL(si),y2=syR(i),c=FC[l.f]||cv('--ink-mute','#857d6f');
+    E('path',{d:'M'+lx+' '+y1+' C'+((lx+rx)/2)+' '+y1+','+((lx+rx)/2)+' '+y2+','+rx+' '+y2,fill:'none',stroke:c,'stroke-width':1.3,'stroke-opacity':.45});});
+  srcs.forEach(function(s,i){var y=syL(i);E('circle',{cx:lx,cy:y,r:2.6,fill:cv('--ink-mute','#857d6f')});var t=E('text',{x:lx-8,y:y+3.5,'text-anchor':'end','font-family':'Noto Serif SC','font-size':11.5,fill:cv('--ink','#1d1b18')});t.textContent=s.length>15?s.slice(0,14)+'…':s;});
+  links.forEach(function(l,i){var y=syR(i),c=FC[l.f]||cv('--ink-mute','#857d6f');E('circle',{cx:rx,cy:y,r:2.6,fill:c});var t=E('text',{x:rx+8,y:y+3.5,'text-anchor':'start','font-family':'Noto Serif SC','font-size':11.5,fill:cv('--ink','#1d1b18')});t.textContent=l.recv.length>20?l.recv.slice(0,19)+'…':l.recv;});
+  var hd=function(x,s,a){var t=E('text',{x:x,y:14,'text-anchor':a,'font-family':'JetBrains Mono','font-size':10,fill:cv('--ink-faint','#a9a194')});t.textContent=s;};
+  hd(lx,'来源 · 本义','end'); hd(rx,'被谁误读 · 读成了别的','start');
+}
+drawMisArc();
 /* ② 奇点:被指向度,拆成 标靶(反叛) vs 典范(其余) */
 const COLLECTIVE=new Set(['ARTIST.academy','ARTIST.qianlongacademy','ARTIST.yuanti','ARTIST.dunhuang','ARTIST.yonglegong','ARTIST.byzantineicon','ARTIST.yamatoe','ARTIST.minhwa']);
 const MODELT=new Set(['复兴','致敬','综合','推演','跨文化']);
-fetch('data/kg_relations.json').then(r=>r.json()).then(REL=>{
+Promise.all([fetch('data/kg_relations.json').then(r=>r.json()),fetch('data/kg_artists.json').then(r=>r.json())]).then(([REL,AJ])=>{
+  const ART=AJ.artists;
   const m={};
   REL.edges.forEach(e=>{if(e.bidir||!e.to.startsWith('ARTIST.')||COLLECTIVE.has(e.to))return;
     const t=m[e.to]=m[e.to]||{id:e.to,cn:e.to_cn,foil:0,model:0};
@@ -246,7 +281,27 @@ fetch('data/kg_relations.json').then(r=>r.json()).then(REL=>{
     `读这张图:<b style="color:var(--foil)">标靶型</b>(被反对为主)——${foilD.join('、')||'—'}:一个时代要挣脱的正统靶子。`+
     `<b style="color:var(--model)">典范型</b>(被趋向为主)——${modelD.join('、')||'—'}:后人想成为他。`+
     `<b>两面型</b>(爱恨相当)——${both.join('、')||'—'}:<b>最强的奇点,连反对者都绕不开</b>。<br>注意:它衡量的是"<b>绕不开</b>"而非"伟大"——所以榜首是被反叛最多的<b>正统标靶</b>(董其昌),而非画得最好的人。`;
-}).catch(e=>{document.getElementById('singular').innerHTML='<div class="loading">加载失败:'+e+'</div>';});
+  drawSingPlane(REL,ART);
+}).catch(e=>{document.getElementById('singular').innerHTML='<div class="loading">加载失败:'+e+'</div>';var sp=document.getElementById('singplane');if(sp)sp.innerHTML='';});
+function drawSingPlane(REL,ART){
+  var svg=document.getElementById('singplane'); if(!svg)return; svg.textContent='';
+  var NS='http://www.w3.org/2000/svg',E=function(n,a,p){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e;};
+  var CS=getComputedStyle(document.documentElement),cv=function(n,f){var v=CS.getPropertyValue(n).trim();return v||f;};
+  var COL={paper2:cv('--paper-2','#ece7db'),line:cv('--line','#ddd5c6'),lineSoft:cv('--line-soft','#e8e1d4'),card:cv('--card','#fffdf8'),ink:cv('--ink','#1d1b18'),inkMute:cv('--ink-mute','#857d6f'),accent:cv('--accent','#b0673a'),green:cv('--green','#5a7d6f'),foil:cv('--foil','#c0492f'),model:cv('--model','#5a7d6f'),gold:cv('--syn','#b8893a')};
+  var W=1000,H=540,pl=54,pr=34,pt=24,pb=44;
+  var sx=function(v){return pl+v*(W-pl-pr);}, sy=function(v){return H-pb-v*(H-pt-pb);};
+  var m={};
+  REL.edges.forEach(function(e){if(e.bidir||!e.to.startsWith('ARTIST.')||COLLECTIVE.has(e.to))return;var t=m[e.to]=m[e.to]||{id:e.to,cn:e.to_cn,foil:0,model:0};if(e.type==='反叛')t.foil++;else if(MODELT.has(e.type))t.model++;});
+  E('rect',{x:pl,y:pt,width:W-pl-pr,height:H-pt-pb,fill:COL.paper2,'fill-opacity':.4,stroke:COL.line,rx:10});
+  [.25,.5,.75].forEach(function(t){E('line',{x1:sx(t),y1:pt,x2:sx(t),y2:H-pb,stroke:COL.lineSoft});E('line',{x1:pl,y1:sy(t),x2:W-pr,y2:sy(t),stroke:COL.lineSoft});});
+  var tx=function(x,y,s,o){o=o||{};var e=E('text',{x:x,y:y,'font-family':o.f||'JetBrains Mono','font-size':o.fs||11,fill:o.fill||COL.inkMute,'text-anchor':o.a||'middle','font-weight':o.w||400});if(o.st){e.setAttribute('paint-order','stroke');e.setAttribute('stroke',COL.card);e.setAttribute('stroke-width',o.sw||3.2);}e.textContent=s;return e;};
+  tx(sx(.01),H-pb+26,'\u2190 \u518d\u73b0',{a:'start',fill:COL.green,w:600,fs:12});tx(sx(.99),H-pb+26,'\u8868\u73b0 \u2192',{a:'end',fill:COL.accent,w:600,fs:12});
+  tx(pl-8,sy(.02),'\u7ed3\u6784',{a:'end',fill:COL.green,w:600,fs:12});tx(pl-8,sy(.98),'\u611f\u77e5',{a:'end',fill:COL.accent,w:600,fs:12});
+  Object.keys(ART).forEach(function(k){var v=ART[k];if(v._stub||!v.wv||v.wv.x==null)return;E('circle',{cx:sx(v.wv.x).toFixed(1),cy:sy(v.wv.y).toFixed(1),r:2,fill:v.region==='east'?COL.green:COL.accent,'fill-opacity':.13});});
+  var rows=Object.keys(m).map(function(k){var v=m[k];return {id:v.id,cn:v.cn,foil:v.foil,model:v.model,total:v.foil+v.model};}).filter(function(v){return v.total>0&&ART[v.id]&&ART[v.id].wv&&ART[v.id].wv.x!=null;}).sort(function(a,b){return b.total-a.total;});
+  rows.slice().reverse().forEach(function(r){var v=ART[r.id],x=sx(v.wv.x),y=sy(v.wv.y);var col=r.foil>r.model?COL.foil:(r.model>r.foil?COL.model:COL.gold);var rad=4+Math.sqrt(r.total)*4.2;var c=E('circle',{cx:x.toFixed(1),cy:y.toFixed(1),r:rad.toFixed(1),fill:col,'fill-opacity':.34,stroke:col,'stroke-width':1.5,style:'cursor:pointer'});c.addEventListener('click',function(){location.href='kg-artist.html?id='+r.id;});});
+  rows.slice(0,12).forEach(function(r){var v=ART[r.id];tx(sx(v.wv.x),sy(v.wv.y)-(4+Math.sqrt(r.total)*4.2)-4,r.cn,{f:'Noto Serif SC',fs:12,fill:COL.ink,w:600,st:1,sw:3.4});});
+}
 
 /* 公认奇点(人工策展,补数据榜之外的历史) */
 const SINGS=[
@@ -295,8 +350,32 @@ document.getElementById('chance').innerHTML=CH.map(c=>`<div class="ccard">
   <div class="ct">${c.t}<span class="ty">${c.ty}</span></div>
   <div class="cd">${c.d}</div>
   <div class="cf">↳ ${c.cf}</div></div>`).join('');
+/* ③ 偶然:四类散点(能指认不能连线;无边)*/
+function drawChanceScatter(){
+  var svg=document.getElementById('chanceScatter'); if(!svg)return; svg.textContent='';
+  var NS='http://www.w3.org/2000/svg',E=function(n,a,p){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e;};
+  var CS=getComputedStyle(document.documentElement),cv=function(n,f){return CS.getPropertyValue(n).trim()||f;};
+  var col=cv('--chance','#8a7d6f'),ink=cv('--ink','#1d1b18'),card=cv('--card','#fffdf8');
+  var W=1000; svg.setAttribute('viewBox','0 0 '+W+' 300'); var cx=[150,383,617,850],cyc=182,R=58;
+  CH.forEach(function(c,ci){
+    var seen={},cases=[],re=/kg-artist\.html\?id=([^"]+)">([^<]+)</g,m;
+    while((m=re.exec(c.d))){ if(!seen[m[1]]){seen[m[1]]=1; cases.push({id:m[1],cn:m[2]});} }
+    var X=cx[ci];
+    var t1=E('text',{x:X,y:32,'text-anchor':'middle','font-family':'Noto Serif SC','font-size':14,'font-weight':700,fill:ink}); t1.textContent=c.t;
+    var t2=E('text',{x:X,y:48,'text-anchor':'middle','font-family':'JetBrains Mono','font-size':10,fill:col}); t2.textContent=c.ty+' · '+cases.length+' 例';
+    cases.forEach(function(cs,i){
+      var r=R*Math.sqrt((i+0.5)/cases.length),ang=i*2.399963;
+      var x=X+r*Math.cos(ang),y=cyc+r*Math.sin(ang);
+      var dot=E('circle',{cx:x.toFixed(1),cy:y.toFixed(1),r:4.5,fill:col,'fill-opacity':0.82,stroke:card,'stroke-width':1,style:'cursor:pointer'});
+      var ti=E('title',{},dot); ti.textContent=cs.cn;
+      dot.addEventListener('mouseenter',function(){dot.setAttribute('r',6);});
+      dot.addEventListener('mouseleave',function(){dot.setAttribute('r',4.5);});
+      dot.addEventListener('click',function(){location.href='kg-artist.html?id='+cs.id;});
+    });
+  });
+}
+drawChanceScatter();
 </script>
-<footer style="max-width:1100px;margin:46px auto 0;padding:14px 16px;border-top:1px solid var(--line);display:flex;gap:8px 14px;flex-wrap:wrap;align-items:baseline;font-family:var(--mono);font-size:11px;color:var(--ink-faint)"><a href="kg-forces.html" style="color:var(--accent);text-decoration:none;font-weight:600">aha · 艺术史动力学板块</a><span style="color:var(--ink-mute)">力 = 关系 + 语境 + 个体偶发</span><span style="margin-left:auto"><a href="kg-forces.html" style="color:var(--accent);text-decoration:none">板块首页</a> · <a href="kg-dynamics.html" style="color:var(--ink-mute);text-decoration:none">关系</a> · <a href="kg-context.html" style="color:var(--ink-mute);text-decoration:none">语境</a> · <a href="kg-contingency.html" style="color:var(--ink-mute);text-decoration:none">个体</a> · <a href="kg-force-timeline.html" style="color:var(--ink-mute);text-decoration:none">时间线</a> · <a href="kg-tour-forces.html" style="color:var(--ink-mute);text-decoration:none">导览</a> · <a href="museum.html" style="color:var(--ink-mute);text-decoration:none">← aha 总站</a></span></footer>
 <script src="js/aha-chrome.js"></script>
 <script src="js/board-nav.js"></script>
 <script src="js/board-works.js"></script>

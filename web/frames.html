@@ -1,0 +1,147 @@
+<!doctype html><html lang="zh"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 画框 / 装裱系统</title>
+<meta name="description" content="aha 美术馆的装裱系统——一套画框样式库,按每幅画的气质自动匹配,也可手动改。"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="css/aha-frames.css" rel="stylesheet"/>
+<script src="js/frames.js"></script>
+<style>
+  :root{--wall:#ddd4c2;--wall2:#cdc3ad;--ink:#2a2620;--ink-soft:#5c554a;--ink-mute:#8a8170;--mat:#f3eee2;--gold:#b0673a;--line:#cdc3ad;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:radial-gradient(130% 90% at 50% -5%,var(--wall),var(--wall2));background-attachment:fixed;color:var(--ink);font-family:var(--sans);min-height:100vh;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:34px 22px 80px}
+  .top{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+  .home{font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:7px 14px;background:rgba(255,255,255,.4)}
+  .home:hover{border-color:var(--gold);color:var(--gold)}
+  h1{font-family:var(--serif);font-size:30px;font-weight:700;margin:18px 0 6px}
+  .lede{font-size:14px;color:var(--ink-soft);max-width:640px;line-height:1.75;margin-bottom:34px}
+  h2{font-family:var(--serif);font-size:19px;font-weight:600;margin:46px 0 4px;padding-top:22px;border-top:1px solid var(--line)}
+  .sub{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-bottom:20px;letter-spacing:.04em}
+  .lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:26px}
+  .libcard .ph{max-width:200px;margin:0 auto 12px}
+  .libcard h3{font-family:var(--serif);font-size:15px;font-weight:600;text-align:center}
+  .libcard .e{font-style:normal}
+  .libcard p{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);text-align:center;margin-top:3px;line-height:1.6}
+  .libcard .id{display:flex;flex-direction:column;align-items:center;gap:2px;margin-top:7px}
+  .libcard .id b{font-family:var(--mono);font-size:9px;color:var(--gold);letter-spacing:.03em;background:rgba(176,103,58,.08);border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .libcard .id span{font-family:var(--mono);font-size:8.5px;color:var(--ink-mute)}
+  .rules{display:grid;grid-template-columns:1fr;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:rgba(255,255,255,.42)}
+  .rule{display:flex;align-items:center;gap:14px;padding:13px 16px;border-bottom:1px solid var(--line)}
+  .rule:last-child{border-bottom:0}
+  .rule .when{flex:1;font-size:13px}
+  .rule .when b{color:var(--ink)}
+  .rule .arrow{font-family:var(--mono);color:var(--ink-mute);font-size:13px}
+  .rule .then{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;white-space:nowrap}
+  .rule .then .e{font-size:17px}
+  .tryon{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:22px}
+  .tcard .ph{margin-bottom:9px;cursor:pointer}
+  .tcard .nm{font-family:var(--serif);font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}
+  .tcard .fk{font-family:var(--mono);font-size:9.5px;color:var(--gold);text-align:center;margin-top:2px}
+  .tcard .tip{font-family:var(--mono);font-size:9px;color:var(--ink-mute);text-align:center;margin-top:2px}
+  .loading{font-family:var(--mono);font-size:12px;color:var(--ink-mute);padding:30px 0;text-align:center}
+  .note{font-family:var(--mono);font-size:11px;color:var(--ink-mute);line-height:1.7;margin-top:14px;background:rgba(255,255,255,.4);border:1px dashed var(--line);border-radius:12px;padding:14px 16px}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="top"><a class="home" href="museum.html">‹ aha 首页</a><a class="home" href="museum.html"><i data-ic="museum"></i> 美术馆</a></div>
+  <h1>画框 · 装裱系统</h1>
+  <p class="lede">一幅画挂上墙,框是它的呼吸。这里有一套画框样式库——系统会按每幅画的<b>气质(东西方 / 世界观 / 色调)</b>自动给它配一个合适的框,你也可以随时手动换。框是纯 CSS 画的,从缩略图到大图都自适应。</p>
+
+  <h2>① 框样式库</h2>
+  <div class="sub">SEVEN STYLES · 同一幅画,七种装裱</div>
+  <div class="lib" id="lib"><div class="loading">载入样张…</div></div>
+
+  <h2>② 自动匹配规则</h2>
+  <div class="sub">AUTO-MATCH · 按优先级从上到下,命中即止</div>
+  <div class="rules" id="rules"></div>
+  <div class="note">规则吃的是作品已有的真实字段:<b>region</b>(东/西)、<b>wvcn / wv</b>(世界观名)、<b>color</b>(主色 HSV)。信号不足时落到「素木暖框」这个稳妥默认——绝不硬编瞎配。</div>
+
+  <h2>③ 试装</h2>
+  <div class="sub">TRY-ON · 点任意一幅,循环换框看效果(改动只存在你本地)</div>
+  <div class="tryon" id="tryon"><div class="loading">载入馆藏…</div></div>
+  <div class="note">这里的「手动改框」当前存在浏览器本地(localStorage)。下一步:把规范化的框选择落进作品库(catalog),让馆方在后台统一指定、所有访客一致看到。</div>
+</div>
+
+<script>
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function mTitle(t){if(!t)return '无题';t=String(t).replace(/\.(jpe?g|png|webp|gif|tiff?|bmp|jfif)$/i,'').replace(/[_]+/g,' ').trim();return t||'无题';}
+var S=AHAFrames.STYLES;
+
+// ① 样式库:挑一张有代表性的西画样张,逐框展示
+function buildLib(sample){
+  var lib=document.getElementById('lib');lib.innerHTML='';
+  S.forEach(function(s){
+    var el=document.createElement('div');el.className='libcard';
+    el.innerHTML='<div class="ph">'+'<div class="aha-frame f-'+s.key+'"><div class="aha-mat"><img src="'+sample+'"></div></div>'+'</div>'+
+      '<h3><span class="e">'+s.emoji+'</span> '+s.name+'</h3>'+
+      '<p>'+esc(s.desc.split(' · ')[1]||s.desc)+'</p>'+
+      '<div class="id"><b>'+esc(s.sku||('AHA-FRM-'+s.key.toUpperCase()))+'</b><span>id: '+esc(s.key)+'</span></div>';
+    lib.appendChild(el);
+  });
+}
+
+// ② 规则表(与 js/frames.js 的 auto() 同步,人话版)
+var RULES=[
+  {when:'作品来自<b>东方</b>(region 为东亚地名,或画种为 水墨 / 工笔 / 院体 / 册页 / 手卷)', k:'scroll'},
+  {when:'世界观 <b>礼制图式</b>(WV6,庙堂庄严)', k:'gilt'},
+  {when:'世界观 <b>形式建构</b>(WV2,形式 / 当代)', k:'float'},
+  {when:'主色<b>偏白浅淡</b>(像纸本 / 版画 / 素描)', k:'mat'},
+  {when:'主色<b>蓝绿冷调</b>', k:'silver'},
+  {when:'其余 —— <b>稳妥默认</b>', k:'wood'}
+];
+function buildRules(){
+  var box=document.getElementById('rules');box.innerHTML='';
+  RULES.forEach(function(r){
+    var s=AHAFrames.BY[r.k];
+    var el=document.createElement('div');el.className='rule';
+    el.innerHTML='<div class="when">'+r.when+'</div><div class="arrow">→</div>'+
+      '<div class="then"><span class="e">'+s.emoji+'</span>'+s.name+'</div>';
+    box.appendChild(el);
+  });
+}
+
+// ③ 试装:真实馆藏,自动匹配,点击循环换框
+function buildTryon(works){
+  var box=document.getElementById('tryon');box.innerHTML='';
+  works.forEach(function(w){
+    var el=document.createElement('div');el.className='tcard';
+    function paint(){
+      var cur=AHAFrames.pick(w),ax=AHAFrames.autoExplain(w),s=AHAFrames.BY[cur],ov=AHAFrames.getOverride(w.file);
+      var low=(ax.conf==='low'||ax.conf==='none');
+      el.innerHTML='<div class="ph">'+AHAFrames.wrap('<img src="'+w.file+'">',w)+'</div>'+
+        '<div class="nm">'+esc(mTitle(w.title))+'</div>'+
+        '<div class="fk">'+s.emoji+' '+s.name+(ov?' (手动)':'')+'</div>'+
+        '<div class="tip">点击换框 · 自动='+AHAFrames.BY[ax.key].name+(low?' ⚠️待定':'')+'</div>';
+      el.querySelector('.ph').onclick=function(){
+        var i=S.findIndex(function(x){return x.key===cur;});
+        var nk=S[(i+1)%S.length].key;
+        AHAFrames.setOverride(w.file, nk===auto?'':nk);
+        paint();
+      };
+    }
+    paint();box.appendChild(el);
+  });
+}
+
+// 载入框样式目录(DB) + 真实作品;样张用第一幅西画
+Promise.all([
+  AHAFrames.loadStyles(),
+  fetch('/cat/exhibit?limit=400').then(r=>r.json()).catch(()=>fetch('data/gallery_works.json').then(r=>r.json()))
+]).then(function(res){ var d=res[1];
+   var W=(d.works||[]).filter(function(w){return w.file;});
+   var west=W.filter(function(w){return !AHAFrames.isEast(w);});
+   var east=W.filter(function(w){return AHAFrames.isEast(w);});
+   var sample=(west[0]||W[0]||{}).file;
+   buildLib(sample); buildRules();
+   // 试装取一批多样的:东方若干 + 西方若干,按 auto 去重铺开
+   function spread(arr,n){var seen={},out=[];for(var i=0;i<arr.length&&out.length<n;i++){var k=AHAFrames.auto(arr[i]);if((seen[k]||0)<3){seen[k]=(seen[k]||0)+1;out.push(arr[i]);}}return out;}
+   var pick=spread(east,6).concat(spread(west,18)).slice(0,18);
+   if(!pick.length)pick=W.slice(0,12);
+   buildTryon(pick);
+ }).catch(function(e){
+   document.getElementById('lib').innerHTML='<div class="loading">需服务器加载:'+e+'</div>';
+   document.getElementById('tryon').innerHTML='';buildRules();
+ });
+</script>
+<script src="js/aha-icons.js"></script>
+</body></html>

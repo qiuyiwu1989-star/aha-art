@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>展览馆 · aha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/aha-kit.css">
+<style>
+  .page{max-width:1180px}
+  .exhead{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--s4);flex-wrap:wrap;margin-bottom:var(--s5)}
+  .exgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(244px,1fr));gap:var(--s5)}
+  .excard{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);
+    border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-1);transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+  .excard:hover{transform:translateY(-3px);box-shadow:var(--sh-card)}
+  .excover{aspect-ratio:4/3;background:var(--paper-2) center/cover no-repeat;position:relative}
+  .exbadge{position:absolute;top:var(--s2);left:var(--s2);font-family:var(--mono);font-size:var(--fz-label);
+    background:var(--glass);backdrop-filter:blur(3px);border:1px solid var(--glass-line);color:var(--ink-soft);
+    padding:2px 9px;border-radius:var(--r-pill)}
+  .exbadge.gold{color:var(--accent)}
+  .exbody{padding:var(--s3) var(--s4) var(--s4)}
+  .extitle{font-family:var(--serif);font-size:var(--fz-h3);font-weight:600;line-height:1.3;margin-bottom:4px}
+  .exthesis{font-size:var(--fz-small);color:var(--ink-soft);line-height:1.55;margin-bottom:var(--s2);
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .exmeta{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute)}
+  .exmeta .sp{color:var(--accent)}
+  .seclab{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute);letter-spacing:.06em;
+    margin:var(--s6) 0 var(--s3);text-transform:uppercase}
+</style></head>
+<body>
+<div class="page">
+  <div class="pagehead">
+    <a class="back" href="museum.html">← 人类美术馆</a>
+    <div class="kicker">Exhibitions · 展览馆</div>
+    <h1>所有展览</h1>
+    <p class="sub">每一个展 ＝ 一句主张 ＋ 一条动线脊 ＋ 一组画。这里收齐<b>馆方官方展</b>与<b>逛客策的展</b>;点进去,沿脊读一遍。<a href="curate.html" style="color:var(--accent)">＋ 自己策一个 →</a></p>
+    <div class="meta" id="count">加载中…</div>
+  </div>
+  <div id="body"><div class="loading">加载中</div></div>
+</div>
+
+<script>
+const CAT=p=>fetch('/cat/'+p).then(r=>r.json());
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function imgT(f,px){if(!f)return '';px=px||520;return /myqcloud\.com/i.test(f)&&!/imageMogr2/.test(f)?f+'?imageMogr2/thumbnail/'+px+'x/format/webp/quality/82':f;}
+const SPN={time:'时间轴',emotion:'情绪弧',eastwest:'东西对照',subject:'母题聚类',style:'风格聚类',free:'自由编排'};
+// 规则展(无 work_ids):按规则从全馆算出命中集,供封面/计数
+function ruleToPick(r){if(!r)return ()=>false;return w=>(!r.emo||!r.emo.length||r.emo.includes(w.emo))&&(!r.wv||!r.wv.length||r.wv.includes(w.wv))&&(!r.region||w.region===r.region);}
+
+function isCurated(s){return (s.work_ids&&s.work_ids.length)||(s.rule&&s.rule.spine);}
+function card(o){
+  const a=document.createElement('a');a.className='excard';a.href=o.href;
+  a.innerHTML=`<div class="excover" style="${o.cover?`background-image:url('${imgT(o.cover,520)}')`:''}">
+      <span class="exbadge${o.gold?' gold':''}">${esc(o.badge)}</span></div>
+    <div class="exbody"><div class="extitle">${esc(o.title||'无题之展')}</div>
+      ${o.thesis?`<div class="exthesis">${esc(o.thesis)}</div>`:''}
+      <div class="exmeta">${o.count} 幅${o.spine?` · <span class="sp">脊:${esc(o.spine)}</span>`:''}</div></div>`;
+  return a;}
+
+Promise.all([
+  fetch('/api/specials').then(r=>r.json()).catch(()=>({items:[]})),
+  fetch('/api/exhibitions').then(r=>r.json()).catch(()=>({items:[]})),
+  CAT('exhibit?limit=8000').catch(()=>({works:[]}))
+]).then(([sp,pe,cat])=>{
+  const WORKS=(cat.works||[]).filter(w=>w.file);
+  const specials=(sp.items||[]);
+  const personal=(pe.items||[]);
+
+  // 官方展
+  const official=specials.map(s=>{
+    const r=s.rule||{};
+    if(isCurated(s)){const files=s.work_ids||[];
+      return {href:'curate.html?ex='+encodeURIComponent(s.id),badge:'官方 · 策展',gold:true,
+        title:s.title,thesis:r.thesis||s.note,cover:r.cover||files[0],count:files.length,
+        spine:r.spineLabel||SPN[r.spine]||'',_seq:s.seq||0,_curated:true};}
+    // 规则展:算命中集
+    let ws=WORKS.filter(ruleToPick(r));if(r.limit)ws=ws.slice(0,r.limit);
+    return {href:'museum.html#hall=sp:'+encodeURIComponent(s.id)+'&form=salon',badge:'主题展 · 自动',gold:false,
+      title:s.title,thesis:s.note,cover:(ws[0]||{}).file,count:ws.length,spine:'',_seq:s.seq||0,_curated:false};
+  });
+  // 用户公开展(都是手策)
+  const ugc=personal.map(e=>{const r=e.rule||{};const files=e.work_ids||[];
+    return {href:'curate.html?ex='+encodeURIComponent(e.id),badge:'逛客 · 策展',gold:false,
+      title:e.title,thesis:r.thesis||e.note,cover:r.cover||files[0],count:files.length,
+      spine:r.spineLabel||SPN[r.spine]||'',_curated:true};});
+
+  const curated=official.filter(x=>x._curated).sort((a,b)=>a._seq-b._seq).concat(ugc);
+  const themed=official.filter(x=>!x._curated).sort((a,b)=>a._seq-b._seq);
+
+  $('#count').textContent=`${curated.length} 个策展 · ${themed.length} 个主题展厅`;
+  const B=$('#body');B.innerHTML='';
+  if(!curated.length&&!themed.length){B.innerHTML='<div class="empty">还没有展览——<a href="curate.html" style="color:var(--accent)">去策第一个</a></div>';return;}
+  if(curated.length){const h=document.createElement('div');h.className='seclab';h.textContent='策展 · 有主张与动线';B.appendChild(h);
+    const g=document.createElement('div');g.className='exgrid';curated.forEach(o=>g.appendChild(card(o)));B.appendChild(g);}
+  if(themed.length){const h=document.createElement('div');h.className='seclab';h.textContent='主题展厅 · 按图谱切片自动汇集,新画自动进';B.appendChild(h);
+    const g=document.createElement('div');g.className='exgrid';themed.forEach(o=>g.appendChild(card(o)));B.appendChild(g);}
+}).catch(()=>{$('#body').innerHTML='<div class="empty">加载失败,请刷新</div>';});
+</script>
+<script src="js/aha-chrome.js"></script>
+</body></html>

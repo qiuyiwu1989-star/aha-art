@@ -15,15 +15,24 @@
   /* 表面层级:纸 → 凹陷 → 卡片(暖白,不用纯白以免刺眼) */
   --paper:#f4f1ea; --paper-2:#ece7db; --card:#fffdf8;
   --line:#ddd5c6; --line-soft:#e8e1d4;
+  --mat-dark:#15110b;  /* 深色画台:图先到时给图片衬底(gallery/对决舞台) */
 
   /* 文字四阶 */
   --ink:#1d1b18; --ink-soft:#4b463e; --ink-mute:#857d6f; --ink-faint:#a89f8f;
 
   /* 主色(赭石)+ 数据三色 */
-  --accent:#b0673a; --accent-soft:#f0e4d8; --accent-line:#e5d3c2;
+  --accent:#b0673a; --accent-deep:#9a5530; --accent-soft:#f0e4d8; --accent-line:#e5d3c2;
   --green:#5a7d6f; --green-soft:#e4ede9;
   --blue:#5b7596;  --blue-soft:#e3e9f0;
   --gold:#c98a1a;  --gold-soft:#f3e7cb;
+
+  /* 「艺术史的动力学」板块 · 八种关系力分类色(类别>4,单独成组;仅本板块用) */
+  --reb:#c0492f; --rev:#5a7d6f; --cro:#5b7596; --syn:#b8893a;
+  --psh:#8a5fa3; --hom:#3f8f8a; --riv:#a8567f; --she:#8a6d4f;
+  /* 语境层 6 道场 */
+  --tech:#b8893a; --inst:#5b7596; --soc:#c0492f; --sci:#3f8f8a; --rel:#8a5fa3; --geo:#5a7d6f;
+  /* 个体/偶发 */
+  --mis:#5b7596; --sing:#b0673a; --chance:#8a7d6f; --foil:#c0492f; --model:#5a7d6f; --y:#a8567f;
 
   /* 语义状态 */
   --ok:#3a8a5a; --warn:#c2792e; --rej:#b5483a; --mute:#9a9a9a;

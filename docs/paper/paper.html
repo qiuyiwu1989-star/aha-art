@@ -1,0 +1,195 @@
+<!doctype html><html lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finding the Aha, Not the Nearest · aha 论文</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- 字体非阻塞加载:Google Fonts 在国内被墙/慢时,页面先用系统衬线/无衬线字体秒开,字体到了再替换 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap"></noscript>
+<style>
+:root{--paper:#f4f1ea;--paper2:#ece7db;--card:#fffdf8;--ink:#1d1b18;--soft:#4b463e;--mute:#857d6f;--faint:#a89f8f;--line:#ddd5c6;--acc:#b0673a;--accs:#f0e4d8;--green:#5a7d6f;--gold:#c98a1a;--blue:#5b7596;--serif:"Noto Serif SC",serif;--latin:"Crimson Pro","Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:740px;margin:0 auto;padding:54px 22px 120px}
+/* 语言切换 */
+.langbar{position:fixed;top:14px;right:16px;z-index:20;display:flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px;box-shadow:0 6px 22px -12px rgba(40,30,15,.5)}
+.langbar button{font-family:var(--mono);font-size:12px;color:var(--mute);background:none;border:none;border-radius:999px;padding:6px 14px;cursor:pointer}
+.langbar button.on{background:var(--acc);color:#fff}
+.back{position:fixed;top:16px;left:18px;z-index:20;font-family:var(--mono);font-size:12px;color:var(--acc);text-decoration:none}
+/* 语言显隐:只隐藏「非当前语言」,当前语言保持天然 display —— 防弹写法,老浏览器也不会白屏 */
+body.zh .en{display:none}
+body.en .zh{display:none}
+body.en{font-family:var(--latin)} body.en .meta,body.en .tag,body.en code,body.en .mono{font-family:var(--mono)}
+/* 标题区 */
+.venue{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);text-align:center}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(23px,4.6vw,34px);line-height:1.2;text-align:center;margin:10px 0 4px}
+body.en h1{font-family:var(--latin)}
+.sub-en{text-align:center;font-family:var(--latin);font-style:italic;color:var(--soft);font-size:15px;margin-bottom:6px}
+.authors{text-align:center;font-size:13px;color:var(--mute);font-family:var(--mono);margin-top:6px}
+.rule{height:1px;background:var(--line);margin:26px 0}
+/* 摘要 */
+.abs{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:24px 0}
+.abs .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:8px}
+.abs p{font-size:14px;line-height:1.78}
+/* 章节 */
+h2{font-family:var(--serif);font-weight:600;font-size:20px;margin:38px 0 10px;color:var(--ink)}
+body.en h2{font-family:var(--latin)}
+h2 .n{color:var(--acc);font-family:var(--mono);font-size:15px;margin-right:8px}
+h3{font-family:var(--serif);font-weight:600;font-size:15.5px;margin:20px 0 6px;color:var(--soft)}
+body.en h3{font-family:var(--latin)}
+p{margin:10px 0;font-size:14.5px}
+b{font-weight:600}
+.lead{color:var(--soft)}
+em{font-style:italic}
+code,.mono{font-family:var(--mono);font-size:12.5px;background:var(--paper2);padding:1px 5px;border-radius:4px;color:var(--soft)}
+.formula{font-family:var(--mono);font-size:12.5px;background:var(--paper2);border-radius:8px;padding:10px 13px;margin:10px 0;color:var(--soft);overflow-x:auto}
+ul,ol{margin:10px 0 10px 4px;padding-left:18px}li{margin:6px 0;font-size:14.5px}
+.fill{background:#fcefd8;border:1px dashed var(--gold);border-radius:6px;padding:1px 7px;font-size:12.5px;color:#8a5d12;font-family:var(--mono)}
+/* 图 */
+figure{margin:24px 0;text-align:center}
+figure img{width:100%;border:1px solid var(--line);border-radius:10px;background:#fff}
+figcaption{font-size:12.5px;color:var(--mute);margin-top:8px;line-height:1.6;text-align:left}
+figcaption b{color:var(--soft)}
+/* 表 */
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px;margin:14px 0}
+.tbl th,.tbl td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line)}
+.tbl th{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--faint)}
+.tbl td.n{font-family:var(--mono);text-align:right}
+.tbl tr.hi td{background:var(--accs)}
+.cap{font-size:12px;color:var(--mute);margin:6px 0 2px;font-style:italic}
+.refs p{font-size:12.5px;color:var(--soft);margin:5px 0;padding-left:18px;text-indent:-18px}
+.foot{margin-top:40px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px}
+</style></head>
+<body class="zh">
+<a class="back" href="../me.html">← aha</a>
+<div class="langbar"><button id="bZh" class="on" onclick="setLang('zh')">中文</button><button id="bEn" onclick="setLang('en')">EN</button></div>
+<div class="wrap">
+
+<div class="venue">ACM IUI 2027 · Working Draft v1</div>
+<h1><span class="zh">找到「原来如此」,而非最像你的</span><span class="en">Finding the <em>Aha</em>, Not the Nearest</span></h1>
+<div class="sub-en"><span class="zh">A Shared, Interpretable Aesthetic Manifold for Human–Artwork Recommendation</span><span class="en">A Shared, Interpretable Aesthetic Manifold for Human–Artwork Recommendation</span></div>
+<div class="authors"><span class="zh">作者待定 · 双盲评审投稿版需匿名</span><span class="en">Authors TBD · anonymized for double-blind review</span></div>
+
+<div class="abs">
+<div class="k zh">摘要</div><div class="k en">Abstract</div>
+<p class="zh">审美推荐通常被当作"找最相似"的问题,但真正在一幅画前打动你的,往往不是<em>最像</em>你口味的那幅,而是带来<b>「原来如此」</b>的那幅——新得足以惊喜,又稳得能被接住。我们提出 <b>aha</b>:一个美术馆级系统,把<b>作品与用户嵌进同一张可解释的 12 维审美流形</b>(世界观 2 维、绘画语言 7 维、情绪 VAD 3 维)。8000+ 幅画由视觉语言模型(VLM)沿这些轴定位,每个用户由其行为嵌入<em>同一</em>空间,使人与大师可直接算余弦距离。推荐用一个<b>「熟悉↔惊喜」可调</b>的混合:相似度项 + 倒 U「惊奇带」项(承自 Berlyne);四种交互模态(看展、相框电台、语音心愿、生成)经<b>三层时间尺度</b>(此刻心情、近来意图、长期身份)整合,使<em>陈述偏好</em>永不覆盖<em>揭示偏好</em>。我们还给出一套<b>可证伪的离线评估</b>与一个诚实的发现:标准的"下一次点击"准确率会<b>系统性地惩罚 serendipity</b>,且用户天生分"口味一致"与"爱探索"两类、需要相反策略——这促使我们用<b>成熟度门控的诚实度</b>与<b>用户可控旋钮</b>,而非赌一个全局模型。<span class="fill">FILL:用户研究主结论一句</span> 我们开源评估台与知识图谱切片。</p>
+<p class="en">Aesthetic recommendation is usually framed as similarity matching, yet what delights a viewer before a painting is rarely the <em>most similar</em> work but the one that produces an <em>aha</em> — novel enough to surprise, anchored enough to be understood. We present <b>aha</b>, a museum-scale system that embeds <b>both artworks and users in a single, interpretable 12-dimensional aesthetic manifold</b> spanning worldview (2D), pictorial language (7D), and affect (valence–arousal–dominance, 3D). Over 8,000 paintings are positioned by a vision–language model; each user is embedded in the <em>same</em> space from behaviour, making people and masters directly cosine-comparable. Recommendation combines an inverted-U "surprise-band" term (after Berlyne) with a similarity term under a user-tunable <b>familiar↔surprise</b> control, and integrates four modalities — browsing, an ambient "radio" frame, spoken wishes, and generation — across <b>three time scales</b> (momentary mood, recent intent, long-term identity), so that <em>stated</em> preferences never overwrite <em>revealed</em> ones. We contribute a <b>falsifiable offline harness</b> and an honest finding: next-item accuracy <b>systematically penalizes the very serendipity the system optimizes for</b>, and users split into "consistent" and "exploratory" types demanding opposite strategies — motivating maturity-gated confidence and explicit user control over a single global model. <span class="fill">FILL: user-study headline.</span> We release the harness and a slice of the knowledge graph.</p>
+</div>
+
+<h2><span class="n">1</span><span class="zh">引言</span><span class="en">Introduction</span></h2>
+<p class="zh">站在一幅打动你的画前,问"为什么"。答案很少是"因为它最像我已经喜欢的"。更多时候,是一记小小的认出——<em>"哦,原来还能这样"</em>——一幅新得足以惊喜、又稳得能被理解的作品。实验美学给这个形状起了名字:Berlyne 的倒 U——偏好在<em>中等</em>新异处达到峰值,而非最大熟悉处。然而大多数艺术/审美推荐都在优化相似度,从而把让看画值得的那种体验<em>优化掉了</em>。</p>
+<p class="zh">我们主张审美推荐需要三样它通常缺失的东西:(i) 一种<b>人与作品共处同一可解释空间</b>的表示,使"什么适合你"成为几何陈述而非黑箱分数;(ii) 一种能刻意瞄准<b>惊奇带</b>——近得能懂、远得够新——而非最近邻的打分;(iii) 对一个事实的诚实面对:<b>我们惯用的指标根本看不见 serendipity。</b></p>
+<p class="zh">本文介绍 <b>aha</b>(已部署,<code>aha.yishujia.art</code>),围绕这三点构建。贡献:<b>(1)</b> 人画共享、可解释的审美流形(§3);<b>(2)</b> 熟悉↔惊喜混合 + 多模态信号经三层时间尺度整合(§4–5);<b>(3)</b> 一套诚实评估(§6),报告一个"负但有启发"的结果。我们<b>刻意不</b>声称在准确率基准上击败基线——在当前规模这站不住脚,且我们将论证它部分地不是重点。</p>
+<p class="en">Stand before a painting that moves you, and ask why. The answer is rarely <em>"because it is most similar to what I already like."</em> More often it is a small jolt of recognition — <em>"oh, so this is possible too"</em> — a work novel enough to surprise yet anchored enough to be grasped. Experimental aesthetics names this shape: Berlyne's inverted-U, where preference peaks at <em>intermediate</em> novelty rather than maximal familiarity. Yet most art recommenders optimize similarity, and thereby optimize <em>away</em> the very experience that makes looking at art worthwhile.</p>
+<p class="en">We argue aesthetic recommendation needs three things it usually lacks: (i) a representation in which <b>people and artworks live in the same interpretable space</b>, so that "what fits you" is geometric rather than opaque; (ii) a scoring rule that can deliberately target the <b>surprise band</b> — close enough to understand, far enough to be new — rather than the nearest neighbour; and (iii) an honest reckoning that <b>the metrics we usually optimize cannot see serendipity at all.</b></p>
+<p class="en">This paper presents <b>aha</b> (deployed, <code>aha.yishujia.art</code>). Contributions: <b>(1)</b> a shared, interpretable aesthetic manifold (§3); <b>(2)</b> a familiar↔surprise recommender with multi-modal signals over three time scales (§4–5); <b>(3)</b> an honest evaluation (§6) reporting a negative-but-instructive result. We deliberately <b>do not</b> claim to beat baselines on accuracy; at our scale that would be unsupportable and, we argue, partly beside the point.</p>
+
+<h2><span class="n">2</span><span class="zh">相关工作</span><span class="en">Related Work</span></h2>
+<p class="zh"><b>视觉艺术推荐(最近的同行)。</b> 最接近的工作是 Yilma 与 Leiva:他们从文本/视觉特征及其融合中学习绘画的<em>潜在(latent)</em>语义表示做个性化推荐 [Yilma &amp; Leiva 2023],并把视觉艺术推荐系统(VA RecSys)推到疗愈、情绪导向场景——推荐艺术以缓解重症监护后综合征(PICS),用专家策展对照、150 人用户研究验证 [Yilma 等 2024]。我们在三处不同:<b>(i) 可解释 vs 潜在</b>:不用潜在嵌入,而用显式、轴对齐的审美坐标(世界观/语言/情绪),距离、分区与推荐本身都可读;<b>(ii) 人画共享空间</b>:把用户嵌进与作品、大师质心<em>同一</em>空间,得到可算余弦的"本命画家"与 48 原型,而非仅物品嵌入;<b>(iii) serendipity 优先于相关性</b>:以倒 U 惊奇为核心,并诚实剖析为何准确率指标惩罚它。他们以情绪/疗愈为旨的框架,正<em>启发</em>了我们的情绪(VAD)层与低唤起"安静"频道;他们的大规模用户研究也是我们(较小,§6.5)研究正视的标杆。</p>
+<p class="zh"><b>艺术知识图谱与语境视觉特征。</b> Castellano 等构建 <em>ArtGraph</em>(基于 WikiArt 与 DBpedia),把 KG 嵌入注入深度模型以提升细粒度艺术<b>属性分类</b> [Castellano 等 2021, 2022]。我们同样融合结构化知识与读图,但指向<b>共享审美流形内的推荐</b>而非分类:图谱的几何<em>本身</em>就是推荐空间,用户居于其中。</p>
+<p class="zh"><b>文化遗产多模态知识图谱。</b> 一条日盛的线为遗产管理/检索/问答构建多模态 KG [Huang 等 2023],含中国艺术资源:<b>WuMKG</b>——含领域本体、印章/题材抽取与跨模态检索/问答的中国书画多模态 KG [Wan 等 2024],以及面向非遗的 CICHMKG [2023]。我们的图谱同享中国艺术域(如倪瓒、八大山人)与多模态,但建于<b>审美本体</b>(世界观/语言/情绪轴),用于<b>把用户嵌入图谱的个性化、serendipitous 推荐</b>,而非编目、检索或问答。这也让我们系统的"资源版"天然适配 <em>Heritage Science</em> 这类期刊。</p>
+<p class="zh"><b>计算美学、艺术情绪、serendipity、冷启动。</b> 不同于预测图像审美<em>质量</em> [Datta 2006] 或学习风格嵌入 [Karayev 等 2014],我们建人画共享、可解释的坐标系;艺术的<em>情绪</em>响应有专门资源(如 ArtEmis 的 45.5 万条艺术情绪标注 [Achlioptas 等 2021]),启发我们的 VAD 层。超越准确率的目标长期被认为更影响满意度 [McNee 2006; Kotkov 2016],而 serendipity 的度量尤难 [Ge 等 2010],通常需用户判断。Berlyne 倒 U [1971] 为惊奇带奠基,我们加证据:留一法准确率与它<em>反相关</em>。最后,推荐须调和用户<em>陈述</em>(显式)与<em>揭示</em>(隐式行为 [Hu 等 2008])偏好、并熬过冷启动 [Schein 等 2002];我们用三层时间尺度分开二者、按成熟度门控置信,把不确定性<em>呈现给用户</em>而非隐藏。</p>
+<p class="en"><b>Visual art recommendation (closest prior work).</b> Yilma and Leiva learn <em>latent</em> semantic representations of paintings from textual and visual features and their fusion for personalised recommendation [Yilma &amp; Leiva 2023], and extend visual-art recommender systems to therapeutic, affect-oriented settings — recommending art to mitigate post-intensive-care syndrome (PICS), validated against expert curation in a 150-participant study [Yilma et al. 2024]. We differ on three axes: <b>(i) interpretable vs. latent</b> — an explicit, axis-aligned aesthetic coordinate system (worldview/language/affect) makes distances, regions, and recommendations legible; <b>(ii) a shared user–artwork space</b> — users are embedded with artworks and master centroids, yielding cosine-comparable "soulmate" artists and 48 archetypes, not only item embeddings; <b>(iii) serendipity over relevance</b> — we centre an inverted-U surprise objective and analyse why accuracy metrics penalize it. Their affect/wellbeing framing <em>motivates</em> our affective (VAD) layer and low-arousal "calm" channel; their large user studies set a bar our (smaller, §6.5) study acknowledges.</p>
+<p class="en"><b>Art knowledge graphs &amp; contextual visual features.</b> Castellano et al. build <em>ArtGraph</em> (WikiArt + DBpedia) and inject KG embeddings into deep models to improve fine-art <b>attribute classification</b> [Castellano et al. 2021, 2022]. We also fuse structured knowledge with visual reading, but toward <b>recommendation inside a shared aesthetic manifold</b>: the graph's geometry <em>is</em> the recommendation space, and users inhabit it.</p>
+<p class="en"><b>Cultural-heritage multimodal knowledge graphs.</b> A growing line builds multimodal KGs for heritage management, retrieval, and QA [Huang et al. 2023], including Chinese-art resources: <b>WuMKG</b>, a Chinese painting-and-calligraphy multimodal KG with a domain ontology, seal/subject extraction, and cross-modal retrieval/QA [Wan et al. 2024], and CICHMKG for intangible heritage [2023]. Ours shares the Chinese-art domain (e.g., Ni Zan, Bada Shanren) and multimodality, but rests on an <b>aesthetic</b> ontology (worldview/language/affect) for <b>personalised, serendipitous recommendation with users embedded in the graph</b>, not bibliographic organisation or QA — positioning a resource-framed version for venues such as <em>Heritage Science</em>.</p>
+<p class="en"><b>Computational aesthetics, art-emotion, serendipity, cold-start.</b> Beyond predicting aesthetic <em>quality</em> [Datta 2006] or learning style embeddings [Karayev et al. 2014], we build an interpretable system shared by artworks and people; the <em>affective</em> response to art has dedicated resources (e.g., ArtEmis's 455K emotion attributions [Achlioptas et al. 2021]) motivating our VAD layer. Beyond-accuracy objectives have long mattered for satisfaction [McNee 2006; Kotkov 2016], and serendipity is especially hard to measure [Ge et al. 2010], usually needing user judgement. Berlyne's inverted-U [1971] grounds our band; we add evidence that LOO accuracy is <em>anti-correlated</em> with it. Finally, recommenders must reconcile <em>stated</em> (explicit) and <em>revealed</em> (implicit-feedback [Hu et al. 2008]) preferences and survive cold-start [Schein et al. 2002]; we separate these into time scales and gate confidence by maturity.</p>
+
+<h2><span class="n">3</span><span class="zh">共享审美流形</span><span class="en">A Shared Aesthetic Manifold</span></h2>
+<h3><span class="zh">3.1 三个可观测层(12 维)</span><span class="en">3.1 Three observable layers (12-D)</span></h3>
+<p class="zh">每幅画与每个用户都是 12 维流形上的一点,由三个有心理学与艺术史依据的层构成:<b>世界观(2 维)</b>——"再现→表现"轴(x:忠实摹写→主观/抽象)正交于"结构→感知"轴(y:秩序/几何→气氛/光色/瞬间);<b>绘画语言(7 维)</b>——构图、空间、造型、光影、色彩、笔触、边缘,各为 0–1;<b>情绪(3 维)</b>——愉悦、唤起、控制(VAD)。两条世界观轴是其它层投影其上的"挂载点";我们持"<b>风格是这些层的投影</b>"这一本体立场。</p>
+<p class="en">Every artwork and user is a point in a 12-D manifold of three motivated layers: <b>worldview (2D)</b> — a <em>representation→expression</em> axis orthogonal to a <em>structure→sensation</em> axis; <b>pictorial language (7D)</b> — composition, space, form, light, colour, brushwork, edge, each 0–1; <b>affect (3D)</b> — valence, arousal, dominance. The worldview axes are a low-dimensional "mounting point" onto which other layers project; we take the stance that <em>style is a projection</em> of these layers.</p>
+<h3><span class="zh">3.2 作品:VLM 大规模标注</span><span class="en">3.2 Artworks: VLM extraction at scale</span></h3>
+<p class="zh">一个视觉语言模型(MiMo)读每幅画并沿上述层打分,以锚定范例校准(如照相写实 ≈ 0.10 的再现轴;睡莲式弥漫光 ≈ 0.93 的感知轴)。8106 幅"入选"作品的覆盖率:世界观 89%、情绪(VAD)~100%、绘画语言 ~100%。<span class="fill">FILL:VLM 轴与人工标注子集的一致性/相关</span></p>
+<p class="en">A VLM (MiMo) reads each painting and scores the layers, calibrated against anchored exemplars (photorealism ≈ 0.10 on representation; diffuse <em>Water-Lilies</em> light ≈ 0.93 on sensation). Across 8,106 curated works: worldview 89%, affect ~100%, pictorial language ~100% coverage. <span class="fill">FILL: VLM–human agreement on a held-out subset.</span></p>
+<h3><span class="zh">3.3 用户:同一空间,源自行为</span><span class="en">3.3 Users: same space, from behaviour</span></h3>
+<p class="zh">用户质心 <b>μ</b> 是其参与作品向量的掩码加权均值(权重:心动/收藏 = 3,停留/生成 = 2,打开 = 1,浏览 = 0.3,跳过 = −1)。掩码让只部分向量化的作品仍能在其拥有的维度上贡献。因为 μ 与作品、大师质心同处 12 维,"契合"就是距离,"<b>本命画家</b>"就是最近的大师(图 1)。</p>
+<p class="en">A user centroid <b>μ</b> is the masked, weighted mean of engaged-work vectors (like/collect = 3, dwell/generate = 2, open = 1, view = 0.3, skip = −1). Masking lets partially-vectorized works still contribute. As μ shares the 12-D space with artworks and master centroids, "fit" is a distance and the <em>soulmate artist</em> is the nearest master (Fig. 1).</p>
+<h3><span class="zh">3.4 距离、原型、"风格是投影"</span><span class="en">3.4 Distance, archetypes</span></h3>
+<p class="zh">用子空间加权距离 <code>dKG = 0.5·dWV + 0.3·dLang + 0.2·dAff</code>(各子空间归一到 [0,1])。6 个世界观区 × 8 个二元亚型 = <b>48 种审美原型</b>,是连续空间上一层易读的"审美 MBTI"。</p>
+<p class="en">We use <code>dKG = 0.5·dWV + 0.3·dLang + 0.2·dAff</code> (each subspace in [0,1]). Six worldview regions × eight binary sub-types = <b>48 aesthetic archetypes</b>, a legible "MBTI-for-taste" over a continuous space.</p>
+<figure><img src="figures/fig1_manifold.svg" loading="lazy" decoding="async" alt="manifold">
+<figcaption><b>图 1 / Fig. 1.</b> <span class="zh">共享审美流形(世界观平面):1600 幅真迹(淡点)、6 个世界观区、6 位大师质心、一个用户 μ(★)。人与大师落在同一张图上。</span><span class="en">Shared aesthetic manifold (worldview plane): 1,600 sampled works, six region centres, six master centroids, one user μ (★). People and masters inhabit the same manifold.</span></figcaption></figure>
+
+<h2><span class="n">4</span><span class="zh">推荐 = 熟悉 ↔ 惊喜</span><span class="en">Recommendation as Familiar ↔ Surprise</span></h2>
+<h3><span class="zh">4.1 倒 U 惊奇带</span><span class="en">4.1 The inverted-U surprise band</span></h3>
+<p class="zh">惊喜项 <code>aha(d) = exp(−(d−d*)²/2σ²)</code>,σ = 0.20,峰在距离 <b>d*</b>——用户个人的"惊奇带",<b>自学习</b>为接受作品到 μ 的平均跳跃距离(clamp 到 [0.15, 0.6]);数据足的用户 d* ≈ 0.19–0.23。太近(已知)与太远(接不住)都低分,"刚好新"最高。图 2 给出曲线 + 某真实用户 Top24 推荐的实际距离分布(0.158–0.206),它们簇在 d* 上、而非最近邻。</p>
+<p class="en">The surprise term is <code>aha(d) = exp(−(d−d*)²/2σ²)</code>, σ = 0.20, peaking at <b>d\*</b> — the personal surprise band, <b>self-learned</b> as the mean accepted-jump distance (clamped to [0.15, 0.6]); for data-rich users d* ≈ 0.19–0.23. Fig. 2 shows the curve with a real user's top-24 distances (0.158–0.206) clustering on d\*, not at the nearest neighbour.</p>
+<h3><span class="zh">4.2 可调的熟悉–惊喜混合</span><span class="en">4.2 A tunable familiar–surprise blend</span></h3>
+<p class="zh">关键(由 §6 促成):生产打分<b>不是</b>纯倒 U。我们混入相似度项:</p>
+<div class="formula">rel = (1 − ex)·sim + ex·aha ,  sim = 1 − d ,  score = rel + w_calm·calm + w_qual·qual</div>
+<p class="zh"><b>探索度 ex</b> 就是面向用户的"熟悉↔惊喜"滑块;默认随数据成熟度走 <code>ex = clamp(0.25 + 0.45·maturity, 0.2, 0.7)</code>(冷启动偏熟悉/相似——低数据下唯一打过随机的内容信号;成熟后才偏惊喜)。表 2 证明可控:ex = 0.2 → 推荐距离中位 0.112(贴近 μ),ex = 0.85 → 0.184(落在带上)。</p>
+<p class="en">Crucially (motivated by §6), production scoring is <b>not</b> pure inverted-U; we mix in similarity (formula above). The <b>explore weight ex</b> is the user-facing <em>familiar↔surprise</em> slider; its default tracks maturity, <code>ex = clamp(0.25 + 0.45·maturity, 0.2, 0.7)</code> (cold start leans familiar — the only content signal beating random at low data). Table 2: ex = 0.2 → median distance 0.112; ex = 0.85 → 0.184.</p>
+<h3><span class="zh">4.3 来自语音心愿的近来意图</span><span class="en">4.3 Recent intent from spoken wishes</span></h3>
+<p class="zh">一句心愿("想看安静点的""别太安静,来点有力的")由 ASR 转写、再由 <b>LLM 解析</b>成目标(门派、愉悦、唤起),<b>能处理否定</b>(关键词法会答反)。近期心愿(45 天窗、7 天半衰期)推动锚点:<code>μ_eff = clamp(μ + γ·conf·(target − μ))</code>,只动被提到的维度(γ = 0.6),<b>绝不改长期身份 μ</b>。</p>
+<p class="en">A spoken wish is transcribed by ASR and parsed by an <b>LLM</b> into a target (region, valence, arousal), <b>handling negation</b> that keyword matching reverses. Recent wishes (45-day window, 7-day half-life) shift the anchor: <code>μ_eff = clamp(μ + γ·conf·(target − μ))</code> on mentioned dimensions only (γ = 0.6), <b>never altering identity μ</b>.</p>
+
+<h2><span class="n">5</span><span class="zh">多模态信号 × 三层时间尺度</span><span class="en">Multi-Modal Signals × Three Time Scales</span></h2>
+<p class="zh">图 3 概括架构。四种"逛法"在三张信号表里留下不同痕迹,喂给三层时间尺度:<b>看展</b>(打开/停留/心动/收藏/跳过;序幕二选一里<em>没选的</em>是弱负)→ <code>mu_event</code>;<b>相框电台</b>——被动轮播,<em>展示 ≠ 观看</em>:放着没互动只算一次弱"曝光",其抑制<b>随时间自愈</b>(衰减 τ = 3 天),像电台慢慢摸清听者;<b>语音心愿</b> → <code>mu_wish</code>;<b>生成</b> → <code>mu_generation</code>。它们汇成 <b>(i) 此刻心情</b>(≤30 分钟→相框)、<b>(ii) 近来意图</b>(7 天半衰期→推荐)、<b>(iii) 长期身份</b>(只看行为→档案 μ)。准则:<em>说的话调「给你看什么」,做的事定「你是谁」</em>——两者结合、互不覆盖。</p>
+<p class="en">Fig. 3 summarizes the architecture. Four ways of browsing leave traces in three tables feeding three time scales: <b>gallery browsing</b> (the <em>unchosen</em> onboarding option is a weak negative) → <code>mu_event</code>; an <b>ambient "radio" frame</b> where <em>display ≠ viewing</em> — an exposed-but-uninteracted work counts as a weak "exposure" whose suppression <b>heals over time</b> (τ = 3 days); <b>spoken wishes</b> → <code>mu_wish</code>; <b>generation</b> → <code>mu_generation</code>. These resolve into <b>(i) momentary mood</b> (≤30 min → frame), <b>(ii) recent intent</b> (7-day half-life → recommendations), and <b>(iii) long-term identity</b> (behaviour-only → μ). Principle: <em>what you say tunes what you are shown; what you do defines who you are.</em></p>
+<figure><img src="figures/fig3_architecture.svg" loading="lazy" decoding="async" alt="architecture">
+<figcaption><b>图 3 / Fig. 3.</b> <span class="zh">系统架构:四种逛法 → 三张信号表 → 三层时间尺度 → 熟悉↔惊喜打分。</span><span class="en">Architecture: four modalities → three signal tables → three time scales → familiar↔surprise scoring.</span></figcaption></figure>
+
+<h2><span class="n">6</span><span class="zh">诚实的评估</span><span class="en">Honest Evaluation</span></h2>
+<h3><span class="zh">6.1 可证伪的评估台</span><span class="en">6.1 A falsifiable harness</span></h3>
+<p class="zh">用留一法 + 99 随机负采样(×20 重复);协同"热度"排除留出用户以去自身穿帮。评估台 <code>eval_recsys.py</code> 开源。<b>规模前置声明:</b>当前 29 用户、1631 事件(中位 5/人),仅 6 用户达到留一法门槛 → 结果作<em>方向性</em>而非定论。</p>
+<p class="en">Leave-one-out + 99 sampled negatives (×20); collaborative popularity excludes the held-out user to remove self-leakage. The harness is released. <b>Scale caveat (up front):</b> 29 users, 1,631 events (median 5/user); only 6 clear the LOO threshold → results are <em>directional</em>, not conclusive.</p>
+<h3><span class="zh">6.2 基线对照</span><span class="en">6.2 Baselines</span></h3>
+<p class="cap zh">表 1 · 离线基线对照(留一法 + 负采样)。</p><p class="cap en">Table 1. Offline baselines (LOO + sampled negatives).</p>
+<table class="tbl"><tr><th>Strategy</th><th>HR@5</th><th>HR@10</th><th>MRR</th><th>AUC</th></tr>
+<tr class="hi"><td><span class="zh">生产(旧:倒U+calm+qual)</span><span class="en">Production (old: inv-U+calm+qual)</span></td><td class="n">0.167</td><td class="n">0.167</td><td class="n">0.15</td><td class="n">0.32</td></tr>
+<tr><td><span class="zh">纯倒 U</span><span class="en">Pure inverted-U</span></td><td class="n">0.00</td><td class="n">0.04</td><td class="n">0.03</td><td class="n">0.48</td></tr>
+<tr><td><span class="zh">最近邻(相似度)</span><span class="en">Nearest-neighbour (sim)</span></td><td class="n">0.30</td><td class="n">0.33</td><td class="n">0.22</td><td class="n">0.54</td></tr>
+<tr><td><span class="zh">协同(他人 like)¹</span><span class="en">Collaborative (others' likes)¹</span></td><td class="n">1.00</td><td class="n">1.00</td><td class="n">0.85</td><td class="n">1.00</td></tr>
+<tr><td><span class="zh">随机(基准)</span><span class="en">Random (baseline)</span></td><td class="n">0.08</td><td class="n">0.11</td><td class="n">0.07</td><td class="n">0.51</td></tr></table>
+<p class="zh" style="font-size:12px;color:var(--mute)">¹ 被小而高度重叠的 demo 社群放大,作上界、非公平分。随机校准于 HR@10 ≈ 0.10、AUC ≈ 0.50。</p>
+<p class="en" style="font-size:12px;color:var(--mute)">¹ Inflated by a small, overlapping demo community; an upper bound. Random calibrates at HR@10 ≈ 0.10, AUC ≈ 0.50.</p>
+<h3><span class="zh">6.3 准确率–serendipity 张力,与两类用户</span><span class="en">6.3 The accuracy–serendipity tension, two user types</span></h3>
+<p class="zh">两个事实突出。其一,<b>倒 U 在"下一次点击"准确率上低于随机(AUC 0.32–0.48)——这是构造使然</b>:它刻意避开最近邻,而那正是"预测下一次点击"指标所奖励的。这不是要调掉的 bug,而是证据:<b>下一次点击准确率是衡量 serendipity 的错尺子。</b> 其二,在数据足的用户里,正确策略<em>因人翻转</em>:用户 A(n=318)最近邻命中第 <b>1</b>、倒 U 第 <b>92</b>;用户 B(n=621)倒 U 命中 <b>1.2</b>、最近邻第 <b>68</b>。没有单一全局混合能同时服务两者:有人的下一个爱在口味<em>附近</em>("一致"),有人的是个<em>跳跃</em>("探索")。当系统尚不能判别类型时,诚实的设计是<b>把这一维暴露为旋钮</b>(§4.2),而非赌一个全局权重。</p>
+<p class="en">Two facts stand out. First, <b>the inverted-U scores below random on next-item accuracy (AUC 0.32–0.48) — by construction</b>, because it avoids the nearest neighbour, exactly what a "predict the next click" metric rewards. This is not a bug to tune away; it is evidence that <b>next-item accuracy is the wrong yardstick for serendipity.</b> Second, the right strategy <em>inverts per user</em>: for user A (n=318) nearest-neighbour ranks the held-out like <b>1st</b>, inverted-U <b>92nd</b>; for user B (n=621) inverted-U ranks it <b>1.2</b>, nearest-neighbour <b>68th</b>. No global blend serves both. When type cannot yet be inferred, the honest design is to <b>expose the dimension as control</b>, not gamble on a global weight.</p>
+<h3><span class="zh">6.4 冷启动置信门控</span><span class="en">6.4 Cold-start confidence gating</span></h3>
+<p class="zh">12 维 μ 需 ~20+ 正信号才稳;中位 6 → 多数用户深陷冷启动。界面据此按<b>成熟度</b>(<code>clamp(n/22)</code>;分级 初识<8 / 成形中<20 / 清晰≥20)给档案分级,并把低成熟度的门派标为<em>初步</em>,拒绝把猜测当定论。</p>
+<p class="en">A 12-D μ needs ~20+ positive signals; with a median of 6, most users are in cold-start. The interface grades each profile by <b>maturity</b> (<code>clamp(n/22)</code>; <em>nascent &lt;8 / forming &lt;20 / clear ≥20</em>) and labels low-maturity archetypes as <em>preliminary</em>, refusing to present a guess as a verdict.</p>
+<figure><img src="figures/fig2_invertedU.svg" alt="inverted-U">
+<figcaption><b>图 2 / Fig. 2.</b> <span class="zh">倒 U 惊奇带 + 真实 Top24 推荐距离分布(峰在自学习 d*=0.19;推荐簇在带上、非最近邻)。</span><span class="en">Inverted-U surprise band + real top-24 recommendation distances (peak at self-learned d*=0.19; recommendations cluster on the band, not at the nearest neighbour).</span></figcaption></figure>
+<h3><span class="zh">6.5 直接度量 serendipity</span><span class="en">6.5 Measuring serendipity directly</span></h3>
+<p class="zh">因离线代理看不见 serendipity,我们做了被试内研究(N = <span class="fill">FILL</span>),对比<em>熟悉</em>(ex≈0.2)、<em>惊喜</em>(ex≈0.8)、<em>随机</em>三条件,逐幅评喜欢度、熟悉度、<b>aha</b>、可理解度。<span class="fill">FILL:各条件 Aha 率、喜欢度持平、RQ2 旋钮偏好双峰、RQ3 门控下的信任;插入图 4</span> 我们另对推荐曝光做在线埋点(<code>rec_lift</code>)<span class="fill">FILL:积累后报 lift</span>。</p>
+<p class="en">Because offline proxies cannot see serendipity, we ran a within-subject study (N = <span class="fill">FILL</span>) contrasting <em>familiar</em> (ex≈0.2), <em>surprise</em> (ex≈0.8), and <em>random</em>, rating each recommendation on liking, familiarity, <b>aha</b>, and graspability. <span class="fill">FILL: Aha-rate per condition, liking parity, RQ2 knob bimodality, RQ3 trust; insert Fig. 4.</span> We also instrument impressions online (<code>rec_lift</code>) <span class="fill">FILL: report lift once accumulated.</span></p>
+
+<h2><span class="n">7</span><span class="zh">讨论与局限</span><span class="en">Discussion &amp; Limitations</span></h2>
+<p class="zh"><b>能与不能宣称什么。</b> 我们不证明准确率上的优越;数据小而同质,且倒 U 本就被准确率指标亏待。我们提供的是可解释的共享表示、多模态三层系统,以及一个方法论要点:<b>serendipitous 审美推荐应以"它为何而存在"(那记 aha)来评估,而非下一次点击预测。</b></p>
+<p class="zh"><b>效度威胁。</b> VLM 抽取的轴是无不确定性的点估计;且若干维度确有相关:在全语料上 12 轴<b>平均 |相关| 仅 0.17</b>(最大 0.51),特征值参与比给出<b>有效维数 ≈ 8 / 12</b>、8 个主成分即含 90% 方差;最相关的三对(空间↔光影 r=.51、构图↔造型 r=.49、再现↔唤起 r=.49)直觉合理——提示未来可合并部分轴,但<em>空间远非退化</em>。协同信号被小社群放大。用户研究是 serendipity 主张的承重证据。</p>
+<p class="zh"><b>设计含义(给 IUI/CHI)。</b> 当系统无法判别用户类型时,把潜在维度暴露为<em>易读的旋钮</em>、并<em>诚实传达不确定性</em>(成熟度门控),是比押注单一黑箱全局模型更负责任的人-AI 设计。它推广到任何"多来点一样的"与"给我点新的"真冲突的口味域。</p>
+<p class="en"><b>What we can and cannot claim.</b> We do not show accuracy superiority; data is small and homogeneous, and the inverted-U is ill-served by accuracy metrics by design. We offer an interpretable shared representation, a multi-modal three-timescale system, and the point that <b>serendipitous aesthetic recommendation must be judged by what it is for (the <em>aha</em>)</b>, not next-click prediction.</p>
+<p class="en"><b>Threats to validity.</b> VLM axes are point estimates without uncertainty, and some dimensions do correlate: across the corpus the 12 axes have a <b>mean absolute correlation of only 0.17</b> (max 0.51), an eigenvalue participation ratio gives an <b>effective dimensionality ≈ 8 / 12</b>, and 8 principal components capture 90% of variance; the strongest pairs (space↔light r=.51, composition↔form r=.49, representation↔arousal r=.49) are intuitive — suggesting future axis consolidation, but the space is <em>far from degenerate</em>. Collaborative signal is inflated by a small community. The user study is the load-bearing evidence.</p>
+<p class="en"><b>Design implications.</b> When type cannot be inferred, surfacing the latent dimension as a legible control and <em>honestly communicating uncertainty</em> is more responsible than a single opaque global model — generalizing to any taste domain where "more of the same" and "show me something new" genuinely conflict.</p>
+
+<h2><span class="n">8</span><span class="zh">结论</span><span class="en">Conclusion</span></h2>
+<p class="zh">我们提出了人画<b>共享审美流形</b>、由多模态信号经三层时间尺度驱动的倒 U <b>熟悉↔惊喜</b>推荐,以及一套<b>诚实评估</b>,说明为何准确率指标误判 serendipity、为何用户需要相反策略。贡献是一种表示、一个系统,与一个立场:审美推荐应帮你找到「原来如此」,而非最像你的。我们开源评估台与知识图谱切片。</p>
+<p class="en">We presented a human-and-artwork <b>shared aesthetic manifold</b>, an inverted-U <b>familiar↔surprise</b> recommender fed by multi-modal signals across three time scales, and an <b>honest evaluation</b> of why accuracy metrics misjudge serendipity and why users demand opposite strategies. The contribution is a representation, a system, and a stance: aesthetic recommendation should help you find the <em>aha</em>, not the nearest. We release the harness and a KG slice.</p>
+
+<div class="foot">
+<p class="zh"><b>图表</b>:图 1 流形 · 图 2 倒 U + 真实分布 · 图 3 架构 · 图 4 <span class="fill">FILL 用户研究</span>;表 1 基线对照 · 表 2 旋钮可控性。<b>复现</b>:<code>eval_recsys.py</code>(表 1)· <code>gen_figures.py / gen_fig3.py</code>(图 1–3)。</p>
+<p class="en"><b>Figures</b>: Fig.1 manifold · Fig.2 inverted-U · Fig.3 architecture · Fig.4 <span class="fill">FILL user study</span>; Table 1 baselines · Table 2 control. <b>Reproducibility</b>: <code>eval_recsys.py</code> (Table 1) · <code>gen_figures.py / gen_fig3.py</code> (Figs 1–3).</p>
+<div class="refs" style="margin-top:10px">
+<p>Yilma, B.A., Leiva, L.A. The Elements of Visual Art Recommendation: Learning Latent Semantic Representations of Paintings. <i>CHI</i>, 2023. DOI 10.1145/3544548.3581477.</p>
+<p>Yilma, B.A., Kim, C.M., Cupchik, G.C., Leiva, L.A. Artful Path to Healing: Using Machine Learning for Visual Art Recommendation to Prevent and Reduce Post-Intensive Care Syndrome (PICS). <i>CHI</i>, 2024. DOI 10.1145/3613904.3642636.</p>
+<p>Yilma, B.A., Leiva, L.A. Together Yet Apart: Multimodal Representation Learning for Personalised Visual Art Recommendation. <i>UMAP</i>, 2023.</p>
+<p>Castellano, G., Sansaro, G., Vessio, G. Integrating Contextual Knowledge to Visual Features for Fine Art Classification. <i>DL4KG</i>, 2021 (arXiv:2105.15028); ext. <i>Knowledge-Based Systems</i>, 2022.</p>
+<p>Wan, J., Zhang, H., Zou, J., et al. WuMKG: a Chinese painting and calligraphy multimodal knowledge graph. <i>Heritage Science</i> 12, 159, 2024. DOI 10.1186/s40494-024-01268-4.</p>
+<p>Huang, Y., Yu, S., Chu, J., Fan, H., Du, B. Using knowledge graphs and deep learning algorithms to enhance digital cultural heritage management. <i>Heritage Science</i> 11, 204, 2023. DOI 10.1186/s40494-023-01042-y. · CICHMKG: a large-scale Chinese intangible cultural heritage multimodal KG. <i>Heritage Science</i>, 2023.</p>
+<p>Achlioptas, P., Ovsjanikov, M., Haydarov, K., Elhoseiny, M., Guibas, L. ArtEmis: Affective Language for Visual Art. <i>CVPR</i>, 2021. DOI 10.1109/CVPR46437.2021.01140.</p>
+<p>Karayev, S., Trentacoste, M., Han, H., Agarwala, A., Darrell, T., Hertzmann, A., Winnemoeller, H. Recognizing Image Style. <i>BMVC</i>, 2014.</p>
+<p>Ge, M., Delgado-Battenfeld, C., Jannach, D. Beyond Accuracy: Evaluating Recommender Systems by Coverage and Serendipity. <i>RecSys</i>, 2010.</p>
+<p>Hu, Y., Koren, Y., Volinsky, C. Collaborative Filtering for Implicit Feedback Datasets. <i>IEEE ICDM</i>, 2008.</p>
+<p>Schein, A.I., Popescul, A., Ungar, L.H., Pennock, D.M. Methods and Metrics for Cold-Start Recommendations. <i>SIGIR</i>, 2002.</p>
+<p>Berlyne, D.E. <i>Aesthetics and Psychobiology</i>. 1971. · McNee et al. Being Accurate is Not Enough. <i>CHI EA</i>, 2006. · Kotkov et al. A survey of serendipity in recommender systems. <i>KBS</i>, 2016. · Datta et al. Studying Aesthetics in Photographic Images. <i>ECCV</i>, 2006.</p>
+</div>
+</div>
+
+</div>
+<script>
+function setLang(l){l=(l==='en')?'en':'zh';document.body.className=l;document.documentElement.lang=l;
+  document.getElementById('bZh').classList.toggle('on',l==='zh');document.getElementById('bEn').classList.toggle('on',l==='en');
+  try{localStorage.setItem('aha_paper_lang',l)}catch(e){}}
+try{const l=localStorage.getItem('aha_paper_lang');if(l)setLang(l)}catch(e){}
+</script>
+</body></html>

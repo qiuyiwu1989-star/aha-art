@@ -1,0 +1,121 @@
+<!doctype html><html lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>风格即投影:VLM 驱动的中西绘画多维审美知识图谱 · aha</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap"></noscript>
+<style>
+:root{--paper:#f4f1ea;--paper2:#ece7db;--card:#fffdf8;--ink:#1d1b18;--soft:#4b463e;--mute:#857d6f;--faint:#a89f8f;--line:#ddd5c6;--acc:#b0673a;--accs:#f0e4d8;--green:#5a7d6f;--gold:#c98a1a;--blue:#5b7596;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.85}
+.wrap{max-width:760px;margin:0 auto;padding:50px 22px 110px}
+.back{position:fixed;top:16px;left:18px;font-family:var(--mono);font-size:12px;color:var(--acc);text-decoration:none}
+.venue{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--acc);text-align:center}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(22px,4.4vw,30px);line-height:1.25;text-align:center;margin:10px 0 4px}
+.en-title{text-align:center;font-family:var(--serif);font-size:15px;color:var(--soft);font-style:italic;margin-bottom:4px}
+.authors{text-align:center;font-size:13px;color:var(--mute);font-family:var(--mono);margin-top:6px}
+.abs{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:22px 0}
+.abs .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--acc);margin-bottom:6px}
+.abs p{font-size:13.5px;line-height:1.8;margin:4px 0}.abs .seg{color:var(--acc);font-weight:600}
+.kw{font-size:12.5px;color:var(--soft);margin-top:8px}.kw b{color:var(--acc)}
+h2{font-family:var(--serif);font-weight:600;font-size:19px;margin:34px 0 8px}
+h2 .n{color:var(--acc);font-family:var(--mono);font-size:14px;margin-right:7px}
+h3{font-family:var(--serif);font-weight:600;font-size:15px;margin:18px 0 4px;color:var(--soft)}
+p{margin:10px 0;font-size:14.5px}b{font-weight:600}em{font-style:italic}
+code{font-family:var(--mono);font-size:12.5px;background:var(--paper2);padding:1px 5px;border-radius:4px;color:var(--soft)}
+.formula{font-family:var(--mono);font-size:12.5px;background:var(--paper2);border-radius:8px;padding:10px 13px;margin:10px 0;color:var(--soft);overflow-x:auto}
+.fill{background:#fcefd8;border:1px dashed var(--gold);border-radius:6px;padding:1px 7px;font-size:12.5px;color:#8a5d12;font-family:var(--mono)}
+figure{margin:22px 0;text-align:center}figure img{width:100%;border:1px solid var(--line);border-radius:10px;background:#fff}
+figcaption{font-size:12.5px;color:var(--mute);margin-top:8px;text-align:left;line-height:1.6}figcaption b{color:var(--soft)}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin:12px 0}
+.tbl th,.tbl td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--faint)}
+.tbl td.n{font-family:var(--mono);text-align:right}
+.cap{font-size:12px;color:var(--mute);font-style:italic;margin:4px 0}
+.refs p{font-size:12.5px;color:var(--soft);margin:5px 0;padding-left:18px;text-indent:-18px}
+.foot{margin-top:38px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:14px}
+</style></head>
+<body>
+<a class="back" href="../me.html">← aha</a>
+<div class="wrap">
+
+<div class="venue">投稿:中国图象图形学报 · 初稿 v1</div>
+<h1>风格即投影:视觉语言模型驱动的中西绘画多维审美知识图谱构建</h1>
+<div class="en-title">Style as Projection: A VLM-driven Multi-dimensional Aesthetic Knowledge Graph of Chinese and Western Paintings</div>
+<div class="authors">作者待定 · 单位待定（投稿版匿名）</div>
+
+<div class="abs">
+<div class="k">摘要</div>
+<p><span class="seg">目的</span> 绘画图像的自动理解多停留在风格分类与属性预测,缺乏<b>可解释、可计算的多维审美表示</b>;现有艺术知识图谱(如 ArtGraph、WuMKG)又多采用<b>编目型本体</b>(艺术家/画派/题材/印章),难以支撑个性化审美计算。本文构建一个由视觉语言模型驱动、<b>人与作品共处同一空间</b>的多维审美知识图谱。</p>
+<p><span class="seg">方法</span> 定义三个可观测层——世界观(再现↔表现、结构↔感知,2 维)、绘画语言(构图/空间/造型/光影/色彩/笔触/边缘,7 维)、情绪 VAD(愉悦/唤起/控制,3 维)共 <b>12 维审美坐标</b>;以视觉语言模型(小米 MiMo)沿<b>锚定刻度</b>对 2.2 万余幅中西名画逐幅解析入库;以「<b>风格是其它层的投影</b>」组织本体,并把用户行为以掩码加权质心嵌入同一 12 维空间,使人与大师可直接度量。</p>
+<p><span class="seg">结果</span> 解析覆盖率:世界观 89%、情绪 ~100%、绘画语言 ~100%;12 轴<b>平均绝对相关仅 0.17</b>(最大 0.51),特征值参与比给出<b>有效维数 ≈ 8/12</b>,空间远非退化;真实读画实例显示解析细致且可溯据(每维附中文证据短语);下游审美推荐实验初步验证该表示的有效性。<span class="fill">FILL:可补人工一致性</span></p>
+<p><span class="seg">结论</span> 本文提出从「编目图谱」到「审美图谱」的范式,为绘画图像的可解释理解与个性化审美应用提供了一个可计算、可扩展、中西并蓄的知识基座。</p>
+<div class="kw"><b>关键词</b>:知识图谱;视觉语言模型;计算美学;绘画图像理解;多模态;审美推荐</div>
+<div class="kw" style="margin-top:4px"><b>Keywords</b>: knowledge graph; vision–language model; computational aesthetics; painting image understanding; multimodal; aesthetic recommendation</div>
+</div>
+
+<h2><span class="n">0</span>引言</h2>
+<p>对绘画图像的计算理解,长期以"<b>是什么</b>"为目标——识别风格、画派、年代、作者等离散属性。然而打动观者的,常是难以用单一标签概括的<b>审美质地</b>:它在"忠实再现"与"主观表现"之间的位置、笔触与色彩的语言、唤起的情绪。要支撑"懂审美"的应用(个性化推荐、策展、生成),需要一种<b>可解释、可度量、连续</b>的审美表示,而非又一组分类标签。</p>
+<p>与此同时,艺术领域的知识图谱(ArtGraph<sup>[4]</sup>、WuMKG<sup>[5]</sup>、面向遗产管理的图谱<sup>[6]</sup>)多构建于<b>编目型本体</b>:节点是艺术家、画派、题材、印章、年代,服务检索、分类与问答。这类图谱回答"这是谁画的、属于哪派",却不回答"它在审美空间里落在哪、与你有多近"。</p>
+<p>本文的核心主张是:<b>把绘画图像理解为一组可解释的多维审美坐标,并以"风格是其它层的投影"组织成一个人与作品共享的知识图谱。</b> 贡献有三:</p>
+<p>(1) <b>审美本体</b>:提出绘画的三可观测层(世界观 2 维 / 语言 7 维 / 情绪 3 维)共 12 维坐标,以及"风格即投影"的组织方式(§2);<br>
+(2) <b>VLM 驱动的大规模构建</b>:用视觉语言模型沿锚定刻度对 2.2 万余幅中西名画逐幅解析,并将用户嵌入同一空间(§3);<br>
+(3) <b>量化与诚实校验</b>:报告覆盖率、维度相关性与有效维数,并区分"断言"与"测量"(§4)。</p>
+
+<h2><span class="n">1</span>相关工作</h2>
+<p><b>艺术图像理解与计算美学。</b> 早期工作预测图像审美质量<sup>[7]</sup>或识别风格<sup>[8]</sup>;ArtEmis<sup>[9]</sup> 收集 45.5 万条对艺术的情绪标注,启发了我们的情绪层。这些工作或给单一"美/不美"分,或做风格分类,缺少<b>可解释的多轴审美坐标</b>。</p>
+<p><b>艺术与文化遗产知识图谱。</b> Castellano 等构建 ArtGraph(基于 WikiArt 与 DBpedia)并把图谱嵌入注入深度模型以提升属性分类<sup>[4]</sup>;WuMKG<sup>[5]</sup> 构建吴门书画多模态图谱(本体、印章/题材抽取、跨模态检索/问答);Huang 等<sup>[6]</sup>、CICHMKG 等面向遗产管理与非遗。它们均为<b>编目/检索型</b>本体。本文与之互补:以<b>审美轴</b>为本体、以<b>个性化审美计算</b>为目标,并让用户进入图谱。</p>
+<p><b>视觉语言模型读画。</b> 多模态大模型使逐幅、细粒度地"读"出画面语义成为可能。我们将其用作<b>审美坐标测量器</b>:不产出自由描述,而是沿固定锚定刻度输出结构化的 12 维数值 + 中文证据。</p>
+
+<h2><span class="n">2</span>审美本体:三可观测层与"风格即投影"</h2>
+<p>我们用三层、共 12 维刻画一幅画(图 1):</p>
+<p><b>世界观(2 维)。</b> <code>x</code> = 再现→表现(越忠实摹写越小,越主观变形/抽象越大);<code>y</code> = 结构→感知(越重秩序/几何越小,越重气氛/光色/瞬间越大)。二者张成低维"挂载平面",其它层投影其上。</p>
+<p><b>绘画语言(7 维)。</b> 构图、空间、造型、光影、色彩、笔触、边缘,各为 0–1 连续轴。</p>
+<p><b>情绪(3 维)。</b> 愉悦、唤起、控制(VAD)。</p>
+<p>本体的关键命题是<b>「风格是其它层的投影」</b>:风格不是独立标签,而是世界观×语言×情绪的可计算合成。由此自然导出原型谱系——6 个世界观区 × 8 个二元亚型 = <b>48 种审美原型</b>,作为连续空间上一层可读的索引。两点间审美距离定义为子空间加权:</p>
+<div class="formula">d(a,b) = 0.5·d_世界观 + 0.3·d_语言 + 0.2·d_情绪 （各子空间归一到 [0,1]）</div>
+<figure><img src="figures/fig_pipeline.svg" loading="lazy" alt="pipeline">
+<figcaption><b>图 1</b> 读画管线:画作图像 → 视觉语言模型沿锚定刻度解析 → 12 维审美坐标(世界观 2 + 语言 7 + 情绪 3)→ 知识图谱节点;作品与用户同处一图。</figcaption></figure>
+
+<h2><span class="n">3</span>图谱构建</h2>
+<h3>3.1 数据与解析</h3>
+<p>语料为中西名画共 <b>2.2 万余幅</b>(含倪瓒、八大山人、沈周等中国书画与莫奈、梵高、德拉克洛瓦等西方名作),覆盖 300 余位艺术家。每幅图像送入视觉语言模型(小米 MiMo),系统提示给出每条轴的<b>锚定刻度标杆</b>(如再现轴:照相写实 ≈ 0.10、印象派外光 ≈ 0.55、近抽象 ≈ 0.92),要求模型先描述画面特征、再对照标杆打分,并对每维给出一句中文证据,最后输出结构化 JSON 入库。</p>
+<h3>3.2 真实读画实例</h3>
+<p class="cap">表 1 · 视觉语言模型对若干名画的多维解析(节选,真实输出)</p>
+<table class="tbl"><tr><th>作品 / 作者</th><th>世界观 x,y(区)</th><th>愉悦 / 唤起</th><th>语言层证据(节选)</th></tr>
+<tr><td>《橄榄树》 梵高</td><td class="n">.80, .70 (WV5)</td><td class="n">.70 / .80</td><td>色彩 1.0「互补色对比,橙黄与绿创造张力」· 笔触 1.0「厚涂、明显肌理传达动感」</td></tr>
+<tr><td>《睡莲》 莫奈</td><td class="n">.60, .70 (WV4)</td><td class="n">.80 / .60</td><td>笔触 1.0「短促、分离、方向多变」· 空间 .40「俯视压平纵深,近装饰平面」</td></tr>
+<tr><td>《基督受难》 德拉克洛瓦</td><td class="n">.70, .60 (WV5)</td><td class="n">.30 / .80</td><td>光影 .9「强烈明暗对比 chiaroscuro」· 构图 .8「垂直、十字架主导」</td></tr>
+</table>
+<p>实例显示:解析不仅给出数值,且每维<b>可溯据</b>(中文证据短语),便于人工核验与可解释展示。</p>
+<h3>3.3 入库与人侧嵌入</h3>
+<p>作品的 12 维向量、谱系关系、媒材/作者等存入图谱。<b>用户也进入同一空间</b>:由其交互行为(收藏/心动/停留/跳过,带事件权重)求掩码加权质心 μ,与作品、艺术家质心同维,从而"本命画家 = 最近的大师节点"。</p>
+
+<h2><span class="n">4</span>量化分析与诚实校验</h2>
+<p><b>覆盖率。</b> 2.2 万余幅入选作品中,世界观坐标覆盖 89%、情绪 VAD ~100%、绘画语言 ~100%。</p>
+<p><b>维度相关性与有效维数。</b> 在全语料上,12 轴<b>平均绝对相关仅 0.17</b>(最大 0.51);相关矩阵特征值参与比给出<b>有效维数 ≈ 8/12</b>,8 个主成分含 90% 方差。最相关的三对(空间↔光影 r=.51、构图↔造型 r=.49、再现↔唤起 r=.49)直觉合理——提示部分轴可在未来合并,但<b>空间远非退化</b>,12 维确实承载了多于 8 个自由度的可分信息。</p>
+<p><b>断言 vs 测量(诚实性)。</b> 我们区分两类量化内容:由 VLM <b>逐图测量</b>得到的坐标(可核验、可证伪),与由风格散文<b>派生/断言</b>的指纹(待校准)。图谱明确标注二者,并以真实作品分布去校准断言——这一"可证伪"的工程立场是本图谱区别于纯断言型知识库之处。<span class="fill">FILL:可补 VLM 与人工标注子集一致性 r</span></p>
+<figure><img src="figures/fig1_manifold.svg" loading="lazy" alt="manifold">
+<figcaption><b>图 2</b> 审美流形(世界观平面):约 700 幅真迹(淡点)、6 个世界观区中心、6 位大师质心(列宾/莫奈/倪瓒/梵高/达·芬奇/塞尚)与一个用户 μ(★)。人与大师共处同一空间。</figcaption></figure>
+
+<h2><span class="n">5</span>应用与初步评估</h2>
+<p>共享的审美流形直接支撑下游应用:<b>(1) 审美推荐</b>——以"熟悉↔惊喜"混合在 12 维空间中排序,既能"更像你已爱的",也能找"落在惊奇带上的新鲜画";<b>(2) 人画对照</b>——本命画家、48 原型画像;<b>(3) 画廊/策展</b>——沿审美轴组织动线。我们用留一法在真实交互上做了初步离线评估(详见<span class="fill">FILL:引英文姊妹篇/附录</span>),验证该 12 维表示可支撑有意义的个性化排序。</p>
+
+<h2><span class="n">6</span>结论与展望</h2>
+<p>本文提出并实现了一个<b>视觉语言模型驱动、人画共享的多维审美知识图谱</b>:以三可观测层(世界观/语言/情绪)共 12 维刻画绘画,以"风格即投影"组织本体,对 2.2 万余幅中西名画逐幅解析入库,并诚实报告覆盖率、相关性与有效维数。它把艺术图谱从"编目"推进到"审美",为绘画图像的可解释理解与个性化应用提供基座。<b>未来工作</b>:维度去相关与本体精简(有效维数 ≈8)、向量的不确定性建模、VLM–人工一致性验证、以及更大规模的跨文化扩展。</p>
+
+<div class="foot">
+<p><b>图表</b>:图 1 读画管线 · 图 2 审美流形 · 表 1 真实读画实例。<b>复现</b>:解析管线与统计脚本随图谱切片开源。</p>
+<div class="refs" style="margin-top:10px">
+<p>[4] Castellano G, Sansaro G, Vessio G. Integrating Contextual Knowledge to Visual Features for Fine Art Classification. DL4KG, 2021; ext. Knowledge-Based Systems, 2022.</p>
+<p>[5] Wan J, Zhang H, Zou J, et al. WuMKG: a Chinese painting and calligraphy multimodal knowledge graph. Heritage Science, 12:159, 2024.</p>
+<p>[6] Huang Y, Yu S, Chu J, Fan H, Du B. Using knowledge graphs and deep learning algorithms to enhance digital cultural heritage management. Heritage Science, 11:204, 2023.</p>
+<p>[7] Datta R, et al. Studying Aesthetics in Photographic Images Using a Computational Approach. ECCV, 2006.</p>
+<p>[8] Karayev S, et al. Recognizing Image Style. BMVC, 2014.</p>
+<p>[9] Achlioptas P, Ovsjanikov M, Haydarov K, Elhoseiny M, Guibas L. ArtEmis: Affective Language for Visual Art. CVPR, 2021.</p>
+<p><span class="fill">FILL</span> 补:Berlyne 倒U、serendipity 度量、国内 KG/数字人文相关工作若干。</p>
+</div>
+</div>
+
+</div>
+</body></html>

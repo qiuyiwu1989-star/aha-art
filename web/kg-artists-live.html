@@ -1,37 +1,4 @@
-<!doctype html>
-<html lang="zh"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>[活数据] 艺术家索引 · aha</title>
-<style>
-:root{--ink:#2a2620;--soft:#6b6457;--mute:#8a8170;--line:#ddd5c6;--bg:#f3eee2;--gold:#b0673a}
-*{box-sizing:border-box;margin:0}body{font:14px/1.6 -apple-system,"PingFang SC",sans-serif;color:var(--ink);background:var(--bg)}
-header{padding:16px 22px;border-bottom:1px solid var(--line);background:#fff;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
-h1{font-size:18px;margin:0}.sub{color:var(--soft);font-size:12.5px}a.back{color:var(--gold);text-decoration:none;font-size:13px}
-.bar{margin-left:auto;display:flex;gap:8px;align-items:center}
-input,select{font:13px inherit;padding:5px 9px;border:1px solid var(--line);border-radius:7px;background:#fff}
-.wrap{max-width:1180px;margin:0 auto;padding:18px 22px;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
-.a{background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 14px;text-decoration:none;color:inherit;display:block}
-.a:hover{border-color:var(--gold)}
-.a .cn{font-size:16px;font-weight:700}.a .en{color:var(--soft);font-size:12px}
-.a .m{display:flex;justify-content:space-between;margin-top:6px;font-size:11.5px;color:var(--mute)}
-.a .n{color:var(--gold);font-weight:600}
-.rg{font-size:10.5px;border:1px solid var(--line);border-radius:9px;padding:0 6px}
-</style></head>
-<body>
-<header><a class="back" href="home.html">← aha.art</a><h1>艺术家索引 <span class="sub" id="sub">活数据</span></h1>
-  <div class="bar"><input id="q" placeholder="搜艺术家…"><select id="rf"><option value="">全部</option><option value="west">西方</option><option value="east">东方</option></select></div></header>
-<div class="wrap" id="grid">加载中…</div>
-<script>
-const esc=s=>(s==null?'':String(s)).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
-let A=[];
-fetch('/cat/artists_canon').then(r=>r.json()).then(d=>{A=d.artists;document.getElementById('sub').textContent=`${d.n} 位策展考据艺术家 · 活库作品数`;draw();});
-function draw(){
-  const q=document.getElementById('q').value.trim().toLowerCase(),rf=document.getElementById('rf').value;
-  const arr=A.filter(a=>(!rf||a.region===rf)&&(!q||(a.cn||'').toLowerCase().includes(q)||(a.en||'').toLowerCase().includes(q)));
-  document.getElementById('grid').innerHTML=arr.map(a=>`<a class="a" href="artist.html?id=${encodeURIComponent(a.id)}">
-    <div class="cn">${esc(a.cn||a.en)}</div><div class="en">${esc(a.en||'')}</div>
-    <div class="m"><span>${a.born?a.born+'–'+(a.death||''):''} <span class="rg">${a.region==='east'?'东':a.region==='west'?'西':''}</span></span><span class="n">${a.n} 件</span></div></a>`).join('');
-}
-document.getElementById('q').oninput=draw;document.getElementById('rf').onchange=draw;
-</script>
-</body></html>
+<!doctype html><html lang="zh"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>艺术家 · aha</title>
+<script>/* 已并入「艺术家中枢」artists.html */ location.replace('artists.html'+location.search);</script>
+</head><body><a href="artists.html">前往艺术家中枢 →</a></body></html>

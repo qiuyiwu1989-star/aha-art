@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>人类美术馆 · 馆即平面</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--bg:#211d18;--ink:#ece4d4;--ink-mute:#9a917f;--mat:#f3eee2;--gold:#c98a4a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;overflow:hidden}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  #stage{position:fixed;inset:0;overflow:hidden;cursor:grab;background:radial-gradient(120% 100% at 50% 40%,#2a251e,#1a1712)}
+  #layer{position:absolute;top:0;left:0;transform-origin:0 0;will-change:transform}
+  .hall{position:absolute;transform:translate(-50%,-50%);font-family:var(--serif);font-size:30px;font-weight:700;color:rgba(236,228,212,.10);white-space:nowrap;pointer-events:none;letter-spacing:.05em}
+  .w{position:absolute;transform:translate(-50%,-50%);cursor:pointer;transition:filter .15s}
+  .w img{display:block;width:64px;height:64px;object-fit:cover;border:3px solid #f3eee2;box-shadow:0 6px 14px -4px rgba(0,0,0,.7)}
+  .w:hover{z-index:50;filter:drop-shadow(0 0 10px rgba(201,138,74,.6))}
+  .w:hover img{border-color:var(--gold)}
+  .axes{position:fixed;inset:0;pointer-events:none;z-index:5}
+  .axes .lbl{position:fixed;font-family:var(--mono);font-size:11px;color:var(--ink-mute)}
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:20;text-align:center;padding:14px;pointer-events:none}
+  .topbar .brand{font-family:var(--serif);font-size:19px;font-weight:700}.topbar .brand .d{color:var(--gold)}
+  .topbar .sub{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);letter-spacing:.14em;margin-top:2px}
+  .modes{position:fixed;top:14px;right:14px;z-index:40;display:flex;gap:6px}
+  .modes a{font-family:var(--mono);font-size:11px;color:var(--ink-mute);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:5px 11px;text-decoration:none}
+  .modes a.on,.modes a:hover{background:var(--mat);color:#2a2620}
+  .hint{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:21;font-family:var(--mono);font-size:11px;color:var(--ink-mute)}
+  .zoom{position:fixed;right:14px;bottom:14px;z-index:40;display:flex;flex-direction:column;gap:6px}
+  .zoom button{width:34px;height:34px;font-size:18px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:var(--ink);cursor:pointer}
+  .lb{position:fixed;inset:0;background:rgba(10,8,6,.9);z-index:100;display:none;align-items:center;justify-content:center;padding:30px}.lb.on{display:flex}
+  .lb .box{max-width:980px;width:100%;display:grid;grid-template-columns:1fr 280px;background:#1a1612;border-radius:6px;overflow:hidden}@media(max-width:760px){.lb .box{grid-template-columns:1fr}}
+  .lb .pic{background:#000;display:flex;align-items:center;justify-content:center}.lb .pic img{width:100%;max-height:82vh;object-fit:contain}
+  .lb .info{background:var(--mat);color:#2a2620;padding:22px}.lb .info .t{font-family:var(--serif);font-size:20px;font-weight:700}.lb .info .a{font-size:13.5px;color:#5c554a;margin-top:6px}.lb .info .meta{font-family:var(--mono);font-size:11px;color:#8a8170;margin-top:12px;line-height:1.9}.lb .info .go{display:block;margin-top:16px;font-family:var(--mono);font-size:12px;color:var(--gold);text-decoration:none}
+  .lb .x{position:absolute;top:18px;right:22px;color:#f3eee2;font-size:22px;font-family:var(--mono);cursor:pointer}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:8px 13px}
+</style>
+</head><body>
+<div class="topbar"><div class="brand">人类美术馆<span class="d">.</span></div><div class="sub">FLOOR PLAN · 馆即平面</div></div>
+<div class="modes" id="modes"></div>
+<div id="stage"><div id="layer"></div></div>
+<div class="axes"><span class="lbl" style="left:14px;bottom:14px">← 再现</span><span class="lbl" style="right:120px;bottom:14px">表现 →</span><span class="lbl" style="left:14px;top:60px">↑ 感知</span><span class="lbl" style="left:14px;bottom:44px">结构 ↓</span></div>
+<div class="hint">拖拽平移 · 滚轮缩放 · 越放大越多画涌现</div>
+<div class="zoom"><button onclick="zoomBy(1.3)">＋</button><button onclick="zoomBy(.77)">－</button></div>
+<div class="lb" id="lb"><span class="x" onclick="closeLb()"><i data-ic="close"></i></span><div class="box" id="lbbox"></div></div>
+<a class="home-fab" href="museum.html"><i data-ic="museum"></i> 入口</a>
+<script>
+const MODES=[['museum-salon.html','沙龙墙'],['museum-corridor.html','无限长廊'],['museum-halls.html','展厅之馆'],['museum-floor.html','馆即平面']];
+const mc=document.getElementById('modes');MODES.forEach(([h,n])=>{const a=document.createElement('a');a.href=h;a.textContent=n;if(location.pathname.endsWith(h))a.className='on';mc.appendChild(a);});
+function esc(s){return (s==null?'':String(s)).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));}
+const W=2600,H=2000,layer=document.getElementById('layer'),stage=document.getElementById('stage');
+let z=1,px=0,py=0;
+function apply(){layer.style.transform=`translate(${px}px,${py}px) scale(${z})`;}
+function fit(){const s=Math.min(innerWidth/W,innerHeight/H)*0.96;z=s;px=(innerWidth-W*s)/2;py=(innerHeight-H*s)/2;apply();}
+const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+fetch('data/gallery_works.json').then(r=>r.json()).then(d=>{
+  const works=d.works||[];
+  // 区质心标签
+  const acc={};works.forEach(w=>{if(!w.wv)return;(acc[w.wv]=acc[w.wv]||[]).push(w);});
+  Object.entries(acc).forEach(([wv,list])=>{const cx=list.reduce((s,w)=>s+w.x,0)/list.length,cy=list.reduce((s,w)=>s+w.y,0)/list.length;
+    const e=document.createElement('div');e.className='hall';e.style.left=(cx*W)+'px';e.style.top=((1-cy)*H)+'px';e.textContent=WVN[wv]||'';layer.appendChild(e);});
+  works.forEach(w=>{const e=document.createElement('div');e.className='w';e.style.left=(w.x*W)+'px';e.style.top=((1-w.y)*H)+'px';
+    e.innerHTML=`<img loading="lazy" decoding="async" src="${w.file}" alt="">`;e.onclick=ev=>{ev.stopPropagation();openLb(w);};layer.appendChild(e);});
+  fit();
+}).catch(e=>{document.getElementById('layer').innerHTML='<div style="color:#9a917f;padding:40px">需服务器加载:'+e+'</div>';});
+// pan
+let down=false,sx,sy,opx,opy,moved=0;
+stage.addEventListener('pointerdown',e=>{down=true;sx=e.clientX;sy=e.clientY;opx=px;opy=py;moved=0;stage.style.cursor='grabbing';});
+addEventListener('pointermove',e=>{if(!down)return;px=opx+(e.clientX-sx);py=opy+(e.clientY-sy);moved+=Math.abs(e.movementX)+Math.abs(e.movementY);apply();});
+addEventListener('pointerup',()=>{down=false;stage.style.cursor='grab';});
+stage.addEventListener('wheel',e=>{e.preventDefault();const f=e.deltaY<0?1.12:0.89;zoomAt(e.clientX,e.clientY,f);},{passive:false});
+function zoomAt(cx,cy,f){const nz=Math.max(0.2,Math.min(6,z*f));const wx=(cx-px)/z,wy=(cy-py)/z;z=nz;px=cx-wx*z;py=cy-wy*z;apply();}
+function zoomBy(f){zoomAt(innerWidth/2,innerHeight/2,f);}
+function openLb(w){location.href='art.html?w='+encodeURIComponent(w.file);}
+function closeLb(){document.getElementById('lb').classList.remove('on');}
+document.getElementById('lb').onclick=e=>{if(e.target.id==='lb')closeLb();};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();});
+addEventListener('resize',()=>{if(z<0.25)fit();});
+</script>
+<script src="js/aha-icons.js"></script>
+</body></html>

@@ -442,7 +442,7 @@ function renderArch(P){
   const box=$('#archcard'); const A=computeArch(P); ARCHCACHE=A;
   if(!A){box.innerHTML='<div class="at">你的审美门派</div><div class="ab" style="margin-top:6px">左下"顺着走"选几张,你的审美门派与本命画家就会从坐标里浮现出来。</div>';return;}
   const benHtml=A.ben?`<div class="bming"><div class="bt" style="background-image:url('${A.ben.file}')"></div><div><div class="bk">本命画家 · 契合 ${A.benAff}%</div><div class="bn">${A.ben.cn}</div><div class="bk">${regName(A.ben.regionId)} · ${A.ben.region==='east'?'东方':'西方'}</div></div></div>`:'';
-  box.innerHTML=`<div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px"><span class="at" style="color:${A.color}">你的审美门派 · n=${A.n} · 稀有度 ${A.share}%(${A.rlab})</span><button class="ig" onclick="togInfo('ip-arch')">ⓘ 怎么算的</button><a class="copy" href="kg-me-types.html" style="text-decoration:none"><i data-ic="gallery"></i> 全部门派</a><button class="copy" id="copyArch">复制摘要</button><button class="copy" id="shareBtn"><i data-ic="network"></i> 分享链接</button><button class="copy" id="dnaBtn"><i data-ic="download"></i> 存成 DNA 卡片</button></div>
+  box.innerHTML=`<div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px"><span class="at" style="color:${A.color}">你的审美门派 · n=${A.n} · 稀有度 ${A.share}%(${A.rlab})</span><button class="ig" onclick="togInfo('ip-arch')">ⓘ 怎么算的</button><a class="copy" href="kg-me-types.html" style="text-decoration:none"><i data-ic="gallery"></i> 全部门派</a><button class="copy" id="copyArch">复制摘要</button><button class="copy" id="shareBtn"><i data-ic="network"></i> 分享链接</button><button class="copy" id="posterBtn"><i data-ic="frame"></i> 审美海报</button><button class="copy" id="dnaBtn"><i data-ic="download"></i> 存成 DNA 卡片</button></div>
     <div class="ipop" id="ip-arch" hidden>${EXPLAIN.arch}</div>
     <div class="an" style="border-left:4px solid ${A.color};padding-left:11px">${A.rName}派 · 「${A.sub}」型</div>
     <div class="sublabel">${A.sub}:${A.subDesc}　·　${A.traitline}</div>
@@ -459,6 +459,7 @@ function renderArch(P){
   const cb=$('#copyArch'); if(cb)cb.onclick=()=>{const txt=`我的审美门派:${A.rName}派 ·「${A.sub}」型\n${A.desc}\n和我审美最像的大师:${A.ben?A.ben.cn+'(相似度'+A.benAff+'%)':'—'}\n气味相投:${A.circle.slice(0,3).join(' · ')}\n全世界每 100 人约 ${A.share} 人和我同派(${A.rlab})\n测你的审美 → ai.zaowuyun.com/aha`;
     (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>{cb.textContent='已复制 ✓';setTimeout(()=>cb.textContent='复制摘要',1800);}).catch(()=>{cb.textContent='复制失败';});};
   const db=$('#dnaBtn'); if(db)db.onclick=downloadCard;
+  const pb=$('#posterBtn'); if(pb)pb.onclick=()=>posterProfileKG('soul');
   const sb=$('#shareBtn'); if(sb)sb.onclick=()=>{const u=shareUrl();(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>{sb.textContent='已复制 ✓ 发给朋友';setTimeout(()=>sb.textContent='🔗 分享链接',2000);}).catch(()=>{sb.textContent='复制失败';});};
   const stb=document.querySelectorAll('#archcard .stbtn');stb.forEach(b=>{b.style.color=b.dataset.st===CARDSTYLE?'var(--accent)':'var(--ink-mute)';b.onclick=()=>{CARDSTYLE=b.dataset.st;stb.forEach(x=>x.style.color=x.dataset.st===CARDSTYLE?'var(--accent)':'var(--ink-mute)');};});
 }
@@ -477,9 +478,36 @@ function renderShared(A){ ARCHCACHE=A;
     <div class="ameta" style="margin-top:8px">${traits}</div>
     <div class="ameta"><span class="tag">掌门 ${A.pat?A.pat.cn:'—'}</span><span class="tag">每100人约${A.share}人同派·${A.rlab}</span><span style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-left:4px">气味相投:</span>${A.circle.slice(0,4).map(n=>`<span class="tag e">${n}</span>`).join('')}</div>
     <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);margin-top:8px;border-top:1px dashed var(--line);padding-top:7px">向量 ⟨${A.vec.join(' ')}⟩</div>
-    <div class="bar" style="margin-top:16px"><a class="btn love" href="kg-me.html">→ 测出我自己的审美</a><button class="btn" id="dnaBtn"><i data-ic="download"></i> 存成这张卡</button></div>
+    <div class="bar" style="margin-top:16px"><a class="btn love" href="kg-me.html">→ 测出我自己的审美</a><button class="btn" id="posterBtn"><i data-ic="frame"></i> 生成海报</button><button class="btn" id="dnaBtn"><i data-ic="download"></i> 存成这张卡</button></div>
   </div>`;
   const db=$('#dnaBtn'); if(db)db.onclick=downloadCard;
+  const pb=$('#posterBtn'); if(pb)pb.onclick=()=>posterProfileKG('soul');
+}
+
+// ─── 服务端合成审美海报(三款形式,可分享;跨站调 aha.yishujia.art)───
+const POSTER_STYLES=[['soul','本命画家'],['creed','身份金句'],['full','完整档案']];
+const PHOST='https://aha.yishujia.art';
+function posterProfileKG(st){
+  const A=ARCHCACHE; if(!A)return; st=st||'soul';
+  const lb=$('#plb'),box=$('#pbox'); lb.classList.add('on');
+  const chips=POSTER_STYLES.map(s=>`<button class="pchip${s[0]===st?' on':''}" onclick="posterProfileKG('${s[0]}')">${s[1]}</button>`).join('');
+  box.innerHTML=`<div class="ptabs">${chips}</div><div class="ph">正在合成审美海报…<br>(首次约十几秒,要取本命画家的画)</div>`;
+  const shareU=(location.hash.indexOf('#s=')===0)?location.href:shareUrl();
+  const m=A.meters||{}, qs=new URLSearchParams(), put=(k,v)=>{if(v!=null&&v!=='')qs.set(k,v);};
+  put('st',st);put('uid','sh_'+(A.idCode||'x').replace(/\W+/g,''));
+  put('rn',A.rName);put('sb',A.sub);put('sd',A.subDesc);put('cr',A.creed);put('ds',A.desc);
+  put('co',A.color);put('sh',A.share);put('rl',A.rlab);
+  put('bc',A.ben&&A.ben.cn);put('bf',A.ben&&A.ben.file);put('bid',A.ben&&A.ben.id);put('ba',A.benAff);put('id',A.idCode);
+  put('ci',(A.circle||[]).slice(0,4).join(','));put('v',(A.vec||[]).join(','));
+  put('le',m.ep||m.epiphany||0);put('lg',m.gr||m.growth||0);put('lc',m.calm||0);
+  put('u',shareU);
+  const close=()=>lb.classList.remove('on');
+  fetch(PHOST+'/api/me/profile_poster?'+qs.toString()).then(r=>r.json()).then(d=>{
+    if(d&&d.url){const src=PHOST+'/'+d.url+'?t='+Date.now();
+      box.innerHTML=`<div class="ptabs">${chips}</div><img src="${src}" alt="审美档案海报"><div class="ph">长按图片保存 · 换一种形式 ↑</div><div class="pacts"><a href="${src}" download="审美档案-aha.png" target="_blank">下载这张</a><button class="gh" id="plbX">关闭</button></div>`;
+    }else{box.innerHTML=`<div class="ptabs">${chips}</div><div class="ph">生成失败:${(d&&d.error)||'稍后再试'}</div><div class="pacts"><button class="gh" id="plbX">关闭</button></div>`;}
+    const x=box.querySelector('#plbX');if(x)x.onclick=close;
+  }).catch(()=>{box.innerHTML=`<div class="ptabs">${chips}</div><div class="ph">生成失败,请重试</div><div class="pacts"><button class="gh" id="plbX">关闭</button></div>`;const x=box.querySelector('#plbX');if(x)x.onclick=close;});
 }
 
 // ─── 可分享 DNA 卡片(canvas → PNG)───
@@ -730,5 +758,20 @@ $('#love').onclick=()=>act('heart');
 $('#skip').onclick=()=>act('skip');
 $('#reset').onclick=()=>{events=[];served=[];shown=[];try{localStorage.removeItem(LS);}catch(e){}refresh(true);};
 </script>
-</div><script src="js/aha-icons.js"></script>
+</div>
+<style>
+#plb{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(28,24,18,.74);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+#plb.on{display:flex}
+#pbox{max-width:430px;width:100%;max-height:94vh;overflow:auto;background:var(--paper);border-radius:16px;box-shadow:var(--sh-card,0 24px 70px -20px rgba(20,14,6,.7));padding:14px;text-align:center}
+#pbox img{width:100%;border-radius:10px;display:block}
+#pbox .ph{font-size:13px;color:var(--ink-soft);margin:12px 4px;line-height:1.6}
+#pbox .ptabs{display:flex;gap:8px;justify-content:center;margin:2px 0 12px}
+#pbox .pchip{padding:8px 16px;border-radius:999px;font-size:13px;cursor:pointer;border:1px solid var(--line);background:var(--paper-2);color:var(--ink-soft);transition:all var(--dur,.15s) var(--ease,ease)}
+#pbox .pchip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+#pbox .pacts{display:flex;gap:10px;justify-content:center;margin:4px 0 6px}
+#pbox .pacts a,#pbox .pacts .gh{flex:1;max-width:160px;padding:11px 0;border-radius:10px;font-size:14px;text-decoration:none;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:#fff;text-align:center}
+#pbox .pacts .gh{background:transparent;color:var(--accent)}
+</style>
+<div id="plb" onclick="if(event.target.id==='plb')this.classList.remove('on')"><div id="pbox"></div></div>
+<script src="js/aha-icons.js"></script>
 </body></html>

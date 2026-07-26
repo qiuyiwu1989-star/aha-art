@@ -1,51 +1,132 @@
 <!doctype html>
 <html lang="zh"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>[活数据] 情绪云 · aha</title>
-<style>
-:root{--ink:#2a2620;--soft:#6b6457;--line:#e2dccd;--bg:#f7f3ea;--accent:#9a6a3a}
-*{box-sizing:border-box;margin:0}body{font:14px/1.6 -apple-system,"PingFang SC",sans-serif;color:var(--ink);background:var(--bg)}
-header{padding:14px 20px;border-bottom:1px solid var(--line);background:#fff;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
-h1{font-size:18px;margin:0}.sub{color:var(--soft);font-size:12.5px}.bar{margin-left:auto;font-size:13px;color:var(--soft)}
-.wrap{max-width:1000px;margin:0 auto;padding:18px}
-.plane{position:relative;width:100%;max-width:780px;margin:0 auto;aspect-ratio:1;background:radial-gradient(120% 120% at 50% 50%,#fff,#f1ead9);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-svg{position:absolute;inset:0;width:100%;height:100%}
-.axlab{position:absolute;font-size:12px;color:var(--soft);font-weight:600}
-.anc{font-size:13px;font-weight:700;fill:#9a6a3a;opacity:.5;pointer-events:none}
-.tip{position:fixed;z-index:20;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 28px rgba(0,0,0,.16);padding:8px;width:170px;pointer-events:none;display:none;font-size:12px}
-.tip img{width:100%;height:110px;object-fit:cover;border-radius:6px;display:block;background:#eee}.tip b{display:block;margin-top:5px}.tip span{color:var(--soft)}
-a.back{color:var(--accent);text-decoration:none;font-size:13px}
-</style></head>
-<body>
-<header><a class="back" href="home.html">← aha.art</a><h1>情绪云 <span class="sub" id="sub">活数据</span></h1>
-  <div class="bar">每点=一幅真实作品 · 悬停看图 · 点击进详情</div></header>
-<div class="wrap">
-  <div class="plane" id="plane">
-    <svg id="svg" viewBox="0 0 1000 1000"></svg>
-    <div class="axlab" style="left:8px;top:50%">← 消极</div><div class="axlab" style="right:8px;top:50%">愉悦 →</div>
-    <div class="axlab" style="left:50%;top:6px;transform:translateX(-50%)">↑ 激越</div><div class="axlab" style="left:50%;bottom:6px;transform:translateX(-50%)">平静 ↓</div>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/aha-kit.css">
+<link rel="stylesheet" href="css/cloud-stage.css">
+</head>
+<body data-no-top>
+<div class="stage dark" id="stage">
+<script>try{if((localStorage.getItem('aha-theme')||'dark')==='light')document.getElementById('stage').classList.remove('dark')}catch(e){}</script>
+  <div class="plane">
+    <canvas id="cv"></canvas>
+    <span class="axl l">← 消极</span><span class="axl r">愉悦 →</span>
+    <span class="axl t">↑ 激越</span><span class="axl b">平静 ↓</span>
+  </div>
+
+  <div class="hud tl">
+    <a class="back" href="museum.html">← aha.art</a>
+    <div class="kicker">Live Data · 活数据</div>
+    <h1>情绪云</h1>
+    <div class="sub">每一点是一幅真实作品,落在「愉悦 × 激越」的 VAD 情绪平面上。<br>滚轮缩放 · 拖拽平移 · 悬停看图 · 点击速览。</div>
+    <div class="cnt" id="cnt">加载中…</div>
+  </div>
+
+  <div class="hud tr">
+    <span class="lab">着色</span>
+    <span class="segwrap" id="mode">
+      <button class="seg on" data-m="anchor">情绪分类</button>
+      <button class="seg" data-m="mono">单色密度</button>
+    </span>
+  </div>
+
+  <div class="hud bl" id="lwrap"><div class="legend" id="legend"></div></div>
+
+  <div class="hud br">
+    <button class="cbtn" id="zin" title="放大">＋</button>
+    <button class="cbtn" id="zout" title="缩小">－</button>
+    <button class="cbtn" id="rst" title="复位(或双击)">⤢</button>
+    <button class="cbtn" id="theme" title="明/暗底">◐</button>
   </div>
 </div>
-<div class="tip" id="tip"></div>
+
+<div class="tipcard" id="tip"><img id="tipimg" alt=""><b id="tipt"></b><span id="tips"></span></div>
+<div class="peek" id="peek">
+  <button class="x" id="peekx">关闭 ✕</button>
+  <img id="pkimg" alt=""><h3 id="pktitle"></h3>
+  <div class="pm" id="pkmeta"></div>
+  <a class="open-work" id="pkopen" href="#">进入作品详情 →</a>
+</div>
+
+<script src="js/cloud.js"></script>
+<script src="js/cloud-stage.js"></script>
 <script>
 const ANC=['喜悦','鲜活','热烈','崇高','张力','恐惧','神秘','忧伤','孤独','怀旧','虚无','沉思','平静','空灵'];
-const ANCC={};ANC.forEach((a,i)=>ANCC[a]=`hsl(${i*26},58%,52%)`);
-const svg=document.getElementById('svg'),tip=document.getElementById('tip');let P=[];
-const W=1000,H=1000,pad=70;
-const X=v=>pad+(+v)*(W-2*pad), Y=a=>pad+(1-(+a))*(H-2*pad);
-fetch('data/live/affect.json').then(r=>r.json()).then(d=>{P=d.points;
-  document.getElementById('sub').textContent=`活数据 · ${d.meta.n} 件`;
-  // 锚点质心
-  const cen={};P.forEach(p=>{if(!p.anchor)return;(cen[p.anchor]=cen[p.anchor]||[]).push(p)});
-  let h=`<line x1="${W/2}" y1="${pad}" x2="${W/2}" y2="${H-pad}" stroke="#eadfca"/><line x1="${pad}" y1="${H/2}" x2="${W-pad}" y2="${H/2}" stroke="#eadfca"/>`;
-  h+=P.map((p,i)=>`<circle cx="${X(p.v)}" cy="${Y(p.a)}" r="5" fill="${ANCC[p.anchor]||'#aaa'}" fill-opacity=".62" data-i="${i}"/>`).join('');
-  for(const k in cen){const xs=cen[k].reduce((s,p)=>s+ +p.v,0)/cen[k].length,ys=cen[k].reduce((s,p)=>s+ +p.a,0)/cen[k].length;
-    h+=`<text class="anc" x="${X(xs)}" y="${Y(ys)}" text-anchor="middle">${k}</text>`;}
-  svg.innerHTML=h;});
-svg.addEventListener('mousemove',e=>{const t=e.target;if(t.tagName!=='circle'){tip.style.display='none';return}
-  const p=P[+t.dataset.i];tip.innerHTML=`<img src="${p.thumb}"><b>${(p.title||'无题').slice(0,18)}</b><span>${p.artist||''} · ${p.anchor||''} · ${p.style||''}</span>`;
-  tip.style.display='block';tip.style.left=Math.min(e.clientX+14,innerWidth-185)+'px';tip.style.top=Math.min(e.clientY+14,innerHeight-180)+'px'});
-svg.addEventListener('click',e=>{const t=e.target;if(t.tagName==='circle')location.href='work.html?id='+P[+t.dataset.i].id});
-svg.addEventListener('mouseleave',()=>tip.style.display='none');
+const ANCC={};ANC.forEach((a,i)=>ANCC[a]=(window.AHACloud?AHACloud.ds(i):'#b0673a'));
+const cs=getComputedStyle(document.documentElement),tok=n=>cs.getPropertyValue(n).trim();
+const mute=tok('--ink-mute'),accent=tok('--accent');
+let D=null,mode='anchor',stage=null,enabled=null;
+const tip=document.getElementById('tip'),peek=document.getElementById('peek');
+const thumb=(u,w)=>u?u.replace(/thumbnail\/\d+x/,'thumbnail/'+w+'x'):'';
+const KGSET=new Set(ANC);let ANCV=[];   // 14 锚的 VAD,用于把游离词就近上卷
+function rollA(p){if(KGSET.has(p.anchor))return p.anchor;let best=p.anchor,bd=1e9;
+  for(const a of ANCV){const dx=+p.v-a.v,dy=+p.a-a.a,d=dx*dx+dy*dy;if(d<bd){bd=d;best=a.cn;}}return best;}
+const colFn=()=>mode==='mono'?(()=>accent):(p=>ANCC[rollA(p)]||mute);
+
+Promise.all([
+  fetch('data/live/affect.json').then(r=>r.json()),
+  fetch('data/kg_affect_keys.json').then(r=>r.json())   // KG 权威:14 情绪锚的 VAD 坐标
+]).then(([d,ak])=>{D=d;
+  ANCV=(ak.anchors||[]).map(an=>({cn:an.cn,v:+an.vad.valence,a:+an.vad.arousal}));   // 供 rollA 就近上卷
+  // 锚点标签 = KG 权威 VAD 坐标(valence×arousal),底座会自动去重叠排布
+  const labels=ANCV.map(an=>({x:an.v,y:an.a,text:an.cn,color:ANCC[an.cn]||tok('--accent')}));
+  stage=AHAStage({
+    canvas:document.getElementById('cv'), points:d.points,
+    px:p=>+p.v, py:p=>+p.a, key:p=>p.id||p.title,
+    colorOf:colFn(), groupOf:p=>rollA(p),
+    labels, colors:{axis:tok('--line'),halo:tok('--card'),ring:tok('--accent'),label:tok('--accent'),dim:tok('--ink-faint')},
+    onHover:showTip, onLeave:hideTip, onPick:openPeek
+  });
+  buildLegend(); updateCount();
+}).catch(()=>{document.getElementById('cnt').textContent='数据加载失败 · 检查 data/live/affect.json';});
+
+document.querySelectorAll('#mode .seg').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#mode .seg').forEach(x=>x.classList.toggle('on',x===b));
+  mode=b.dataset.m; stage.setColor(colFn());
+  document.getElementById('lwrap').style.display=mode==='mono'?'none':''; stage.setFilter(null); updateCount();
+});
+
+function buildLegend(){
+  enabled=new Set(ANC);
+  const el=document.getElementById('legend');
+  el.innerHTML=ANC.map(k=>`<button class="lgi" data-k="${k}"><i style="background:${ANCC[k]}"></i>${k}</button>`).join('')
+    +`<button class="all" id="lall">全部</button>`;
+  el.querySelectorAll('.lgi').forEach(b=>b.onclick=()=>toggle(b.dataset.k));
+  document.getElementById('lall').onclick=()=>{enabled=new Set(ANC);syncLegend();stage.setFilter(null);updateCount();};
+}
+function toggle(k){
+  if(enabled.has(k))enabled.delete(k); else enabled.add(k);
+  if(!enabled.size)enabled=new Set(ANC);
+  syncLegend(); stage.setFilter(enabled.size===ANC.length?null:enabled); updateCount();
+}
+function syncLegend(){document.querySelectorAll('#legend .lgi').forEach(b=>b.classList.toggle('off',!enabled.has(b.dataset.k)));}
+function updateCount(){const v=stage?stage.visibleCount():0;document.getElementById('cnt').innerHTML=`活数据 · <b>${v.toLocaleString()}</b> / ${D.meta.n.toLocaleString()} 件 · 随过闸增长`;}
+
+let tipTimer=0,tipKey='';
+function showTip(p,cx,cy){
+  document.getElementById('tipt').textContent=(p.title||'无题').slice(0,20);
+  document.getElementById('tips').textContent=`${p.artist||''} · ${p.anchor||''} · ${p.style||''}`;
+  tip.style.display='block';
+  tip.style.left=Math.min(cx+15,innerWidth-194)+'px'; tip.style.top=Math.min(cy+15,innerHeight-192)+'px';
+  const want=thumb(p.thumb,140),img=document.getElementById('tipimg');
+  if(tipKey!==want){tipKey=want;img.classList.remove('on');clearTimeout(tipTimer);
+    tipTimer=setTimeout(()=>{img.onload=()=>img.classList.add('on');img.src=want;},90);}
+}
+function hideTip(){tip.style.display='none';clearTimeout(tipTimer);tipKey='';}
+function openPeek(p){
+  hideTip();
+  document.getElementById('pkimg').src=thumb(p.thumb,1000)||'';
+  document.getElementById('pktitle').textContent=p.title||'无题';
+  document.getElementById('pkmeta').innerHTML=`<b>${p.artist||'佚名'}</b><br>情绪锚 · ${p.anchor||'—'}<br>风格 · ${p.style||'—'}<br>愉悦 ${(+p.v).toFixed(2)} · 激越 ${(+p.a).toFixed(2)}`;
+  document.getElementById('pkopen').href='work.html?id='+p.id;
+  peek.classList.add('open');
+}
+document.getElementById('peekx').onclick=()=>peek.classList.remove('open');
+document.getElementById('zin').onclick=()=>stage.zoomIn();
+document.getElementById('zout').onclick=()=>stage.zoomOut();
+document.getElementById('rst').onclick=()=>stage.reset();
+document.getElementById('theme').onclick=()=>{var s=document.getElementById('stage');s.classList.toggle('dark');try{localStorage.setItem('aha-theme',s.classList.contains('dark')?'dark':'light')}catch(e){}};
 </script>
+<script src="js/aha-chrome.js"></script>
 </body></html>

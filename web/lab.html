@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 实验场(互动装置 · 非产品)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/aha.css?v=3"/>
+<link rel="stylesheet" href="css/aha-kit.css"/>
+<style>
+  body{background:var(--paper);overflow-y:auto}
+  .wrap{max-width:880px;margin:0 auto;padding:54px 20px 90px}
+  /* 品牌头 */
+  .brandhead{text-align:center;margin-bottom:8px}
+  .bh-name{font-family:var(--serif);font-size:clamp(34px,8vw,56px);font-weight:600;letter-spacing:-.02em;color:var(--ink);line-height:1.05}
+  .bh-name .dot{color:var(--accent)}
+  .bh-slogan{font-family:var(--serif);font-size:clamp(15px,3vw,19px);color:var(--accent);margin-top:12px}
+  .bh-cat{font-family:var(--mono);font-size:12px;color:var(--ink-mute);letter-spacing:.08em;margin-top:6px}
+  .bh-note{font-size:13px;color:var(--ink-mute);line-height:1.7;max-width:600px;margin:16px auto 0}
+  .bh-note b{color:var(--ink-soft)}
+  /* 准线卡 */
+  .line{max-width:600px;margin:18px auto 0;background:#fff;border:1px solid var(--line);border-radius:13px;padding:15px 18px}
+  .line .q{font-family:var(--serif);font-size:15px;color:var(--ink);font-weight:500;margin-bottom:8px}
+  .line .pair{display:flex;gap:10px;font-size:12.5px;line-height:1.6}
+  .line .pair>div{flex:1}
+  .line .lab{font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--accent);display:block;margin-bottom:2px}
+  .line .pair .prod .lab{color:var(--ink-mute)}
+  .line .pair b{color:var(--ink-soft)}
+  /* 分厅导航 */
+  .hallnav{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:22px 0 4px}
+  @media(max-width:640px){.hallnav{grid-template-columns:1fr}}
+  .hallnav a{display:flex;flex-direction:column;gap:3px;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:13px;padding:13px 14px;color:var(--ink-soft);transition:all .15s var(--ease)}
+  .hallnav a:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+  .hallnav .hi{font-size:18px}
+  .hallnav .ht{font-family:var(--serif);font-size:14px;font-weight:600;color:var(--ink)}
+  .hallnav a:hover .ht{color:var(--accent)}
+  .hallnav .hd{font-family:var(--mono);font-size:9.5px;color:var(--ink-faint);line-height:1.5}
+  /* 分区 */
+  .sec{margin-top:40px;scroll-margin-top:18px}
+  .sec-h{display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:6px}
+  .sec-h .t{font-family:var(--serif);font-size:19px;font-weight:500;color:var(--ink)}
+  .sec-h .n{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
+  .sec-h .d{font-size:12.5px;color:var(--ink-mute);margin-left:auto;text-align:right}
+  .sec-lede{font-size:12.5px;color:var(--ink-mute);line-height:1.7;margin:8px 2px 4px}
+  .sec-lede b{color:var(--ink-soft)}
+  .band{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--ink-mute);margin:18px 2px 2px;padding-bottom:3px}
+  /* 条目 */
+  .row{display:flex;align-items:flex-start;gap:12px;text-decoration:none;padding:13px 10px;border-radius:10px;
+    border:1px solid transparent;transition:all .16s var(--ease)}
+  .row:hover{background:#fff;border-color:var(--line);transform:translateX(2px)}
+  .row .ic{font-size:20px;line-height:1.3;width:26px;text-align:center;flex-shrink:0}
+  .row .body{flex:1;min-width:0}
+  .row .nm{font-family:var(--serif);font-size:16px;color:var(--ink);font-weight:500}
+  .row .en{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);margin-left:6px}
+  .row .ds{font-size:12.5px;color:var(--ink-soft);line-height:1.55;margin-top:3px}
+  .row .prove{font-size:11.5px;color:var(--ink-mute);line-height:1.5;margin-top:5px}
+  .row .prove b{color:var(--accent);font-weight:500}
+  .row .tags{margin-top:5px;display:flex;gap:6px;flex-wrap:wrap}
+  .row .tg{font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;color:var(--ink-mute);
+    border:1px solid var(--line);border-radius:5px;padding:1px 7px}
+  .row .tg.grad{color:var(--accent);border-color:var(--accent-line,#e5d3c2)}
+  .row .go{align-self:center;color:var(--ink-faint);font-size:18px;flex-shrink:0}
+  .row:hover .go{color:var(--accent)}
+  .foot{text-align:center;margin-top:52px;font-family:var(--mono);font-size:11px;color:var(--ink-faint);line-height:1.9}
+  .backbar{text-align:center;margin:2px 0 14px}
+  .backbar a{font-family:var(--mono);font-size:11.5px;color:var(--accent);text-decoration:none;margin:0 8px}
+</style>
+</head><body data-no-top>
+<div class="wrap">
+  <div class="brandhead">
+    <div class="bh-name">实<span class="dot">·</span>验场</div>
+    <div class="bh-slogan">看一次就懂的互动装置 · The Lab</div>
+    <div class="bh-cat">interactive exhibits, not products</div>
+    <div class="bh-note">这里所有东西<b>看完即走</b>:它们不存账户、不留资产、不会因为你来过而改变。<br>它们的全部价值,是让你<b>当场看懂、并相信</b>aha 这台引擎是怎么运转的。产品在 <a href="me.html" style="color:var(--accent);text-decoration:none">/me</a> 与 <a href="museum.html" style="color:var(--accent);text-decoration:none">美术馆</a>,装置在这里。</div>
+  </div>
+
+  <div class="line">
+    <div class="q">一条准线:价值最终落在谁身上?</div>
+    <div class="pair">
+      <div class="prod"><span class="lab">落在用户 → 产品</span>有账户、留存、可带走的产出,越用越懂你。<b>/me</b> 把档案沉淀在你身上。</div>
+      <div><span class="lab">落在"理解" → 装置</span>一次性的惊叹与信任,看完即走。<b>/kg-me</b> 把"算法怎么算"演示给你看。</div>
+    </div>
+  </div>
+
+  <nav class="hallnav">
+    <a href="#demo"><span class="hi"><i data-ic="sparkles"></i></span><span class="ht">演示装置</span><span class="hd">说服小白 · 它真的懂</span></a>
+    <a href="#research"><span class="hi"><i data-ic="science"></i></span><span class="ht">研究展品</span><span class="hd">说服专家 · 它真的成立</span></a>
+    <a href="#play"><span class="hi"><i data-ic="dice"></i></span><span class="ht">玩法装置</span><span class="hd">说服逛客 · 换种逛法</span></a>
+  </nav>
+
+  <div class="backbar"><a href="log.html">← 全部活页日志</a><a href="compass.html">体验地图(全站结构)</a></div>
+
+  <!-- ① 演示装置 -->
+  <div class="sec" id="demo">
+    <div class="sec-h"><span class="t"><i data-ic="sparkles"></i> 演示装置</span><span class="n">12</span><span class="d">说服「小白」<br>"它真的懂你 / 真的讲得通"</span></div>
+    <div class="sec-lede">一拨就<b>当场重算</b>、看一次就<b>惊叹</b>的东西。把抽象的图谱、向量、推荐内核,变成你眼前会动的反应。这是把好奇转成"我信了"的转化层。</div>
+
+    <a class="row" href="aesthetic-lab.html"><span class="ic"><i data-ic="sparkles"></i></span><div class="body"><div class="nm">美学实验室 · 审美 DNA<span class="en">Aesthetic Lab</span></div><div class="ds">约 10 次选择,现场读出你的「审美 DNA」,看推荐算法实时长出你的画像,末了给一份美学评估报告。</div><div class="prove">向你证明:<b>它真能从几次点击里读出你是谁</b></div><div class="tags"><span class="tg">旗舰·可展示</span><span class="tg">算法可视化</span></div></div><span class="go">→</span></a>
+
+    <a class="row" href="kg-me.html"><span class="ic">🧑‍🎨</span><div class="body"><div class="nm">我的审美档案 · 推荐内核可视化<span class="en">Me · Person</span></div><div class="ds">美学奖励算法接到三套真实坐标(世界观/语言7轴/情绪VAD):此刻心情vs长期口味双重心、惊奇带自学习、旅程三盏灯,权重旋钮全可拨。</div><div class="prove">向你证明:<b>推荐不是黑箱,每一分都看得见怎么算</b> · <span style="color:var(--ink-mute)">产品版 = /me</span></div><div class="tags"><span class="tg grad">→产品版 /me</span><span class="tg">三盏灯</span></div></div><span class="go">→</span></a>
+
+    <a class="row" href="kg-me-algo.html"><span class="ic"><i data-ic="compass"></i></span><div class="body"><div class="nm">推荐内核 · 算法流程图<span class="en">Me · Algorithm</span></div><div class="ds">一图看懂:三套坐标 → 画像生成线 + 推荐打分线;含顿悟倒U曲线图解(为什么不返回最近邻)+ 四项奖励公式,参数全照搬真实代码。</div><div class="prove">向你证明:<b>"懂你"背后是可写出的公式,不是玄学</b></div><div class="tags"><span class="tg">算法流程图</span><span class="tg">公式照代码</span></div></div><span class="go">→</span></a>
+
+    <a class="row" href="kg-me-types.html"><span class="ic"><i data-ic="gallery"></i></span><div class="body"><div class="nm">审美门派图鉴 · 48 种原型<span class="en">Me · Houses</span></div><div class="ds">6 大门派 × 8 种亚型 = 48 种审美原型摊开讲清,MBTI 式对号入座,每派带信条/掌门/稀有度/世界观定位。</div><div class="prove">向你证明:<b>审美差异可被命名、可被定位</b></div><div class="tags"><span class="tg">门派图鉴</span><span class="tg">48 原型</span></div></div><span class="go">→</span></a>
+
+    <a class="row" href="kg-taste.html"><span class="ic"><i data-ic="target"></i></span><div class="body"><div class="nm">审美定位 · 你在这里<span class="en">Taste</span></div><div class="ds">看几对真迹选更喜欢的 → 把你的口味落到世界观平面,标出「你在这里」并按坐标距离推荐最合你的艺术家。</div><div class="prove">向你证明:<b>整张图谱能瞬间变成"懂你"的入口</b></div><div class="tags"><span class="tg">你在这里</span><span class="tg">就近推荐</span></div></div><span class="go">→</span></a>
+
+    <a class="row" href="how-it-works.html"><span class="ic"><i data-ic="ruler"></i></span><div class="body"><div class="nm">它是怎么算的(算法科普)<span class="en">How it works</span></div><div class="ds">大白话讲清美学推荐:画/人变数字 → 倒U惊奇曲线 → 三步流水线,每个小装置都能拨动、数字当场重算。</div><div class="prove">向你证明:<b>这套算法经得起被掀开看</b></div><div class="tags"><span class="tg">算法透明</span><span class="tg">可互动</span></div></div><span class="go">→</span></a>
+
+    <a class="row" href="kg-galaxy.html"><span class="ic"><i data-ic="galaxy"></i></span><div class="body"><div class="nm">会发光的艺术史 · 星辰大海<span class="en">Galaxy</span></div><div class="ds">202 流派=星,聚成 6 片世界观区星云;474 条真实美术史关系连线,一键换 6 种排布整片星辰飞重组,点星看其关系网与理由。</div><div class="prove">向你证明:<b>整部美术史能被一眼看见、且每条线都有据</b></div><div class="tags"><span class="tg">旗舰 3D</span><span class="tg">6 种排布</span></div></div><span class="go">→</span></a>
+
+    <a class="row" href="kg-explain.html"><span class="ic"><i data-ic="science"></i></span><div class="body"><div class="nm">一画解读 · 坐标即解释<span class="en">Explain</span></div><div class="ds">选一张真迹,沿生成链(世界观→实现→效应→意义)把"为什么这样画"讲给你听 + 同脉推荐。这是"理解即生成"的兑现。</div><div class="prove">向你证明:<b>坐标本身就是解释,不是事后贴标签</b></div><div class="tags"><span class="tg">坐标即解释</span><span class="tg">生成链</span></div></div><span class="go">→</span></a>
+
+    <a class="row" href="kg-duet.html"><span class="ic"><i data-ic="versus"></i></span><div class="body"><div class="nm">双画对读 · 坐标即比较<span class="en">Duet</span></div><div class="ds">任选两张真迹并置,沿生成链逐层对比:坐标/题材/语言/情绪/意义,双平面叠加连线 + 一句"最大分歧在哪条轴"。</div><div class="prove">向你证明:<b>两种看世界的方式,差异可被量出来</b></div><div class="tags"><span class="tg">坐标即比较</span><span class="tg">逐层对比</span></div></div><span class="go">→</span></a>
+
+    <a class="row" href="kg-projection.html"><span class="ic"><i data-ic="target"></i></span><div class="body"><div class="nm">风格投影 · 沿生成链对比<span class="en">Projection</span></div><div class="ds">把"风格=沿链投影"做成可玩:选一个区或几个风格,同看它们投影到世界观平面+E向量雷达+7大构成,带离散度实时计算。</div><div class="prove">向你证明:<b>"风格是投影"这个论点真的成立给你看</b></div><div class="tags"><span class="tg">V3论点可玩</span><span class="tg">三空间联动</span></div></div><span class="go">→</span></a>
+
+    <a class="row" href="arch-demo.html"><span class="ic"><i data-ic="tools"></i></span><div class="body"><div class="nm">三层架构 · 活体演示<span class="en">L1/L2/L3</span></div><div class="ds">点一下看信号→画像→匹配在三层间流动(content/brain/arch 三个文件在真跑)。</div><div class="prove">向你证明:<b>这不是 PPT,后面真有三层在跑</b></div><div class="tags"><span class="tg">活体演示</span><span class="tg">真跑</span></div></div><span class="go">→</span></a>
+
+    <a class="row" href="kg-compile-v2.html?demo"><span class="ic"><i data-ic="sparkles"></i></span><div class="body"><div class="nm">意图编译器 · 只读演示<span class="en">Compile · demo</span></div><div class="ds">输入几个词/一种感受/一位大师名 → 编译器沿生成链扩写成完整方案,改一处其余顺图谱重算。<b>只读模式:不出图、不花额度、不入库</b>(产品版在图谱区出图入库)。</div><div class="prove">向你证明:<b>"理解即生成"的推理过程,看得见</b> · <span style="color:var(--ink-mute)">产品版 = kg-compile-v2</span></div><div class="tags"><span class="tg grad">→产品版出图</span><span class="tg">零额度演示</span></div></div><span class="go">→</span></a>
+  </div>
+
+  <!-- ② 研究展品 -->
+  <div class="sec" id="research">
+    <div class="sec-h"><span class="t"><i data-ic="science"></i> 研究展品</span><span class="n">15</span><span class="d">说服「专家 / 你自己」<br>"它真的站得住"</span></div>
+    <div class="sec-lede">证伪、像素实测、诚实账本。这一类的魅力恰恰是<b>敢于当众撤回错误结论</b>——把"看起来对"逼成"经得起推敲"。给懂行的人看,也给未来的自己留底。</div>
+
+    <div class="band">— 诚实与证伪 —</div>
+    <a class="row" href="kg-validate.html"><span class="ic"><i data-ic="science"></i></span><div class="body"><div class="nm">生成链 · 可证伪验证<span class="en">Validate</span></div><div class="ds">用 63 件作品实测正面检验:末端感知像素可测✓✓(唤醒~饱和 r=.78),中段"风格坐标→画面"目前弱/不成立,如实标待大语料。两端站得住、中段待验证,不粉饰。</div><div class="prove">向你证明:<b>哪条成立、哪条还不成立,全摊在桌上</b></div><div class="tags"><span class="tg">正面验证</span><span class="tg">诚实分级</span></div></div><span class="go">→</span></a>
+
+    <a class="row" href="kg-worldview-science.html"><span class="ic"><i data-ic="science"></i></span><div class="body"><div class="nm">世界观层 · 科学性自检<span class="en">Worldview·science</span></div><div class="ds">用 123 风格向量实证:PCA 证 4 轴冗余(有效~2–3维)、聚类不分6/12簇、东西1:1镜像最近邻 0/6 被证伪。结论分级:科学/假设/已证伪。</div><div class="prove">向你证明:<b>连自己的招牌定义都敢拿数据反着捶</b></div><div class="tags"><span class="tg">PCA+聚类</span><span class="tg">镜像证伪</span></div></div><span class="go">→</span></a>
+
+    <a class="row" href="kg-affect.html"><span class="ic"><i data-ic="theater"></i></span><div class="body"><div class="nm">L3 感知效应 · VAD + 像素实测<span class="en">Affect</span></div><div class="ds">先给 VAD 开集模型(398情绪→14锚点),再用 57 幅真迹像素正面检验——当众撤掉那条循环的"饱和→唤起 r≈0.78",诚实分级哪条成立。</div><div class="prove">向你证明:<b>错的循环论证,我们自己当众撤</b></div><div class="tags"><span class="tg">像素实测</span><span class="tg">循环纠偏</span></div></div><span class="go">→</span></a>
+
+    <a class="row" href="kg-provenance.html"><span class="ic"><i data-ic="telescope"></i></span><div class="body"><div class="nm">数据可信度 · 每个数字从哪来<span class="en">Provenance</span></div><div class="ds">整条链 L0→L4 每项数据摊开:来自哪种信源(考据/测量/派生/诠释)、样本多大多可信怎么验证,并坦白还不知道什么(空间轴最弱 r.22)。</div><div class="prove">向你证明:<b>不把推断当测量、不把断言当事实</b></div><div class="tags"><span class="tg">信源标注</span><span class="tg">诚实未知</span></div></div><span class="go">→</span></a>
+
+    <a class="row" href="kg-audit.html"><span class="ic"><i data-ic="science"></i></span><div class="body"><div class="nm">V2 科学化自检报告<span class="en">Audit</span></div><div class="ds">把 V2 从"断言"变成"可测量、标清假设":实时指标(去塌缩12→195、关联边25%→85%)、硬证据、已验证 vs 假设、3 个可证伪实验。</div><div class="prove">向你证明:<b>每一版都给自己出一份体检报告</b></div><div class="tags"><span class="tg">可证伪</span><span class="tg">v0.2</span></div></div><span class="go">→</span></a>
+
+    <a class="row" href="kg-backtest.html"><span class="ic"><i data-ic="target"></i></span><div class="body"><div class="nm">生成回测 · 生成的图落对位置了吗<span class="en">Backtest</span></div><div class="ds">把生成的图喂回我们自己的 VLM 读坐标,和图谱预期位置比——"理解→生成"链上唯一能证伪自己的一环,也把"哪个模型更能实现某风格"变成可测保真分。</div><div class="prove">向你证明:<b>生成不是放飞,是能被打分对错的</b></div><div class="tags"><span class="tg">闭环证伪</span><span class="tg">模型保真</span></div></div><span class="go">→</span></a>
+
+    <a class="row" href="kg-first-principles.html"><span class="ic"><i data-ic="museum"></i></span><div class="body"><div class="nm">V3 第一性原理 · 从「画是什么」立体系<span class="en">First principles</span></div><div class="ds">从公理「画=对世界有所主张的二维痕迹」推出七问四档:世界观是因、其余是果,五层是一条生成因果链,风格=涌现的投影签名。</div><div class="prove">向你证明:<b>整套体系不是拼的,是推出来的</b></div><div class="tags"><span class="tg">第一性原理</span><span class="tg">因果链</span></div></div><span class="go">→</span></a>
+
+    <div class="band">— 把历史漂移测出来 —</div>
+    <a class="row" href="kg-drift.html"><span class="ic">📈</span><div class="body"><div class="nm">世界观漂移 · 一千六百年的两条路<span class="en">Drift</span></div><div class="ds">每位艺术家按盛年放回时间轴,逐世纪算世界观重心——"再现→表现"从口号变成可测量的历史漂移。东西方用完全不同的节奏抵达"表现"。</div><div class="prove">向你证明:<b>美术史的大叙事,能被数据画成曲线</b></div><div class="tags"><span class="tg">可测量历史</span><span class="tg">东西两路</span></div></div><span class="go">→</span></a>
+
+    <a class="row" href="kg-lineage.html"><span class="ic"><i data-ic="network"></i></span><div class="body"><div class="nm">关系考究文档 · 真实美术史关系<span class="en">Lineage</span></div><div class="ds">星辰大海里 474 条连线(承自208/影响171/对抗95)逐条可推敲:全部解析到真实节点、附向量论证与理由,非作品共现。</div><div class="prove">向你证明:<b>每一条连线都查得到出处</b></div><div class="tags"><span class="tg">474 条</span><span class="tg">带论证</span></div></div><span class="go">→</span></a>
+
+    <a class="row" href="kg-subtext.html"><span class="ic"><i data-ic="danmaku"></i></span><div class="body"><div class="nm">画外音 + 感知效应层<span class="en">Subtext</span></div><div class="ds">"为什么画"拆成两环:感知效应(时间/感官/氛围/记忆)+ 画外音 5 型;每原子带「关联风格」= 通往风格层的边。</div><div class="prove">向你证明:<b>最虚的"言外之意"也能挂回结构</b></div><div class="tags"><span class="tg">398 原子</span><span class="tg">含关联边</span></div></div><span class="go">→</span></a>
+
+    <div class="band">— 艺术史动力学(自成一区:8力·69边 + 6场·52事件 + 个体偶发)—</div>
+    <a class="row" href="kg-forces.html"><span class="ic"><i data-ic="compass"></i></span><div class="body"><div class="nm">艺术史的力 · 总图(三家族 · 体系正门)<span class="en">Forces</span></div><div class="ds">是什么在推动美术史?分三家给入口:关系力(7种箭头)、语境力(6道场)、个体/偶发。诚实承认没有哪家是全集,每种力一键深链进过滤视图。</div><div class="prove">向你证明:<b>"推动力"可被分类、且不假装讲全</b></div><div class="tags"><span class="tg">体系总览</span><span class="tg">深链入口</span></div></div><span class="go">→</span></a>
+
+    <a class="row" href="kg-dynamics.html"><span class="ic"><i data-ic="versus"></i></span><div class="body"><div class="nm">关系层 · 八种关系力<span class="en">Dynamics</span></div><div class="ds">能画成箭头的八种关系力落在世界观平面:反叛/复兴/综合/推演/跨文化/致敬/竞争/结社,69 条曲线边,点节点聚焦,每条标考据/推断。</div><div class="prove">向你证明:<b>"谁影响了谁"能落成有据的箭头</b></div><div class="tags"><span class="tg">八种力</span><span class="tg">考据/推断</span></div></div><span class="go">→</span></a>
+
+    <a class="row" href="kg-context.html"><span class="ic"><i data-ic="moon"></i></span><div class="body"><div class="nm">语境层 · 推动艺术的"场"<span class="en">Context</span></div><div class="ds">作用于整个画坛的语境力:六条泳道铺在时间轴(726–2021),照相术逼出抽象、沙龙画商养活印象派、一战催生达达……52 事件链回它催生的艺术家。</div><div class="prove">向你证明:<b>"场"不是边,但同样推动历史</b></div><div class="tags"><span class="tg">52 事件</span><span class="tg">东西双轨</span></div></div><span class="go">→</span></a>
+
+    <a class="row" href="kg-force-timeline.html"><span class="ic"><i data-ic="waves"></i></span><div class="body"><div class="nm">力的时间线 · 关系×语境叠合<span class="en">Timeline</span></div><div class="ds">69 条关系边 + 52 个语境事件叠到同一世纪轴:一眼看出力的节律——为什么 1860–1930 反叛/跨文化/推演同时爆发(照相术先抽走"再现"的饭碗)。</div><div class="prove">向你证明:<b>力有节律,且节律能被对上时间</b></div><div class="tags"><span class="tg">力的节律</span><span class="tg">叠合</span></div></div><span class="go">→</span></a>
+
+    <a class="row" href="kg-contingency.html"><span class="ic"><i data-ic="dice"></i></span><div class="body"><div class="nm">个体 / 偶发 · 不可还原的那一半<span class="en">Contingency</span></div><div class="ds">历史不是决定论:创造性误读、天才奇点(从69条边实时算"被指向度",榜首竟是被反叛最多的董其昌)、偶然(坚决不系统化)。</div><div class="prove">向你证明:<b>连"测不准的那一半"也诚实标出来</b></div><div class="tags"><span class="tg">奇点实算</span><span class="tg">不系统化</span></div></div><span class="go">→</span></a>
+  </div>
+
+  <!-- ③ 玩法装置 -->
+  <div class="sec" id="play">
+    <div class="sec-h"><span class="t"><i data-ic="dice"></i> 玩法装置</span><span class="n">14</span><span class="d">说服「逛客」<br>"换种方式逛真有意思"</span></div>
+    <div class="sec-lede">"看画交互范式"的实验草稿,是装置↔产品的<b>中间态</b>:跑通了就毕业进 <a href="museum.html" style="color:var(--accent);text-decoration:none">美术馆</a>,跑不通就留作展品。它们各自押注一种"逛"的操作哲学。</div>
+
+    <div class="band">— 漂法 / 操作哲学 —</div>
+    <a class="row" href="wander-chroma.html"><span class="ic"><i data-ic="create"></i></span><div class="body"><div class="nm">以色觅画<span class="en">Eyedropper</span></div><div class="ds">吸一个颜色,整片馆藏按色彩共鸣重排;顺着一抹蓝走过几百年。</div><div class="prove">押注:<b>颜色作为导航</b></div><div class="tags"><span class="tg">最美</span></div></div><span class="go">→</span></a>
+    <a class="row" href="wander-dial.html"><span class="ic">🕹</span><div class="body"><div class="nm">情绪方向盘<span class="en">Mood Dial</span></div><div class="ds">拖动情绪盘(静↔动、暗↔明),最近的作品平滑切换——像开车一样在审美里驶。</div><div class="prove">押注:<b>连续旋钮作为导航</b></div><div class="tags"><span class="tg">连续控制</span></div></div><span class="go">→</span></a>
+    <a class="row" href="wander-versus.html"><span class="ic">✌️</span><div class="body"><div class="nm">二选一之路<span class="en">This-or-That</span></div><div class="ds">永远两幅,选更打动你的;你的选择就是路径,几轮后告诉你你的取向。</div><div class="prove">押注:<b>二选一作为路径</b></div><div class="tags"><span class="tg">取向测</span></div></div><span class="go">→</span></a>
+    <a class="row" href="wander-dwell.html"><span class="ic"><i data-ic="search"></i></span><div class="body"><div class="nm">专注单幅<span class="en">Deep-Dwell</span></div><div class="ds">停在一幅,逐层揭开:静默 → 点破 → 看这里(细节推近)→ 顺它走。</div><div class="prove">押注:<b>纵深而非横扫</b></div><div class="tags"><span class="tg">集中</span></div></div><span class="go">→</span></a>
+    <a class="row" href="wander-talk.html"><span class="ic"><i data-ic="danmaku"></i></span><div class="body"><div class="nm">对话策展<span class="en">Talk</span></div><div class="ds">说一句心情("像悲伤但有希望"),它端画上来、讲为何合你此刻。把检索变倾诉。</div><div class="prove">押注:<b>自然语言作为入口</b></div><div class="tags"><span class="tg">最像懂你</span></div></div><span class="go">→</span></a>
+    <a class="row" href="wander-fog.html"><span class="ic"><i data-ic="fog"></i></span><div class="body"><div class="nm">雾中之馆<span class="en">Fog of War</span></div><div class="ds">星图藏在雾里,从一颗亮星开始,点亮相邻的星逐步探索。</div><div class="prove">押注:<b>探索的未知感</b></div><div class="tags"><span class="tg">渐显</span></div></div><span class="go">→</span></a>
+    <a class="row" href="wander-galaxy.html"><span class="ic"><i data-ic="galaxy"></i></span><div class="body"><div class="nm">银河漫游<span class="en">Galaxy</span></div><div class="ds">整座馆是一片星空,拖动平移、滚轮缩放,连线是艺术史关联,点星看详情。</div><div class="prove">押注:<b>空间漫游作为逛法</b></div><div class="tags"><span class="tg">桌面更顺</span></div></div><span class="go">→</span></a>
+
+    <div class="band">— 交互方案 / 三种操作姿态 —</div>
+    <a class="row" href="variant-drift.html"><span class="ic"><i data-ic="waves"></i></span><div class="body"><div class="nm">漂流 Drift<span class="en">lean-back</span></div><div class="ds">轻点即流,画来找你;背景随每幅画主色流动。可开"环境模式"自动漂。</div><div class="prove">押注:<b>躺着被推</b> · <span style="color:var(--ink-mute)">已是美术馆主推</span></div><div class="tags"><span class="tg grad">→已进产品</span></div></div><span class="go">→</span></a>
+    <a class="row" href="variant-crossroads.html"><span class="ic"><i data-ic="door"></i></span><div class="body"><div class="nm">岔路 Crossroads<span class="en">lean-forward</span></div><div class="ds">沉浸全屏,想继续时才"推开一扇门"掌舵。</div><div class="prove">押注:<b>坐起来掌舵</b></div><div class="tags"><span class="tg">沉浸</span></div></div><span class="go">→</span></a>
+    <a class="row" href="variant-resonance.html"><span class="ic">⇄</span><div class="body"><div class="nm">并置 Resonance<span class="en">pairing</span></div><div class="ds">每屏一对画 + "为何相连",点右图走进它,顿悟始终在场。</div><div class="prove">押注:<b>永远成对的顿悟</b></div><div class="tags"><span class="tg">顿悟在场</span></div></div><span class="go">→</span></a>
+
+    <div class="band">— 概念实验(更激进的方向)—</div>
+    <a class="row" href="concept-river.html"><span class="ic"><i data-ic="waves"></i></span><div class="body"><div class="nm">母题之河<span class="en">Motif River</span></div><div class="ds">选一个母题(光/孤独/海),顺流而下——同一种东西如何穿越古今中外。</div><div class="prove">押注:<b>母题作为时间轴</b></div><div class="tags"><span class="tg">吃打标语料</span></div></div><span class="go">→</span></a>
+    <a class="row" href="concept-latent.html"><span class="ic">🪐</span><div class="body"><div class="nm">审美潜空间<span class="en">Latent</span></div><div class="ds">换两个维度(明暗/动静…),整片名作重排,标出"你的审美落点"。</div><div class="prove">押注:<b>潜空间可被直接拖逛</b></div><div class="tags"><span class="tg">桌面更顺</span></div></div><span class="go">→</span></a>
+    <a class="row" href="concept-path.html"><span class="ic"><i data-ic="network"></i></span><div class="body"><div class="nm">两画之间 · 六度<span class="en">Six Degrees</span></div><div class="ds">任选两幅,看它们隔几步——沿连线给出最短路径,每步都顿悟。</div><div class="prove">押注:<b>图谱路径作为叙事</b></div><div class="tags"><span class="tg">最短路径</span></div></div><span class="go">→</span></a>
+    <a class="row" href="concept-curator.html"><span class="ic"><i data-ic="works"></i></span><div class="body"><div class="nm">策展台<span class="en">Curator</span></div><div class="ds">挑 2–7 幅、起个名,攒一个可分享的小型个展。把"逛"变"创作"。</div><div class="prove">押注:<b>把消费变成创作</b></div><div class="tags"><span class="tg">可分享</span></div></div><span class="go">→</span></a>
+  </div>
+
+  <div class="foot">
+    实验场 · 41 件互动装置 = aha 引擎的展示面<br>
+    它们不留存、不计费,只负责让你"看懂并相信" · 产品在 <a href="me.html" style="color:var(--accent);text-decoration:none">/me</a> · <a href="museum.html" style="color:var(--accent);text-decoration:none">美术馆</a>
+  </div>
+</div>
+<script src="js/aha-chrome.js"></script>
+<script src="js/aha-icons.js"></script>
+</body></html>

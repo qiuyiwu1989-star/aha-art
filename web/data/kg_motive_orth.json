@@ -1,0 +1,18 @@
+{
+  "method": "motive(5型类别) -> VAD(连续三维) 的相关比 eta^2 = 组间方差/总方差",
+  "n_classified": 31,
+  "n_total_with_vad": 282,
+  "group_sizes": {
+    "V1": 3,
+    "V2": 6,
+    "V3": 6,
+    "V4": 12,
+    "V5": 4
+  },
+  "eta2": {
+    "valence": 0.226,
+    "arousal": 0.257,
+    "dominance": 0.505
+  },
+  "eta2_mean": 0.329
+}

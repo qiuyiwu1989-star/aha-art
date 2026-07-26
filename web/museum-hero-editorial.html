@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>原型 · 大刊 / 编辑部 · aha</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{--paper:#f4f1ea;--paper2:#ece6d9;--ink:#221e18;--ink-soft:#5a5246;--ink-mute:#8a8170;--gold:#9a5a2c;--line:#ddd5c6;
     --serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
@@ -85,7 +85,7 @@
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 function mTitle(t){if(!t)return '无题';t=String(t).replace(/\.(jpe?g|png|webp|gif|tiff?|bmp|jfif)$/i,'').replace(/[_]+/g,' ').trim();return t||'无题';}
 function imgT(w,px){const f=(w&&w.file)||'';px=px||600;
-  if(/myqcloud\.com/i.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/quality/82';
+  if(/myqcloud\.com/i.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/format/webp/quality/82';
   if(/(^|\/)img\/[^?]*\.(jpe?g|png)$/i.test(f))return f.replace(/\.(jpe?g|png)$/i,'.t720.webp');
   return (w&&w.thumb)||f;}
 function hash(s){let h=0;s=String(s);for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return h;}
@@ -126,7 +126,7 @@ function buildIssue(byWV){
     const el=document.createElement('div');el.className='entry';
     el.innerHTML=`<div class="no">${String(i+1).padStart(2,'0')}</div>
       <div class="mid"><div class="nm">${WVN[k]}</div><div class="ds">${WVNOTE[k]}</div><div class="cnt">${ws.length} 幅 · 进厅以沙龙墙 / 长廊 / 平面任选</div></div>
-      <div class="peek">${peek.map(w=>`<img class="pk" loading="lazy" src="${imgT(w,200)}">`).join('')}<span class="arrow">→</span></div>`;
+      <div class="peek">${peek.map(w=>`<img class="pk" loading="lazy" decoding="async" src="${imgT(w,200)}">`).join('')}<span class="arrow">→</span></div>`;
     el.onclick=()=>location.href='museum.html#hall=wv:'+k+'&form=salon';
     box.appendChild(el);
   });

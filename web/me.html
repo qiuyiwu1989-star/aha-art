@@ -453,7 +453,14 @@ function vCollections(b){
     items=(st.collections||[]).map(f=>{const s=(f||'').trim();const u=s.startsWith('http')?s:(s.startsWith('/')?s:(/^\d+$/.test(s)?'':'/'+s));return {thumb:u,full:u,broken:!u};});
   }
   items=(items||[]).filter(x=>x&&!x.broken&&x.thumb);
-  b.innerHTML=items.length?`<div class="card-note" style="margin-bottom:var(--s2)">${items.length} 件收藏 · 悬停卡片可<b>取消收藏</b>,或<button class="btn pill" id="cToEx">把它们存成一个展 →</button></div><div class="gal" id="colGal">${items.slice(0,120).map(i=>`<div class="gc" data-raw="${esc((i.raw||i.work_id||'')+'')}"><button class="uncol" title="取消收藏">×</button><img loading="lazy" decoding="async" src="${i.thumb}" onerror="this.onerror=null;this.src=PLACE" ${i.work_id?`onclick="location.href='work.html?id=${i.work_id}'"`:''}>${i.title?`<div class="cb"><div class="ct">${esc(i.title)}</div><div class="ca"><span>${esc(i.artist||'佚名')}</span></div></div>`:''}</div>`).join('')}</div>`:'<div class="empty">还没有收藏。在<a href="art.html">展厅</a>点 ❤ 收藏喜欢的画。</div>';
+  const isGen=i=>/_generated/.test((i.raw||'')+'');
+  const gen=items.filter(isGen), rest=items.filter(i=>!isGen(i));
+  const card=i=>`<div class="gc" data-raw="${esc((i.raw||i.work_id||'')+'')}"><button class="uncol" title="取消收藏">×</button><img loading="lazy" decoding="async" src="${i.thumb}" onerror="this.onerror=null;this.src=PLACE" ${i.work_id?`onclick="location.href='work.html?id=${i.work_id}'"`:''}>${i.title?`<div class="cb"><div class="ct">${esc(i.title)}</div><div class="ca"><span>${esc(i.artist||'佚名')}</span></div></div>`:''}</div>`;
+  const grid=arr=>`<div class="gal">${arr.slice(0,120).map(card).join('')}</div>`;
+  let blocks='';
+  if(gen.length)blocks+=`<div class="sec-h" style="margin-top:var(--s3)"><span class="t">竞技场 · 生成图收藏</span><span class="n">${gen.length}</span><span class="d">在<a href="arena.html">美学竞技场</a>对决时收的图</span></div>${grid(gen)}`;
+  if(rest.length)blocks+=`<div class="sec-h" style="margin-top:${gen.length?'var(--s5)':'var(--s3)'}"><span class="t">名画收藏</span><span class="n">${rest.length}</span></div>${grid(rest)}`;
+  b.innerHTML=items.length?`<div class="card-note" style="margin-bottom:var(--s2)">${items.length} 件收藏 · 悬停卡片可<b>取消收藏</b>,或<button class="btn pill" id="cToEx">把它们存成一个展 →</button></div>${blocks}`:'<div class="empty">还没有收藏。在<a href="art.html">展厅</a>收藏喜欢的画,或去<a href="arena.html">美学竞技场</a>对决时收图。</div>';
   b.querySelectorAll('.uncol').forEach(btn=>btn.onclick=async e=>{e.stopPropagation();const card=btn.closest('.gc'),raw=card.dataset.raw;
     btn.disabled=true;await jpost('me/collect',{uid:WHO.uid,work_id:raw,on:false}).catch(()=>{});
     if(WHO.state){WHO.state.collections=(WHO.state.collections||[]).filter(x=>(x+'')!==raw);if(Array.isArray(WHO.state.collections_view))WHO.state.collections_view=WHO.state.collections_view.filter(x=>((x.raw||x.work_id)+'')!==raw);}

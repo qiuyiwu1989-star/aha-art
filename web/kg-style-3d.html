@@ -81,6 +81,7 @@
   @media(max-width:760px){.panel{width:186px;top:auto;bottom:14px;right:14px;padding:10px 11px}.info{display:none}.help{display:none}.lead{display:none}}
 </style>
 </head><body class="theme-dark">
+<script>try{if((localStorage.getItem('aha-theme')||'dark')==='light')document.body.className='theme-light'}catch(e){}</script>
 <canvas id="scene"></canvas>
 <div class="flat" id="flat"><svg id="flatSvg" viewBox="0 0 1000 680" preserveAspectRatio="xMidYMid meet"></svg></div>
 
@@ -154,7 +155,7 @@ const PAL={
 let renderer,scene,camera,controls,raycaster;
 let world,pointsObj,posAttr,colAttr,alphaAttr,sizeAttr,ptsMat,anchorGroup,labelGroup,edgeObj,haloSprite,bgStars;
 let nodes=[],models={},centroids={};
-let mode='3d',theme='dark',planeAxes=['rep_exp','struct_perc'],hovered=-1,selected=-1,hov2=-1;
+let mode='3d',theme=(()=>{try{return localStorage.getItem('aha-theme')==='light'?'light':'dark'}catch(e){return 'dark'}})(),planeAxes=['rep_exp','struct_perc'],hovered=-1,selected=-1,hov2=-1;
 const mouse=new THREE.Vector2(-2,-2), filter={region:'all',wv:'all',q:''};
 const preId=new URLSearchParams(location.search).get('id')||'';
 const pal=()=>PAL[theme];
@@ -391,7 +392,7 @@ function setMode(m){if(m===mode)return;mode=m;document.body.classList.toggle('mo
   document.querySelectorAll('#segMode button').forEach(b=>b.classList.toggle('on',b.dataset.m===m));
   document.getElementById('tip').className='tip';
   if(m==='2d'){controls.autoRotate=false;render2D();}else{controls.autoRotate=document.getElementById('ckSpin').checked;}}
-function setTheme(t){if(t===theme)return;theme=t;document.body.classList.toggle('theme-dark',t==='dark');document.body.classList.toggle('theme-light',t==='light');
+function setTheme(t){if(t===theme)return;theme=t;try{localStorage.setItem('aha-theme',t)}catch(e){}document.body.classList.toggle('theme-dark',t==='dark');document.body.classList.toggle('theme-light',t==='light');
   document.querySelectorAll('#segTheme button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));
   buildWorld();applyFilter();if(mode==='2d')render2D();}
 function setPlane(p){planeAxes=p.split(',');document.querySelectorAll('#segPlane button').forEach(b=>b.classList.toggle('on',b.dataset.p===p));if(mode==='2d')render2D();}
@@ -400,7 +401,7 @@ function buildModelSelect(){const sel=document.getElementById('selModel'),order=
   order.forEach(code=>{if(!cnt[code])return;const m=WV[code]||{};const o=document.createElement('option');o.value=code;o.textContent=`${code} ${m.cn||''} (${cnt[code]||0})`;sel.appendChild(o);});}
 function bindUI(){
   document.querySelectorAll('#segMode button').forEach(b=>b.onclick=()=>setMode(b.dataset.m));
-  document.querySelectorAll('#segTheme button').forEach(b=>b.onclick=()=>setTheme(b.dataset.t));
+  document.querySelectorAll('#segTheme button').forEach(b=>{b.onclick=()=>setTheme(b.dataset.t);b.classList.toggle('on',b.dataset.t===theme);});
   document.querySelectorAll('#segPlane button').forEach(b=>b.onclick=()=>setPlane(b.dataset.p));
   document.querySelectorAll('#segRegion button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#segRegion button').forEach(x=>x.classList.remove('on'));b.classList.add('on');filter.region=b.dataset.r;document.getElementById('segRegion').className='seg'+(b.dataset.r==='east'?' e':'');applyFilter();});
   document.getElementById('selModel').onchange=e=>{filter.wv=e.target.value;applyFilter();};

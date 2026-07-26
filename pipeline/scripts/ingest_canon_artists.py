@@ -38,7 +38,16 @@ def main():
 
     data = json.load(open(a.json)); arts = data.get("artists", data)
     items = list(arts.items()) if isinstance(arts, dict) else [(x.get("id"), x) for x in arts]
+    # 头像不在 kg_artists.json,而在同目录 kg_artist_portraits.json;灌库时合并进 lore,
+    # 否则每次重灌都会把 DB 里已有的 portrait 字段覆盖丢(踩过这个坑)。
+    PORT = {}
+    ppath = os.path.join(os.path.dirname(os.path.abspath(a.json)), "kg_artist_portraits.json")
+    if os.path.isfile(ppath):
+        PORT = json.load(open(ppath))
+        print(f"  合并头像 {sum(1 for x in PORT.values() if x.get('file'))} 张")
     for cid, v in items:
+        if cid in PORT and PORT[cid].get("file"):
+            v = dict(v); v["portrait"] = PORT[cid]["file"]; v["portrait_src"] = PORT[cid].get("source")
         cur.execute("""INSERT INTO artists_canon(canon_id,cn,en,born,death,region,nationality,lore)
             VALUES(%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT (canon_id) DO UPDATE SET
             cn=EXCLUDED.cn,en=EXCLUDED.en,born=EXCLUDED.born,death=EXCLUDED.death,

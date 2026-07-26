@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 策展候选 · 艺术家</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/aha-kit.css">
+<style>
+  .filterbar{position:sticky;top:0;z-index:40;background:var(--paper);display:flex;gap:var(--s3);align-items:center;justify-content:center;flex-wrap:wrap;padding:var(--s3) 0;margin-top:var(--s3);border-bottom:1px solid var(--line)}
+  .filterbar .search{flex:1;min-width:200px;max-width:380px}
+  .clist{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,440px),1fr));gap:var(--s3);margin-top:var(--s4)}
+  .cc{display:flex;gap:var(--s3);padding:var(--s3)}
+  .cc .th{width:80px;height:80px;flex-shrink:0;border-radius:var(--r-sm);object-fit:cover;background:var(--paper-2);border:1px solid var(--line)}
+  @media(max-width:600px){.cc{padding:var(--s2);gap:var(--s2)}.cc .th{width:60px;height:60px}.cc .acts a,.cc .acts button{padding:6px 11px}}
+  .cc .bd{flex:1;min-width:0}
+  .cc .rk{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-faint)}
+  .cc .nm{font-family:var(--serif);font-size:var(--fz-h3);font-weight:600;color:var(--ink)}
+  .cc .nm .en{font-family:var(--mono);font-size:var(--fz-label);color:var(--ink-faint);font-weight:400;margin-left:6px}
+  .cc .meta{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute);margin-top:2px}
+  .cc .cov{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+  .cc .gap{font-size:var(--fz-tiny);color:var(--ink-mute);margin-top:6px;line-height:1.5}
+  .cc .gap b{color:var(--accent);font-weight:500}
+  .cc .acts{display:flex;gap:8px;margin-top:7px;flex-wrap:wrap}
+  .cc .acts a,.cc .acts button{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--accent);background:none;border:1px solid var(--line);border-radius:var(--r-pill);padding:3px 10px;cursor:pointer;text-decoration:none;transition:all var(--dur) var(--ease)}
+  .cc .acts a:hover,.cc .acts button:hover{border-color:var(--accent)}
+  .ok{color:var(--ok)!important;border-color:var(--ok)!important}
+</style>
+</head><body>
+<div class="page wide">
+  <div class="pagehead">
+    <a class="back" href="artists.html">← 艺术家中枢</a>
+    <div class="kicker">aha · 策展候选 · 待考究优先级</div>
+    <h1>该给谁做深度主页?</h1>
+    <div class="sub">非策展艺术家共 <b>6,472</b> 位。这里按<b>馆藏作品量</b>排出 Top 120 候选——能自动算的(身份 / 实测情绪 / 世界观 / 风格)已<b>预填</b>,<b id="rdy">…</b> 位已有实测可用;其余靠人工补(生平 / 世界观读法 / 师承 / 画外音)。点「复制预填」拿到 seed,补全人文部分即可升级为 canon 满血页。</div>
+  </div>
+  <div class="stats" style="justify-content:center;margin-top:var(--s4)">
+    <div class="stat"><div class="num" id="s-tot">120</div><div class="lab">候选(Top 馆藏)</div></div>
+    <div class="stat"><div class="num" id="s-vad">0</div><div class="lab">已可预填实测情绪</div></div>
+    <div class="stat"><div class="num" id="s-bd">0</div><div class="lab">已有生卒年</div></div>
+    <div class="stat"><div class="num" id="s-sty">0</div><div class="lab">已有风格标注</div></div>
+  </div>
+  <div class="filterbar">
+    <div class="search"><input class="input" id="q" type="search" placeholder="搜候选艺术家…"></div>
+    <div class="segwrap" id="covseg"><button class="seg on" data-c="all">全部</button><button class="seg" data-c="ready">已可预填实测</button><button class="seg" data-c="thin">仅靠人工</button></div>
+  </div>
+  <div class="clist" id="list"><div class="empty">加载中…</div></div>
+  <a class="back" style="display:block;text-align:center;margin-top:var(--s6)" href="artists.html">← 返回 艺术家中枢</a>
+</div>
+<script src="js/aha-chrome.js"></script>
+<script src="js/aha-app.js"></script>
+<script>
+const $=h=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const esc=s=>(s==null?'':String(s)).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+let DATA=[],cov='all',q='';
+fetch('data/canon_candidates.json').then(r=>r.json()).then(j=>{
+  DATA=j.items||[];
+  const vad=DATA.filter(x=>x.coverage.measured_vad).length, bd=DATA.filter(x=>x.coverage.identity).length, sty=DATA.filter(x=>x.coverage.styles).length;
+  document.getElementById('s-tot').textContent=DATA.length;
+  document.getElementById('s-vad').textContent=vad; document.getElementById('rdy').textContent=vad;
+  document.getElementById('s-bd').textContent=bd; document.getElementById('s-sty').textContent=sty;
+  render();
+}).catch(e=>{document.getElementById('list').innerHTML='<div class="empty">加载失败(需经服务器打开)</div>';});
+document.getElementById('q').addEventListener('input',e=>{q=e.target.value.trim();render();});
+document.getElementById('covseg').addEventListener('click',e=>{const b=e.target.closest('.seg');if(!b)return;[...e.currentTarget.children].forEach(x=>x.classList.toggle('on',x===b));cov=b.dataset.c;render();});
+const ph='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22><rect width=%2280%22 height=%2280%22 fill=%22%23ece7db%22/></svg>';
+function chip(label,on,n){return `<span class="chip${on?' ok':''}" style="${on?'':'opacity:.55'}">${on?'✓':'—'} ${label}${on&&n?' '+n:''}</span>`;}
+function card(x){
+  const bd=(x.born||x.death)?`${x.born||'?'}–${x.death||'今'}`:'生卒待考';
+  const reg=x.region==='east'?'东方':x.region==='west'?'西方':'—';
+  const stys=(x.styles||[]).slice(0,4).map(s=>`<span class="tag m">${esc(s)}</span>`).join('');
+  const cov=`<div class="cov">${chip('身份',x.coverage.identity)}${chip('实测情绪',x.coverage.measured_vad,x.n_kept_vlm?('· '+x.n_kept_vlm+'件'):'')}${chip('世界观',x.coverage.measured_wv)}${chip('风格',x.coverage.styles)}</div>`;
+  const human=x.gaps.filter(g=>!/需kept|VLM/.test(g)).slice(-5);
+  return `<div class="card cc">
+    <img class="th" loading="lazy" decoding="async" src="${esc(x.thumb||ph)}" onerror="this.onerror=null;this.src='${ph}'">
+    <div class="bd">
+      <div class="rk">#${x.rank} · 馆藏 ${(x.n_holdings||0).toLocaleString()} 件 · VLM ${x.n_vlm}</div>
+      <div class="nm">${esc(x.cn||x.en)}<span class="en">${esc(x.en||'')}</span></div>
+      <div class="meta">${bd} · ${reg}${x.birthplace?' · '+esc(x.birthplace):''}${x.nationality?' · '+esc(x.nationality):''}</div>
+      ${cov}
+      ${stys?`<div class="cov">${stys}</div>`:''}
+      <div class="gap">待人工补:<b>${human.join(' / ')}</b></div>
+      <div class="acts">
+        <button class="mk" data-aid="${esc(x.aid)}" data-cn="${esc(x.cn||x.en||'')}" style="color:#fff;background:var(--accent);border-color:var(--accent)"><i data-ic="check"></i> 确认制作详细页</button>
+        <a href="kg-artist.html?id=${encodeURIComponent(x.aid)}">看 lite 页 →</a>
+        <a href="gallery-live.html?artist=${encodeURIComponent(x.aid)}&name=${encodeURIComponent(x.cn||'')}">画廊 →</a>
+        <button data-seed='${esc(JSON.stringify(x.seed))}'>复制 seed</button>
+      </div>
+    </div></div>`;
+}
+function render(){
+  let items=DATA.slice();
+  if(cov==='ready')items=items.filter(x=>x.coverage.measured_vad);
+  else if(cov==='thin')items=items.filter(x=>!x.coverage.measured_vad);
+  if(q)items=items.filter(x=>(x.cn||'').includes(q)||(x.en||'').toLowerCase().includes(q.toLowerCase()));
+  const L=document.getElementById('list');L.innerHTML='';
+  if(!items.length){L.innerHTML='<div class="empty">无匹配</div>';return;}
+  items.forEach(x=>L.appendChild($(card(x))));
+}
+document.getElementById('list').addEventListener('click',e=>{const b=e.target.closest('button[data-seed]');if(!b)return;
+  navigator.clipboard.writeText(b.dataset.seed).then(()=>{const t=b.textContent;b.textContent='✓ 已复制';setTimeout(()=>b.textContent=t,1200);});});
+// 确认制作 → 建 canon 草稿 + 桥作品(需管理员登录),成功后变成「进入制作 →」
+document.getElementById('list').addEventListener('click',async e=>{const b=e.target.closest('button.mk');if(!b)return;
+  const aid=b.dataset.aid, cn=b.dataset.cn;
+  if(!confirm(`确认把「${cn}」立项制作详细主页?\n会创建 canon 草稿(预填实测数据)并把 TA 的作品挂上,之后补全生平/世界观等人文部分即可发布。`))return;
+  b.disabled=true;b.textContent='制作中…';
+  try{
+    const r=await fetch('/cat/admin/canon/promote?aid='+encodeURIComponent(aid),{method:'POST'});
+    const d=await r.json();
+    if(d.ok){const a=document.createElement('a');a.href='kg-artist.html?id='+encodeURIComponent(d.canon_id);
+      a.style.cssText='color:#fff;background:var(--ok);border:1px solid var(--ok);font-family:var(--mono);font-size:var(--fz-tiny);border-radius:var(--r-pill);padding:3px 10px;text-decoration:none';
+      a.textContent='🛠 已立项 · 进入制作 →';b.replaceWith(a);}
+    else{b.disabled=false;b.textContent='✅ 确认制作详细页';alert('未成功:'+(d.msg||'已是 canon?'));}
+  }catch(err){b.disabled=false;b.textContent='✅ 确认制作详细页';alert('需管理员登录后重试');}
+});
+</script>
+<script src="js/aha-icons.js"></script>
+</body></html>

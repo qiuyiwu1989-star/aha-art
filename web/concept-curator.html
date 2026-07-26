@@ -1,25 +1,20 @@
 <!doctype html>
-<html lang="zh-CN"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>aha · 策展台</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="css/aha.css?v=3"/><link rel="stylesheet" href="css/concept.css"/>
+<html lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>策展台已迁移 · aha</title>
+<meta http-equiv="refresh" content="0; url=curate.html">
+<link rel="canonical" href="curate.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/aha-kit.css">
 </head><body>
-<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
-<div class="cbar"><a href="concepts.html">← 概念</a><span class="cname">策展台</span><a href="compare.html">交互版本 →</a></div>
-<div class="cwrap">
-  <div id="curStage">
-    <div class="chead"><div class="ckick">Curator · 人人都是策展人</div>
-      <div class="ch1">挑几幅,攒一个属于你的个展</div>
-      <div class="csub">策展是新的发帖。选 2–7 幅、起个名字,生成一个可分享的小型个展——零生成、零成本,却把"逛"变成"创作"。</div></div>
-    <div class="cur-grid" id="curGrid"></div>
+<div class="page">
+  <div class="pagehead">
+    <div class="kicker">Curator · 已升级</div>
+    <h1>策展台搬到「策一个展」了</h1>
+    <p class="sub">原来的「挑几幅、起个名」已升级成完整策展台:一句主张 ＋ 一条动线脊 ＋ 三种加画(手拣 / 一句话 / 种子扩展)。正在带你过去——</p>
+    <p style="margin-top:var(--s5)"><a class="btn" href="curate.html">进入策一个展 →</a></p>
   </div>
-  <div id="exhibit" class="exhibit" style="display:none"></div>
 </div>
-<div class="tray" id="tray">
-  <input id="exTitle" placeholder="给你的个展起个名字 · 如「光的简史」「孤独的房间」"/>
-  <span class="tcount" id="tcount">0 / 7 幅</span>
-  <button class="build" id="buildBtn" disabled>生成展厅 →</button>
-</div>
-<script type="module" src="js/curator.js"></script>
+<script>location.replace('curate.html');</script>
+<script src="js/aha-chrome.js"></script>
 </body></html>

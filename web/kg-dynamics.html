@@ -8,40 +8,29 @@
   /* token / 关系力分类色(--reb..)均来自 aha-kit.css;此处只放页面专属微调 */
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1100px;margin:0 auto;padding:26px 16px 90px}
-  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
   h1{font-family:var(--serif);font-size:clamp(20px,3.6vw,28px);font-weight:700;text-align:center;margin:7px 0}
-  .lead{text-align:center;color:var(--ink-mute);font-size:13px;line-height:1.7;max-width:800px;margin:6px auto}.lead b{color:var(--ink-soft)}
-  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
   /* 全景定位 */
-  .locate{max-width:880px;margin:14px auto 0;border:1px solid var(--line);border-radius:12px;background:#fbf9f3;overflow:hidden}
+  .locate{max-width:880px;margin:14px auto 0;border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}
   .locate summary{cursor:pointer;list-style:none;padding:10px 14px;font-size:12.5px;color:var(--ink-soft);display:flex;align-items:center;gap:8px}
   .locate summary::-webkit-details-marker{display:none}
-  .locate summary .tag{font-family:var(--mono);font-size:10px;color:#fff;background:var(--ink-mute);border-radius:5px;padding:1px 7px}
+  .locate summary .tag{font-family:var(--mono);font-size:10px;color:var(--card);background:var(--ink-mute);border-radius:5px;padding:1px 7px}
   .locate summary .more{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--accent)}
   .locate .body{padding:0 14px 14px;font-size:12.5px;line-height:1.75;color:var(--ink-soft);border-top:1px dashed var(--line)}
   .locate .body b{color:var(--ink)}
-  .locate .tree{font-family:var(--mono);font-size:11.5px;line-height:1.85;color:var(--ink-mute);background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:10px 0;white-space:pre-wrap}
+  .locate .tree{font-family:var(--mono);font-size:11.5px;line-height:1.85;color:var(--ink-mute);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:10px 0;white-space:pre-wrap}
   .locate .tree .hit{color:var(--accent);font-weight:600}
   .locate a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--line)}
   /* stat */
   .stats{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:14px 0 2px}
-  .stat{font-family:var(--mono);font-size:11px;color:var(--ink-soft);background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 11px}
-  .stat b{color:var(--ink);font-weight:600}
   /* seg */
-  .bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center;margin:12px 0 8px}
-  .seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff;flex-wrap:wrap}
-  .seg button{border:none;background:#fff;font-family:var(--sans);font-size:12.5px;color:var(--ink-mute);padding:6px 12px;cursor:pointer;border-left:1px solid var(--line)}
-  .seg button:first-child{border-left:none}
-  .seg button.on{color:#fff}
-  .stagewrap{background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px;position:relative}
+  .stagewrap{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px;position:relative}
   .focushint{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
   .focushint b{color:var(--accent)}
   svg{width:100%;height:auto;display:block}
   .nd{cursor:pointer}
-  .tip{position:fixed;z-index:50;pointer-events:none;background:rgba(29,27,24,.95);color:#f4f1ea;font-size:12px;padding:8px 11px;border-radius:8px;opacity:0;transition:opacity .08s;max-width:300px;box-shadow:0 4px 14px rgba(0,0,0,.25);line-height:1.55}
+  .tip{position:fixed;z-index:50;pointer-events:none;background:var(--ink);color:var(--paper);font-size:12px;padding:8px 11px;border-radius:8px;opacity:0;transition:opacity .08s;max-width:300px;box-shadow:0 4px 14px rgba(0,0,0,.25);line-height:1.55}
   .tip .t{font-family:var(--serif);font-weight:600;font-size:13px;margin-bottom:2px}
-  .tip .yr{font-family:var(--mono);font-size:10.5px;color:#cdbfa6}
+  .tip .yr{font-family:var(--mono);font-size:10.5px;color:var(--gold-soft)}
   .legend{margin-top:12px;font-size:12px;color:var(--ink-soft)}
   .legrow{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;align-items:center;margin:4px 0}
   .legrow .gl{font-family:var(--mono);font-size:10px;color:var(--ink-faint);letter-spacing:.06em}
@@ -51,20 +40,17 @@
   .elist{margin-top:22px}
   .lbar{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:6px}
   .lbar .lt{font-family:var(--serif);font-size:15px;font-weight:700}
-  .sortseg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff}
-  .sortseg button{border:none;background:#fff;font-family:var(--mono);font-size:11px;color:var(--ink-mute);padding:5px 11px;cursor:pointer;border-left:1px solid var(--line)}
-  .sortseg button:first-child{border-left:none}.sortseg button.on{background:var(--ink-soft);color:#fff}
   .et{font-family:var(--serif);font-size:15px;font-weight:700;margin:18px 0 7px;display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
   .et .df{font-family:var(--sans);font-size:12px;font-weight:400;color:var(--ink-mute)}
   .et .ct{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
-  .er{border:1px solid var(--line);border-radius:10px;background:#fff;margin-bottom:7px;overflow:hidden}
+  .er{border:1px solid var(--line);border-radius:10px;background:var(--card);margin-bottom:7px;overflow:hidden}
   .er .head{display:flex;gap:9px;align-items:center;padding:8px 11px;font-size:13px;line-height:1.6;cursor:pointer}
-  .er .head:hover{background:#fbf9f3}
+  .er .head:hover{background:var(--card)}
   .er .yc{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);background:var(--paper-2);border-radius:5px;padding:1px 6px;white-space:nowrap}
   .er .ar{font-family:var(--serif);font-weight:600;white-space:nowrap}
   .er .ar a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
   .er .ar .ext{color:var(--ink-mute)}
-  .er .rel{font-family:var(--mono);font-size:10px;color:#fff;border-radius:5px;padding:1px 7px;white-space:nowrap}
+  .er .rel{font-family:var(--mono);font-size:10px;color:var(--card);border-radius:5px;padding:1px 7px;white-space:nowrap}
   .er .nt{color:var(--ink-soft);flex:1;min-width:120px}
   .er .exp{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--ink-faint);white-space:nowrap}
   .er .detail{display:none;padding:0 12px 11px 12px;font-size:12.5px;line-height:1.75;color:var(--ink-soft);border-top:1px dashed var(--line)}
@@ -77,19 +63,20 @@
   .wnone{font-size:11.5px;color:var(--ink-faint)}
   .er.open .detail{display:block}
   .er.open .exp{color:var(--accent)}
-  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
   .loading{text-align:center;color:var(--ink-faint);padding:40px}
+  .pagehead{text-align:center;border-bottom:none}
+  .pagehead .sub{max-width:760px;margin:8px auto 0}
+  .segrow{display:flex;gap:var(--s2,8px);flex-wrap:wrap;align-items:center;justify-content:center;margin:12px 0 8px}
+  .chiprow{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:12px 0 2px}
 </style>
-</head><body data-board="dynamics">
-<a class="home-fab" href="museum.html" title="返回首页"><i data-ic="home"></i> 首页</a>
+</head><body data-board="dynamics" data-no-top>
 <div class="tip" id="tip"></div>
-<div class="wrap">
-  <div class="kick">aha · 知识图谱 V3 · 关系层</div>
-  <h1>艺术史动力学 —— 八种关系力</h1>
-  <p class="lead">师承之外,艺术史靠艺术家与传统之间的<b>关系</b>推动。这里把<b>八种能画成有向箭头的力</b>落在世界观平面上:<b style="color:var(--reb)">反叛</b>·<b style="color:var(--rev)">复兴</b>·<b style="color:var(--syn)">综合</b>·<b style="color:var(--psh)">推演</b>(对前代),<b style="color:var(--cro)">跨文化</b>(对异域),<b style="color:var(--hom)">致敬</b>·<b style="color:var(--riv)">竞争</b>·<b style="color:#8a6d4f">结社</b>(对同代/作品)。每条边标注<b>考据 / 推断</b>,人工梳理、非自动抽取。</p>
-  <div class="breadcrumb"><a href="museum.html" style="color:var(--ink-mute);text-decoration:none">aha</a> <span style="color:var(--ink-faint)">›</span> <a href="kg-forces.html" style="color:var(--accent);text-decoration:none;font-weight:600">艺术史动力学</a> · <a href="kg-forces.html">总图</a> · <b style="color:var(--ink)">关系层</b> · <a href="kg-context.html">语境层</a> · <a href="kg-contingency.html">个体偶发</a> · <a href="kg-force-timeline.html">时间线</a> · <a href="kg-tour-forces.html">导览</a> · <a href="kg-artist-atlas.html">师承</a> · <a href="kg-drift.html">漂移</a></div>
-
-  <details class="locate">
+<div class="page">
+  <div class="pagehead">
+    <h1>关系层 · 八种关系力</h1>
+    <p class="sub">师承之外,艺术史靠艺术家与传统之间的<b>关系</b>推动。这里把<b>八种能画成有向箭头的力</b>落在世界观平面上:<b style="color:var(--reb)">反叛</b>·<b style="color:var(--rev)">复兴</b>·<b style="color:var(--syn)">综合</b>·<b style="color:var(--psh)">推演</b>(对前代),<b style="color:var(--cro)">跨文化</b>(对异域),<b style="color:var(--hom)">致敬</b>·<b style="color:var(--riv)">竞争</b>·<b style="color:#8a6d4f">结社</b>(对同代/作品)。每条边标注<b>考据 / 推断</b>,人工梳理、非自动抽取。</p>
+  </div>
+<details class="locate">
     <summary><span class="tag">这页在哪</span>艺术史的力 = <b style="color:var(--ink-soft)">关系力</b>(箭头)+ 语境力(场)+ 个体偶发 —— 本页只画第一类里能成箭头的 7 种。<span class="more">展开全景 ▾</span></summary>
     <div class="body">
       <div class="tree">艺术史的力
@@ -105,9 +92,9 @@
     </div>
   </details>
 
-  <div class="stats" id="stats"></div>
+  <div class="chiprow" id="stats"></div>
 
-  <div class="bar"><span class="seg" id="segType"></span></div>
+  <div class="segrow"><div class="segwrap" id="segType"></div></div>
   <div class="stagewrap">
     <div class="focushint" id="fhint"></div>
     <svg id="stage" viewBox="0 0 1000 720"></svg>
@@ -118,10 +105,10 @@
   <div class="elist">
     <div class="lbar">
       <span class="lt">逐条关系 · 可展开看纵深</span>
-      <span class="sortseg" id="sortSeg">
-        <button data-s="force" class="on">按力分组</button>
-        <button data-s="time">按年代</button>
-      </span>
+      <div class="segwrap" id="sortSeg">
+        <button class="seg on" data-s="force">按力分组</button>
+        <button class="seg" data-s="time">按年代</button>
+      </div>
     </div>
     <div id="elbody"></div>
   </div>
@@ -160,17 +147,17 @@ function buildStats(){
   const lo=Math.min(...es.map(e=>e.year)),hi=Math.max(...es.map(e=>e.year));
   const items=[`<b>${es.length}</b> 条关系`,`<b>8</b> 种力`,`年代 <b>${yr(lo)}–${yr(hi)}</b>`,
     ...fam.map(([n,c])=>`${n} <b>${c}</b>`)];
-  box.innerHTML=items.map(t=>`<span class="stat">${t}</span>`).join('');
+  box.innerHTML=items.map(t=>`<span class="chip muted">${t}</span>`).join('');
 }
 function buildSeg(){
   const seg=document.getElementById('segType');
   const onA=typeFilter==='all';
-  let html=`<button data-v="all" class="${onA?'on':''}" style="${onA?'background:#857d6f':''}">全部 ${REL.edges.length}</button>`;
-  ORDER.forEach(t=>{const c=REL.edges.filter(e=>e.type===t).length,on=typeFilter===t;html+=`<button data-v="${t}" class="${on?'on':''}" style="${on?'background:'+COL[t]:''}">${t} ${c}</button>`;});
+  let html=`<button data-v="all" class="seg${onA?' on':''}" style="${onA?'background:var(--ink-mute);color:var(--card)':''}">全部 ${REL.edges.length}</button>`;
+  ORDER.forEach(t=>{const c=REL.edges.filter(e=>e.type===t).length,on=typeFilter===t;html+=`<button data-v="${t}" class="seg${on?' on':''}" style="${on?'background:'+COL[t]+';color:var(--card)':''}">${t} ${c}</button>`;});
   seg.innerHTML=html;
   seg.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
-    seg.querySelectorAll('button').forEach(x=>{x.classList.remove('on');x.style.background='';});
-    b.classList.add('on');b.style.background=b.dataset.v==='all'?'#857d6f':COL[b.dataset.v];
+    seg.querySelectorAll('button').forEach(x=>{x.classList.remove('on');x.style.background='';x.style.color='';});
+    b.classList.add('on');b.style.background=b.dataset.v==='all'?'var(--ink-mute)':COL[b.dataset.v];b.style.color='var(--card)';
     typeFilter=b.dataset.v;focusId=null;render();}));
   document.querySelectorAll('#sortSeg button').forEach(b=>b.addEventListener('click',()=>{
     document.querySelectorAll('#sortSeg button').forEach(x=>x.classList.remove('on'));
@@ -185,7 +172,7 @@ function buildLegend(){
 }
 
 function involvedNodes(edges){const s=new Set();edges.forEach(e=>{s.add(e.from);s.add(e.to);});return s;}
-function setFilterAll(){typeFilter='all';const seg=document.getElementById('segType');seg.querySelectorAll('button').forEach(x=>{x.classList.remove('on');x.style.background='';});const b=seg.querySelector('button[data-v="all"]');if(b){b.classList.add('on');b.style.background='#857d6f';}}
+function setFilterAll(){typeFilter='all';const seg=document.getElementById('segType');seg.querySelectorAll('button').forEach(x=>{x.classList.remove('on');x.style.background='';x.style.color='';});const b=seg.querySelector('button[data-v="all"]');if(b){b.classList.add('on');b.style.background='var(--ink-mute)';b.style.color='var(--card)';}}
 
 function render(){
   svg.textContent='';
@@ -320,7 +307,6 @@ function elist(){
   });
 }
 </script>
-<footer style="max-width:1100px;margin:46px auto 0;padding:14px 16px;border-top:1px solid var(--line);display:flex;gap:8px 14px;flex-wrap:wrap;align-items:baseline;font-family:var(--mono);font-size:11px;color:var(--ink-faint)"><a href="kg-forces.html" style="color:var(--accent);text-decoration:none;font-weight:600">aha · 艺术史动力学板块</a><span style="color:var(--ink-mute)">力 = 关系 + 语境 + 个体偶发</span><span style="margin-left:auto"><a href="kg-forces.html" style="color:var(--accent);text-decoration:none">板块首页</a> · <a href="kg-dynamics.html" style="color:var(--ink-mute);text-decoration:none">关系</a> · <a href="kg-context.html" style="color:var(--ink-mute);text-decoration:none">语境</a> · <a href="kg-contingency.html" style="color:var(--ink-mute);text-decoration:none">个体</a> · <a href="kg-force-timeline.html" style="color:var(--ink-mute);text-decoration:none">时间线</a> · <a href="kg-tour-forces.html" style="color:var(--ink-mute);text-decoration:none">导览</a> · <a href="museum.html" style="color:var(--ink-mute);text-decoration:none">← aha 总站</a></span></footer>
 <script src="js/aha-chrome.js"></script>
 <script src="js/board-nav.js"></script>
 <script src="js/aha-icons.js"></script>

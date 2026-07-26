@@ -416,6 +416,31 @@ class H(BaseHTTPRequestHandler):
                 return self._send(200, {"ok": True, "id": rec['id'], "file": rec['file']})
             except Exception as e:
                 return self._send(502, {"error": "保存失败:" + str(e)[:200]})
+        if route == '/test_album':
+            try:
+                p = self._read()
+            except Exception:
+                return self._send(400, {"error": "bad json"})
+            if not ADMIN_PASS or p.get('pass') != ADMIN_PASS:
+                return self._send(403, {"error": "需要管理员口令"})
+            items = p.get('items')
+            if not isinstance(items, list):
+                return self._send(400, {"error": "缺 items"})
+            clean = []
+            for it in items:
+                if isinstance(it, dict) and it.get('code'):
+                    clean.append({"code": str(it['code']), "file": it.get('file'),
+                                  "artist": it.get('artist'), "title": it.get('title'),
+                                  "wv": it.get('wv'), "quality": it.get('quality')})
+            if len(clean) < 4:
+                return self._send(400, {"error": "有效条目太少(至少 4)"})
+            import datetime as _dt
+            payload = {"updated": _dt.date.today().isoformat(),
+                       "note": "冷启动二选一测试图册 · 后台编辑", "count": len(clean), "items": clean}
+            path = WEBROOT + '/data/test_album.json'; tmp = path + '.tmp'
+            json.dump(payload, open(tmp, 'w'), ensure_ascii=False, indent=1)
+            os.replace(tmp, path)
+            return self._send(200, {"ok": True, "count": len(clean)})
         if route != '/generate':
             return self._send(404, {"error": "not found"})
         if not allowed(ip):

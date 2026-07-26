@@ -1,23 +1,165 @@
 {
- "updated": "2026-06-11 00:46",
+ "updated": "2026-07-20 05:19",
  "bucket": "aha-1254041526 (ap-shanghai)",
  "summary": {
-  "areas": 5,
-  "files": 191067,
-  "bytes": 501096067098
+  "areas": 12,
+  "files": 350922,
+  "bytes": 1163363694180,
+  "bucket_files": 376265,
+  "bucket_bytes": 1303112643300
  },
  "areas": [
   {
    "key": "yh",
    "name": "世界大师油画全集",
-   "files": 49041,
-   "bytes": 279339236720,
-   "junk": 39,
-   "ingestable": 49001,
-   "ingested": 44408,
+   "files": 78306,
+   "bytes": 553934567608,
+   "junk": 50,
    "quality": "高清 14.8MP",
-   "note": "元数据四表齐全·正在上传",
-   "tag": "主力"
+   "tag": "主力",
+   "exts": {
+    ".世界大师油画全集": {
+     "files": 1,
+     "bytes": 4096
+    },
+    "(无后缀)": {
+     "files": 17,
+     "bytes": 122944
+    },
+    ".jpg": {
+     "files": 73086,
+     "bytes": 443975648225
+    },
+    ".url": {
+     "files": 5,
+     "bytes": 718
+    },
+    ".jpeg": {
+     "files": 65,
+     "bytes": 230154834
+    },
+    ".115chrome_985_242": {
+     "files": 1,
+     "bytes": 904953
+    },
+    ".pdf": {
+     "files": 4,
+     "bytes": 196123652
+    },
+    ".tif": {
+     "files": 2705,
+     "bytes": 89124361754
+    },
+    ".zip": {
+     "files": 3,
+     "bytes": 160647162
+    },
+    ".png": {
+     "files": 2377,
+     "bytes": 19322552922
+    },
+    ".mht": {
+     "files": 2,
+     "bytes": 34168
+    },
+    ".doc": {
+     "files": 1,
+     "bytes": 64000
+    },
+    ".rar": {
+     "files": 5,
+     "bytes": 733270678
+    },
+    ".ctf": {
+     "files": 2,
+     "bytes": 48754485
+    },
+    ".lng": {
+     "files": 2,
+     "bytes": 207989
+    },
+    ".config": {
+     "files": 1,
+     "bytes": 25538
+    },
+    ".license": {
+     "files": 1,
+     "bytes": 2048
+    },
+    ".exe": {
+     "files": 1,
+     "bytes": 2874368
+    },
+    ".txt": {
+     "files": 1,
+     "bytes": 358
+    },
+    ".ds_store": {
+     "files": 16,
+     "bytes": 65536
+    },
+    ".sql": {
+     "files": 10,
+     "bytes": 138747180
+    }
+   },
+   "subdirs": {
+    "(根)": {
+     "files": 2,
+     "bytes": 8192
+    },
+    "2.世界大师油画全集": {
+     "files": 5520,
+     "bytes": 101891435433
+    },
+    "yh": {
+     "files": 72774,
+     "bytes": 451904376803
+    },
+    "油画数据库": {
+     "files": 10,
+     "bytes": 138747180
+    }
+   },
+   "ingested": 70921
+  },
+  {
+   "key": "_generated",
+   "name": "AI 生成产物",
+   "files": 108707,
+   "bytes": 193490530320,
+   "junk": 0,
+   "quality": "混合",
+   "tag": "生成",
+   "exts": {
+    ".png": {
+     "files": 85727,
+     "bytes": 175768911581
+    },
+    ".jpg": {
+     "files": 3254,
+     "bytes": 5257174954
+    },
+    ".jpeg": {
+     "files": 17951,
+     "bytes": 12069037753
+    },
+    ".webp": {
+     "files": 1775,
+     "bytes": 395406032
+    }
+   },
+   "subdirs": {
+    "infmonkeys": {
+     "files": 7889,
+     "bytes": 24044893102
+    },
+    "zaowuyun": {
+     "files": 100818,
+     "bytes": 169445637218
+    }
+   },
+   "ingested": null
   },
   {
    "key": "yishujia",
@@ -25,35 +167,114 @@
    "files": 31827,
    "bytes": 193972437662,
    "junk": 0,
-   "ingestable": 31827,
-   "ingested": 31827,
    "quality": "高清 10MP",
-   "note": "零元数据·已VLM描述",
-   "tag": "高清无标"
+   "tag": "高清无标",
+   "exts": {
+    ".jpg": {
+     "files": 31420,
+     "bytes": 192891355486
+    },
+    ".png": {
+     "files": 311,
+     "bytes": 946987255
+    },
+    ".jpeg": {
+     "files": 96,
+     "bytes": 134094921
+    }
+   },
+   "subdirs": {},
+   "ingested": 31827
   },
   {
-   "key": "nbfox",
-   "name": "nbfox 麦田名画",
-   "files": 27125,
-   "bytes": 2751927419,
+   "key": "guohua",
+   "name": "国画浏览版",
+   "files": 6281,
+   "bytes": 172705455781,
    "junk": 0,
-   "ingestable": 27125,
-   "ingested": 22810,
-   "quality": "缩略图 0.4MP",
-   "note": "含占位图·需清洗",
-   "tag": "低清"
-  },
-  {
-   "key": "wikiart",
-   "name": "WikiArt 数据集",
-   "files": 3,
-   "bytes": 19119381581,
-   "junk": 0,
-   "ingestable": null,
-   "ingested": 83071,
-   "quality": "缩略图 0.3MP",
-   "note": "原始存档(WikiArt1+3+meta_gen)·图已解压灌库·与下方解压图重复",
-   "tag": "存档备份"
+   "quality": "高清",
+   "tag": "国画",
+   "exts": {
+    ".jpg": {
+     "files": 6218,
+     "bytes": 171965292260
+    },
+    ".tif": {
+     "files": 25,
+     "bytes": 740121020
+    },
+    ".txt": {
+     "files": 38,
+     "bytes": 42501
+    }
+   },
+   "subdirs": {
+    "五代": {
+     "files": 84,
+     "bytes": 2233139213
+    },
+    "元": {
+     "files": 244,
+     "bytes": 4593917164
+    },
+    "北齐": {
+     "files": 2,
+     "bytes": 42153559
+    },
+    "唐": {
+     "files": 63,
+     "bytes": 1498557895
+    },
+    "宋": {
+     "files": 765,
+     "bytes": 15710590385
+    },
+    "战国": {
+     "files": 2,
+     "bytes": 20803435
+    },
+    "明": {
+     "files": 868,
+     "bytes": 12666490123
+    },
+    "晋": {
+     "files": 4,
+     "bytes": 84751797
+    },
+    "清1": {
+     "files": 867,
+     "bytes": 11075362025
+    },
+    "清2": {
+     "files": 897,
+     "bytes": 9353129682
+    },
+    "辽": {
+     "files": 1,
+     "bytes": 6340831
+    },
+    "近现代1": {
+     "files": 919,
+     "bytes": 34755621828
+    },
+    "近现代2": {
+     "files": 697,
+     "bytes": 39157320665
+    },
+    "近现代3": {
+     "files": 861,
+     "bytes": 41439703668
+    },
+    "金": {
+     "files": 6,
+     "bytes": 37339416
+    },
+    "隋": {
+     "files": 1,
+     "bytes": 30234095
+    }
+   },
+   "ingested": null
   },
   {
    "key": "wikiart_img",
@@ -61,23 +282,213 @@
    "files": 83071,
    "bytes": 5913083716,
    "junk": 0,
-   "ingestable": 83071,
-   "ingested": 83071,
    "quality": "缩略图 0.3MP",
-   "note": "15流派·灌库后的规范图",
-   "tag": "已入库"
+   "tag": "已入库",
+   "exts": {
+    ".jpg": {
+     "files": 83071,
+     "bytes": 5913083716
+    }
+   },
+   "subdirs": {},
+   "ingested": 83071
+  },
+  {
+   "key": "nbfox",
+   "name": "nbfox 麦田名画",
+   "files": 27129,
+   "bytes": 2778079094,
+   "junk": 0,
+   "quality": "缩略图 0.4MP",
+   "tag": "低清",
+   "exts": {
+    ".json": {
+     "files": 1,
+     "bytes": 2993
+    },
+    ".jpg": {
+     "files": 26923,
+     "bytes": 2624388211
+    },
+    ".png": {
+     "files": 155,
+     "bytes": 121058502
+    },
+    ".jpeg": {
+     "files": 47,
+     "bytes": 6480706
+    },
+    ".jsonl": {
+     "files": 2,
+     "bytes": 23164657
+    },
+    ".gz": {
+     "files": 1,
+     "bytes": 2984025
+    }
+   },
+   "subdirs": {},
+   "ingested": 22810
+  },
+  {
+   "key": "_thumb",
+   "name": "缩略图缓存",
+   "files": 1762,
+   "bytes": 665685727,
+   "junk": 0,
+   "quality": "缩略图",
+   "tag": "缓存",
+   "exts": {
+    ".jpg": {
+     "files": 1762,
+     "bytes": 665685727
+    }
+   },
+   "subdirs": {},
+   "ingested": null
+  },
+  {
+   "key": "zaowuyun",
+   "name": "造物云",
+   "files": 13118,
+   "bytes": 20676358042,
+   "junk": 0,
+   "quality": "混合",
+   "tag": "造物云",
+   "exts": {
+    ".png": {
+     "files": 12888,
+     "bytes": 20487239047
+    },
+    ".jpg": {
+     "files": 122,
+     "bytes": 120239889
+    },
+    ".jpeg": {
+     "files": 100,
+     "bytes": 68244482
+    },
+    ".webp": {
+     "files": 8,
+     "bytes": 634624
+    }
+   },
+   "subdirs": {
+    "(根)": {
+     "files": 13118,
+     "bytes": 20676358042
+    }
+   },
+   "ingested": null
+  },
+  {
+   "key": "wikiart_zip",
+   "name": "WikiArt 存档",
+   "files": 3,
+   "bytes": 19119381581,
+   "junk": 0,
+   "quality": "zip",
+   "tag": "存档备份",
+   "exts": {
+    ".zip": {
+     "files": 3,
+     "bytes": 19119381581
+    }
+   },
+   "subdirs": {},
+   "ingested": 83071
+  },
+  {
+   "key": "newyear",
+   "name": "年画",
+   "files": 0,
+   "bytes": 0,
+   "junk": 0,
+   "quality": "高清",
+   "tag": "年画",
+   "exts": {},
+   "subdirs": {},
+   "ingested": null
+  },
+  {
+   "key": "artists",
+   "name": "画家资料",
+   "files": 454,
+   "bytes": 80048331,
+   "junk": 0,
+   "quality": "资料",
+   "tag": "元数据",
+   "exts": {
+    ".jpg": {
+     "files": 227,
+     "bytes": 67457223
+    },
+    ".webp": {
+     "files": 227,
+     "bytes": 12591108
+    }
+   },
+   "subdirs": {},
+   "ingested": null
+  },
+  {
+   "key": "jiangnan",
+   "name": "江南素材",
+   "files": 264,
+   "bytes": 28066318,
+   "junk": 0,
+   "quality": "素材",
+   "tag": "素材",
+   "exts": {
+    ".webp": {
+     "files": 264,
+     "bytes": 28066318
+    }
+   },
+   "subdirs": {},
+   "ingested": null
   }
  ],
+ "bucket_top": {
+  "artists": {
+   "files": 454,
+   "bytes": 80048331
+  },
+  "artworks": {
+   "files": 361337,
+   "bytes": 1252347654560
+  },
+  "backups": {
+   "files": 7,
+   "bytes": 10238778192
+  },
+  "historical-restoration": {
+   "files": 1082,
+   "bytes": 622356276
+  },
+  "jiangnan": {
+   "files": 264,
+   "bytes": 28066318
+  },
+  "wikiart": {
+   "files": 3,
+   "bytes": 19119381581
+  },
+  "zaowuyun": {
+   "files": 13118,
+   "bytes": 20676358042
+  }
+ },
  "related": [
   {
    "name": "油画元数据库 (4张SQL表)",
    "where": "opendesign-1254041526/datasets/油画数据库.zip",
-   "note": "26MB·还原作者/年代/题材的钥匙"
+   "note": "26MB"
   },
   {
    "name": "yishujia 原桶",
    "where": "yishujia-1254041526",
-   "note": "34,324文件/72.7GB·勿动·只读"
+   "note": "只读"
   }
  ]
 }

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 力的时间线</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--paper:#f4f1ea;--paper-2:#ece7db;--ink:#1d1b18;--ink-soft:#4b463e;--ink-mute:#857d6f;--ink-faint:#a89f8f;--line:#ddd5c6;--accent:#b0673a;
+    --serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:26px 16px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(20px,3.6vw,28px);font-weight:700;text-align:center;margin:7px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13px;line-height:1.7;max-width:820px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center;margin:14px 0 8px}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff}
+  .seg button{border:none;background:#fff;font-family:var(--sans);font-size:12.5px;color:var(--ink-mute);padding:6px 13px;cursor:pointer;border-left:1px solid var(--line)}
+  .seg button:first-child{border-left:none}.seg button.on{color:#fff}
+  .stagewrap{background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px;overflow-x:auto}
+  svg{display:block;min-width:900px}
+  .tip{position:fixed;z-index:50;pointer-events:none;background:rgba(29,27,24,.96);color:#f4f1ea;font-size:12px;padding:8px 11px;border-radius:8px;opacity:0;transition:opacity .08s;max-width:320px;box-shadow:0 4px 14px rgba(0,0,0,.25);line-height:1.55}
+  .tip .t{font-family:var(--serif);font-weight:600;font-size:13px}.tip .yr{font-family:var(--mono);font-size:10.5px;color:#cdbfa6;margin-bottom:3px}.tip .ef{margin-top:4px;color:#e8dcc6}
+  .hint{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:8px}
+  .read{max-width:840px;margin:20px auto 0;font-size:13px;line-height:1.85;color:var(--ink-soft)}
+  .read b{color:var(--ink)}.read .pad{background:#fbf9f3;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:8px}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .loading{text-align:center;color:var(--ink-faint);padding:40px}
+</style>
+</head><body data-board="timeline">
+<a class="home-fab" href="home.html" title="返回首页">🏠 首页</a>
+<div class="tip" id="tip"></div>
+<div class="wrap">
+  <div class="kick">aha · 知识图谱 V3 · 力的时间线</div>
+  <h1>力的时间线 —— 反叛潮 · 复兴潮 · 跨文化潮</h1>
+  <p class="lead">关系层在世界观平面、语境层在时间轴——这里把<b>两者叠到同一条世纪轴</b>上:上半是 <b>8 种关系力 · 69 条边</b>(每点一条边),下半是 <b>6 种语境力 · 52 事件</b>(每点一个事件),顶部再叠一条<b>世界观漂移</b>带。于是能一眼看出力的<b>节律</b>:为什么<b>1860–1930</b> 反叛、跨文化、推演会同时爆发。</p>
+  <div class="breadcrumb"><a href="home.html" style="color:var(--ink-mute);text-decoration:none">aha</a> <span style="color:var(--ink-faint)">›</span> <a href="kg-forces.html" style="color:var(--accent);text-decoration:none;font-weight:600">艺术史动力学</a> · <a href="kg-forces.html">总图</a> · <a href="kg-dynamics.html">关系层</a> · <a href="kg-context.html">语境层</a> · <a href="kg-contingency.html">个体偶发</a> · <b style="color:var(--ink)">时间线</b> · <a href="kg-tour-forces.html">导览</a> · <a href="kg-artist-atlas.html">师承</a> · <a href="kg-drift.html">漂移</a></div>
+  <div class="bar"><span class="seg" id="seg">
+    <button data-v="all" class="on" style="background:#857d6f">全部</button>
+    <button data-v="rel">只看关系力</button><button data-v="ctx">只看语境力</button>
+  </span></div>
+  <div class="stagewrap"><svg id="stage"></svg></div>
+  <div class="hint">悬停看每一条力 · 点关系力→进关系层该力 · 点语境力→进语境层该泳道 · 竖色块=可见的"潮"</div>
+  <div class="read">
+    <div class="pad">读法:同一竖直位置上、上下一起变密的地方,就是一次<b>合力</b>。<b>照相术(1839)</b>之后,反叛与跨文化在 19 世纪末骤然变密——技术抽走了"再现"的饭碗,艺术家同时向"表现"和"异域"出逃。这不是巧合,是<b>语境力先动、关系力跟上</b>。</div>
+    <div class="pad" style="margin-top:8px">顶部的<b>「世界观漂移」带</b>是同一时间轴上各世纪的<b>再现↔表现重心</b>(算法同<a href="kg-drift.html">漂移</a>页)。对照着看就懂了:<b style="color:#b0673a">西方</b>的曲线正是在 <b>1850→1950</b> 间猛地<b>蹿向"表现"</b>——恰与那一簇反叛 / 跨文化 / 推演<b>同步爆发</b>;而<b style="color:#5a7d6f">东方</b>早早走平、八百年几乎不动。<b>力的潮汐,与世界观的漂移,是同一件事的两面。</b></div>
+  </div>
+  <div id="loading" class="loading">加载…</div>
+</div>
+<script>
+const NS='http://www.w3.org/2000/svg',E=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+const FORDER=['反叛','复兴','综合','推演','跨文化','致敬','竞争','结社'];
+const FCOL={'反叛':'#c0492f','复兴':'#5a7d6f','跨文化':'#5b7596','综合':'#b8893a','推演':'#8a5fa3','致敬':'#3f8f8a','竞争':'#a8567f','结社':'#8a6d4f'};
+const TIDES=[
+ {a:1480,b:1540,t:'文艺复兴 · 复兴潮'},
+ {a:1590,b:1650,t:'巴洛克'},
+ {a:1860,b:1930,t:'现代主义爆发 · 反叛+跨文化+推演同潮'},
+ {a:1945,b:1975,t:'战后 · 纽约'},
+];
+const tip=document.getElementById('tip');
+let REL,CTX,filter='all',DRIFT={west:[],east:[]};
+function computeDrift(A){
+  const rich=Object.values(A).filter(v=>!v._stub&&v.wv&&v.wv.x!=null&&v.born);
+  const out={west:[],east:[]};
+  ['west','east'].forEach(reg=>{const by={};
+    rich.filter(v=>v.region===reg).forEach(v=>{const c=Math.floor((v.born+30)/100)*100;(by[c]=by[c]||[]).push(v.wv.x);});
+    out[reg]=Object.entries(by).map(([c,xs])=>({c:+c+50,x:xs.reduce((s,a)=>s+a,0)/xs.length,n:xs.length})).filter(p=>p.n>=2).sort((a,b)=>a.c-b.c);});
+  return out;
+}
+Promise.all([
+  fetch('data/kg_relations.json').then(r=>r.json()),
+  fetch('data/kg_context.json').then(r=>r.json()),
+  fetch('data/kg_artists.json').then(r=>r.json()).catch(()=>({artists:{}}))
+]).then(([rj,cj,aj])=>{
+  REL=rj;CTX=cj;DRIFT=computeDrift(aj.artists||{});document.getElementById('loading').style.display='none';
+  document.querySelectorAll('#seg button').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('#seg button').forEach(x=>{x.classList.remove('on');x.style.background='';});
+    b.classList.add('on');b.style.background=b.dataset.v==='all'?'#857d6f':(b.dataset.v==='rel'?'#7a6f63':'#7a6f63');filter=b.dataset.v;render();}));
+  render();
+}).catch(e=>{document.getElementById('loading').textContent='加载失败:'+e;});
+
+const W=1160,padL=118,padR=22,axisY=40;
+const TMIN=350,TMAX=2030;
+const sx=y=>{const yy=Math.min(Math.max(y,TMIN),TMAX);return padL+(yy-TMIN)/(TMAX-TMIN)*(W-padL-padR);};
+
+function render(){
+  const svg=document.getElementById('stage');svg.textContent='';
+  const relRows=FORDER.map(t=>({kind:'rel',key:t,cn:t,col:FCOL[t]}));
+  const ctxRows=(CTX.lanes||[]).map(l=>({kind:'ctx',key:l.key,cn:l.cn.split(' · ')[0].split(' / ')[0],col:l.col}));
+  const rowH=30,gap=30;
+  const showRel=filter!=='ctx',showCtx=filter!=='rel';
+  const ribbonTop=axisY+30,ribbonH=64;
+  let y=ribbonTop+ribbonH+28,ys={};
+  const blocks=[];
+  if(showRel){blocks.push(['关系力 · 谁影响了谁(每点=一条边)',relRows,y]);y+=relRows.length*rowH+gap;}
+  if(showCtx){blocks.push(['语境力 · 什么世界让它可能(每点=一个事件)',ctxRows,y]);y+=ctxRows.length*rowH+gap;}
+  const H=y+6;
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.setAttribute('width',W);
+  // 潮 band
+  TIDES.forEach(td=>{const x1=sx(td.a),x2=sx(td.b);
+    svg.appendChild(E('rect',{x:x1,y:axisY,width:x2-x1,height:H-axisY-2,fill:'#b0673a','fill-opacity':.05}));
+    svg.appendChild(E('line',{x1,y1:axisY,x2:x1,y2:H-2,stroke:'#e3cdb6','stroke-dasharray':'2 3'}));
+    const tt=E('text',{x:(x1+x2)/2,y:axisY-2,'font-family':'Noto Sans SC','font-size':9.5,fill:'#bfa07f','text-anchor':'middle'});tt.textContent=td.t;svg.appendChild(tt);});
+  // 世纪网格
+  for(let c=400;c<=2000;c+=100){const x=sx(c);
+    svg.appendChild(E('line',{x1:x,y1:axisY+8,x2:x,y2:H-2,stroke:'#efe9dc'}));
+    const t=E('text',{x,y:axisY+4,'font-family':'JetBrains Mono','font-size':10,fill:'#a89f8f','text-anchor':'middle'});t.textContent=c;svg.appendChild(t);}
+  // 世界观漂移 ribbon(再现↔表现重心,与下面的力共享时间轴)
+  {const rb=ribbonTop,rh=ribbonH,rbot=rb+rh;
+   svg.appendChild(E('rect',{x:padL,y:rb,width:W-padL-padR,height:rh,fill:'#fbf9f3',stroke:'#eee7d9'}));
+   const lab=E('text',{x:padL-108,y:rb+rh/2-3,'font-family':'Noto Serif SC','font-size':11.5,fill:'#3a352e','text-anchor':'start','font-weight':700});lab.textContent='世界观漂移';svg.appendChild(lab);
+   const lab2=E('text',{x:padL-108,y:rb+rh/2+12,'font-family':'Noto Sans SC','font-size':9.5,fill:'#a89f8f','text-anchor':'start'});lab2.textContent='再现↔表现 重心';svg.appendChild(lab2);
+   const tT=E('text',{x:padL+4,y:rb+11,'font-family':'JetBrains Mono','font-size':9,fill:'#b0673a','text-anchor':'start'});tT.textContent='表现↑';svg.appendChild(tT);
+   const tR=E('text',{x:padL+4,y:rbot-4,'font-family':'JetBrains Mono','font-size':9,fill:'#5a7d6f','text-anchor':'start'});tR.textContent='再现↓';svg.appendChild(tR);
+   const ry=v=>rbot-(Math.min(0.9,Math.max(0.15,v))-0.15)/0.75*rh;
+   [['west','#b0673a','西'],['east','#5a7d6f','东']].forEach(([reg,col])=>{
+     const pts=DRIFT[reg]||[];if(pts.length<2)return;let d='';
+     pts.forEach((p,i)=>{const X=sx(p.c),Y=ry(p.x);d+=(i?'L':'M')+X.toFixed(1)+' '+Y.toFixed(1)+' ';
+       svg.appendChild(E('circle',{cx:X,cy:Y,r:2.6,fill:col}));});
+     svg.appendChild(E('path',{d,fill:'none',stroke:col,'stroke-width':2,'stroke-opacity':.85}));
+     const last=pts[pts.length-1];svg.appendChild((()=>{const e=E('text',{x:sx(last.c)+5,y:ry(last.x)+3,'font-family':'JetBrains Mono','font-size':9,fill:col});e.textContent=reg==='west'?'西':'东';return e;})());});
+  }
+  // blocks
+  blocks.forEach(([title,rows,y0])=>{
+    const ht=E('text',{x:padL-108,y:y0-12,'font-family':'Noto Serif SC','font-size':12,fill:'#3a352e','text-anchor':'start','font-weight':700});ht.textContent=title;svg.appendChild(ht);
+    rows.forEach((r,i)=>{const ry=y0+i*rowH+rowH/2;
+      svg.appendChild(E('line',{x1:padL,y1:ry,x2:W-padR,y2:ry,stroke:r.col,'stroke-opacity':.18}));
+      const items=r.kind==='rel'?REL.edges.filter(e=>e.type===r.key):CTX.events.filter(e=>e.lane===r.key);
+      const lab=E('text',{x:padL-10,y:ry+4,'font-family':'Noto Serif SC','font-size':12,fill:'#3a352e','text-anchor':'end','font-weight':600});lab.textContent=r.cn;svg.appendChild(lab);
+      const cnt=E('text',{x:W-padR+2,y:ry+4,'font-family':'JetBrains Mono','font-size':9,fill:'#b3a994','text-anchor':'start'});cnt.textContent=items.length;svg.appendChild(cnt);
+      items.forEach(it=>{const x=sx(it.year);
+        const dot=E('circle',{cx:x,cy:ry,r:4,fill:r.col,stroke:'#fff','stroke-width':1,opacity:.9,style:'cursor:pointer'});
+        dot.addEventListener('mousemove',ev=>{tip.style.opacity=1;tip.style.left=Math.min(ev.clientX+12,innerWidth-330)+'px';tip.style.top=(ev.clientY+12)+'px';
+          if(r.kind==='rel'){const arr=it.bidir?'⇄':'→';tip.innerHTML=`<div class="yr">${r.cn} · ${it.year<0?'公元前'+(-it.year):'约'+it.year} · ${it.conf||''}</div><div class="t" style="color:${r.col}">${it.from_cn} ${arr} ${it.to_cn}</div>${it.note}`;}
+          else tip.innerHTML=`<div class="yr">${r.cn} · ${it.era||it.year}</div><div class="t" style="color:${r.col}">${it.title}</div>${it.what}<div class="ef">↳ ${it.effect}</div>`;});
+        dot.addEventListener('mouseleave',()=>tip.style.opacity=0);
+        dot.addEventListener('click',()=>location.href=r.kind==='rel'?('kg-dynamics.html?force='+encodeURIComponent(r.key)):('kg-context.html?lane='+r.key));
+        svg.appendChild(dot);});
+    });
+  });
+}
+</script>
+<footer style="max-width:1100px;margin:46px auto 0;padding:14px 16px;border-top:1px solid var(--line);display:flex;gap:8px 14px;flex-wrap:wrap;align-items:baseline;font-family:var(--mono);font-size:11px;color:var(--ink-faint)"><a href="kg-forces.html" style="color:var(--accent);text-decoration:none;font-weight:600">aha · 艺术史动力学板块</a><span style="color:var(--ink-mute)">力 = 关系 + 语境 + 个体偶发</span><span style="margin-left:auto"><a href="kg-forces.html" style="color:var(--accent);text-decoration:none">板块首页</a> · <a href="kg-dynamics.html" style="color:var(--ink-mute);text-decoration:none">关系</a> · <a href="kg-context.html" style="color:var(--ink-mute);text-decoration:none">语境</a> · <a href="kg-contingency.html" style="color:var(--ink-mute);text-decoration:none">个体</a> · <a href="kg-force-timeline.html" style="color:var(--ink-mute);text-decoration:none">时间线</a> · <a href="kg-tour-forces.html" style="color:var(--ink-mute);text-decoration:none">导览</a> · <a href="home.html" style="color:var(--ink-mute);text-decoration:none">← aha 总站</a></span></footer>
+<script src="js/aha-chrome.js"></script>
+<script src="js/board-nav.js"></script>
+</body></html>

@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>多模态大模型用于馆藏图像知识组织的可靠性边界与人机协同质量治理</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500&family=JetBrains+Mono&display=swap" rel="stylesheet"/>
+<style>
+  :root{--ink:#1a1a1a;--soft:#444;--mute:#777;--line:#dcdcdc;--accent:#7a2e2e;--bg:#fff;
+        --serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#eceae6;color:var(--ink);font-family:var(--serif);line-height:1.85;font-size:16px}
+  .sheet{max-width:820px;margin:24px auto;background:var(--bg);padding:56px 64px 80px;box-shadow:0 2px 24px rgba(0,0,0,.1)}
+  @media(max-width:680px){.sheet{padding:34px 22px}}
+  .pub{font-family:var(--sans);font-size:12px;color:var(--mute);text-align:center;letter-spacing:.04em;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:26px}
+  h1{font-size:24px;font-weight:700;line-height:1.45;text-align:center;margin-bottom:6px}
+  h1 .sub{display:block;font-size:17px;font-weight:500;color:var(--soft);margin-top:8px}
+  .authors{text-align:center;font-family:var(--sans);font-size:15px;margin:18px 0 4px}
+  .aff{text-align:center;font-family:var(--sans);font-size:12.5px;color:var(--mute);line-height:1.7;margin-bottom:24px}
+  .abs{background:#f7f5f1;border:1px solid var(--line);border-radius:4px;padding:18px 22px;font-size:14px;line-height:1.9;margin-bottom:10px}
+  .abs .lbl{font-family:var(--sans);font-weight:600;color:var(--accent);margin-right:6px}
+  .meta-line{font-family:var(--sans);font-size:12.5px;color:var(--mute);margin-bottom:30px}
+  h2{font-size:19px;font-weight:700;margin:34px 0 12px}
+  h3{font-size:16.5px;font-weight:600;margin:22px 0 8px;color:var(--soft)}
+  p{margin:0 0 13px;text-align:justify;text-indent:2em}
+  h2+p,h3+p,.nofirst,li p,.abs p,blockquote p{text-indent:0}
+  ul,ol{margin:0 0 13px 2em}li{margin:4px 0;text-align:justify}
+  blockquote{margin:14px 0;padding:12px 18px;background:#faf8f4;border-left:3px solid var(--accent);font-size:14.5px;color:var(--soft)}
+  .fig{margin:22px 0;text-align:center}
+  .figcap{font-family:var(--sans);font-size:12.5px;color:var(--mute);margin-top:8px;text-align:center;text-indent:0}
+  table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:13px;margin:8px 0 6px}
+  caption{font-family:var(--sans);font-size:12.5px;color:var(--mute);text-align:left;margin-bottom:6px;caption-side:top}
+  th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+  th{background:#f4f2ee;font-weight:600}.tnum{font-family:var(--mono);text-align:right}
+  .refs{font-family:var(--sans);font-size:13px;line-height:1.8}.refs li{margin:6px 0;text-align:left}
+  sup{color:var(--accent);font-family:var(--sans);font-size:11px}
+  .en{margin-top:30px;padding-top:22px;border-top:1px solid var(--line)}.en h1{font-size:18px}.en .abs{font-family:var(--sans)}
+  .note{font-family:var(--sans);font-size:12px;color:var(--mute);background:#fbfaf7;border:1px dashed var(--line);border-radius:4px;padding:10px 14px;margin:18px 0}
+  .mono{font-family:var(--mono)}
+  a{color:var(--accent)}
+  .backlink{font-family:var(--mono);font-size:12px;margin-bottom:14px;display:block}
+</style>
+</head><body>
+<div class="sheet">
+<a class="backlink" href="museum.html">← aha 人类美术馆</a>
+<div class="pub">投稿建议刊物：《图书情报工作》（Library and Information Service）· 理论与方法 / 实证研究 · 工作稿</div>
+
+<h1>多模态大模型用于馆藏图像知识组织的可靠性边界与人机协同质量治理
+<span class="sub">——基于约二十万幅艺术图像的实证研究</span></h1>
+
+<div class="authors">［作者信息投稿时补充］</div>
+<div class="aff">［作者单位 / 通信地址 / 邮编 投稿时补充］</div>
+
+<div class="abs nofirst">
+<p><span class="lbl">摘要</span><strong>［目的/意义］</strong>多模态大模型为馆藏图像的自动标注与知识组织带来了规模化的诱惑，但其"幻觉"特性使其在以严谨、权威著称的图书馆场景中的可用性存疑。厘清大模型在图像知识组织中"能做什么、不能做什么"的可靠性边界，并据此设计可落地的质量治理方法，是 AI 时代知识组织实践的关键问题。<strong>［方法/过程］</strong>本文以一个累计归集约 20.9 万幅、已由视觉大模型评估约 12.1 万幅艺术图像的真实项目为案例，从语义刻画与权威著录两类任务出发，对大模型标注结果进行分维度的可靠性实证评估，并提出一套"按可靠性分级路由 + 客观硬闸 + 异常监测 + 软策展回溯"的人机协同质量治理方法。<strong>［结果/结论］</strong>实证表明：大模型在<strong>容错性语义刻画</strong>（情绪、画面构成、题材）上表现稳定、与人工判断相关性良好，适合大规模自动化；但在<strong>权威性元数据著录</strong>（作者、作品名等）上极不可靠——在模型给出高置信的、有真值可核对的样本中，作者识别正确率仅约 15%，即高置信下约 85% 为"自信的幻觉"。此外，主观的"艺术价值"评分与图像的客观"可用性"（如分辨率）相互独立，需以客观硬指标补足；以派生量验证派生量会产生伪相关（如以颜色派生的情绪标签去"验证"颜色与情绪的关系）。据此，本文主张以"AI 做规模、人做权威"为原则的人机协同治理：将大模型输出按可靠性分级处置，权威字段必经人工或可信源校验，并坚持"诚实标注、永不物理删除"。研究为图书馆引入大模型进行知识组织提供了可靠性证据与可迁移的治理方法。</p>
+<p style="margin-top:10px"><span class="lbl">关键词</span>多模态大模型；图像标注；知识组织；元数据自动生成；数据质量治理；人机协同；模型幻觉</p>
+</div>
+<div class="meta-line">中图分类号：G250.7；TP391　　文献标识码：A</div>
+
+<h2>1　引言</h2>
+<p>知识组织是图书馆的核心专业能力，而对图像等非文本资源的著录与标引长期高度依赖人工，成本高、覆盖窄、进度慢。以 CLIP<sup>[1]</sup>、GPT 系列<sup>[2]</sup>为代表的多模态大模型，首次使机器具备了对图像进行语义级"读图"的通用能力，为图像知识组织的规模化自动化带来了巨大想象空间：似乎只需把馆藏图像"喂"给模型，便能自动获得题材、风格、作者乃至完整著录。</p>
+<p>然而，大模型固有的"幻觉"——即生成看似合理、实则错误且常常"自信满满"的内容<sup>[3]</sup>——与图书馆对权威性、准确性的极高要求形成尖锐张力。一条错误的作者著录一旦进入权威库，其危害远大于"暂缺著录"。因此，在拥抱大模型之前，必须先回答两个前置问题：<strong>(1) 大模型在图像知识组织的不同任务上，可靠性边界究竟在哪里？(2) 在该边界之下，如何设计可落地的质量治理方法，使其既享规模化之利、又不损知识的可信？</strong></p>
+<p>本文以一个大规模真实项目为案例，以实证数据回答上述问题，并提出相应治理方法。需要说明的是，本文与作者另一项关注"图书馆数据价值激活总体框架"的工作互为补充：后者讨论"治理—知识化—激活"的宏观路径，本文则聚焦其中最具风险、也最具方法价值的一环——大模型自动标注的可靠性与质量治理。</p>
+
+<h2>2　相关研究</h2>
+<p><strong>机器学习辅助的元数据生成。</strong>GLAM 机构已开始探索以机器学习辅助著录与标引，并强调"负责任的"应用立场<sup>[4][5]</sup>，但多数研究停留于可行性论证，缺乏对模型在不同任务上可靠性差异的细粒度实证。</p>
+<p><strong>大模型的幻觉及其评估。</strong>幻觉是生成式模型的固有问题，已有大量研究致力于其检测与缓解<sup>[3]</sup>；但面向<strong>图像著录</strong>这一具体知识组织任务、且以"是否可信地进入权威库"为评判标准的实证仍属稀见。</p>
+<p><strong>数据质量治理与人机协同。</strong>数据治理强调以标准、流程与质量控制提升可用性与可信度；在 AI 介入后，"人在回路"（human-in-the-loop）成为兼顾规模与质量的关键范式。本文的贡献正在于：以实证厘清边界，并据此给出一套面向图像知识组织的、可操作的人机协同治理方法。</p>
+
+<h2>3　研究设计</h2>
+<h3>3.1　案例与数据</h3>
+<p>案例为一个面向公众的人类名画知识图谱项目，数据来自多个公共领域与开放许可图库并由图书馆提供支持，累计归集约 20.9 万条作品记录。研究以其中已由视觉大模型完成评估的约 12.1 万幅图像为分析对象。</p>
+<h3>3.2　标注模式与模型</h3>
+<p>系统采用一套结构化标注模式，由多模态大模型对每幅图像一次性产出多个维度：媒介、题材、风格、画面动力学（视觉重心与阅读动线）、绘画语言（构图/空间/造型/光影/色彩/笔触/边缘七项连续值）、情绪（效价—唤起—支配三维及情绪锚点）、融合解读，以及一组用于策展的判断（类别、清晰度、完整度、艺术价值评分）。本文按"任务对错误的容忍度"将其归为两类：<strong>容错性语义刻画</strong>（情绪、构成、题材等，允许一定主观偏差）与<strong>权威性元数据著录</strong>（作者、作品名、年代等，要求准确无误）。</p>
+<h3>3.3　可靠性评估方法</h3>
+<p>对权威性著录，选取模型主动给出且标注为"高置信"、同时存在可核对真值（来源元数据中含真实作者）的样本，比对模型识别与真值，计算正确率。对容错性刻画，以与人工判断、与既有研究结论的一致性作为参照。对客观可用性，则直接以图像物理属性（分辨率）核验。</p>
+
+<h2>4　大模型标注的能力与可靠性边界（实证）</h2>
+<h3>4.1　可靠区：容错性语义刻画适合大规模自动化</h3>
+<p>在情绪、画面构成、题材等"容错性"维度上，模型表现稳定、可规模化。以情绪为例，模型基于<strong>语义</strong>读出的情绪唤起度与人工判断的相关性，明显高于仅由底层像素特征（如色彩饱和度）得到的相关性——这说明模型确实在"理解画面语义"而非套用浅层规则。此类维度即便存在一定主观偏差，也不会造成"硬错误"，且其价值（可比较、可计算、可驱动下游应用）远超偏差成本，因而适合交由模型大规模完成。</p>
+<h3>4.2　高风险区：权威性元数据著录极不可靠</h3>
+<p>与语义刻画形成鲜明对比，模型在权威性著录上极不可靠。我们让模型识别作品的作者，并在其<strong>主动声明高置信</strong>且有真实作者可核对的样本（约 848 件）上比对，结果是：<strong>正确率仅约 15%</strong>——也就是说，在模型"最自信"的判断中，约 <strong>85% 是错误的"自信幻觉"</strong>（典型如把某画家的作品言之凿凿地认成另一位名家）。这一结果具有强烈的警示意义：模型的"置信度"并不能作为其著录可信度的依据；若据此回填权威库，将污染约八成的相关记录。据此，我们果断<strong>放弃以该字段回填权威数据</strong>，将其降级为"未核验线索"，并将"识别结果与来源不符"设为一项需人工复核的异常。</p>
+<div class="fig">
+<svg viewBox="0 0 460 200" width="100%" style="max-width:460px" font-family="Noto Sans SC,sans-serif">
+  <text x="230" y="20" font-size="12" fill="#555" text-anchor="middle">高置信样本中，作者识别结果（约 848 件）</text>
+  <!-- 正确 15% -->
+  <rect x="60" y="40" width="54" height="120" fill="#9bb59b"/>
+  <text x="87" y="178" font-size="11" text-anchor="middle">正确</text>
+  <text x="87" y="34" font-size="13" font-weight="700" fill="#5a7d5a" text-anchor="middle">≈15%</text>
+  <!-- 幻觉 85% -->
+  <rect x="200" y="40" width="200" height="120" fill="#c97a7a"/>
+  <text x="300" y="178" font-size="11" text-anchor="middle">错误（自信幻觉）</text>
+  <text x="300" y="34" font-size="15" font-weight="700" fill="#a23a3a" text-anchor="middle">≈85%</text>
+</svg>
+<div class="figcap">图 1　大模型"高置信"作者识别的正确率实证：置信度不等于可信度</div>
+</div>
+<h3>4.3　主观评分 ≠ 客观可用</h3>
+<p>模型给出的"艺术价值"是<strong>主观语义评分</strong>，与图像的<strong>客观可用性</strong>相互独立。典型表现是：一幅仅约 250 像素的名画缩略图，因其本身是杰作，模型会给出很高的艺术价值评分；但它在支持放大浏览的应用中根本无法使用。可见，仅凭模型的主观评分无法保证数据的实际可用性，必须辅以与使用场景挂钩的客观硬指标（如最短边分辨率阈值）。</p>
+<h3>4.4　方法陷阱：以派生量验证派生量会产生伪相关</h3>
+<p>实证中我们还发现一个易被忽视的陷阱。在尝试验证"画面颜色是否影响情绪"时，若所用的"情绪"标签本身是由颜色派生而来，则会得到一个虚高的相关（实测可达 r≈0.78），这一相关纯属<strong>循环论证</strong>而非真实因果，故被我们撤回。该教训提醒：评估模型标注的有效性时，必须警惕变量间的派生关系，使用相互独立的参照（如人工判断、客观物理量）来检验，否则会被伪相关误导。</p>
+
+<h2>5　人机协同质量治理方法</h2>
+<p>基于上述边界，本文提出一套面向图像知识组织的人机协同质量治理方法，其核心原则是"<strong>AI 做规模、人做权威</strong>"。该方法由五个相互配合的环节构成（图 2）。</p>
+<div class="fig">
+<svg viewBox="0 0 720 280" width="100%" style="max-width:720px" font-family="Noto Sans SC,sans-serif">
+  <defs><marker id="m1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#7a2e2e"/></marker></defs>
+  <rect x="10" y="110" width="120" height="56" rx="6" fill="#f4f2ee" stroke="#cfcabf"/>
+  <text x="70" y="134" font-size="12.5" text-anchor="middle">大模型标注</text><text x="70" y="152" font-size="10" fill="#777" text-anchor="middle">一次产出多维</text>
+  <text x="232" y="46" font-size="11" fill="#555" text-anchor="middle">① 按可靠性分级路由</text>
+  <g font-size="11.5" text-anchor="middle">
+    <rect x="166" y="56" width="150" height="40" rx="5" fill="#eef3ee" stroke="#9bb59b"/><text x="241" y="80">容错语义 → 自动采纳</text>
+    <rect x="166" y="118" width="150" height="40" rx="5" fill="#f6f1e8" stroke="#cbb78f"/><text x="241" y="142">权威元数据 → 人工/可信源校验</text>
+    <rect x="166" y="180" width="150" height="40" rx="5" fill="#f4eaea" stroke="#cfa3a3"/><text x="241" y="204">低可信字段 → 降级为"线索"</text>
+  </g>
+  <g stroke="#7a2e2e" stroke-width="1.2" fill="none" marker-end="url(#m1)">
+    <path d="M130,128 C148,100 150,80 164,76"/><path d="M130,138 L164,138"/><path d="M130,148 C148,176 150,196 164,200"/>
+  </g>
+  <g font-size="11.5" text-anchor="middle">
+    <rect x="360" y="40" width="160" height="44" rx="5" fill="#faf8f4" stroke="#cfcabf"/><text x="440" y="60">② 客观硬闸</text><text x="440" y="76" font-size="10" fill="#777">分辨率等场景指标</text>
+    <rect x="360" y="100" width="160" height="44" rx="5" fill="#faf8f4" stroke="#cfcabf"/><text x="440" y="120">③ 异常雷达 + 抽检</text><text x="440" y="136" font-size="10" fill="#777">挑可疑标注供人工核</text>
+    <rect x="360" y="160" width="160" height="44" rx="5" fill="#faf8f4" stroke="#cfcabf"/><text x="440" y="180">④ 双重去重</text><text x="440" y="196" font-size="10" fill="#777">SHA-256 + 感知哈希</text>
+  </g>
+  <g stroke="#7a2e2e" stroke-width="1.1" fill="none" marker-end="url(#m1)" opacity=".8">
+    <path d="M316,76 L358,62"/><path d="M316,138 L358,122"/><path d="M316,200 L358,182"/>
+  </g>
+  <rect x="560" y="100" width="150" height="60" rx="6" fill="#f4f2ee" stroke="#9a7a7a"/>
+  <text x="635" y="124" font-size="12.5" font-weight="700" text-anchor="middle">可信核心资产</text>
+  <text x="635" y="142" font-size="10" fill="#777" text-anchor="middle">⑤ 软策展·永不物删·可回溯</text>
+  <g stroke="#7a2e2e" stroke-width="1.2" fill="none" marker-end="url(#m1)">
+    <path d="M520,62 C545,90 548,116 558,124"/><path d="M520,122 L558,130"/><path d="M520,182 C545,156 548,140 558,136"/>
+  </g>
+</svg>
+<div class="figcap">图 2　"AI 做规模、人做权威"的人机协同质量治理方法</div>
+</div>
+<h3>5.1　按可靠性分级路由</h3>
+<p>不对所有模型输出一视同仁，而是按 4.1—4.2 的边界分级处置：容错性语义刻画<strong>自动采纳</strong>；权威性元数据<strong>必经人工校验或与可信来源比对</strong>方可入权威库；置信度不可信的高风险字段<strong>降级为"未核验线索"</strong>，仅供参考、不作权威依据。</p>
+<h3>5.2　客观硬闸补主观评分</h3>
+<p>在模型的主观评分之外，设置与使用场景挂钩的客观硬指标闸门（如最短边分辨率阈值），把"价值高但不可用"的数据挡在核心资产之外，并前置到入库环节以节省算力。</p>
+<h3>5.3　异常雷达与抽检纠错</h3>
+<p>建立自动化的异常监测，按规则挑出可疑标注（如"识别作者与来源不符""分类与质量分背离""字段缺失"等），连同随机抽样一并交人工复核，形成"模型标注—机器筛疑—人工定夺"的闭环。</p>
+<h3>5.4　软策展与可回溯</h3>
+<p>所有"剔除"仅为状态降级而非物理删除，原始数据与决策永久留底、可回溯、可反悔。这既守住图书馆长期保存的天职，也为模型升级后的重新评估保留余地——今天被判错的，明天更强的模型或可纠正。</p>
+<h3>5.5　双重去重保障数据洁净</h3>
+<p>以精确哈希与感知哈希两级去重清除跨源重复，避免重复数据污染统计与著录。实践中跨源近重复比例可高达约七成，去重是知识组织质量的前提。</p>
+
+<h2>6　讨论</h2>
+<h3>6.1　对图书馆知识组织的启示</h3>
+<p>本文实证给出的最重要启示是：<strong>大模型不是"自动编目员"，而是"高速的、需被监督的标注助手"。</strong>它擅长把海量图像快速转化为可比较、可计算的语义特征（这是人工难以规模化完成的），却不能替代图书馆员对权威性的把关。理性的分工是——<strong>AI 负责"规模"，馆员负责"权威"</strong>。这一分工不仅没有削弱、反而凸显了图书馆专业（元数据规范、权威控制、长期保存伦理）在 AI 时代的不可替代性。</p>
+<h3>6.2　成本与节奏</h3>
+<p>大模型标注存在固有的速率与算力成本，应以小批量、可监控、可中断的方式分批推进；同时通过客观硬闸前置（不在不可用数据上浪费算力）来优化成本结构。</p>
+<h3>6.3　伦理与诚实标注</h3>
+<p>项目坚持"诚实标注"：对 AI 生成的解读与判断明确标识其机器来源与不确定性，不冒充人工考据、不冒充真实评论；对不可信字段如实降级而非粉饰。透明地呈现"模型可能错"，本身就是对读者负责，也是图书馆公信力的延伸。</p>
+<h3>6.4　局限</h3>
+<p>本文的可靠性实证基于特定模型、特定题材（艺术图像）与特定时点；不同模型、不同资源类型上的边界需进一步验证。作者识别正确率的评估亦受限于"有真值可核对"的样本范围。但"置信度≠可信度""主观评分≠客观可用""警惕派生量伪相关"等结论，具有较强的方法论普适性。</p>
+
+<h2>7　结论</h2>
+<p>本文以约二十万幅艺术图像为案例，实证刻画了多模态大模型用于馆藏图像知识组织的可靠性边界：在容错性语义刻画上可靠且可规模化，在权威性元数据著录上则极不可靠（高置信下作者识别约 85% 错误）；并据此提出"按可靠性分级路由 + 客观硬闸 + 异常监测 + 软策展回溯"的人机协同质量治理方法，其核心原则为"AI 做规模、人做权威"。研究表明，大模型能极大提升图书馆图像知识组织的效率，但其价值的安全释放，必须建立在对其能力边界的清醒认知与扎实的质量治理之上。未来工作将把该评估方法推广到更多模型与资源类型，并探索更高效的人机协同校验机制。</p>
+
+<div class="note">说明：本文为面向《图书情报工作》体例撰写的工作稿；文中数据为项目某一时点的近似值，正式投稿前应核定确切数据、补充样本量与评估细节（建议将 4.2 的作者识别评估整理为规范的实验小节，给出样本选取、判定标准与置信区间）。参考文献为按主题整理的起始书目，正式投稿前请逐条核验并按 GB/T 7714—2015 著录。建议邀请图书馆相关研究人员共同署名。本文与作者另一篇"图书馆数据价值激活总体框架"的论文互为补充，投稿时应注明关系、避免内容重复。</div>
+
+<h2>参考文献</h2>
+<ol class="refs">
+  <li>RADFORD A, KIM J W, HALLACY C, et al. Learning transferable visual models from natural language supervision[C]//Proceedings of the 38th International Conference on Machine Learning (ICML). 2021: 8748-8763.</li>
+  <li>OpenAI. GPT-4 technical report[R/OL]. arXiv:2303.08774, 2023.</li>
+  <li>JI Z, LEE N, FRIESKE R, et al. Survey of hallucination in natural language generation[J]. ACM Computing Surveys, 2023, 55(12): 1-38.</li>
+  <li>PADILLA T. Responsible operations: data science, machine learning, and AI in libraries[R]. Dublin, Ohio: OCLC Research, 2019.</li>
+  <li>CORDELL R. Machine learning + libraries: a report on the state of the field[R]. Washington, DC: LC Labs, Library of Congress, 2020.</li>
+  <li>EUROPEANA FOUNDATION. AI in relation to GLAMs task force: report and recommendations[R]. The Hague: Europeana, 2021.</li>
+  <li>初景利, 段美珍. 从智慧图书馆到智慧化服务[J]. 图书情报工作, 2018, 62(1): 6-12.</li>
+  <li>张智雄, 等. 大语言模型对图书情报领域的影响与应对[J]. 中国图书馆学报, 2023.（待核卷期页）</li>
+  <li>夏翠娟. 面向人文研究的"数据基础设施"建设[J]. 中国图书馆学报, 2020, 46(4): 25-40.</li>
+  <li>柯平, 宫平. 数据治理研究综述[J]. 图书情报工作, 2020.（待核卷期页）</li>
+</ol>
+
+<div class="en">
+<h1>The Reliability Boundary of Multimodal Large Models for Knowledge Organization of Library Image Collections and a Human–Machine Collaborative Quality-Governance Method<br><span style="font-size:14px;color:var(--soft)">An Empirical Study Based on About 200,000 Artwork Images</span></h1>
+<div class="abs nofirst">
+<p><span class="lbl">Abstract:</span> Multimodal large models bring a tempting promise of scalable automatic annotation for library image collections, yet their "hallucination" undermines their applicability in a domain that demands rigor and authority. Clarifying the reliability boundary of such models—what they can and cannot do for image knowledge organization—and designing an actionable quality-governance method accordingly, is a key issue for knowledge-organization practice in the AI era. Drawing on a real project that aggregated about 209,000 artwork images, of which about 121,000 have been assessed by a vision large model, this paper empirically evaluates model annotations along two task types—fault-tolerant semantic description versus authoritative cataloging—and proposes a human–machine collaborative governance method combining reliability-tiered routing, objective hard gates, anomaly monitoring and reversible soft curation. Findings show that the model is stable and well-correlated with human judgment on fault-tolerant semantic dimensions (emotion, composition, subject), suitable for large-scale automation; but it is highly unreliable for authoritative metadata (author, title): among high-confidence, ground-truth-verifiable samples, author-identification accuracy is only about 15%—i.e., about 85% of its most confident judgments are confident hallucinations. Moreover, subjective "artistic merit" scores are independent of objective usability (e.g. resolution) and must be complemented by hard indicators; and validating a derived variable with another derived variable yields spurious correlation. The paper therefore advocates a "AI for scale, humans for authority" principle: model outputs should be processed by reliability tier, authoritative fields must be human- or trusted-source-verified, and "honest annotation, never physically delete" should be upheld. The study provides reliability evidence and a transferable governance method for introducing large models into library knowledge organization.</p>
+<p style="margin-top:10px"><span class="lbl">Key words:</span> Multimodal large model; Image annotation; Knowledge organization; Automatic metadata generation; Data quality governance; Human–machine collaboration; Model hallucination</p>
+</div>
+</div>
+
+</div>
+</body></html>

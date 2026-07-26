@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>当作品卡住了 · vibe coding 第二课 — aha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4f1ea; --card:#fffdf8; --line:#ddd5c6; --line-soft:#e8e1d4;
+    --ink:#1d1b18; --ink-soft:#4b463e; --ink-mute:#857d6f; --ink-faint:#a89f8f;
+    --accent:#b0673a; --accent-soft:#f0e4d8; --accent-line:#e5d3c2; --accent-deep:#9a5530;
+    --green:#5a7d6f; --green-soft:#e4ede9; --blue:#5b7596; --blue-soft:#e3e9f0;
+    --gold:#c98a1a; --gold-soft:#f3e7cb; --reb:#c0492f;
+    --serif:"Noto Serif SC","Songti SC",serif;
+    --sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:var(--sans); color:var(--ink); background:var(--paper);
+    overflow:hidden; -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(circle at 18% 12%, #fffdf8 0%, transparent 40%),
+      radial-gradient(circle at 82% 88%, #efe9dd 0%, transparent 45%);
+  }
+  .deck{position:fixed;inset:0}
+  .slide{
+    position:absolute; inset:0;
+    display:flex; flex-direction:column; justify-content:center; align-items:center;
+    padding:clamp(28px,6vw,90px);
+    opacity:0; visibility:hidden; transform:translateY(18px) scale(.992);
+    transition:opacity .5s ease, transform .5s ease;
+    text-align:center;
+  }
+  .slide.active{opacity:1; visibility:visible; transform:none; z-index:2}
+  .slide.past{transform:translateY(-18px) scale(.992)}
+  .wrap{width:100%; max-width:1080px}
+
+  /* typography */
+  .kicker{font-family:var(--sans); font-weight:700; letter-spacing:.22em;
+    font-size:clamp(11px,1.3vw,15px); color:var(--accent); text-transform:uppercase; margin-bottom:22px}
+  h1{font-family:var(--serif); font-weight:900; line-height:1.12;
+    font-size:clamp(34px,6.4vw,82px); letter-spacing:.01em}
+  h2{font-family:var(--serif); font-weight:700; line-height:1.2;
+    font-size:clamp(27px,4.4vw,56px)}
+  .lead{font-family:var(--serif); font-size:clamp(20px,2.9vw,36px); line-height:1.5; color:var(--ink-soft); margin-top:26px}
+  .sub{font-size:clamp(15px,1.8vw,22px); color:var(--ink-mute); margin-top:18px; line-height:1.7}
+  .em{color:var(--accent)}
+  .em-g{color:var(--green)} .em-b{color:var(--blue)}
+  .mute{color:var(--ink-faint)}
+  .big-word{font-family:var(--serif); font-weight:900; color:var(--accent);
+    font-size:clamp(48px,10vw,128px); line-height:1; letter-spacing:.02em; margin:18px 0}
+
+  /* cover */
+  .cover h1{margin-bottom:8px}
+  .cover .tagline{font-family:var(--serif); font-size:clamp(17px,2.3vw,28px); color:var(--accent); margin-top:18px}
+  .cover .by{margin-top:40px; color:var(--ink-mute); font-size:clamp(13px,1.5vw,17px); letter-spacing:.05em}
+  .pill{display:inline-block; padding:7px 18px; border:1px solid var(--accent-line);
+    background:var(--accent-soft); color:var(--accent); border-radius:999px;
+    font-size:clamp(12px,1.4vw,15px); font-weight:700; letter-spacing:.04em}
+
+  /* 80/20 进度条视觉 */
+  .split{display:flex; gap:10px; margin-top:38px; align-items:stretch; text-align:left}
+  .split .seg{border-radius:14px; padding:clamp(16px,2vw,26px); display:flex; flex-direction:column; justify-content:center}
+  .split .easy{flex:4; background:#f0ece2; border:1px solid var(--line)}
+  .split .hard{flex:1.4; background:var(--accent-soft); border:1.5px solid var(--accent-line)}
+  .split .seg .pct{font-family:var(--serif); font-weight:900; font-size:clamp(26px,4vw,46px); line-height:1}
+  .split .easy .pct{color:var(--ink-mute)} .split .hard .pct{color:var(--accent)}
+  .split .seg .cap{font-size:clamp(12px,1.4vw,16px); margin-top:8px; line-height:1.4}
+  .split .easy .cap{color:var(--ink-mute)} .split .hard .cap{color:var(--accent-deep); font-weight:700}
+
+  /* 横 vs 纵 */
+  .ortho{display:grid; grid-template-columns:1fr 1fr; gap:clamp(12px,1.6vw,20px); margin-top:34px; text-align:left}
+  .ortho .o{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:clamp(18px,2.2vw,28px); box-shadow:0 2px 0 var(--line-soft)}
+  .ortho .o .arrow{font-family:var(--serif); font-weight:900; font-size:clamp(22px,3vw,34px); letter-spacing:.1em}
+  .ortho .o.h .arrow{color:var(--ink-faint)} .ortho .o.v .arrow{color:var(--accent)}
+  .ortho .o .ot{font-family:var(--serif); font-weight:700; font-size:clamp(17px,2vw,24px); margin:8px 0 6px}
+  .ortho .o .od{color:var(--ink-mute); font-size:clamp(13px,1.5vw,17px); line-height:1.55}
+
+  /* 方向页:浅↔深 + 案例 + 一句话 */
+  .law{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:30px; text-align:left}
+  .law .box{border-radius:16px; padding:clamp(16px,2.1vw,26px)}
+  .law .weak{background:#f3efe7; border:1px solid var(--line)}
+  .law .strong{background:var(--accent-soft); border:1.5px solid var(--accent-line)}
+  .law .lbl{font-weight:700; letter-spacing:.05em; font-size:clamp(12px,1.4vw,15px); margin-bottom:10px}
+  .law .weak .lbl{color:var(--ink-mute)} .law .strong .lbl{color:var(--accent)}
+  .law .ex{font-family:var(--serif); font-size:clamp(15px,1.85vw,22px); line-height:1.45; font-weight:700; color:var(--ink-soft)}
+  .law .strong .ex{color:var(--ink)}
+  .case{margin-top:18px; text-align:left; background:var(--card); border:1px solid var(--line);
+    border-radius:14px; padding:clamp(15px,1.9vw,24px); box-shadow:0 2px 0 var(--line-soft)}
+  .case .ct{font-size:clamp(11px,1.3vw,14px); font-weight:700; letter-spacing:.05em; color:var(--accent); margin-bottom:8px}
+  .case .cd{font-size:clamp(14px,1.6vw,19px); line-height:1.6; color:var(--ink-soft)}
+  .case .cd b{color:var(--ink)}
+  .oneline{margin-top:18px; font-family:var(--serif); font-weight:700;
+    font-size:clamp(16px,2vw,25px); line-height:1.45; color:var(--accent)}
+  .oneline::before{content:"→ "; color:var(--accent-line)}
+
+  /* mnemonic */
+  .mnemonic{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:34px}
+  .mnemonic span{background:var(--card); border:1px solid var(--line); border-radius:999px;
+    padding:8px 18px; font-family:var(--serif); font-weight:700; font-size:clamp(14px,1.7vw,21px); color:var(--accent)}
+
+  /* 深度体检 互动 */
+  .check{margin-top:30px; width:100%}
+  .checks{display:flex; flex-direction:column; gap:12px; max-width:760px; margin:0 auto; text-align:left}
+  .ck{display:flex; align-items:center; gap:14px; cursor:pointer; user-select:none;
+    background:var(--card); border:1.5px solid var(--line); border-radius:14px;
+    padding:clamp(13px,1.6vw,19px) clamp(16px,1.9vw,22px); transition:.18s}
+  .ck:hover{border-color:var(--accent-line); background:#fffaf2}
+  .ck .mark{flex:0 0 auto; width:26px; height:26px; border-radius:7px; border:2px solid var(--accent-line);
+    display:flex; align-items:center; justify-content:center; color:#fff; font-weight:900; font-size:16px; transition:.18s}
+  .ck .txt{font-family:var(--serif); font-weight:700; font-size:clamp(15px,1.85vw,22px); line-height:1.3}
+  .ck.on{border-color:var(--accent); background:var(--accent-soft)}
+  .ck.on .mark{background:var(--accent); border-color:var(--accent)}
+  .meter{margin-top:24px; font-size:clamp(14px,1.7vw,20px); color:var(--ink-mute)}
+  .meter b{color:var(--accent); font-family:var(--serif); font-size:1.5em}
+
+  /* end */
+  .end .gold-line{font-family:var(--serif); font-weight:900; font-size:clamp(26px,4.4vw,56px); line-height:1.32}
+
+  /* chrome */
+  .progress{position:fixed; top:0; left:0; height:4px; background:var(--accent); z-index:50; transition:width .4s ease}
+  .nav{position:fixed; bottom:22px; right:26px; display:flex; align-items:center; gap:12px; z-index:50}
+  .nav button{width:42px; height:42px; border-radius:50%; border:1px solid var(--line); background:var(--card);
+    color:var(--ink-soft); font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.18s}
+  .nav button:hover{background:var(--accent-soft); color:var(--accent); border-color:var(--accent-line)}
+  .counter{font-family:var(--serif); font-weight:700; color:var(--ink-mute); font-size:15px; min-width:54px; text-align:center}
+  .help{position:fixed; bottom:26px; left:26px; z-index:50; color:var(--ink-faint); font-size:13px; letter-spacing:.03em}
+  .brand{position:fixed; top:20px; left:26px; z-index:50; font-family:var(--serif); font-weight:900; color:var(--accent); font-size:17px; letter-spacing:.02em}
+  .brand small{color:var(--ink-faint); font-weight:400; font-family:var(--sans)}
+
+  @media (max-width:760px){
+    .split,.ortho,.law{grid-template-columns:1fr}
+    .split{flex-direction:column}
+    .help{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="brand">aha<small> · vibe coding 第二课</small></div>
+
+<main class="deck" id="deck">
+
+  <!-- 1 封面 -->
+  <section class="slide cover active">
+    <div class="wrap">
+      <div class="pill">第二课 · 接着上次往下走</div>
+      <h1 style="margin-top:26px">当你的作品<span class="em">卡住了</span></h1>
+      <p class="tagline">—— 能跑、看着也还行，但就是再也深不下去</p>
+      <p class="sub">还是用 <b>aha · 懂你的人类美术馆</b> 当例子，聊聊“第一版之后”怎么办</p>
+      <p class="by">主讲 · 邱懿武　|　按 → 开始</p>
+    </div>
+  </section>
+
+  <!-- 2 共鸣 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">先说一个你可能正在经历的状态</div>
+      <h2>做了几个之后，新鲜劲过了——<br>东西<span class="em">能跑</span>、看着<span class="em">也还行</span>，<br>但再往下，<span class="em">不知道做什么了</span>。</h2>
+      <p class="lead">再加个按钮？换个颜色？<br>好像都没让它<span class="em">真的变好</span>。</p>
+    </div>
+  </section>
+
+  <!-- 3 命名 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">别急 · 这不是你退步了</div>
+      <h2>每个创作者都会撞到<span class="em">同一堵墙</span>，</h2>
+      <div class="big-word">第一版陷阱</div>
+      <p class="sub">它甚至有个名字。今天，就来把它拆穿。</p>
+    </div>
+  </section>
+
+  <!-- 4 原理 80/20 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">第一版陷阱 · 它长什么样</div>
+      <h2>第一版，是最容易的那 <span class="em">80%</span>。</h2>
+      <div class="split">
+        <div class="seg easy"><div class="pct">80%</div><div class="cap">把东西“做出来”<br>一个下午、几句话，AI 就帮你到这</div></div>
+        <div class="seg hard"><div class="pct">20%</div><div class="cap">把东西“做到深”<br>价值都在这一段 · 大多数人停在它之前</div></div>
+      </div>
+      <p class="sub">拉开差距的，从来是后面那 20%。<span class="em">往下做，不是“做更多”，是“换个方向往下挖”。</span></p>
+    </div>
+  </section>
+
+  <!-- 5 转折 横→纵 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">那 20%，到底往哪走</div>
+      <h2>上一课学<span class="mute">横着走</span>，这一课学<span class="em">往下挖</span>。</h2>
+      <div class="ortho">
+        <div class="o h"><div class="arrow">← 横 →</div><div class="ot">让 AI 帮你做出来</div><div class="od">更宽：再加一个页面、再加一个功能。第一课练的就是这个。</div></div>
+        <div class="o v"><div class="arrow">↓ 纵 ↓</div><div class="ot">让同一个东西变深</div><div class="od">更深：同一个作品，往下挖到别人挖不到的地方。这一课练这个。</div></div>
+      </div>
+      <p class="sub">往下挖<span class="em">有方向</span>。下面 5 个，都是我真做过的。</p>
+    </div>
+  </section>
+
+  <!-- 6 方向一 真东西 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">方向一 · 让作品装进真东西</div>
+      <h2>从“<span class="mute">假的</span>”到“<span class="em">真的</span>”</h2>
+      <div class="law">
+        <div class="box weak"><div class="lbl">浅</div><div class="ex">占位图、随便编的数据、示例文字——看着满，里面其实是空的。</div></div>
+        <div class="box strong"><div class="lbl">深</div><div class="ex">灌进真实的内容：真的画、真的故事、真实的人。</div></div>
+      </div>
+      <div class="case">
+        <div class="ct">aha 是怎么做的</div>
+        <div class="cd">aha 没有用一张假图——灌的是<b>真的人类名画</b>，外加对每一幅画的<b>真实测量</b>。后来做视频课时，干脆定了一条铁律：<b>“禁假视频”</b>——宁可把真实的报错显示给你，也绝不假装“做好了”。</div>
+      </div>
+      <p class="oneline">作品一旦装进真东西，深度会自己长出来。</p>
+    </div>
+  </section>
+
+  <!-- 7 方向二 有观点 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">方向二 · 让作品说一句话</div>
+      <h2>从“做出来”到“<span class="em">有观点</span>”</h2>
+      <div class="law">
+        <div class="box weak"><div class="lbl">浅</div><div class="ex">又一个画廊、又一个待办清单、又一个躲方块——做得出，但跟别人的没差别。</div></div>
+        <div class="box strong"><div class="lbl">深</div><div class="ex">一个有主张的东西——它想说一句别人没说过的话。</div></div>
+      </div>
+      <div class="case">
+        <div class="ct">aha 的那句话</div>
+        <div class="cd">“同一批人类名画，<b>千人千面</b>地重新排成‘懂你’的画廊。”先有这一句，139 个页面才有了一根<b>脊柱</b>，不再是散页。</div>
+      </div>
+      <p class="oneline">你的作品，一句话想说什么？说不清，往往就是还没想清。</p>
+    </div>
+  </section>
+
+  <!-- 8 方向三 挖一个点 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">方向三 · 纵向，胜过横向</div>
+      <h2>从“再加个功能”到“<span class="em">把一个点挖穿</span>”</h2>
+      <div class="law">
+        <div class="box weak"><div class="lbl">横着铺</div><div class="ex">不停加按钮、加页面。十个半成品，没一个能打。</div></div>
+        <div class="box strong"><div class="lbl">纵向挖</div><div class="ex">选一个点，挖到底，挖到别人做不出来。</div></div>
+      </div>
+      <div class="case">
+        <div class="ct">aha 卡住时做的选择</div>
+        <div class="cd">卡住的时候，aha 没有再加十个新功能，而是挑出<b>“意图编译器”一个点</b>，一路往深里挖，最后把它升格成一个真正能用的产品。</div>
+      </div>
+      <p class="oneline">卡住时别往前加，往下挖——这也是上一课说的“退一步”。</p>
+    </div>
+  </section>
+
+  <!-- 9 方向四 你的味 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">方向四 · 把你自己放进去</div>
+      <h2>从“<span class="mute">AI 味</span>”到“<span class="em">你的味</span>”</h2>
+      <div class="law">
+        <div class="box weak"><div class="lbl">浅</div><div class="ex">一眼就看出是 AI 生成的——谁用同样的工具，做出来都一样。</div></div>
+        <div class="box strong"><div class="lbl">深</div><div class="ex">有你的“笔迹”：一套只属于你的颜色、字、说话的方式。</div></div>
+      </div>
+      <div class="case">
+        <div class="ct">aha 的笔迹</div>
+        <div class="cd">aha 全站<b>一个味道</b>——暖纸的底、赭石只点一处，随便打开哪一页你都认得出是它。做小红书封面时，甚至专门有一道工序，就叫<b>“去 AI 感”</b>。</div>
+      </div>
+      <p class="oneline">AI 给你的是平均值；你的活儿，是把“你的偏好”喂给它。</p>
+    </div>
+  </section>
+
+  <!-- 10 方向五 诚实 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">方向五 · 敢说“我还不确定”</div>
+      <h2><span class="em">诚实</span>，本身就是一种深度</h2>
+      <div class="law">
+        <div class="box weak"><div class="lbl">浅</div><div class="ex">什么都说得很自信、看着都对——可你其实没验证过。</div></div>
+        <div class="box strong"><div class="lbl">深</div><div class="ex">分清“我以为”和“我验证过”；发现错了，敢改、敢撤。</div></div>
+      </div>
+      <div class="case">
+        <div class="ct">aha 的“撤回墙”</div>
+        <div class="cd">aha 一度以为“颜色越鲜艳 → 画面越让人兴奋”。后来用真画一测，发现这是<b>循环论证</b>、站不住——于是<b>主动撤回</b>，在页面上公开写：“这一条，我们错了。”</div>
+      </div>
+      <p class="oneline">从“作业”到“作品”的分水岭，常常就是这一下诚实。</p>
+    </div>
+  </section>
+
+  <!-- 11 小结 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">5 个方向，其实是同一件事</div>
+      <h2>把“<span class="mute">别人也能做的</span>”，<br>变成“<span class="em">只有你会做的</span>”。</h2>
+      <div class="mnemonic">
+        <span>装真的</span><span>有观点</span><span>挖一个点</span><span>你的味</span><span>敢诚实</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 互动 深度体检 -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="kicker">现场试试 · 给你手上的作品做个“深度体检”</div>
+      <div class="check">
+        <div class="checks" id="checks">
+          <div class="ck" data-k="1"><div class="mark">✓</div><div class="txt">里面装的是真东西，不是占位图 / 编的数据</div></div>
+          <div class="ck" data-k="2"><div class="mark">✓</div><div class="txt">一句话说得清，它想说什么、给谁</div></div>
+          <div class="ck" data-k="3"><div class="mark">✓</div><div class="txt">我在挖一个点，不是铺一堆没做透的功能</div></div>
+          <div class="ck" data-k="4"><div class="mark">✓</div><div class="txt">它有“我的味”，不是谁做都一样</div></div>
+          <div class="ck" data-k="5"><div class="mark">✓</div><div class="txt">我敢标出“这部分我还没验证”</div></div>
+        </div>
+        <div class="meter">深度分：<b id="score">0</b> / 5　<span id="scoreNote">— 先别急，勾下面你已经做到的</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 收尾 -->
+  <section class="slide end">
+    <div class="wrap">
+      <div class="kicker">如果今天只记住一句话</div>
+      <p class="gold-line">第一版，是 <span class="mute">AI 帮你做的</span>。<br>让它<span class="em">变深</span>的那部分，<br>才是<span class="em">你的作品</span>。</p>
+      <div class="mnemonic">
+        <span>装真的</span><span>有观点</span><span>挖一个点</span><span>你的味</span><span>敢诚实</span>
+      </div>
+      <p class="sub" style="margin-top:34px">这五件事，越练越值钱。　谢谢大家 ✦</p>
+    </div>
+  </section>
+
+</main>
+
+<div class="nav">
+  <button id="prev" aria-label="上一页">‹</button>
+  <span class="counter" id="counter">1 / 13</span>
+  <button id="next" aria-label="下一页">›</button>
+</div>
+<div class="help">← → 翻页　·　空格 下一页</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var cur = 0;
+  var progress = document.getElementById('progress');
+  var counter = document.getElementById('counter');
+
+  function render(){
+    slides.forEach(function(s,i){
+      s.classList.remove('active','past');
+      if(i===cur) s.classList.add('active');
+      else if(i<cur) s.classList.add('past');
+    });
+    progress.style.width = ((cur)/(slides.length-1)*100)+'%';
+    counter.textContent = (cur+1)+' / '+slides.length;
+  }
+  function go(n){ cur = Math.max(0, Math.min(slides.length-1, n)); render(); }
+
+  document.getElementById('next').onclick = function(){ go(cur+1); };
+  document.getElementById('prev').onclick = function(){ go(cur-1); };
+  document.addEventListener('keydown', function(e){
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){ e.preventDefault(); go(cur+1); }
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){ e.preventDefault(); go(cur-1); }
+    else if(e.key==='Home'){ go(0); }
+    else if(e.key==='End'){ go(slides.length-1); }
+  });
+  // swipe (mobile)
+  var sx=0;
+  document.addEventListener('touchstart',function(e){ sx=e.touches[0].clientX; },{passive:true});
+  document.addEventListener('touchend',function(e){
+    var dx=e.changedTouches[0].clientX-sx;
+    if(Math.abs(dx)>50){ go(dx<0?cur+1:cur-1); }
+  },{passive:true});
+
+  // 互动 · 深度体检
+  var notes = [
+    '— 先别急，勾下面你已经做到的',
+    '— 起步了',
+    '— 有点深度了',
+    '— 已经比大多数作品更深了',
+    '— 很扎实',
+    '— 这就是“你的作品”了'
+  ];
+  var scoreEl = document.getElementById('score');
+  var noteEl = document.getElementById('scoreNote');
+  document.getElementById('checks').addEventListener('click', function(e){
+    var c = e.target.closest('.ck'); if(!c) return;
+    c.classList.toggle('on');
+    var n = document.querySelectorAll('#checks .ck.on').length;
+    scoreEl.textContent = n;
+    noteEl.textContent = notes[n];
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

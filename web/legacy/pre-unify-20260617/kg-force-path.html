@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>aha · 力的连线</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/aha-kit.css">
+<style>
+  /* token 来自 aha-kit.css;此处只放页面专属微调 */
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:26px 16px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(20px,3.6vw,28px);font-weight:700;text-align:center;margin:7px 0}
+  .lead{text-align:center;color:var(--ink-mute);font-size:13px;line-height:1.7;max-width:680px;margin:6px auto}.lead b{color:var(--ink-soft)}
+  .breadcrumb{text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px}.breadcrumb a{color:var(--accent);text-decoration:none}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:18px}
+  .pickrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center}
+  .pick{display:flex;flex-direction:column;gap:3px}
+  .pick label{font-family:var(--mono);font-size:10px;color:var(--ink-faint);letter-spacing:.06em}
+  .pick input{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:7px 11px;width:170px}
+  .pick input:focus{outline:none;border-color:var(--accent)}
+  .arrow{font-family:var(--mono);color:var(--ink-faint);font-size:18px;padding-top:14px}
+  .acts{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+  .btn{font-family:var(--sans);font-size:12.5px;color:var(--ink-soft);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:6px 13px;cursor:pointer}
+  .btn:hover{border-color:var(--accent);color:var(--accent)}.btn.pri{background:var(--ink-soft);color:#fff;border-color:var(--ink-soft)}
+  .presets{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:10px;font-size:11.5px}
+  .presets a{color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--line);cursor:pointer}
+  .result{margin-top:22px}
+  .summary{text-align:center;font-size:13px;color:var(--ink-soft);margin-bottom:14px}.summary b{color:var(--ink)}.summary .k{font-family:var(--mono);font-size:11px;color:var(--ink-mute)}
+  .chain{max-width:520px;margin:0 auto}
+  .cnode{display:flex;align-items:center;gap:11px;position:relative}
+  .cnode .dot{width:13px;height:13px;border-radius:50%;background:var(--accent);border:2.5px solid #fff;box-shadow:0 0 0 1px var(--line);flex:none}
+  .cnode.east .dot{background:#5a7d6f}.cnode.concept .dot{background:#7a6f63;border-radius:3px}
+  .cnode .nm{font-family:var(--serif);font-size:16px;font-weight:700}
+  .cnode .nm a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+  .cnode .nm .ext{color:var(--ink-soft)}
+  .cnode .cw{margin-left:auto}.cnode .bw-row img{width:44px;height:44px}
+  .clink{margin-left:6px;border-left:2px solid var(--line);padding:7px 0 7px 18px;position:relative}
+  .clink .lt{display:inline-block;font-family:var(--mono);font-size:10px;color:#fff;border-radius:5px;padding:1px 8px}
+  .clink .lt.lin{background:#a89f8f}
+  .clink .ln{font-size:12px;color:var(--ink-mute);line-height:1.6;margin-top:4px}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:20px;font-size:11.5px;color:var(--ink-soft)}
+  .legend .li{display:flex;align-items:center;gap:5px}.legend .sw{width:14px;height:8px;border-radius:3px}
+  .empty{text-align:center;color:var(--ink-faint);padding:24px;font-size:13px}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+</style>
+</head><body data-board="path" data-no-top>
+<a class="home-fab" href="artist-home.html" title="返回首页"><i data-ic="home"></i> 首页</a>
+<div class="wrap">
+  <div class="kick">aha · 艺术史动力学 · 工具</div>
+  <h1>力的连线 —— 两位艺术家之间隔着什么</h1>
+  <p class="lead">任选两位艺术家,用图谱里的<b>力</b>(反叛/复兴/跨文化…)与<b>师承</b>,把他们<b>连起来</b>。看艺术史如何用"力"做<b>六度分隔</b>——尤其东西方之间,常靠几位"桥墩"接通。</p>
+  <div class="breadcrumb"><a href="museum.html" style="color:var(--ink-mute);text-decoration:none">aha</a> <span style="color:var(--ink-faint)">›</span> <a href="kg-forces.html" style="color:var(--accent);text-decoration:none;font-weight:600">艺术史动力学</a> · <a href="kg-forces.html">总图</a> · <a href="kg-dynamics.html">关系层</a> · <a href="kg-context.html">语境层</a> · <a href="kg-contingency.html">个体偶发</a> · <a href="kg-force-timeline.html">时间线</a> · <a href="kg-tour-forces.html">导览</a> · <b style="color:var(--ink)">连线</b></div>
+
+  <div class="panel">
+    <div class="pickrow">
+      <div class="pick"><label>起点</label><input id="from" list="artists" placeholder="如 梵高"></div>
+      <span class="arrow">→</span>
+      <div class="pick"><label>终点</label><input id="to" list="artists" placeholder="如 八大山人"></div>
+    </div>
+    <datalist id="artists"></datalist>
+    <div class="acts">
+      <button class="btn pri" id="go">连一连</button>
+      <button class="btn" id="rnd"><i data-ic="dice"></i> 随机一对</button>
+      <button class="btn" id="swap">⇄ 互换</button>
+      <button class="btn" id="copy"><i data-ic="network"></i> 复制链接</button>
+    </div>
+    <div class="presets" id="presets"></div>
+  </div>
+
+  <div class="result" id="result"><div class="empty">选两位艺术家,或点「随机一对」。</div></div>
+
+  <div class="legend" id="legend"></div>
+</div>
+<footer style="max-width:1100px;margin:46px auto 0;padding:14px 16px;border-top:1px solid var(--line);display:flex;gap:8px 14px;flex-wrap:wrap;align-items:baseline;font-family:var(--mono);font-size:11px;color:var(--ink-faint)"><a href="kg-forces.html" style="color:var(--accent);text-decoration:none;font-weight:600">aha · 艺术史动力学板块</a><span style="color:var(--ink-mute)">力 = 关系 + 语境 + 个体偶发</span><span style="margin-left:auto"><a href="kg-forces.html" style="color:var(--accent);text-decoration:none">板块首页</a> · <a href="kg-dynamics.html" style="color:var(--ink-mute);text-decoration:none">关系</a> · <a href="kg-context.html" style="color:var(--ink-mute);text-decoration:none">语境</a> · <a href="kg-contingency.html" style="color:var(--ink-mute);text-decoration:none">个体</a> · <a href="museum.html" style="color:var(--ink-mute);text-decoration:none">← aha 总站</a></span></footer>
+<script>
+const NS='http://www.w3.org/2000/svg';
+const FCOL={'反叛':'#c0492f','复兴':'#5a7d6f','跨文化':'#5b7596','综合':'#b8893a','推演':'#8a5fa3','致敬':'#3f8f8a','竞争':'#a8567f','结社':'#8a6d4f'};
+let A,REL,CN={},G={},ARTNODES=[],cnToId={};
+const cn=i=>CN[i]||i;
+const isConcept=i=>i.startsWith('C.');
+Promise.all([
+  fetch('data/kg_artists.json').then(r=>r.json()),
+  fetch('data/kg_relations.json').then(r=>r.json()),
+  fetch('data/kg_artist_lineage.json').then(r=>r.json()).catch(()=>({edges:[]}))
+]).then(([aj,rj,lj])=>{
+  A=aj.artists;REL=rj;
+  Object.entries(A).forEach(([id,v])=>CN[id]=v.cn||id);
+  Object.entries(REL.concepts).forEach(([id,c])=>CN[id]=c.cn);
+  const add=(a,b,t,w,force,note)=>{(G[a]=G[a]||[]).push({to:b,t,w,force,note});(G[b]=G[b]||[]).push({to:a,t,w,force,note});};
+  REL.edges.forEach(e=>add(e.from,e.to,e.type,1,true,e.note));
+  (lj.edges||[]).forEach(e=>add(e.src,e.dst,e.rel,e.rel==='师承'?1.2:2,false,''));
+  // 可选端点:图中存在、是真实艺术家
+  ARTNODES=Object.keys(G).filter(id=>!isConcept(id)&&A[id]&&!A[id]._stub).sort((a,b)=>cn(a).localeCompare(cn(b),'zh'));
+  const dl=document.getElementById('artists');
+  ARTNODES.forEach(id=>{const cnv=cn(id);if(!cnToId[cnv])cnToId[cnv]=id;const o=document.createElement('option');o.value=cnv;dl.appendChild(o);});
+  // legend
+  document.getElementById('legend').innerHTML=
+    Object.entries(FCOL).map(([t,c])=>`<span class="li"><span class="sw" style="background:${c}"></span>${t}</span>`).join('')+
+    `<span class="li"><span class="sw" style="background:#a89f8f"></span>师承/同侪</span><span class="li" style="color:var(--ink-faint)">○西 ●东 ▢外部传统</span>`;
+  // presets
+  const PRE=[['ARTIST.vangogh','ARTIST.badashanren','梵高 → 八大山人'],['ARTIST.malevich','ARTIST.dongqichang','马列维奇 → 董其昌'],['ARTIST.monet','ARTIST.shitao','莫奈 → 石涛'],['ARTIST.picasso','ARTIST.fankuan','毕加索 → 范宽']];
+  document.getElementById('presets').innerHTML='试试:'+PRE.map((p,i)=>`<a data-i="${i}">${p[2]}</a>`).join(' · ');
+  document.querySelectorAll('#presets a').forEach(a=>a.addEventListener('click',()=>{const p=PRE[a.dataset.i];setPair(p[0],p[1]);}));
+  document.getElementById('go').addEventListener('click',run);
+  document.getElementById('swap').addEventListener('click',()=>{const f=document.getElementById('from'),t=document.getElementById('to');const x=f.value;f.value=t.value;t.value=x;run();});
+  document.getElementById('rnd').addEventListener('click',()=>{const a=ARTNODES[Math.floor(Math.random()*ARTNODES.length)];let b=a;let tries=0;while((b===a||!dijkstra(a,b))&&tries++<40)b=ARTNODES[Math.floor(Math.random()*ARTNODES.length)];setPair(a,b);});
+  ['from','to'].forEach(id=>document.getElementById(id).addEventListener('change',run));
+  document.getElementById('copy').addEventListener('click',ev=>{const b=ev.target;navigator.clipboard&&navigator.clipboard.writeText(location.href);const o=b.textContent;b.textContent='✓ 已复制';setTimeout(()=>b.textContent=o,1400);});
+  // 载入即读 URL(?from=&to=,接受 id 或中文名)
+  const q=new URLSearchParams(location.search);let pf=q.get('from'),pt=q.get('to');
+  if(pf&&!A[pf]&&cnToId[pf])pf=cnToId[pf]; if(pt&&!A[pt]&&cnToId[pt])pt=cnToId[pt];
+  if(pf&&pt&&G[pf]&&G[pt])setPair(pf,pt); else setPair('ARTIST.vangogh','ARTIST.badashanren');
+}).catch(e=>{document.getElementById('result').innerHTML='<div class="empty">加载失败:'+e+'</div>';});
+
+function planeSVG(ids){
+  const pts=ids.map(id=>{const c=isConcept(id)?REL.concepts[id]:(A[id]&&A[id].wv);if(!c||c.x==null)return null;
+    return {id,x:c.x,y:c.y,concept:isConcept(id),east:!isConcept(id)&&A[id]&&A[id].region==='east'};}).filter(Boolean);
+  if(pts.length<2)return '';
+  const W=380,H=250,pad=28,sx=v=>pad+v*(W-2*pad),sy=v=>H-pad-v*(H-2*pad),f1=v=>v.toFixed(1);
+  let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:440px;display:block;margin:0 auto 16px;background:#fcfaf5;border:1px solid var(--line);border-radius:11px">`;
+  Object.values(A).forEach(v=>{if(v._stub||!v.wv||v.wv.x==null)return;s+=`<circle cx="${f1(sx(v.wv.x))}" cy="${f1(sy(v.wv.y))}" r="1.8" fill="${v.region==='east'?'#aac3b8':'#d8b9a3'}" fill-opacity="0.3"/>`;});
+  s+=`<text x="${f1(sx(0.02))}" y="${H-9}" font-family="JetBrains Mono" font-size="9" fill="#5a7d6f">← 再现</text><text x="${f1(sx(0.98))}" y="${H-9}" font-family="JetBrains Mono" font-size="9" fill="#b0673a" text-anchor="end">表现 →</text>`;
+  s+=`<text x="${pad-4}" y="14" font-family="JetBrains Mono" font-size="9" fill="#857d6f">感知↑</text><text x="${pad-4}" y="${H-pad+10}" font-family="JetBrains Mono" font-size="9" fill="#857d6f">结构↓</text>`;
+  let d='';pts.forEach((p,i)=>{d+=(i?'L':'M')+f1(sx(p.x))+' '+f1(sy(p.y))+' ';});
+  s+=`<path d="${d}" fill="none" stroke="#b0673a" stroke-width="1.6" stroke-opacity="0.7"/>`;
+  pts.forEach((p,i)=>{const first=i===0,last=i===pts.length-1,r=first||last?5:3,fill=p.concept?'#7a6f63':(p.east?'#5a7d6f':'#b0673a');
+    s+=`<circle cx="${f1(sx(p.x))}" cy="${f1(sy(p.y))}" r="${r}" fill="${fill}" stroke="${first?'#2e7d5b':last?'#1d1b18':'#fff'}" stroke-width="${first||last?2:1}"/>`;
+    if(first||last)s+=`<text x="${f1(sx(p.x))}" y="${f1(sy(p.y)-8)}" font-family="Noto Serif SC" font-size="10.5" font-weight="600" fill="#2f2a24" text-anchor="middle" paint-order="stroke" stroke="#fcfaf5" stroke-width="3.2">${cn(p.id)}</text>`;});
+  return s+`</svg>`;
+}
+
+function setPair(a,b){document.getElementById('from').value=cn(a);document.getElementById('to').value=cn(b);run();}
+function dijkstra(s,t){if(!G[s]||!G[t])return null;
+  const dist={[s]:0},prev={},done={},pq=[[0,s]];
+  while(pq.length){pq.sort((a,b)=>a[0]-b[0]);const [d,x]=pq.shift();if(done[x])continue;done[x]=1;if(x===t)break;
+    (G[x]||[]).forEach(e=>{const nd=d+e.w;if(dist[e.to]==null||nd<dist[e.to]){dist[e.to]=nd;prev[e.to]={n:x,t:e.t,force:e.force,note:e.note};pq.push([nd,e.to]);}});}
+  if(dist[t]==null)return null;const seq=[];let x=t;while(x!==s){const p=prev[x];seq.unshift({from:p.n,to:x,t:p.t,force:p.force,note:p.note});x=p.n;}return seq;}
+
+function run(){
+  const box=document.getElementById('result');
+  const fid=cnToId[document.getElementById('from').value],tid=cnToId[document.getElementById('to').value];
+  if(!fid||!tid){box.innerHTML='<div class="empty">请输入图谱中的两位艺术家(从下拉里选最稳)。</div>';return;}
+  if(fid===tid){box.innerHTML='<div class="empty">同一个人,无需连线 🙂</div>';return;}
+  history.replaceState(null,'','?from='+encodeURIComponent(fid)+'&to='+encodeURIComponent(tid));
+  const seq=dijkstra(fid,tid);
+  if(!seq){box.innerHTML=`<div class="empty"><b>${cn(fid)}</b> 与 <b>${cn(tid)}</b> 在现有图谱里<b>暂无"力"可连</b>(二者不在同一连通域)。换一对试试,或点随机。</div>`;return;}
+  const hops=seq.length,forces=seq.filter(s=>s.force).length;
+  const node=(id,first)=>{const e=isConcept(id),east=!e&&A[id]&&A[id].region==='east';
+    const cls='cnode'+(e?' concept':(east?' east':''));
+    const nm=e?`<span class="ext">${cn(id)}</span>`:`<a href="kg-artist.html?id=${id}">${cn(id)}</a>`;
+    const w=e?'':`<span class="cw" data-works="${id}" data-cn="${cn(id)}" data-max="1"></span>`;
+    return `<div class="${cls}"><span class="dot"></span><span class="nm">${nm}</span>${w}</div>`;};
+  let html=planeSVG([fid,...seq.map(s=>s.to)])+`<div class="summary"><b>${cn(fid)}</b> 与 <b>${cn(tid)}</b> 之间隔着 <b>${hops}</b> 步`+
+    `<span class="k"> · 其中 ${forces} 步是"力"、${hops-forces} 步靠师承/同侪搭桥</span></div><div class="chain">`;
+  html+=node(fid,true);
+  seq.forEach(s=>{const c=s.force?(FCOL[s.t]||'#857d6f'):'#a89f8f';
+    html+=`<div class="clink" style="border-color:${c}"><span class="lt ${s.force?'':'lin'}" style="${s.force?'background:'+c:''}">${s.t}${s.force?'':' ·桥'}</span>${s.force&&s.note?`<div class="ln">${s.note}</div>`:''}</div>`;
+    html+=node(s.to);});
+  html+='</div>';
+  box.innerHTML=html;
+  if(window.BoardWorks)BoardWorks.ready.then(function(){BoardWorks.hydrate(box);});
+}
+</script>
+<script src="js/aha-chrome.js"></script>
+<script src="js/board-nav.js"></script>
+<script src="js/board-works.js"></script>
+<script src="js/aha-icons.js"></script>
+</body></html>

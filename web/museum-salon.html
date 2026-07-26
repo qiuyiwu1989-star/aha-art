@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>人类美术馆 · 沙龙墙</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--wall:#ddd4c2;--wall2:#d2c8b3;--ink:#2a2620;--ink-soft:#5c554a;--ink-mute:#8a8170;--mat:#f3eee2;--frame:#2c2620;--gold:#b0673a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:radial-gradient(120% 80% at 50% 0%,var(--wall) 0%,var(--wall2) 100%);background-attachment:fixed;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .top{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:center;gap:14px;padding:16px;background:linear-gradient(180deg,rgba(221,212,194,.96),rgba(221,212,194,0));backdrop-filter:blur(3px)}
+  .top .brand{font-family:var(--serif);font-size:20px;font-weight:700;letter-spacing:.02em}.top .brand .d{color:var(--gold)}
+  .top .sub{font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.12em}
+  .modes{position:fixed;top:14px;right:14px;z-index:40;display:flex;gap:6px}
+  .modes a{font-family:var(--mono);font-size:11px;color:var(--ink-soft);background:rgba(255,255,255,.6);border:1px solid rgba(0,0,0,.08);border-radius:999px;padding:5px 11px;text-decoration:none}
+  .modes a.on,.modes a:hover{background:var(--frame);color:#f3eee2}
+  .intro{text-align:center;max-width:560px;margin:2px auto 18px;color:var(--ink-soft);font-size:13px;line-height:1.7;padding:0 16px}
+  .wall{column-count:5;column-gap:30px;padding:8px 30px 80px;max-width:1500px;margin:0 auto}
+  @media(max-width:1200px){.wall{column-count:4}}@media(max-width:900px){.wall{column-count:3;column-gap:20px;padding:8px 18px 60px}}@media(max-width:560px){.wall{column-count:2;column-gap:14px;padding:8px 12px 50px}}
+  .art{break-inside:avoid;margin-bottom:34px;cursor:pointer;transition:transform .2s}
+  .art:hover{transform:translateY(-4px)}
+  .frame{background:var(--mat);padding:10px;border:1px solid rgba(0,0,0,.1);box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 14px 28px -12px rgba(40,30,15,.55);position:relative}
+  .frame:before{content:"";position:absolute;inset:4px;border:1px solid rgba(0,0,0,.14);pointer-events:none}
+  .frame img{width:100%;display:block;background:#cfc6b4}
+  .plate{margin-top:9px;text-align:center;opacity:0;transform:translateY(-3px);transition:all .2s}
+  .art:hover .plate{opacity:1;transform:none}
+  .plate .t{font-family:var(--serif);font-size:12.5px;font-weight:600;line-height:1.3}
+  .plate .m{font-family:var(--mono);font-size:9.5px;color:var(--ink-mute);margin-top:2px}
+  .sentinel{height:60px}
+  /* lightbox */
+  .lb{position:fixed;inset:0;background:rgba(20,16,10,.82);z-index:100;display:none;align-items:center;justify-content:center;padding:30px}
+  .lb.on{display:flex}
+  .lb .box{max-width:1000px;width:100%;display:grid;grid-template-columns:1fr 280px;gap:0;background:#1a1612;border-radius:6px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+  @media(max-width:760px){.lb .box{grid-template-columns:1fr}}
+  .lb .pic{background:#000;display:flex;align-items:center;justify-content:center}.lb .pic img{width:100%;max-height:82vh;object-fit:contain}
+  .lb .info{background:var(--mat);padding:22px 22px}
+  .lb .info .t{font-family:var(--serif);font-size:20px;font-weight:700;line-height:1.35}
+  .lb .info .a{font-size:13.5px;color:var(--ink-soft);margin-top:6px}
+  .lb .info .meta{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:12px;line-height:1.9}
+  .lb .info .tag{display:inline-block;font-family:var(--mono);font-size:10px;background:#e3dccc;border-radius:5px;padding:2px 8px;margin:4px 4px 0 0}
+  .lb .info .go{display:block;margin-top:16px;font-family:var(--mono);font-size:12px;color:var(--gold);text-decoration:none}
+  .lb .x{position:absolute;top:18px;right:22px;color:#f3eee2;font-family:var(--mono);font-size:22px;cursor:pointer;opacity:.8}
+  .home-fab{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;gap:6px;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.8);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:8px 13px}
+</style>
+</head><body>
+<div class="modes" id="modes"></div>
+<div class="top"><span class="brand">人类美术馆<span class="d">.</span></span><span class="sub">SALON WALL · 沙龙墙</span></div>
+<div class="intro">一面无尽的沙龙墙——画作错落挂置,悬停见铭牌,点开走近。滚动到底,墙自会延伸。</div>
+<div class="wall" id="wall"></div>
+<div class="sentinel" id="sentinel"></div>
+<div class="lb" id="lb"><span class="x" onclick="closeLb()"><i data-ic="close"></i></span><div class="box" id="lbbox"></div></div>
+<a class="home-fab" href="museum.html"><i data-ic="museum"></i> 美术馆入口</a>
+<script>
+const MODES=[['museum-salon.html','沙龙墙'],['museum-corridor.html','无限长廊'],['museum-halls.html','展厅之馆'],['museum-floor.html','馆即平面']];
+const mc=document.getElementById('modes');MODES.forEach(([h,n])=>{const a=document.createElement('a');a.href=h;a.textContent=n;if(location.pathname.endsWith(h))a.className='on';mc.appendChild(a);});
+let WORKS=[],i=0;
+const wall=document.getElementById('wall');
+function card(w){
+  const el=document.createElement('div');el.className='art';
+  el.innerHTML=`<div class="frame"><img loading="lazy" decoding="async" src="${w.file}" alt=""></div><div class="plate"><div class="t">${esc(w.title||'无题')}</div><div class="m">${esc(w.artist)}${w.year?' · '+esc(w.year):''}</div></div>`;
+  el.onclick=()=>openLb(w);return el;
+}
+function esc(s){return (s==null?'':String(s)).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));}
+function batch(n){for(let k=0;k<n;k++){const w=WORKS[i%WORKS.length];wall.appendChild(card(w));i++;}}
+function openLb(w){location.href='art.html?w='+encodeURIComponent(w.file);}
+function closeLb(){document.getElementById('lb').classList.remove('on');document.body.style.overflow='';}
+document.getElementById('lb').onclick=e=>{if(e.target.id==='lb')closeLb();};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();});
+fetch('data/gallery_works.json').then(r=>r.json()).then(d=>{
+  WORKS=(d.works||[]).slice();
+  // 轻微打散,避免按x严格排序显得机械
+  for(let k=WORKS.length-1;k>0;k--){if((k*97)%7===0){const j=(k*53)%WORKS.length;[WORKS[k],WORKS[j]]=[WORKS[j],WORKS[k]];}}
+  batch(40);
+  new IntersectionObserver(es=>{if(es[0].isIntersecting)batch(24);}).observe(document.getElementById('sentinel'));
+}).catch(e=>{wall.innerHTML='<div style="text-align:center;color:#8a8170;padding:40px">需服务器加载:'+e+'</div>';});
+</script>
+<script src="js/aha-icons.js"></script>
+</body></html>

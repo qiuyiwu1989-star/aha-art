@@ -15,7 +15,7 @@ h1{font-size:18px;margin:0}.sub{color:var(--soft);font-size:12.5px}a.back{color:
 .barwrap{height:4px;background:var(--bg)}.barwrap>div{height:100%;background:var(--accent)}
 </style></head>
 <body>
-<header><a class="back" href="home.html">← aha.art</a><h1>题材图谱 <span class="sub" id="sub">活数据</span></h1>
+<header><a class="back" href="museum.html">← aha.art</a><h1>题材图谱 <span class="sub" id="sub">活数据</span></h1>
   <span class="sub">已过闸作品的题材标签聚合(按出现频次)</span></header>
 <div class="wrap" id="grid">加载中…</div>
 <script>
@@ -23,7 +23,7 @@ fetch('data/live/subjects.json').then(r=>r.json()).then(d=>{
   document.getElementById('sub').textContent=`活数据 · ${d.meta.n} 个题材标签(显示前 ${d.meta.shown})`;
   const mx=d.subjects[0].n;
   document.getElementById('grid').innerHTML=d.subjects.map(s=>`<div class="card">
-    <div class="thumbs">${(s.samples||[]).slice(0,4).map(u=>`<img loading="lazy" src="${u}">`).join('')}</div>
+    <div class="thumbs">${(s.samples||[]).slice(0,4).map(u=>`<img loading="lazy" decoding="async" src="${u}">`).join('')}</div>
     <div class="barwrap"><div style="width:${Math.round(s.n/mx*100)}%"></div></div>
     <div class="cb"><span class="t">${s.tag}</span><span class="n">${s.n}</span></div></div>`).join('');
 });
