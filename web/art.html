@@ -1,8 +1,11 @@
 <!doctype html>
 <html lang="zh-CN"><head>
+<script src="/js/aha-request.js"></script>
+<script src="/js/aha-images.js"></script>
+<script src="/js/imgguard.js"></script>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>aha · 画作</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/><noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/></noscript>
 <link href="css/aha-frames.css" rel="stylesheet"/>
 <script src="js/frames.js"></script>
 <script src="js/aha-icons.js"></script>
@@ -548,20 +551,17 @@ const VOICE={
 const MOODTAIL={沉思:'一种安静在画里漫开。',空灵:'气息清透,像刚下过雨。',神秘:'有什么没说出口,留在了暗处。',忧伤:'底色里压着一点说不清的怅然。',孤独:'人或物,都各自单独着。',虚无:'像在凝视一片无边的沉默。',怀旧:'时间的味道扑面而来。',崇高:'面对它,人会不自觉地安静下来。',张力:'一根弦绷在画面里,随时会响。',热烈:'生命的热度几乎要溢出画框。',喜悦:'明朗得让人想多看一眼。',鲜活:'每一处都在轻轻跳动。',恐惧:'一种不安,从画里渗出来。'};
 let WORKS=[],byFile={},STATE={},W=null,openTs=Date.now(),REGAVG={};
 // art.html 是"单幅画"页,没有 ?w= 就没有画可显示 → 直接回美术馆,不留空白
-if(!new URLSearchParams(location.search).get('w')){location.replace('museum.html');}
-Promise.all([
-  fetch('/cat/exhibit?limit=8000').then(r=>r.json()).catch(()=>fetch('data/gallery_works.json').then(r=>r.json())),
-  (window.AHA?AHA.state():Promise.resolve({})),
-  (window.AHAFrames?AHAFrames.loadCanonical():Promise.resolve({})),
-  (window.AHAFrames?AHAFrames.loadStyles():Promise.resolve({})),
-  fetch('data/cosbig.json').then(r=>r.json()).catch(()=>({}))
-]).then(([d,st,_fc,_fs,cb])=>{window._COSBIG=cb||{};WORKS=d.works||[];WORKS.forEach(w=>byFile[w.file]=w);STATE=st||{};
-  const acc={};WORKS.forEach(w=>{if(!w.lang)return;const r=w.wv;acc[r]=acc[r]||{n:0,s:{}};acc[r].n++;AX.forEach(a=>acc[r].s[a]=(acc[r].s[a]||0)+(+w.lang[a]||0));});
-  for(const r in acc){REGAVG[r]={};AX.forEach(a=>REGAVG[r][a]=acc[r].s[a]/acc[r].n);}
-  render();})
- .catch(e=>{document.getElementById('stage').innerHTML='<div style="grid-column:1/-1;text-align:center;color:#8a8170;padding:80px">需服务器加载:'+e+'</div>';});
+{const _p=new URLSearchParams(location.search);if(!_p.get('w')&&!_p.get('id'))location.replace('museum.html');}  // 支持短链 ?id=work_id
+async function loadArtwork(){const params=new URLSearchParams(location.search);const query=new URLSearchParams(params.has('id')?{id:params.get('id')}:{file:params.get('w')||''});try{const d=await AHARequest.get('/cat/item?'+query,{timeout:20000});if(!d.work)throw Error('未找到作品');WORKS=[d.work,...(d.related||[]).filter(w=>w.file!==d.work.file)];WORKS.forEach(w=>byFile[w.file]=w);REGAVG=d.regavg||{};render();AHARequest.get('/cat/averages?wv='+encodeURIComponent(W.wv||''),{timeout:30000}).then(a=>{REGAVG=a.regavg||{};document.querySelectorAll('.l7ax .ax').forEach((el,i)=>{const value=REGAVG[W.wv]&&REGAVG[W.wv][AX[i]],track=el.querySelector('.track');if(value!=null&&track&&!track.querySelector('.ref')){const ref=document.createElement('span');ref.className='ref';ref.title='本区典型';ref.style.left=Math.round(value*100)+'%';track.appendChild(ref);}});}).catch(()=>{});}catch(e){const el=document.getElementById('stage');el.innerHTML='<div class="mempty" style="padding:80px">作品暂时无法加载。<button id="retryArtwork">重试</button> <a href="museum.html">返回美术馆</a></div>';el.querySelector('#retryArtwork').onclick=loadArtwork;}}
+loadArtwork();
+if(window.AHA)AHA.state().then(st=>{STATE=st||{};if(W){const liked=(STATE.collections||[]).includes(W.file);const fav=document.getElementById('fav');if(fav)fav.classList.toggle('on',liked);}}).catch(()=>{});
+if(window.AHAFrames){const update=()=>{if(W&&document.getElementById('pic')){if(typeof renderFrames==='function')renderFrames();if(typeof curLay==='function'&&curLay()==='wall')applyWall(true);}};AHAFrames.loadCanonical().then(update).catch(()=>{});AHAFrames.loadStyles().then(update).catch(()=>{});}
+AHARequest.get('data/cosbig.json').then(cb=>{window._COSBIG=cb||{};}).catch(()=>{});
 
-function qWork(){const f=new URLSearchParams(location.search).get('w');if(!f)return null;
+function qWork(){const p=new URLSearchParams(location.search);
+  const id=p.get('id');                                  // 短链 ?id=work_id(分享用,链接短)
+  if(id){const w=WORKS.find(o=>String(o.work_id)===String(id)||String(o.code).toUpperCase()===String(id).toUpperCase());if(w)return w;}
+  const f=p.get('w');if(!f)return null;
   // URLSearchParams 已解码一次;byFile 键=exhibit 原始 file(含中文路径的 %xx)。先按原值命中,失败再尝试多解一层(兼容旧链接)。
   let w=byFile[f];if(!w){try{w=byFile[decodeURIComponent(f)];}catch(e){}}return w||null;}
 const _CC=/^(意大利|法国|法兰西|荷兰|尼德兰|佛兰德斯|弗拉芒|德国|德意志|普鲁士|西班牙|英国|英格兰|苏格兰|爱尔兰|威尔士|美国|美利坚|俄罗斯|俄国|苏联|比利时|奥地利|瑞士|瑞典|挪威|丹麦|芬兰|波兰|希腊|葡萄牙|匈牙利|捷克|斯洛伐克|罗马尼亚|乌克兰|克罗地亚|塞尔维亚|保加利亚|日本|中国|韩国|朝鲜|印度|波斯|伊朗|土耳其|埃及|墨西哥|巴西|阿根廷|智利|加拿大|澳大利亚|新西兰|南非)/;
@@ -586,13 +586,7 @@ function cleanTitle(t,artist){
 }
 function isRealArtist(w){const a=((w&&w.artist)||'').trim();if(!a)return false;return !/佚名|待考|无名|未知|匿名|不详|无款|传\s*$|unknown|anonymous|untitled|^n\/?a$/i.test(a);}
 // 缩略图省带宽:COS 即时压缩 / 本地预生成 720px webp。只用于小图与预览;#pic「看原作」与 ?w= 身份保持全图
-function imgT(w,px){const f=(w&&w.file)||'';px=px||520;
-  if(w&&w.work_id&&window._COSBIG&&_COSBIG[w.work_id])return '/'+_COSBIG[w.work_id];        // >32MB COS → 本地预生成
-  if(/myqcloud\.com/i.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/format/webp/quality/82';
-  if(/(^|\/)img\/[^?]*\.(jpe?g|png)$/i.test(f))return f.replace(/\.(jpe?g|png)$/i,'.t720.webp');
-  return (w&&w.thumb)||f;}
-document.addEventListener('error',function(e){var im=e.target;if(!im||im.tagName!=='IMG'||im.dataset.fb)return; // 缩略图失败→退原图,不裂图
-  var s=im.getAttribute('src')||'';if(/[?&]imageMogr2/.test(s)){im.dataset.fb='1';im.src=s.replace(/[?&]imageMogr2[^#]*/,'');}},true);
+function imgT(w,px){const mapped=w&&w.work_id&&window._COSBIG&&_COSBIG[w.work_id];return AHAImages.url(mapped?'/'+mapped:((w&&w.file)||''),{size:px||520});}
 function poeticLine(w){if(w.voiceover&&w.voiceover.length>8)return w.voiceover;const v=VOICE[w.wv]||['一幅人类留下的画。'];const main=v[Math.abs(hash(w.file))%v.length];const tail=w.emo&&MOODTAIL[w.emo]?(' '+MOODTAIL[w.emo]):'';return main+tail;}
 function nearestOther(w){let b=null,bd=1e9;WORKS.forEach(o=>{if(o.file===w.file)return;const d=Math.hypot(o.x-w.x,o.y-w.y);if(d<bd){bd=d;b=o;}});return b;}
 function randSame(key,val,w){const a=WORKS.filter(o=>o[key]===val&&o.file!==w.file);return a.length?a[Math.floor((Date.now()/137)%a.length)]:null;}
@@ -693,7 +687,7 @@ function render(){
        <a id="toplToggle" class="tt" title="更多">${window.AHAIcons?AHAIcons.svg('more'):'⋯'}</a>
      </div>
      <div class="modesw" id="modesw"><button class="modesw-btn" id="modeswBtn" title="切换阅读方式">${window.AHAIcons?AHAIcons.svg('mode'):'☰'}</button><div class="modesw-menu" id="modeswMenu"></div></div>
-     <img id="pic" src="${W.file}" alt="" onerror="this.style.visibility='hidden';var e=document.getElementById('imgerr');if(e)e.style.display='flex'">
+     <img id="pic" fetchpriority="high" decoding="async" src="${imgT(W,1600)}" alt="" onerror="this.style.visibility='hidden';var e=document.getElementById('imgerr');if(e)e.style.display='flex'">
      <div class="imgerr" id="imgerr"><span><i data-ic="works"></i> 这幅画暂时取不到</span><a href="museum.html">回美术馆 →</a></div>
      <div class="wallframe" id="wallFrame"></div>
      <div class="pinlayer" id="pinlayer"></div>
@@ -936,9 +930,9 @@ function ssStart(){if(!WORKS.length)return;_ssOn=true;if(_ssIdx<0)_ssIdx=Math.ma
 function ssAdvance(){if(!_ssOn)return;_ssIdx=(_ssIdx+1)%WORKS.length;ssShow(WORKS[_ssIdx]);_ssTick=setTimeout(ssAdvance,SS_SLIDE);}
 function ssShow(w){const pic=document.getElementById('pic');if(!pic||!w)return;
   const pre=new Image();pre.onload=()=>{pic.style.opacity='0';
-    setTimeout(()=>{pic.src=w.file;pic.style.opacity='1';const vl=document.getElementById('voiceline');
+    setTimeout(()=>{pic.src=imgT(w,1600);pic.style.opacity='1';const vl=document.getElementById('voiceline');
       if(vl)vl.innerHTML=`<div class="vl-q">“${esc(poeticLine(w))}”</div><div class="vl-m">${esc(ssMeta(w))}</div>`;},700);};
-  pre.onerror=()=>{};pre.src=w.file;_ssW=w;W=w;   // 同步 W=当前显示张:分享/收藏/弹幕/选解说员/埋点等全部跟着对(右栏面板靠 _panelWork 守,开抽屉/切版式时再重载刷新)
+  pre.onerror=()=>{};pre.src=imgT(w,1600);_ssW=w;W=w;   // 同步 W=当前显示张:分享/收藏/弹幕/选解说员/埋点等全部跟着对(右栏面板靠 _panelWork 守,开抽屉/切版式时再重载刷新)
   try{history.replaceState(null,'','art.html?w='+encodeURIComponent(w.file));}catch(e){}}
 function ssStop(){_ssOn=false;clearTimeout(_ssTick);const h=document.getElementById('ssHint');if(h)h.classList.remove('on');
   const pic=document.getElementById('pic');if(pic)pic.style.opacity='1';}
@@ -975,7 +969,7 @@ const ORD={rate:{wood:2.5,gilt:7,noir:3,mat:2.5,white:2.5,silver:4.5,scroll:4,fl
 let _ordKey='wood',_ordAspect=0.75,_ordSize=50,_ordQty=1,_ordDone=false;
 function openFrameOrder(key){_ordKey=key||AHAFrames.pick(W);_ordSize=50;_ordQty=1;_ordDone=false;
   // 取真实画幅长宽比(短/长)
-  const im=new Image();im.onload=()=>{if(im.naturalWidth&&im.naturalHeight){_ordAspect=Math.min(im.naturalWidth,im.naturalHeight)/Math.max(im.naturalWidth,im.naturalHeight);_ordRender();}};im.src=W.file;
+  const im=new Image();im.onload=()=>{if(im.naturalWidth&&im.naturalHeight){_ordAspect=Math.min(im.naturalWidth,im.naturalHeight)/Math.max(im.naturalWidth,im.naturalHeight);_ordRender();}};im.src=imgT(W,480);
   _ordRender();}
 function _ordCalc(){
   const ar=(W.ar||(_ordAspect?1/_ordAspect:1.33)); // 宽/高
@@ -1042,13 +1036,13 @@ function curateFrame(key){
 }
 function door(label,w){if(!w)return '';return `<a class="door" href="art.html?w=${encodeURIComponent(w.file)}"><img loading="lazy" decoding="async" src="${imgT(w,360)}"><div class="dt"><div>${label}</div><b>${esc(w.title||w.artist)}</b></div></a>`;}
 function closeView(){history.length>1?history.back():location.href='museum.html';}
-function toggleLike(e){if(e)e.stopPropagation();const f=W.file,on=!(STATE.collections||[]).includes(f);STATE.collections=STATE.collections||[];
+let savingLike=false;async function toggleLike(e){if(e)e.stopPropagation();if(savingLike||!W)return;const f=W.file,on=!(STATE.collections||[]).includes(f);if(!window.AHA)return toast('收藏暂不可用');savingLike=true;try{const r=await AHA.collect(f,on);if(!r||r.ok===false||r.error)return toast('收藏未保存，请稍后重试');}catch(error){return toast('收藏未保存，请稍后重试');}finally{savingLike=false;}STATE.collections=STATE.collections||[];
   if(on)STATE.collections.push(f);else STATE.collections=STATE.collections.filter(x=>x!==f);
   const hi=window.AHAIcons?AHAIcons.svg('heart',{fill:on}):'♥';
   const fav=document.getElementById('fav');if(fav){fav.innerHTML=hi;fav.classList.toggle('on',on);}
   const b=document.getElementById('like2');if(b){b.innerHTML=hi+(on?' 已收藏':' 收藏');b.classList.toggle('liked',on);}
   const mf=document.getElementById('mFav');if(mf)mf.innerHTML=hi;
-  if(window.AHA){AHA.collect(f,on);if(on)AHA.event('like',{target_type:'work',target_id:f,work_id:W.work_id,x:W.x,y:W.y});}toast(on?'❤ 已收藏':'已取消');}
+  if(window.AHA){if(on)AHA.event('like',{target_type:'work',target_id:f,work_id:W.work_id,x:W.x,y:W.y});}toast(on?'❤ 已收藏':'已取消');}
 function drawMap(){
   const NS='http://www.w3.org/2000/svg',Wd=360,H=240,p=20,sx=v=>p+v*(Wd-2*p),sy=v=>H-p-v*(H-2*p);
   const E=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;};

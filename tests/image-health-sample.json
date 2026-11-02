@@ -1,0 +1,133 @@
+{
+  "scope": "16 evenly spaced catalog thumbnails; max concurrency 2; 15s timeout; signature only, no browser decode assertion",
+  "results": [
+    {
+      "slug": "33794",
+      "status": 200,
+      "mime": "image/webp",
+      "bytes": 31522,
+      "category": "image_signature_ok",
+      "seconds": 1.025
+    },
+    {
+      "slug": "27945",
+      "status": 200,
+      "mime": "image/webp",
+      "bytes": 33758,
+      "category": "image_signature_ok",
+      "seconds": 0.873
+    },
+    {
+      "slug": "201470",
+      "status": 200,
+      "mime": "image/webp",
+      "bytes": 33486,
+      "category": "image_signature_ok",
+      "seconds": 0.492
+    },
+    {
+      "slug": "199862",
+      "status": 200,
+      "mime": "image/webp",
+      "bytes": 75132,
+      "category": "image_signature_ok",
+      "seconds": 1.264
+    },
+    {
+      "slug": "184272",
+      "status": 200,
+      "mime": "image/webp",
+      "bytes": 57292,
+      "category": "image_signature_ok",
+      "seconds": 0.944
+    },
+    {
+      "slug": "198390",
+      "status": 200,
+      "mime": "image/webp",
+      "bytes": 19184,
+      "category": "image_signature_ok",
+      "seconds": 0.511
+    },
+    {
+      "slug": "179884",
+      "status": 200,
+      "mime": "image/webp",
+      "bytes": 21792,
+      "category": "image_signature_ok",
+      "seconds": 1.245
+    },
+    {
+      "slug": "183873",
+      "status": 200,
+      "mime": "image/webp",
+      "bytes": 20466,
+      "category": "image_signature_ok",
+      "seconds": 0.591
+    },
+    {
+      "slug": "194638",
+      "status": 200,
+      "mime": "image/webp",
+      "bytes": 39958,
+      "category": "image_signature_ok",
+      "seconds": 0.683
+    },
+    {
+      "slug": "170747",
+      "status": 200,
+      "mime": "image/webp",
+      "bytes": 36730,
+      "category": "image_signature_ok",
+      "seconds": 0.704
+    },
+    {
+      "slug": "33145",
+      "status": 200,
+      "mime": "image/webp",
+      "bytes": 21108,
+      "category": "image_signature_ok",
+      "seconds": 0.495
+    },
+    {
+      "slug": "185824",
+      "status": 200,
+      "mime": "image/webp",
+      "bytes": 27710,
+      "category": "image_signature_ok",
+      "seconds": 1.408
+    },
+    {
+      "slug": "204195",
+      "status": 200,
+      "mime": "image/webp",
+      "bytes": 64856,
+      "category": "image_signature_ok",
+      "seconds": 0.844
+    },
+    {
+      "slug": "2627",
+      "status": 200,
+      "mime": "image/webp",
+      "bytes": 100832,
+      "category": "image_signature_ok",
+      "seconds": 0.721
+    },
+    {
+      "slug": "157850",
+      "status": 200,
+      "mime": "image/webp",
+      "bytes": 52162,
+      "category": "image_signature_ok",
+      "seconds": 0.856
+    },
+    {
+      "slug": "183479",
+      "status": 200,
+      "mime": "image/webp",
+      "bytes": 9548,
+      "category": "image_signature_ok",
+      "seconds": 0.505
+    }
+  ]
+}

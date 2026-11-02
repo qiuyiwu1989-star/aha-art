@@ -291,6 +291,7 @@
   .exp .mtag{font-family:var(--mono);font-size:var(--fz-tiny);color:var(--ink-mute);
     background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r-pill);padding:2px 9px}
 </style>
+<script src="js/aha-point-pack.js"></script>
 </head>
 <body data-no-top>
 <div class="page">
@@ -494,7 +495,7 @@ function showTip(p,cx,cy){
     htip._t=setTimeout(()=>{img.onload=()=>img.classList.add('on');img.src=want;},90);}
 }
 function hideTip(){htip.style.display='none';clearTimeout(htip._t);htip._k='';}
-fetch('data/live/points.json').then(r=>r.json()).then(d=>{
+AHAPointPack.load('data/live/points.pack.json').then(d=>{
   const REG=d.regions||[];
   const byWv={};d.points.forEach(p=>{if(p.x!=null&&p.y!=null)(byWv[p.wv]=byWv[p.wv]||[]).push([+p.x,+p.y]);});
   const labels=REG.map(r=>{const P=byWv[r.id]||[];
@@ -508,7 +509,7 @@ fetch('data/live/points.json').then(r=>r.json()).then(d=>{
   });
   document.getElementById('cnt').innerHTML=`活数据 · <b>${d.points.length.toLocaleString()}</b> / ${(d.meta&&d.meta.n||d.points.length).toLocaleString()} 件真实作品落在坐标上`;
   document.getElementById('legend').innerHTML=Object.keys(WVN).map(k=>`<span class="lgi"><i style="background:${WVC[k]}"></i>${WVN[k]}</span>`).join('');
-}).catch(()=>{document.getElementById('cnt').textContent='点云数据加载失败 · 检查 data/live/points.json';
+}).catch(()=>{document.getElementById('cnt').textContent='点云数据加载失败 · 点击此处重试';
   document.getElementById('hero').insertAdjacentHTML('beforeend','<div class="empty" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--paper-2)">坐标系点云需服务器加载<div class="hint" style="position:static;text-align:center">data/live/points.json</div></div>');});
 document.getElementById('zin').onclick=()=>stage&&stage.zoomIn();
 document.getElementById('zout').onclick=()=>stage&&stage.zoomOut();
@@ -569,7 +570,7 @@ document.getElementById('rst').onclick=()=>stage&&stage.reset();
     const rb=document.getElementById('cmpRoll');if(rb)rb.onclick=pickPair;
     if(window.AHAIconsMount)AHAIconsMount();
   }
-  fetch('data/live/points.json').then(r=>r.json()).then(d=>{
+  AHAPointPack.load('data/live/points.pack.json').then(d=>{
     POOL=(d.points||[]).filter(p=>p.thumb&&p.title&&p.x!=null&&p.y!=null&&p.v!=null&&p.a!=null);
     if(POOL.length<2){box.innerHTML='<div class="empty">比较数据不足<div class="hint" style="position:static">需 data/live/points.json</div></div>';return;}
     pickPair();

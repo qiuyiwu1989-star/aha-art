@@ -1,0 +1,44 @@
+[
+  {
+    "path": "/cat/home",
+    "seconds": 2.611,
+    "wire_bytes": 6454,
+    "decoded_bytes": 27578,
+    "status": 200
+  },
+  {
+    "path": "/cat/browse",
+    "seconds": 2.331,
+    "wire_bytes": 5690,
+    "decoded_bytes": 26073,
+    "status": 200
+  },
+  {
+    "path": "/cat/item",
+    "seconds": 1.486,
+    "wire_bytes": 3619,
+    "decoded_bytes": 14194,
+    "status": 200
+  },
+  {
+    "path": "/cat/item",
+    "seconds": 1.523,
+    "wire_bytes": 3619,
+    "decoded_bytes": 14194,
+    "status": 200
+  },
+  {
+    "path": "/cat/item",
+    "seconds": 1.761,
+    "wire_bytes": 3659,
+    "decoded_bytes": 13589,
+    "status": 200
+  },
+  {
+    "path": "/cat/browse",
+    "seconds": 1.837,
+    "wire_bytes": 5574,
+    "decoded_bytes": 25013,
+    "status": 200
+  }
+]

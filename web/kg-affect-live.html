@@ -5,6 +5,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/aha-kit.css">
 <link rel="stylesheet" href="css/cloud-stage.css">
+<script src="js/aha-point-pack.js"></script>
 </head>
 <body data-no-top>
 <div class="stage dark" id="stage">
@@ -65,7 +66,7 @@ function rollA(p){if(KGSET.has(p.anchor))return p.anchor;let best=p.anchor,bd=1e
 const colFn=()=>mode==='mono'?(()=>accent):(p=>ANCC[rollA(p)]||mute);
 
 Promise.all([
-  fetch('data/live/affect.json').then(r=>r.json()),
+  AHAPointPack.load('data/live/affect.pack.json'),
   fetch('data/kg_affect_keys.json').then(r=>r.json())   // KG 权威:14 情绪锚的 VAD 坐标
 ]).then(([d,ak])=>{D=d;
   ANCV=(ak.anchors||[]).map(an=>({cn:an.cn,v:+an.vad.valence,a:+an.vad.arousal}));   // 供 rollA 就近上卷
@@ -79,7 +80,7 @@ Promise.all([
     onHover:showTip, onLeave:hideTip, onPick:openPeek
   });
   buildLegend(); updateCount();
-}).catch(()=>{document.getElementById('cnt').textContent='数据加载失败 · 检查 data/live/affect.json';});
+}).catch(()=>{document.getElementById('cnt').textContent='数据加载失败 · 点击此处重试';document.getElementById('cnt').onclick=()=>location.reload();});
 
 document.querySelectorAll('#mode .seg').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('#mode .seg').forEach(x=>x.classList.toggle('on',x===b));

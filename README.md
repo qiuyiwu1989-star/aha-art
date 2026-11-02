@@ -61,3 +61,7 @@ python3 -m http.server 8080
 ---
 
 *aha 是一个独立产品。核心论点:美可以被结构化、被定位、被生成——而每个人,都是这空间里独一无二的一个点。*
+
+## 性能优化候选
+
+本轮优化与验收见 [性能预览说明](docs/performance-preview.md) 和 [第三批验收](docs/batch-3-verification.md)。新增读取接口仍需接入正式后端，不能直接发布前端或把 SSH 预览适配器用于生产。

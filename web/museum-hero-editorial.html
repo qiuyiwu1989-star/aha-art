@@ -65,7 +65,7 @@
   .loading{padding:50px;text-align:center;color:var(--ink-mute);font-family:var(--mono)}
   .foot{max-width:1280px;margin:0 auto;padding:0 40px;font-family:var(--mono);font-size:11px;color:var(--ink-faint,#a89f8f);line-height:1.8}
 </style></head>
-<body>
+<body><div style="text-align:center;font-size:11px;opacity:.65">首页样式预览 · 精选作品样本</div>
 <div class="backbar"><a href="museum.html">现版</a><a href="museum-hero-portal.html">方案A</a><a href="museum-hero-3d.html">方案B</a></div>
 
 <header class="masthead">
@@ -94,7 +94,7 @@ const WVNOTE={WV1:'忠实于眼睛所见——把世界看清楚本身,就是一
 const VOICE={WV1:'只要看得够久够诚,真实会自己显形。',WV2:'个人退到最后,留下图像本该有的庄严。',WV3:'寥寥几笔,画的不是眼前之物,是胸中那口气。',WV4:'物的轮廓被光融化,剩下一次呼吸般的观看。',WV5:'颜色与笔触都在喊,它先于理智抵达你。',WV6:'这里没有故事,只有结构在低声说话。'};
 const ORDER=['WV1','WV2','WV3','WV4','WV5','WV6'];
 
-fetch('/cat/exhibit?limit=2000&slim=1').then(r=>r.json()).catch(()=>fetch('data/gallery_works.json').then(r=>r.json()))
+fetch('/cat/test-pool').then(r=>{if(!r.ok)throw Error('精选作品暂不可用');return r.json();}).then(d=>({works:d.items||[]}))
  .then(d=>{
    const W=(d.works||[]).filter(w=>w.file&&w.wv);
    const byWV={};W.forEach(w=>{(byWV[w.wv]=byWV[w.wv]||[]).push(w);});

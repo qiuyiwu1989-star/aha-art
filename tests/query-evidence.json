@@ -1,0 +1,194 @@
+{
+  "scope": "122 existing database, serial warm/cold state uncontrolled, not public API capacity",
+  "queries": [
+    {
+      "query": "browse",
+      "execution_ms": 1457.405,
+      "planning_ms": 2.764,
+      "nodes": [
+        {
+          "node": "Limit",
+          "rows": 25,
+          "loops": 1,
+          "shared_hit": 1438869,
+          "shared_read": 59918
+        },
+        {
+          "node": "Nested Loop",
+          "rows": 25,
+          "loops": 1,
+          "shared_hit": 1438869,
+          "shared_read": 59918
+        },
+        {
+          "node": "Nested Loop",
+          "rows": 25,
+          "loops": 1,
+          "shared_hit": 1438845,
+          "shared_read": 59906
+        },
+        {
+          "node": "Nested Loop",
+          "rows": 25,
+          "loops": 1,
+          "shared_hit": 1438792,
+          "shared_read": 59859
+        },
+        {
+          "node": "Gather Merge",
+          "rows": 25,
+          "loops": 1,
+          "shared_hit": 1438752,
+          "shared_read": 59836
+        },
+        {
+          "node": "Sort",
+          "rows": 265,
+          "loops": 3,
+          "shared_hit": 1438752,
+          "shared_read": 59836
+        },
+        {
+          "node": "Hash Join",
+          "rows": 25410,
+          "loops": 3,
+          "shared_hit": 1438662,
+          "shared_read": 59836
+        },
+        {
+          "node": "Bitmap Heap Scan",
+          "rows": 25410,
+          "loops": 3,
+          "shared_hit": 1438593,
+          "shared_read": 59836
+        },
+        {
+          "node": "Bitmap Index Scan",
+          "rows": 77487,
+          "loops": 1,
+          "shared_hit": 0,
+          "shared_read": 100
+        },
+        {
+          "node": "Hash",
+          "rows": 32,
+          "loops": 3,
+          "shared_hit": 3,
+          "shared_read": 0
+        },
+        {
+          "node": "Seq Scan",
+          "rows": 32,
+          "loops": 3,
+          "shared_hit": 3,
+          "shared_read": 0
+        },
+        {
+          "node": "Memoize",
+          "rows": 1,
+          "loops": 25,
+          "shared_hit": 40,
+          "shared_read": 23
+        },
+        {
+          "node": "Index Scan",
+          "rows": 1,
+          "loops": 21,
+          "shared_hit": 40,
+          "shared_read": 23
+        },
+        {
+          "node": "Index Scan",
+          "rows": 1,
+          "loops": 25,
+          "shared_hit": 53,
+          "shared_read": 47
+        },
+        {
+          "node": "Memoize",
+          "rows": 1,
+          "loops": 25,
+          "shared_hit": 24,
+          "shared_read": 12
+        },
+        {
+          "node": "Index Scan",
+          "rows": 1,
+          "loops": 13,
+          "shared_hit": 24,
+          "shared_read": 12
+        }
+      ]
+    },
+    {
+      "query": "resolve",
+      "execution_ms": 0.789,
+      "planning_ms": 1.121,
+      "nodes": [
+        {
+          "node": "Nested Loop",
+          "rows": 1,
+          "loops": 1,
+          "shared_hit": 10,
+          "shared_read": 8
+        },
+        {
+          "node": "Nested Loop",
+          "rows": 1,
+          "loops": 1,
+          "shared_hit": 9,
+          "shared_read": 8
+        },
+        {
+          "node": "Nested Loop",
+          "rows": 1,
+          "loops": 1,
+          "shared_hit": 7,
+          "shared_read": 7
+        },
+        {
+          "node": "Nested Loop",
+          "rows": 1,
+          "loops": 1,
+          "shared_hit": 5,
+          "shared_read": 5
+        },
+        {
+          "node": "Index Scan",
+          "rows": 1,
+          "loops": 1,
+          "shared_hit": 3,
+          "shared_read": 4
+        },
+        {
+          "node": "Index Scan",
+          "rows": 1,
+          "loops": 1,
+          "shared_hit": 2,
+          "shared_read": 1
+        },
+        {
+          "node": "Index Scan",
+          "rows": 1,
+          "loops": 1,
+          "shared_hit": 2,
+          "shared_read": 2
+        },
+        {
+          "node": "Index Scan",
+          "rows": 1,
+          "loops": 1,
+          "shared_hit": 2,
+          "shared_read": 1
+        },
+        {
+          "node": "Seq Scan",
+          "rows": 32,
+          "loops": 1,
+          "shared_hit": 1,
+          "shared_read": 0
+        }
+      ]
+    }
+  ]
+}

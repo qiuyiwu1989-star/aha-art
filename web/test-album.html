@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<script src="/js/imgguard.js"></script>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>测试图册 · 后台增删 · aha</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--wall:#ddd4c2;--ink:#2a2620;--ink-soft:#5c554a;--ink-mute:#8a8170;--mat:#f3eee2;--line:#ddd5c6;--gold:#b0673a;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--mat);color:var(--ink);font-family:var(--sans);padding:18px 16px 60px}
+  .wrap{max-width:1200px;margin:0 auto}
+  h1{font-family:var(--serif);font-size:22px;font-weight:700}
+  .sub{font-size:12.5px;color:var(--ink-mute);margin:4px 0 14px;line-height:1.6}
+  .bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin-bottom:16px;position:sticky;top:10px;z-index:5}
+  .bar input,.bar select{font-family:var(--sans);font-size:13px;border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:#fff;color:var(--ink)}
+  .bar .pass{width:150px}
+  .bar .cnt{font-family:var(--mono);font-size:12px;color:var(--ink-soft)}
+  .bar .save{font-family:var(--sans);font-size:13px;font-weight:600;color:#fff;background:var(--gold);border:none;border-radius:8px;padding:9px 18px;cursor:pointer;margin-left:auto}
+  .bar .save:hover{background:var(--ink)}.bar .save:disabled{opacity:.5;cursor:default}
+  .bar .ghost{font-family:var(--mono);font-size:12px;color:var(--ink-soft);background:none;border:1px solid var(--line);border-radius:8px;padding:8px 12px;cursor:pointer}
+  .bar .st{font-family:var(--mono);font-size:12px;color:var(--green)}
+  .cols{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;align-items:start}
+  @media(max-width:880px){.cols{grid-template-columns:1fr}}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .ph{font-family:var(--serif);font-size:15px;font-weight:700;margin-bottom:4px;display:flex;align-items:baseline;gap:8px}
+  .ph .n{font-family:var(--mono);font-size:11px;color:var(--ink-mute);font-weight:400}
+  .wvsec{margin-top:14px}
+  .wvsec .wvt{font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:.06em;margin-bottom:7px;display:flex;justify-content:space-between}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(94px,1fr));gap:8px}
+  .cell{position:relative;border-radius:7px;overflow:hidden;background:var(--wall);border:1px solid var(--line);cursor:pointer}
+  .cell img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+  .cell .m{padding:3px 5px}
+  .cell .a{font-size:9.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cell .q{font-family:var(--mono);font-size:8.5px;color:var(--ink-mute)}
+  .cell .x{position:absolute;top:3px;right:3px;width:20px;height:20px;border-radius:50%;background:rgba(180,40,40,.92);color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center;opacity:0;transition:.15s}
+  .cell:hover .x{opacity:1}
+  .cell .add{position:absolute;inset:0;background:rgba(176,103,58,.0);display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;opacity:0;transition:.15s}
+  .cell:hover .add{opacity:1;background:rgba(40,30,15,.42)}
+  .cell.inalbum{outline:2px solid var(--gold);outline-offset:-2px}.cell.inalbum .add{display:none}
+  .empty{font-size:12px;color:var(--ink-mute);padding:14px}
+  .browsemore{display:flex;justify-content:center;margin-top:10px}
+  .browsemore button{font-family:var(--mono);font-size:12px;color:var(--ink-soft);background:none;border:1px solid var(--line);border-radius:999px;padding:7px 18px;cursor:pointer}
+</style></head><body>
+<div class="wrap">
+  <h1>测试图册 · 后台增删</h1>
+  <div class="sub">冷启动二选一用的固定测试集。左=当前图册(点 ✕ 移除),右=全馆(点 ＋ 加入)。改完输管理员口令 → 保存。<b>建议每区 ≥6 幅、皆高质量、画家尽量各异。</b></div>
+  <div class="bar">
+    <input class="pass" id="pass" type="password" placeholder="管理员口令"/>
+    <span class="cnt" id="cnt">— / —</span>
+    <button class="ghost" id="exportBtn">导出 JSON</button>
+    <button class="ghost" id="reloadBtn">重载</button>
+    <span class="st" id="st"></span>
+    <button class="save" id="saveBtn">保存到服务器</button>
+  </div>
+  <div class="cols">
+    <div class="panel"><div class="ph">当前图册 <span class="n" id="albCnt"></span></div><div id="album"></div></div>
+    <div class="panel"><div class="ph">从全馆挑 <span class="n">搜索 / 筛世界观 / 按质量排</span></div>
+      <div class="bar" style="position:static;margin:8px 0 12px;padding:9px 11px">
+        <input id="q" placeholder="搜画家 / 标题" style="flex:1;min-width:120px"/>
+        <select id="fwv"><option value="">全部区</option><option>WV1</option><option>WV2</option><option>WV3</option><option>WV4</option><option>WV5</option><option>WV6</option></select>
+        <select id="fq"><option value="0.8">质量≥0.8</option><option value="0.9">≥0.9</option><option value="0.95">≥0.95</option><option value="0">全部</option></select>
+      </div>
+      <div class="grid" id="browse"></div>
+      <div class="browsemore"><button id="moreBtn">加载更多</button></div>
+    </div>
+  </div>
+</div>
+<script src="js/aha-catalog-resolve.js"></script>
+<script>
+const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+const WVO=['WV1','WV2','WV3','WV4','WV5','WV6'];
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const thumb=f=>/myqcloud\.com/i.test(f||'')?f+'?imageMogr2/thumbnail/240x/quality/80':f;
+const clip=(s,n)=>{s=String(s||'');return s.length>n?s.slice(0,n):s;};
+let CAT=[],byCode={},album=[],bLimit=60,nextCursor=null,browseVersion=0;
+function setStatus(t,c){const e=document.getElementById('st');e.textContent=t||'';e.style.color=c||'var(--green)';}
+function inAlbum(code){return album.some(w=>w.code===code);}
+function addWork(w){if(!inAlbum(w.code)){album.push({code:w.code,file:w.file,artist:w.artist,title:w.title,wv:w.wv,quality:w.quality});render();}}
+function rmWork(code){album=album.filter(w=>w.code!==code);render();}
+function renderAlbum(){
+  const box=document.getElementById('album');
+  if(!album.length){box.innerHTML='<div class="empty">空——从右边挑几幅加进来</div>';return;}
+  const g={};album.forEach(w=>{(g[w.wv]=g[w.wv]||[]).push(w);});
+  box.innerHTML=WVO.filter(k=>g[k]&&g[k].length).map(k=>`<div class="wvsec"><div class="wvt"><span>${k} · ${WVN[k]}</span><span>${g[k].length} 幅</span></div>
+    <div class="grid">${g[k].map(w=>`<div class="cell" title="${esc(w.artist)} · ${esc(w.title)}">
+      <img loading="lazy" src="${thumb(w.file)}"><div class="x" data-rm="${esc(w.code)}">✕</div>
+      <div class="m"><div class="a">${esc(w.artist||'—')}</div><div class="q">q${Number(w.quality||0).toFixed(2)}</div></div></div>`).join('')}</div></div>`).join('');
+  box.querySelectorAll('[data-rm]').forEach(e=>e.onclick=()=>rmWork(e.getAttribute('data-rm')));
+  document.getElementById('albCnt').textContent='共 '+album.length+' 幅 · '+WVO.filter(k=>g[k]).length+' 区';
+}
+function renderBrowse(){
+  const q=document.getElementById('q').value.trim(),fw=document.getElementById('fwv').value,fq=+document.getElementById('fq').value;
+  let arr=CAT.filter(w=>w.code&&(!fw||w.wv===fw)&&(w.quality||0)>=fq);
+  if(q)arr=arr.filter(w=>((w.artist||'')+(w.title||'')).toLowerCase().includes(q.toLowerCase()));
+  arr.sort((a,b)=>(b.quality||0)-(a.quality||0));
+  const show=arr.slice(0,bLimit);
+  document.getElementById('browse').innerHTML=show.map(w=>`<div class="cell ${inAlbum(w.code)?'inalbum':''}" data-add="${esc(w.code)}" title="${esc(w.artist)} · ${esc(w.title)} · q${(w.quality||0)}">
+    <img loading="lazy" src="${thumb(w.file)}"><div class="add">＋</div>
+    <div class="m"><div class="a">${esc(w.artist||'—')}</div><div class="q">${w.wv} · q${(w.quality||0)}</div></div></div>`).join('')||'<div class="empty">没有匹配</div>';
+  document.getElementById('browse').querySelectorAll('[data-add]').forEach(e=>e.onclick=()=>{const w=byCode[e.getAttribute('data-add')];if(w)addWork(w);});
+  document.getElementById('moreBtn').style.display=nextCursor?'block':'none';
+  document.getElementById('cnt').textContent=album.length+' 幅入册 · 当前已加载 '+CAT.length;
+}
+function render(){renderAlbum();renderBrowse();}
+async function loadBrowse(append=false){
+ const version=++browseVersion,params=new URLSearchParams({limit:60});
+ const q=document.getElementById('q').value.trim(),wv=document.getElementById('fwv').value;
+ params.set('min_quality',document.getElementById('fq').value);
+ if(q)params.set('q',q);if(wv)params.set('wv',wv);if(append&&nextCursor)params.set('cursor',nextCursor);
+ setStatus('加载中…');document.getElementById('moreBtn').disabled=true;
+ try{const r=await fetch('/cat/browse?'+params);if(!r.ok)throw Error('加载失败');const d=await r.json();if(version!==browseVersion)return;
+ CAT=append?CAT.concat(d.items||[]):d.items||[];nextCursor=d.has_more?d.next_cursor:null;
+ CAT.forEach(w=>byCode[w.code]=w);bLimit=CAT.length;setStatus('');renderBrowse();
+ }catch(e){if(version===browseVersion)setStatus('加载失败，请重试','#b4283d');}finally{if(version===browseVersion)document.getElementById('moreBtn').disabled=false;}
+}
+async function load(){
+ try{const al=await fetch('data/test_album.json').then(r=>r.json());const items=al.items||(al.codes||[]).map(code=>({code}));
+ const d=await AHACatalog.resolve(items.map(it=>it.code));byCode={};d.works.forEach(w=>byCode[w.code]=w);
+ album=items.map(it=>({...it,...(byCode[it.code]||{})}));renderAlbum();await loadBrowse();
+ }catch(e){setStatus('画册加载失败，请重试','#b4283d');}
+}
+let searchTimer;document.getElementById('q').oninput=()=>{clearTimeout(searchTimer);searchTimer=setTimeout(()=>loadBrowse(),250);};
+document.getElementById('fwv').onchange=()=>loadBrowse();
+document.getElementById('fq').onchange=()=>loadBrowse();
+document.getElementById('moreBtn').onclick=()=>loadBrowse(true);
+document.getElementById('reloadBtn').onclick=load;
+document.getElementById('exportBtn').onclick=()=>{const out={updated:new Date().toISOString().slice(0,10),count:album.length,items:album};
+  const blob=new Blob([JSON.stringify(out,null,1)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='test_album.json';a.click();};
+document.getElementById('saveBtn').onclick=()=>{
+  const pass=document.getElementById('pass').value.trim();if(!pass){setStatus('请输入管理员口令','#b4283d');return;}
+  if(album.length<4){setStatus('太少了','#b4283d');return;}
+  const b=document.getElementById('saveBtn');b.disabled=true;setStatus('保存中…','var(--ink-mute)');
+  fetch('/api/test_album',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pass,items:album})})
+    .then(r=>r.json()).then(d=>{b.disabled=false;if(d.ok)setStatus('已保存 '+d.count+' 幅 ✓ (首页刷新即生效)');else setStatus('失败:'+(d.error||'?'),'#b4283d');})
+    .catch(e=>{b.disabled=false;setStatus('失败 '+e,'#b4283d');});
+};
+load();
+</script>
+</body></html>

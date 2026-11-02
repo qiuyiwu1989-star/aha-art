@@ -39,7 +39,7 @@
   .backbar a{font-family:var(--mono);font-size:11px;color:#3a2c1c;background:rgba(243,238,226,.82);border-radius:999px;padding:6px 11px;text-decoration:none}
   .loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;color:#caa46a;font-family:var(--mono);z-index:20}
 </style></head>
-<body>
+<body><div style="text-align:center;font-size:11px;opacity:.65">首页样式预览 · 精选作品样本</div>
 <div class="backbar"><a href="museum.html">现版</a><a href="museum-hero-spotlight.html">聚光灯</a><a href="museum-hero-reel.html">一画入魂→</a></div>
 <div class="htitle"><div class="n">色谱长河<span class="d">.</span></div><div class="s">顺着颜色,漂过整座馆 —— 从赤到紫,每幅画落在它自己的色相上</div></div>
 <div class="river" id="river"><div class="field" id="field"></div></div>
@@ -57,9 +57,13 @@ function imgT(w,px){const f=(w&&w.file)||'';px=px||300;
 function hexOf(c){if(c&&c.hex)return c.hex;if(c&&typeof c.h==='number')return 'hsl('+c.h+','+Math.round((c.s||.4)*70)+'%,'+Math.round((c.v||.5)*60+18)+'%)';return '#8a8170';}
 const HUEN=[[0,'红'],[35,'橙'],[60,'黄'],[110,'绿'],[175,'青'],[225,'蓝'],[280,'紫'],[330,'品红']];
 
-fetch('/cat/exhibit?limit=2000&slim=1').then(r=>r.json()).catch(()=>fetch('data/gallery_works.json').then(r=>r.json()))
- .then(d=>{
-   let W=(d.works||[]).filter(w=>w.file&&w.color&&typeof w.color.h==='number');
+Promise.all([
+  fetch('/cat/test-pool').then(r=>{if(!r.ok)throw Error('精选作品暂不可用');return r.json();}).then(d=>({works:d.items||[]})),
+  fetch('data/work_colors.json').then(r=>r.json()).catch(()=>({}))
+]).then(([d,COL])=>{
+   let W=(d.works||[]).filter(w=>w.file);
+   W.forEach(w=>{const c=COL[w.work_id];if(c)w.color=c;});          // 服务端预算的主色
+   W=W.filter(w=>w.color&&typeof w.color.h==='number');
    W.sort((a,b)=>a.color.h-b.color.h);
    if(W.length>700)W=W.filter((_,i)=>i%Math.ceil(W.length/700)===0);
    build(W);

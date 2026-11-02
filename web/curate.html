@@ -2,7 +2,7 @@
 <html lang="zh"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>策一个展 · aha</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="css/aha-kit.css">
 <style>
   /* 策展台专属:全部只吃 token，不重定义颜色 */
@@ -236,7 +236,7 @@
           </div>
           <div class="pickbar">
             <span id="pickCount">共 — 幅可选</span>
-            <span id="pickShuffle">🔀 换一批</span>
+            <span id="pickShuffle">🔀 打乱已加载作品</span>
           </div>
           <div class="pgrid" id="pickGrid"></div>
           <div class="empty" id="pickMore" style="margin-top:var(--s3);cursor:pointer;display:none">再来一批 ↓</div>
@@ -324,8 +324,12 @@
 <div class="toastwrap" id="toasts"></div>
 
 <script src="aha-mem.js"></script>
+<script src="js/aha-catalog-resolve.js"></script>
 <script>
-const CAT=p=>fetch('/cat/'+p).then(r=>r.json());
+const CAT=p=>fetch('/cat/'+p).then(r=>{if(!r.ok)throw Error('馆藏读取失败');return r.json();});
+function register(items){items.forEach(w=>{BYID[w.work_id]=w;BYFILE[w.file]=w;});return items;}
+async function resolveRefs(keys){const d=await AHACatalog.resolve(keys);const works=register(d.works);Object.entries(d.matches||{}).forEach(([key,id])=>{BYFILE[key]=BYID[id];});return works;}
+let browseCursor=null,browseVersion=0,browseBusy=false,allFacets={};
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
@@ -470,15 +474,17 @@ function topVals(field,n){const c={};WORKS.forEach(w=>{const v=w[field];if(v)c[v
 function fillSel(id,label,pairs,namer){const s=$(id);if(!s)return;
   s.innerHTML='<option value="">'+label+'</option>'+pairs.map(([v,n])=>`<option value="${esc(v)}">${esc(namer?namer(v):v)} · ${n}</option>`).join('');}
 function buildFacets(){
-  fillSel('#fStyle','全部流派',topVals('style',20));
-  fillSel('#fSubject','全部题材',topVals('subject',20));
-  fillSel('#fEmo','全部情绪',topVals('emo',16));
-  fillSel('#fWv','全部世界观',['WV1','WV2','WV3','WV4','WV5','WV6'].filter(k=>WORKS.some(w=>w.wv===k)).map(k=>[k,WORKS.filter(w=>w.wv===k).length]),k=>k+' '+(WVN_PICK[k]||''));
+ [['#fStyle','全部流派','style'],['#fSubject','全部题材','subject'],['#fEmo','全部情绪','emo'],['#fWv','全部世界观','wv']].forEach(([id,label,key])=>fillSel(id,label,allFacets[key]||[]));
 }
-function pickList(){const q=$('#pickSearch').value.trim().toLowerCase();
-  const fs=$('#fStyle').value,fj=$('#fSubject').value,fe=$('#fEmo').value,fw=$('#fWv').value;
-  return WORKS.filter(w=>(!SEED_FILES||SEED_FILES.has(w.file))&&(!fs||w.style===fs)&&(!fj||w.subject===fj)&&(!fe||w.emo===fe)&&(!fw||w.wv===fw)
-    &&(!q||[w.title,w.artist,w.style,w.subject,w.emo].some(s=>s&&String(s).toLowerCase().includes(q))));}
+function pickList(){if(!SEED_FILES)return WORKS;const q=$('#pickSearch').value.trim().toLowerCase();return WORKS.filter(w=>[['style','#fStyle'],['subject','#fSubject'],['emo','#fEmo'],['wv','#fWv']].every(([k,id])=>!$(id).value||w[k]===$(id).value)&&(!q||[w.artist,w.title].some(v=>String(v||'').toLowerCase().includes(q))));}
+async function fetchPick(append=false){
+ const version=++browseVersion;const params=new URLSearchParams({limit:40});
+ [['q','#pickSearch'],['style_name','#fStyle'],['subject','#fSubject'],['emo','#fEmo'],['wv','#fWv']].forEach(([key,id])=>{if($(id).value)params.set(key,$(id).value);});
+ if(append&&browseCursor)params.set('cursor',browseCursor);browseBusy=true;
+ try{if(SEED_FILES){const items=await resolveRefs([...SEED_FILES]);if(version!==browseVersion)return;WORKS=items;browseCursor=null;}else{const d=await CAT('browse?'+params);if(version!==browseVersion)return;const items=register(d.items||[]);WORKS=append?WORKS.concat(items):items;browseCursor=d.has_more?d.next_cursor:null;}
+ pickCache=null;pickN=WORKS.length;renderPick();
+ }catch(e){toast('选画加载失败，请重试','rej');}finally{if(version===browseVersion)browseBusy=false;}
+}
 function readSeed(){try{const s=JSON.parse(sessionStorage.getItem('aha_curate_seed')||'null');if(s&&s.files&&s.files.length){sessionStorage.removeItem('aha_curate_seed');return s;}}catch(e){}return null;}
 function applySeed(seed){const inter=(seed.files||[]).filter(f=>BYFILE[f]);if(!inter.length)return;  // 与语料无交集→忽略
   SEED_FILES=new Set(inter);const bn=$('#seedBanner');if(bn){bn.style.display='block';
@@ -489,10 +495,10 @@ function applySeed(seed){const inter=(seed.files||[]).filter(f=>BYFILE[f]);if(!i
   pickRefilter();}
 function pickArr(){return pickCache||pickList();}            // pickCache=换一批后的乱序;否则质量序
 function renderPick(){const arr=pickArr();fillGrid('#pickGrid',arr.slice(0,pickN));
-  const c=$('#pickCount');if(c)c.textContent='共 '+arr.length+' 幅可选'+(arr.length>pickN?' · 显示前 '+pickN:'');
-  $('#pickMore').style.display=arr.length>pickN?'block':'none';}
-function pickRefilter(){pickCache=null;pickN=40;renderPick();}  // 改筛选/搜索→回质量序
-function pickShuffle(){const a=pickList();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}pickCache=a;pickN=40;renderPick();}
+  const c=$('#pickCount');if(c)c.textContent='已加载 '+arr.length+' 幅可选'+(arr.length>pickN?' · 显示前 '+pickN:'');
+  $('#pickMore').style.display=browseCursor?'block':'none';}
+function pickRefilter(){fetchPick();}  // 改筛选/搜索→回质量序
+function pickShuffle(){const a=pickList().slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}pickCache=a;pickN=a.length;renderPick();}
 
 // 一句话:关键词→母题/情绪/风格,匹配真语料
 const DICT=[
@@ -507,31 +513,14 @@ const DICT=[
   [/神圣|宗教|超越|信仰|灵性/,['灵性','宗教','升腾']],
   [/东方|禅|诗意|月|水墨/,['东方','诗意','月'],{region:'east'}],
 ];
-function sayMatch(text){
-  const themes=new Set();let vc=null;const constr=[];
-  DICT.forEach(([re,ts,c])=>{if(re.test(text)){ts.forEach(t=>themes.add(t));if(c)constr.push(c);}});
-  const tarr=[...themes];
-  return WORKS.map(w=>{let s=0;const bag=[w.subject,w.emo,w.style,w.voiceover,w.title].map(x=>String(x||'')).join(' ');
-    tarr.forEach(t=>{if(bag.includes(t))s+=2;});
-    if(/东方|禅|月|水墨/.test(text)&&w.region==='east')s+=2;
-    if(/西方|油画/.test(text)&&w.region==='west')s+=1;
-    constr.forEach(c=>{const v=(w.vad||{});
-      if(c.vlt&&v.v!=null&&v.v<=c.vlt)s++;if(c.vgt&&v.v!=null&&v.v>=c.vgt)s++;
-      if(c.aLt&&v.a!=null&&v.a<=c.aLt)s++;if(c.agt&&v.a!=null&&v.a>=c.agt)s++;
-      if(c.region&&w.region===c.region)s++;});
-    return {w,s,hit:tarr.filter(t=>bag.includes(t))[0]};})
-    .filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,24);}
-// 关键词兜底(LLM 不通时用)
-function fallbackSay(text){const m=sayMatch(text);fillGrid('#sayGrid',m.map(x=>x.w),w=>{const h=m.find(x=>x.w===w);return h&&h.hit?'#'+h.hit:'近似';});
-  if(!m.length)toast('没抓到那种感觉,换个说法?');}
-// 把助理给的词表选画准则套到全馆,浮出候选
-function assistPick(pick){pick=pick||{};const sty=new Set(pick.styles||[]),sub=new Set(pick.subjects||[]),emo=new Set(pick.emotions||[]),kw=(pick.keywords||[]).map(s=>String(s).toLowerCase());
-  return WORKS.map(w=>{let s=0;
-    if(sty.size&&sty.has(w.style))s+=2; if(sub.size&&sub.has(w.subject))s+=2; if(emo.size&&emo.has(w.emo))s+=2;
-    kw.forEach(k=>{if(k&&[w.title,w.artist,w.style,w.subject].some(x=>x&&String(x).toLowerCase().includes(k)))s+=1;});
-    return {w,s};}).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,24).map(x=>x.w);}
-function buildVocab(){return{styles:topVals('style',24).map(p=>p[0]),subjects:topVals('subject',24).map(p=>p[0]),
-  emotions:topVals('emo',20).map(p=>p[0]),worldviews:['WV1','WV2','WV3','WV4','WV5','WV6'].map(k=>k+' '+(WVN_PICK[k]||''))};}
+async function matchWorks(match){const d=await CAT('curate-match?'+new URLSearchParams({match:JSON.stringify(match)}));return register(d.items||[]);}
+async function fallbackSay(text){
+ const themes=new Set(),constraints=[];DICT.forEach(([re,ts,c])=>{if(re.test(text)){ts.forEach(t=>themes.add(t));if(c)constraints.push(c);}});
+ try{const items=await matchWorks({themes:[...themes],constraints,east:/东方|禅|月|水墨/.test(text),west:/西方|油画/.test(text)});fillGrid('#sayGrid',items,()=> '近似');if(!items.length)toast('没抓到那种感觉,换个说法?');}catch(e){toast('选画暂时失败，请重试','rej');}
+}
+async function assistPick(pick){return matchWorks({pick:pick||{}});}
+function buildVocab(){return{styles:(allFacets.style||[]).slice(0,24).map(p=>p[0]),subjects:(allFacets.subject||[]).slice(0,24).map(p=>p[0]),
+  emotions:(allFacets.emo||[]).slice(0,20).map(p=>p[0]),worldviews:['WV1','WV2','WV3','WV4','WV5','WV6'].map(k=>k+' '+(WVN_PICK[k]||''))};}
 function setSpineByKey(sp){const b=$(`.spinebtn[data-spine="${sp}"]`);if(b){$$('.spinebtn').forEach(x=>x.classList.remove('on'));b.classList.add('on');S.spine=sp;renderAll();}}
 // ── 策展助理:多轮对话 ────────────────────────────────────────
 let chatHist=[];   // [{role:'user'|'assistant', text}]
@@ -557,9 +546,9 @@ function askAssistant(){const idea=$('#sayInput').value.trim();if(!idea){toast('
   const think=pushBub('ai','✦ 助理在想…(约 10–30 秒)');
   fetch('api/curate/assist',{method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({idea:idea,history:hist,basket:basketSummary(),vocab:buildVocab()})})
-    .then(r=>r.json()).then(d=>{btn.disabled=false;think.remove();
+    .then(r=>r.json()).then(async d=>{btn.disabled=false;think.remove();
       if(d&&d.brief){const b=d.brief;chatHist.push({role:'assistant',text:b.thesis||''});aiBubble(b);
-        fillGrid('#sayGrid',assistPick(b.pick||{}),()=>'助理选');}
+        fillGrid('#sayGrid',await assistPick(b.pick||{}),()=>'助理选');}
       else{pushBub('ai',((d&&d.error)||'没接通')+' —— 先用关键词帮你找');fallbackSay(idea);}})
     .catch(()=>{btn.disabled=false;think.remove();pushBub('ai','超时了,先用关键词帮你找');fallbackSay(idea);});}
 
@@ -568,18 +557,16 @@ function refreshSeedSel(){const sel=$('#seedSel');const cur=sel.value;
   sel.innerHTML=S.basket.length?S.basket.map(id=>{const w=BYID[id];return `<option value="${id}">${esc((w.title||'无题').slice(0,14))} · ${esc(w.artist||'')}</option>`;}).join('')
     :'<option value="">先往篮子加一幅作种子</option>';
   if(cur&&S.basket.includes(+cur))sel.value=cur;}
-function renderSeed(){const id=+$('#seedSel').value;if(!id){toast('先往篮子加一幅作种子');return;}
-  const seed=featvec(BYID[id]);
-  const ranked=WORKS.filter(w=>!S.basket.includes(w.work_id))
-    .map(w=>({w,d:dist(seed,featvec(w))})).filter(x=>isFinite(x.d)).sort((a,b)=>a.d-b.d).slice(0,18);
-  fillGrid('#seedGrid',ranked.map(x=>x.w),w=>{const r=ranked.find(x=>x.w===w);return '邻 '+r.d.toFixed(2);});}
+async function renderSeed(){const id=+$('#seedSel').value;if(!id){toast('先往篮子加一幅作种子');return;}
+ try{const d=await CAT('neighbors?'+new URLSearchParams({id,exclude:JSON.stringify(S.basket)}));const items=register(d.items||[]);fillGrid('#seedGrid',items,w=>'邻 '+Number(w.distance||0).toFixed(2));}catch(e){toast('邻近作品加载失败，请重试','rej');}
+}
 
 // ── 我的收藏:平时点♡收的画,取来策展 ─────────────────────────────
 let FAVS=[];
 function loadFavs(){const g=$('#favGrid'),c=$('#favCount');
   if(!window.AHA){c.textContent='收藏需服务';g.innerHTML='<div class="empty" style="grid-column:1/-1">记忆服务未就绪</div>';return;}
   c.textContent='读取收藏…';
-  AHA.state().then(s=>{COLLECTED=new Set((s&&s.collections)||[]);updateFavCount();const keys=[...COLLECTED];
+  AHA.state().then(async s=>{COLLECTED=new Set((s&&s.collections)||[]);updateFavCount();const keys=[...COLLECTED];await resolveRefs(keys);
     FAVS=keys.map(f=>BYFILE[f]).filter(Boolean);const miss=keys.length-FAVS.length;
     c.textContent=FAVS.length?(FAVS.length+' 幅可布展'+(miss>0?' · 另 '+miss+' 幅暂不可布展':'')):'还没有收藏';
     if(!FAVS.length){$('#favAddAll').style.display='none';
@@ -717,7 +704,7 @@ function viewFromHash(){const q=new URLSearchParams(location.hash.slice(1));
   return true;}
 
 // 从已发布的展(?ex=id)进阅读视图
-function viewFromSaved(item){if(!item)return;
+async function viewFromSaved(item){if(!item)return;try{await resolveRefs(item.work_ids||[]);}catch(e){toast('展览作品暂时无法加载，请重试','rej');return;}
   const r=item.rule||{};const caps=r.captions||{};
   const files=(item.work_ids||[]);
   const lbl=r.spineLabel||({time:'时间轴',emotion:'情绪弧',eastwest:'东西对照',subject:'母题聚类',style:'风格聚类',free:'自由手排'}[r.spine]||'');
@@ -736,10 +723,10 @@ $$('.mode').forEach(b=>b.onclick=()=>{$$('.mode').forEach(x=>x.classList.remove(
   $$('.modepanel').forEach(p=>p.classList.toggle('on',p.dataset.panel===b.dataset.mode));
   if(b.dataset.mode==='pick')renderPick();if(b.dataset.mode==='seed')refreshSeedSel();if(b.dataset.mode==='fav')loadFavs();});
 $('#exTitle').oninput=saveDraft;$('#exThesis').oninput=saveDraft;
-$('#pickSearch').oninput=pickRefilter;
+let pickSearchTimer;$('#pickSearch').oninput=()=>{clearTimeout(pickSearchTimer);pickSearchTimer=setTimeout(pickRefilter,250);};
 ['#fStyle','#fSubject','#fEmo','#fWv'].forEach(s=>$(s).onchange=pickRefilter);
 $('#pickShuffle').onclick=pickShuffle;
-$('#pickMore').onclick=()=>{pickN+=40;renderPick();};
+$('#pickMore').onclick=()=>{if(!browseBusy)fetchPick(true);};
 $('#sayGo').onclick=askAssistant;
 $('#sayInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();askAssistant();}});
 $('#seedGo').onclick=renderSeed;$('#seedSel').onchange=()=>{if($('#seedSel').value)renderSeed();};
@@ -805,9 +792,9 @@ function populateEditor(it){
   if(r.cover&&BYFILE[r.cover])S.cover=BYFILE[r.cover].work_id;
 }
 function loadForEdit(id){
-  fetch('api/exhibition?id='+encodeURIComponent(id)).then(r=>r.json()).then(j=>{
+  fetch('api/exhibition?id='+encodeURIComponent(id)).then(r=>r.json()).then(async j=>{
     const it=j&&j.item;if(!it){toast('没找到这个展','rej');enableAdmin('');return;}
-    populateEditor(it);enableAdmin(id);if(it.seq!=null)$('#admSeq').value=it.seq||0;
+    await resolveRefs(it.work_ids||[]);populateEditor(it);enableAdmin(id);if(it.seq!=null)$('#admSeq').value=it.seq||0;
     renderPick();renderAll();toast('已载入官方展,改完点「保存官方展」','ok');
   }).catch(()=>{toast('载入失败','rej');enableAdmin(id);});}
 // 个人展:本人编辑(更新原 id,不再发重复展)/ 删除
@@ -819,22 +806,25 @@ function deleteOwn(id){if(!confirm('删除这个展?不可撤销'))return;
   AHA.deleteExhibition(id).then(d=>{if(d&&d.ok){toast('已删除','ok');setTimeout(goBack,700);}
     else toast('删除失败(只能删自己的展)','rej');});}
 
-CAT('exhibit?limit=8000').then(d=>{
-  WORKS=(d.works||[]).filter(w=>w.file);WORKS.forEach(w=>{BYID[w.work_id]=w;BYFILE[w.file]=w;});
-  buildFacets();renderPick();renderAll();
-  if(window.AHA)AHA.state().then(s=>{COLLECTED=new Set((s&&s.collections)||[]);updateFavCount();
+(async ()=>{
+ allFacets=(await CAT('catalog-facets')).facets||{};buildFacets();
+ const refs=[];try{const draft=JSON.parse(localStorage.getItem(DRAFT_KEY)||'null');if(draft)refs.push(...(draft.basket||[]));}catch(e){}
+ refs.push(...(new URLSearchParams(location.hash.slice(1)).get('ids')||'').split('.').filter(Boolean));
+ try{const seed=JSON.parse(sessionStorage.getItem('aha_curate_seed')||'null');if(seed)refs.push(...(seed.files||[]));}catch(e){}
+ await resolveRefs(refs);await fetchPick();renderAll();
+  if(window.AHA)AHA.state().then(async s=>{COLLECTED=new Set((s&&s.collections)||[]);updateFavCount();
     if($('.mode.on')&&$('.mode.on').dataset.mode==='pick')renderPick();}).catch(()=>{});
   const ex=exParam(),editId=qp('edit'),adminNew=qp('admin')==='1';
   if(ex){ // 已发布的展 → 阅读视图
     fetch('api/exhibition?id='+encodeURIComponent(ex)).then(r=>r.json())
-      .then(j=>{if(j&&j.item)viewFromSaved(j.item);else toast('没找到这个展','rej');})
+      .then(async j=>{if(j&&j.item)await viewFromSaved(j.item);else toast('没找到这个展','rej');})
       .catch(()=>toast('打开失败','rej'));
   }else if(editId){ loadForEdit(editId); }      // 后台编辑官方展
   else if(adminNew){ enableAdmin(''); }          // 后台新建官方展
   else if(location.hash.slice(1)){ viewFromHash(); } // 分享链接 → 阅读视图
   else { const seed=readSeed(); if(seed)applySeed(seed);
     else if(restoreDraft()){renderAll();toast('已恢复上次未发布的草稿 · 不想要可点「清空」','ok');} } // 展厅素材 / 本地草稿
-}).catch(()=>{toast('馆藏加载失败,请刷新','rej');});
+})().catch(()=>{toast('馆藏加载失败,请刷新','rej');});
 </script>
 <script src="js/aha-icons.js"></script>
 <script src="js/aha-chrome.js"></script>

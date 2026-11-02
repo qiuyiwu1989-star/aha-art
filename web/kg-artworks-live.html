@@ -102,16 +102,24 @@ function renderBatch(){
     c.onclick=()=>openM(a);frag.appendChild(c);}
   g.appendChild(frag);
 }
-function ensureFull(){ // 全字段:首次点详情才拉,之后缓存
-  if(_full)return Promise.resolve(_full);
-  if(!_fullP)_fullP=fetch('data/live/artworks_v2.json').then(r=>r.json()).then(D=>(_full=D.artworks||{}));
-  return _fullP;
+const detailShards=new Map();
+let modalVersion=0;
+function ensureFull(slug){
+  let hash=0;for(let i=0;i<slug.length;i++)hash=(Math.imul(hash,31)+slug.charCodeAt(i))>>>0;
+  const key=hash%64;
+  if(!detailShards.has(key)){
+    const promise=fetch('data/live/artwork-details/'+key+'.json').then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json();}).catch(e=>{detailShards.delete(key);throw e;});
+    detailShards.set(key,promise);
+    if(detailShards.size>8)detailShards.delete(detailShards.keys().next().value);
+  }
+  return detailShards.get(key);
 }
 function openM(a){
+  const version=++modalVersion;
   const m=document.getElementById('modal');
   m.innerHTML=`<span class="mclose" onclick="closeM()"><i data-ic="close"></i></span><div class="mloading" style="padding:64px 20px;text-align:center;color:var(--ink-faint);font-family:var(--mono);font-size:13px">载入解读…</div>`;
   document.getElementById('ov').classList.add('on');document.body.style.overflow='hidden';
-  ensureFull().then(full=>{const rec=full[a.slug];const l=m.querySelector('.mloading');if(!rec){if(l)l.textContent='暂无该作品的完整解读';return;}renderM(rec);}).catch(()=>{const l=m.querySelector('.mloading');if(l)l.textContent='解读加载失败';});
+  ensureFull(a.slug).then(full=>{if(version!==modalVersion)return;const rec=full[a.slug];const l=m.querySelector('.mloading');if(!rec){if(l)l.textContent='暂无该作品的完整解读';return;}renderM(rec);}).catch(()=>{if(version!==modalVersion)return;const l=m.querySelector('.mloading');if(l)l.textContent='解读加载失败';});
 }
 function renderM(a){
   const af=a.affect||{},vd=af.vad||{},rd=a.reading||{},st=a.style||{},l7=a.language7||{};
@@ -136,7 +144,7 @@ function renderM(a){
       ${a.style_id?`<div class="mb-sec"><a href="kg-style-detail.html?id=${a.style_id}" style="font-family:var(--mono);font-size:12px;color:var(--accent);text-decoration:none">→ 看所属风格详情</a></div>`:''}
     </div>`;
 }
-function closeM(){document.getElementById('ov').classList.remove('on');document.body.style.overflow='';}
+function closeM(){modalVersion++;document.getElementById('ov').classList.remove('on');document.body.style.overflow='';}
 document.getElementById('ov').onclick=e=>{if(e.target.id==='ov')closeM();};
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
 </script>

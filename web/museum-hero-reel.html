@@ -43,7 +43,7 @@
   .backbar a{font-family:var(--mono);font-size:11px;color:#3a2c1c;background:rgba(243,238,226,.82);border-radius:999px;padding:6px 11px;text-decoration:none}
   .loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;color:#caa46a;font-family:var(--mono);z-index:20}
 </style></head>
-<body>
+<body><div style="text-align:center;font-size:11px;opacity:.65">首页样式预览 · 精选作品样本</div>
 <div class="backbar"><a href="museum.html">现版</a><a href="museum-hero-chroma.html">色谱</a><a href="museum-hero-portal.html">中庭</a></div>
 <div class="htag">人类美术馆<span class="d">.</span></div>
 <div class="counter" id="counter"></div>
@@ -66,8 +66,10 @@ function hash(s){let h=0;s=String(s);for(let i=0;i<s.length;i++)h=(h*31+s.charCo
 function poetic(w){const v=VOICE[w.wv]||['一幅人类留下的画。'];const m=v[Math.abs(hash(w.file))%v.length];const t=w.emo&&MOODTAIL[w.emo]?(' '+MOODTAIL[w.emo]):'';return m+t;}
 
 let SEQ=[],idx=0,cur=0,busy=false;
-fetch('/cat/exhibit?limit=2000&slim=1').then(r=>r.json()).catch(()=>fetch('data/gallery_works.json').then(r=>r.json()))
- .then(d=>{
+Promise.all([
+  fetch('/cat/test-pool').then(r=>{if(!r.ok)throw Error('精选作品暂不可用');return r.json();}).then(d=>({works:d.items||[]})),
+  fetch('data/work_colors.json').then(r=>r.json()).catch(()=>({}))
+]).then(([d,COL])=>{
    let W=(d.works||[]).filter(w=>w.file&&w.wv);
    // 确定性洗牌取 40 幅,尽量跨世界观
    W.sort((a,b)=>(Math.abs(hash(a.file))%9973)-(Math.abs(hash(b.file))%9973));

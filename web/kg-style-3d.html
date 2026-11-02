@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>aha · 风格知识图谱 · 世界观三轴空间</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/><noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/></noscript>
 <style>
   :root{--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -195,6 +195,7 @@ function init(data){
   scene=new THREE.Scene();
   camera=new THREE.PerspectiveCamera(48,innerWidth/innerHeight,0.1,2000); resetView();
   controls=new THREE.OrbitControls(camera,renderer.domElement);
+  controls.addEventListener('change',()=>{pickDirty=true;});
   controls.enableDamping=true;controls.dampingFactor=.08;controls.minDistance=8;controls.maxDistance=120;
   controls.autoRotate=true;controls.autoRotateSpeed=.32;controls.target.set(0,0,0);
   raycaster=new THREE.Raycaster();raycaster.params.Points.threshold=0.5;
@@ -302,7 +303,7 @@ function buildHalo(P){haloSprite=new THREE.Sprite(new THREE.SpriteMaterial({map:
 
 // ---------- 过滤 / 高亮 ----------
 function matchFilter(n){if(filter.region!=='all'&&n.region!==filter.region)return false;if(filter.wv!=='all'&&n.wv!==filter.wv)return false;if(filter.q&&!(n.cn.includes(filter.q)||(n.id||'').toLowerCase().includes(filter.q.toLowerCase())))return false;return true;}
-function applyFilter(){let shown=0;
+function applyFilter(){pickDirty=true;let shown=0;
   nodes.forEach((n,i)=>{const on=matchFilter(n);if(on)shown++;
     alphaAttr.array[i]=(i===selected)?1:(on?ALPHA_ON:ALPHA_DIM);
     sizeAttr.array[i]=(i===selected||i===hovered)?SIZE_HI:(on?SIZE_BASE:SIZE_BASE*0.65);});
@@ -326,9 +327,11 @@ function showInfo(i){const n=nodes[i],info=document.getElementById('info'),east=
     <div class="hint">${n.coord.rep_exp.toFixed(2)} · ${n.coord.struct_perc.toFixed(2)} · ${n.coord.east_west.toFixed(2)} ｜ ${east?'东方':'西方'} · ${n.xi||''}</div>`;}
 function hideInfo(){if(selected<0)document.getElementById('info').classList.remove('show');}
 
-function onMove(e){const r=renderer.domElement.getBoundingClientRect();mouse.x=((e.clientX-r.left)/r.width)*2-1;mouse.y=-((e.clientY-r.top)/r.height)*2+1;
+let pickDirty=true;
+addEventListener('resize',()=>{pickDirty=true;});
+function onMove(e){pickDirty=true;const r=renderer.domElement.getBoundingClientRect();mouse.x=((e.clientX-r.left)/r.width)*2-1;mouse.y=-((e.clientY-r.top)/r.height)*2+1;
   if(hovered>=0){const t=document.getElementById('tip');t.style.left=(e.clientX+14)+'px';t.style.top=(e.clientY-10)+'px';}}
-function onClick(){if(hovered>=0){selected=hovered;showInfo(selected);}else{selected=-1;document.getElementById('info').classList.remove('show');}applyFilter();}
+function onClick(){pick();if(hovered>=0){selected=hovered;showInfo(selected);}else{selected=-1;document.getElementById('info').classList.remove('show');}applyFilter();}
 function pick(){raycaster.setFromCamera(mouse,camera);const hits=raycaster.intersectObject(pointsObj);let idx=-1;for(const h of hits){if(matchFilter(nodes[h.index])){idx=h.index;break;}}setHover(idx);
   const t=document.getElementById('tip');if(idx>=0){const n=nodes[idx];t.className='tip show';t.innerHTML=`${n.cn}<span class="m">${(WV[n.wv]||{}).cn||''}</span>`;if(selected<0)showInfo(idx);}else{t.className='tip';hideInfo();}}
 function focusOn(i){if(controls&&posAttr)controls.target.set(posAttr.array[i*3],posAttr.array[i*3+1],posAttr.array[i*3+2]);}
@@ -415,7 +418,9 @@ function bindUI(){
     document.getElementById('selModel').value='all';document.getElementById('search').value='';document.getElementById('info').classList.remove('show');applyFilter();};
 }
 function resize(){renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();setUScale();}
-function animate(){requestAnimationFrame(animate);if(mode==='2d')return;controls.update();if(mouse.x>-2)pick();renderer.render(scene,camera);}
+let framePending=false,animationStarted=false;
+document.addEventListener('visibilitychange',()=>{if(animationStarted&&!document.hidden&&!framePending)animate()});
+function animate(){animationStarted=true;if(document.hidden){framePending=false;return;}framePending=true;requestAnimationFrame(()=>{framePending=false;animate()});if(mode==='2d')return;controls.update();if(mouse.x>-2&&pickDirty){pickDirty=false;pick();}renderer.render(scene,camera);}
 fetch('data/kg_style.json').then(r=>r.json()).then(init).catch(e=>{document.querySelector('.lead').innerHTML='加载失败(需通过服务器打开):'+e;});
 </script>
 <script src="js/aha-icons.js"></script>

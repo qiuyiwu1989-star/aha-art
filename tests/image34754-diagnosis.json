@@ -1,0 +1,17 @@
+[
+  {
+    "target": "local",
+    "status": 502,
+    "body": "{\"error\": \"远端只读资源暂不可用\"}"
+  },
+  {
+    "target": "public",
+    "status": 400,
+    "body": "<?xml version='1.0' encoding='utf-8' ?>\n<Error>\n\t<Code>ImageTooLarge</Code>\n\t<Message>Image size is too large.</Message>\n\t<Resource>/artworks/油画数据集/yh/upload/workImage_ori/20160901/20160901112148rxyIzJmh.jpg</Resource>\n\t<RequestId>NmFkZTI2YTVfY2JjMjAzMDlfZTQzZF8xMjM2NmZhMw==</RequestId>\n\t<TraceId>OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODc0OWRkZjk0ZDM1NmI1M2E2MTRlY2MzZDhmNmI5MWI1OWEzMDE4ZGI4NTE5MWE4YmYxODQ1NWI3YzFiOTg0ZjdlNzk0YTQ2NmI0YmUyZjgzM2UxNTc5NDZlMWVlZmU4YmI=</TraceId>\n</Error>\n\n"
+  },
+  {
+    "target": "cos",
+    "status": 400,
+    "body": "<?xml version='1.0' encoding='utf-8' ?>\n<Error>\n\t<Code>ImageTooLarge</Code>\n\t<Message>Image size is too large.</Message>\n\t<Resource>/artworks/油画数据集/yh/upload/workImage_ori/20160901/20160901112148rxyIzJmh.jpg</Resource>\n\t<RequestId>NmFkZTI2YTZfZGY5ZjA4MDlfMTE1NGRfMjU3OTMzMTM=</RequestId>\n\t<TraceId>OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODc0OWRkZjk0ZDM1NmI1M2E2MTRlY2MzZDhmNmI5MWI1OWEzMDE4ZGI4NTE5MWE4YmYxODQ1NWI3YzFiOTg0ZjdlNzk0YTQ2NmI0YmUyZjgzM2UxNTc5NDZlMWVlZmU4YmI=</TraceId>\n</Error>\n\n"
+  }
+]

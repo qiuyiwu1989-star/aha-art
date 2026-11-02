@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>原型 · 美术馆中庭(真 3D / WebGL)· aha</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
 <style>
   :root{--ink:#2a2620;--ink-soft:#5c554a;--gold:#b0673a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -64,9 +64,9 @@ function imgT(w,px){const f=(w&&w.file)||'';px=px||600;
 let renderer,scene,camera,raycaster,portals=[],labelEls=[],hot=null,yaw=0,pitch=0,autoY=0.018,dragging=false,lastX,lastY,idle=0;
 const mouse=new THREE.Vector2(0,0);
 
-fetch('/cat/exhibit?limit=2000&slim=1').then(r=>r.json()).catch(()=>fetch('data/gallery_works.json').then(r=>r.json()))
+fetch('/cat/summary').then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json();})
  .then(d=>{
-   const W=(d.works||[]).filter(w=>w.file&&w.wv);
+   const W=(d.sections||[]).flatMap(s=>s.items||[]).filter(w=>w.file&&w.wv);
    const byWV={};W.forEach(w=>{(byWV[w.wv]=byWV[w.wv]||[]).push(w);});
    try{ init(byWV); }catch(e){ console.error(e); document.getElementById('fb').style.display='flex'; document.getElementById('boot').style.display='none'; }
  }).catch(e=>{document.getElementById('boot').innerHTML='需服务器加载';});
@@ -113,7 +113,7 @@ function init(byWV){
     grp.userData={k,base:planeMat};scene.add(grp);portals.push(grp);
     // HTML 铭牌
     const el=document.createElement('div');el.className='lab';
-    el.innerHTML=`<div class="pn">${WVN[k]}</div><div class="pc">${(byWV[k]||[]).length} 幅 · ${WVS[k]}</div>`;
+    el.innerHTML=`<div class="pn">${WVN[k]}</div><div class="pc">代表作品 · ${WVS[k]}</div>`;
     labelBox.appendChild(el);labelEls.push(el);
   });
   raycaster=new THREE.Raycaster();
@@ -135,8 +135,14 @@ function bindInput(){
 }
 
 const _v=new THREE.Vector3();
+let frame=0;
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden){cancelAnimationFrame(frame);frame=0;}
+  else if(renderer&&!frame)animate();
+});
 function animate(){
-  requestAnimationFrame(animate);
+  if(document.hidden){frame=0;return;}
+  frame=requestAnimationFrame(animate);
   idle++; if(!dragging&&idle>90) yaw+=0.0016; // 空闲后缓慢自转(约 65s 一圈)
   camera.rotation.order='YXZ';camera.rotation.y=yaw;camera.rotation.x=pitch;
   // 悬停检测

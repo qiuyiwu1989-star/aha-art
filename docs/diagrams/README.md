@@ -1,0 +1,1 @@
+- [2026-10-26 AHA 性能优化进度](2026-10-26-aha-performance-progress.html) — 已实现、验证证据与仍需接续任务。
