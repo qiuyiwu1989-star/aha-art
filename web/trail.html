@@ -78,6 +78,7 @@
 <div class="plb" id="plb"><div class="pbox" id="pbox"></div></div>
 
 <script src="aha-mem.js"></script>
+<script src="js/aha-catalog-resolve.js"></script>
 <script>
 const CAT=p=>fetch('/cat/'+p).then(r=>r.json());
 const $=s=>document.querySelector(s);
@@ -201,12 +202,13 @@ function hidePreview(){$('#pv').classList.remove('on');document.querySelectorAll
 
 function go(){
   if(!uid){$('#sky').innerHTML='<div class="empty">未识别身份——请在本机美术馆里逛过后再来。</div>';return;}
-  const tasks=[CAT('exhibit?limit=8000').catch(()=>({works:[]})),
-    fetch('api/me/trail?uid='+encodeURIComponent(uid)).then(r=>r.json()).catch(()=>({items:[],total:0}))];
+  const tasks=[fetch('api/me/trail?uid='+encodeURIComponent(uid)).then(r=>r.json()).catch(()=>({items:[],total:0}))];
   if(!isShared&&window.AHA)tasks.push(AHA.state().catch(()=>({})));
-  Promise.all(tasks).then(([cat,trail,st])=>{
+  Promise.all(tasks).then(async ([trail,st])=>{
+    const cat=await AHACatalog.resolve((trail.items||[]).flatMap(it=>[it.work_id,it.file]));
     if(st&&st.collections)COLLECTED=new Set(st.collections);
     const BYFILE={},BYID={};(cat.works||[]).forEach(w=>{if(w.file)BYFILE[w.file]=w;BYID[w.work_id]=w;});
+    Object.entries(cat.matches||{}).forEach(([key,id])=>{BYFILE[key]=BYID[id];});
     const raw=trail.items||[];let pts=[];
     raw.forEach(it=>{const w=BYID[it.work_id]||BYFILE[it.file];if(w&&w.file)pts.push({w,n:it.n||1,dwell:it.dwell||0,first:it.first,last:it.last});});
     $('#hud').style.display='';

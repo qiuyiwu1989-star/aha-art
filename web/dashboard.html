@@ -701,8 +701,7 @@ async function aeUnmerge(aid){await fetch(API+'admin/artist/unmerge?artist_id='+
 async function aeMerge(aid){const to=document.getElementById('ae_to').value.trim();if(!to)return;
   await fetch(API+`admin/artist/merge?from=${encodeURIComponent(aid)}&to=${encodeURIComponent(to)}`,{method:'POST'});document.getElementById('aeMsg').textContent='✓ 已合并';}
 
-load();setInterval(load,30000);loadGov();loadAnom();setInterval(loadAnom,120000);
-loadCtl();setInterval(loadCtl,20000);loadReview();loadCos();loadPromptEditor();
+
 // ===== 🏷 编目:流派归一(原值→规范流派,未归类优先,下拉改) =====
 let _styleCanon=[];
 async function loadStyles(){
@@ -750,10 +749,10 @@ async function loadOps(){
   }catch(e){document.getElementById('ops').innerHTML='<div class="panel"><h2><i data-ic="tools"></i> 运营</h2><div class="csub">加载失败</div></div>';}
 }
 
-load();setInterval(load,30000);loadGov();loadAnom();setInterval(loadAnom,120000);
-loadCtl();setInterval(loadCtl,20000);loadReview();loadCos();loadPromptEditor();
-loadVlm();setInterval(loadVlm,30000);loadGovData();setInterval(loadGovData,60000);loadEditor();loadStyles();
-loadOps();setInterval(loadOps,30000);
+// One scheduler per reader; hidden documents do not poll, slow requests never overlap.
+function pollReader(fn,ms){let busy=false;async function tick(){if(document.hidden||busy)return;busy=true;try{await fn()}catch(e){console.warn('Dashboard refresh failed',fn.name)}finally{busy=false}}tick();setInterval(tick,ms);document.addEventListener('visibilitychange',()=>{if(!document.hidden)tick()})}
+[[load,30000],[loadAnom,120000],[loadCtl,20000],[loadVlm,30000],[loadGovData,60000],[loadOps,30000]].forEach(([fn,ms])=>pollReader(fn,ms));
+[loadGov,loadReview,loadCos,loadPromptEditor,loadEditor,loadStyles].forEach(fn=>Promise.resolve().then(fn).catch(()=>console.warn('Dashboard initial read failed',fn.name)));
 // ===== 首页特展管理(从 admin.html 并入主后台) =====
 const WVN_SP={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
 let SPLIST=[],SPWORKS=[],SPPW='';try{SPPW=localStorage.getItem('aha_admin_pass')||'';}catch(e){}  // 记住口令,免得每次重输
@@ -796,16 +795,25 @@ function refreshPendingBadge(){ensureAdminPass().then(()=>{ if(NPW&&!SPPW)SPPW=N
     if(b)b.innerHTML='审核用户展'+(n?' <b style="color:var(--accent)">'+n+'</b>':'');
   }).catch(()=>{});
   });}
-function loadSpecial(){Promise.all([
-    fetch('/api/specials').then(r=>r.json()).catch(()=>({items:[]})),
-    fetch('/cat/exhibit?limit=8000').then(r=>r.json()).catch(()=>fetch('/data/gallery_works.json').then(r=>r.json()))
-  ]).then(([sp,w])=>{SPLIST=sp.items||[];SPWORKS=w.works||[];renderSP();});}
-function spc(s){if(s.work_ids&&s.work_ids.length)return s.work_ids.length;const r=s.rule||{};
-  return SPWORKS.filter(w=>(!r.emo||!r.emo.length||r.emo.includes(w.emo))&&(!r.wv||!r.wv.length||r.wv.includes(w.wv))&&(!r.region||w.region===r.region)).length;}
+let SPEMOS=[];
+async function catalogRead(url){const r=await fetch(url);if(!r.ok)throw Error('HTTP '+r.status);return r.json();}
+async function loadSpecial(){
+ try{
+  const [sp,f]=await Promise.all([catalogRead('/api/specials'),catalogRead('/cat/catalog-facets')]);
+  SPLIST=sp.items||[];SPEMOS=(f.facets?.emo||[]).map(x=>x[0]);
+  for(const s of SPLIST){
+   if(isCurated(s))continue;
+   const rule={};for(const key of ['emo','wv','region','limit'])if(s.rule?.[key])rule[key]=s.rule[key];
+   try{s.catalogCount=(await catalogRead('/cat/rule-summary?rule='+encodeURIComponent(JSON.stringify(rule)))).count;}catch(_){s.catalogCount=null;}
+  }
+  renderSP();
+ }catch(_){document.getElementById('spwrap').textContent='特展数据加载失败，请重新打开此栏目重试';}
+}
+function spc(s){return s.work_ids?.length||(s.catalogCount??'待统计');}
 function spThumb(f){if(!f)return '';return /myqcloud\.com/i.test(f)?f+'?imageMogr2/thumbnail/360x/format/webp/quality/80':f;}
 function isCurated(s){return (s.work_ids&&s.work_ids.length)||(s.rule&&s.rule.spine);}
 function goCurate(url){ensureAdminPass().then(()=>{if(NPW&&!SPPW)SPPW=NPW;if(!SPPW){alert('需要管理口令(登录后台后应自动获取)');return;}sessionStorage.setItem('aha_admin_pass',SPPW);window.open(url,'_blank');});}
-function renderSP(){const emos=[...new Set(SPWORKS.map(w=>w.emo).filter(Boolean))];const wrap=document.getElementById('spwrap');if(!wrap)return;
+function renderSP(){const emos=SPEMOS;const wrap=document.getElementById('spwrap');if(!wrap)return;
   const IB='padding:6px 9px;border:1px solid var(--line);border-radius:7px';
   const curated=[],rules=[];SPLIST.forEach((s,i)=>{(isCurated(s)?curated:rules).push([s,i]);});
   wrap.innerHTML=`<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap">
@@ -877,18 +885,22 @@ function delSP(id){if(!id){loadSpecial();return;}if(!SPPW){alert('先填管理�
   fetch('/api/special/delete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pass:SPPW,id})}).then(r=>r.json()).then(d=>{if(d.ok)loadSpecial();else alert('失败');});}
 
 // ===== 🖼 画框 / 装裱:框样式目录(供应链)+ 给每幅画指定全站一致的框 =====
-let FWORKS=[],FCANON={},FSTYLES=[],FPW='',FQ='',FREVIEW=false;
+let FWORKS=[],FCANON={},FSTYLES=[],FPW='',FQ='',FREVIEW=false,FHUMAN=false,FRAME_DATA=null,FRAME_CURSOR=null,FRAME_VERSION=0,FRAME_BUSY=false;
 // 待复核:未人工指定,且(无AI策展 或 AI置信<0.7)——最该人工看一眼的画
 function frmNeedsReview(w){ if(FCANON[w.file]) return false;
   if(!w.frame_suggest) return true;
   return (w.frame_conf!=null && w.frame_conf<0.8); }
 function frmTitle(t){if(!t)return '无题';t=String(t).replace(/\.(jpe?g|png|webp|gif|tiff?|bmp|jfif)$/i,'').replace(/[_]+/g,' ').trim();return t||'无题';}
-function loadFrame(){Promise.all([
-    fetch('/api/frames').then(r=>r.json()).catch(()=>({frames:{}})),
-    fetch('/cat/exhibit?limit=8000').then(r=>r.json()).catch(()=>fetch('/data/gallery_works.json').then(r=>r.json())),
-    fetch('/api/frame_styles').then(r=>r.json()).catch(()=>({styles:[]})),
-    (window.AHAFrames?AHAFrames.loadStyles():Promise.resolve())
-  ]).then(([f,w,s])=>{FCANON=(f&&f.frames)||{};FWORKS=(w.works||[]).filter(x=>x.file);FSTYLES=(s&&s.styles)||[];renderFRM();});}
+async function loadFrame(append=false){
+ const version=++FRAME_VERSION;FRAME_BUSY=true;
+ const p=new URLSearchParams({limit:40,q:FQ});if(FREVIEW)p.set('review','1');if(FHUMAN)p.set('filter','human');if(append&&FRAME_CURSOR)p.set('cursor',FRAME_CURSOR);
+ try{const [d,styles]=await Promise.all([
+ fetch('/cat/frame-catalog?'+p).then(r=>{if(!r.ok)throw Error('读取失败');return r.json();}),
+ Promise.all([fetch('/api/frame_styles').then(r=>{if(!r.ok)throw Error();return r.json();}),AHAFrames.loadStyles(),AHAFrames.loadCanonical()])]);
+ if(version!==FRAME_VERSION)return;FRAME_DATA=d;if(d.pagination_reset)append=false;FCANON=append?Object.assign({},FCANON,d.canonical||{}):d.canonical||{};FWORKS=append?FWORKS.concat(d.items||[]):d.items||[];FRAME_CURSOR=d.has_more?d.next_cursor:null;FSTYLES=styles[0].styles||[];renderFRM();
+ }catch(e){if(version===FRAME_VERSION){const wrap=document.getElementById('frmwrap');const error=document.createElement('div');error.textContent='画框数据加载失败，点击重试';error.style.cursor='pointer';error.onclick=()=>{error.remove();loadFrame(append);};wrap.prepend(error);}}
+ finally{if(version===FRAME_VERSION){FRAME_BUSY=false;const more=document.getElementById('frmMore');if(more)more.disabled=false;}}
+}
 // —— 框样式目录:可编辑(唯一ID/供应链/匹配规则)。视觉样式仍以 css/aha-frames.css 为事实源。——
 function fsField(label,cls,val,ph,extra){return `<label style="display:flex;flex-direction:column;gap:2px;font-size:10px;color:var(--soft)">${label}
   <input class="${cls}" value="${esc2(val==null?'':val)}" placeholder="${ph||''}" style="padding:5px 7px;border:1px solid var(--line);border-radius:6px;font-size:12px;${extra||''}"></label>`;}
@@ -962,7 +974,7 @@ function saveFS(key){if(!FPW){alert('先在上方填管理口令');return;}
     .then(r=>r.json()).then(d=>{if(d&&d.ok){loadFrame();}else alert('失败:'+((d&&d.error)||'口令?'));}).catch(()=>alert('网络错误'));}
 function frmCard(w){const S=AHAFrames.STYLES,ax=AHAFrames.autoExplain(w),cur=FCANON[w.file]||'';
   const dft=ax.key,isAI=ax.src==='llm';
-  const opt='<option value="">默认('+AHAFrames.BY[dft].name+(isAI?' · 🪄AI':'')+')</option>'+S.map(s=>`<option value="${s.key}" ${cur===s.key?'selected':''}>${s.emoji} ${s.name}</option>`).join('');
+  const opt='<option value="">默认('+(AHAFrames.BY[dft]||{name:dft}).name+(isAI?' · 🪄AI':'')+')</option>'+S.map(s=>`<option value="${s.key}" ${cur===s.key?'selected':''}>${s.emoji} ${s.name}</option>`).join('');
   const aitip=isAI?`<div title="${esc2(ax.why)}" style="font-size:9px;color:var(--accent);text-align:center;margin-bottom:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"><i data-ic="magic"></i> ${esc2(ax.why)}${w.frame_conf!=null?' · '+w.frame_conf:''}</div>`:'';
   const needs=frmNeedsReview(w);
   const rbadge=needs?`<div style="font-size:9px;color:var(--rej);text-align:center;margin-bottom:3px"><i data-ic="warn"></i> ${w.frame_suggest?('低置信 '+(w.frame_conf!=null?w.frame_conf:'')):'无AI建议 · 待定'}</div>`:'';
@@ -974,15 +986,8 @@ function frmCard(w){const S=AHAFrames.STYLES,ax=AHAFrames.autoExplain(w),cur=FCA
   </div>`;}
 // 装裱概览统计:全库最终框分布 + 决策来源(人工/AI策展/关联度/待定)+ 置信。纯前端算,反映访客实际所见。
 function frmStats(){
-  if(!FWORKS.length||!window.AHAFrames) return '';
-  const fc={},src={ai:0,rule:0,human:0,pending:0},conf={high:0,mid:0,low:0,none:0};
-  FWORKS.forEach(w=>{
-    const eff=FCANON[w.file]||AHAFrames.autoExplain(w).key; fc[eff]=(fc[eff]||0)+1;
-    if(FCANON[w.file]){src.human++;return;}
-    const ax=AHAFrames.autoExplain(w); conf[ax.conf]=(conf[ax.conf]||0)+1;
-    if(ax.src==='llm')src.ai++; else if(ax.conf==='low'||ax.conf==='none')src.pending++; else src.rule++;
-  });
-  const tot=FWORKS.length;
+  if(!FRAME_DATA||!FRAME_DATA.stats||!window.AHAFrames)return '';
+  const {fc,src,conf}=FRAME_DATA.stats,tot=FRAME_DATA.total;
   const COL={wood:'#a87b4e',gilt:'#c9a23a',noir:'#3a3530',mat:'#cbbfa6',white:'#ddd5c2',silver:'#9aa0a6',scroll:'#8f3f33',float:'#7aa6c2'};
   const S=AHAFrames.STYLES.slice().sort((a,b)=>(fc[b.key]||0)-(fc[a.key]||0));
   const max=Math.max(1,...S.map(s=>fc[s.key]||0));
@@ -1023,11 +1028,9 @@ function loadFrmOrders(){if(!FPW){alert('先填上方管理口令');return;}
       <style>.ordtd{padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}</style></div>`;
   }).catch(()=>{if(box)box.innerHTML='<div style="font-size:12px;color:var(--rej);padding:8px">载入失败</div>';});}
 function renderFRM(){const wrap=document.getElementById('frmwrap');if(!wrap||!window.AHAFrames)return;
-  const curated=FWORKS.filter(w=>FCANON[w.file]);
-  const review=FWORKS.filter(frmNeedsReview);
+  const curatedCount=FRAME_DATA.human_count,reviewCount=FRAME_DATA.review_count;
   const q=FQ.trim().toLowerCase();
-  const base=FREVIEW?review:FWORKS;
-  const browse=(q?base.filter(w=>((w.title||'')+' '+(w.artist||'')).toLowerCase().includes(q)):base).slice(0,80);
+  const browse=FWORKS;
   const grid=arr=>`<div style="display:flex;flex-wrap:wrap;gap:18px">${arr.map(frmCard).join('')}</div>`;
   wrap.innerHTML=frmStats()
     +`<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px;padding:10px 13px;background:var(--card);border:1px solid var(--accent);border-radius:10px">
@@ -1039,17 +1042,18 @@ function renderFRM(){const wrap=document.getElementById('frmwrap');if(!wrap||!wi
     +frmLibraryEditable()
     +`<h3 style="font-size:13px;color:var(--accent);margin:0 0 12px">逐画指定</h3>`
     +`<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px">
-      <button onclick="FREVIEW=!FREVIEW;renderFRM()" style="padding:6px 13px;border:1px solid ${FREVIEW?'var(--rej)':'var(--line)'};background:${FREVIEW?'var(--rej)':'var(--card)'};color:${FREVIEW?'#fff':'var(--rej)'};border-radius:999px;cursor:pointer;font-size:12px;white-space:nowrap">${FREVIEW?'✓ ':''}⚠️ 待复核 ${review.length}</button>
+      <button onclick="FREVIEW=!FREVIEW;FHUMAN=false;loadFrame()" style="padding:6px 13px;border:1px solid ${FREVIEW?'var(--rej)':'var(--line)'};background:${FREVIEW?'var(--rej)':'var(--card)'};color:${FREVIEW?'#fff':'var(--rej)'};border-radius:999px;cursor:pointer;font-size:12px;white-space:nowrap">${FREVIEW?'✓ ':''}⚠️ 待复核 ${reviewCount}</button>
       <input id="frmq" placeholder="搜作品名 / 作者…" value="${esc2(FQ)}" style="flex:1;min-width:170px;padding:6px 9px;border:1px solid var(--line);border-radius:7px">
-      <span style="font-size:12px;color:var(--soft)">已指定 <b>${curated.length}</b> · 库 ${FWORKS.length} 幅 · 选框即时生效</span></div>
-    ${curated.length?`<h3 style="font-size:13px;color:var(--accent);margin:0 0 10px">已指定的框 · ${curated.length}</h3>${grid(curated)}<hr style="border:none;border-top:1px solid var(--line);margin:22px 0">`:''}
-    <h3 style="font-size:13px;color:var(--soft);margin:0 0 10px">${FREVIEW?`⚠️ 待复核 · 无AI建议或低置信(&lt;0.8),挑一个框即钉死`:'浏览 / 指定'}${q?` · 搜「${esc2(FQ)}」`:''} · 显示前 ${browse.length}${(!q&&base.length>80)?' / '+base.length+'(搜索看更多)':''}</h3>
-    ${grid(browse)}`;
+      <span style="font-size:12px;color:var(--soft)">已指定 <b>${curatedCount}</b> · 库 ${FRAME_DATA.total} 幅 · 选框即时生效</span></div>
+    <button onclick="FHUMAN=!FHUMAN;FREVIEW=false;loadFrame()">${FHUMAN?'查看全部':'查看人工指定'}</button>
+    <h3 style="font-size:13px;color:var(--soft);margin:10px 0">${FREVIEW?'待复核':FHUMAN?'人工指定':'浏览 / 指定'}${q?` · 搜「${esc2(FQ)}」`:''} · 已加载 ${browse.length} 幅</h3>
+    ${grid(browse)}${FRAME_CURSOR?'<button id="frmMore">再加载一批</button>':''}`;
+  const more=document.getElementById('frmMore');if(more)more.onclick=()=>{if(!FRAME_BUSY){more.disabled=true;loadFrame(true);}};
   document.getElementById('frmpw').oninput=e=>FPW=e.target.value;
-  const qi=document.getElementById('frmq');qi.oninput=e=>{FQ=e.target.value;clearTimeout(qi._t);qi._t=setTimeout(renderFRM,260);};
+  const qi=document.getElementById('frmq');qi.oninput=e=>{FQ=e.target.value;clearTimeout(qi._t);qi._t=setTimeout(()=>loadFrame(),260);};
   wrap.querySelectorAll('.frmsel').forEach(sel=>sel.onchange=()=>saveFRM(sel.dataset.f,sel.value));}
 function saveFRM(file,key){if(!FPW){alert('先填管理口令再选框');renderFRM();return;}
-  AHAFrames.saveCanonical(file,key,FPW).then(d=>{if(d&&d.ok){if(key)FCANON[file]=key;else delete FCANON[file];renderFRM();}else{alert('失败:'+((d&&d.error)||'口令?'));}}).catch(()=>alert('网络错误'));}
+  AHAFrames.saveCanonical(file,key,FPW).then(d=>{if(d&&d.ok){if(key)FCANON[file]=key;else delete FCANON[file];loadFrame();}else{alert('失败:'+((d&&d.error)||'口令?'));}}).catch(()=>alert('网络错误'));}
 </script>
 <style>
 /* 讲解·解读 模块 */
@@ -1181,12 +1185,17 @@ async function loadArchive(){
   const list=document.getElementById('arcList');
   if(!NPW){list.innerHTML='<div class="arc-empty">需要管理口令(登录后台后应自动获取)</div>';return;}
   try{
-    const [d,cb,a]=await Promise.all([
-      fetch('/cat/exhibit?limit=8000').then(r=>r.json()).catch(()=>({works:[]})),
+    const [cb,a]=await Promise.all([
       fetch('data/cosbig.json').then(r=>r.json()).catch(()=>({})),
       fetch('/api/archive?pass='+encodeURIComponent(NPW)).then(r=>r.json())
     ]);
-    _arcCOS=cb||{};(d.works||[]).forEach(w=>_arcByFile[w.file]=w);
+    _arcCOS=cb||{};_arcByFile={};
+    const keys=[...new Set((a.items||[]).map(w=>String(w.work_id)))];
+    for(let start=0;start<keys.length;start+=24){
+      const d=await catalogRead('/cat/resolve?keys='+encodeURIComponent(JSON.stringify(keys.slice(start,start+24))));
+      const byId=new Map(d.items.map(w=>[String(w.work_id),w]));
+      for(const [key,id] of Object.entries(d.matches||{}))_arcByFile[key]=byId.get(String(id));
+    }
     if(a&&a.error){list.innerHTML='<div class="arc-empty">口令错误</div>';return;}
     _arcItems=(a&&a.items)||[];renderArc();
   }catch(e){list.innerHTML='<div class="arc-empty">网络错误</div>';}

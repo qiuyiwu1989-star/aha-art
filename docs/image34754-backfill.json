@@ -1,0 +1,19 @@
+{
+  "work_id": 34754,
+  "title": "带螃蟹的早餐",
+  "cause": "COS ImageTooLarge",
+  "local_cosbig_mapping_found": false,
+  "local_detail_urls": "Both thumb and full use the same rejected source with cloud transforms",
+  "derivative_target": "34754.webp, longest edge 720, <=512 KiB",
+  "source_required": "Fetched bounded public source into /tmp; actual 71,344,677 bytes / 66,218,400 pixels",
+  "steps": [
+    "Deploy verified derivative assets together with shared helper",
+    "Verify 34754 browser card and detail on target deployment"
+  ],
+  "production_changed": false,
+  "status": "local_derivatives_ready",
+  "local_derivatives": [
+    "web/assets/derivatives/34754-720.webp",
+    "web/assets/derivatives/34754-1600.webp"
+  ]
+}

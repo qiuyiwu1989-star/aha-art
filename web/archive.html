@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<script src="/js/imgguard.js"></script>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>讲解 · 数据档案 · aha</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--wall:#ddd4c2;--wall2:#cdc3ad;--ink:#2a2620;--ink-soft:#5c554a;--ink-mute:#8a8170;--mat:#f3eee2;--gold:#b0673a;--green:#5a7d6f;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace;--line:#ddd5c6;--ease:cubic-bezier(.4,0,.2,1)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:radial-gradient(130% 90% at 50% -5%,var(--wall),var(--wall2));background-attachment:fixed;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;min-height:100vh}
+  a{color:inherit}
+  .wrap{max-width:1040px;margin:0 auto;padding:30px 20px 90px}
+  .top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .top .nav{font-family:var(--mono);font-size:12px;color:var(--ink-soft);background:rgba(255,255,255,.55);border:1px solid var(--line);border-radius:999px;padding:7px 14px;text-decoration:none}
+  .top .nav:hover{border-color:var(--gold);color:var(--gold)}
+  h1{font-family:var(--serif);font-size:clamp(23px,5vw,32px);font-weight:700;margin:14px 0 4px}h1 .d{color:var(--gold)}
+  .lede{font-size:13px;color:var(--ink-mute);line-height:1.6}
+  .stat{display:flex;gap:20px;margin:16px 0 6px;font-family:var(--mono);font-size:12px;color:var(--ink-soft);flex-wrap:wrap}
+  .stat b{font-family:var(--serif);font-size:19px;color:var(--gold);font-weight:700;margin-right:5px}
+  .stat .g b{color:var(--green)}
+  .bar{display:flex;gap:10px;align-items:center;margin:6px 0 18px;flex-wrap:wrap}
+  .bar input{font-family:var(--sans);font-size:13px;border:1px solid var(--line);background:#fff;border-radius:9px;padding:9px 13px;width:220px;outline:none}
+  .bar button{font-family:var(--mono);font-size:12px;color:#fff;background:var(--gold);border:none;border-radius:9px;padding:9px 15px;cursor:pointer}
+  .bar button.ghost{background:#fff;color:var(--ink-soft);border:1px solid var(--line)}
+  .list{display:flex;flex-direction:column;gap:12px}
+  .wk{background:#fff;border:1px solid var(--line);border-radius:13px;padding:12px 14px;box-shadow:0 10px 24px -18px rgba(40,30,15,.5)}
+  .wk-h{display:flex;gap:13px;align-items:center}
+  .wk-th{flex:0 0 56px;width:56px;height:70px;border-radius:7px;overflow:hidden;background:#1a1612}
+  .wk-th img{width:100%;height:100%;object-fit:cover}
+  .wk-t{font-family:var(--serif);font-size:16px;font-weight:600;line-height:1.3}
+  .wk-m{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;display:flex;gap:9px;flex-wrap:wrap}
+  .wk-m .acc{color:var(--gold)}
+  .rows{margin-top:11px;border-top:1px dashed var(--line);padding-top:9px;display:flex;flex-direction:column;gap:8px}
+  .row{display:flex;gap:10px;align-items:flex-start}
+  .row .nm{flex:0 0 96px;font-size:13px;font-weight:500}
+  .row .vc{font-family:var(--mono);font-size:10px;color:var(--ink-mute);background:var(--mat);border:1px solid var(--line);border-radius:999px;padding:2px 8px;white-space:nowrap;align-self:flex-start}
+  .row .sn{flex:1;min-width:0;font-size:12px;color:var(--ink-soft);line-height:1.5;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .row .tt{flex:0 0 auto;display:flex;gap:6px;align-items:center}
+  .chip{font-family:var(--mono);font-size:10.5px;border-radius:999px;padding:4px 9px;white-space:nowrap;cursor:pointer;border:1px solid var(--line)}
+  .chip.has{color:var(--green);border-color:var(--green);background:rgba(90,125,111,.08)}
+  .chip.no{color:var(--ink-mute);background:#fff}
+  .chip.gen{color:#fff;background:var(--gold);border-color:var(--gold)}
+  .chip.gen:disabled{opacity:.5;cursor:default}
+  .empty{text-align:center;padding:60px 20px;color:var(--ink-mute)}
+  .skel{height:90px;border-radius:13px;background:linear-gradient(90deg,rgba(255,255,255,.4),rgba(255,255,255,.7),rgba(255,255,255,.4));background-size:200% 100%;animation:sk 1.3s infinite}
+  @keyframes sk{from{background-position:200% 0}to{background-position:-200% 0}}
+  @media(max-width:620px){.row{flex-wrap:wrap}.row .nm{flex-basis:auto}.row .sn{flex-basis:100%}}
+</style>
+</head><body>
+<div class="wrap">
+  <div class="top">
+    <a class="nav" href="dashboard.html">← 后台</a>
+    <a class="nav" href="narrators.html">🎙 讲解员人设 / 提示词</a>
+    <a class="nav" href="log.html">产品日志</a>
+  </div>
+  <h1>讲解 · <span class="d">数据档案</span></h1>
+  <p class="lede">每幅画 × 每位讲解员的<b>解读</b>与<b>TTS 朗读音频</b>留存与状态。绿=已生成可播放,灰=未生成(点「生成」补上,会永久入档)。</p>
+  <div class="stat" id="stat" style="display:none"></div>
+  <div class="bar">
+    <input id="q" placeholder="搜作品名 / 讲解员…">
+    <button class="ghost" id="onlyMiss">只看缺 TTS</button>
+    <button id="genAll">为筛选结果补全 TTS</button>
+  </div>
+  <audio id="au" preload="none"></audio>
+  <div class="list" id="list"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
+</div>
+<script src="js/aha-catalog-resolve.js"></script>
+<script>
+const PASS_KEY='aha_admin_pass';
+function localPass(){try{return localStorage.getItem(PASS_KEY)||'';}catch(e){return '';}}
+// 单点登录:本地有口令直接用;否则趁后台 basic-auth 已登录,静默取一次;再不行才弹窗
+function resolvePass(){return new Promise(res=>{
+  const p=localPass();if(p)return res(p);
+  fetch('/cat/admin/adminpass').then(r=>r.ok?r.json():null).then(d=>{
+    if(d&&d.pass){try{localStorage.setItem(PASS_KEY,d.pass);}catch(e){}return res(d.pass);}
+    const q=prompt('管理口令(admin_pass):')||'';try{localStorage.setItem(PASS_KEY,q);}catch(e){}res(q);
+  }).catch(()=>{const q=prompt('管理口令(admin_pass):')||'';try{localStorage.setItem(PASS_KEY,q);}catch(e){}res(q);});
+});}
+let PASS='';
+const byFile={}; let ITEMS=[]; let onlyMiss=false;
+const _CC=/^(意大利|法国|法兰西|荷兰|尼德兰|佛兰德斯|弗拉芒|德国|德意志|普鲁士|西班牙|英国|英格兰|苏格兰|爱尔兰|威尔士|美国|美利坚|俄罗斯|俄国|苏联|比利时|奥地利|瑞士|瑞典|挪威|丹麦|芬兰|波兰|希腊|葡萄牙|匈牙利|捷克|斯洛伐克|罗马尼亚|乌克兰|克罗地亚|塞尔维亚|保加利亚|日本|中国|韩国|朝鲜|印度|波斯|伊朗|土耳其|埃及|墨西哥|巴西|阿根廷|智利|加拿大|澳大利亚|新西兰|南非)/;
+function cleanTitle(t,artist){t=String(t==null?'无题':t).replace(/\.(jpe?g|png|webp|gif|tiff?|bmp|jfif)$/i,'').replace(/[_]+/g,' ').trim();
+  const SEP=/[\s·・,，、|/\\–-]/;const segs=[];if(artist){const a=String(artist).trim();if(a&&a.length>=2){t=t.split(a).join(' ');a.split(/[·・\s]+/).forEach(s=>{s=s.trim();if(s.length>=2)segs.push(s);});}}
+  let g=0;while(g++<6){t=t.replace(new RegExp('^'+SEP.source+'+'),'');let cut=false;const m=t.match(_CC);
+    if(m&&(t.length===m[0].length||SEP.test(t[m[0].length]))){t=t.slice(m[0].length);cut=true;}else for(const s of segs){if(t.startsWith(s)&&(t.length===s.length||SEP.test(t[s.length]))){t=t.slice(s.length);cut=true;break;}}if(!cut)break;}
+  t=t.replace(/\s{2,}/g,' ').replace(new RegExp('^'+SEP.source+'+|'+SEP.source+'+$','g'),'').trim();return t||'无题';}
+function imgT(w,px){const f=(w&&w.file)||'';px=px||160;
+  if(w&&w.work_id&&window._COSBIG&&_COSBIG[w.work_id])return '/'+_COSBIG[w.work_id];
+  if(/myqcloud\.com/i.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/quality/82';
+  if(/(^|\/)img\/[^?]*\.(jpe?g|png)$/i.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/quality/82';
+  return (w&&w.thumb)||f;}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+resolvePass().then(pw=>{PASS=pw;
+Promise.all([
+  fetch('data/cosbig.json').then(r=>r.json()).catch(()=>({})),
+  fetch('api/archive?pass='+encodeURIComponent(PASS)).then(r=>r.json())
+]).then(async ([cb,a])=>{
+  const d=await AHACatalog.resolve((a.items||[]).map(it=>it.work_id));
+  window._COSBIG=cb||{};(d.works||[]).forEach(w=>{byFile[w.file]=w;byFile[w.work_id]=w;if(w.code)byFile[w.code]=w;});Object.entries(d.matches||{}).forEach(([key,id])=>{byFile[key]=byFile[id];});
+  if(a&&a.error){document.getElementById('list').innerHTML='<div class="empty">口令错误,<a href="#" onclick="localStorage.removeItem(\''+PASS_KEY+'\');location.reload();return false">重输</a></div>';return;}
+  ITEMS=(a&&a.items)||[]; render();
+}).catch(()=>{document.getElementById('list').textContent='归档暂时无法加载，请刷新重试。';});
+});
+
+document.getElementById('q').addEventListener('input',render);
+document.getElementById('onlyMiss').onclick=function(){onlyMiss=!onlyMiss;this.classList.toggle('ghost',!onlyMiss);this.textContent=onlyMiss?'看全部':'只看缺 TTS';render();};
+document.getElementById('genAll').onclick=genAllVisible;
+
+function filtered(){
+  const q=(document.getElementById('q').value||'').trim().toLowerCase();
+  return ITEMS.map(w=>{
+    const meta=byFile[w.work_id]||{file:w.work_id};const title=cleanTitle(meta.title||w.work_id,meta.artist);
+    let ps=w.personas;
+    if(onlyMiss)ps=ps.filter(p=>!p.tts);
+    if(q){const hit=title.toLowerCase().includes(q)||ps.some(p=>(p.name||'').toLowerCase().includes(q));if(!hit)ps=ps.filter(p=>(p.name||'').toLowerCase().includes(q)||title.toLowerCase().includes(q));}
+    return {w,meta,title,ps};
+  }).filter(x=>x.ps.length);
+}
+function render(){
+  const list=document.getElementById('list'),stat=document.getElementById('stat');
+  const totW=ITEMS.length, totR=ITEMS.reduce((s,w)=>s+w.personas.length,0), totT=ITEMS.reduce((s,w)=>s+w.personas.filter(p=>p.tts).length,0);
+  stat.style.display='flex';
+  stat.innerHTML='<span><b>'+totW+'</b>幅画</span><span><b>'+totR+'</b>条解读</span><span class="g"><b>'+totT+'</b>条 TTS 已存</span><span><b style="color:var(--ink-mute)">'+(totR-totT)+'</b>缺 TTS</span>';
+  const fs=filtered();
+  if(!fs.length){list.innerHTML='<div class="empty">没有匹配的记录。</div>';return;}
+  list.innerHTML=fs.map(({w,meta,title,ps})=>{
+    const acc=(meta.work_id!=null&&meta.work_id!=='')?'AHA-'+String(meta.work_id).padStart(5,'0'):'';
+    const rows=ps.map(p=>{
+      const tts=p.tts?('<a class="chip has" href="#" onclick="return play(\''+esc(p.tts)+'\')">▷ 播放 '+(p.bytes?Math.round(p.bytes/1024)+'KB':'')+'</a>')
+                      :('<button class="chip gen" data-w="'+esc(w.work_id)+'" data-p="'+esc(p.persona_id)+'" onclick="gen(this)">生成 TTS</button>');
+      return '<div class="row"><span class="nm">'+esc(p.name)+'</span>'+(p.voice?'<span class="vc">'+esc(p.voice)+'</span>':'')+
+        '<span class="sn">'+esc(p.snippet||'')+(p.len>100?'…':'')+'</span><span class="tt">'+tts+'</span></div>';
+    }).join('');
+    return '<div class="wk"><div class="wk-h"><a class="wk-th" href="art.html?'+(meta.work_id?('id='+meta.work_id):('w='+encodeURIComponent(w.work_id)))+'" target="_blank">'+
+      '<img src="'+esc(imgT(meta,160))+'" alt="" loading="lazy"></a>'+
+      '<div><div class="wk-t">'+esc(title)+'</div><div class="wk-m">'+(acc?'<span class="acc">'+acc+'</span>':'')+(meta.artist?'<span>'+esc(meta.artist)+'</span>':'')+'<span>'+ps.length+' 位讲解员</span></div></div></div>'+
+      '<div class="rows">'+rows+'</div></div>';
+  }).join('');
+}
+function play(url){const au=document.getElementById('au');au.src=url+'?t='+Date.now();au.play().catch(()=>{});return false;}
+function gen(btn){
+  const work=btn.dataset.w,persona=btn.dataset.p;btn.disabled=true;btn.textContent='生成中…';
+  fetch('api/tts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({work:work,persona:persona})}).then(r=>r.json()).then(d=>{
+    if(d&&d.url){
+      const it=ITEMS.find(w=>w.work_id===work);if(it){const pp=it.personas.find(x=>x.persona_id===persona);if(pp){pp.tts=d.url;pp.bytes=null;}}
+      render();const au=document.getElementById('au');au.src=d.url+'?t='+Date.now();au.play().catch(()=>{});
+    }else{btn.disabled=false;btn.textContent='失败·重试';btn.title=(d&&d.error)||'';}
+  }).catch(()=>{btn.disabled=false;btn.textContent='失败·重试';});
+}
+function genAllVisible(){
+  const btns=[...document.querySelectorAll('.chip.gen:not(:disabled)')];
+  if(!btns.length){alert('当前筛选下没有缺 TTS 的');return;}
+  if(!confirm('将为当前筛选结果生成 '+btns.length+' 条 TTS,逐条进行,可能花一会儿。继续?'))return;
+  let i=0;(function step(){if(i>=btns.length)return;const b=btns[i++];if(!b.dataset.w){step();return;}
+    const work=b.dataset.w,persona=b.dataset.p;b.disabled=true;b.textContent='生成中…';
+    fetch('api/tts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({work:work,persona:persona})}).then(r=>r.json()).then(d=>{
+      if(d&&d.url){const it=ITEMS.find(w=>w.work_id===work);if(it){const pp=it.personas.find(x=>x.persona_id===persona);if(pp)pp.tts=d.url;}}
+      setTimeout(step,400);
+    }).catch(()=>setTimeout(step,400));
+  })();
+}
+</script>
+</body></html>

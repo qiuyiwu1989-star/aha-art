@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>会发光的艺术史 · aha</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/><noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/></noscript>
 <style>
   :root{--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace;
     --surface:rgba(20,23,31,.84);--surface-2:rgba(255,255,255,.06);--line:rgba(255,255,255,.12);
@@ -929,7 +929,7 @@ window.toggleLang=toggleLang;
 
 function onMove(e){const r=renderer.domElement.getBoundingClientRect();mouse.x=((e.clientX-r.left)/r.width)*2-1;mouse.y=-((e.clientY-r.top)/r.height)*2+1;
   if(hovered>=0){const t=document.getElementById('tip');t.style.left=(e.clientX+14)+'px';t.style.top=(e.clientY-10)+'px';}}
-function onClick(){
+function onClick(){pick();
   if(pathPick>0&&hovered>=0){
     if(pathPick===1){pathA=hovered;pathPick=2;selected=hovered;showInfo(selected);updatePathStat();applyState();}
     else{pathB=hovered;pathPick=0;startFlight(pathA,pathB);}
@@ -1169,9 +1169,11 @@ window.shareMyStar=function(){if(!myProfile)return;composer.render();
   x.fillStyle='#bcb6a8';x.font=(18*sc)+'px "Noto Sans SC",sans-serif';
   x.fillText('最接近 '+myTop.slice(0,3).map(i=>nodes[i].cn).join(' · ')+'    ·    ai.zaowuyun.com/aha',44*sc,h-34*sc);
   const a=document.createElement('a');a.download='我的审美之星.png';a.href=cv.toDataURL('image/png');a.click();};
-function animate(){requestAnimationFrame(animate);clock+=0.016;
+let framePending=false,animationStarted=false,lastPickTime=-Infinity;
+document.addEventListener('visibilitychange',()=>{if(animationStarted&&!document.hidden&&!framePending)animate()});
+function animate(){animationStarted=true;if(document.hidden){framePending=false;return;}framePending=true;requestAnimationFrame(()=>{framePending=false;animate()});clock+=0.016;
   if(bgStarsObj){window._bg.uniforms.uTime.value=clock;bgStarsObj.rotation.y+=0.00035;}
-  controls.update();stepTween();stepTime();updateRiverEnd();updateFlyTo();updateOrbit();updateFlow();updateSelFlow();updateMeteor();updateFlight();updateRitual();updateNodeLabels();updateYouLabel();if(mouse.x>-2)pick();composer.render();}
+  controls.update();stepTween();stepTime();updateRiverEnd();updateFlyTo();updateOrbit();updateFlow();updateSelFlow();updateMeteor();updateFlight();updateRitual();updateNodeLabels();updateYouLabel();if(mouse.x>-2&&performance.now()-lastPickTime>=33){lastPickTime=performance.now();pick();}composer.render();}
 </script>
 <script src="js/aha-icons.js"></script>
 </body></html>

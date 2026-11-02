@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<script src="/js/imgguard.js"></script>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>aha · 对话策展</title>
+<meta name="description" content="说一句你此刻想要的感觉,aha 就从全馆作品里,为你策一组画——按你说的情绪、意境与门派来挑。"/>
+<link rel="preconnect" href="https://aha-1254041526.cos.ap-shanghai.myqcloud.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--wall:#ddd4c2;--wall2:#cdc3ad;--ink:#2a2620;--ink-soft:#5c554a;--ink-mute:#8a8170;--mat:#f3eee2;--frame:#2c2620;--gold:#b0673a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(130% 80% at 50% -8%,var(--wall),var(--wall2));background-attachment:fixed;color:var(--ink);font-family:var(--sans);min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit}
+.vbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 18px;background:rgba(243,238,226,.86);backdrop-filter:blur(10px);border-bottom:1px solid rgba(40,30,15,.1)}
+.vbar a{font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none}
+.vbar a:hover{color:var(--gold)}
+.vbar .vname{font-family:var(--serif);font-weight:700;font-size:16px}
+.wrap{flex:1;width:100%;max-width:760px;margin:0 auto;padding:20px 18px 150px;display:flex;flex-direction:column}
+.chatlog{display:flex;flex-direction:column;gap:18px}
+.msg{max-width:100%}
+.msg.me{align-self:flex-end;background:var(--frame);color:#f3eee2;border-radius:16px 16px 4px 16px;padding:11px 16px;font-size:14.5px;max-width:80%}
+.msg.ai .say{font-family:var(--serif);font-size:15.5px;line-height:1.7;color:var(--ink);background:rgba(255,255,255,.62);border:1px solid rgba(40,30,15,.1);border-radius:16px 16px 16px 4px;padding:13px 17px}
+.msg.ai .say b{color:var(--gold)}
+.msg.ai .say.think{color:var(--ink-mute);font-style:italic}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:13px;margin-top:13px}
+.acard{position:relative;border-radius:6px;overflow:hidden;cursor:pointer;background:#e9e0cf;padding:8px;box-shadow:0 12px 26px -16px rgba(40,30,15,.55),0 0 0 1px rgba(40,30,15,.12) inset;text-decoration:none;color:inherit;transition:transform .18s}
+.acard:hover{transform:translateY(-4px)}
+.acard .ph{position:relative;width:100%;aspect-ratio:4/5;border-radius:3px;overflow:hidden;background:#cfc6b4}
+.acard .ph:after{content:"";position:absolute;inset:0;border:1px solid rgba(40,30,15,.18)}
+.acard img{width:100%;height:100%;object-fit:cover;display:block}
+.acard .meta{padding:8px 4px 3px}
+.acard .t{font-family:var(--serif);font-size:13px;font-weight:600;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.acard .a{font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-top:2px;display:flex;justify-content:space-between;gap:6px}
+.acard .a .tag{color:var(--gold)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
+.chips .tchip{font-family:var(--mono);font-size:12px;color:var(--ink-soft);background:rgba(255,255,255,.55);border:1px solid rgba(40,30,15,.14);border-radius:999px;padding:7px 13px;cursor:pointer;transition:.15s}
+.chips .tchip:hover{border-color:var(--gold);color:var(--gold)}
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:20;background:linear-gradient(0deg,var(--wall) 64%,transparent);padding:14px 18px calc(16px + env(safe-area-inset-bottom,0px))}
+.bar{max-width:724px;margin:0 auto;display:flex;gap:9px;background:#fff;border:1px solid rgba(40,30,15,.16);border-radius:999px;padding:6px 6px 6px 18px;box-shadow:0 14px 34px -18px rgba(40,30,15,.5)}
+.bar input{flex:1;border:none;outline:none;font-family:var(--sans);font-size:15px;color:var(--ink);background:none}
+.bar button{flex:none;font-family:var(--sans);font-size:14px;color:#fff;background:var(--gold);border:none;border-radius:999px;padding:0 22px;cursor:pointer;transition:.15s}
+.bar button:hover{background:var(--frame)}
+.bar button:disabled{opacity:.5;cursor:default}
+.dots span{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--ink-mute);margin:0 2px;animation:bb 1.1s infinite}
+.dots span:nth-child(2){animation-delay:.18s}.dots span:nth-child(3){animation-delay:.36s}
+@keyframes bb{0%,60%,100%{opacity:.25;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+</style></head><body data-noshell>
+<div class="vbar"><a href="museum.html">← 美术馆</a><span class="vname">对话策展</span><a href="kg-foryou.html">为你 →</a></div>
+<div class="wrap"><div class="chatlog" id="chatlog"></div><div class="chips" id="chips"></div></div>
+<div class="dock"><div class="bar"><input id="talkInput" placeholder="说说你此刻想要的感觉…如「像悲伤但有一点希望」" autocomplete="off"/><button id="sendBtn">策一组</button></div></div>
+
+<script>
+var WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验之光',WV5:'表现外化',WV6:'形式建构'};
+var ready=true;
+var log=document.getElementById('chatlog'),input=document.getElementById('talkInput'),sendBtn=document.getElementById('sendBtn'),chips=document.getElementById('chips');
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function hash(s){var h=0;s=String(s);for(var i=0;i<s.length;i++){h=(h*31+s.charCodeAt(i))|0;}return Math.abs(h);}
+function thumb(f,px){px=px||420;if(/myqcloud\.com/i.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/quality/80';if(/(^|\/)img\/[^?]*\.(jpe?g|png)$/i.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/quality/80';return f;}
+function cleanTitle(t){t=String(t||'').replace(/\.(jpe?g|png|webp|gif|tiff?|bmp|jfif)$/i,'').replace(/[_]+/g,' ').trim();return t||'无题';}
+
+// ——— 把一句话解析成可匹配的意图(门派 + 情绪 VAD + 情绪标签)———
+var RULES=[
+ [/悲伤|难过|忧郁|忧伤|哀|失落|落寞|低落/,{v:.2,emo:['忧伤','孤独']}],
+ [/希望|治愈|温暖|慰藉|温柔|安慰/,{v:.78,emo:['喜悦','温暖']}],
+ [/孤独|寂寞|独处|一个人/,{v:.32,emo:['孤独','沉思']}],
+ [/平静|安静|宁静|放松|静下来|淡|平和|舒缓/,{a:.2,emo:['平静','沉静','沉思'],wv:['WV3','WV4']}],
+ [/明亮|明媚|阳光|开朗|欢快|喜悦|愉悦|轻快/,{v:.85,a:.58,emo:['喜悦','鲜活'],wv:['WV4']}],
+ [/壮丽|崇高|震撼|宏大|辽阔|大气|磅礴/,{a:.7,emo:['崇高'],wv:['WV1','WV4']}],
+ [/热闹|喧嚣|人多|派对|热烈|奔放|欢腾/,{a:.8,v:.7,emo:['热烈','鲜活']}],
+ [/夜|夜晚|月|黄昏|黎明/,{a:.35,emo:['神秘','沉思']}],
+ [/爱|亲密|思念|眷恋/,{v:.72,emo:['温暖','喜悦']}],
+ [/自然|海|山|水|风|户外|风景|田园/,{wv:['WV4','WV3']}],
+ [/光|光影|发光|斑斓|绚烂/,{wv:['WV4'],emo:['鲜活']}],
+ [/秩序|理性|结构|专注|工作|几何|抽象|极简|构成/,{wv:['WV6']}],
+ [/灵性|神圣|宗教|超越|信仰|庄严|崇敬/,{wv:['WV2'],emo:['崇高','神秘']}],
+ [/东方|禅|诗意|水墨|山水|文人|留白|意境/,{wv:['WV3'],emo:['空灵','沉思']}],
+ [/焦虑|烦躁|不安|紧张|压抑|窒息/,{a:.72,v:.3,emo:['张力','恐惧'],wv:['WV5']}],
+ [/强烈|狂野|表现|梵高|激烈|猛|有力|爆发/,{a:.82,emo:['张力','热烈'],wv:['WV5']}],
+ [/写实|肖像|古典|逼真|人物|真实|学院/,{wv:['WV1']}],
+ [/神秘|朦胧|梦|幽|缥缈/,{emo:['神秘','空灵']}],
+ [/怀旧|旧|往昔|时光|回忆/,{v:.42,emo:['怀旧']}]
+];
+function parse(text){
+ var t=String(text||'');
+ var wv={},emo={},tv=null,ta=null,hit=0;
+ RULES.forEach(function(r){if(r[0].test(t)){hit++;var e=r[1];
+   if(e.wv)e.wv.forEach(function(k){wv[k]=1;});
+   if(e.emo)e.emo.forEach(function(k){emo[k]=1;});
+   if(e.v!=null)tv=tv==null?e.v:(tv+e.v)/2;
+   if(e.a!=null)ta=ta==null?e.a:(ta+e.a)/2;}});
+ // 轻量否定:不要太安静 → 想要高唤起;不要太猛 → 低唤起
+ if(/不(要|想|太|希望)?.{0,3}(安静|平静|淡|柔|闷)/.test(t)){ta=.72;}
+ if(/不(要|想|太|希望)?.{0,3}(吵|猛|强烈|激烈|刺激|乱)/.test(t)){ta=.22;}
+ return {wv:Object.keys(wv),emo:Object.keys(emo),tv:tv,ta:ta,hit:hit};
+}
+function intentLabel(intent){
+ var parts=[];
+ if(intent.wv.length)parts.push(intent.wv.map(function(k){return '「'+WVN[k]+'」';}).join('、'));
+ if(intent.emo.length)parts.push(intent.emo.slice(0,2).join('、'));
+ if(!parts.length){if(intent.tv!=null)parts.push(intent.tv>.55?'明亮':'低沉');if(intent.ta!=null)parts.push(intent.ta>.55?'有力':'安静');}
+ return parts.join(' · ');
+}
+
+function scroll(){requestAnimationFrame(function(){window.scrollTo(0,document.body.scrollHeight);});}
+function el(html){var d=document.createElement('div');d.innerHTML=html.trim();return d.firstChild;}
+function me(text){log.appendChild(el('<div class="msg me">'+esc(text)+'</div>'));scroll();}
+function aiSay(html,think){var m=el('<div class="msg ai"><div class="say'+(think?' think':'')+'">'+html+'</div></div>');log.appendChild(m);scroll();return m;}
+function cardsHTML(works,intent){
+ return '<div class="cards">'+works.map(function(w){
+   var tag=intent.wv.indexOf(w.wv)>=0?WVN[w.wv]:(w.emo||'');
+   return '<a class="acard" href="art.html?w='+encodeURIComponent(w.file)+'">'+
+     '<div class="ph"><img loading="lazy" decoding="async" src="'+thumb(w.file,420)+'" alt=""></div>'+
+     '<div class="meta"><div class="t">'+esc(cleanTitle(w.title))+'</div>'+
+     '<div class="a"><span>'+esc(w.artist||'佚名')+'</span>'+(tag?'<span class="tag">'+esc(tag)+'</span>':'')+'</div></div></a>';
+ }).join('')+'</div>';
+}
+function answer(text){
+ if(!text.trim()||!ready)return;
+ me(text);
+ var thinking=aiSay('<span class="dots"><span></span><span></span><span></span></span> 正从全馆里翻找…',true);
+ setTimeout(async function(){
+   var intent=parse(text),lab=intentLabel(intent);
+   let works;try{const r=await fetch('/cat/intent?'+new URLSearchParams({intent:JSON.stringify(intent)}));if(!r.ok)throw Error();works=(await r.json()).items||[];}catch(e){thinking.remove();aiSay('馆藏暂时连不上，请稍后重试。');return;}
+   thinking.remove();
+   if(!intent.hit&&intent.tv==null&&intent.ta==null){
+     aiSay('我还没太抓住那种感觉 🤔 换个说法试试?比如「<b>安静下来</b>」「<b>壮丽一点</b>」「<b>像悲伤但有一点希望</b>」「<b>东方的诗意</b>」。');
+     return;
+   }
+   var lead='听起来你想要 <b>'+esc(lab)+'</b> 的感觉。我从全馆里,为你策了这一组 —';
+   var m=aiSay(lead);
+   m.insertAdjacentHTML('beforeend',cardsHTML(works,intent));
+   scroll();
+ },520);
+}
+
+// —— 启动 ——
+
+['像悲伤但有一点希望','让我安静下来','壮丽、震撼','热闹的夜','东方的诗意','专注工作时','不要太安静'].forEach(function(q){
+ var c=el('<button class="tchip">'+esc(q)+'</button>');c.onclick=function(){answer(q);};chips.appendChild(c);
+});
+aiSay('你此刻想要一种什么样的画?<br>跟我说说<b>感觉</b>就好——心情、场景,或想成为的状态。我会从全馆作品里,为你策一组。');
+sendBtn.onclick=function(){answer(input.value);input.value='';};
+input.addEventListener('keydown',function(e){if(e.key==='Enter'){answer(input.value);input.value='';}});
+</script>
+<script src="/js/aha-app.js" defer></script>
+</body></html>

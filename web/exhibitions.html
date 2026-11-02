@@ -2,7 +2,7 @@
 <html lang="zh"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>展览馆 · aha</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="css/aha-kit.css">
 <style>
   .page{max-width:1180px}
@@ -38,7 +38,7 @@
 </div>
 
 <script>
-const CAT=p=>fetch('/cat/'+p).then(r=>r.json());
+const CAT=p=>fetch('/cat/'+p).then(r=>{if(!r.ok)throw Error('展览加载失败');return r.json();});
 const $=s=>document.querySelector(s);
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function imgT(f,px){if(!f)return '';px=px||520;return /myqcloud\.com/i.test(f)&&!/imageMogr2/.test(f)?f+'?imageMogr2/thumbnail/'+px+'x/format/webp/quality/82':f;}
@@ -58,25 +58,24 @@ function card(o){
 
 Promise.all([
   fetch('/api/specials').then(r=>r.json()).catch(()=>({items:[]})),
-  fetch('/api/exhibitions').then(r=>r.json()).catch(()=>({items:[]})),
-  CAT('exhibit?limit=8000').catch(()=>({works:[]}))
-]).then(([sp,pe,cat])=>{
-  const WORKS=(cat.works||[]).filter(w=>w.file);
+  fetch('/api/exhibitions').then(r=>r.json())
+]).then(async ([sp,pe])=>{
   const specials=(sp.items||[]);
   const personal=(pe.items||[]);
 
   // 官方展
-  const official=specials.map(s=>{
+  const official=[];
+  for(const s of specials){
     const r=s.rule||{};
     if(isCurated(s)){const files=s.work_ids||[];
-      return {href:'curate.html?ex='+encodeURIComponent(s.id),badge:'官方 · 策展',gold:true,
+      official.push({href:'curate.html?ex='+encodeURIComponent(s.id),badge:'官方 · 策展',gold:true,
         title:s.title,thesis:r.thesis||s.note,cover:r.cover||files[0],count:files.length,
-        spine:r.spineLabel||SPN[r.spine]||'',_seq:s.seq||0,_curated:true};}
+        spine:r.spineLabel||SPN[r.spine]||'',_seq:s.seq||0,_curated:true});continue;}
     // 规则展:算命中集
-    let ws=WORKS.filter(ruleToPick(r));if(r.limit)ws=ws.slice(0,r.limit);
-    return {href:'museum.html#hall=sp:'+encodeURIComponent(s.id)+'&form=salon',badge:'主题展 · 自动',gold:false,
-      title:s.title,thesis:s.note,cover:(ws[0]||{}).file,count:ws.length,spine:'',_seq:s.seq||0,_curated:false};
-  });
+    const summary=await CAT('rule-summary?'+new URLSearchParams({rule:JSON.stringify(r)}));
+    official.push({href:'museum.html#hall=sp:'+encodeURIComponent(s.id)+'&form=salon',badge:'主题展 · 自动',gold:false,
+      title:s.title,thesis:s.note,cover:(summary.cover||{}).file,count:summary.count,spine:'',_seq:s.seq||0,_curated:false});
+  }
   // 用户公开展(都是手策)
   const ugc=personal.map(e=>{const r=e.rule||{};const files=e.work_ids||[];
     return {href:'curate.html?ex='+encodeURIComponent(e.id),badge:'逛客 · 策展',gold:false,

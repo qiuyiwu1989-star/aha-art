@@ -11,6 +11,7 @@
    单一事实源:CSS = css/aha-frames.css;目录/匹配规则/供应链 = DB mu_frame_style(后台 dashboard 管理)。
    说明页 = frames.html */
 window.AHAFrames = (function(){
+  function readJSON(url){ return window.AHARequest ? window.AHARequest.get(url) : fetch(url).then(function(r){if(!r.ok) throw new Error('HTTP '+r.status);return r.json();}); }
   // 内置兜底:DB 不可用 / 未加载时,auto() 仍按这套规则工作。DB 会叠加覆盖 name/sku/匹配规则等。
   // match_style=流派关键词;match_media=媒材「硬规则」关键词(不论流派都钉死该框);priority 越小越先判。
   var STYLES = [
@@ -132,7 +133,7 @@ window.AHAFrames = (function(){
   // 拉框样式目录:把 DB 的 名字/emoji/desc/sku/匹配规则/sort/active 叠加到内置 STYLES 上。
   // active=false 的从公开展示中剔除(但 auto() 规则仍生效——下架≠停用匹配)。
   function loadStyles(){
-    return fetch(_api('frame_styles')).then(function(r){return r.json();}).then(function(d){
+    return readJSON(_api('frame_styles')).then(function(d){
       var rows=(d&&d.styles)||[]; if(!rows.length) return STYLES;
       var byKey={}; rows.forEach(function(s){ byKey[s.key]=s; });
       STYLES.forEach(function(s){
@@ -153,7 +154,7 @@ window.AHAFrames = (function(){
   function visibleStyles(){ return STYLES.filter(function(s){ return s.active!==false; }); }
 
   function loadCanonical(){
-    return fetch(_api('frames')).then(function(r){return r.json();})
+    return readJSON(_api('frames'))
       .then(function(d){ _canon = (d&&d.frames)||{}; return _canon; })
       .catch(function(){ _canon={}; return _canon; });
   }

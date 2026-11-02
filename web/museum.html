@@ -1,5 +1,8 @@
 <!doctype html>
 <html lang="zh-CN"><head>
+<script src="/js/aha-request.js"></script>
+<script src="/js/aha-images.js"></script>
+<script src="/js/imgguard.js"></script>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>人类美术馆 · aha</title>
 <meta name="description" content="aha 人类美术馆——选一间展厅,同一批真迹可切沙龙墙/长廊/平面;看一幅画有节奏地读它、推开三扇门续走;越逛越懂你。"/>
@@ -47,6 +50,10 @@
   .cont img{width:54px;height:54px;object-fit:cover;border-radius:8px}.cont .t{font-family:var(--serif);font-weight:600}.cont .s{font-size:12px;color:var(--ink-mute);margin-top:2px}.cont .go{margin-left:auto;color:var(--gold);font-family:var(--mono);font-size:12px}
   /* band */
   .band{margin-top:34px}
+  .allband .band-h{flex-wrap:wrap;row-gap:8px}
+  .allband .band-h .t,.allband .band-h .n{flex-shrink:0;white-space:nowrap}
+  .allband .band-h .d{font-family:var(--sans);font-size:12px;color:var(--ink-mute)}
+  @media(max-width:560px){.allband .band-h .d{flex-basis:100%;order:2}}
   .allband .band-h .allgo{color:var(--gold);cursor:pointer;text-decoration:none}
   .moreWrap{display:flex;justify-content:center;padding:8px 0 14px}
   .moreBtn{font-family:var(--mono);font-size:13px;color:var(--ink);background:rgba(255,255,255,.7);border:1px solid rgba(40,30,15,.18);border-radius:999px;padding:11px 26px;cursor:pointer;transition:.16s;display:inline-flex;align-items:center;gap:8px}
@@ -56,7 +63,7 @@
   .mason{display:flex;gap:14px;padding:16px 0 30px;align-items:flex-start}
   .mcol{flex:1;display:flex;flex-direction:column;gap:14px;min-width:0}
   @media(max-width:560px){.mason{gap:10px}.mcol{gap:10px}}
-  .mtile{cursor:pointer;margin-bottom:0}
+  .mtile{cursor:pointer;margin-bottom:0}.allband{content-visibility:visible;overflow-anchor:none}
   /* 沙龙墙式画框:暖墙上挂一幅幅带衬纸的画 */
   .mframe{position:relative;width:100%;background:var(--mat);padding:8px;border:1px solid rgba(0,0,0,.1);box-shadow:0 1px 0 rgba(255,255,255,.55) inset,0 16px 30px -14px rgba(40,30,15,.55);transition:transform .2s}
   .mframe:before{content:"";position:absolute;inset:4px;border:1px solid rgba(0,0,0,.13);pointer-events:none;z-index:1}
@@ -459,26 +466,28 @@ function ruleToPick(rule){if(!rule)return ()=>false;return w=>(!rule.emo||!rule.
 function specialWorks(s){let ws;if(s.work_ids&&s.work_ids.length){const set=new Set(s.work_ids);ws=WORKS.filter(w=>set.has(w.file));}else{ws=WORKS.filter(ruleToPick(s.rule));}const lim=s.rule&&s.rule.limit;return lim?ws.slice(0,lim):ws;}
 let WORKS=[],byWV={},byEmo={},byFile={},STATE={taste:null,collections:[],ratings:{}},lastHall=null,trail=0,openTs=0,curW=null;
 
-// 馆藏数据源:活库 /cat/exhibit(DB,含 demo226 + 已上展真迹);失败回退到静态文件
-const CAT=p=>fetch('/cat/'+p).then(r=>r.json());
-Promise.all([
-  CAT('exhibit?limit=8000&slim=1').catch(()=>fetch('data/gallery_works.json').then(r=>r.json())),
-  (window.AHA?AHA.state():Promise.resolve({})),
-  fetch('api/specials').then(r=>r.json()).catch(()=>({items:[]})),
-  (window.AHAFrames?AHAFrames.loadCanonical():Promise.resolve({})),
-  fetch('data/cosbig.json').then(r=>r.json()).catch(()=>({}))
-]).then(([d,st,sp,_fc,cb])=>{
-  window._COSBIG=cb||{};
-  _SPECIALS=(sp&&sp.items||[]);
-  // 只取有世界观坐标的"可上墙"集,所有逛法都依赖 wv/x/y
-  WORKS=(d.works||[]).filter(w=>w.wv&&w.x!=null);
-  WORKS.forEach(w=>{byFile[w.file]=w;(byWV[w.wv]=byWV[w.wv]||[]).push(w);if(w.emo)(byEmo[w.emo]=byEmo[w.emo]||[]).push(w);});
-  // 测试图册:优先用可后台增删的 data/test_album.json,失败则用内置兜底
-  fetch('data/test_album.json').then(r=>r.json()).then(al=>{const cs=(al.items||al.codes||[]).map(x=>x.code||x).filter(Boolean);if(cs.length>=20){TEST_CODES.clear();cs.forEach(c=>TEST_CODES.add(c));}}).catch(()=>{});
-  STATE=Object.assign(STATE,st||{});
-  try{lastHall=JSON.parse(localStorage.getItem('aha_last_hall')||'null');}catch(e){}
-  if(shouldPrologue())prologue();else route();
-}).catch(e=>{document.getElementById('app').innerHTML='<div style="text-align:center;color:#8a8170;padding:60px">需服务器加载:'+e+'</div>';});
+// 页面只持有当前列表；全馆统计来自 home 的聚合，不从当前页推断。
+let HOME={items:[],sections:[],total:0},PAGE=null;
+let viewController=new AbortController(),viewCleanups=[],routeSeq=0;
+function disposeView(){viewController.abort();viewCleanups.splice(0).forEach(f=>f());viewController=new AbortController();if(window._formTimer){clearInterval(window._formTimer);window._formTimer=null;}}
+function onView(target,event,fn,options={}){target.addEventListener(event,fn,{...options,signal:viewController.signal});}
+function section(k){return (HOME.sections||[]).find(s=>s.key===k)||{count:null,items:[]};}
+function registerWorks(ws){(ws||[]).forEach(w=>{if(w&&w.file)byFile[w.file]=w;});}
+let homeFeedState=null;
+try{const saved=JSON.parse(sessionStorage.getItem('aha_feed')||'null');if(saved&&Date.now()-saved.at<1800000&&Array.isArray(saved.items))homeFeedState=saved;}catch(e){}
+let saveHomeFeed=()=>{};
+function usePage(d){PAGE=d;WORKS=(d.items||[]).slice();byWV={};byEmo={};byFile={};registerWorks(WORKS);(HOME.sections||[]).forEach(s=>{byWV[s.key]=s.items||[];registerWorks(s.items);});registerWorks([HOME.cover]);WORKS.forEach(w=>{if(w.emo)(byEmo[w.emo]=byEmo[w.emo]||[]).push(w);});}
+const CAT=(p,options={})=>AHARequest.get('/cat/'+p,{timeout:20000,...options});
+let _refreshExtras=()=>{};
+function showLoadError(error){const el=document.getElementById('app');el.innerHTML='<div class="mempty" style="padding:70px 24px">馆藏暂时无法加载。<br><button id="retryHome">重试</button></div>';el.querySelector('#retryHome').onclick=loadHome;}
+async function loadHome(){try{HOME=await CAT('home');usePage(HOME);if(shouldPrologue())prologue();else route();CAT('summary').then(d=>{Object.assign(HOME,d);(d.sections||[]).forEach(s=>{byWV[s.key]=s.items||[];registerWorks(s.items);});document.querySelectorAll('[data-count]').forEach(el=>{const k=el.dataset.count;el.textContent=(k==='all'?HOME.total:section(k).count)+' 幅';});document.querySelectorAll('[data-hall-preview]').forEach(el=>{el.innerHTML=peek(section(el.dataset.hallPreview).items,3);});}).catch(()=>{});}catch(e){showLoadError(e);}}
+loadHome();
+// 可选数据迟到时只更新对应栏目，不重建页面或抢走滚动位置。
+if(window.AHA)AHA.state().then(st=>{STATE=Object.assign(STATE,st||{});_refreshExtras();}).catch(()=>{});
+AHARequest.get('api/specials').then(sp=>{_SPECIALS=sp.items||[];_refreshExtras();}).catch(()=>{});
+if(window.AHAFrames)AHAFrames.loadCanonical().then(()=>_refreshExtras()).catch(()=>{});
+AHARequest.get('data/cosbig.json').then(cb=>{window._COSBIG=cb||{};}).catch(()=>{});
+try{lastHall=JSON.parse(localStorage.getItem('aha_last_hall')||'null');}catch(e){}
 
 // ---- 序幕:冷启动用两幅二选一学你 → 点亮 → 进你的美术馆 ----
 function shouldPrologue(){
@@ -507,12 +516,13 @@ function offerTest(w){
   m.querySelector('#ofSkip').onclick=()=>{m.remove();openLb(w);};
   m.onclick=e=>{if(e.target===m){m.remove();openLb(w);}};
 }
-let proPicks=[],proRound=0;
+let proPicks=[],proRound=0,proBusy=false;
 // 高质量/可辨识池:出自多产(=更知名)画家、剔除佚名 —— 让测试图既好看又有代表性
 let QPOOL=[],_proShown=new Set();
 // 固定策划的「测试图册」:72 幅,六个世界观区各 12 幅,皆高质量(≥0.8)、画家各异。可手工增删 code。
 const TEST_CODES=new Set(["Y473DE","F0YTKK","Q8Y44D","K1QWAB","TREWYQ","B8Q17G","A2GFTX","HVD5E8","Y1NSJK","Q06800","S9GFDQ","BXDTB9","RWKGF7","H401DG","MG0JV7","QTJ1WQ","T0XKEF","C2PANQ","WNP1XJ","K4HH46","H18TXX","PZGGZW","VMET9S","PBJRS3","JKKAC0","FYJGXX","Q022GG","CMEDXH","VJE6CY","NZ86XV","YFYXPB","AVT290","Z3ZK43","HG79BW","FCJ2Q3","XGA6S9","FT25XV","SHR2A1","DRTZ71","K0EJ58","RR4WMD","WG56M4","PSWBSJ","JPJ07Z","RHPTYF","KDPS9Q","XGEC8S","AAVVGT","D8MXS7","CAD7M1","BB0VNZ","NGQ4H0","J7RJW4","GR9FD4","VNSCQD","AHE2P8","HD8KFX","PETN6P","ZSME70","AH5QQ8","XSADWP","WCNTT5","B2NG02","XYZENM","WGCP0G","QH1HH7","EE1609","G4BQ6B","AGS78R","BQMM2V","BT2M0T","AWW9QM"]);
 function buildQPool(){
+  if(window._TESTPOOL&&_TESTPOOL.length>=2){QPOOL=_TESTPOOL;return;}
   const anon=w=>!w.artist||/佚名|待考|无名|未知|匿名|不详|无款|unknown|anonymous/i.test(w.artist);
   // ① 优先用固定测试图册(六区均衡、皆高质量、画家各异)
   const anchors=WORKS.filter(w=>w.code&&TEST_CODES.has(w.code));
@@ -534,7 +544,7 @@ function farContrastPair(pool){let A=pool[0],B=pool[1],bd=-1;
   return[A,B];}
 // 策略:首轮最大对比;之后绕"运行重心"沿轮换的探测轴(再现-表现/结构-感知/两对角)放一对对立画,偏移随轮次收窄(粗→细),逼出真实偏向
 function proPair(){
-  const pool=(QPOOL&&QPOOL.length>20)?QPOOL:WORKS,k=proPicks.length;
+  const pool=(QPOOL&&QPOOL.length>=2)?QPOOL:WORKS,k=proPicks.length;
   if(k===0)return farContrastPair(pool);
   const cx=proPicks.reduce((s,p)=>s+p.x,0)/k,cy=proPicks.reduce((s,p)=>s+p.y,0)/k;
   const ang=[0,Math.PI/2,Math.PI/4,-Math.PI/4][(k-1)%4],ux=Math.cos(ang),uy=Math.sin(ang),off=0.34*Math.pow(0.8,k-1);
@@ -544,7 +554,7 @@ function proPair(){
   if(!a||!b||a===b||(a.artist&&a.artist===b.artist)||Math.hypot(a.x-b.x,a.y-b.y)<0.12)return farContrastPair(pool); // 同画家/对比不够→兜底拉开
   return[a,b];
 }
-function prologue(){proPicks=[];proRound=0;_proShown.clear();buildQPool();app.innerHTML='<div class="prologue" id="pro"></div>';proStep();}
+async function prologue(){disposeView();const token=++routeSeq;app.innerHTML='<div class="mempty">正在准备测试画册…</div>';try{const d=await CAT('test-pool',{signal:viewController.signal});if(token!==routeSeq)return;window._TESTPOOL=d.items||[];if(_TESTPOOL.length<2)throw Error('测试图册不足');registerWorks(_TESTPOOL);proPicks=[];proRound=0;proBusy=false;_proShown.clear();buildQPool();app.innerHTML='<div class="prologue" id="pro"></div>';proStep();}catch(e){if(e.name==='AbortError')return;app.innerHTML='<div class="mempty">测试画册暂不可用 <button onclick="route()">返回美术馆</button></div>';}}
 function proStep(){
   if(proRound>=5)return proFinish();
   const [a,b]=proPair();_proShown.add(a.file);_proShown.add(b.file);
@@ -556,22 +566,23 @@ function proStep(){
   document.getElementById('pa').onclick=()=>proPick(a,b);
   document.getElementById('pb').onclick=()=>proPick(b,a);
 }
-function proPick(w,other){proPicks.push(w);
+function proPick(w,other){if(proBusy)return;proPicks.push(w);
   if(window.AHA){
     AHA.event('like',{target_type:'work',target_id:w.file,work_id:w.work_id,x:w.x,y:w.y});
     if(other)AHA.event('skip',{target_type:'work',target_id:other.file,work_id:other.work_id,x:other.x,y:other.y}); // 对比学习:没选的=排斥信号
   }
   proRound++;proStep();}
 function proExit(){try{sessionStorage.setItem('aha_seen_prologue','1');}catch(e){}route();}
-function proFinish(){
+async function proFinish(){
+  if(proBusy)return;proBusy=true;const pair=document.querySelector('.pro-pair');if(pair)pair.style.pointerEvents='none';const question=document.querySelector('.pro-top .q');if(question)question.textContent='正在整理你的审美画像…';
   try{sessionStorage.setItem('aha_seen_prologue','1');}catch(e){}
   const n=proPicks.length||1,cx=proPicks.reduce((s,p)=>s+p.x,0)/n,cy=proPicks.reduce((s,p)=>s+p.y,0)/n;
   STATE.taste={x:+cx.toFixed(3),y:+cy.toFixed(3),n:n*3};
-  const regs=Object.keys(WVN).map(k=>{const ws=byWV[k]||[];if(!ws.length)return null;const ax=ws.reduce((s,w)=>s+w.x,0)/ws.length,ay=ws.reduce((s,w)=>s+w.y,0)/ws.length;return{k,d:Math.hypot(ax-cx,ay-cy)};}).filter(Boolean).sort((a,b)=>a.d-b.d);
+  const regs=Object.keys(WVN).map(k=>{const sec=section(k);if(!sec.count||sec.x==null||sec.y==null)return null;return{k,d:Math.hypot(sec.x-cx,sec.y-cy)};}).filter(Boolean).sort((a,b)=>a.d-b.d);
   const best=regs[0]?regs[0].k:'WV1',second=regs[1]?regs[1].k:null;
-  const share=Math.round((WORKS.length?(byWV[best]||[]).length/WORKS.length:0)*100);
+  const share=HOME.total?Math.round(section(best).count/HOME.total*100):null;
   const rlab=share<8?'稀有':share<18?'小众':'主流';
-  const arts=nearestArtists(cx,cy,3),ben=arts[0],benAff=ben?Math.round(Math.max(0,1-ben.d/0.85)*100):0;
+  let arts=[];const token=routeSeq;try{arts=(await CAT('artists-near?x='+cx+'&y='+cy+'&limit=3',{signal:viewController.signal})).items||[];}catch(e){}if(token!==routeSeq||!document.getElementById('pro'))return;const ben=arts[0],benAff=ben?Math.round(Math.max(0,1-ben.d/0.85)*100):0;
   _proResult={t:ARCHE[best].t,wvn:WVN[best],ben:ben?ben.artist:'',share:share};
   const artHTML=arts.map(a=>{const aff=Math.round(Math.max(0,1-a.d/0.85)*100);
     return `<a class="ap-art" href="art.html?w=${encodeURIComponent(a.rep.file)}"><div class="ap-th"><img loading="lazy" decoding="async" src="${imgT(a.rep,300)}"></div><div class="ap-an">${esc(a.artist)}</div><div class="ap-aff">契合 ${aff}%</div></a>`;}).join('');
@@ -585,13 +596,13 @@ function proFinish(){
       <div class="ap-stats">
         <div class="ap-st"><div class="ap-sv" style="font-family:var(--serif);color:var(--gold)">${WVN[best]}</div><div class="ap-sl">你的门派</div></div>
         <div class="ap-st"><div class="ap-sv">${ben?esc(ben.artist):'—'}</div><div class="ap-sl">本命艺术家 · ${benAff}%</div></div>
-        <div class="ap-st"><div class="ap-sv">${share}<span class="u">%</span></div><div class="ap-sl">名作落此带 · ${rlab}</div></div>
+        <div class="ap-st"><div class="ap-sv">${share==null?'—':share}<span class="u">${share==null?'':'%'}</span></div><div class="ap-sl">名作落此带 · ${rlab}</div></div>
       </div>
       <div class="ap-sect">与你最像的艺术家</div>
       <div class="ap-arts">${artHTML}</div>
       <div class="ap-sect">你所在的世界观 · 点开任一片去逛</div>
       <div id="proworlds" class="ap-worlds"></div>
-      <div class="ap-foot">这是第一版近似——只凭你此刻的世界观位置。<b>越逛,aha 越懂你</b>;这份画像随时能在「我的」里重看、重测。</div>
+      <div class="ap-foot">这是第一版近似——只凭你此刻的世界观位置。地图点为测试样本，分区占比来自全体在展坐标作品。<b>越逛,aha 越懂你</b>;这份画像随时能在「我的」里重看、重测。</div>
       <div class="ap-actions"><button class="ap-go" onclick="proEnter()">进入为你而设的美术馆 →</button><button class="ap-share" onclick="shareProfile()">↗ 把我的审美晒出去</button></div>
     </div></div>`;
   drawProMap(cx,cy,best);buildProWorlds(best);
@@ -603,7 +614,7 @@ function nearestArtists(cx,cy,k){
   arr.sort((p,q)=>p.d-q.d);return arr.slice(0,k);
 }
 function buildProWorlds(best){const box=document.getElementById('proworlds');if(!box)return;
-  box.innerHTML=Object.keys(WVN).map(k=>`<div class="pw${k===best?' on':''}" onclick="proEnterHall('${k}')"><div class="pw-n">${WVN[k]}</div><div class="pw-c">${(byWV[k]||[]).length} 幅</div></div>`).join('');
+  box.innerHTML=Object.keys(WVN).map(k=>`<div class="pw${k===best?' on':''}" onclick="proEnterHall('${k}')"><div class="pw-n">${WVN[k]}</div><div class="pw-c">${section(k).count} 幅</div></div>`).join('');
 }
 function proEnterHall(k){try{sessionStorage.setItem('aha_seen_prologue','1');}catch(e){}go('wv:'+k);}
 function proEnter(){route();}
@@ -613,25 +624,26 @@ function drawProMap(cx,cy,best){const NS='http://www.w3.org/2000/svg',Wd=460,H=3
   const svg=E('svg',{viewBox:`0 0 ${Wd} ${H}`,style:'width:100%;height:auto;background:#fbf9f3;border:1px solid rgba(40,30,15,.12);border-radius:12px'});
   svg.appendChild(E('line',{x1:sx(.5),y1:p,x2:sx(.5),y2:H-p,stroke:'#ece5d6'}));
   svg.appendChild(E('line',{x1:p,y1:sy(.5),x2:Wd-p,y2:sy(.5),stroke:'#ece5d6'}));
-  WORKS.forEach(w=>{const j=window.AHACloud?AHACloud.at(w.file,w.x,w.y):[w.x,w.y];svg.appendChild(E('circle',{cx:sx(j[0]),cy:sy(j[1]),r:2.1,fill:WVC[w.wv]||'#b0673a','fill-opacity':w.wv===best?.32:.12}));});
-  Object.keys(WVN).forEach(k=>{const ws=byWV[k]||[];if(!ws.length)return;const ax=ws.reduce((s,w)=>s+w.x,0)/ws.length,ay=ws.reduce((s,w)=>s+w.y,0)/ws.length,on=k===best;
+  (window._TESTPOOL||WORKS).forEach(w=>{const j=window.AHACloud?AHACloud.at(w.file,w.x,w.y):[w.x,w.y];svg.appendChild(E('circle',{cx:sx(j[0]),cy:sy(j[1]),r:2.1,fill:WVC[w.wv]||'#b0673a','fill-opacity':w.wv===best?.32:.12}));});
+  Object.keys(WVN).forEach(k=>{const sec=section(k);if(!sec.count||sec.x==null)return;const ax=sec.x,ay=sec.y,on=k===best;
     const tx=E('text',{x:sx(ax),y:sy(ay),'font-size':on?12.5:10,'font-family':'Noto Serif SC','text-anchor':'middle',fill:on?'#b0673a':'#9a917f','font-weight':on?700:500,'paint-order':'stroke',stroke:'#fbf9f3','stroke-width':on?3:2});tx.textContent=WVN[k];svg.appendChild(tx);});
   [['再现',.02,'start'],['表现 →',.98,'end']].forEach(([t,xx,a])=>{const e=E('text',{x:sx(xx),y:H-8,'font-size':9.5,'font-family':'JetBrains Mono',fill:'#9a917f','text-anchor':a});e.textContent=t;svg.appendChild(e);});
   const halo=E('circle',{cx:sx(cx),cy:sy(cy),r:6,fill:'#b0673a','fill-opacity':.14});svg.appendChild(halo);
   svg.appendChild(E('circle',{cx:sx(cx),cy:sy(cy),r:3,fill:'#b0673a',stroke:'#fff','stroke-width':2.5}));
   const lab=E('text',{x:sx(cx),y:sy(cy)-13,'font-size':10.5,'font-family':'JetBrains Mono','text-anchor':'middle',fill:'#b0673a','font-weight':600,'paint-order':'stroke',stroke:'#fbf9f3','stroke-width':3});lab.textContent='你在这';svg.appendChild(lab);
   document.getElementById('promap').appendChild(svg);
-  let r=0;const iv=setInterval(()=>{r+=1;halo.setAttribute('r',Math.min(18,6+r*1.2));if(r>=10)clearInterval(iv);},45);}
+  let r=0;const iv=setInterval(()=>{r+=1;halo.setAttribute('r',Math.min(18,6+r*1.2));if(r>=10)clearInterval(iv);},45);viewCleanups.push(()=>clearInterval(iv));}
 addEventListener('hashchange',route);
 
 function exhibit(h){
   if(h.startsWith('wv:')){const k=h.slice(3);return {type:'wv',key:k,title:WVN[k]||k,badge:k,note:WVNOTE[k]||'',works:byWV[k]||[]};}
-  if(h.startsWith('emo:')){const k=h.slice(4);return {type:'emo',key:k,title:k+' · 情绪展厅',badge:'EMO',note:'循同一种情绪,看不同画家如何处理它。',works:byEmo[k]||[]};}
-  if(h.startsWith('sp:')){const s=_SPECIALS.find(x=>('sp:'+x.id)===h);if(s)return {type:'sp',key:h,title:s.title,badge:'特展',note:s.note,works:specialWorks(s)};}
-  if(h.startsWith('artist:')){const a=h.slice(7);return {type:'artist',key:a,title:a+' 的眼睛',badge:'艺术家',note:'同一双眼睛看世界的不同瞬间。',works:WORKS.filter(w=>w.artist===a)};}
+  if(h.startsWith('emo:')){const k=h.slice(4);return {type:'emo',key:k,title:k+'· 情绪展厅',badge:'EMO',note:'循同一种情绪,看不同画家如何处理它。',works:byEmo[k]||[]};}
+  if(h.startsWith('sp:')){const s=_SPECIALS.find(x=>('sp:'+x.id)===h);return {type:'sp',key:h,title:s?s.title:'主题特展',badge:'特展',note:s?s.note:'',works:s?specialWorks(s):[]};}
+  if(h.startsWith('artist:')){const a=h.slice(7);return {type:'artist',key:a,title:a+'的眼睛',badge:'艺术家',note:'同一双眼睛看世界的不同瞬间。',works:WORKS.filter(w=>w.artist===a)};}
   if(h.startsWith('foryou')){return {type:'foryou',key:'foryou',title:'为你点亮',badge:'✦',note:'reward 内核按你的口味重心 × 惊奇带,从全馆为你精排序挑出的画。',works:(window._FYREWARD&&_FYREWARD.length)?_FYREWARD:foryouWorks()};}
-  if(h.startsWith('mine')){return {type:'mine',key:'mine',title:'我的收藏',badge:'❤',note:'你心动过的画,都在这。',works:(STATE.collections||[]).map(f=>byFile[f]).filter(Boolean)};}
-  if(h==='all'){return {type:'all',key:'all',title:'全部馆藏',badge:'ALL',note:'226 幅人类公共领域真迹。',works:WORKS};}
+  if(h.startsWith('mine')){return {type:'mine',key:'mine',title:'我的收藏',badge:'',note:'你心动过的画,都在这。',works:(STATE.collections||[]).map(f=>byFile[f]).filter(Boolean)};}
+  if(h.startsWith('collection:'))return {type:'collection',key:h,title:window._collectionTitle||'主题展',badge:'主题展',note:'',works:[]};
+  if(h==='all'){return {type:'all',key:'all',title:'全部馆藏',badge:'ALL',note:'按页浏览在展作品。',works:WORKS};}
   return null;
 }
 function foryouWorks(){
@@ -645,14 +657,9 @@ function foryouWorks(){
 // 返回美术馆回到点击位置:openLb 存了 {hash,y};渲染同一展区后还原滚动
 // (含异步图片/瀑布,多次重试逼近);不匹配或非返回则照常回顶
 let _back=null;try{const _b=sessionStorage.getItem('aha_back');if(_b)_back=JSON.parse(_b);}catch(e){}
-function applyScroll(){
-  if(_back&&_back.hash===location.hash){
-    const y=_back.y||0;_back=null;try{sessionStorage.removeItem('aha_back');}catch(e){}
-    [0,100,300,650,1100].forEach(t=>setTimeout(()=>scrollTo(0,y),t));
-  }else{scrollTo(0,0);}
-}
+function applyScroll(){const y=_back&&_back.hash===location.hash?(_back.y||0):0;_back=null;try{sessionStorage.removeItem('aha_back');}catch(e){}scrollTo(0,y);}
 // 今日封面:按日期确定性挑一幅(每天换一张),首页大刊式 hero
-function coverWork(){if(!WORKS.length)return null;
+function coverWork(){if(HOME.cover)return HOME.cover;if(!WORKS.length)return null;
   const pool=WORKS.filter(w=>(w.quality||0)>=0.85);const P=pool.length?pool:WORKS;   // 封面是门面:只从高质量里选
   const d=new Date();const seed=Math.abs(hash(d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()+'-'+d.getHours()));  // 每小时一张
   return P[seed%P.length];}
@@ -663,14 +670,13 @@ function coverHTML(w){if(!w)return '';const t=String(w.title||'无题').replace(
     <div class="cv-cap"><div class="cv-voice">「${esc(readLine(w))}」</div>
       <div class="cv-by"><b>${esc(t)}</b> · ${esc(w.artist||'佚名')}</div>
       <span class="cv-enter">走近这幅 →</span></div>`;}
-function route(){
-  const p=new URLSearchParams(location.hash.slice(1));
-  const hall=p.get('hall'),form=p.get('form')||'salon';
-  if(hall==='mine'){location.href='me.html';return;}   // 「我的」并入个人中心 me.html(深链也跳)
-  if(hall){const ex=exhibit(hall);if(ex)return renderHall(ex,form);}
-  lobby();
-}
-function go(hall,form){location.hash='hall='+hall+'&form='+(form||'salon');}
+async function route(){disposeView();_refreshExtras=()=>{};const token=++routeSeq;const p=new URLSearchParams(location.hash.slice(1)),hall=p.get('hall'),form=p.get('form')||'salon';if(hall==='mine'){location.href='me.html';return;}
+ if(!hall){usePage(homeFeedState?{...HOME,items:homeFeedState.items}:HOME);lobby();return;}
+ const ex=exhibit(hall);if(!ex){usePage(HOME);lobby();return;}
+ const filters={};if(hall.startsWith('wv:'))filters.wv=hall.slice(3);else if(hall.startsWith('emo:'))filters.emo=hall.slice(4);else if(hall.startsWith('artist:'))filters.artist=hall.slice(7);else if(hall.startsWith('sp:'))filters.special=hall.slice(3);else if(hall.startsWith('collection:'))filters.collection=hall.slice(11);else if(hall==='foryou'){renderHall(ex,form);return;}
+ app.innerHTML='<div class="mempty">正在打开展厅…</div>';
+ try{const d=await CAT('browse?'+new URLSearchParams({...filters,limit:24}),{signal:viewController.signal});if(token!==routeSeq)return;registerWorks(d.items);ex.works=d.items||[];ex.page=d;ex.filters=filters;ex.total=d.total??(hall==='all'?HOME.total:hall.startsWith('wv:')?section(hall.slice(3)).count:null);renderHall(ex,form);}catch(e){if(e.name==='AbortError')return;app.innerHTML='<div class="mempty">展厅暂不可用 <button onclick="route()">重试</button> <a href="#">返回大厅</a></div>';}}
+function go(hall,form){location.hash=new URLSearchParams({hall,form:form||'salon'}).toString();}
 function setForm(f){const p=new URLSearchParams(location.hash.slice(1));p.set('form',f);location.hash=p.toString();}
 function peek(list,n){return list.slice(0,n).map(w=>`<img loading="lazy" decoding="async" src="${imgT(w,300)}">`).join('');}
 const app=document.getElementById('app');
@@ -716,8 +722,8 @@ function lobby(){
   const B=document.getElementById('bands');
   // 固定展区
   B.appendChild(band('固定展区 · 常设',`6 间世界观主厅 + 全部馆藏`,
-    ['WV1','WV2','WV3','WV4','WV5','WV6'].map(k=>hallCard('wv:'+k,WVN[k],(byWV[k]||[]).length+' 幅',byWV[k]||[],k))
-    .concat([hallCard('all','全部馆藏',WORKS.length+' 幅',WORKS,'ALL')])));
+    ['WV1','WV2','WV3','WV4','WV5','WV6'].map(k=>hallCard('wv:'+k,WVN[k],section(k).count==null?'统计加载中':section(k).count+'幅',byWV[k]||[],k))
+    .concat([hallCard('all','全部馆藏',HOME.total==null?'统计加载中':HOME.total+'幅',HOME.items,'ALL')])));
   // 为你:先用客户端口味即时兜底,再异步用后端 reward 内核升级
   const fy=foryouWorks();
   const fyBand=band('✦ 为你',STATE.taste?`按你逛出的口味挑的`:`逛几幅,这里就会为你长出展`,
@@ -732,8 +738,8 @@ function lobby(){
     radioChs.map(([ch,n,cd,wv])=>{const el=document.createElement('a');el.className='card link';el.href='frame.html'+(ch?('?ch='+ch):'');el.style.textDecoration='none';const cv=chCover(wv);
       el.innerHTML=`${cv?`<div class="bg"><img loading="lazy" src="${imgT(cv)}"></div>`:''}<div class="grad"></div><div class="c"><div class="n">${esc(n)}</div><div class="cd">${esc(cd)}</div></div>`;return el;})));
   // 特展(图谱切片自动策)
-  const sps=_SPECIALS.filter(s=>s.public!==false).map(s=>{const ws=specialWorks(s);return hallCard('sp:'+s.id,s.title,ws.length+' 幅 · '+(s.note||'').slice(0,12)+'…',ws,'特展');});
-  if(sps.length)B.appendChild(band('🗓 特展 · 临时',`后台策划的主题展`,sps));
+  const sps=_SPECIALS.filter(s=>s.public!==false).map(s=>{const ws=specialWorks(s);return hallCard('sp:'+s.id,s.title,'主题精选 · '+(s.note||'').slice(0,12),ws,'特展');});
+  const spBand=band('特展 · 临时','主题精选',sps);spBand.hidden=!sps.length;B.appendChild(spBand);_refreshExtras=()=>{if(!B.isConnected)return;const cards=_SPECIALS.filter(s=>s.public!==false).map(s=>hallCard('sp:'+s.id,s.title,'主题精选',specialWorks(s),'特展'));spBand.hidden=!cards.length;fillBand(spBand,cards);loadForyouBand(fyBand);};
   // 主题展(后台 dashboard 策划的 collections,DB 驱动,异步)
   const ob=band('🏛 主题展 · 策展人',`后台策划的主题展,可在数据后台增删`,[emptyCard('加载中…')]);B.appendChild(ob);
   CAT('exhibitions').then(d=>{const cards=(d.exhibitions||[]).map(collCard);fillBand(ob,cards.length?cards:[emptyCard('还没有主题展——去后台策一个')]);}).catch(()=>fillBand(ob,[emptyCard('暂不可用')]));
@@ -741,11 +747,11 @@ function lobby(){
   const hb=band('🔥 热门',`大家最常驻足的画与展厅`,[emptyCard('加载中…')]);B.appendChild(hb);
   if(window.AHA)AHA.hot().then(d=>{const cards=[];(d.halls||[]).forEach(x=>{const ex=exhibit(x.hall);if(ex)cards.push(hallCard(x.hall,ex.title,x.c+' 次驻足',ex.works,'热'));});
     (d.works||[]).forEach(x=>{const w=byFile[x.file];if(w)cards.push(workCard(w));});
-    fillBand(hb,cards.length?cards:[emptyCard('还没有热度——你就是第一个逛的人')]);});
+    fillBand(hb,cards.length?cards:[emptyCard('还没有热度——你就是第一个逛的人')]);}).catch(()=>fillBand(hb,[emptyCard('热门暂不可用')]));
   // 策展人(我的展 + 占位)
   const cb=band('🧑‍🎨 策展人之声',`你已公开展出的展在这;审核中/未公开的在「我的展」`,[emptyCard('加载中…')]);B.appendChild(cb);
   if(window.AHA)AHA.myExhibitions().then(d=>{const cards=(d.items||[]).filter(ex=>ex.approved).map(ex=>{const ws=(ex.work_ids||[]).map(f=>byFile[f]).filter(Boolean);const _el=hallCard('','',ex.title,ws,'我策',ex.work_ids);_el.onclick=()=>location.href='curate.html?ex='+encodeURIComponent(ex.id);return _el;});
-    cards.push(addCard());fillBand(cb,cards);});
+    cards.push(addCard());fillBand(cb,cards);}).catch(()=>fillBand(cb,[addCard()]));
   // 整馆逛法:逛的是整张图谱本身(跨所有展),不是某一个展里的画
   const labCard=(href,kind,n,cd)=>{const el=document.createElement('a');el.className='card lab '+kind;el.href=href;el.innerHTML=`<div class="lab-scrim"></div><div class="c"><div class="n">${n}</div><div class="cd">${cd}</div></div>`;return el;};
   B.appendChild(band('🎮 互动应用 · 玩转整张图谱','把整座知识图谱、两画之间、让 AI 替你策展,都变成能上手玩的应用(点末张看全部)',[
@@ -757,7 +763,7 @@ function lobby(){
   ]));
   // 全部馆藏:Pinterest 式 append-only 瀑布(按 ar 预留高度→不跳闪;分批无限滚动)
   const allSec=document.createElement('div');allSec.className='band allband';
-  allSec.innerHTML=`<div class="band-h"><span class="t">🗂 全部馆藏</span><span class="n">${WORKS.length}</span><span class="d">点任意一幅走近它 · <a class="allgo" onclick="go('all')">用逛法浏览全部 →</a></span><span class="line"></span></div><div class="mason" id="mason"></div><div class="moreWrap" id="moreWrap"></div>`;
+  allSec.innerHTML=`<div class="band-h"><span class="t">全部馆藏</span><span class="n" data-count="all">${HOME.total==null?'统计加载中':HOME.total}</span><span class="d">点任意一幅走近它 · <a class="allgo" onclick="go('all')">用逛法浏览全部 →</a></span><span class="line"></span></div><div class="mason" id="mason"></div><div class="moreWrap" id="moreWrap"></div>`;
   B.appendChild(allSec);
   const mason=allSec.querySelector('#mason');
   const clampAr=a=>Math.max(0.5,Math.min(1.9,(+a)||1));
@@ -776,42 +782,91 @@ function lobby(){
     if(/^(无题|untitled|无名|佚名)$/i.test(t))return '';return t;}
   function mArtist(a){a=((a||'').trim());if(!a||/佚名|待考|无名|未知|匿名|不详|无款|unknown|anonymous|untitled/i.test(a))return '';return a;}
   // 缩略图省带宽:COS 作品走腾讯云即时压缩(imageMogr2,不预生成);本地图无转换则原样。只动 <img> 显示,w.file 作为点击身份不变。
+  // Keep lightweight measured slots; distant frames/images are reconstructed on approach.
+  const tileObserver=new IntersectionObserver(entries=>{for(const e of entries){
+    const el=e.target;
+    if(e.isIntersecting){if(!el.firstElementChild){el._builders.forEach(make=>el.appendChild(make()));el.style.height='';}}
+    else if(el.firstElementChild){const h=el.getBoundingClientRect().height;if(h>0){el.style.height=h+'px';el.replaceChildren();}}
+  }},{rootMargin:'1400px 0px'});
+  viewCleanups.push(()=>tileObserver.disconnect());
   function addTile(w){let mi=0;for(let i=1;i<_colN;i++)if(_ch[i]<_ch[mi])mi=i;
     const col=_cols[mi],cw=col.clientWidth||200,estH=cw/(w.ar?clampAr(w.ar):0.85)+40; // 像素估高,平衡列
-    const el=document.createElement('div');el.className='mtile';
+    const make=()=>{const el=document.createElement('div');el.className='mtile';el.dataset.workKey=String(w.work_id||w.file);el.style.containIntrinsicSize='auto '+Math.round(estH)+'px';
     const ma=mArtist(w.artist),mt=mTitle(w.title,w.artist);
     const framed=window.AHAFrames?AHAFrames.wrap(`<img loading="lazy" decoding="async" src="${imgT(w,440)}">`,w,'lift'):`<div class="mframe"><img loading="lazy" decoding="async" src="${imgT(w,440)}"></div>`;
     const cap=(mt||ma)?`<div class="mcap">${mt?`<div class="mt">${esc(mt)}</div>`:''}${ma?`<div class="ma">${esc(ma)}</div>`:''}</div>`:'';
     el.innerHTML=`${framed}${cap}`;
-    el.onclick=()=>openLb(w,WORKS);col.appendChild(el);_ch[mi]+=estH;
-    el.querySelector('img').onload=()=>{_ch[mi]=col.offsetHeight;}; // 加载后用真实列高校正
+    el.onclick=()=>openLb(w,WORKS);
+    el.querySelector('img').style.aspectRatio=String(w.ar?clampAr(w.ar):0.85);el.querySelector('img').style.objectFit='contain';return el;};make.workKey=String(w.work_id||w.file);
+    let segment=col.lastElementChild;
+    if(!segment||segment._builders.length>=12){segment=document.createElement('div');segment.className='feed-segment';segment.style.display='flex';segment.style.flexDirection='column';segment.style.gap=getComputedStyle(col).gap;segment._builders=[];col.appendChild(segment);tileObserver.observe(segment);}
+    if(!segment.firstElementChild&&segment._builders.length)segment._builders.forEach(build=>segment.appendChild(build()));
+    segment._builders.push(make);segment.appendChild(make());segment.style.height='';_ch[mi]+=estH;
   }
   function addBatch(n){for(let k=0;k<n&&_ai<WORKS.length;k++,_ai++)addTile(WORKS[_ai]);}
-  function relayout(){const keep=_ai;_ai=0;buildCols();addBatch(keep);}
-  const PER=60;                 // 每批数量
+  function relayout(){tileObserver.disconnect();const keep=_ai;_ai=0;buildCols();addBatch(keep);}
   const moreWrap=allSec.querySelector('#moreWrap');
-  function renderMore(){const left=WORKS.length-_ai;
-    if(left<=0){moreWrap.innerHTML='<div class="moreDone">— 已是全部馆藏 —</div>';return;}
-    moreWrap.innerHTML=`<button class="moreBtn" id="moreBtn">加载更多 <span>还有 ${left} 幅</span></button>`;
-    moreWrap.querySelector('#moreBtn').onclick=()=>{addBatch(PER);renderMore();};}
-  buildCols();addBatch(108);renderMore();   // 首屏先给一百多幅,之后点按加载,有节奏
-  let _rt;addEventListener('resize',()=>{clearTimeout(_rt);_rt=setTimeout(()=>{if(colCount()!==_colN){relayout();renderMore();}},200);});
+  let pageData=homeFeedState?homeFeedState.page:HOME,busy=false,failed=false,disposed=false;
+  const seen=new Set(WORKS.map(w=>String(w.work_id||w.file)));
+  const feedSignal=viewController.signal;
+  moreWrap.setAttribute('role','status');moreWrap.setAttribute('aria-live','polite');
+  function renderMore(){
+    if(failed){moreWrap.innerHTML='<button class="moreBtn" id="retryFeed">暂时没能加载，点此重试</button>';moreWrap.querySelector('#retryFeed').onclick=()=>{failed=false;fetchMore();};return;}
+    moreWrap.innerHTML='<span class="moreDone">'+(busy?'正在为你挂上更多作品…':pageData.has_more?'继续向下，发现更多作品':'已看完本次展出作品')+'</span>';
+  }
+  async function fetchMore(){
+    if(busy||failed||disposed||!pageData.has_more)return;
+    busy=true;renderMore();
+    try{
+      const cursor=pageData.next_cursor;
+      if(!cursor)throw Error('缺少分页游标');
+      const d=await CAT('browse?'+new URLSearchParams({limit:24,cursor}),{signal:feedSignal});
+      if(disposed||!allSec.isConnected)return;
+      if(d.has_more&&(!d.next_cursor||d.next_cursor===cursor))throw Error('分页游标没有前进');
+      const fresh=(d.items||[]).filter(w=>{const key=String(w.work_id||w.file);if(seen.has(key))return false;seen.add(key);return true;});
+      WORKS.push(...fresh);registerWorks(fresh);pageData=d;addBatch(fresh.length);
+    }catch(e){if(!disposed&&e.name!=='AbortError')failed=true;}
+    finally{busy=false;if(!disposed){renderMore();if(!failed&&pageData.has_more){observer.unobserve(moreWrap);observer.observe(moreWrap);}}}
+  }
+  const observer=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting))fetchMore();},{rootMargin:'700px 0px'});
+  buildCols();addBatch(homeFeedState?WORKS.length:24);renderMore();observer.observe(moreWrap);
+  saveHomeFeed=(selected)=>{
+    const items=WORKS.map(w=>{const compact={};for(const k of ['work_id','file','thumb','title','artist','ar','x','y','wv','emo','year','medium','width','height','frame','frame_style','quality','region','style','media','subject','color','frame_suggest','frame_why','frame_finish','frame_conf'])if(w[k]!=null)compact[k]=w[k];return compact;});
+    const anchor=selected?Array.from(mason.querySelectorAll('.mtile')).find(el=>el.dataset.workKey===String(selected.work_id||selected.file)):null;
+    const state={anchor:anchor?{key:anchor.dataset.workKey,top:anchor.getBoundingClientRect().top}:null,items,page:{has_more:pageData.has_more,next_cursor:pageData.next_cursor},y:window.scrollY,at:Date.now()};homeFeedState=state;
+    try{sessionStorage.setItem('aha_feed',JSON.stringify(state));sessionStorage.removeItem('aha_feed_deep');}catch(e){try{sessionStorage.removeItem('aha_feed');}catch(_){} /* Browser BFCache remains the fallback when storage is unavailable. */}
+  };
+  if(homeFeedState){
+    const saved=homeFeedState;let attempts=0,restoreTimer,restoreCancelled=false;
+    if(saved.anchor)for(const segment of mason.querySelectorAll('.feed-segment'))if(segment._builders.some(make=>make.workKey===saved.anchor.key)&&!segment.firstElementChild){segment._builders.forEach(make=>segment.appendChild(make()));segment.style.height='';}
+    const restore=()=>{if(disposed||restoreCancelled)return;
+      if(saved.anchor)for(const segment of mason.querySelectorAll('.feed-segment'))if(segment._builders.some(make=>make.workKey===saved.anchor.key)&&!segment.firstElementChild){segment._builders.forEach(make=>segment.appendChild(make()));segment.style.height='';}
+      const anchor=saved.anchor&&Array.from(mason.querySelectorAll('.mtile')).find(el=>el.dataset.workKey===saved.anchor.key);
+      if(anchor){anchor.style.contentVisibility='visible';scrollTo(0,window.scrollY+anchor.getBoundingClientRect().top-saved.anchor.top);}else if(!saved.anchor)scrollTo(0,saved.y||0);
+      if(++attempts<30)restoreTimer=setTimeout(restore,100);
+    };
+    const cancelRestore=()=>{restoreCancelled=true;clearTimeout(restoreTimer);restoreObserver.disconnect();};
+    const restoreObserver=new ResizeObserver(()=>{if(!restoreCancelled&&!disposed){clearTimeout(restoreTimer);restoreTimer=setTimeout(restore,0);}});
+    restoreObserver.observe(mason);restoreObserver.observe(app);
+    // Images/frames above the target can settle after initial scroll; keep the
+    // selected work anchored until loading settles or the visitor interacts.
+    const stopTimer=setTimeout(cancelRestore,5000);
+    requestAnimationFrame(restore);viewCleanups.push(()=>{cancelRestore();clearTimeout(stopTimer);});
+    for(const type of ['wheel','touchstart','pointerdown','keydown'])onView(window,type,cancelRestore);
+  }
+  viewCleanups.push(()=>{saveHomeFeed=()=>{};homeFeedState={items:WORKS.slice(),page:pageData,y:window.scrollY};disposed=true;observer.disconnect();});
+  let _rt;viewCleanups.push(()=>clearTimeout(_rt));onView(window,'resize',()=>{clearTimeout(_rt);_rt=setTimeout(()=>{if(colCount()!==_colN)relayout();},200);});
+
 }
 // 缩略图省带宽:>32MB COS 超大图(CI 处理不了)用本地预生成 / COS 即时压缩 / 本地 720px webp。w.file 作点击身份不变
-function imgT(w,px){const f=(w&&w.file)||'';px=px||520;
-  if(w&&w.work_id&&window._COSBIG&&_COSBIG[w.work_id])return '/'+_COSBIG[w.work_id];        // >32MB COS → 本地预生成
-  if(/myqcloud\.com/i.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/quality/82';           // COS:即时压缩
-  if(/(^|\/)img\/[^?]*\.(jpe?g|png)$/i.test(f))return f.replace(/\.(jpe?g|png)$/i,'.t720.webp'); // 本地:预生成 webp
-  return (w&&w.thumb)||f;}
-// 兜底:任何缩略图加载失败(如未及生成的超大 COS 图,imageMogr2 返 400)→ 退回原图,绝不裂图
-document.addEventListener('error',function(e){var im=e.target;if(!im||im.tagName!=='IMG'||im.dataset.fb)return;
-  var s=im.getAttribute('src')||'';if(/[?&]imageMogr2/.test(s)){im.dataset.fb='1';im.src=s.replace(/[?&]imageMogr2[^#]*/,'');}},true);
+function imgT(w,px){const f=w&&w.file||'';const mapped=w&&w.work_id&&window._COSBIG&&_COSBIG[w.work_id];return AHAImages.url(mapped?'/'+mapped:((w&&w.thumb)||f),{size:px||520});}
+// 图像容错已统一到全站机制 js/imgguard.js(imageMogr2 退回原图 → 占位封口,绝不裂图)
 function band(title,sub,cards){const el=document.createElement('div');el.className='band';
   el.innerHTML=`<div class="band-h"><span class="t">${esc(title)}</span><span class="n">${esc(sub)}</span><span class="line"></span></div><div class="row"></div>`;
   const row=el.querySelector('.row');cards.forEach(c=>row.appendChild(c));return el;}
 function fillBand(bandEl,cards){const row=bandEl.querySelector('.row');row.innerHTML='';cards.forEach(c=>row.appendChild(c));}
 function hallCard(hall,name,cd,works,badge,workIds){const el=document.createElement('div');el.className='card hall';
-  el.innerHTML=`<div class="bg">${peek(works,3)}</div><div class="dglow"></div><div class="dfloor"></div><div class="darch"></div><div class="c"><div class="n">${esc(name)}</div><div class="cd">${esc(cd)}<span class="dgo">　走进 →</span></div></div>`;
+  el.innerHTML=`<div class="bg" ${hall&&hall.startsWith('wv:')?'data-hall-preview="'+hall.slice(3)+'"':''}>${peek(works,3)}</div><div class="dglow"></div><div class="dfloor"></div><div class="darch"></div><div class="c"><div class="n">${esc(name)}</div><div class="cd"><span ${hall==='all'||(hall&&hall.startsWith('wv:'))?'data-count="'+(hall==='all'?'all':hall.slice(3))+'"':''}>${esc(cd)}</span><span class="dgo">　走进 →</span></div></div>`;
   el.onclick=()=>{ if(hall){go(hall);} else if(workIds){ window._adhoc={title:name,works:works}; renderHall({type:'adhoc',key:'adhoc',title:name,badge:'我策',note:'',works:works},'salon'); } };
   return el;}
 function workCard(w){const el=document.createElement('div');el.className='card work';
@@ -843,22 +898,17 @@ function emptyCard(t){const el=document.createElement('div');el.className='empty
 function collCard(c){const el=document.createElement('div');el.className='card';
   el.innerHTML=`<div class="bg">${c.cover?`<img loading="lazy" src="${c.cover}">`:''}</div><div class="grad"></div><div class="c"><div class="n">${esc(c.name)}</div><div class="cd">${(c.count||0)+' 幅'}${c.desc?' · '+esc(String(c.desc).slice(0,12)):''}</div></div>`;
   el.onclick=()=>openCollection(c);return el;}
-function openCollection(c){
-  toast('正在打开「'+c.name+'」…');
-  CAT('exhibit?limit=600&collection='+c.id).then(d=>{
-    const ws=(d.works||[]).filter(w=>w.file);
-    window._adhoc={title:c.name,works:ws};
-    renderHall({type:'adhoc',key:'col'+c.id,title:c.name,badge:'主题展',note:c.desc||'',works:ws},'salon');
-  }).catch(()=>toast('打开失败'));}
+function openCollection(c){window._collectionTitle=c.name;go('collection:'+c.id);}
 function addCard(){const el=document.createElement('div');el.className='card hall add';el.innerHTML='<div class="c"><div class="n">＋ 策一个展</div><div class="cd">进任意展厅 → 存为展</div></div>';el.onclick=()=>go('wv:WV3');return el;}
 
 function renderHall(ex,form){
+  disposeView();
   if(window._formTimer){clearInterval(window._formTimer);window._formTimer=null;}
   if(window.AHA&&ex.key)AHA.event('enter_hall',{target_type:'hall',target_id:'hall='+(ex.type==='wv'?'wv:'+ex.key:ex.key)});
-  if(ex.type!=='adhoc'){lastHall={hall:(ex.type==='wv'?'wv:'+ex.key:ex.key),form};try{localStorage.setItem('aha_last_hall',JSON.stringify(lastHall));}catch(e){}}
+  if(ex.type!=='adhoc'){lastHall={hall:(['wv','emo','artist'].includes(ex.type)?ex.type+':'+ex.key:ex.key),form};try{localStorage.setItem('aha_last_hall',JSON.stringify(lastHall));}catch(e){}}
   let h=`<div class="hall-top"><div class="hall-bar">
      <a class="back" onclick="location.hash=''">← 回到大厅</a>
-     <span class="title">${esc(ex.title)}</span><span class="cnt">${ex.works.length} 幅</span>
+     <span class="title">${esc(ex.title)}</span><span class="cnt">${ex.total!=null?ex.total:ex.works.length} 幅</span>
      <div class="right"><span class="save" onclick="saveHall(${JSON.stringify(ex.title).replace(/"/g,'&quot;')})">＋ 存为展</span>
        <span style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute)">逛法</span>
        <div class="forms">${FORMS.map(([f,n])=>`<button class="${f===form?'on':''}" onclick="setForm('${f}')">${n}</button>`).join('')}</div>
@@ -870,6 +920,10 @@ function renderHall(ex,form){
   // 逛法只是交互形式,数据一律 = 这个展里的 ex.works
   const R={salon:formSalon,corridor:formCorridor,floor:formFloor,drift:formDrift,dwell:formDwell,versus:formVersus,dial:formDial,fog:formFog,artist:formArtist,vad:formVad,fingerprint:formFingerprint,eastwest:formEastWest,chroma:formChroma};
   (R[form]||formSalon)(stage,ex.works);
+  if(ex.page){const nav=document.createElement('div');nav.className='moreWrap';nav.innerHTML=`<p>本页 ${ex.works.length} 幅${ex.total!=null?' · 展厅共 '+ex.total+' 幅':''} · 当前逛法展示本页作品</p><button id="hallPrev" ${ex.history&&ex.history.length?'':'disabled'}>上一页</button> <button id="hallNext" ${ex.page.has_more?'':'disabled'}>下一页</button><span role="status"></span>`;stage.appendChild(nav);const history=ex.history||[];let busy=false;
+   async function change(back){if(busy)return;busy=true;nav.querySelector('span').textContent=' 加载中…';const cursor=back?history[history.length-1]:ex.page.next_cursor;try{const d=await CAT('browse?'+new URLSearchParams({...ex.filters,limit:24,...(cursor?{cursor}:{})}),{signal:viewController.signal});if(!nav.isConnected)return;registerWorks(d.items);renderHall({...ex,works:d.items||[],page:d,cursor,history:back?history.slice(0,-1):history.concat([ex.cursor||null])},form);scrollTo(0,0);}catch(e){if(e.name!=='AbortError')nav.querySelector('span').textContent=' 加载失败，请重试';}finally{busy=false;}}
+   nav.querySelector('#hallPrev').onclick=()=>change(true);nav.querySelector('#hallNext').onclick=()=>change(false);}
+
 }
 function saveHall(title){
   const ws=(window._hallWorks||[]).map(w=>w.file);
@@ -896,7 +950,7 @@ function formSalon(stage,works){
   }
   function batch(n){for(let k=0;k<n&&ai<works.length;k++,ai++)tile(works[ai]);}
   build();batch(Math.min(works.length,cn*4)); // 首屏先铺满
-  new IntersectionObserver(es=>{if(es[0].isIntersecting)batch(cn*3);},{rootMargin:'700px'}).observe(sent);
+  const observer=new IntersectionObserver(es=>{if(es[0].isIntersecting)batch(cn*3);},{rootMargin:'700px'});observer.observe(sent);viewCleanups.push(()=>observer.disconnect());
 }
 function formCorridor(stage,works){const sorted=works.slice().sort((a,b)=>a.x-b.x);const sc=document.createElement('div');sc.className='corridor';const rail=document.createElement('div');rail.className='crail';
   sorted.forEach(w=>{const wireH=18+(Math.abs(hash(w.file))%64);const el=document.createElement('div');el.className='cart';
@@ -904,14 +958,14 @@ function formCorridor(stage,works){const sorted=works.slice().sort((a,b)=>a.x-b.
     el.onclick=()=>openLb(w,works);rail.appendChild(el);});sc.appendChild(rail);
   const ax=document.createElement('div');ax.className='caxis';ax.textContent='← 再现        沿此墙走过整部世界观        表现 →';sc.appendChild(ax);stage.appendChild(sc);
   sc.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){sc.scrollLeft+=e.deltaY;e.preventDefault();}},{passive:false});
-  let dn=false,sx=0,sl=0;sc.addEventListener('pointerdown',e=>{dn=true;sx=e.clientX;sl=sc.scrollLeft;sc.style.cursor='grabbing';});addEventListener('pointermove',e=>{if(dn)sc.scrollLeft=sl-(e.clientX-sx);});addEventListener('pointerup',()=>{dn=false;sc.style.cursor='grab';});}
+  let dn=false,sx=0,sl=0;sc.addEventListener('pointerdown',e=>{dn=true;sx=e.clientX;sl=sc.scrollLeft;sc.style.cursor='grabbing';});onView(window,'pointermove',e=>{if(dn)sc.scrollLeft=sl-(e.clientX-sx);});onView(window,'pointerup',()=>{dn=false;sc.style.cursor='grab';});}
 function formFloor(stage,works){const box=document.createElement('div');box.className='floor';box.innerHTML='<div class="flayer"></div><div class="axhint">拖拽平移 · 滚轮缩放 · ←再现 表现→ · ↑感知 结构↓</div>';stage.appendChild(box);const layer=box.querySelector('.flayer');const W=2000,H=1500;
   const acc={};works.forEach(w=>{if(!w.wv)return;(acc[w.wv]=acc[w.wv]||[]).push(w);});
   Object.entries(acc).forEach(([wv,list])=>{const cx=list.reduce((s,w)=>s+w.x,0)/list.length,cy=list.reduce((s,w)=>s+w.y,0)/list.length;const e=document.createElement('div');e.className='fhall';e.style.left=(cx*W)+'px';e.style.top=((1-cy)*H)+'px';e.textContent=WVN[wv]||'';layer.appendChild(e);});
   works.forEach(w=>{const e=document.createElement('div');e.className='fw';e.style.left=(w.x*W)+'px';e.style.top=((1-w.y)*H)+'px';e.innerHTML=`<img loading="lazy" src="${imgT(w)}">`;e.onclick=ev=>{ev.stopPropagation();openLb(w,works);};layer.appendChild(e);});
   let z=1,px=0,py=0;const bw=box.clientWidth||innerWidth,bh=box.clientHeight||innerHeight*0.78;z=Math.min(bw/W,bh/H)*0.92;px=(bw-W*z)/2;py=(bh-H*z)/2;const apply=()=>layer.style.transform=`translate(${px}px,${py}px) scale(${z})`;apply();
   box.addEventListener('wheel',e=>{e.preventDefault();const f=e.deltaY<0?1.12:0.89,r=box.getBoundingClientRect(),cx=e.clientX-r.left,cy=e.clientY-r.top;const wx=(cx-px)/z,wy=(cy-py)/z;z=Math.max(0.2,Math.min(6,z*f));px=cx-wx*z;py=cy-wy*z;apply();},{passive:false});
-  let dn=false,sx,sy,opx,opy;box.addEventListener('pointerdown',e=>{dn=true;sx=e.clientX;sy=e.clientY;opx=px;opy=py;box.style.cursor='grabbing';});addEventListener('pointermove',e=>{if(!dn)return;px=opx+(e.clientX-sx);py=opy+(e.clientY-sy);apply();});addEventListener('pointerup',()=>{dn=false;box.style.cursor='grab';});}
+  let dn=false,sx,sy,opx,opy;box.addEventListener('pointerdown',e=>{dn=true;sx=e.clientX;sy=e.clientY;opx=px;opy=py;box.style.cursor='grabbing';});onView(window,'pointermove',e=>{if(!dn)return;px=opx+(e.clientX-sx);py=opy+(e.clientY-sy);apply();});onView(window,'pointerup',()=>{dn=false;box.style.cursor='grab';});}
 function hash(s){let h=0;for(let k=0;k<s.length;k++)h=(h*31+s.charCodeAt(k))|0;return h;}
 
 // ============ 更多逛法:同一批 works,不同交互 ============
@@ -991,8 +1045,8 @@ function formDial(stage,works){
   function angAt(ev){const r=wrap.getBoundingClientRect();return Math.atan2(ev.clientY-(r.top+r.height/2),ev.clientX-(r.left+r.width/2))*180/Math.PI;}
   let dragging=false,lastA=0;
   wrap.addEventListener('pointerdown',e=>{if(e.target.closest('.dl-emo'))return;dragging=true;wheel.style.transition='none';lastA=angAt(e);});
-  addEventListener('pointermove',e=>{if(!dragging)return;const a=angAt(e);rot+=a-lastA;lastA=a;applyRot();setActive(nearestTop());});
-  addEventListener('pointerup',()=>{if(!dragging)return;dragging=false;snapTo(nearestTop());});
+  onView(window,'pointermove',e=>{if(!dragging)return;const a=angAt(e);rot+=a-lastA;lastA=a;applyRot();setActive(nearestTop());});
+  onView(window,'pointerup',()=>{if(!dragging)return;dragging=false;snapTo(nearestTop());});
   snapTo(0);
 }
 // 🌫 雾中之馆:整批画蒙着雾,挪到/点到哪幅,哪幅才显形
@@ -1039,12 +1093,12 @@ function formVad(stage,works){
   let sel0=false,x0,y0;
   function loc(ev){const r=plot.getBoundingClientRect();return [ev.clientX-r.left,ev.clientY-r.top,r.width,r.height];}
   plot.addEventListener('pointerdown',e=>{if(e.target.closest('.vad-pt'))return;const [x,y]=loc(e);sel0=true;x0=x;y0=y;rect.style.display='block';rect.style.left=x+'px';rect.style.top=y+'px';rect.style.width='0px';rect.style.height='0px';});
-  addEventListener('pointermove',e=>{if(!sel0)return;const [x,y]=loc(e);rect.style.left=Math.min(x,x0)+'px';rect.style.top=Math.min(y,y0)+'px';rect.style.width=Math.abs(x-x0)+'px';rect.style.height=Math.abs(y-y0)+'px';});
-  addEventListener('pointerup',e=>{if(!sel0)return;sel0=false;const [x,y,W,H]=loc(e);
+  onView(window,'pointermove',e=>{if(!sel0)return;const [x,y]=loc(e);rect.style.left=Math.min(x,x0)+'px';rect.style.top=Math.min(y,y0)+'px';rect.style.width=Math.abs(x-x0)+'px';rect.style.height=Math.abs(y-y0)+'px';});
+  onView(window,'pointerup',e=>{if(!sel0)return;sel0=false;const [x,y,W,H]=loc(e);
     if(Math.abs(x-x0)<6&&Math.abs(y-y0)<6){rect.style.display='none';pts.forEach(p=>p.el.classList.remove('sel','dim'));showTray([]);th.textContent='在画上拖一个框,框住一片情绪 →';return;}
     const l=Math.min(x,x0)/W,r=Math.max(x,x0)/W,t=Math.min(y,y0)/H,b=Math.max(y,y0)/H;
-    const sel=pts.filter(p=>p.fx>=l&&p.fx<=r&&p.fy>=t&&p.fy<=b);
-    pts.forEach(p=>{const on=sel.includes(p);p.el.classList.toggle('sel',on);p.el.classList.toggle('dim',!on);});showTray(sel);});
+    const sel=pts.filter(p=>p.fx>=l&&p.fx<=r&&p.fy>=t&&p.fy<=b),selected=new Set(sel);
+    pts.forEach(p=>{const on=selected.has(p);p.el.classList.toggle('sel',on);p.el.classList.toggle('dim',!on);});showTray(sel);});
 }
 // 📐 风格指纹:一根可拖的滑杆扫过 7 大构成,这批画沿数轴实时滑到各自的位置
 function formFingerprint(stage,works){
@@ -1059,7 +1113,7 @@ function formFingerprint(stage,works){
     el.innerHTML=`<img loading="lazy" src="${imgT(w)}"><span class="fp-v"></span>`;el.title=(w.title||'无题')+' · '+w.artist;el.onclick=()=>openLb(w,works);plot.appendChild(el);return {w,el};});
   AX7.forEach((a,i)=>{const t=document.createElement('button');t.className='fp-tick';t.textContent=a;t.onclick=()=>setDim(i);ticks.appendChild(t);});
   const last=AX7.length-1;let di=Math.max(0,AX7.indexOf('笔触'));
-  function setDim(i){di=i;const dim=AX7[i];
+  let lastDim=null;function setDim(i){if(i===lastDim)return;lastDim=i;di=i;const dim=AX7[i];
     poles.innerHTML=`<span>${POLES7[dim][0]}</span><span class="fp-arrow">沿「${dim}」从左到右 →</span><span>${POLES7[dim][1]}</span>`;
     items.forEach(it=>{const val=it.w.lang[dim];it.el.style.left=(val*100)+'%';it.el.querySelector('.fp-v').textContent=(+val).toFixed(2);});
     [...ticks.children].forEach((c,k)=>c.classList.toggle('on',k===i));
@@ -1067,8 +1121,8 @@ function formFingerprint(stage,works){
   function frac(ev){const r=track.getBoundingClientRect();return Math.max(0,Math.min(1,(ev.clientX-r.left)/r.width));}
   let drag=false;
   track.addEventListener('pointerdown',e=>{drag=true;setDim(Math.round(frac(e)*last));});
-  addEventListener('pointermove',e=>{if(!drag)return;setDim(Math.round(frac(e)*last));});
-  addEventListener('pointerup',()=>{drag=false;});
+  onView(window,'pointermove',e=>{if(!drag)return;setDim(Math.round(frac(e)*last));});
+  onView(window,'pointerup',()=>{drag=false;});
   setDim(di);
 }
 // 🌏 东西对望:东方 / 西方 两栏并置
@@ -1101,8 +1155,8 @@ function formChroma(stage,works){
   function angAt(ev){const r=wrap.getBoundingClientRect();return (Math.atan2(ev.clientY-(r.top+r.height/2),ev.clientX-(r.left+r.width/2))*180/Math.PI+360)%360;}
   let drag=false;
   wrap.addEventListener('pointerdown',e=>{if(e.target.closest('.cw-pt')||e.target.closest('.cw-reset'))return;drag=true;beamH=angAt(e);lite();});
-  addEventListener('pointermove',e=>{if(!drag)return;beamH=angAt(e);lite();});
-  addEventListener('pointerup',()=>{drag=false;});
+  onView(window,'pointermove',e=>{if(!drag)return;beamH=angAt(e);lite();});
+  onView(window,'pointerup',()=>{drag=false;});
   reset.onclick=()=>{beamH=null;lite();};
   lite();
 }
@@ -1122,6 +1176,7 @@ function openLb(w){
   // 记下当前展区与滚动位置,返回时回到点击的地方(便于检索)
   try{sessionStorage.setItem('aha_back',JSON.stringify({hash:location.hash,y:window.scrollY||document.documentElement.scrollTop||0,file:w.file}));
       sessionStorage.setItem('aha_seen_prologue','1');}catch(e){}  // 已进画作=已参与,返回时别再弹序幕
+  saveHomeFeed(w);
   location.href='art.html?w='+encodeURIComponent(w.file);
 }
 function walkTo(f){f=decodeURIComponent(f);const w=byFile[f];if(w){flushDwell();openLb(w,window._ctx);}}

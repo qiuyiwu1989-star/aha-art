@@ -75,7 +75,8 @@ const API='/cat/';
 let st={status:'kept',source:'',style:'',anchor:'',q:'',offset:0,limit:60,total:0,loading:false,done:false,foryou:false};
 let IDS=[],curIdx=-1;
 
-async function j(u){const r=await fetch(API+u);return r.json()}
+async function j(u,signal){const r=await fetch(API+u,{signal});if(!r.ok)throw new Error(`HTTP ${r.status}`);return r.json()}
+let generation=0,pageRequest,facetGeneration=0;
 
 // ✦ 为你推荐:吃 12 维审美档案的 reward 内核(/cat/foryou),按个人口味排序
 async function loadForYou(){
@@ -108,7 +109,9 @@ function toggleForYou(){
 }
 
 async function loadFacets(){
-  const f=await j('facets?status='+st.status);
+  const version=++facetGeneration,status=st.status;
+  let f;try{f=await j('facets?status='+status)}catch(e){return}
+  if(version!==facetGeneration||status!==st.status)return;
   const ss=document.getElementById('fStatus');
   ss.innerHTML=f.status.map(s=>`<option value="${s.k}"${s.k==st.status?' selected':''}>${s.k} (${s.n})</option>`).join('');
   document.getElementById('fSource').innerHTML='<option value="">全部来源</option>'+
@@ -124,11 +127,12 @@ async function loadFacets(){
 }
 function srcName(k){return k.startsWith('nbfox')?'麦田艺术':k.startsWith('yh')?'油画数据集':k.startsWith('wikiart')?'WikiArt·'+k.split(':')[1]:k}
 
-function reset(){st.offset=0;st.done=false;IDS=[];document.getElementById('grid').innerHTML='';load()}
+function reset(){generation++;if(pageRequest)pageRequest.abort();st.loading=false;st.offset=0;st.done=false;IDS=[];document.getElementById('grid').innerHTML='';load()}
 async function load(){
   if(st.loading||st.done)return;st.loading=true;
   const qs=`works?status=${st.status}&source=${encodeURIComponent(st.source)}&style=${encodeURIComponent(st.style)}&anchor=${encodeURIComponent(st.anchor)}&q=${encodeURIComponent(st.q)}&offset=${st.offset}&limit=${st.limit}`;
-  const d=await j(qs);st.total=d.total;
+  const version=generation;pageRequest=new AbortController();
+  try{const d=await j(qs,pageRequest.signal);if(version!==generation)return;st.total=d.total;
   document.getElementById('meta').textContent=`共 ${d.total.toLocaleString()} 件`;
   const g=document.getElementById('grid');
   d.items.forEach(it=>{
@@ -141,8 +145,9 @@ async function load(){
   st.offset+=d.items.length;
   if(d.items.length<st.limit||st.offset>=d.total)st.done=true;
   document.getElementById('sentinel').textContent=st.done?`— 共 ${d.total.toLocaleString()} 件 —`:'下拉加载更多…';
-  st.loading=false;
+  }catch(e){if(version===generation&&e.name!=='AbortError'){document.getElementById('sentinel').textContent='加载失败，点击重试';}}finally{if(version===generation)st.loading=false;}
 }
+document.getElementById('sentinel').onclick=()=>load();
 function esc(s){return(s||'').replace(/[<>&]/g,m=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[m]))}
 function workUrl(id){let i=IDS.indexOf(id),w=IDS;if(IDS.length>120){const s=Math.max(0,i-60);w=IDS.slice(s,s+120)}return `work.html?id=${id}&seq=${w.join(',')}`}
 

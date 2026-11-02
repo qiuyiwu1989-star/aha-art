@@ -1,0 +1,29 @@
+{
+  "source_bytes": 71344677,
+  "source_dimensions": [
+    8115,
+    8160
+  ],
+  "source_pixels": 66218400,
+  "derivatives": [
+    {
+      "path": "web/assets/derivatives/34754-720.webp",
+      "dimensions": [
+        716,
+        720
+      ],
+      "bytes": 46850,
+      "sha256": "cd3ad2ff0b9db35eec3e9a29dace4651b577c0dd4c9cf602ff8ba0c97b18d65e"
+    },
+    {
+      "path": "web/assets/derivatives/34754-1600.webp",
+      "dimensions": [
+        1591,
+        1600
+      ],
+      "bytes": 294462,
+      "sha256": "0ff71db808a5b46cd59a0c1bd4f0bb0123214601dd3246b22ec18bf892e9ad4d"
+    }
+  ],
+  "production_changed": false
+}

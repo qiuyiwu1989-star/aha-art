@@ -46,7 +46,7 @@
     border-radius:999px;padding:6px 11px;text-decoration:none;cursor:pointer}
   .loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;color:#caa46a;font-family:var(--mono);z-index:20}
 </style></head>
-<body>
+<body><div style="text-align:center;font-size:11px;opacity:.65">首页样式预览 · 精选作品样本</div>
 <div class="backbar"><a href="museum.html">现版</a><a href="museum-hero-portal.html">A</a><a href="museum-hero-editorial.html">C</a><a href="museum-hero-chroma.html">色谱→</a></div>
 <div class="wall"><div class="grid" id="grid"></div></div>
 <div class="glow"></div><div class="torch"></div><div class="beam"></div>
@@ -61,7 +61,7 @@ function imgT(w,px){const f=(w&&w.file)||'';px=px||360;
   if(/myqcloud\.com/i.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/format/webp/quality/82';
   if(/(^|\/)img\/[^?]*\.(jpe?g|png)$/i.test(f))return f.replace(/\.(jpe?g|png)$/i,'.t720.webp');
   return (w&&w.thumb)||f;}
-fetch('/cat/exhibit?limit=2000&slim=1').then(r=>r.json()).catch(()=>fetch('data/gallery_works.json').then(r=>r.json()))
+fetch('/cat/test-pool').then(r=>{if(!r.ok)throw Error('精选作品暂不可用');return r.json();}).then(d=>({works:d.items||[]}))
  .then(d=>{
    const W=(d.works||[]).filter(w=>w.file);
    const grid=document.getElementById('grid');

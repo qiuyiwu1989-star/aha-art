@@ -1,0 +1,68 @@
+[
+  {
+    "route": "/cat/home",
+    "seconds": 0.006,
+    "bytes": 6455,
+    "status": 200
+  },
+  {
+    "route": "/cat/browse",
+    "seconds": 2.152,
+    "bytes": 5691,
+    "status": 200
+  },
+  {
+    "route": "/cat/resolve",
+    "seconds": 0.548,
+    "bytes": 793,
+    "status": 200
+  },
+  {
+    "route": "/cat/catalog-facets",
+    "seconds": 2.835,
+    "bytes": 722,
+    "status": 200
+  },
+  {
+    "route": "/cat/rule-summary",
+    "seconds": 1.978,
+    "bytes": 607,
+    "status": 200
+  },
+  {
+    "route": "/cat/intent",
+    "seconds": 4.779,
+    "bytes": 2110,
+    "status": 200
+  },
+  {
+    "route": "/cat/curate-match",
+    "seconds": 4.361,
+    "bytes": 5972,
+    "status": 200
+  },
+  {
+    "route": "/cat/neighbors",
+    "seconds": 3.624,
+    "bytes": 4463,
+    "status": 200
+  },
+  {
+    "route": "/cat/browse",
+    "seconds": 1.387,
+    "bytes": 1204,
+    "status": 200
+  },
+  {
+    "route": "/data/live/points.pack.json",
+    "seconds": 0.1,
+    "bytes": 775854,
+    "status": 200
+  },
+  {
+    "route": "/data/live/affect.pack.json",
+    "seconds": 0.08,
+    "bytes": 758851,
+    "status": 200
+  }
+]

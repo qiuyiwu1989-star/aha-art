@@ -1,0 +1,33 @@
+{
+  "stage": "initial probe before neighbors JSON extraction optimization; superseded by catalog-http.json",
+  "results": [
+    {
+      "route": "catalog-facets",
+      "seconds": 2.83,
+      "count": 0,
+      "facet_keys": [
+        "style",
+        "subject",
+        "emo",
+        "wv"
+      ]
+    },
+    {
+      "route": "curate-match",
+      "seconds": 4.487,
+      "count": 24,
+      "facet_keys": []
+    },
+    {
+      "route": "neighbors",
+      "error": "Read-only database query failed",
+      "seconds": 9.192
+    },
+    {
+      "route": "browse",
+      "seconds": 1.426,
+      "count": 2,
+      "facet_keys": []
+    }
+  ]
+}

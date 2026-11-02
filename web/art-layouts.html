@@ -397,15 +397,17 @@ let _pool=null;
 async function swap(){
   try{
     if(!_pool){
-      const d=await(await fetch('/cat/exhibit?limit=8000')).json();
-      _pool=(d.works||[]).filter(w=>w.file&&w.wvcn&&w.lang&&w.voiceover&&w.voiceover.length>8&&isRealArtist(w));
+      const d=await(await fetch('/cat/test-pool')).json();
+      _pool=(d.items||[]).filter(w=>w.file&&w.wvcn&&w.lang&&w.voiceover&&w.voiceover.length>8&&isRealArtist(w));
     }
     if(_pool&&_pool.length){W=_pool[Math.floor(Math.random()*_pool.length)];draw();}
   }catch(e){/* 离线则保持缺省画 */}
 }
 document.getElementById('swap').onclick=swap;
 // 支持 ?v=版式键 与 ?w=作品file 深链
-(function(){const q=new URLSearchParams(location.search);const v=q.get('v');if(v&&VARIANTS.find(x=>x.key===v))_cur=v;})();
+(async function(){const q=new URLSearchParams(location.search);const v=q.get('v');if(v&&VARIANTS.find(x=>x.key===v))_cur=v;
+ const file=q.get('w'),id=q.get('id');if(file||id){try{const r=await fetch('/cat/item?'+new URLSearchParams(id?{id}:{file}));if(!r.ok)throw Error();const d=await r.json();if(d.work){W=d.work;draw();}}catch(e){document.getElementById('specV').textContent='指定作品暂时无法加载，请重试。';}}
+})();
 draw();
 </script>
 <script src="js/aha-icons.js"></script>

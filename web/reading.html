@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<script src="/js/imgguard.js"></script>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>我的 · 阅读记录 · aha</title>
+<meta name="description" content="你在 aha 人类美术馆读过的画,听过的讲解员——一份你自己的看画足迹。"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--wall:#ddd4c2;--wall2:#cdc3ad;--ink:#2a2620;--ink-soft:#5c554a;--ink-mute:#8a8170;--mat:#f3eee2;--frame:#2c2620;--gold:#b0673a;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",system-ui,sans-serif;--mono:"JetBrains Mono",monospace;--ease:cubic-bezier(.4,0,.2,1)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:radial-gradient(130% 90% at 50% -5%,var(--wall),var(--wall2));background-attachment:fixed;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;min-height:100vh}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:920px;margin:0 auto;padding:30px 20px 90px}
+  .top{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+  .back{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;color:var(--ink-soft);background:rgba(255,255,255,.55);border:1px solid rgba(40,30,15,.14);border-radius:999px;padding:7px 14px;transition:.15s var(--ease)}
+  .back:hover{border-color:var(--gold);color:var(--gold)}
+  .back .ico{width:14px;height:14px}
+  h1{font-family:var(--serif);font-size:clamp(24px,5vw,34px);font-weight:700;letter-spacing:.02em;margin-top:14px}
+  h1 .d{color:var(--gold)}
+  .lede{font-size:13.5px;color:var(--ink-mute);margin-top:6px;line-height:1.6}
+  .stat{display:flex;gap:18px;margin:16px 0 4px;font-family:var(--mono);font-size:12px;color:var(--ink-soft)}
+  .stat b{font-family:var(--serif);font-size:20px;color:var(--gold);font-weight:700;margin-right:5px}
+  .list{margin-top:22px;display:flex;flex-direction:column;gap:14px}
+  .rcard{display:flex;gap:16px;background:#fff;border:1px solid rgba(40,30,15,.1);border-radius:14px;padding:14px;box-shadow:0 12px 26px -18px rgba(40,30,15,.5);transition:transform .18s var(--ease),box-shadow .18s var(--ease)}
+  .rcard:hover{transform:translateY(-3px);box-shadow:0 18px 34px -18px rgba(40,30,15,.55)}
+  .rthumb{flex:0 0 96px;width:96px;height:120px;border-radius:8px;overflow:hidden;background:#1a1612 url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22/>')center/cover;position:relative}
+  .rthumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .rbody{flex:1;min-width:0;display:flex;flex-direction:column}
+  .rtitle{font-family:var(--serif);font-size:17px;font-weight:600;line-height:1.3}
+  .rmeta{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:3px;display:flex;gap:10px;flex-wrap:wrap}
+  .rmeta .acc{color:var(--gold)}
+  .voices{margin-top:10px;display:flex;flex-direction:column;gap:7px}
+  .voice{display:flex;gap:9px;align-items:flex-start}
+  .vchip{flex:0 0 auto;display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--ink);background:var(--mat);border:1px solid rgba(40,30,15,.1);border-radius:999px;padding:3px 10px;white-space:nowrap}
+  .vchip .em{font-size:13px}
+  .vsnip{font-size:12.5px;color:var(--ink-soft);line-height:1.5;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .vtime{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-left:auto;flex:0 0 auto;white-space:nowrap}
+  .empty{text-align:center;padding:64px 20px;color:var(--ink-mute)}
+  .empty .big{font-family:var(--serif);font-size:20px;color:var(--ink-soft);margin-bottom:10px}
+  .empty a{display:inline-block;margin-top:18px;font-family:var(--mono);font-size:13px;color:#fff;background:var(--gold);border-radius:10px;padding:11px 22px}
+  .skel{height:148px;border-radius:14px;background:linear-gradient(90deg,rgba(255,255,255,.4),rgba(255,255,255,.7),rgba(255,255,255,.4));background-size:200% 100%;animation:sk 1.3s infinite}
+  @keyframes sk{from{background-position:200% 0}to{background-position:-200% 0}}
+  a:focus-visible,.back:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:8px}
+  @media(max-width:560px){.rthumb{flex-basis:74px;width:74px;height:96px}.vsnip{-webkit-line-clamp:3}}
+</style>
+</head><body>
+<div class="wrap">
+  <div class="top"><a class="back" href="museum.html" id="navMuseum">美术馆</a><a class="back" href="me.html" id="navMe">我的</a></div>
+  <h1>我的 · <span class="d">阅读记录</span></h1>
+  <p class="lede">你读过的画、听过的讲解员——一份只属于你的看画足迹。点任意一幅可回到画前继续读。</p>
+  <div class="stat" id="stat" style="display:none"></div>
+  <div class="list" id="list"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
+</div>
+<script src="aha-mem.js"></script>
+<script src="js/aha-icons.js"></script>
+<script src="js/aha-catalog-resolve.js"></script>
+<script>
+// 顶部导航图标(demo 图标系统无 data-ic 自动替换,JS 注入)
+if(window.AHAIcons){
+  const nm=document.getElementById('navMuseum'),nme=document.getElementById('navMe');
+  if(nm)nm.insertAdjacentHTML('afterbegin',AHAIcons.svg('museum'));
+  if(nme)nme.insertAdjacentHTML('afterbegin',AHAIcons.svg('user'));
+}
+const _CC=/^(意大利|法国|法兰西|荷兰|尼德兰|佛兰德斯|弗拉芒|德国|德意志|普鲁士|西班牙|英国|英格兰|苏格兰|爱尔兰|威尔士|美国|美利坚|俄罗斯|俄国|苏联|比利时|奥地利|瑞士|瑞典|挪威|丹麦|芬兰|波兰|希腊|葡萄牙|匈牙利|捷克|斯洛伐克|罗马尼亚|乌克兰|克罗地亚|塞尔维亚|保加利亚|日本|中国|韩国|朝鲜|印度|波斯|伊朗|土耳其|埃及|墨西哥|巴西|阿根廷|智利|加拿大|澳大利亚|新西兰|南非)/;
+function cleanTitle(t,artist){
+  t=String(t==null?'无题':t).replace(/\.(jpe?g|png|webp|gif|tiff?|bmp|jfif)$/i,'').replace(/[_]+/g,' ').trim();
+  const SEP=/[\s·・,，、|/\\–-]/;const segs=[];
+  if(artist){const a=String(artist).trim();if(a&&a.length>=2){t=t.split(a).join(' ');a.split(/[·・\s]+/).forEach(s=>{s=s.trim();if(s.length>=2)segs.push(s);});}}
+  let g=0;while(g++<6){t=t.replace(new RegExp('^'+SEP.source+'+'),'');let cut=false;const m=t.match(_CC);
+    if(m&&(t.length===m[0].length||SEP.test(t[m[0].length]))){t=t.slice(m[0].length);cut=true;}
+    else for(const s of segs){if(t.startsWith(s)&&(t.length===s.length||SEP.test(t[s.length]))){t=t.slice(s.length);cut=true;break;}}
+    if(!cut)break;}
+  t=t.replace(/\s{2,}/g,' ').replace(new RegExp('^'+SEP.source+'+|'+SEP.source+'+$','g'),'').trim();return t||'无题';
+}
+function isRealArtist(a){a=(a||'').trim();if(!a)return false;return !/佚名|待考|无名|未知|匿名|不详|无款|传\s*$|unknown|anonymous|untitled|^n\/?a$/i.test(a);}
+function imgT(w,px){const f=(w&&w.file)||'';px=px||320;
+  if(w&&w.work_id&&window._COSBIG&&_COSBIG[w.work_id])return '/'+_COSBIG[w.work_id];
+  if(/myqcloud\.com/i.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/quality/82';
+  if(/(^|\/)img\/[^?]*\.(jpe?g|png)$/i.test(f))return f+'?imageMogr2/thumbnail/'+px+'x/quality/82';
+  return (w&&w.thumb)||f;}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function rel(ts){if(!ts)return '';const d=new Date(ts),now=new Date(),s=(now-d)/1000;
+  if(s<60)return '刚刚';if(s<3600)return Math.floor(s/60)+' 分钟前';if(s<86400)return Math.floor(s/3600)+' 小时前';
+  if(s<86400*30)return Math.floor(s/86400)+' 天前';
+  return (d.getMonth()+1)+'月'+d.getDate()+'日';}
+
+const byFile={};
+Promise.all([
+  fetch('data/cosbig.json').then(r=>r.json()).catch(()=>({})),
+  fetch('api/me/reading?uid='+encodeURIComponent(window.AHA?AHA.uid:'anon')).then(r=>r.json())
+]).then(async ([cb,rd])=>{
+  window._COSBIG=cb||{};
+  const d=await AHACatalog.resolve((rd.items||[]).map(it=>it.work));
+  d.works.forEach(w=>{byFile[w.file]=w;byFile[w.work_id]=w;if(w.code)byFile[w.code]=w;});Object.entries(d.matches||{}).forEach(([key,id])=>{byFile[key]=byFile[id];});
+  render(rd.items||[]);
+}).catch(()=>{document.getElementById('list').textContent='阅读记录暂时无法加载，请刷新重试。';});
+
+function render(items){
+  const list=document.getElementById('list'),stat=document.getElementById('stat');
+  if(!items.length){
+    list.outerHTML='<div class="empty"><div class="big">还没有阅读记录</div>读一幅画、听一位讲解员讲讲它,这里就会记下你的足迹。<br/><a href="museum.html">去美术馆看画</a></div>';
+    return;
+  }
+  // 按作品归并(保留每个讲解员一条),作品按最近一次阅读排序
+  const groups={},order=[];
+  items.forEach(it=>{const k=it.work;if(!groups[k]){groups[k]={work:k,voices:[],latest:it.ts};order.push(k);}
+    groups[k].voices.push(it);if(it.ts>groups[k].latest)groups[k].latest=it.ts;});
+  order.sort((a,b)=>(groups[b].latest||'').localeCompare(groups[a].latest||''));
+  const totalVoices=items.length;
+  stat.style.display='flex';
+  stat.innerHTML='<span><b>'+order.length+'</b>幅画</span><span><b>'+totalVoices+'</b>次讲解</span>';
+  list.innerHTML=order.map(k=>{
+    const g=groups[k],w=byFile[k]||{file:k},
+      title=cleanTitle(w.title||k,w.artist),
+      artist=isRealArtist(w.artist)?w.artist:'',
+      acc=(w.work_id!=null&&w.work_id!=='')?'AHA-'+String(w.work_id).padStart(5,'0'):'',
+      thumb=imgT(w,320);
+    const voices=g.voices.map(v=>
+      '<div class="voice"><span class="vchip">'+(v.emoji?'<span class="em">'+esc(v.emoji)+'</span>':'')+esc(v.persona||'讲解员')+'</span>'+
+      (v.snippet?'<span class="vsnip">'+esc(v.snippet)+'…</span>':'<span class="vsnip" style="color:var(--ink-mute)">（解读已听过）</span>')+
+      '<span class="vtime">'+rel(v.ts)+'</span></div>').join('');
+    return '<a class="rcard" href="art.html?w='+encodeURIComponent(k)+'">'+
+      '<div class="rthumb"><img src="'+esc(thumb)+'" alt="'+esc(title)+'" loading="lazy"/></div>'+
+      '<div class="rbody"><div class="rtitle">'+esc(title)+'</div>'+
+      '<div class="rmeta">'+(artist?'<span>'+esc(artist)+'</span>':'')+(acc?'<span class="acc">'+esc(acc)+'</span>':'')+'</div>'+
+      '<div class="voices">'+voices+'</div></div></a>';
+  }).join('');
+}
+</script>
+</body></html>

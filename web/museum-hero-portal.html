@@ -99,7 +99,7 @@
   .loading{padding:60px;text-align:center;color:var(--ink-mute);font-family:var(--mono)}
   @media(max-width:760px){.doors{gap:8px}.htitle{top:4%}}
 </style></head>
-<body>
+<body><div style="text-align:center;font-size:11px;opacity:.65">首页样式预览 · 精选作品样本</div>
 <div class="backbar"><a href="museum.html">← 现版首页</a><a href="museum-hero-3d.html">看方案 B(真 3D)→</a></div>
 
 <section class="atrium" id="atrium">
@@ -132,7 +132,7 @@ const WVN={WV1:'摹写之眼',WV2:'礼制图式',WV3:'写意寄情',WV4:'经验�
 const WVS={WV1:'忠实眼睛所见',WV2:'图像服务秩序',WV3:'以笔墨寄心性',WV4:'捕捉光的瞬间',WV5:'情绪直接外化',WV6:'退回形式本身'};
 const ORDER=['WV1','WV2','WV3','WV4','WV5','WV6'];
 
-fetch('/cat/exhibit?limit=2000&slim=1').then(r=>r.json()).catch(()=>fetch('data/gallery_works.json').then(r=>r.json()))
+fetch('/cat/test-pool').then(r=>{if(!r.ok)throw Error('精选作品暂不可用');return r.json();}).then(d=>({works:d.items||[]}))
  .then(d=>{
    const W=(d.works||[]).filter(w=>w.file&&w.wv);
    const byWV={};W.forEach(w=>{(byWV[w.wv]=byWV[w.wv]||[]).push(w);});

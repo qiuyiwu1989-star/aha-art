@@ -1,0 +1,58 @@
+[
+  {
+    "id": 169664,
+    "file": "/img/artworks/%E6%B2%B9%E7%94%BB%E6%95%B0%E6%8D%AE%E9%9B%86/yh/upload2/workImage_ori/2018/12/28/20181228112404aikq1vaW.jpg",
+    "probes": [
+      {
+        "target": "local",
+        "status": 200,
+        "bytes": 64520,
+        "mime": "image/webp",
+        "magic": "b'RIFF\\x00\\xfc\\x00\\x00WEBP'"
+      },
+      {
+        "target": "cos",
+        "status": 200,
+        "bytes": 64520,
+        "mime": "image/webp",
+        "magic": "b'RIFF\\x00\\xfc\\x00\\x00WEBP'"
+      }
+    ]
+  },
+  {
+    "id": 175394,
+    "file": "/img/artworks/%E6%B2%B9%E7%94%BB%E6%95%B0%E6%8D%AE%E9%9B%86/yh/upload2/workImage_ori/2019/7/3/20190703133951u3VAaamD.jpg",
+    "probes": [
+      {
+        "target": "local",
+        "status": 200,
+        "bytes": 144964,
+        "mime": "image/webp",
+        "magic": "b'RIFF<6\\x02\\x00WEBP'"
+      },
+      {
+        "target": "cos",
+        "status": 200,
+        "bytes": 144964,
+        "mime": "image/webp",
+        "magic": "b'RIFF<6\\x02\\x00WEBP'"
+      }
+    ]
+  },
+  {
+    "id": 184913,
+    "file": "/img/artworks/%E6%B2%B9%E7%94%BB%E6%95%B0%E6%8D%AE%E9%9B%86/yh/upload1/workImage_ori/20160913/20160913163826iB1gJwUh.jpg",
+    "probes": [
+      {
+        "target": "local",
+        "status": 502,
+        "body": "{\"error\": \"远端只读资源暂不可用\"}"
+      },
+      {
+        "target": "cos",
+        "status": 400,
+        "body": "<?xml version='1.0' encoding='utf-8' ?>\n<Error>\n\t<Code>ImageTooLarge</Code>\n\t<Message>Image size is too large.</Message>\n\t<Resource>/artworks/油画数据集/yh/upload1/workImage_ori/20160913/20160913163826iB1gJwUh.jpg</Resource>\n\t<RequestId>NmFkZTJlMDNfOTkwZjc2MDlfMTAwZTdfMjQ4OGEyMjU=</RequestId>\n\t<TraceId>OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODc0OWRkZjk0ZDM1NmI1M2E2MTRlY2MzZDhmNmI5MWI1OWEzMDE4ZGI4NTE5MWE4YmYxODQ1NWI3YzFiOTg0ZjdlNzk0YTQ2NmI0YmUyZjgzM2UxNTc5NDZlMWVlZmU4YmI=</TraceId>\n</Error>\n\n"
+      }
+    ]
+  }
+]

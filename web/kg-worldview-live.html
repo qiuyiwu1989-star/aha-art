@@ -5,6 +5,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/aha-kit.css">
 <link rel="stylesheet" href="css/cloud-stage.css">
+<script src="js/aha-point-pack.js"></script>
 </head>
 <body data-no-top>
 <div class="stage dark" id="stage">
@@ -70,7 +71,7 @@ function hull(P){if(P.length<3)return P.slice();P=P.slice().sort((a,b)=>a[0]-b[0
   const up=[];for(let i=P.length-1;i>=0;i--){const p=P[i];while(up.length>=2&&cr(up[up.length-2],up[up.length-1],p)<=0)up.pop();up.push(p);}
   lo.pop();up.pop();return lo.concat(up);}
 Promise.all([
-  fetch('data/live/points.json').then(r=>r.json()),
+  AHAPointPack.load('data/live/points.pack.json'),
   fetch('data/kg_style.json').then(r=>r.json()),       // KG 权威:风格节点坐标(worldview-map 同源)
   fetch('data/kg_worldview_v3.json').then(r=>r.json())  // KG 权威:6 区位置
 ]).then(([d,sty,wv])=>{D=d;
@@ -86,7 +87,7 @@ Promise.all([
     onHover:showTip, onLeave:hideTip, onPick:openPeek
   });
   buildLegend(); updateCount();
-}).catch(()=>{document.getElementById('cnt').textContent='数据加载失败 · 检查 data/live/points.json';});
+}).catch(()=>{document.getElementById('cnt').textContent='数据加载失败 · 点击此处重试';document.getElementById('cnt').onclick=()=>location.reload();});
 
 function groups(){return mode==='wv'?Object.keys(WVN):ANC;}
 function gname(k){return mode==='wv'?WVN[k]:k;}
